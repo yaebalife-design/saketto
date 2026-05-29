@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>受賞・メディア・海外進出 — saketto.</title>
+<meta name="description" content="クラフトサケのICC SAKE AWARD等の受賞、業界メディア露出、海外進出を横断的に追跡。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F0E7; --bg-alt: #EDE5D2; --paper: #FAF6ED;
+  --ink: #1A1717; --ink-soft: #4A4441; --ink-mute: #7A7470;
+  --accent: #B33A2A; --accent-deep: #862719;
+  --warm: #8B7355; --line: #C9BFA8; --line-soft: #DFD5BD;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg); color:var(--ink);
+  font-family:'Noto Sans JP', sans-serif; font-weight:300;
+  line-height:1.75; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body::before {
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    radial-gradient(ellipse 1.5px 2.2px at 18% 22%, rgba(184,73,58,0.035) 60%, transparent 70%),
+    radial-gradient(ellipse 1.2px 1.8px at 67% 38%, rgba(139,115,85,0.04) 60%, transparent 70%),
+    radial-gradient(ellipse 1.5px 2.3px at 42% 71%, rgba(26,23,23,0.025) 60%, transparent 70%);
+  background-size: 64px 64px, 96px 96px, 80px 80px;
+}
+main { position:relative; z-index:1; }
+
+.masthead {
+  border-bottom:1px solid var(--line); padding:1rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.7rem; letter-spacing:.2em; color:var(--ink-mute); text-transform:uppercase;
+}
+.masthead a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead a:hover { color:var(--accent); }
+.masthead .accent-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; margin-right:.5rem; }
+.masthead .left { display:flex; gap:1.5rem; align-items:center; }
+.masthead .right { font-family:'Cormorant Garamond', serif; font-style:italic; letter-spacing:.1em; }
+
+.hero {
+  max-width:1100px; margin:0 auto; padding:5rem 2rem 3rem;
+}
+.hero__eyebrow {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.95rem; color:var(--accent); letter-spacing:.15em;
+  margin-bottom:1rem;
+}
+.hero__title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:clamp(2.5rem, 6vw, 4rem);
+  letter-spacing:.02em; line-height:1.2; color:var(--ink);
+  margin-bottom:1rem;
+}
+.hero__title .accent { color:var(--accent); }
+.hero__lede {
+  font-size:.95rem; color:var(--ink-soft); max-width:680px;
+  border-left:2px solid var(--accent); padding-left:1.5rem; line-height:1.95;
+}
+
+.section { max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
+.section-meta {
+  display:flex; align-items:baseline; gap:1.25rem; margin-bottom:1.5rem;
+}
+.section-meta__num {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.05rem; color:var(--accent); letter-spacing:.1em;
+}
+.section-meta__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.7rem; font-weight:700; letter-spacing:.35em; color:var(--ink);
+  text-transform:uppercase;
+}
+.section-meta__count {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.9rem; color:var(--ink-mute); letter-spacing:.1em;
+}
+.section-meta__rule { flex:1; height:1px; background:var(--line); }
+
+.cat-title {
+  font-family:'Shippori Mincho', serif; font-weight:600;
+  font-size:1.5rem; letter-spacing:.02em; color:var(--ink);
+  margin-bottom:.5rem;
+}
+.cat-title .accent { color:var(--accent); }
+.cat-desc {
+  font-size:.85rem; color:var(--ink-soft); margin-bottom:1.25rem; line-height:1.7;
+}
+
+.entries {
+  display:flex; flex-direction:column; gap:.5px;
+  background:var(--line); border:1px solid var(--line);
+  margin-bottom:3rem;
+}
+.entry {
+  background:var(--bg); padding:1.1rem 1.5rem;
+  display:grid; grid-template-columns:1fr; gap:.4rem;
+  transition:background .3s;
+  text-decoration:none; color:var(--ink);
+}
+@media (min-width:760px) {
+  .entry { grid-template-columns:1.5fr 1fr 1fr; align-items:center; gap:1rem; }
+}
+.entry:hover { background:var(--paper); }
+.entry__brand {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1rem; color:var(--ink);
+}
+.entry__brewery {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.78rem; color:var(--ink-soft); letter-spacing:.04em;
+}
+.entry__brewery::before { content:"— "; color:var(--accent); }
+.entry__specs { display:flex; gap:.35rem; flex-wrap:wrap; }
+.spec-pill {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.68rem; letter-spacing:.04em; color:var(--ink-soft);
+  background:var(--bg-alt); padding:.2rem .55rem;
+}
+.spec-pill.accent { color:var(--accent); background:transparent; border:1px solid var(--accent); }
+.spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
+
+.brewery-grid {
+  display:grid; grid-template-columns:1fr; gap:0;
+  border-top:1px solid var(--line);
+}
+@media (min-width:600px) { .brewery-grid { grid-template-columns:repeat(2, 1fr); } }
+.brewery-card {
+  padding:1.5rem; border-bottom:1px solid var(--line);
+  background:var(--bg); text-decoration:none; color:var(--ink);
+  display:flex; flex-direction:column; gap:.4rem;
+  transition:background .3s, padding-left .3s;
+}
+@media (min-width:600px) {
+  .brewery-card { border-right:1px solid var(--line); }
+  .brewery-card:nth-child(2n) { border-right:none; }
+}
+.brewery-card:hover { background:var(--paper); padding-left:1.75rem; }
+.brewery-card__num {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.75rem; color:var(--accent); letter-spacing:.1em;
+}
+.brewery-card__name {
+  font-family:'Shippori Mincho', serif; font-weight:600;
+  font-size:1.15rem; color:var(--ink);
+}
+.brewery-card__meta {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.72rem; color:var(--ink-soft); letter-spacing:.05em;
+}
+.brewery-card__features {
+  font-size:.78rem; color:var(--ink-soft); line-height:1.6; margin-top:.25rem;
+}
+
+.empty-region {
+  background:var(--bg-alt); padding:2rem; border-left:2px solid var(--warm);
+  font-family:'Shippori Mincho', serif;
+  color:var(--ink-soft); font-size:.95rem;
+}
+.empty-region em {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  color:var(--accent); letter-spacing:.05em;
+}
+
+.divider {
+  max-width:1100px; margin:3rem auto; padding:0 2rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.divider .rule { flex:1; height:1px; background:var(--line); }
+.divider .ornament { width:8px; height:8px; background:var(--accent); transform:rotate(45deg); }
+.divider .ornament.outer { width:4px; height:4px; background:var(--warm); }
+
+footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-index:1; }
+.colophon {
+  max-width:1100px; margin:0 auto; padding:2rem;
+  display:grid; grid-template-columns:1fr; gap:1.5rem;
+}
+@media (min-width:700px) { .colophon { grid-template-columns:2fr 3fr; } }
+.colophon__brand {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.5rem; letter-spacing:.02em;
+}
+.colophon__brand .dot { color:var(--accent); }
+.colophon__brand a { color:var(--ink); text-decoration:none; }
+.colophon__brand small {
+  display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-soft); margin-top:.25rem;
+  font-weight:400; letter-spacing:.08em;
+}
+.colophon__notes {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.75rem; color:var(--ink-soft); line-height:1.95; letter-spacing:.04em;
+}
+.colophon__notes strong { color:var(--accent); font-weight:500; }
+.colophon__sep { color:var(--line); margin:0 .5rem; }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="masthead">
+    <div class="left">
+      <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
+      <span>EXTRA — ACCOLADES & MEDIA</span>
+    </div>
+    <div class="right">5 awarded</div>
+  </div>
+
+  <section class="hero">
+    <div class="hero__eyebrow">— ACCOLADES & EXPOSURE</div>
+    <h1 class="hero__title">受賞と<span class="accent">海外進出</span>から、見つける。</h1>
+    <p class="hero__lede">ICC SAKE AWARD、Tokyo酒チャレンジ、日本パッケージデザイン大賞、Mugaritz・Disfrutarでの提供、欧米輸出開始 — クラフトサケと「世界」のつながりを一覧する。</p>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 01</span>
+      <span class="section-meta__label">AWARDS</span>
+      <span class="section-meta__count">/ 5 蔵</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">受賞</h2>
+    <p class="cat-desc">ICC SAKE AWARD、Tokyo酒チャレンジ、日本パッケージデザイン大賞、東北アントレプレナー大賞ほか。</p>
+    <div class="entries">
+      <a class="entry" href="../brewery/ine-to-agave.html">
+        <div>
+          <div class="entry__brand">ICC SAKE AWARD 初代優勝</div>
+          <div class="entry__brewery">稲とアガベ醸造所（稲とアガベ OGAラベル）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2023</span></div>
+        <div class="entry__brewery" style="text-align:right">秋田県</div>
+      </a>
+      <a class="entry" href="../brewery/ine-to-agave.html">
+        <div>
+          <div class="entry__brand">ICC SAKE AWARD 第3位</div>
+          <div class="entry__brewery">稲とアガベ醸造所（花風）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
+        <div class="entry__brewery" style="text-align:right">秋田県</div>
+      </a>
+      <a class="entry" href="../brewery/haccoba.html">
+        <div>
+          <div class="entry__brand">日本パッケージデザイン大賞 銀賞（酒類カテゴリ）</div>
+          <div class="entry__brewery">haccoba（水を編む シリーズ）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
+        <div class="entry__brewery" style="text-align:right">福島県</div>
+      </a>
+      <a class="entry" href="../brewery/haccoba.html">
+        <div>
+          <div class="entry__brand">東北アントレプレナー大賞（第32回東北ニュービジネス大賞）</div>
+          <div class="entry__brewery">haccoba</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
+        <div class="entry__brewery" style="text-align:right">福島県</div>
+      </a>
+      <a class="entry" href="../brewery/haccoba.html">
+        <div>
+          <div class="entry__brand">ICC SAKE AWARD 準決勝進出</div>
+          <div class="entry__brewery">haccoba</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2023</span></div>
+        <div class="entry__brewery" style="text-align:right">福島県</div>
+      </a>
+      <a class="entry" href="../brewery/pukupuku.html">
+        <div>
+          <div class="entry__brand">ICC SAKE AWARD 優勝</div>
+          <div class="entry__brewery">ぷくぷく醸造（#ODAKA – 蔵付酵母 木桶どぶろく –）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
+        <div class="entry__brewery" style="text-align:right">福島県</div>
+      </a>
+      <a class="entry" href="../brewery/pukupuku.html">
+        <div>
+          <div class="entry__brand">ICC SAKE AWARD 決勝進出</div>
+          <div class="entry__brewery">ぷくぷく醸造</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
+        <div class="entry__brewery" style="text-align:right">福島県</div>
+      </a>
+      <a class="entry" href="../brewery/linne.html">
+        <div>
+          <div class="entry__brand">ICC SAKE AWARD 準優勝</div>
+          <div class="entry__brewery">LINNÉ（800 大麦 樽熟成）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
+        <div class="entry__brewery" style="text-align:right">京都府</div>
+      </a>
+      <a class="entry" href="../brewery/dejima-hosendo.html">
+        <div>
+          <div class="entry__brand">Tokyo酒チャレンジ 金賞</div>
+          <div class="entry__brewery">でじま芳扇堂（芳扇 吟雲（九州初作付・初収穫の美山錦100%どぶろく））</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
+        <div class="entry__brewery" style="text-align:right">長崎県</div>
+      </a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 02</span>
+      <span class="section-meta__label">GLOBAL EXPANSION</span>
+      <span class="section-meta__count">/ 3 蔵</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">海外進出・国際的提供</h2>
+    <p class="cat-desc">輸出開始、海外法人設立、ミシュランレストランでの提供などクラフトサケの世界展開。</p>
+    <div class="entries">
+      <a class="entry" href="../brewery/haccoba.html">
+        <div>
+          <div class="entry__brand">欧米進出開始（米/オランダ/ドイツ）</div>
+          <div class="entry__brewery">haccoba（Sunflower Sake(ポートランド)/Restaurant Flore(アムステルダム)/Enter Sake Berlin）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
+        <div class="entry__brewery" style="text-align:right">福島県</div>
+      </a>
+      <a class="entry" href="../brewery/haccoba.html">
+        <div>
+          <div class="entry__brand">アジア圏輸出（タイ/香港/シンガポール/台湾）</div>
+          <div class="entry__brewery">haccoba</div>
+        </div>
+        <div class="entry__specs"></div>
+        <div class="entry__brewery" style="text-align:right">福島県</div>
+      </a>
+      <a class="entry" href="../brewery/nondo.html">
+        <div>
+          <div class="entry__brand">Mugaritz（スペイン・旧3つ星）で提供</div>
+          <div class="entry__brewery">nondo（non°）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
+        <div class="entry__brewery" style="text-align:right">岩手県</div>
+      </a>
+      <a class="entry" href="../brewery/nondo.html">
+        <div>
+          <div class="entry__brand">Disfrutar（バルセロナ・世界ベストレストラン2024年1位）で提供</div>
+          <div class="entry__brewery">nondo（non°）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
+        <div class="entry__brewery" style="text-align:right">岩手県</div>
+      </a>
+      <a class="entry" href="../brewery/librom.html">
+        <div>
+          <div class="entry__brand">イタリア法人「LIBROM ITALY」設立</div>
+          <div class="entry__brewery">LIBROM（バルバレスコ地区で現地米使用テスト醸造中）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2023</span></div>
+        <div class="entry__brewery" style="text-align:right">福岡県</div>
+      </a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <span class="section-meta__label">MEDIA SPOTLIGHTS</span>
+      <span class="section-meta__count">/ 6 蔵</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">メディア露出</h2>
+    <p class="cat-desc">Forbes JAPAN、dancyu、日経新聞、Diamond、経済産業省METI Journal等での主要露出。</p>
+    <div class="entries">
+      <a class="entry" href="../brewery/ine-to-agave.html">
+        <div>
+          <div class="entry__brand">Forbes JAPAN「CULTURE-PRENEURS 30」選出</div>
+          <div class="entry__brewery">稲とアガベ醸造所（岡住修兵代表）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
+        <div class="entry__brewery" style="text-align:right">秋田県</div>
+      </a>
+      <a class="entry" href="../brewery/ine-to-agave.html">
+        <div>
+          <div class="entry__brand">日経・朝日・毎日・週刊ダイヤモンド・Discover Japan他多数</div>
+          <div class="entry__brewery">稲とアガベ醸造所</div>
+        </div>
+        <div class="entry__specs"></div>
+        <div class="entry__brewery" style="text-align:right">秋田県</div>
+      </a>
+      <a class="entry" href="../brewery/pukupuku.html">
+        <div>
+          <div class="entry__brand">京都芸術大学「クラフトサケ学」非常勤講師開設</div>
+          <div class="entry__brewery">ぷくぷく醸造（代表・立川哲之氏）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
+        <div class="entry__brewery" style="text-align:right">福島県</div>
+      </a>
+      <a class="entry" href="../brewery/pukupuku.html">
+        <div>
+          <div class="entry__brand">経済産業省METI Journal・greenz.jp・BS朝日他</div>
+          <div class="entry__brewery">ぷくぷく醸造</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
+        <div class="entry__brewery" style="text-align:right">福島県</div>
+      </a>
+      <a class="entry" href="../brewery/happy-taro.html">
+        <div>
+          <div class="entry__brand">dancyu「クラフトSAKE醸造所訪問レポート ネオどぶろく」前後編大型特集</div>
+          <div class="entry__brewery">ハッピー太郎醸造所</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2023</span></div>
+        <div class="entry__brewery" style="text-align:right">滋賀県</div>
+      </a>
+      <a class="entry" href="../brewery/heiroku.html">
+        <div>
+          <div class="entry__brand">Diamond『新日本酒紀行』掲載</div>
+          <div class="entry__brewery">平六醸造</div>
+        </div>
+        <div class="entry__specs"></div>
+        <div class="entry__brewery" style="text-align:right">岩手県</div>
+      </a>
+      <a class="entry" href="../brewery/tokyo-station.html">
+        <div>
+          <div class="entry__brand">日経新聞「東京駅の店内で日本酒製造へ 国税庁、小売りに初認可」大型報道</div>
+          <div class="entry__brewery">東京駅酒造場</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2020</span></div>
+        <div class="entry__brewery" style="text-align:right">東京都</div>
+      </a>
+      <a class="entry" href="../brewery/sakenova.html">
+        <div>
+          <div class="entry__brand">日経新聞「サケアイ、佐渡に『クラフトサケ』の醸造所」</div>
+          <div class="entry__brewery">SAKENOVA BREWERY</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
+        <div class="entry__brewery" style="text-align:right">新潟県</div>
+      </a>
+      <a class="entry" href="../brewery/sakenova.html">
+        <div>
+          <div class="entry__brand">日本アカデミー賞アフターパーティーで唯一の日本酒ブランドとして提供（約500名）</div>
+          <div class="entry__brewery">SAKENOVA BREWERY（SAKENOVA）</div>
+        </div>
+        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
+        <div class="entry__brewery" style="text-align:right">新潟県</div>
+      </a>
+    </div>
+  </section></div>
+  <footer>
+    <div class="colophon">
+      <div class="colophon__brand">
+        <a href="../index.html">saketto<span class="dot">.</span></a>
+        <small>— クラフトサケの図鑑</small>
+      </div>
+      <div class="colophon__notes">
+        <strong>準備中</strong><span class="colophon__sep">／</span>
+        2026年夏、本サイト公開予定<span class="colophon__sep">／</span>
+        20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
+        PR ／ アフィリエイトリンクを含みます<span class="colophon__sep">／</span>
+        © 2026 saketto.
+      </div>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>

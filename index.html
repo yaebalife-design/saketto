@@ -499,6 +499,69 @@ footer {
 }
 .colophon__notes strong { color: var(--accent); font-weight: 500; }
 .colophon__sep { color: var(--line); margin: 0 .5rem; }
+
+/* EXTRA AXES (ふるさと納税 / 受賞) */
+.axes-extra {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--line);
+  border-top: none;
+  margin-bottom: 4rem;
+}
+@media (min-width: 700px) {
+  .axes-extra { grid-template-columns: 1fr 1fr; }
+}
+.axis-extra {
+  background: var(--bg-soft);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  border-bottom: 1px solid var(--line);
+  transition: background .25s ease, padding-left .25s ease;
+  position: relative;
+}
+@media (min-width: 700px) {
+  .axis-extra:first-child {
+    border-right: 1px solid var(--line);
+    border-bottom: none;
+  }
+}
+.axis-extra:hover {
+  background: var(--paper);
+  padding-left: 1.75rem;
+}
+.axis-extra__label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .72rem;
+  color: var(--accent);
+  letter-spacing: .25em;
+}
+.axis-extra__name {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: .03em;
+  color: var(--ink);
+}
+.axis-extra__hint {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: .76rem;
+  color: var(--ink-soft);
+  letter-spacing: .03em;
+}
+.axis-extra__icon {
+  width: 26px;
+  height: 26px;
+  color: var(--ink);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  margin-bottom: .25rem;
+}
 </style>
 </head>
 <body>
@@ -624,6 +687,30 @@ footer {
       </a>
 
     </div>
+
+    <div class="axes-extra">
+      <a class="axis-extra" href="furusato/">
+        <svg class="axis-extra__icon" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="12"/>
+          <path d="M10 13 L22 13"/>
+          <path d="M10 17 L22 17"/>
+          <path d="M14 9 L14 23"/>
+        </svg>
+        <div class="axis-extra__label">— EXTRA</div>
+        <div class="axis-extra__name">ふるさと納税</div>
+        <div class="axis-extra__hint">寄附で支援、6蔵を一次ソース確認済</div>
+      </a>
+      <a class="axis-extra" href="awards/">
+        <svg class="axis-extra__icon" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="13" r="7"/>
+          <path d="M11 19 L8 28 L12 25 L16 28 L20 25 L24 28 L21 19"/>
+        </svg>
+        <div class="axis-extra__label">— EXTRA</div>
+        <div class="axis-extra__name">受賞・海外進出</div>
+        <div class="axis-extra__hint">ICC SAKE AWARD / Tokyo酒チャレンジ / 欧米進出</div>
+      </a>
+    </div>
+
   </section>
 
   <!-- 区切り -->

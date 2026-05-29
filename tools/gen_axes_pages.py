@@ -13,6 +13,8 @@ from collections import defaultdict
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import BREWERIES, REGIONS, by_slug
 from breweries_brands import BRANDS
+from awards import AWARDS
+from furusato_data import FURUSATO, PORTAL_NAMES
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
@@ -672,13 +674,200 @@ def gen_availability():
     print(f"  availability/index.html  ({len(BREWERIES)}蔵分類)")
 
 
+def gen_furusato():
+    """ふるさと納税逆引きハブ"""
+    OUT = REPO_ROOT / "furusato"
+    OUT.mkdir(exist_ok=True)
+
+    confirmed = [b for b in BREWERIES if b["slug"] in FURUSATO]
+    not_confirmed = [b for b in BREWERIES if b["slug"] not in FURUSATO]
+
+    html = page_head("ふるさと納税から探す", "クラフトサケのふるさと納税返礼品を一次ソース確認の上で横断検索。")
+    html += masthead("EXTRA — FURUSATO TAX", f"{len(confirmed)} confirmed")
+    html += hero(
+        "— TAX-DEDUCTIBLE DISCOVERY",
+        'ふるさと納税から、<span class="accent">支援する</span>。',
+        f'クラフトサケのふるさと納税返礼品を一次ソース確認の上で集約。寄附で蔵を支えながら、地域の挑戦と希少な酒に出会える。確認できた {len(confirmed)} 蔵のみ掲載、残り {len(not_confirmed)} 蔵は今後の出品を追跡。'
+    )
+    html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
+
+    html += f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 01</span>
+      <span class="section-meta__label">CONFIRMED LISTINGS</span>
+      <span class="section-meta__count">/ {len(confirmed)} 蔵</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="entries">"""
+
+    for b in confirmed:
+        data = FURUSATO[b["slug"]]
+        portals_html = ' '.join(
+            f'<span class="spec-pill accent">{PORTAL_NAMES.get(p, p)}</span>'
+            for p in data["portals"]
+        )
+        yen = f'¥{data["donation_yen"]:,}〜' if data.get("donation_yen") else '寄附額確認中'
+        rep = data.get("rep_brand", "")
+        html += f"""
+      <a class="entry" href="../brewery/{b['slug']}.html">
+        <div>
+          <div class="entry__brand">{b['name']}</div>
+          <div class="entry__brewery">{data['city']}　/　{rep}</div>
+        </div>
+        <div class="entry__specs">{portals_html}</div>
+        <div class="entry__brewery" style="text-align:right">{yen}</div>
+      </a>"""
+
+    html += """
+    </div>
+  </section>"""
+
+    html += f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 02</span>
+      <span class="section-meta__label">PENDING / NOT YET LISTED</span>
+      <span class="section-meta__count">/ {len(not_confirmed)} 蔵</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="cat-desc">
+      ふるさと納税ポータル(チョイス/楽天/ふるなび/さとふる)での出品を現時点では確認できていない蔵。
+      新興・小規模・委託醸造の蔵が多く、今後の出品が期待される。各蔵の公式ECで購入可能。
+    </p>
+    <div class="brewery-grid">"""
+    for i, b in enumerate(not_confirmed, 1):
+        html += render_brewery_card(b, i)
+    html += """
+    </div>
+  </section>"""
+
+    html += '</div>'
+    html += footer()
+
+    out = OUT / "index.html"
+    out.write_text(html, encoding="utf-8")
+    print(f"  furusato/index.html  ({len(confirmed)}社確認 / {len(not_confirmed)}社未確認)")
+
+
+def gen_awards():
+    """受賞・メディア・海外進出ハブ"""
+    OUT = REPO_ROOT / "awards"
+    OUT.mkdir(exist_ok=True)
+
+    awarded_slugs = []
+    media_slugs = []
+    global_slugs = []
+    for slug, items in AWARDS.items():
+        if any(it["type"] == "award" for it in items):
+            awarded_slugs.append(slug)
+        if any(it["type"] == "media" for it in items):
+            media_slugs.append(slug)
+        if any(it["type"] == "global" for it in items):
+            global_slugs.append(slug)
+
+    html = page_head("受賞・メディア・海外進出", "クラフトサケのICC SAKE AWARD等の受賞、業界メディア露出、海外進出を横断的に追跡。")
+    html += masthead("EXTRA — ACCOLADES & MEDIA", f"{len(awarded_slugs)} awarded")
+    html += hero(
+        "— ACCOLADES & EXPOSURE",
+        '受賞と<span class="accent">海外進出</span>から、見つける。',
+        'ICC SAKE AWARD、Tokyo酒チャレンジ、日本パッケージデザイン大賞、Mugaritz・Disfrutarでの提供、欧米輸出開始 — クラフトサケと「世界」のつながりを一覧する。'
+    )
+    html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
+
+    def render_award_entry(slug, it):
+        b = by_slug(slug)
+        if not b:
+            return ""
+        year_html = f'<span class="spec-pill accent">{it["year"]}</span>' if it.get("year") else ''
+        brand_part = f"（{it['brand']}）" if it.get('brand') else ''
+        return f"""
+      <a class="entry" href="../brewery/{slug}.html">
+        <div>
+          <div class="entry__brand">{it['title']}</div>
+          <div class="entry__brewery">{b['name']}{brand_part}</div>
+        </div>
+        <div class="entry__specs">{year_html}</div>
+        <div class="entry__brewery" style="text-align:right">{b['prefecture']}</div>
+      </a>"""
+
+    # AWARDS section
+    html += f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 01</span>
+      <span class="section-meta__label">AWARDS</span>
+      <span class="section-meta__count">/ {len(awarded_slugs)} 蔵</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">受賞</h2>
+    <p class="cat-desc">ICC SAKE AWARD、Tokyo酒チャレンジ、日本パッケージデザイン大賞、東北アントレプレナー大賞ほか。</p>
+    <div class="entries">"""
+    for slug in awarded_slugs:
+        for it in AWARDS[slug]:
+            if it["type"] == "award":
+                html += render_award_entry(slug, it)
+    html += """
+    </div>
+  </section>"""
+
+    # GLOBAL section
+    html += f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 02</span>
+      <span class="section-meta__label">GLOBAL EXPANSION</span>
+      <span class="section-meta__count">/ {len(global_slugs)} 蔵</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">海外進出・国際的提供</h2>
+    <p class="cat-desc">輸出開始、海外法人設立、ミシュランレストランでの提供などクラフトサケの世界展開。</p>
+    <div class="entries">"""
+    for slug in global_slugs:
+        for it in AWARDS[slug]:
+            if it["type"] == "global":
+                html += render_award_entry(slug, it)
+    html += """
+    </div>
+  </section>"""
+
+    # MEDIA section
+    html += f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <span class="section-meta__label">MEDIA SPOTLIGHTS</span>
+      <span class="section-meta__count">/ {len(media_slugs)} 蔵</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">メディア露出</h2>
+    <p class="cat-desc">Forbes JAPAN、dancyu、日経新聞、Diamond、経済産業省METI Journal等での主要露出。</p>
+    <div class="entries">"""
+    for slug in media_slugs:
+        for it in AWARDS[slug]:
+            if it["type"] == "media":
+                html += render_award_entry(slug, it)
+    html += """
+    </div>
+  </section>"""
+
+    html += '</div>'
+    html += footer()
+
+    out = OUT / "index.html"
+    out.write_text(html, encoding="utf-8")
+    print(f"  awards/index.html  (受賞{len(awarded_slugs)} / 海外{len(global_slugs)} / メディア{len(media_slugs)})")
+
+
 def main():
     print("生成中...")
     gen_subingredients()
     gen_regions()
     gen_genres()
     gen_availability()
-    print("\n✓ 4ハブページ生成完了")
+    gen_furusato()
+    gen_awards()
+    print("\n✓ 6ハブページ生成完了")
 
 
 if __name__ == "__main__":
