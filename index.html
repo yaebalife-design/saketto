@@ -3,19 +3,271 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>saketto — クラフトサケDB（準備中）</title>
+<title>saketto — クラフトサケの図鑑</title>
+<meta name="description" content="米と副原料で醸す新ジャンルの酒「クラフトサケ」を、副原料・蔵・地域・ジャンル・入手性から横断的に探せる、唯一の専門データベース。">
 <meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:#0a0a0a;color:#d4af37;font-family:'Noto Serif JP','Yu Mincho',serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:2rem}
-  h1{font-size:clamp(2.5rem,8vw,4rem);letter-spacing:.15em;margin-bottom:1rem;font-weight:400}
-  p{color:#888;letter-spacing:.05em;font-size:0.95rem}
+:root {
+  --bg: #F4EFE6;
+  --bg-soft: #EBE4D5;
+  --ink: #1B1818;
+  --ink-soft: #5C5550;
+  --accent: #B8493A;
+  --accent-warm: #8B7355;
+  --line: #D9D1BF;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* subtle米粒テクスチャ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(184,73,58,0.025) 1px, transparent 1.5px),
+    radial-gradient(circle at 60% 70%, rgba(139,115,85,0.03) 1px, transparent 1.5px),
+    radial-gradient(circle at 85% 15%, rgba(27,24,24,0.02) 1px, transparent 1.5px);
+  background-size: 32px 32px, 48px 48px, 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 6rem 2rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.brand {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 500;
+  font-size: clamp(3rem, 9vw, 5rem);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.brand .dot { color: var(--accent); }
+
+.tagline {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.lede {
+  font-size: .95rem;
+  color: var(--ink-soft);
+  max-width: 580px;
+  margin-bottom: 3.5rem;
+}
+
+.section-label {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: .7rem;
+  letter-spacing: .25em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.section-label::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.axes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-bottom: 4rem;
+}
+.axis {
+  background: var(--bg);
+  padding: 1.5rem 1.25rem;
+  transition: background .3s ease;
+}
+.axis:hover { background: var(--bg-soft); }
+.axis__num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: .8rem;
+  color: var(--accent);
+  margin-bottom: .35rem;
+  letter-spacing: .1em;
+}
+.axis__name {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 500;
+  font-size: 1.15rem;
+  margin-bottom: .35rem;
+  letter-spacing: .04em;
+}
+.axis__hint {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: .75rem;
+  color: var(--ink-soft);
+  letter-spacing: .03em;
+  line-height: 1.5;
+}
+.axis--saketto { border-top: 2px solid var(--accent); margin-top: -1px; }
+.axis--saketto .axis__num::after {
+  content: " saketto独自";
+  font-size: .7rem;
+  color: var(--accent-warm);
+}
+
+.list-wrap {
+  background: var(--bg-soft);
+  padding: 2rem 2rem 1.5rem;
+  border-left: 2px solid var(--accent);
+  margin-bottom: 3.5rem;
+}
+.list-count {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 2.25rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: .25rem;
+}
+.list-count em {
+  color: var(--accent);
+  font-style: normal;
+  font-size: 1.25rem;
+  letter-spacing: .1em;
+  margin-left: .35rem;
+}
+.list-meta {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: .75rem;
+  color: var(--ink-soft);
+  letter-spacing: .05em;
+  margin-bottom: 1.5rem;
+}
+.list {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: .85rem;
+  line-height: 2.1;
+  color: var(--ink);
+  column-count: 3;
+  column-gap: 2rem;
+}
+.list li { list-style: none; }
+.list li::before {
+  content: "・";
+  color: var(--accent-warm);
+  margin-right: .25rem;
+}
+@media (max-width: 640px) { .list { column-count: 2; } }
+
+.note {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: .75rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+  letter-spacing: .05em;
+  line-height: 1.8;
+}
+.note strong { color: var(--accent); font-weight: 500; }
+.note .sep { color: var(--line); margin: 0 .5rem; }
 </style>
 </head>
 <body>
-<div>
-  <h1>saketto</h1>
-  <p>クラフトサケ DB — 準備中</p>
+<div class="wrap">
+
+  <h1 class="brand">saketto<span class="dot">.</span></h1>
+  <p class="tagline">次に出会う、クラフトサケの図鑑。</p>
+  <p class="lede">米と副原料で醸す新ジャンル「クラフトサケ」を、5つの軸で横断的に探せる、唯一の専門データベース。</p>
+
+  <div class="section-label">5つの軸から探す</div>
+  <div class="axes">
+    <div class="axis">
+      <div class="axis__num">01</div>
+      <div class="axis__name">副原料</div>
+      <div class="axis__hint">ホップ・果実・茶葉・ハーブから</div>
+    </div>
+    <div class="axis">
+      <div class="axis__num">02</div>
+      <div class="axis__name">蔵</div>
+      <div class="axis__hint">醸造所のストーリーから</div>
+    </div>
+    <div class="axis">
+      <div class="axis__num">03</div>
+      <div class="axis__name">地域</div>
+      <div class="axis__hint">全国の蔵元マップ</div>
+    </div>
+    <div class="axis axis--saketto">
+      <div class="axis__num">04</div>
+      <div class="axis__name">ジャンル</div>
+      <div class="axis__hint">ホップサケ・古典どぶろく・全麹酒・木桶仕込み</div>
+    </div>
+    <div class="axis axis--saketto">
+      <div class="axis__num">05</div>
+      <div class="axis__name">入手性</div>
+      <div class="axis__hint">通販可・特約店のみ・極希少</div>
+    </div>
+  </div>
+
+  <div class="section-label">収録予定の醸造所</div>
+  <div class="list-wrap">
+    <div class="list-count">24<em>蔵</em></div>
+    <div class="list-meta">協会加盟9社＋協会非加盟15社／全国を網羅、ただし中国・四国は今後拡張予定</div>
+    <ul class="list">
+      <li>稲とアガベ醸造所</li>
+      <li>haccoba</li>
+      <li>LAGOON BREWERY</li>
+      <li>LIBROM</li>
+      <li>木花之醸造所</li>
+      <li>ハッピー太郎醸造所</li>
+      <li>平六醸造</li>
+      <li>ぷくぷく醸造</li>
+      <li>足立農醸</li>
+      <li>nondo</li>
+      <li>SENDAI STATION BREWERY Fermenteria</li>
+      <li>やまね酒造</li>
+      <li>平和どぶろく兜町醸造所</li>
+      <li>平和どぶろく難波醸造所</li>
+      <li>東京駅酒造場</li>
+      <li>弥栄醸造</li>
+      <li>SAKENOVA BREWERY</li>
+      <li>LINNÉ</li>
+      <li>天郷醸造所</li>
+      <li>NOMU醸造所</li>
+      <li>鮭酒造</li>
+      <li>土浦醸造</li>
+      <li>HAKUTSURU SAKE CRAFT</li>
+      <li>でじま芳扇堂</li>
+    </ul>
+  </div>
+
+  <p class="note">
+    <strong>準備中</strong><span class="sep">／</span>2026年夏、本サイト公開予定<span class="sep">／</span>20歳未満の飲酒は法律で禁じられています<span class="sep">／</span>PR ／ アフィリエイトリンクを含みます
+  </p>
+
 </div>
 </body>
 </html>
