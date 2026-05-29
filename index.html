@@ -416,11 +416,21 @@ main { position: relative; z-index: 1; }
 @media (min-width: 1000px) { .kura-grid { grid-template-columns: repeat(4, 1fr); } }
 .kura-grid li {
   list-style: none;
+  border-bottom: 1px dotted var(--line-soft);
+  padding-bottom: .15rem;
+}
+.kura-grid li a {
   display: flex;
   align-items: baseline;
   gap: .6rem;
-  border-bottom: 1px dotted var(--line-soft);
-  padding-bottom: .15rem;
+  color: var(--ink);
+  text-decoration: none;
+  width: 100%;
+  transition: color .25s ease, padding-left .25s ease;
+}
+.kura-grid li a:hover {
+  color: var(--accent);
+  padding-left: .25rem;
 }
 .kura-grid .idx {
   font-family: 'Cormorant Garamond', serif;
@@ -639,30 +649,30 @@ footer {
         <div class="kura-list__note">— 2026.05.30 verified</div>
       </div>
       <ul class="kura-grid">
-        <li><span class="idx">01</span>稲とアガベ醸造所</li>
-        <li><span class="idx">02</span>haccoba</li>
-        <li><span class="idx">03</span>LAGOON BREWERY</li>
-        <li><span class="idx">04</span>LIBROM</li>
-        <li><span class="idx">05</span>木花之醸造所</li>
-        <li><span class="idx">06</span>ハッピー太郎醸造所</li>
-        <li><span class="idx">07</span>平六醸造</li>
-        <li><span class="idx">08</span>ぷくぷく醸造</li>
-        <li><span class="idx">09</span>足立農醸</li>
-        <li><span class="idx">10</span>nondo</li>
-        <li><span class="idx">11</span>Fermenteria</li>
-        <li><span class="idx">12</span>やまね酒造</li>
-        <li><span class="idx">13</span>平和どぶろく兜町</li>
-        <li><span class="idx">14</span>平和どぶろく難波</li>
-        <li><span class="idx">15</span>東京駅酒造場</li>
-        <li><span class="idx">16</span>弥栄醸造</li>
-        <li><span class="idx">17</span>SAKENOVA BREWERY</li>
-        <li><span class="idx">18</span>LINNÉ</li>
-        <li><span class="idx">19</span>天郷醸造所</li>
-        <li><span class="idx">20</span>NOMU醸造所</li>
-        <li><span class="idx">21</span>鮭酒造</li>
-        <li><span class="idx">22</span>土浦醸造</li>
-        <li><span class="idx">23</span>HAKUTSURU SAKE CRAFT</li>
-        <li><span class="idx">24</span>でじま芳扇堂</li>
+        <li><a href="brewery/ine-to-agave.html"><span class="idx">01</span>稲とアガベ醸造所</a></li>
+        <li><a href="brewery/haccoba.html"><span class="idx">02</span>haccoba</a></li>
+        <li><a href="brewery/lagoon.html"><span class="idx">03</span>LAGOON BREWERY</a></li>
+        <li><a href="brewery/librom.html"><span class="idx">04</span>LIBROM</a></li>
+        <li><a href="brewery/konohanano.html"><span class="idx">05</span>木花之醸造所</a></li>
+        <li><a href="brewery/happy-taro.html"><span class="idx">06</span>ハッピー太郎醸造所</a></li>
+        <li><a href="brewery/heiroku.html"><span class="idx">07</span>平六醸造</a></li>
+        <li><a href="brewery/pukupuku.html"><span class="idx">08</span>ぷくぷく醸造</a></li>
+        <li><a href="brewery/adachi-noujo.html"><span class="idx">09</span>足立農醸</a></li>
+        <li><a href="brewery/nondo.html"><span class="idx">10</span>nondo</a></li>
+        <li><a href="brewery/fermenteria.html"><span class="idx">11</span>Fermenteria</a></li>
+        <li><a href="brewery/yamane.html"><span class="idx">12</span>やまね酒造</a></li>
+        <li><a href="brewery/heiwa-kabutocho.html"><span class="idx">13</span>平和どぶろく兜町</a></li>
+        <li><a href="brewery/heiwa-namba.html"><span class="idx">14</span>平和どぶろく難波</a></li>
+        <li><a href="brewery/tokyo-station.html"><span class="idx">15</span>東京駅酒造場</a></li>
+        <li><a href="brewery/iyasaka.html"><span class="idx">16</span>弥栄醸造</a></li>
+        <li><a href="brewery/sakenova.html"><span class="idx">17</span>SAKENOVA BREWERY</a></li>
+        <li><a href="brewery/linne.html"><span class="idx">18</span>LINNÉ</a></li>
+        <li><a href="brewery/amanosato.html"><span class="idx">19</span>天郷醸造所</a></li>
+        <li><a href="brewery/nomu.html"><span class="idx">20</span>NOMU醸造所</a></li>
+        <li><a href="brewery/salmon-brewery.html"><span class="idx">21</span>鮭酒造</a></li>
+        <li><a href="brewery/tsuchiura.html"><span class="idx">22</span>土浦醸造</a></li>
+        <li><a href="brewery/hakutsuru-sakecraft.html"><span class="idx">23</span>HAKUTSURU SAKE CRAFT</a></li>
+        <li><a href="brewery/dejima-hosendo.html"><span class="idx">24</span>でじま芳扇堂</a></li>
       </ul>
     </div>
   </section>
