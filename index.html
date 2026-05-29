@@ -8,16 +8,20 @@
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #F4EFE6;
-  --bg-soft: #EBE4D5;
-  --ink: #1B1818;
-  --ink-soft: #5C5550;
-  --accent: #B8493A;
-  --accent-warm: #8B7355;
-  --line: #D9D1BF;
+  --bg: #F5F0E7;
+  --bg-alt: #EDE5D2;
+  --paper: #FAF6ED;
+  --ink: #1A1717;
+  --ink-soft: #4A4441;
+  --ink-mute: #7A7470;
+  --accent: #B33A2A;
+  --accent-deep: #862719;
+  --warm: #8B7355;
+  --line: #C9BFA8;
+  --line-soft: #DFD5BD;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -29,245 +33,656 @@ body {
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
-/* subtle米粒テクスチャ */
+/* 紙質感の米粒テクスチャ */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(184,73,58,0.025) 1px, transparent 1.5px),
-    radial-gradient(circle at 60% 70%, rgba(139,115,85,0.03) 1px, transparent 1.5px),
-    radial-gradient(circle at 85% 15%, rgba(27,24,24,0.02) 1px, transparent 1.5px);
-  background-size: 32px 32px, 48px 48px, 28px 28px;
+    radial-gradient(ellipse 1.5px 2.2px at 18% 22%, rgba(184,73,58,0.035) 60%, transparent 70%),
+    radial-gradient(ellipse 1.2px 1.8px at 67% 38%, rgba(139,115,85,0.04) 60%, transparent 70%),
+    radial-gradient(ellipse 1.5px 2.3px at 42% 71%, rgba(26,23,23,0.025) 60%, transparent 70%),
+    radial-gradient(ellipse 1px 1.5px at 85% 14%, rgba(184,73,58,0.025) 60%, transparent 70%),
+    radial-gradient(ellipse 1.2px 1.8px at 8% 88%, rgba(139,115,85,0.035) 60%, transparent 70%);
+  background-size: 64px 64px, 96px 96px, 80px 80px, 72px 72px, 88px 88px;
   pointer-events: none;
   z-index: 0;
 }
 
-.wrap {
-  max-width: 880px;
+/* 微細な縦縞（和紙感） */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(90deg, transparent 0, transparent 49%, rgba(26,23,23,0.012) 50%, transparent 51%, transparent 100%);
+  background-size: 3px 100%;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+}
+
+main { position: relative; z-index: 1; }
+
+/* ─────────── マストヘッド ─────────── */
+.masthead {
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: .7rem;
+  letter-spacing: .2em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+}
+.masthead .left { display: flex; gap: 1.5rem; align-items: center; }
+.masthead .accent-dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; display: inline-block; }
+.masthead .right { font-family: 'Cormorant Garamond', serif; font-style: italic; letter-spacing: .1em; }
+
+/* ─────────── HERO ─────────── */
+.hero {
+  padding: 5rem 2rem 4rem;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 6rem 2rem 4rem;
   position: relative;
-  z-index: 1;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: flex-start;
 }
 
 .brand {
   font-family: 'Shippori Mincho', serif;
-  font-weight: 500;
-  font-size: clamp(3rem, 9vw, 5rem);
-  letter-spacing: 0.02em;
-  line-height: 1;
-  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: clamp(4rem, 14vw, 9rem);
+  letter-spacing: -0.03em;
+  line-height: .85;
+  color: var(--ink);
 }
-.brand .dot { color: var(--accent); }
+.brand .dot {
+  color: var(--accent);
+  display: inline-block;
+  transform: translateY(-0.05em);
+}
+
+/* 朱印 SVG コンテナ */
+.seal {
+  width: clamp(110px, 14vw, 170px);
+  height: clamp(110px, 14vw, 170px);
+  flex-shrink: 0;
+  margin-top: .5rem;
+  filter: drop-shadow(2px 2px 0 rgba(184,73,58,0.08));
+}
+
+.hero__tagline-wrap {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 760px) {
+  .hero__tagline-wrap {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+  }
+}
 
 .tagline {
   font-family: 'Shippori Mincho', serif;
-  font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
   font-weight: 500;
   color: var(--ink);
   line-height: 1.5;
-  margin-bottom: 0.75rem;
+  letter-spacing: .02em;
+}
+.tagline .accent { color: var(--accent); }
+.tagline-jp-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .85rem;
+  color: var(--accent);
+  letter-spacing: .15em;
+  margin-bottom: .75rem;
+  display: block;
 }
 
 .lede {
   font-size: .95rem;
   color: var(--ink-soft);
-  max-width: 580px;
-  margin-bottom: 3.5rem;
+  line-height: 1.95;
+  border-left: 2px solid var(--accent);
+  padding-left: 1.5rem;
 }
+.lede strong { color: var(--ink); font-weight: 500; }
 
-.section-label {
-  font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .7rem;
-  letter-spacing: .25em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
+/* 区切り罫 with ornament */
+.divider {
+  max-width: 1100px;
+  margin: 5rem auto 4rem;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
+  gap: 1rem;
+}
+.divider .rule { flex: 1; height: 1px; background: var(--line); }
+.divider .ornament {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+.divider .ornament.outer {
+  width: 4px;
+  height: 4px;
+  background: var(--warm);
+}
+
+/* ─────────── SECTIONS COMMON ─────────── */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+.section-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+.section-meta__num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: .1em;
+}
+.section-meta__label {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .35em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+.section-meta__rule {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.section-title {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  letter-spacing: .02em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.section-title .accent { color: var(--accent); }
+.section-desc {
+  color: var(--ink-soft);
+  font-size: .92rem;
+  max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+/* ─────────── 5軸 ─────────── */
+.axes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 700px) {
+  .axes { grid-template-columns: repeat(5, 1fr); border-top: none; }
+}
+
+.axis {
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  transition: background .35s ease, transform .35s ease;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
   gap: .75rem;
 }
-.section-label::before {
+@media (min-width: 700px) {
+  .axis {
+    border-bottom: none;
+    border-right: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+  }
+  .axis:last-child { border-right: none; }
+}
+.axis:hover {
+  background: var(--paper);
+}
+.axis::before {
   content: "";
-  width: 24px;
-  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s cubic-bezier(.2,.6,.2,1);
+}
+.axis:hover::before { transform: scaleX(1); }
+.axis--unique::before {
+  transform: scaleX(1);
   background: var(--accent);
 }
 
-.axes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  margin-bottom: 4rem;
+.axis__icon {
+  width: 28px;
+  height: 28px;
+  color: var(--ink);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-bottom: .25rem;
 }
-.axis {
-  background: var(--bg);
-  padding: 1.5rem 1.25rem;
-  transition: background .3s ease;
-}
-.axis:hover { background: var(--bg-soft); }
 .axis__num {
-  font-family: 'Shippori Mincho', serif;
-  font-size: .8rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .85rem;
   color: var(--accent);
-  margin-bottom: .35rem;
-  letter-spacing: .1em;
+  letter-spacing: .15em;
 }
 .axis__name {
   font-family: 'Shippori Mincho', serif;
-  font-weight: 500;
-  font-size: 1.15rem;
-  margin-bottom: .35rem;
+  font-weight: 600;
+  font-size: 1.25rem;
   letter-spacing: .04em;
+  color: var(--ink);
 }
 .axis__hint {
   font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .75rem;
+  font-size: .78rem;
   color: var(--ink-soft);
   letter-spacing: .03em;
-  line-height: 1.5;
+  line-height: 1.6;
 }
-.axis--saketto { border-top: 2px solid var(--accent); margin-top: -1px; }
-.axis--saketto .axis__num::after {
-  content: " saketto独自";
+.axis__unique-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
   font-size: .7rem;
-  color: var(--accent-warm);
-}
-
-.list-wrap {
-  background: var(--bg-soft);
-  padding: 2rem 2rem 1.5rem;
-  border-left: 2px solid var(--accent);
-  margin-bottom: 3.5rem;
-}
-.list-count {
-  font-family: 'Shippori Mincho', serif;
-  font-size: 2.25rem;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1;
-  margin-bottom: .25rem;
-}
-.list-count em {
   color: var(--accent);
-  font-style: normal;
-  font-size: 1.25rem;
-  letter-spacing: .1em;
-  margin-left: .35rem;
+  letter-spacing: .15em;
+  border-top: 1px solid var(--line-soft);
+  padding-top: .5rem;
+  margin-top: auto;
 }
-.list-meta {
-  font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .75rem;
-  color: var(--ink-soft);
-  letter-spacing: .05em;
-  margin-bottom: 1.5rem;
-}
-.list {
-  font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .85rem;
-  line-height: 2.1;
-  color: var(--ink);
-  column-count: 3;
-  column-gap: 2rem;
-}
-.list li { list-style: none; }
-.list li::before {
-  content: "・";
-  color: var(--accent-warm);
-  margin-right: .25rem;
-}
-@media (max-width: 640px) { .list { column-count: 2; } }
 
-.note {
-  font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .75rem;
+/* ─────────── 数字 24 ─────────── */
+.bignum-block {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+.bignum {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 700;
+  font-size: clamp(7rem, 18vw, 12rem);
+  line-height: .85;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+  position: relative;
+}
+.bignum sup {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .15em;
+  color: var(--accent);
+  vertical-align: super;
+  letter-spacing: .1em;
+  font-weight: 400;
+}
+.bignum__suffix {
+  font-family: 'Shippori Mincho', serif;
+  font-size: .25em;
+  color: var(--warm);
+  letter-spacing: .05em;
+}
+.bignum-desc {
+  padding-top: 1.5rem;
+}
+.bignum-desc h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: .85rem;
+  color: var(--ink);
+  letter-spacing: .02em;
+}
+.bignum-desc p {
   color: var(--ink-soft);
+  font-size: .88rem;
+  line-height: 1.85;
+}
+
+/* 蔵リスト */
+.kura-list {
   border-top: 1px solid var(--line);
   padding-top: 1.5rem;
-  letter-spacing: .05em;
-  line-height: 1.8;
 }
-.note strong { color: var(--accent); font-weight: 500; }
-.note .sep { color: var(--line); margin: 0 .5rem; }
+.kura-list__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.kura-list__title {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .25em;
+  color: var(--ink);
+}
+.kura-list__note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .8rem;
+  color: var(--accent);
+  letter-spacing: .08em;
+}
+.kura-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 1.5rem;
+  font-family: 'Shippori Mincho', serif;
+  font-size: .92rem;
+  color: var(--ink);
+  line-height: 2.2;
+}
+@media (min-width: 700px) { .kura-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1000px) { .kura-grid { grid-template-columns: repeat(4, 1fr); } }
+.kura-grid li {
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  border-bottom: 1px dotted var(--line-soft);
+  padding-bottom: .15rem;
+}
+.kura-grid .idx {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .72rem;
+  color: var(--accent);
+  letter-spacing: .05em;
+  min-width: 1.5em;
+}
+
+/* ─────────── フッターマスト ─────────── */
+footer {
+  margin-top: 5rem;
+  border-top: 1px solid var(--ink);
+  position: relative;
+  z-index: 1;
+}
+.colophon {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 700px) {
+  .colophon { grid-template-columns: 2fr 3fr; }
+}
+.colophon__brand {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: .02em;
+}
+.colophon__brand .dot { color: var(--accent); }
+.colophon__brand small {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .8rem;
+  color: var(--ink-soft);
+  margin-top: .25rem;
+  font-weight: 400;
+  letter-spacing: .08em;
+}
+.colophon__notes {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-size: .75rem;
+  color: var(--ink-soft);
+  line-height: 1.95;
+  letter-spacing: .04em;
+}
+.colophon__notes strong { color: var(--accent); font-weight: 500; }
+.colophon__sep { color: var(--line); margin: 0 .5rem; }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
-  <h1 class="brand">saketto<span class="dot">.</span></h1>
-  <p class="tagline">次に出会う、クラフトサケの図鑑。</p>
-  <p class="lede">米と副原料で醸す新ジャンル「クラフトサケ」を、5つの軸で横断的に探せる、唯一の専門データベース。</p>
-
-  <div class="section-label">5つの軸から探す</div>
-  <div class="axes">
-    <div class="axis">
-      <div class="axis__num">01</div>
-      <div class="axis__name">副原料</div>
-      <div class="axis__hint">ホップ・果実・茶葉・ハーブから</div>
+  <!-- マストヘッド -->
+  <div class="masthead">
+    <div class="left">
+      <span><span class="accent-dot"></span>&nbsp;&nbsp;SAKETTO</span>
+      <span>VOL. 001 — PROLOGUE</span>
     </div>
-    <div class="axis">
-      <div class="axis__num">02</div>
-      <div class="axis__name">蔵</div>
-      <div class="axis__hint">醸造所のストーリーから</div>
-    </div>
-    <div class="axis">
-      <div class="axis__num">03</div>
-      <div class="axis__name">地域</div>
-      <div class="axis__hint">全国の蔵元マップ</div>
-    </div>
-    <div class="axis axis--saketto">
-      <div class="axis__num">04</div>
-      <div class="axis__name">ジャンル</div>
-      <div class="axis__hint">ホップサケ・古典どぶろく・全麹酒・木桶仕込み</div>
-    </div>
-    <div class="axis axis--saketto">
-      <div class="axis__num">05</div>
-      <div class="axis__name">入手性</div>
-      <div class="axis__hint">通販可・特約店のみ・極希少</div>
-    </div>
+    <div class="right">A. D. 2026 — Edition β</div>
   </div>
 
-  <div class="section-label">収録予定の醸造所</div>
-  <div class="list-wrap">
-    <div class="list-count">24<em>蔵</em></div>
-    <div class="list-meta">協会加盟9社＋協会非加盟15社／全国を網羅、ただし中国・四国は今後拡張予定</div>
-    <ul class="list">
-      <li>稲とアガベ醸造所</li>
-      <li>haccoba</li>
-      <li>LAGOON BREWERY</li>
-      <li>LIBROM</li>
-      <li>木花之醸造所</li>
-      <li>ハッピー太郎醸造所</li>
-      <li>平六醸造</li>
-      <li>ぷくぷく醸造</li>
-      <li>足立農醸</li>
-      <li>nondo</li>
-      <li>SENDAI STATION BREWERY Fermenteria</li>
-      <li>やまね酒造</li>
-      <li>平和どぶろく兜町醸造所</li>
-      <li>平和どぶろく難波醸造所</li>
-      <li>東京駅酒造場</li>
-      <li>弥栄醸造</li>
-      <li>SAKENOVA BREWERY</li>
-      <li>LINNÉ</li>
-      <li>天郷醸造所</li>
-      <li>NOMU醸造所</li>
-      <li>鮭酒造</li>
-      <li>土浦醸造</li>
-      <li>HAKUTSURU SAKE CRAFT</li>
-      <li>でじま芳扇堂</li>
-    </ul>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__grid">
+      <h1 class="brand">saketto<span class="dot">.</span></h1>
+      <!-- 朱印 SVG -->
+      <svg class="seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <filter id="rough" x="0" y="0" width="100%" height="100%">
+            <feTurbulence baseFrequency="0.9" numOctaves="2" seed="5"/>
+            <feDisplacementMap in="SourceGraphic" scale="2.5"/>
+          </filter>
+        </defs>
+        <g filter="url(#rough)">
+          <circle cx="100" cy="100" r="86" fill="none" stroke="#B33A2A" stroke-width="5"/>
+          <circle cx="100" cy="100" r="78" fill="none" stroke="#B33A2A" stroke-width="1.2"/>
+          <text x="100" y="128" text-anchor="middle" fill="#B33A2A"
+                font-family="'Shippori Mincho', serif" font-size="84" font-weight="700"
+                letter-spacing="-2">酒</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="hero__tagline-wrap">
+      <div>
+        <span class="tagline-jp-label">— THE FIELD GUIDE</span>
+        <h2 class="tagline">次に出会う、<br>クラフトサケの<span class="accent">図鑑</span>。</h2>
+      </div>
+      <div class="lede">
+        米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」を、副原料・蔵・地域・ジャンル・入手性の5つの軸から横断的に探せる、唯一の専門データベース。
+      </div>
+    </div>
+  </section>
+
+  <!-- 区切り -->
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
   </div>
 
-  <p class="note">
-    <strong>準備中</strong><span class="sep">／</span>2026年夏、本サイト公開予定<span class="sep">／</span>20歳未満の飲酒は法律で禁じられています<span class="sep">／</span>PR ／ アフィリエイトリンクを含みます
-  </p>
+  <!-- 5軸 -->
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 01</span>
+      <span class="section-meta__label">FIVE AXES TO EXPLORE</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="section-title">5つの軸から、<span class="accent">探す</span>。</h2>
+    <p class="section-desc">クラフトサケは「銘柄で指名買い」だけが正解ではない。次の一本を見つけるための、5つの入り口。</p>
 
-</div>
+    <div class="axes">
+
+      <div class="axis">
+        <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 4 C12 10, 10 16, 16 28 C22 16, 20 10, 16 4 Z"/>
+          <path d="M16 16 L16 26"/>
+        </svg>
+        <div class="axis__num">01</div>
+        <div class="axis__name">副原料</div>
+        <div class="axis__hint">ホップ・果実・茶葉・ハーブ・米のみから</div>
+      </div>
+
+      <div class="axis">
+        <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M4 28 L4 14 L16 6 L28 14 L28 28 Z"/>
+          <path d="M12 28 L12 18 L20 18 L20 28"/>
+          <path d="M4 28 L28 28"/>
+        </svg>
+        <div class="axis__num">02</div>
+        <div class="axis__name">蔵</div>
+        <div class="axis__hint">醸造所のストーリー・代表者・哲学から</div>
+      </div>
+
+      <div class="axis">
+        <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="13" r="5"/>
+          <path d="M16 18 C10 22, 7 26, 16 28 C25 26, 22 22, 16 18"/>
+        </svg>
+        <div class="axis__num">03</div>
+        <div class="axis__name">地域</div>
+        <div class="axis__hint">全国の蔵元マップ・産地別</div>
+      </div>
+
+      <div class="axis axis--unique">
+        <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="8" cy="8" r="3"/>
+          <circle cx="16" cy="16" r="3"/>
+          <circle cx="24" cy="24" r="3"/>
+          <path d="M11 8 L21 8" />
+          <path d="M19 16 L29 16" />
+        </svg>
+        <div class="axis__num">04</div>
+        <div class="axis__name">ジャンル</div>
+        <div class="axis__hint">ホップサケ・古典どぶろく・全麹酒・木桶仕込み</div>
+        <div class="axis__unique-tag">— saketto独自</div>
+      </div>
+
+      <div class="axis axis--unique">
+        <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="8" y="14" width="16" height="14" rx="1"/>
+          <path d="M12 14 L12 9 C12 6 14 4 16 4 C18 4 20 6 20 9 L20 14"/>
+        </svg>
+        <div class="axis__num">05</div>
+        <div class="axis__name">入手性</div>
+        <div class="axis__hint">通販可・特約店のみ・極希少</div>
+        <div class="axis__unique-tag">— saketto独自</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 区切り -->
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+  <!-- 24蔵 -->
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 02</span>
+      <span class="section-meta__label">THE COLLECTION</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="section-title">最初に、<span class="accent">24蔵</span>。</h2>
+
+    <div class="bignum-block">
+      <div class="bignum">
+        24<span class="bignum__suffix">蔵</span><sup>BREWERIES</sup>
+      </div>
+      <div class="bignum-desc">
+        <h3>協会加盟9社＋協会非加盟15社。</h3>
+        <p>
+          全件、公式サイト・公式ECで一次ソースを確認済み。価格・度数は確認日2026年5月30日時点。中国・四国地方は今後拡張予定。
+          創業のほとんどが2020年以降、最古参でも稲とアガベ・haccobaが2021年。すべてが「これからの酒」。
+        </p>
+      </div>
+    </div>
+
+    <div class="kura-list">
+      <div class="kura-list__head">
+        <div class="kura-list__title">PHASE 1 BREWERIES</div>
+        <div class="kura-list__note">— 2026.05.30 verified</div>
+      </div>
+      <ul class="kura-grid">
+        <li><span class="idx">01</span>稲とアガベ醸造所</li>
+        <li><span class="idx">02</span>haccoba</li>
+        <li><span class="idx">03</span>LAGOON BREWERY</li>
+        <li><span class="idx">04</span>LIBROM</li>
+        <li><span class="idx">05</span>木花之醸造所</li>
+        <li><span class="idx">06</span>ハッピー太郎醸造所</li>
+        <li><span class="idx">07</span>平六醸造</li>
+        <li><span class="idx">08</span>ぷくぷく醸造</li>
+        <li><span class="idx">09</span>足立農醸</li>
+        <li><span class="idx">10</span>nondo</li>
+        <li><span class="idx">11</span>Fermenteria</li>
+        <li><span class="idx">12</span>やまね酒造</li>
+        <li><span class="idx">13</span>平和どぶろく兜町</li>
+        <li><span class="idx">14</span>平和どぶろく難波</li>
+        <li><span class="idx">15</span>東京駅酒造場</li>
+        <li><span class="idx">16</span>弥栄醸造</li>
+        <li><span class="idx">17</span>SAKENOVA BREWERY</li>
+        <li><span class="idx">18</span>LINNÉ</li>
+        <li><span class="idx">19</span>天郷醸造所</li>
+        <li><span class="idx">20</span>NOMU醸造所</li>
+        <li><span class="idx">21</span>鮭酒造</li>
+        <li><span class="idx">22</span>土浦醸造</li>
+        <li><span class="idx">23</span>HAKUTSURU SAKE CRAFT</li>
+        <li><span class="idx">24</span>でじま芳扇堂</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <div class="colophon">
+      <div class="colophon__brand">
+        saketto<span class="dot">.</span>
+        <small>— クラフトサケの図鑑</small>
+      </div>
+      <div class="colophon__notes">
+        <strong>準備中</strong><span class="colophon__sep">／</span>2026年夏、本サイト公開予定<span class="colophon__sep">／</span>
+        20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
+        PR ／ アフィリエイトリンクを含みます<span class="colophon__sep">／</span>
+        © 2026 saketto.
+      </div>
+    </div>
+  </footer>
+
+</main>
 </body>
 </html>
