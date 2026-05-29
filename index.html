@@ -562,6 +562,44 @@ footer {
   stroke-width: 1.5;
   margin-bottom: .25rem;
 }
+
+/* HERO BANNER (Vertex AI生成画像) */
+.hero-banner {
+  max-width: 1300px;
+  margin: 1rem auto 3rem;
+  padding: 0 2rem;
+  position: relative;
+}
+.hero-banner__wrap {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.hero-banner__wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, transparent 60%, rgba(245,240,231,0.35) 100%);
+  pointer-events: none;
+}
+.hero-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: cover;
+  filter: contrast(0.98) saturate(0.95);
+}
+.hero-banner__caption {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .72rem;
+  color: var(--ink-mute);
+  letter-spacing: .15em;
+  margin-top: .75rem;
+  text-align: right;
+}
+.hero-banner__caption span { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -608,6 +646,14 @@ footer {
       </div>
     </div>
   </section>
+
+  <!-- ヒーローバナー -->
+  <figure class="hero-banner">
+    <div class="hero-banner__wrap">
+      <img src="assets/images/hero.png" alt="米と麹、発酵のイメージ" loading="lazy">
+    </div>
+    <div class="hero-banner__caption">画像はイメージ ／ <span>generated 2026</span></div>
+  </figure>
 
   <!-- 区切り -->
   <div class="divider">

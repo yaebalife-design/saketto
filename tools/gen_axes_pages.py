@@ -214,6 +214,34 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 .colophon__notes strong { color:var(--accent); font-weight:500; }
 .colophon__sep { color:var(--line); margin:0 .5rem; }
+
+/* セクションヘッダー画像 (Vertex AI) */
+.cat-image {
+  margin: 0 0 2rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  position: relative;
+}
+.cat-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: cover;
+  filter: contrast(0.98) saturate(0.95);
+}
+.cat-image__cap {
+  position: absolute;
+  bottom: .5rem;
+  right: .75rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .65rem;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: .12em;
+  background: rgba(26,23,23,0.45);
+  padding: .15rem .5rem;
+}
 """
 
 
@@ -490,8 +518,15 @@ def gen_subingredients():
     )
     html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
 
+    SUB_IMG_MAP = {"hop":"sub_hop", "fruit":"sub_fruit", "tea-herb":"sub_tea_herb",
+                   "rice-koji":"sub_rice", "special":"sub_special"}
     for cat_key, cat_jp, cat_en, cat_desc in INGREDIENT_CATEGORIES:
         entries = by_cat.get(cat_key, [])
+        img_name = SUB_IMG_MAP.get(cat_key, "")
+        img_html = (
+            f'<figure class="cat-image"><img src="../assets/images/{img_name}.png" alt="" loading="lazy">'
+            f'<span class="cat-image__cap">画像はイメージ</span></figure>'
+        ) if img_name else ''
         html += f"""
   <section class="section" style="padding-bottom:2rem">
     <div class="section-meta">
@@ -500,6 +535,7 @@ def gen_subingredients():
       <span class="section-meta__count">/ {len(entries)} 銘柄</span>
       <span class="section-meta__rule"></span>
     </div>
+    {img_html}
     <h2 class="cat-title">{cat_jp}</h2>
     <p class="cat-desc">{cat_desc}</p>
     <div class="entries">"""
@@ -539,8 +575,17 @@ def gen_regions():
 
     html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
 
+    REGION_IMG_MAP = {
+        "東北": "region_tohoku", "関東": "region_kanto", "中部": "region_chubu",
+        "関西": "region_kansai", "九州": "region_kyushu", "沖縄": "region_okinawa",
+    }
     for idx, region in enumerate(populated, 1):
         breweries = by_region[region]
+        img_name = REGION_IMG_MAP.get(region, "")
+        img_html = (
+            f'<figure class="cat-image"><img src="../assets/images/{img_name}.png" alt="" loading="lazy">'
+            f'<span class="cat-image__cap">画像はイメージ</span></figure>'
+        ) if img_name else ''
         html += f"""
   <section class="section">
     <div class="section-meta">
@@ -549,6 +594,7 @@ def gen_regions():
       <span class="section-meta__count">/ {len(breweries)} 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
+    {img_html}
     <div class="brewery-grid">"""
         for i, b in enumerate(breweries, 1):
             html += render_brewery_card(b, i)

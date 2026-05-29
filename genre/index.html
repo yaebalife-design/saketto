@@ -201,6 +201,34 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 .colophon__notes strong { color:var(--accent); font-weight:500; }
 .colophon__sep { color:var(--line); margin:0 .5rem; }
+
+/* セクションヘッダー画像 (Vertex AI) */
+.cat-image {
+  margin: 0 0 2rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  position: relative;
+}
+.cat-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: cover;
+  filter: contrast(0.98) saturate(0.95);
+}
+.cat-image__cap {
+  position: absolute;
+  bottom: .5rem;
+  right: .75rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .65rem;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: .12em;
+  background: rgba(26,23,23,0.45);
+  padding: .15rem .5rem;
+}
 </style>
 </head>
 <body>

@@ -201,6 +201,34 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 .colophon__notes strong { color:var(--accent); font-weight:500; }
 .colophon__sep { color:var(--line); margin:0 .5rem; }
+
+/* セクションヘッダー画像 (Vertex AI) */
+.cat-image {
+  margin: 0 0 2rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  position: relative;
+}
+.cat-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: cover;
+  filter: contrast(0.98) saturate(0.95);
+}
+.cat-image__cap {
+  position: absolute;
+  bottom: .5rem;
+  right: .75rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .65rem;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: .12em;
+  background: rgba(26,23,23,0.45);
+  padding: .15rem .5rem;
+}
 </style>
 </head>
 <body>
@@ -235,6 +263,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__count">/ 14 銘柄</span>
       <span class="section-meta__rule"></span>
     </div>
+    <figure class="cat-image"><img src="../assets/images/sub_hop.png" alt="" loading="lazy"><span class="cat-image__cap">画像はイメージ</span></figure>
     <h2 class="cat-title">ホップ</h2>
     <p class="cat-desc">クラフトサケと最も相性の良いビール由来の副原料。シトラ・Huell Melon・Hallertau Blancなど品種別の表現も。</p>
     <div class="entries">
@@ -359,6 +388,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__count">/ 18 銘柄</span>
       <span class="section-meta__rule"></span>
     </div>
+    <figure class="cat-image"><img src="../assets/images/sub_fruit.png" alt="" loading="lazy"><span class="cat-image__cap">画像はイメージ</span></figure>
     <h2 class="cat-title">果実</h2>
     <p class="cat-desc">リンゴ・ブドウ・洋梨・イチゴ・メロン・桃・パイナップル等、地域の旬を醸す。</p>
     <div class="entries">
@@ -515,6 +545,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__count">/ 11 銘柄</span>
       <span class="section-meta__rule"></span>
     </div>
+    <figure class="cat-image"><img src="../assets/images/sub_tea_herb.png" alt="" loading="lazy"><span class="cat-image__cap">画像はイメージ</span></figure>
     <h2 class="cat-title">茶葉・ハーブ・スパイス</h2>
     <p class="cat-desc">ジャスミン茶・狭山茶・抹茶／山椒・黒文字・バジル・在来植物など、香りと余韻で表現する副原料。</p>
     <div class="entries">
@@ -615,6 +646,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__count">/ 61 銘柄</span>
       <span class="section-meta__rule"></span>
     </div>
+    <figure class="cat-image"><img src="../assets/images/sub_rice.png" alt="" loading="lazy"><span class="cat-image__cap">画像はイメージ</span></figure>
     <h2 class="cat-title">米のみ・特殊麹</h2>
     <p class="cat-desc">副原料なしの純米どぶろく、全麹酒、発芽玄米、大麦麹・蕎麦麹・芋麹など、米と麹そのものを主役にした酒。</p>
     <div class="entries">
@@ -1115,6 +1147,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__count">/ 18 銘柄</span>
       <span class="section-meta__rule"></span>
     </div>
+    <figure class="cat-image"><img src="../assets/images/sub_special.png" alt="" loading="lazy"><span class="cat-image__cap">画像はイメージ</span></figure>
     <h2 class="cat-title">特殊副原料</h2>
     <p class="cat-desc">アガベシロップ・ハチミツ・トマト・小豆・黒豆・桜など、ジャンルを問わない自由な副原料。</p>
     <div class="entries">
