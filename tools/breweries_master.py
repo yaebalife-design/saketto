@@ -320,6 +320,19 @@ BREWERIES = [
         "features": "出島町で季節のどぶろくを醸造。",
         "association": False,
     },
+    {
+        "slug": "cultiva",
+        "name": "Cultiva糸島醸造所",
+        "name_kana": "カルティバイトシマジョウゾウショ",
+        "prefecture": "福岡県",
+        "city": "糸島市加布里",
+        "region": "九州",
+        "founded": "2025",
+        "official_url": "https://cultiva-sake.com/",
+        "philosophy": "「米のテロワール」がコンセプト。日本各地の米品種ごとに個性を表現するどぶろく。生酛・木桶仕込み。",
+        "features": "公式に「クラフトサケの醸造所」と明記。日本各地の米品種を品種別に醸し分ける珍しい蔵。",
+        "association": False,
+    },
 ]
 
 
