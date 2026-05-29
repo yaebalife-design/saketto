@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>副原料から探す — saketto.</title>
+<meta name="description" content="クラフトサケを副原料（ホップ・果実・茶葉・ハーブ・米のみ・特殊副原料）から横断的に検索する逆引きデータベース。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F0E7; --bg-alt: #EDE5D2; --paper: #FAF6ED;
+  --ink: #1A1717; --ink-soft: #4A4441; --ink-mute: #7A7470;
+  --accent: #B33A2A; --accent-deep: #862719;
+  --warm: #8B7355; --line: #C9BFA8; --line-soft: #DFD5BD;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg); color:var(--ink);
+  font-family:'Noto Sans JP', sans-serif; font-weight:300;
+  line-height:1.75; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body::before {
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    radial-gradient(ellipse 1.5px 2.2px at 18% 22%, rgba(184,73,58,0.035) 60%, transparent 70%),
+    radial-gradient(ellipse 1.2px 1.8px at 67% 38%, rgba(139,115,85,0.04) 60%, transparent 70%),
+    radial-gradient(ellipse 1.5px 2.3px at 42% 71%, rgba(26,23,23,0.025) 60%, transparent 70%);
+  background-size: 64px 64px, 96px 96px, 80px 80px;
+}
+main { position:relative; z-index:1; }
+
+.masthead {
+  border-bottom:1px solid var(--line); padding:1rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.7rem; letter-spacing:.2em; color:var(--ink-mute); text-transform:uppercase;
+}
+.masthead a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead a:hover { color:var(--accent); }
+.masthead .accent-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; margin-right:.5rem; }
+.masthead .left { display:flex; gap:1.5rem; align-items:center; }
+.masthead .right { font-family:'Cormorant Garamond', serif; font-style:italic; letter-spacing:.1em; }
+
+.hero {
+  max-width:1100px; margin:0 auto; padding:5rem 2rem 3rem;
+}
+.hero__eyebrow {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.95rem; color:var(--accent); letter-spacing:.15em;
+  margin-bottom:1rem;
+}
+.hero__title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:clamp(2.5rem, 6vw, 4rem);
+  letter-spacing:.02em; line-height:1.2; color:var(--ink);
+  margin-bottom:1rem;
+}
+.hero__title .accent { color:var(--accent); }
+.hero__lede {
+  font-size:.95rem; color:var(--ink-soft); max-width:680px;
+  border-left:2px solid var(--accent); padding-left:1.5rem; line-height:1.95;
+}
+
+.section { max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
+.section-meta {
+  display:flex; align-items:baseline; gap:1.25rem; margin-bottom:1.5rem;
+}
+.section-meta__num {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.05rem; color:var(--accent); letter-spacing:.1em;
+}
+.section-meta__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.7rem; font-weight:700; letter-spacing:.35em; color:var(--ink);
+  text-transform:uppercase;
+}
+.section-meta__count {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.9rem; color:var(--ink-mute); letter-spacing:.1em;
+}
+.section-meta__rule { flex:1; height:1px; background:var(--line); }
+
+.cat-title {
+  font-family:'Shippori Mincho', serif; font-weight:600;
+  font-size:1.5rem; letter-spacing:.02em; color:var(--ink);
+  margin-bottom:.5rem;
+}
+.cat-title .accent { color:var(--accent); }
+.cat-desc {
+  font-size:.85rem; color:var(--ink-soft); margin-bottom:1.25rem; line-height:1.7;
+}
+
+.entries {
+  display:flex; flex-direction:column; gap:.5px;
+  background:var(--line); border:1px solid var(--line);
+  margin-bottom:3rem;
+}
+.entry {
+  background:var(--bg); padding:1.1rem 1.5rem;
+  display:grid; grid-template-columns:1fr; gap:.4rem;
+  transition:background .3s;
+  text-decoration:none; color:var(--ink);
+}
+@media (min-width:760px) {
+  .entry { grid-template-columns:1.5fr 1fr 1fr; align-items:center; gap:1rem; }
+}
+.entry:hover { background:var(--paper); }
+.entry__brand {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1rem; color:var(--ink);
+}
+.entry__brewery {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.78rem; color:var(--ink-soft); letter-spacing:.04em;
+}
+.entry__brewery::before { content:"— "; color:var(--accent); }
+.entry__specs { display:flex; gap:.35rem; flex-wrap:wrap; }
+.spec-pill {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.68rem; letter-spacing:.04em; color:var(--ink-soft);
+  background:var(--bg-alt); padding:.2rem .55rem;
+}
+.spec-pill.accent { color:var(--accent); background:transparent; border:1px solid var(--accent); }
+.spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
+
+.brewery-grid {
+  display:grid; grid-template-columns:1fr; gap:0;
+  border-top:1px solid var(--line);
+}
+@media (min-width:600px) { .brewery-grid { grid-template-columns:repeat(2, 1fr); } }
+.brewery-card {
+  padding:1.5rem; border-bottom:1px solid var(--line);
+  background:var(--bg); text-decoration:none; color:var(--ink);
+  display:flex; flex-direction:column; gap:.4rem;
+  transition:background .3s, padding-left .3s;
+}
+@media (min-width:600px) {
+  .brewery-card { border-right:1px solid var(--line); }
+  .brewery-card:nth-child(2n) { border-right:none; }
+}
+.brewery-card:hover { background:var(--paper); padding-left:1.75rem; }
+.brewery-card__num {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.75rem; color:var(--accent); letter-spacing:.1em;
+}
+.brewery-card__name {
+  font-family:'Shippori Mincho', serif; font-weight:600;
+  font-size:1.15rem; color:var(--ink);
+}
+.brewery-card__meta {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.72rem; color:var(--ink-soft); letter-spacing:.05em;
+}
+.brewery-card__features {
+  font-size:.78rem; color:var(--ink-soft); line-height:1.6; margin-top:.25rem;
+}
+
+.empty-region {
+  background:var(--bg-alt); padding:2rem; border-left:2px solid var(--warm);
+  font-family:'Shippori Mincho', serif;
+  color:var(--ink-soft); font-size:.95rem;
+}
+.empty-region em {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  color:var(--accent); letter-spacing:.05em;
+}
+
+.divider {
+  max-width:1100px; margin:3rem auto; padding:0 2rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.divider .rule { flex:1; height:1px; background:var(--line); }
+.divider .ornament { width:8px; height:8px; background:var(--accent); transform:rotate(45deg); }
+.divider .ornament.outer { width:4px; height:4px; background:var(--warm); }
+
+footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-index:1; }
+.colophon {
+  max-width:1100px; margin:0 auto; padding:2rem;
+  display:grid; grid-template-columns:1fr; gap:1.5rem;
+}
+@media (min-width:700px) { .colophon { grid-template-columns:2fr 3fr; } }
+.colophon__brand {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.5rem; letter-spacing:.02em;
+}
+.colophon__brand .dot { color:var(--accent); }
+.colophon__brand a { color:var(--ink); text-decoration:none; }
+.colophon__brand small {
+  display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-soft); margin-top:.25rem;
+  font-weight:400; letter-spacing:.08em;
+}
+.colophon__notes {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.75rem; color:var(--ink-soft); line-height:1.95; letter-spacing:.04em;
+}
+.colophon__notes strong { color:var(--accent); font-weight:500; }
+.colophon__sep { color:var(--line); margin:0 .5rem; }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="masthead">
+    <div class="left">
+      <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
+      <span>AXIS 01 — SUB-INGREDIENTS</span>
+    </div>
+    <div class="right">5 categories</div>
+  </div>
+
+  <section class="hero">
+    <div class="hero__eyebrow">— FIVE CATEGORIES</div>
+    <h1 class="hero__title">副原料から、<span class="accent">探す</span>。</h1>
+    <p class="hero__lede">何を入れた酒か。クラフトサケの自由さを最も雄弁に語るのが副原料。ホップから茶葉、ハーブ、果実、そして米と麹のみまで、5つのカテゴリで横断する。</p>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">
+  <section class="section" style="padding-bottom:2rem">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 01</span>
+      <span class="section-meta__label">HOP</span>
+      <span class="section-meta__count">/ 13 銘柄</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">ホップ</h2>
+    <p class="cat-desc">クラフトサケと最も相性の良いビール由来の副原料。シトラ・Huell Melon・Hallertau Blancなど品種別の表現も。</p>
+    <div class="entries">
+        <a class="entry" href="../brewery/ine-to-agave.html">
+          <div>
+            <div class="entry__brand">花風（ぐるりこ®）</div>
+            <div class="entry__brewery">稲とアガベ醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">ホップ</span></div>
+          <div class="entry__brewery" style="text-align:right">秋田県</div>
+        </a>
+        <a class="entry" href="../brewery/haccoba.html">
+          <div>
+            <div class="entry__brand">はなうたホップス</div>
+            <div class="entry__brewery">haccoba</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">ホップ</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/lagoon.html">
+          <div>
+            <div class="entry__brand">翔空 HOP SAKE ほっぺ</div>
+            <div class="entry__brewery">LAGOON BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 15%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">ホップ（シトラ）</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/lagoon.html">
+          <div>
+            <div class="entry__brand">翔空 ニゴリのHOP SAKE ほっぺ</div>
+            <div class="entry__brewery">LAGOON BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 15.5%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">ホップ（シトラ）</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/librom.html">
+          <div>
+            <div class="entry__brand">FREROM Hallertau Blanc</div>
+            <div class="entry__brewery">LIBROM</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">ホップ（Hallertau Blanc）</span></div>
+          <div class="entry__brewery" style="text-align:right">福岡県</div>
+        </a>
+        <a class="entry" href="../brewery/happy-taro.html">
+          <div>
+            <div class="entry__brand">ハッピーどぶろく ホップ Huell Melon</div>
+            <div class="entry__brewery">ハッピー太郎醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">ホップ（Huell Melon）</span></div>
+          <div class="entry__brewery" style="text-align:right">滋賀県</div>
+        </a>
+        <a class="entry" href="../brewery/happy-taro.html">
+          <div>
+            <div class="entry__brand">something happy うきうきホップ</div>
+            <div class="entry__brewery">ハッピー太郎醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">ホップ</span></div>
+          <div class="entry__brewery" style="text-align:right">滋賀県</div>
+        </a>
+        <a class="entry" href="../brewery/pukupuku.html">
+          <div>
+            <div class="entry__brand">#plot 酵母無添加 ホップサケ</div>
+            <div class="entry__brewery">ぷくぷく醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 7%</span> <span class="spec-pill">ホップ</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/pukupuku.html">
+          <div>
+            <div class="entry__brand">VaVaVa Spring 2026 DDH Doburoku</div>
+            <div class="entry__brewery">ぷくぷく醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">660ml</span> <span class="spec-pill">ホップ</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/pukupuku.html">
+          <div>
+            <div class="entry__brand">KiKiKi Spring 2026 Hopped Sour</div>
+            <div class="entry__brewery">ぷくぷく醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">660ml</span> <span class="spec-pill">ホップ</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/pukupuku.html">
+          <div>
+            <div class="entry__brand">#wildpath 水もとホップどぶろく</div>
+            <div class="entry__brewery">ぷくぷく醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">ホップ</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/heiwa-kabutocho.html">
+          <div>
+            <div class="entry__brand">平和どぶろく ホップ</div>
+            <div class="entry__brewery">平和どぶろく兜町醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">ホップ</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/hakutsuru-sakecraft.html">
+          <div>
+            <div class="entry__brand">HAKUTSURU SAKE CRAFT No.1〜No.7</div>
+            <div class="entry__brewery">HAKUTSURU SAKE CRAFT</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米のみ（一部No.4はホップ）</span></div>
+          <div class="entry__brewery" style="text-align:right">兵庫県</div>
+        </a>
+    </div>
+  </section>
+  <section class="section" style="padding-bottom:2rem">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 02</span>
+      <span class="section-meta__label">FRUITS</span>
+      <span class="section-meta__count">/ 20 銘柄</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">果実</h2>
+    <p class="cat-desc">リンゴ・ブドウ・洋梨・イチゴ・メロン・桃・パイナップル等、地域の旬を醸す。</p>
+    <div class="entries">
+        <a class="entry" href="../brewery/ine-to-agave.html">
+          <div>
+            <div class="entry__brand">稲とリンゴ SPECIAL EDITION</div>
+            <div class="entry__brewery">稲とアガベ醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">リンゴ</span></div>
+          <div class="entry__brewery" style="text-align:right">秋田県</div>
+        </a>
+        <a class="entry" href="../brewery/ine-to-agave.html">
+          <div>
+            <div class="entry__brand">稲とブドウ SPECIAL EDITION</div>
+            <div class="entry__brewery">稲とアガベ醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">ブドウ</span></div>
+          <div class="entry__brewery" style="text-align:right">秋田県</div>
+        </a>
+        <a class="entry" href="../brewery/lagoon.html">
+          <div>
+            <div class="entry__brand">翔空 酔いどれ洋梨2025-2026 槽搾り生</div>
+            <div class="entry__brewery">LAGOON BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">ル・レクチェ（洋梨）</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/lagoon.html">
+          <div>
+            <div class="entry__brand">翔空 酔いどれメロン2025 ドブロク</div>
+            <div class="entry__brewery">LAGOON BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 12%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">マスクメロン</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/lagoon.html">
+          <div>
+            <div class="entry__brand">翔空 酔いどれイチゴ2025 槽絞り生</div>
+            <div class="entry__brewery">LAGOON BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">越後姫（イチゴ）</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/librom.html">
+          <div>
+            <div class="entry__brand">あまおうのおさけ</div>
+            <div class="entry__brewery">LIBROM</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">あまおう（福岡県産いちご）</span></div>
+          <div class="entry__brewery" style="text-align:right">福岡県</div>
+        </a>
+        <a class="entry" href="../brewery/happy-taro.html">
+          <div>
+            <div class="entry__brand">something happy 菅浦の八朔</div>
+            <div class="entry__brewery">ハッピー太郎醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">八朔</span></div>
+          <div class="entry__brewery" style="text-align:right">滋賀県</div>
+        </a>
+        <a class="entry" href="../brewery/heiroku.html">
+          <div>
+            <div class="entry__brand">layer 洋ナシ</div>
+            <div class="entry__brewery">平六醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">洋ナシ果汁</span></div>
+          <div class="entry__brewery" style="text-align:right">岩手県</div>
+        </a>
+        <a class="entry" href="../brewery/heiroku.html">
+          <div>
+            <div class="entry__brand">layer ぶどう</div>
+            <div class="entry__brewery">平六醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">ぶどう果汁</span></div>
+          <div class="entry__brewery" style="text-align:right">岩手県</div>
+        </a>
+        <a class="entry" href="../brewery/heiroku.html">
+          <div>
+            <div class="entry__brand">layer りんご</div>
+            <div class="entry__brewery">平六醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">りんご果汁</span></div>
+          <div class="entry__brewery" style="text-align:right">岩手県</div>
+        </a>
+        <a class="entry" href="../brewery/heiwa-kabutocho.html">
+          <div>
+            <div class="entry__brand">平和どぶろく ブルーベリー</div>
+            <div class="entry__brewery">平和どぶろく兜町醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">ブルーベリー</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/heiwa-namba.html">
+          <div>
+            <div class="entry__brand">どぶろく 柚子</div>
+            <div class="entry__brewery">平和どぶろく難波醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">柚子</span></div>
+          <div class="entry__brewery" style="text-align:right">大阪府</div>
+        </a>
+        <a class="entry" href="../brewery/tokyo-station.html">
+          <div>
+            <div class="entry__brand">フルーツどぶろく マンゴー</div>
+            <div class="entry__brewery">東京駅酒造場</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">マンゴー</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/tokyo-station.html">
+          <div>
+            <div class="entry__brand">フルーツどぶろく リンゴ</div>
+            <div class="entry__brewery">東京駅酒造場</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">リンゴ</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/tokyo-station.html">
+          <div>
+            <div class="entry__brand">フルーツどぶろく ぶどう</div>
+            <div class="entry__brewery">東京駅酒造場</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">ぶどう</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/tokyo-station.html">
+          <div>
+            <div class="entry__brand">フルーツどぶろく 桃</div>
+            <div class="entry__brewery">東京駅酒造場</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">桃</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/sakenova.html">
+          <div>
+            <div class="entry__brand">Crafted Series -Brew Note- ル レクチエ</div>
+            <div class="entry__brewery">SAKENOVA BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">ル レクチエ（洋梨）</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/sakenova.html">
+          <div>
+            <div class="entry__brand">Crafted Series -Brew Note- 黒イチジク</div>
+            <div class="entry__brewery">SAKENOVA BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">黒イチジク</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/amanosato.html">
+          <div>
+            <div class="entry__brand">在る宵（あるよい）</div>
+            <div class="entry__brewery">天郷醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">福智町産無農薬果物</span> <span class="spec-pill">ハーブ</span></div>
+          <div class="entry__brewery" style="text-align:right">福岡県</div>
+        </a>
+        <a class="entry" href="../brewery/nomu.html">
+          <div>
+            <div class="entry__brand">（初回醸造銘柄調整中）</div>
+            <div class="entry__brewery">NOMU醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">アセロラ</span> <span class="spec-pill">パイナップル</span></div>
+          <div class="entry__brewery" style="text-align:right">沖縄県</div>
+        </a>
+    </div>
+  </section>
+  <section class="section" style="padding-bottom:2rem">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <span class="section-meta__label">TEA & HERBS</span>
+      <span class="section-meta__count">/ 12 銘柄</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">茶葉・ハーブ・スパイス</h2>
+    <p class="cat-desc">ジャスミン茶・狭山茶・抹茶／山椒・黒文字・バジル・在来植物など、香りと余韻で表現する副原料。</p>
+    <div class="entries">
+        <a class="entry" href="../brewery/ine-to-agave.html">
+          <div>
+            <div class="entry__brand">稲とジャスミン</div>
+            <div class="entry__brewery">稲とアガベ醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">ジャスミン茶葉</span></div>
+          <div class="entry__brewery" style="text-align:right">秋田県</div>
+        </a>
+        <a class="entry" href="../brewery/haccoba.html">
+          <div>
+            <div class="entry__brand">hanamoto bretta [kriek]</div>
+            <div class="entry__brewery">haccoba</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">花酛</span> <span class="spec-pill">ベルギービール製法</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/haccoba.html">
+          <div>
+            <div class="entry__brand">zairai [森 forest]</div>
+            <div class="entry__brewery">haccoba</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">地元在来植物</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/haccoba.html">
+          <div>
+            <div class="entry__brand">kasu [sansho lemonade]</div>
+            <div class="entry__brewery">haccoba</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">山椒</span> <span class="spec-pill">レモネード</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/lagoon.html">
+          <div>
+            <div class="entry__brand">翔空 SAKEマルゲリータ Unpressed</div>
+            <div class="entry__brewery">LAGOON BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">トマト</span> <span class="spec-pill">バジル</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/happy-taro.html">
+          <div>
+            <div class="entry__brand">something happy 政所と共に</div>
+            <div class="entry__brewery">ハッピー太郎醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">茶葉（政所茶）</span></div>
+          <div class="entry__brewery" style="text-align:right">滋賀県</div>
+        </a>
+        <a class="entry" href="../brewery/happy-taro.html">
+          <div>
+            <div class="entry__brand">something happy 音羽の黒文字</div>
+            <div class="entry__brewery">ハッピー太郎醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">黒文字</span></div>
+          <div class="entry__brewery" style="text-align:right">滋賀県</div>
+        </a>
+        <a class="entry" href="../brewery/pukupuku.html">
+          <div>
+            <div class="entry__brand">アマーロどぶろく feat.伊勢屋酒造</div>
+            <div class="entry__brewery">ぷくぷく醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">460ml</span> <span class="spec-pill">ハーブ</span> <span class="spec-pill">ボタニカル</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/yamane.html">
+          <div>
+            <div class="entry__brand">やまねのみのり</div>
+            <div class="entry__brewery">やまね酒造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">狭山茶</span> <span class="spec-pill">発芽玄米</span></div>
+          <div class="entry__brewery" style="text-align:right">埼玉県</div>
+        </a>
+        <a class="entry" href="../brewery/heiwa-kabutocho.html">
+          <div>
+            <div class="entry__brand">平和どぶろく 抹茶</div>
+            <div class="entry__brewery">平和どぶろく兜町醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">抹茶</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/heiwa-namba.html">
+          <div>
+            <div class="entry__brand">どぶろく 抹茶</div>
+            <div class="entry__brewery">平和どぶろく難波醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">抹茶</span></div>
+          <div class="entry__brewery" style="text-align:right">大阪府</div>
+        </a>
+        <a class="entry" href="../brewery/amanosato.html">
+          <div>
+            <div class="entry__brand">在る宵（あるよい）</div>
+            <div class="entry__brewery">天郷醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">福智町産無農薬果物</span> <span class="spec-pill">ハーブ</span></div>
+          <div class="entry__brewery" style="text-align:right">福岡県</div>
+        </a>
+    </div>
+  </section>
+  <section class="section" style="padding-bottom:2rem">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <span class="section-meta__label">RICE / SPECIAL KOJI</span>
+      <span class="section-meta__count">/ 25 銘柄</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">米のみ・特殊麹</h2>
+    <p class="cat-desc">副原料なしの純米どぶろく、全麹酒、発芽玄米、大麦麹・蕎麦麹・芋麹など、米と麹そのものを主役にした酒。</p>
+    <div class="entries">
+        <a class="entry" href="../brewery/lagoon.html">
+          <div>
+            <div class="entry__brand">翔空 自然栽培亀の尾どぶろく</div>
+            <div class="entry__brewery">LAGOON BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 17%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/konohanano.html">
+          <div>
+            <div class="entry__brand">ハナグモリ</div>
+            <div class="entry__brewery">木花之醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/konohanano.html">
+          <div>
+            <div class="entry__brand">ハナグモリ 焼酎用白麹仕様</div>
+            <div class="entry__brewery">木花之醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">焼酎用白麹</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/happy-taro.html">
+          <div>
+            <div class="entry__brand">ハッピーどぶろく 穂の恵み</div>
+            <div class="entry__brewery">ハッピー太郎醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">米のみ（穂の恵み米）</span></div>
+          <div class="entry__brewery" style="text-align:right">滋賀県</div>
+        </a>
+        <a class="entry" href="../brewery/happy-taro.html">
+          <div>
+            <div class="entry__brand">ハッピーどぶろく 生もと 酵母無添加</div>
+            <div class="entry__brewery">ハッピー太郎醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">滋賀県</div>
+        </a>
+        <a class="entry" href="../brewery/heiroku.html">
+          <div>
+            <div class="entry__brand">Re:vive 久遠 misty おりがらみ</div>
+            <div class="entry__brewery">平六醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">発芽玄米</span></div>
+          <div class="entry__brewery" style="text-align:right">岩手県</div>
+        </a>
+        <a class="entry" href="../brewery/heiroku.html">
+          <div>
+            <div class="entry__brand">Re:vive 刹那</div>
+            <div class="entry__brewery">平六醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">発芽玄米</span></div>
+          <div class="entry__brewery" style="text-align:right">岩手県</div>
+        </a>
+        <a class="entry" href="../brewery/heiroku.html">
+          <div>
+            <div class="entry__brand">Re:vive Origin アカツキ</div>
+            <div class="entry__brewery">平六醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">発芽玄米</span></div>
+          <div class="entry__brewery" style="text-align:right">岩手県</div>
+        </a>
+        <a class="entry" href="../brewery/pukupuku.html">
+          <div>
+            <div class="entry__brand">木桶発酵 全麹酒 雫取り</div>
+            <div class="entry__brewery">ぷくぷく醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ（全麹）</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/adachi-noujo.html">
+          <div>
+            <div class="entry__brand">KOYOI ～la première année～</div>
+            <div class="entry__brewery">足立農醸</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ（白麹仕込み・精米歩合80%）</span></div>
+          <div class="entry__brewery" style="text-align:right">大阪府</div>
+        </a>
+        <a class="entry" href="../brewery/adachi-noujo.html">
+          <div>
+            <div class="entry__brand">KOYOI La deuxième</div>
+            <div class="entry__brewery">足立農醸</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">大阪府</div>
+        </a>
+        <a class="entry" href="../brewery/nondo.html">
+          <div>
+            <div class="entry__brand">権化（ごんげ）</div>
+            <div class="entry__brewery">nondo（non°）</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">岩手県</div>
+        </a>
+        <a class="entry" href="../brewery/nondo.html">
+          <div>
+            <div class="entry__brand">とおの どぶろく速醸 生</div>
+            <div class="entry__brewery">nondo（non°）</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">岩手県</div>
+        </a>
+        <a class="entry" href="../brewery/fermenteria.html">
+          <div>
+            <div class="entry__brand">サケベイビー</div>
+            <div class="entry__brewery">Fermenteria</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">宮城県</div>
+        </a>
+        <a class="entry" href="../brewery/fermenteria.html">
+          <div>
+            <div class="entry__brand">Rice Brew Milk</div>
+            <div class="entry__brewery">Fermenteria</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">宮城県</div>
+        </a>
+        <a class="entry" href="../brewery/yamane.html">
+          <div>
+            <div class="entry__brand">やまねのみのり</div>
+            <div class="entry__brewery">やまね酒造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">狭山茶</span> <span class="spec-pill">発芽玄米</span></div>
+          <div class="entry__brewery" style="text-align:right">埼玉県</div>
+        </a>
+        <a class="entry" href="../brewery/heiwa-kabutocho.html">
+          <div>
+            <div class="entry__brand">平和どぶろく プレーン</div>
+            <div class="entry__brewery">平和どぶろく兜町醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/heiwa-namba.html">
+          <div>
+            <div class="entry__brand">どぶろく プレーン</div>
+            <div class="entry__brewery">平和どぶろく難波醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">大阪府</div>
+        </a>
+        <a class="entry" href="../brewery/tokyo-station.html">
+          <div>
+            <div class="entry__brand">東京駅 どぶろく</div>
+            <div class="entry__brewery">東京駅酒造場</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/iyasaka.html">
+          <div>
+            <div class="entry__brand">ITTEKI（一擲）十割麹酒 Vol.0-1</div>
+            <div class="entry__brewery">弥栄醸造</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米のみ（米麹100%）</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/sakenova.html">
+          <div>
+            <div class="entry__brand">SAKENOVA</div>
+            <div class="entry__brewery">SAKENOVA BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米のみ</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/linne.html">
+          <div>
+            <div class="entry__brand">800 Barley（大麦）</div>
+            <div class="entry__brewery">LINNÉ</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">大麦麹</span></div>
+          <div class="entry__brewery" style="text-align:right">京都府</div>
+        </a>
+        <a class="entry" href="../brewery/linne.html">
+          <div>
+            <div class="entry__brand">800 Buckwheat（蕎麦）</div>
+            <div class="entry__brewery">LINNÉ</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">蕎麦麹</span></div>
+          <div class="entry__brewery" style="text-align:right">京都府</div>
+        </a>
+        <a class="entry" href="../brewery/linne.html">
+          <div>
+            <div class="entry__brand">800 Rice（米）</div>
+            <div class="entry__brewery">LINNÉ</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">米麹</span></div>
+          <div class="entry__brewery" style="text-align:right">京都府</div>
+        </a>
+        <a class="entry" href="../brewery/linne.html">
+          <div>
+            <div class="entry__brand">800 Sweet Potato（薩摩芋）</div>
+            <div class="entry__brewery">LINNÉ</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">芋麹</span></div>
+          <div class="entry__brewery" style="text-align:right">京都府</div>
+        </a>
+    </div>
+  </section>
+  <section class="section" style="padding-bottom:2rem">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 05</span>
+      <span class="section-meta__label">SPECIAL</span>
+      <span class="section-meta__count">/ 8 銘柄</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="cat-title">特殊副原料</h2>
+    <p class="cat-desc">アガベシロップ・ハチミツ・トマト・小豆・黒豆・桜など、ジャンルを問わない自由な副原料。</p>
+    <div class="entries">
+        <a class="entry" href="../brewery/ine-to-agave.html">
+          <div>
+            <div class="entry__brand">稲とアガベ CRAFT series</div>
+            <div class="entry__brewery">稲とアガベ醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">アガベシロップ</span></div>
+          <div class="entry__brewery" style="text-align:right">秋田県</div>
+        </a>
+        <a class="entry" href="../brewery/ine-to-agave.html">
+          <div>
+            <div class="entry__brand">稲とハチミツ</div>
+            <div class="entry__brewery">稲とアガベ醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">ハチミツ</span></div>
+          <div class="entry__brewery" style="text-align:right">秋田県</div>
+        </a>
+        <a class="entry" href="../brewery/haccoba.html">
+          <div>
+            <div class="entry__brand">hanamoto bretta [kriek]</div>
+            <div class="entry__brewery">haccoba</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">花酛</span> <span class="spec-pill">ベルギービール製法</span></div>
+          <div class="entry__brewery" style="text-align:right">福島県</div>
+        </a>
+        <a class="entry" href="../brewery/lagoon.html">
+          <div>
+            <div class="entry__brand">翔空 SAKEマルゲリータ Unpressed</div>
+            <div class="entry__brewery">LAGOON BREWERY</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">トマト</span> <span class="spec-pill">バジル</span></div>
+          <div class="entry__brewery" style="text-align:right">新潟県</div>
+        </a>
+        <a class="entry" href="../brewery/librom.html">
+          <div>
+            <div class="entry__brand">TOMATO</div>
+            <div class="entry__brewery">LIBROM</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">トマト</span></div>
+          <div class="entry__brewery" style="text-align:right">福岡県</div>
+        </a>
+        <a class="entry" href="../brewery/heiwa-kabutocho.html">
+          <div>
+            <div class="entry__brand">平和どぶろく 小豆</div>
+            <div class="entry__brewery">平和どぶろく兜町醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">小豆</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/heiwa-kabutocho.html">
+          <div>
+            <div class="entry__brand">平和どぶろく 黒豆</div>
+            <div class="entry__brewery">平和どぶろく兜町醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">黒豆</span></div>
+          <div class="entry__brewery" style="text-align:right">東京都</div>
+        </a>
+        <a class="entry" href="../brewery/heiwa-namba.html">
+          <div>
+            <div class="entry__brand">どぶろく 桜</div>
+            <div class="entry__brewery">平和どぶろく難波醸造所</div>
+          </div>
+          <div class="entry__specs"><span class="spec-pill">桜</span></div>
+          <div class="entry__brewery" style="text-align:right">大阪府</div>
+        </a>
+    </div>
+  </section></div>
+  <footer>
+    <div class="colophon">
+      <div class="colophon__brand">
+        <a href="../index.html">saketto<span class="dot">.</span></a>
+        <small>— クラフトサケの図鑑</small>
+      </div>
+      <div class="colophon__notes">
+        <strong>準備中</strong><span class="colophon__sep">／</span>
+        2026年夏、本サイト公開予定<span class="colophon__sep">／</span>
+        20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
+        PR ／ アフィリエイトリンクを含みます<span class="colophon__sep">／</span>
+        © 2026 saketto.
+      </div>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>

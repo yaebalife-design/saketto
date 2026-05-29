@@ -250,11 +250,25 @@ main { position: relative; z-index: 1; }
   border-bottom: 1px solid var(--line);
   position: relative;
   transition: background .35s ease, transform .35s ease;
-  cursor: default;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: .75rem;
+  text-decoration: none;
+  color: inherit;
 }
+.axis::after {
+  content: "→";
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .3s, transform .3s;
+}
+.axis:hover::after { opacity: 1; transform: translateX(0); }
 @media (min-width: 700px) {
   .axis {
     border-bottom: none;
@@ -553,7 +567,7 @@ footer {
 
     <div class="axes">
 
-      <div class="axis">
+      <a class="axis" href="subingredients/">
         <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
           <path d="M16 4 C12 10, 10 16, 16 28 C22 16, 20 10, 16 4 Z"/>
           <path d="M16 16 L16 26"/>
@@ -561,9 +575,9 @@ footer {
         <div class="axis__num">01</div>
         <div class="axis__name">副原料</div>
         <div class="axis__hint">ホップ・果実・茶葉・ハーブ・米のみから</div>
-      </div>
+      </a>
 
-      <div class="axis">
+      <a class="axis" href="#breweries">
         <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
           <path d="M4 28 L4 14 L16 6 L28 14 L28 28 Z"/>
           <path d="M12 28 L12 18 L20 18 L20 28"/>
@@ -572,9 +586,9 @@ footer {
         <div class="axis__num">02</div>
         <div class="axis__name">蔵</div>
         <div class="axis__hint">醸造所のストーリー・代表者・哲学から</div>
-      </div>
+      </a>
 
-      <div class="axis">
+      <a class="axis" href="region/">
         <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
           <circle cx="16" cy="13" r="5"/>
           <path d="M16 18 C10 22, 7 26, 16 28 C25 26, 22 22, 16 18"/>
@@ -582,9 +596,9 @@ footer {
         <div class="axis__num">03</div>
         <div class="axis__name">地域</div>
         <div class="axis__hint">全国の蔵元マップ・産地別</div>
-      </div>
+      </a>
 
-      <div class="axis axis--unique">
+      <a class="axis axis--unique" href="genre/">
         <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
           <circle cx="8" cy="8" r="3"/>
           <circle cx="16" cy="16" r="3"/>
@@ -596,9 +610,9 @@ footer {
         <div class="axis__name">ジャンル</div>
         <div class="axis__hint">ホップサケ・古典どぶろく・全麹酒・木桶仕込み</div>
         <div class="axis__unique-tag">— saketto独自</div>
-      </div>
+      </a>
 
-      <div class="axis axis--unique">
+      <a class="axis axis--unique" href="availability/">
         <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
           <rect x="8" y="14" width="16" height="14" rx="1"/>
           <path d="M12 14 L12 9 C12 6 14 4 16 4 C18 4 20 6 20 9 L20 14"/>
@@ -607,7 +621,7 @@ footer {
         <div class="axis__name">入手性</div>
         <div class="axis__hint">通販可・特約店のみ・極希少</div>
         <div class="axis__unique-tag">— saketto独自</div>
-      </div>
+      </a>
 
     </div>
   </section>
@@ -622,7 +636,7 @@ footer {
   </div>
 
   <!-- 24蔵 -->
-  <section class="section">
+  <section class="section" id="breweries">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
       <span class="section-meta__label">THE COLLECTION</span>
