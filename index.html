@@ -303,10 +303,10 @@ main { position: relative; z-index: 1; }
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  border-top: 1px solid var(--line);
+  border: 1px solid var(--line);
 }
 @media (min-width: 700px) {
-  .axes { grid-template-columns: repeat(5, 1fr); border-top: none; }
+  .axes { grid-template-columns: repeat(5, 1fr); }
 }
 
 .axis {
@@ -321,6 +321,7 @@ main { position: relative; z-index: 1; }
   text-decoration: none;
   color: inherit;
 }
+.axis:last-child { border-bottom: none; }
 .axis::after {
   content: "→";
   position: absolute;
@@ -337,7 +338,6 @@ main { position: relative; z-index: 1; }
   .axis {
     border-bottom: none;
     border-right: 1px solid var(--line);
-    border-top: 1px solid var(--line);
   }
   .axis:last-child { border-right: none; }
 }
@@ -568,11 +568,11 @@ footer {
 .axes-extra {
   display: grid;
   grid-template-columns: 1fr;
-  border-top: 1px solid var(--line);
+  border: 1px solid var(--line);
   margin-bottom: 4rem;
 }
 @media (min-width: 700px) {
-  .axes-extra { grid-template-columns: 1fr 1fr; border-top: none; }
+  .axes-extra { grid-template-columns: 1fr 1fr; }
 }
 .axis-extra {
   background: var(--bg-soft);
@@ -586,10 +586,10 @@ footer {
   transition: background .25s ease, padding-left .25s ease;
   position: relative;
 }
+.axis-extra:last-child { border-bottom: none; }
 @media (min-width: 700px) {
   .axis-extra {
     border-bottom: none;
-    border-top: 1px solid var(--line);
     border-right: 1px solid var(--line);
   }
   .axis-extra:last-child { border-right: none; }
