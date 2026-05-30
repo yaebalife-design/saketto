@@ -459,8 +459,9 @@ def footer():
 """
 
 
-def render_entry(brewery_slug, brand):
-    """副原料カテゴリページ内の1エントリ(蔵×銘柄)を描画"""
+def render_entry(brewery_slug, brand, idx=0):
+    """副原料カテゴリページ内の1エントリ(蔵×銘柄)を描画。
+    idx は brewery_slug 蔵のbrands配列内インデックス → 蔵詳細ページのbN へジャンプ"""
     b = by_slug(brewery_slug)
     if not b:
         return ""
@@ -473,7 +474,7 @@ def render_entry(brewery_slug, brand):
         specs.append(f'<span class="spec-pill">{ing}</span>')
     specs_html = ' '.join(specs)
     return f"""
-        <a class="entry" href="../brewery/{brewery_slug}.html">
+        <a class="entry" href="../brewery/{brewery_slug}.html#b{idx}">
           <div>
             <div class="entry__brand">{brand['name']}</div>
             <div class="entry__brewery">{b['name']}</div>
@@ -501,9 +502,9 @@ def gen_subingredients():
     OUT.mkdir(exist_ok=True)
 
     # カテゴリ別に銘柄を集計
-    by_cat = defaultdict(list)  # cat -> [(brewery_slug, brand)]
+    by_cat = defaultdict(list)  # cat -> [(brewery_slug, brand, brand_idx)]
     for brewery in BREWERIES:
-        for brand in BRANDS.get(brewery["slug"], []):
+        for idx, brand in enumerate(BRANDS.get(brewery["slug"], [])):
             ings = brand.get("sub_ingredients") or []
             cats_for_this = set()
             for ing in ings:
@@ -511,7 +512,7 @@ def gen_subingredients():
                 if cat:
                     cats_for_this.add(cat)
             for cat in cats_for_this:
-                by_cat[cat].append((brewery["slug"], brand))
+                by_cat[cat].append((brewery["slug"], brand, idx))
 
     total_brands = sum(len(v) for v in by_cat.values())
 
@@ -545,8 +546,8 @@ def gen_subingredients():
     <h2 class="cat-title">{cat_jp}</h2>
     <p class="cat-desc">{cat_desc}</p>
     <div class="entries">"""
-        for slug, brand in entries:
-            html += render_entry(slug, brand)
+        for slug, brand, idx in entries:
+            html += render_entry(slug, brand, idx)
         html += """
     </div>
   </section>"""

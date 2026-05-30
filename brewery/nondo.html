@@ -127,8 +127,17 @@ main { position:relative; z-index:1; }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
-.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .3s; border-bottom:1px solid var(--line); }
+.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; }
 .brand-card:last-child { border-bottom:none; }
+.brand-card:target {
+  background:var(--paper);
+  border-left:4px solid var(--accent);
+  animation:highlight 2s ease-out;
+}
+@keyframes highlight {
+  0% { background:rgba(168,53,31,.18); }
+  100% { background:var(--paper); }
+}
 .brand-card:hover { background:var(--paper); }
 @media (min-width:760px) { .brand-card { grid-template-columns:1.4fr 1fr auto; padding:1.5rem 2rem; } }
 
@@ -387,7 +396,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <div class="brand-card">
+      <div class="brand-card" id="b0">
         <div class="brand-card__main">
           <h3>権化 土の密℃</h3>
           <p class="brand-card__note">水もと仕込み・木桶・150日超発酵。柑橘香と軽い甘み</p>
@@ -395,7 +404,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">525ml</span> <span class="spec-pill">米のみ（米糠活用）</span></div>
         <div class="brand-card__price">¥4,950<small>参考 2026.05.30</small></div>
       </div>
-      <div class="brand-card">
+      <div class="brand-card" id="b1">
         <div class="brand-card__main">
           <h3>権化 Rafters</h3>
           <p class="brand-card__note">古民家梁を再利用した搾り機。シャープな酸</p>
@@ -403,7 +412,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">525ml</span> <span class="spec-pill">米のみ（米糠活用）</span></div>
         <div class="brand-card__price">¥4,950<small>参考 2026.05.30</small></div>
       </div>
-      <div class="brand-card">
+      <div class="brand-card" id="b2">
         <div class="brand-card__main">
           <h3>権化 MARO 無濾過生原酒</h3>
           <p class="brand-card__note">水もと・木桶仕込み150日超。ハイエンド</p>
@@ -411,7 +420,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 12%</span> <span class="spec-pill warm">750ml</span> <span class="spec-pill">米のみ（米糠活用）</span></div>
         <div class="brand-card__price">¥16,500<small>参考 2026.05.30</small></div>
       </div>
-      <div class="brand-card">
+      <div class="brand-card" id="b3">
         <div class="brand-card__main">
           <h3>権化 MO CHUISLE</h3>
           <p class="brand-card__note">権化シリーズ。度数公式非開示</p>
@@ -419,7 +428,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">525ml</span> <span class="spec-pill">米のみ（米糠活用）</span></div>
         <div class="brand-card__price">¥4,950<small>参考 2026.05.30</small></div>
       </div>
-      <div class="brand-card">
+      <div class="brand-card" id="b4">
         <div class="brand-card__main">
           <h3>権化生酛</h3>
           <p class="brand-card__note">生酛仕込み版</p>
@@ -427,7 +436,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">525ml</span> <span class="spec-pill">米のみ（米糠活用）</span></div>
         <div class="brand-card__price">¥4,950<small>参考 2026.05.30</small></div>
       </div>
-      <div class="brand-card">
+      <div class="brand-card" id="b5">
         <div class="brand-card__main">
           <h3>とおの どぶろく 水もと無添加 生</h3>
           <p class="brand-card__note">水もと・無添加。要冷蔵</p>
@@ -435,7 +444,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__price">¥2,750<small>参考 2026.05.30</small></div>
       </div>
-      <div class="brand-card">
+      <div class="brand-card" id="b6">
         <div class="brand-card__main">
           <h3>とおの どぶろく 生酛無添加 生</h3>
           <p class="brand-card__note">生酛・無添加</p>
@@ -443,7 +452,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__price">¥2,970<small>参考 2026.05.30</small></div>
       </div>
-      <div class="brand-card">
+      <div class="brand-card" id="b7">
         <div class="brand-card__main">
           <h3>とおの どぶろく 速醸 生</h3>
           <p class="brand-card__note">速醸仕込み・生</p>
@@ -451,7 +460,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__price">¥2,750<small>参考 2026.05.30</small></div>
       </div>
-      <div class="brand-card">
+      <div class="brand-card" id="b8">
         <div class="brand-card__main">
           <h3>とおの どぶろく 速醸火入れ</h3>
           <p class="brand-card__note">速醸火入れ</p>

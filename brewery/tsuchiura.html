@@ -127,8 +127,17 @@ main { position:relative; z-index:1; }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
-.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .3s; border-bottom:1px solid var(--line); }
+.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; }
 .brand-card:last-child { border-bottom:none; }
+.brand-card:target {
+  background:var(--paper);
+  border-left:4px solid var(--accent);
+  animation:highlight 2s ease-out;
+}
+@keyframes highlight {
+  0% { background:rgba(168,53,31,.18); }
+  100% { background:var(--paper); }
+}
 .brand-card:hover { background:var(--paper); }
 @media (min-width:760px) { .brand-card { grid-template-columns:1.4fr 1fr auto; padding:1.5rem 2rem; } }
 

@@ -127,8 +127,17 @@ main { position:relative; z-index:1; }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
-.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .3s; border-bottom:1px solid var(--line); }
+.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; }
 .brand-card:last-child { border-bottom:none; }
+.brand-card:target {
+  background:var(--paper);
+  border-left:4px solid var(--accent);
+  animation:highlight 2s ease-out;
+}
+@keyframes highlight {
+  0% { background:rgba(168,53,31,.18); }
+  100% { background:var(--paper); }
+}
 .brand-card:hover { background:var(--paper); }
 @media (min-width:760px) { .brand-card { grid-template-columns:1.4fr 1fr auto; padding:1.5rem 2rem; } }
 
@@ -387,7 +396,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <div class="brand-card">
+      <div class="brand-card" id="b0">
         <div class="brand-card__main">
           <h3>KOYOI ～la première année～</h3>
           <p class="brand-card__note">第一弾。スッキリした綺麗さと心地よい酸</p>
@@ -395,7 +404,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ（白麹仕込み・精米歩合80%）</span></div>
         <div class="brand-card__price"><small>市場実勢</small></div>
       </div>
-      <div class="brand-card">
+      <div class="brand-card" id="b1">
         <div class="brand-card__main">
           <h3>KOYOI La deuxième</h3>
           <p class="brand-card__note">第二弾</p>
