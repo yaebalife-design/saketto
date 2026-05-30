@@ -123,19 +123,93 @@ main { position: relative; z-index: 1; }
   filter: drop-shadow(2px 2px 0 rgba(184,73,58,0.08));
 }
 
-.hero__tagline-wrap {
-  margin-top: 3rem;
+/* ヒーロー：コピー左 × 画像右の見開き一体型 */
+.hero__feature {
+  margin-top: 3.5rem;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 2.5rem;
+  align-items: stretch;
 }
-
-@media (min-width: 760px) {
-  .hero__tagline-wrap {
-    grid-template-columns: 1.2fr 1fr;
-    gap: 4rem;
+@media (min-width: 860px) {
+  .hero__feature {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 3.5rem;
   }
 }
+.hero__feature-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.85rem;
+}
+.hero__feature-img {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  min-height: 320px;
+  margin: 0;
+}
+.hero__feature-img img {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(0.98) saturate(0.95);
+}
+.hero__feature-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(245,240,231,0.28) 100%);
+  pointer-events: none;
+}
+.hero__feature-cap {
+  position: absolute;
+  bottom: .5rem;
+  right: .7rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .7rem;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: .1em;
+  background: rgba(22,16,14,0.45);
+  padding: .2rem .6rem;
+  z-index: 1;
+}
+.hero__entries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+.hero__entries-label {
+  width: 100%;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .8rem;
+  color: var(--ink-mute);
+  letter-spacing: .12em;
+  margin-bottom: .15rem;
+}
+.hero__entry {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-weight: 700;
+  font-size: .85rem;
+  letter-spacing: .08em;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  padding: .5rem .95rem;
+  transition: border-color .25s, color .25s, background .25s;
+}
+.hero__entry:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--paper);
+}
+.hero__entry .arr { color: var(--accent); margin-left: .35rem; }
 
 .tagline {
   font-family: 'Shippori Mincho', serif;
@@ -575,42 +649,6 @@ footer {
 }
 
 /* HERO BANNER (Vertex AI生成画像) */
-.hero-banner {
-  max-width: 1300px;
-  margin: 1rem auto 3rem;
-  padding: 0 2rem;
-  position: relative;
-}
-.hero-banner__wrap {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--line);
-}
-.hero-banner__wrap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 0%, transparent 60%, rgba(245,240,231,0.35) 100%);
-  pointer-events: none;
-}
-.hero-banner img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 520px;
-  object-fit: cover;
-  filter: contrast(0.98) saturate(0.95);
-}
-.hero-banner__caption {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: .72rem;
-  color: var(--ink-mute);
-  letter-spacing: .15em;
-  margin-top: .75rem;
-  text-align: right;
-}
-.hero-banner__caption span { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -647,24 +685,30 @@ footer {
       </svg>
     </div>
 
-    <div class="hero__tagline-wrap">
-      <div>
-        <span class="tagline-jp-label">— THE FIELD GUIDE</span>
-        <h2 class="tagline">次に出会う、<br>クラフトサケの<span class="accent">図鑑</span>。</h2>
+    <div class="hero__feature">
+      <div class="hero__feature-text">
+        <div>
+          <span class="tagline-jp-label">— THE FIELD GUIDE</span>
+          <h2 class="tagline">次に出会う、<br>クラフトサケの<span class="accent">図鑑</span>。</h2>
+        </div>
+        <div class="lede">
+          米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」を、副原料・蔵・地域・ジャンル・入手性の5つの軸から横断的に探せる、唯一の専門データベース。
+        </div>
+        <div class="hero__entries">
+          <span class="hero__entries-label">— 5つの軸から探す</span>
+          <a class="hero__entry" href="subingredients/">副原料<span class="arr">→</span></a>
+          <a class="hero__entry" href="#breweries">蔵<span class="arr">→</span></a>
+          <a class="hero__entry" href="region/">地域<span class="arr">→</span></a>
+          <a class="hero__entry" href="genre/">ジャンル<span class="arr">→</span></a>
+          <a class="hero__entry" href="availability/">入手性<span class="arr">→</span></a>
+        </div>
       </div>
-      <div class="lede">
-        米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」を、副原料・蔵・地域・ジャンル・入手性の5つの軸から横断的に探せる、唯一の専門データベース。
-      </div>
+      <figure class="hero__feature-img">
+        <img src="assets/images/hero.png" alt="米と麹、発酵のイメージ" loading="lazy">
+        <figcaption class="hero__feature-cap">画像はイメージ ／ generated 2026</figcaption>
+      </figure>
     </div>
   </section>
-
-  <!-- ヒーローバナー -->
-  <figure class="hero-banner">
-    <div class="hero-banner__wrap">
-      <img src="assets/images/hero.png" alt="米と麹、発酵のイメージ" loading="lazy">
-    </div>
-    <div class="hero-banner__caption">画像はイメージ ／ <span>generated 2026</span></div>
-  </figure>
 
   <!-- 区切り -->
   <div class="divider">
