@@ -111,8 +111,8 @@ main { position:relative; z-index:1; }
 }
 
 .entries {
-  display:flex; flex-direction:column; gap:.5px;
-  background:var(--line); border:1px solid var(--line);
+  display:flex; flex-direction:column;
+  border:1px solid var(--line);
   margin-bottom:3rem;
 }
 .entry {
@@ -120,7 +120,9 @@ main { position:relative; z-index:1; }
   display:grid; grid-template-columns:1fr; gap:.4rem;
   transition:background .3s;
   text-decoration:none; color:var(--ink);
+  border-bottom:1px solid var(--line);
 }
+.entry:last-child { border-bottom:none; }
 @media (min-width:760px) {
   .entry { grid-template-columns:1.5fr 1fr 1fr; align-items:center; gap:1rem; }
 }
