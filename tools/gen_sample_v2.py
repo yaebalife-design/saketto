@@ -742,16 +742,6 @@ def main():
           </div>
         </div>""" for a in b["awards"]) if b["awards"] else '<p style="font-size:.92rem; color:var(--ink-soft); padding:.5rem 0">本銘柄単独の受賞情報は現時点で確認できず（蔵全体としての受賞は <a href="../brewery/haccoba.html" style="color:var(--accent)">蔵詳細</a> 参照）</p>'
 
-    # Sources
-    all_sources = [b["official_ec_url"], b["tasting_source_url"], b["story_source_url"]] + b["sources_extra"]
-    seen = set()
-    uniq_sources = []
-    for u in all_sources:
-        if u and u not in seen:
-            uniq_sources.append(u)
-            seen.add(u)
-    sources_html = ''.join(f'<li><a href="{u}" target="_blank" rel="noopener">{u}</a></li>' for u in uniq_sources)
-
     # Glossary
     glossary_html = ''.join(f"""
         <div class="glossary-item">
@@ -881,7 +871,6 @@ def main():
         <div class="tasting-row__text">{b['tasting_finish']}</div>
       </div>
     </div>
-    <div class="tasting-source">出典：<a href="{b['tasting_source_url']}" target="_blank" rel="noopener">{b['tasting_source_name']}</a></div>
   </section>
 
   <!-- FLAVOR PROFILE -->
@@ -922,7 +911,6 @@ def main():
     </div>
     <div class="story-block">
       <p class="story-text">{b['story']}</p>
-      <div class="story-source">出典：<a href="{b['story_source_url']}" target="_blank" rel="noopener">{b['story_source_name']}</a></div>
     </div>
   </section>
 
@@ -976,20 +964,6 @@ def main():
     </div>
     <dl class="glossary">{glossary_html}
     </dl>
-  </section>
-
-  <!-- SOURCES -->
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 09</span>
-      <span class="section-meta__label">SOURCES / 一次ソース</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <div class="sources">
-      <h4>本ページのデータ出典</h4>
-      <ul>{sources_html}</ul>
-      <div class="sources__meta">データ最終更新日：{b['data_updated']}（saketto編集部）</div>
-    </div>
   </section>
 
   <footer>
