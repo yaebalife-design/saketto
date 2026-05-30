@@ -568,12 +568,11 @@ footer {
 .axes-extra {
   display: grid;
   grid-template-columns: 1fr;
-  border: 1px solid var(--line);
-  border-top: none;
+  border-top: 1px solid var(--line);
   margin-bottom: 4rem;
 }
 @media (min-width: 700px) {
-  .axes-extra { grid-template-columns: 1fr 1fr; }
+  .axes-extra { grid-template-columns: 1fr 1fr; border-top: none; }
 }
 .axis-extra {
   background: var(--bg-soft);
@@ -588,10 +587,12 @@ footer {
   position: relative;
 }
 @media (min-width: 700px) {
-  .axis-extra:first-child {
-    border-right: 1px solid var(--line);
+  .axis-extra {
     border-bottom: none;
+    border-top: 1px solid var(--line);
+    border-right: 1px solid var(--line);
   }
+  .axis-extra:last-child { border-right: none; }
 }
 .axis-extra:hover {
   background: var(--paper);
