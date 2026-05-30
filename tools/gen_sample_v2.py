@@ -29,6 +29,10 @@ from moshimo_link import rakuten_search, amazon_search
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT = REPO_ROOT / "brand" / "haccoba-0.html"
 
+# アフィリエイト（もしも経由 楽天/Amazon）の表示制御
+# サイト登録が完了したら True に戻すと購入ボタンが復活する
+AFFILIATE_ENABLED = False
+
 
 # ────────────── サンプル銘柄データ (はなうたホップス) ──────────────
 # 一次ソース確認済み + 編集部初期値（要更新の項目は data_status で明示）
@@ -627,6 +631,11 @@ main { position:relative; z-index:1; }
   font-size:.72rem; color:#C0B69E; margin-top:.85rem; letter-spacing:.05em;
   text-align:center;
 }
+.purchase-card__pending {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.92rem; color:#C0B69E; letter-spacing:.08em;
+  text-align:center; padding:1.1rem 0; border:1px dashed #635C57;
+}
 
 /* ===== SOURCES ===== */
 .sources {
@@ -722,6 +731,16 @@ def main():
     # アフィリリンク（もしも経由・楽天/Amazon検索）
     rakuten_url = rakuten_search(b["name"])
     amazon_url = amazon_search(b["name"])
+
+    # 購入ボックス（アフィリ未登録時はボタンを出さず「準備中」表示）
+    if AFFILIATE_ENABLED:
+        purchase_inner = f"""<div class="purchase-card__btns">
+            <a class="purchase-card__btn purchase-card__btn--rakuten" href="{rakuten_url}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>
+            <a class="purchase-card__btn purchase-card__btn--amazon" href="{amazon_url}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>
+          </div>
+          <div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>"""
+    else:
+        purchase_inner = """<div class="purchase-card__pending">お取り扱い情報は準備中です</div>"""
 
     # Recipe rows
     recipe_rows = []
@@ -968,11 +987,7 @@ def main():
           <div class="purchase-card__title">「{b['name']}」を探す</div>
         </div>
         <div>
-          <div class="purchase-card__btns">
-            <a class="purchase-card__btn purchase-card__btn--rakuten" href="{rakuten_url}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>
-            <a class="purchase-card__btn purchase-card__btn--amazon" href="{amazon_url}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>
-          </div>
-          <div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>
+          {purchase_inner}
         </div>
       </div>
     </div>
