@@ -235,6 +235,105 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 .colophon__notes strong { color:var(--accent); font-weight:500; }
 .colophon__sep { color:var(--line); margin:0 .5rem; }
+
+/* 地域バナー */
+.region-banner {
+  max-width:1100px; margin:0 auto; padding:1rem 2rem 0;
+}
+.region-banner__wrap {
+  position:relative; overflow:hidden; border:1px solid var(--line);
+}
+.region-banner img {
+  display:block; width:100%; height:auto; max-height:260px;
+  object-fit:cover; filter:contrast(.98) saturate(.95);
+}
+.region-banner__cap {
+  position:absolute; bottom:.5rem; right:.75rem;
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.78rem; color:rgba(255,255,255,0.94); letter-spacing:.08em;
+  background:rgba(22,16,14,0.5); padding:.25rem .65rem;
+}
+
+/* 受賞・メディアセクション */
+.acc-list {
+  display:flex; flex-direction:column; border:1px solid var(--line);
+  margin-bottom:1rem;
+}
+.acc-card {
+  background:var(--bg); padding:1.25rem 1.5rem;
+  display:grid; grid-template-columns:auto 1fr auto; gap:1rem;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  transition:background .3s;
+}
+.acc-card:last-child { border-bottom:none; }
+.acc-card:hover { background:var(--paper); }
+.acc-card--award { border-left:3px solid var(--accent); }
+.acc-card--global { border-left:3px solid var(--warm); }
+.acc-card--media { border-left:3px solid var(--line); }
+.acc-type {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.85rem; color:var(--accent); letter-spacing:.08em;
+  min-width:5em;
+}
+.acc-type.warm { color:var(--warm); }
+.acc-type.mute { color:var(--ink-soft); }
+.acc-title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.05rem; color:var(--ink); line-height:1.45;
+}
+.acc-brand {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.88rem; color:var(--ink-soft); margin-top:.25rem;
+}
+.acc-year {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.05rem; color:var(--ink-soft); letter-spacing:.05em;
+}
+@media (max-width:640px) {
+  .acc-card { grid-template-columns:1fr; gap:.4rem; }
+  .acc-year { text-align:left; }
+}
+
+/* テイスティングセクション */
+.tasting-list {
+  display:flex; flex-direction:column; border:1px solid var(--line);
+}
+.tasting-card {
+  background:var(--bg); padding:1.5rem 1.75rem;
+  border-bottom:1px solid var(--line);
+}
+.tasting-card:last-child { border-bottom:none; }
+.tasting-brand {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.15rem; margin-bottom:.85rem; color:var(--ink);
+  letter-spacing:.02em;
+}
+.tasting-notes {
+  font-size:1rem; color:var(--ink); line-height:1.95; margin-bottom:1rem;
+  font-weight:400;
+}
+.tasting-meta {
+  display:flex; flex-wrap:wrap; gap:.4rem 1.2rem;
+  font-size:.88rem; color:var(--ink-soft); margin-bottom:.6rem;
+}
+.tasting-meta__row { display:inline-flex; align-items:baseline; }
+.tasting-meta strong {
+  color:var(--accent); font-weight:700; margin-right:.5rem;
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.78rem; letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.tasting-source {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.85rem; color:var(--ink-mute); margin-top:.6rem;
+  padding-top:.6rem; border-top:1px dotted var(--line);
+}
+.tasting-source a {
+  color:var(--ink-soft); text-decoration:none;
+  border-bottom:1px dotted var(--line);
+}
+.tasting-source a:hover { color:var(--accent); border-bottom-color:var(--accent); }
 </style>
 </head>
 <body>
@@ -247,6 +346,8 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <div class="right">福島県 — A. D. 2021</div>
   </div>
+
+  <figure class="region-banner"><div class="region-banner__wrap"><img src="../assets/images/region_tohoku.png" alt="" loading="lazy"><span class="region-banner__cap">東北 ／ 画像はイメージ</span></div></figure>
 
   <section class="hero">
     <div class="hero__eyebrow">— BREWERY No. 02</div>
@@ -329,15 +430,72 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
   </section>
 
+  
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
+      <span class="section-meta__label">ACCOLADES & MEDIA</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="acc-list">
+      <div class="acc-card acc-card--award">
+        <div class="acc-type">— AWARD</div>
+        <div><div class="acc-title">日本パッケージデザイン大賞 銀賞（酒類カテゴリ）</div><div class="acc-brand">水を編む シリーズ</div></div>
+        <div class="acc-year">2025</div>
+      </div>
+      <div class="acc-card acc-card--award">
+        <div class="acc-type">— AWARD</div>
+        <div><div class="acc-title">東北アントレプレナー大賞（第32回東北ニュービジネス大賞）</div></div>
+        <div class="acc-year">2025</div>
+      </div>
+      <div class="acc-card acc-card--award">
+        <div class="acc-type">— AWARD</div>
+        <div><div class="acc-title">ICC SAKE AWARD 準決勝進出</div></div>
+        <div class="acc-year">2023</div>
+      </div>
+      <div class="acc-card acc-card--global">
+        <div class="acc-type warm">— GLOBAL</div>
+        <div><div class="acc-title">欧米進出開始（米/オランダ/ドイツ）</div><div class="acc-brand">Sunflower Sake(ポートランド)/Restaurant Flore(アムステルダム)/Enter Sake Berlin</div></div>
+        <div class="acc-year">2025</div>
+      </div>
+      <div class="acc-card acc-card--global">
+        <div class="acc-type warm">— GLOBAL</div>
+        <div><div class="acc-title">アジア圏輸出（タイ/香港/シンガポール/台湾）</div></div>
+        <div class="acc-year">—</div>
+      </div></div>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <span class="section-meta__label">TASTING NOTES / 2 銘柄</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="tasting-list">
+      <div class="tasting-card">
+        <div class="tasting-brand">はなうたホップス</div>
+        <div class="tasting-notes">柑橘やマスカットなどの香りが広がるアロマホップ、グレープフルーツのようなシトラス。口いっぱいの味わい、お米とホップのセッション。熟成していくとライチなど熟したフルーツのような印象に変化。</div>
+        <div class="tasting-meta"><span class="tasting-meta__row"><strong>ペアリング</strong>お食事と合わせやすい味わい</span></div>
+        <div class="tasting-source">出典：<a href="https://imadeya.co.jp/products/8180977172645" target="_blank" rel="noopener">IMADEYA ONLINE STORE</a></div>
+      </div>
+      <div class="tasting-card">
+        <div class="tasting-brand">水を編む -アグリロード-</div>
+        <div class="tasting-notes">フレッシュでクリーンな味わい、心地よい酸。日本固有のホップ「唐花草」のみを副原料に、米と麹で醸す地酒シリーズ。</div>
+        
+        <div class="tasting-source">出典：<a href="https://haccoba.com/products/agriroad" target="_blank" rel="noopener">haccoba 公式</a></div>
+      </div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 05</span>
       <span class="section-meta__label">SOURCES / 一次ソース</span>
       <span class="section-meta__rule"></span>
     </div>
     <div class="sources">
       <h4>本ページのデータ出典</h4>
-      <ul><li><a href="https://haccoba.com/" target="_blank" rel="noopener">https://haccoba.com/</a></li></ul>
+      <ul><li><a href="https://haccoba.com/" target="_blank" rel="noopener">https://haccoba.com/</a></li><li><a href="https://designcolon.com/haccoba-packageaward2025/" target="_blank" rel="noopener">https://designcolon.com/haccoba-packageaward2025/</a></li><li><a href="https://prtimes.jp/main/html/rd/p/000000076.000061904.html" target="_blank" rel="noopener">https://prtimes.jp/main/html/rd/p/000000076.000061904.html</a></li><li><a href="https://industry-co-creation.com/news/93891" target="_blank" rel="noopener">https://industry-co-creation.com/news/93891</a></li><li><a href="https://prtimes.jp/main/html/rd/p/000000065.000061904.html" target="_blank" rel="noopener">https://prtimes.jp/main/html/rd/p/000000065.000061904.html</a></li><li><a href="https://imadeya.co.jp/products/8180977172645" target="_blank" rel="noopener">https://imadeya.co.jp/products/8180977172645</a></li><li><a href="https://haccoba.com/products/agriroad" target="_blank" rel="noopener">https://haccoba.com/products/agriroad</a></li></ul>
     </div>
   </section>
 

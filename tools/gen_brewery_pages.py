@@ -15,6 +15,13 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import BREWERIES
 from breweries_brands import BRANDS
+from awards import AWARDS
+from tasting import TASTING
+
+REGION_IMG = {
+    "東北": "region_tohoku", "関東": "region_kanto", "中部": "region_chubu",
+    "関西": "region_kansai", "九州": "region_kyushu", "沖縄": "region_okinawa",
+}
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
@@ -250,6 +257,105 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 .colophon__notes strong { color:var(--accent); font-weight:500; }
 .colophon__sep { color:var(--line); margin:0 .5rem; }
+
+/* 地域バナー */
+.region-banner {
+  max-width:1100px; margin:0 auto; padding:1rem 2rem 0;
+}
+.region-banner__wrap {
+  position:relative; overflow:hidden; border:1px solid var(--line);
+}
+.region-banner img {
+  display:block; width:100%; height:auto; max-height:260px;
+  object-fit:cover; filter:contrast(.98) saturate(.95);
+}
+.region-banner__cap {
+  position:absolute; bottom:.5rem; right:.75rem;
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.78rem; color:rgba(255,255,255,0.94); letter-spacing:.08em;
+  background:rgba(22,16,14,0.5); padding:.25rem .65rem;
+}
+
+/* 受賞・メディアセクション */
+.acc-list {
+  display:flex; flex-direction:column; border:1px solid var(--line);
+  margin-bottom:1rem;
+}
+.acc-card {
+  background:var(--bg); padding:1.25rem 1.5rem;
+  display:grid; grid-template-columns:auto 1fr auto; gap:1rem;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  transition:background .3s;
+}
+.acc-card:last-child { border-bottom:none; }
+.acc-card:hover { background:var(--paper); }
+.acc-card--award { border-left:3px solid var(--accent); }
+.acc-card--global { border-left:3px solid var(--warm); }
+.acc-card--media { border-left:3px solid var(--line); }
+.acc-type {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.85rem; color:var(--accent); letter-spacing:.08em;
+  min-width:5em;
+}
+.acc-type.warm { color:var(--warm); }
+.acc-type.mute { color:var(--ink-soft); }
+.acc-title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.05rem; color:var(--ink); line-height:1.45;
+}
+.acc-brand {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.88rem; color:var(--ink-soft); margin-top:.25rem;
+}
+.acc-year {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.05rem; color:var(--ink-soft); letter-spacing:.05em;
+}
+@media (max-width:640px) {
+  .acc-card { grid-template-columns:1fr; gap:.4rem; }
+  .acc-year { text-align:left; }
+}
+
+/* テイスティングセクション */
+.tasting-list {
+  display:flex; flex-direction:column; border:1px solid var(--line);
+}
+.tasting-card {
+  background:var(--bg); padding:1.5rem 1.75rem;
+  border-bottom:1px solid var(--line);
+}
+.tasting-card:last-child { border-bottom:none; }
+.tasting-brand {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.15rem; margin-bottom:.85rem; color:var(--ink);
+  letter-spacing:.02em;
+}
+.tasting-notes {
+  font-size:1rem; color:var(--ink); line-height:1.95; margin-bottom:1rem;
+  font-weight:400;
+}
+.tasting-meta {
+  display:flex; flex-wrap:wrap; gap:.4rem 1.2rem;
+  font-size:.88rem; color:var(--ink-soft); margin-bottom:.6rem;
+}
+.tasting-meta__row { display:inline-flex; align-items:baseline; }
+.tasting-meta strong {
+  color:var(--accent); font-weight:700; margin-right:.5rem;
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.78rem; letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.tasting-source {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.85rem; color:var(--ink-mute); margin-top:.6rem;
+  padding-top:.6rem; border-top:1px dotted var(--line);
+}
+.tasting-source a {
+  color:var(--ink-soft); text-decoration:none;
+  border-bottom:1px dotted var(--line);
+}
+.tasting-source a:hover { color:var(--accent); border-bottom-color:var(--accent); }
 """
 
 
@@ -328,8 +434,101 @@ def render(brewery, index, prev_brewery, next_brewery):
     if not brands:
         brand_cards_html = '<div class="no-brands">銘柄情報は調査中です</div>'
 
-    # 出典 - master/brandsから集めるのは省略、official_urlのみ
-    sources_html = f'<li><a href="{brewery["official_url"]}" target="_blank" rel="noopener">{brewery["official_url"]}</a></li>'
+    # 受賞・メディア
+    brewery_awards = AWARDS.get(brewery["slug"], [])
+    awards_cards = []
+    extra_sources = []
+    for it in brewery_awards:
+        typ = it["type"]
+        label = {"award": "AWARD", "media": "MEDIA", "global": "GLOBAL"}.get(typ, "")
+        cls = {"award": "award", "media": "media", "global": "global"}.get(typ, "")
+        type_cls = {"award": "", "media": " mute", "global": " warm"}.get(typ, "")
+        year_html = f'<div class="acc-year">{it["year"]}</div>' if it.get("year") else '<div class="acc-year">—</div>'
+        brand_html = f'<div class="acc-brand">{it["brand"]}</div>' if it.get("brand") else ''
+        awards_cards.append(f"""
+      <div class="acc-card acc-card--{cls}">
+        <div class="acc-type{type_cls}">— {label}</div>
+        <div><div class="acc-title">{it["title"]}</div>{brand_html}</div>
+        {year_html}
+      </div>""")
+        if it.get("source"):
+            extra_sources.append(it["source"])
+    awards_html_block = '<div class="acc-list">' + ''.join(awards_cards) + '</div>' if awards_cards else ''
+
+    # テイスティング
+    brewery_tasting = TASTING.get(brewery["slug"], [])
+    tasting_cards = []
+    for t in brewery_tasting:
+        meta_rows = []
+        if t.get("temp"):
+            meta_rows.append(f'<span class="tasting-meta__row"><strong>温度</strong>{t["temp"]}</span>')
+        if t.get("pairing"):
+            meta_rows.append(f'<span class="tasting-meta__row"><strong>ペアリング</strong>{t["pairing"]}</span>')
+        meta_html = f'<div class="tasting-meta">{"".join(meta_rows)}</div>' if meta_rows else ''
+        src_html = (
+            f'<div class="tasting-source">出典：<a href="{t["source_url"]}" target="_blank" rel="noopener">{t.get("source_name","出典")}</a></div>'
+            if t.get("source_url") else ''
+        )
+        tasting_cards.append(f"""
+      <div class="tasting-card">
+        <div class="tasting-brand">{t["brand"]}</div>
+        <div class="tasting-notes">{t["notes"]}</div>
+        {meta_html}
+        {src_html}
+      </div>""")
+        if t.get("source_url"):
+            extra_sources.append(t["source_url"])
+    tasting_html_block = '<div class="tasting-list">' + ''.join(tasting_cards) + '</div>' if tasting_cards else ''
+
+    # セクション番号の動的計算
+    section_n = 3
+    awards_section_num = None
+    tasting_section_num = None
+    if awards_html_block:
+        awards_section_num = section_n
+        section_n += 1
+    if tasting_html_block:
+        tasting_section_num = section_n
+        section_n += 1
+    sources_section_num = section_n
+
+    # 地域バナー
+    region_img_name = REGION_IMG.get(brewery["region"], "")
+    region_banner = (
+        f'<figure class="region-banner"><div class="region-banner__wrap">'
+        f'<img src="../assets/images/{region_img_name}.png" alt="" loading="lazy">'
+        f'<span class="region-banner__cap">{brewery["region"]} ／ 画像はイメージ</span>'
+        f'</div></figure>'
+    ) if region_img_name else ''
+
+    # 出典 - 公式 + 受賞/テイスティングの出典
+    src_links = [f'<li><a href="{brewery["official_url"]}" target="_blank" rel="noopener">{brewery["official_url"]}</a></li>']
+    seen = set([brewery["official_url"]])
+    for u in extra_sources:
+        if u and u not in seen:
+            src_links.append(f'<li><a href="{u}" target="_blank" rel="noopener">{u}</a></li>')
+            seen.add(u)
+    sources_html = ''.join(src_links)
+
+    awards_section = f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. {awards_section_num:02d}</span>
+      <span class="section-meta__label">ACCOLADES & MEDIA</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    {awards_html_block}
+  </section>""" if awards_section_num else ''
+
+    tasting_section = f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. {tasting_section_num:02d}</span>
+      <span class="section-meta__label">TASTING NOTES / {len(brewery_tasting)} 銘柄</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    {tasting_html_block}
+  </section>""" if tasting_section_num else ''
 
     html = HEAD.format(name=brewery["name"], prefecture=brewery["prefecture"],
                        city=brewery["city"], philosophy_short=philosophy_short,
@@ -343,6 +542,8 @@ def render(brewery, index, prev_brewery, next_brewery):
     </div>
     <div class="right">{brewery["prefecture"]} — A. D. {brewery["founded"]}</div>
   </div>
+
+  {region_banner}
 
   <section class="hero">
     <div class="hero__eyebrow">— BREWERY No. {n:02d}</div>
@@ -385,9 +586,13 @@ def render(brewery, index, prev_brewery, next_brewery):
     </div>
   </section>
 
+  {awards_section}
+
+  {tasting_section}
+
   <section class="section">
     <div class="section-meta">
-      <span class="section-meta__num">No. 03</span>
+      <span class="section-meta__num">No. {sources_section_num:02d}</span>
       <span class="section-meta__label">SOURCES / 一次ソース</span>
       <span class="section-meta__rule"></span>
     </div>
