@@ -571,6 +571,14 @@ main { position:relative; z-index:1; }
   text-transform:uppercase; text-decoration:none;
   border-bottom:1px solid var(--accent); padding-bottom:.15rem;
 }
+.kura-card__official {
+  display:block; margin-top:1rem;
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.82rem; color:var(--ink-mute); letter-spacing:.03em;
+  text-decoration:none; border-bottom:1px dotted var(--line);
+  padding-bottom:.15rem; width:fit-content; transition:color .25s;
+}
+.kura-card__official:hover { color:var(--ink-soft); }
 .purchase-card {
   background:var(--ink); color:#F5F0E7; padding:1.75rem 2rem;
   display:flex; flex-direction:column; justify-content:space-between;
@@ -941,6 +949,7 @@ def main():
         <div class="kura-card__meta">{brewery['prefecture']}・{brewery['city']}　／　創業 {brewery['founded']}</div>
         <p class="kura-card__philo">{brewery['philosophy']}</p>
         <a class="kura-card__link" href="../brewery/{b['brewery_slug']}.html">蔵の詳細を見る →</a>
+        <a class="kura-card__official" href="{b['official_ec_url']}" target="_blank" rel="noopener">公式サイト（haccoba.com）→</a>
       </div>
       <div class="purchase-card">
         <div>
@@ -951,7 +960,6 @@ def main():
           <div class="purchase-card__btns">
             <a class="purchase-card__btn purchase-card__btn--rakuten" href="{rakuten_url}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>
             <a class="purchase-card__btn purchase-card__btn--amazon" href="{amazon_url}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>
-            <a class="purchase-card__btn purchase-card__btn--official" href="{b['official_ec_url']}" target="_blank" rel="noopener">公式EC（haccoba.com）で探す →</a>
           </div>
           <div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>
         </div>
