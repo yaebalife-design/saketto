@@ -149,7 +149,8 @@ main { position:relative; z-index:1; }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
-.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; }
+.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
+.brand-card:hover { background:var(--paper); padding-left:2rem; }
 .brand-card:last-child { border-bottom:none; }
 .brand-card:target {
   background:var(--paper);
@@ -386,7 +387,7 @@ HEAD = """<!DOCTYPE html>
 """
 
 
-def render_brand_card(brand, idx=0):
+def render_brand_card(brand, idx=0, brewery_slug=""):
     specs = []
     if brand.get("abv") is not None:
         specs.append(f'<span class="spec-pill accent">ABV {brand["abv"]}%</span>')
@@ -406,15 +407,16 @@ def render_brand_card(brand, idx=0):
     note = brand.get("note", "")
     note_html = f'<p class="brand-card__note">{note}</p>' if note else ''
 
+    href = f"../brand/{brewery_slug}-{idx}.html" if brewery_slug else "#"
     return f"""
-      <div class="brand-card" id="b{idx}">
+      <a class="brand-card" href="{href}" id="b{idx}">
         <div class="brand-card__main">
           <h3>{brand['name']}</h3>
           {note_html}
         </div>
         <div class="brand-card__specs">{specs_html}</div>
         {price_html}
-      </div>"""
+      </a>"""
 
 
 def render(brewery, index, prev_brewery, next_brewery):
@@ -439,7 +441,7 @@ def render(brewery, index, prev_brewery, next_brewery):
     else:
         next_html = '<span></span>'
 
-    brand_cards_html = ''.join(render_brand_card(b, i) for i, b in enumerate(brands))
+    brand_cards_html = ''.join(render_brand_card(b, i, brewery["slug"]) for i, b in enumerate(brands))
     if not brands:
         brand_cards_html = '<div class="no-brands">銘柄情報は調査中です</div>'
 

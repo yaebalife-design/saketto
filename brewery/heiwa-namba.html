@@ -127,7 +127,8 @@ main { position:relative; z-index:1; }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
-.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; }
+.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
+.brand-card:hover { background:var(--paper); padding-left:2rem; }
 .brand-card:last-child { border-bottom:none; }
 .brand-card:target {
   background:var(--paper);
@@ -396,62 +397,62 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <div class="brand-card" id="b0">
+      <a class="brand-card" href="../brand/heiwa-namba-0.html" id="b0">
         <div class="brand-card__main">
           <h3>どぶろく プレーン</h3>
           <p class="brand-card__note">店内提供70ml/500円・120ml/950円</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">70ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__price">¥500<small>参考 2026.05.30</small></div>
-      </div>
-      <div class="brand-card" id="b1">
+      </a>
+      <a class="brand-card" href="../brand/heiwa-namba-1.html" id="b1">
         <div class="brand-card__main">
           <h3>どぶろく 小豆</h3>
           <p class="brand-card__note">兜町と共通の看板副原料</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">小豆</span></div>
         <div class="brand-card__price"><small>市場実勢</small></div>
-      </div>
-      <div class="brand-card" id="b2">
+      </a>
+      <a class="brand-card" href="../brand/heiwa-namba-2.html" id="b2">
         <div class="brand-card__main">
           <h3>どぶろく 黒豆</h3>
           <p class="brand-card__note">兜町と共通の看板副原料</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">黒豆</span></div>
         <div class="brand-card__price"><small>市場実勢</small></div>
-      </div>
-      <div class="brand-card" id="b3">
+      </a>
+      <a class="brand-card" href="../brand/heiwa-namba-3.html" id="b3">
         <div class="brand-card__main">
           <h3>どぶろく ホップ</h3>
           <p class="brand-card__note">兜町と共通の看板副原料</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">ホップ</span></div>
         <div class="brand-card__price"><small>市場実勢</small></div>
-      </div>
-      <div class="brand-card" id="b4">
+      </a>
+      <a class="brand-card" href="../brand/heiwa-namba-4.html" id="b4">
         <div class="brand-card__main">
           <h3>どぶろく 白麹</h3>
           <p class="brand-card__note">焼酎用白麹仕込みで酸味強め</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">白麹（焼酎用）</span></div>
         <div class="brand-card__price"><small>市場実勢</small></div>
-      </div>
-      <div class="brand-card" id="b5">
+      </a>
+      <a class="brand-card" href="../brand/heiwa-namba-5.html" id="b5">
         <div class="brand-card__main">
           <h3>どぶろく 桜（季節限定）</h3>
           <p class="brand-card__note">塩漬け桜葉を副原料に。春限定</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">塩漬け桜葉</span></div>
         <div class="brand-card__price"><small>市場実勢</small></div>
-      </div>
-      <div class="brand-card" id="b6">
+      </a>
+      <a class="brand-card" href="../brand/heiwa-namba-6.html" id="b6">
         <div class="brand-card__main">
           <h3>どぶろく 抹茶（季節限定）</h3>
           <p class="brand-card__note">季節限定</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">抹茶</span></div>
         <div class="brand-card__price"><small>市場実勢</small></div>
-      </div>
+      </a>
     </div>
   </section>
 

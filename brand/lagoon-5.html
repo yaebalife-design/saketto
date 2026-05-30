@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>翔空 SAKEマルゲリータ Unpressed ／ LAGOON BREWERY — saketto.</title>
+<meta name="description" content="翔空 SAKEマルゲリータ Unpressed（LAGOON BREWERY）。ピザマルゲリータをイメージしたドブロク">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F0E7; --bg-alt: #EDE5D2; --paper: #FAF6ED;
+  --ink: #16100E; --ink-soft: #3D3633; --ink-mute: #635C57;
+  --accent: #A8351F; --accent-deep: #862719;
+  --warm: #7A6447; --line: #C0B69E; --line-soft: #D6CCB3;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg); color:var(--ink);
+  font-family:'Noto Sans JP', sans-serif;
+  font-weight:400; line-height:1.8;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden; font-size:16px;
+}
+body::before {
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    radial-gradient(ellipse 1.5px 2.2px at 18% 22%, rgba(168,53,31,0.03) 60%, transparent 70%),
+    radial-gradient(ellipse 1.2px 1.8px at 67% 38%, rgba(122,100,71,0.035) 60%, transparent 70%);
+  background-size: 64px 64px, 96px 96px;
+}
+main { position:relative; z-index:1; }
+
+/* マストヘッド */
+.masthead {
+  border-bottom:1px solid var(--line);
+  padding:1rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.8rem; letter-spacing:.12em; color:var(--ink-soft);
+  text-transform:uppercase;
+}
+.masthead a { color:var(--ink-soft); text-decoration:none; transition:color .25s; }
+.masthead a:hover { color:var(--accent); }
+.masthead .accent-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; margin-right:.5rem; }
+.masthead .left { display:flex; gap:1.5rem; align-items:center; }
+.masthead .right { font-family:'Cormorant Garamond', serif; font-style:italic; letter-spacing:.1em; }
+
+/* HERO */
+.hero {
+  max-width:1100px; margin:0 auto; padding:4rem 2rem 3rem;
+}
+.hero__brewery {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1rem; color:var(--accent); letter-spacing:.1em;
+  margin-bottom:.85rem;
+}
+.hero__brewery a {
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px dotted var(--accent);
+}
+.hero__brewery a:hover { color:var(--accent-deep); }
+.hero__name {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:clamp(2rem, 5.5vw, 3.6rem);
+  letter-spacing:.01em; line-height:1.2; color:var(--ink);
+  margin-bottom:1.2rem;
+}
+.hero__note {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.1rem; color:var(--ink-soft); line-height:1.75;
+  margin-bottom:2.5rem; max-width:680px;
+}
+
+/* SPECS - 大判ディスプレイ */
+.specs-board {
+  display:grid; grid-template-columns:1fr; gap:0;
+  border:1px solid var(--line); margin-bottom:3rem;
+  background:var(--paper);
+}
+@media (min-width:640px) {
+  .specs-board { grid-template-columns:repeat(3, 1fr); }
+}
+.spec-cell {
+  padding:1.5rem 1.75rem;
+  border-bottom:1px solid var(--line);
+}
+@media (min-width:640px) {
+  .spec-cell { border-bottom:none; border-right:1px solid var(--line); }
+  .spec-cell:last-child { border-right:none; }
+}
+.spec-cell:last-child { border-bottom:none; }
+.spec-cell__label {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.85rem; color:var(--accent); letter-spacing:.1em;
+  margin-bottom:.4rem;
+}
+.spec-cell__value {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.8rem; color:var(--ink); letter-spacing:.02em; line-height:1.2;
+}
+.spec-cell__value small {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.65em; color:var(--ink-soft); font-weight:400;
+  margin-left:.25rem;
+}
+.spec-cell__unknown {
+  font-family:'Shippori Mincho', serif; font-size:1.1rem;
+  color:var(--ink-mute); font-weight:500;
+}
+.spec-cell__pills {
+  display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.3rem;
+}
+.pill {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.85rem; letter-spacing:.02em; color:var(--ink);
+  background:var(--bg); padding:.3rem .7rem;
+  border:1px solid var(--line);
+}
+
+/* PRICE */
+.price-block {
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding:1.5rem 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:3rem; flex-wrap:wrap; gap:.5rem;
+}
+.price-block__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.85rem; letter-spacing:.18em; color:var(--ink);
+  text-transform:uppercase;
+}
+.price-block__value {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.6rem; color:var(--ink);
+}
+.price-block__value small {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.65em; color:var(--ink-soft); font-weight:400;
+  margin-left:.4rem;
+}
+
+/* SECTION */
+.section { max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
+.section-meta {
+  display:flex; align-items:baseline; gap:1.25rem; margin-bottom:1.5rem;
+}
+.section-meta__num {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.15rem; color:var(--accent); letter-spacing:.05em;
+}
+.section-meta__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.88rem; font-weight:700; letter-spacing:.18em; color:var(--ink);
+  text-transform:uppercase;
+}
+.section-meta__rule { flex:1; height:1px; background:var(--line); }
+
+/* TASTING */
+.tasting-block {
+  background:var(--paper); padding:2rem 2.25rem;
+  border-left:3px solid var(--accent); margin-bottom:1rem;
+}
+.tasting-notes {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.1rem; color:var(--ink); line-height:1.95; margin-bottom:1.2rem;
+}
+.tasting-meta {
+  display:flex; flex-wrap:wrap; gap:.5rem 1.5rem;
+  font-size:.92rem; color:var(--ink-soft); margin-bottom:.8rem;
+}
+.tasting-meta__row { display:inline-flex; align-items:baseline; }
+.tasting-meta strong {
+  color:var(--accent); font-weight:700; margin-right:.5rem;
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+}
+.tasting-source {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.88rem; color:var(--ink-soft); padding-top:.85rem;
+  border-top:1px dotted var(--line);
+}
+.tasting-source a { color:var(--ink); border-bottom:1px dotted var(--line); text-decoration:none; }
+.tasting-source a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+
+/* KURA CONTEXT */
+.kura-context {
+  background:var(--bg-alt); padding:2rem 2.25rem; border:1px solid var(--line);
+  margin-bottom:1rem;
+}
+.kura-context__name {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.35rem; color:var(--ink); margin-bottom:.4rem;
+}
+.kura-context__meta {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.85rem; color:var(--ink-soft); letter-spacing:.05em;
+  margin-bottom:1rem;
+}
+.kura-context__philosophy {
+  font-size:.95rem; color:var(--ink); line-height:1.85; margin-bottom:1rem;
+}
+.kura-context__link {
+  display:inline-block; font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-weight:700; font-size:.85rem; color:var(--accent); letter-spacing:.1em;
+  text-transform:uppercase; text-decoration:none;
+  border-bottom:1px solid var(--accent); padding-bottom:.15rem;
+  transition:color .25s;
+}
+.kura-context__link:hover { color:var(--accent-deep); }
+
+/* RELATED */
+.related {
+  display:grid; grid-template-columns:1fr; gap:0;
+  border:1px solid var(--line);
+}
+@media (min-width:700px) { .related { grid-template-columns:repeat(2, 1fr); } }
+.related-card {
+  display:block; padding:1.1rem 1.4rem;
+  background:var(--bg); color:var(--ink); text-decoration:none;
+  border-bottom:1px solid var(--line);
+  transition:background .3s, padding-left .3s;
+}
+@media (min-width:700px) {
+  .related-card { border-right:1px solid var(--line); }
+  .related-card:nth-child(2n) { border-right:none; }
+}
+.related-card:hover { background:var(--paper); padding-left:1.6rem; }
+.related-card__name {
+  font-family:'Shippori Mincho', serif; font-weight:600;
+  font-size:1rem; color:var(--ink); margin-bottom:.2rem;
+}
+.related-card__sub {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.78rem; color:var(--ink-soft);
+}
+
+/* SOURCES */
+.sources {
+  background:var(--bg-alt); padding:1.75rem 2rem;
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+}
+.sources h4 {
+  font-size:.85rem; letter-spacing:.18em; color:var(--ink); font-weight:700;
+  margin-bottom:1rem; text-transform:uppercase;
+}
+.sources ul { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
+.sources a {
+  font-size:.95rem; color:var(--ink); text-decoration:none; font-weight:500;
+  border-bottom:1px dotted var(--line); padding-bottom:.2rem;
+  word-break:break-all; transition:color .25s;
+}
+.sources a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+
+/* NAV PREV/NEXT */
+.nav-prev-next {
+  max-width:1100px; margin:0 auto; padding:2rem;
+  display:flex; justify-content:space-between; gap:1rem;
+  font-family:'Shippori Mincho', serif;
+}
+.nav-prev-next a {
+  color:var(--ink); text-decoration:none; padding:1rem 0;
+  border-top:1px solid var(--line); flex:1; max-width:48%;
+  transition:color .25s, border-color .25s;
+}
+.nav-prev-next a:hover { color:var(--accent); border-top-color:var(--accent); }
+.nav-prev-next a small {
+  display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.85rem; color:var(--ink-soft); letter-spacing:.05em; margin-bottom:.4rem;
+}
+.nav-prev-next .next { text-align:right; margin-left:auto; }
+
+/* DIVIDER */
+.divider {
+  max-width:1100px; margin:3rem auto; padding:0 2rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.divider .rule { flex:1; height:1px; background:var(--line); }
+.divider .ornament { width:8px; height:8px; background:var(--accent); transform:rotate(45deg); }
+.divider .ornament.outer { width:4px; height:4px; background:var(--warm); }
+
+/* FOOTER */
+footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-index:1; }
+.colophon {
+  max-width:1100px; margin:0 auto; padding:2rem;
+  display:grid; grid-template-columns:1fr; gap:1.5rem;
+}
+@media (min-width:700px) { .colophon { grid-template-columns:2fr 3fr; } }
+.colophon__brand {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.5rem; letter-spacing:.02em;
+}
+.colophon__brand .dot { color:var(--accent); }
+.colophon__brand a { color:var(--ink); text-decoration:none; }
+.colophon__brand small {
+  display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-soft); margin-top:.25rem; letter-spacing:.08em;
+}
+.colophon__notes {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.88rem; color:var(--ink-soft); line-height:1.9; letter-spacing:.02em;
+}
+.colophon__notes strong { color:var(--accent); font-weight:500; }
+.colophon__sep { color:var(--line); margin:0 .5rem; }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="masthead">
+    <div class="left">
+      <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
+      <a href="../brewery/lagoon.html">← LAGOON BREWERY</a>
+    </div>
+    <div class="right">BRAND 06 / 7</div>
+  </div>
+
+  <section class="hero">
+    <div class="hero__brewery"><a href="../brewery/lagoon.html">— LAGOON BREWERY</a></div>
+    <h1 class="hero__name">翔空 SAKEマルゲリータ Unpressed</h1>
+    <p class="hero__note">ピザマルゲリータをイメージしたドブロク</p>
+
+    <div class="specs-board">
+      <div class="spec-cell">
+        <div class="spec-cell__label">— ABV</div>
+        <div class="spec-cell__value">14<small>% ABV</small></div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell__label">— VOLUME</div>
+        <div class="spec-cell__value">500<small>ml</small></div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell__label">— SUB-INGREDIENTS</div>
+        <div class="spec-cell__pills"><span class="pill">トマト</span> <span class="pill">バジル</span></div>
+      </div>
+    </div>
+
+    
+  <div class="price-block">
+    <div class="price-block__label">PRICE</div>
+    <div class="price-block__value">¥1,980<small>参考 2026.05.30</small></div>
+  </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 01</span>
+      <span class="section-meta__label">TASTING NOTES</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="tasting-block">
+      <div class="tasting-notes">シトラホップの柑橘系アロマが広がり、フルーティーで爽やか。黄麹×白麹のハイブリッドで酸を付加、シトラホップ由来のジューシー、ホップ由来のほろ苦さと甘さが調和。無濾過ゆえのおりとホップポリフェノール由来の薄いピンク色。</div>
+      
+      <div class="tasting-source">出典：<a href="https://shop.kurapetit.jp/products/detail/2006" target="_blank" rel="noopener">kurapetit 商品説明</a></div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 02</span>
+      <span class="section-meta__label">KURA / 蔵について</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="kura-context">
+      <div class="kura-context__name">LAGOON BREWERY</div>
+      <div class="kura-context__meta">新潟県・新潟市北区前新田乙　／　創業 2021</div>
+      <p class="kura-context__philosophy">「感激できる、多様なおいしさ」をモットーに、極小規模と持続可能性にこだわった醸造。福島潟のほとりで地域素材を活用。</p>
+      <a class="kura-context__link" href="../brewery/lagoon.html">蔵の詳細を見る →</a>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <span class="section-meta__label">RELATED / 同じ蔵の他銘柄</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="related">
+      <a class="related-card" href="lagoon-0.html">
+        <div class="related-card__name">翔空 HOP SAKE ほっぺ</div>
+        <div class="related-card__sub">ABV 15%　／　720ml　／　ホップ（シトラ）</div>
+      </a>
+      <a class="related-card" href="lagoon-1.html">
+        <div class="related-card__name">翔空 ニゴリのHOP SAKE ほっぺ</div>
+        <div class="related-card__sub">ABV 15.5%　／　720ml　／　ホップ（シトラ）</div>
+      </a>
+      <a class="related-card" href="lagoon-2.html">
+        <div class="related-card__name">翔空 酔いどれ洋梨2025-2026 槽搾り生</div>
+        <div class="related-card__sub">ABV 13%　／　500ml　／　ル・レクチェ（洋梨）</div>
+      </a>
+      <a class="related-card" href="lagoon-3.html">
+        <div class="related-card__name">翔空 酔いどれメロン2025 ドブロク</div>
+        <div class="related-card__sub">ABV 12%　／　500ml　／　マスクメロン</div>
+      </a>
+      <a class="related-card" href="lagoon-4.html">
+        <div class="related-card__name">翔空 酔いどれイチゴ2025 槽絞り生</div>
+        <div class="related-card__sub">ABV 14%　／　500ml　／　越後姫（イチゴ）</div>
+      </a>
+      <a class="related-card" href="lagoon-6.html">
+        <div class="related-card__name">翔空 自然栽培亀の尾どぶろく</div>
+        <div class="related-card__sub">ABV 17%　／　500ml　／　米のみ</div>
+      </a></div>
+  </section>
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <span class="section-meta__label">SOURCES / 一次ソース</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="sources">
+      <h4>本ページのデータ出典</h4>
+      <ul><li><a href="https://www.lagoon-brewery.com/home" target="_blank" rel="noopener">https://www.lagoon-brewery.com/home</a></li><li><a href="https://shop.kurapetit.jp/products/detail/2006" target="_blank" rel="noopener">https://shop.kurapetit.jp/products/detail/2006</a></li></ul>
+    </div>
+  </section>
+
+  <nav class="nav-prev-next">
+    <a href="lagoon-4.html"><small>← Prev</small>翔空 酔いどれイチゴ2025 槽絞り生</a>
+    <a class="next" href="lagoon-6.html"><small>Next →</small>翔空 自然栽培亀の尾どぶろく</a>
+  </nav>
+
+  <footer>
+    <div class="colophon">
+      <div class="colophon__brand">
+        <a href="../index.html">saketto<span class="dot">.</span></a>
+        <small>— クラフトサケの図鑑</small>
+      </div>
+      <div class="colophon__notes">
+        <strong>準備中</strong><span class="colophon__sep">／</span>
+        価格・度数は公式サイトでご確認ください<span class="colophon__sep">／</span>
+        20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
+        PR ／ アフィリエイトリンクを含みます<span class="colophon__sep">／</span>
+        © 2026 saketto.
+      </div>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>

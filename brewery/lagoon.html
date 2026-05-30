@@ -127,7 +127,8 @@ main { position:relative; z-index:1; }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
-.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; }
+.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
+.brand-card:hover { background:var(--paper); padding-left:2rem; }
 .brand-card:last-child { border-bottom:none; }
 .brand-card:target {
   background:var(--paper);
@@ -396,62 +397,62 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <div class="brand-card" id="b0">
+      <a class="brand-card" href="../brand/lagoon-0.html" id="b0">
         <div class="brand-card__main">
           <h3>翔空 HOP SAKE ほっぺ</h3>
           <p class="brand-card__note">看板銘柄。柑橘香と爽快さを兼備</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 15%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">ホップ（シトラ）</span></div>
         <div class="brand-card__price">¥2,420<small>参考 2026.05.30</small></div>
-      </div>
-      <div class="brand-card" id="b1">
+      </a>
+      <a class="brand-card" href="../brand/lagoon-1.html" id="b1">
         <div class="brand-card__main">
           <h3>翔空 ニゴリのHOP SAKE ほっぺ</h3>
           <p class="brand-card__note">ニゴリ仕様、約100本限定</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 15.5%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">ホップ（シトラ）</span></div>
         <div class="brand-card__price">¥2,420<small>参考 2026.05.30</small></div>
-      </div>
-      <div class="brand-card" id="b2">
+      </a>
+      <a class="brand-card" href="../brand/lagoon-2.html" id="b2">
         <div class="brand-card__main">
           <h3>翔空 酔いどれ洋梨2025-2026 槽搾り生</h3>
           <p class="brand-card__note">新潟ブランド洋梨×純米香</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">ル・レクチェ（洋梨）</span></div>
         <div class="brand-card__price">¥2,420<small>参考 2026.05.30</small></div>
-      </div>
-      <div class="brand-card" id="b3">
+      </a>
+      <a class="brand-card" href="../brand/lagoon-3.html" id="b3">
         <div class="brand-card__main">
           <h3>翔空 酔いどれメロン2025 ドブロク</h3>
           <p class="brand-card__note">千葉産高級メロン使用</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 12%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">マスクメロン</span></div>
         <div class="brand-card__price">¥2,310<small>参考 2026.05.30</small></div>
-      </div>
-      <div class="brand-card" id="b4">
+      </a>
+      <a class="brand-card" href="../brand/lagoon-4.html" id="b4">
         <div class="brand-card__main">
           <h3>翔空 酔いどれイチゴ2025 槽絞り生</h3>
           <p class="brand-card__note">新潟産イチゴ約200kg使用</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">越後姫（イチゴ）</span></div>
         <div class="brand-card__price">¥2,310<small>参考 2026.05.30</small></div>
-      </div>
-      <div class="brand-card" id="b5">
+      </a>
+      <a class="brand-card" href="../brand/lagoon-5.html" id="b5">
         <div class="brand-card__main">
           <h3>翔空 SAKEマルゲリータ Unpressed</h3>
           <p class="brand-card__note">ピザマルゲリータをイメージしたドブロク</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">トマト</span> <span class="spec-pill">バジル</span></div>
         <div class="brand-card__price">¥1,980<small>参考 2026.05.30</small></div>
-      </div>
-      <div class="brand-card" id="b6">
+      </a>
+      <a class="brand-card" href="../brand/lagoon-6.html" id="b6">
         <div class="brand-card__main">
           <h3>翔空 自然栽培亀の尾どぶろく</h3>
           <p class="brand-card__note">幻の米「亀ノ尾」100%使用、192本限定</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 17%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__price">¥2,100<small>参考 2026.05.30</small></div>
-      </div>
+      </a>
     </div>
   </section>
 

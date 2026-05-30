@@ -127,7 +127,8 @@ main { position:relative; z-index:1; }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
-.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; }
+.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
+.brand-card:hover { background:var(--paper); padding-left:2rem; }
 .brand-card:last-child { border-bottom:none; }
 .brand-card:target {
   background:var(--paper);
@@ -396,14 +397,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <div class="brand-card" id="b0">
+      <a class="brand-card" href="../brand/iyasaka-0.html" id="b0">
         <div class="brand-card__main">
           <h3>ITTEKI（一擲）十割麹酒 Vol.0-1</h3>
           <p class="brand-card__note">新潟県柏崎市宮之下産コシヒカリ100%。阿部酒造委託醸造。米麹のみのため清酒規格外</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">米のみ（米麹100%）</span></div>
         <div class="brand-card__price"><small>市場実勢</small></div>
-      </div>
+      </a>
     </div>
   </section>
 

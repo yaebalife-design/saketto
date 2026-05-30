@@ -474,7 +474,7 @@ def render_entry(brewery_slug, brand, idx=0):
         specs.append(f'<span class="spec-pill">{ing}</span>')
     specs_html = ' '.join(specs)
     return f"""
-        <a class="entry" href="../brewery/{brewery_slug}.html#b{idx}">
+        <a class="entry" href="../brand/{brewery_slug}-{idx}.html">
           <div>
             <div class="entry__brand">{brand['name']}</div>
             <div class="entry__brewery">{b['name']}</div>
