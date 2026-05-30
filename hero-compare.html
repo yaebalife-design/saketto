@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>saketto — ヒーロー画像 比較</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#F5F0E7; --bg-alt:#EDE5D2; --paper:#FAF6ED;
+  --ink:#16100E; --ink-soft:#3D3633; --ink-mute:#635C57;
+  --accent:#A8351F; --warm:#7A6447; --line:#C0B69E;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--ink); font-family:'Noto Sans JP',sans-serif; font-weight:400; line-height:1.8; }
+
+.cmp-head { padding:2rem; border-bottom:1px solid var(--line); }
+.cmp-head h1 { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.6rem; }
+.cmp-head p { color:var(--ink-soft); font-size:.92rem; margin-top:.5rem; }
+
+.cmp-label {
+  max-width:1100px; margin:3rem auto 0; padding:0 2rem;
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700;
+  font-size:.95rem; letter-spacing:.14em; color:var(--accent);
+}
+.cmp-label small { color:var(--ink-mute); font-weight:400; letter-spacing:.04em; margin-left:.6rem; }
+
+/* ===== HERO（index.html と同じ加工） ===== */
+.hero {
+  padding:4rem 2rem 4rem; max-width:1100px; margin:.75rem auto 0;
+  position:relative; overflow:hidden; border:1px dashed var(--line);
+}
+.hero__bg {
+  position:absolute; inset:0; z-index:0;
+  background-size:cover; background-position:center 35%; opacity:0.24;
+  -webkit-mask-image:radial-gradient(135% 110% at 72% 42%, #000 30%, transparent 80%);
+          mask-image:radial-gradient(135% 110% at 72% 42%, #000 30%, transparent 80%);
+}
+.hero__bg::after {
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(95deg, rgba(245,240,231,0.88) 0%, rgba(245,240,231,0.5) 45%, rgba(245,240,231,0.18) 100%);
+}
+.hero__bg--current     { background-image:url('assets/images/hero.png'); }
+.hero__bg--nigori      { background-image:url('assets/images/hero_nigori.png'); }
+.hero__bg--kioke       { background-image:url('assets/images/hero_kioke.png'); }
+.hero__bg--moromi      { background-image:url('assets/images/hero_moromi.png'); }
+.hero__bg--ingredients { background-image:url('assets/images/hero_ingredients.png'); }
+
+.hero__inner { position:relative; z-index:1; }
+.hero__grid { display:grid; grid-template-columns:1fr auto; gap:3rem; align-items:flex-start; }
+.brand { font-family:'Shippori Mincho',serif; font-weight:700; font-size:clamp(3rem,9vw,5.5rem); letter-spacing:-.03em; line-height:.85; }
+.brand .dot { color:var(--accent); }
+.seal { width:clamp(80px,9vw,110px); height:clamp(80px,9vw,110px); flex-shrink:0; }
+
+.hero__body { margin-top:2.5rem; max-width:680px; display:flex; flex-direction:column; gap:1.6rem; }
+.tagline-jp-label { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.85rem; color:var(--accent); letter-spacing:.15em; margin-bottom:.6rem; display:block; }
+.tagline { font-family:'Shippori Mincho',serif; font-size:clamp(1.5rem,3.2vw,2.2rem); font-weight:500; line-height:1.5; }
+.tagline .accent { color:var(--accent); }
+.lede { font-size:1rem; color:var(--ink-soft); line-height:1.85; border-left:3px solid var(--accent); padding-left:1.5rem; }
+.lede strong { color:var(--ink); font-weight:500; }
+.hero__entries { display:flex; flex-wrap:wrap; gap:.6rem; }
+.hero__entry { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.08em; color:var(--ink); text-decoration:none; border:1px solid var(--line); padding:.5rem .95rem; }
+.hero__entry .arr { color:var(--accent); margin-left:.35rem; }
+
+footer { padding:3rem 2rem; text-align:center; color:var(--ink-mute); font-size:.85rem; border-top:1px solid var(--line); margin-top:4rem; }
+</style>
+</head>
+<body>
+
+<div class="cmp-head">
+  <h1>ヒーロー画像 比較（社長確認用）</h1>
+  <p>すべて本番と同じ加工（背景・不透明度24%・端フェード・米色グラデ）。気に入った番号を教えてください。濃さ・トリミング位置は採用後に微調整します。</p>
+</div>
+
+<div class="cmp-label">A. 現状 <small>米粒・麹・washi</small></div>
+<section class="hero">
+  <div class="hero__bg hero__bg--current"></div>
+  <div class="hero__inner">
+    <div class="hero__grid"><h1 class="brand">saketto<span class="dot">.</span></h1></div>
+    <div class="hero__body">
+      <div><span class="tagline-jp-label">— THE FIELD GUIDE</span><h2 class="tagline">次に出会う、<br>クラフトサケの<span class="accent">図鑑</span>。</h2></div>
+      <div class="lede">米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」を、5つの軸から横断的に探せる、唯一の専門データベース。</div>
+      <div class="hero__entries"><a class="hero__entry" href="#">副原料<span class="arr">→</span></a><a class="hero__entry" href="#">蔵<span class="arr">→</span></a><a class="hero__entry" href="#">地域<span class="arr">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<div class="cmp-label">B. 濁り（どぶろく） <small>nigori — クラフトサケの象徴</small></div>
+<section class="hero">
+  <div class="hero__bg hero__bg--nigori"></div>
+  <div class="hero__inner">
+    <div class="hero__grid"><h1 class="brand">saketto<span class="dot">.</span></h1></div>
+    <div class="hero__body">
+      <div><span class="tagline-jp-label">— THE FIELD GUIDE</span><h2 class="tagline">次に出会う、<br>クラフトサケの<span class="accent">図鑑</span>。</h2></div>
+      <div class="lede">米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」を、5つの軸から横断的に探せる、唯一の専門データベース。</div>
+      <div class="hero__entries"><a class="hero__entry" href="#">副原料<span class="arr">→</span></a><a class="hero__entry" href="#">蔵<span class="arr">→</span></a><a class="hero__entry" href="#">地域<span class="arr">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<div class="cmp-label">C. 木桶 <small>kioke — 木桶仕込み・職人感</small></div>
+<section class="hero">
+  <div class="hero__bg hero__bg--kioke"></div>
+  <div class="hero__inner">
+    <div class="hero__grid"><h1 class="brand">saketto<span class="dot">.</span></h1></div>
+    <div class="hero__body">
+      <div><span class="tagline-jp-label">— THE FIELD GUIDE</span><h2 class="tagline">次に出会う、<br>クラフトサケの<span class="accent">図鑑</span>。</h2></div>
+      <div class="lede">米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」を、5つの軸から横断的に探せる、唯一の専門データベース。</div>
+      <div class="hero__entries"><a class="hero__entry" href="#">副原料<span class="arr">→</span></a><a class="hero__entry" href="#">蔵<span class="arr">→</span></a><a class="hero__entry" href="#">地域<span class="arr">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<div class="cmp-label">D. 醪（もろみ） <small>moromi — 発酵中の醪マクロ</small></div>
+<section class="hero">
+  <div class="hero__bg hero__bg--moromi"></div>
+  <div class="hero__inner">
+    <div class="hero__grid"><h1 class="brand">saketto<span class="dot">.</span></h1></div>
+    <div class="hero__body">
+      <div><span class="tagline-jp-label">— THE FIELD GUIDE</span><h2 class="tagline">次に出会う、<br>クラフトサケの<span class="accent">図鑑</span>。</h2></div>
+      <div class="lede">米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」を、5つの軸から横断的に探せる、唯一の専門データベース。</div>
+      <div class="hero__entries"><a class="hero__entry" href="#">副原料<span class="arr">→</span></a><a class="hero__entry" href="#">蔵<span class="arr">→</span></a><a class="hero__entry" href="#">地域<span class="arr">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<div class="cmp-label">E. 副原料フラットレイ <small>米・麹・ホップ・柚子・山椒</small></div>
+<section class="hero">
+  <div class="hero__bg hero__bg--ingredients"></div>
+  <div class="hero__inner">
+    <div class="hero__grid"><h1 class="brand">saketto<span class="dot">.</span></h1></div>
+    <div class="hero__body">
+      <div><span class="tagline-jp-label">— THE FIELD GUIDE</span><h2 class="tagline">次に出会う、<br>クラフトサケの<span class="accent">図鑑</span>。</h2></div>
+      <div class="lede">米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」を、5つの軸から横断的に探せる、唯一の専門データベース。</div>
+      <div class="hero__entries"><a class="hero__entry" href="#">副原料<span class="arr">→</span></a><a class="hero__entry" href="#">蔵<span class="arr">→</span></a><a class="hero__entry" href="#">地域<span class="arr">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<footer>saketto. ／ ヒーロー画像比較ページ（採用後はこのページを削除します）</footer>
+
+</body>
+</html>
