@@ -24,6 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug
+from moshimo_link import rakuten_search, amazon_search
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT = REPO_ROOT / "brand" / "haccoba-0.html"
@@ -151,30 +152,51 @@ BRAND = {
 # ────────────── SVG 生成ヘルパー ──────────────
 
 def gen_scale4_svg(scale):
-    """4軸構造スケール: 横長バー × 4 + 位置ドット"""
+    """4軸構造スケール: 横長バー × 4 + 1-5目盛り + 位置ドット"""
     axes = [
         ("軽快", "濃醇", scale["body"]),
         ("甘口", "辛口", scale["sweet"]),
         ("酸控", "酸強", scale["acid"]),
         ("清澄", "にごり", scale["clarity"]),
     ]
-    W, H = 460, 200
+    W, H = 480, 260
     rows = []
     bar_x = 80
-    bar_w = 300
+    bar_w = 320
+    n_ticks = 5  # 1-5 スケール
     for i, (left, right, val) in enumerate(axes):
-        y = 30 + i * 42
+        y = 35 + i * 56
         dot_x = bar_x + val * bar_w
+        # 値の1-5換算
+        score = 1 + val * (n_ticks - 1)
+
+        # 目盛り（1-5の縦線＋数字）
+        ticks_svg = []
+        for t in range(n_ticks):
+            tx = bar_x + (t / (n_ticks - 1)) * bar_w
+            # 縦の目盛り線
+            ticks_svg.append(
+                f'<line x1="{tx:.1f}" y1="{y-5}" x2="{tx:.1f}" y2="{y+5}" '
+                f'stroke="#C0B69E" stroke-width="1"/>'
+            )
+            # 数字ラベル（下）
+            ticks_svg.append(
+                f'<text x="{tx:.1f}" y="{y+19}" font-family="Cormorant Garamond" '
+                f'font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">{t+1}</text>'
+            )
+        ticks_html = ''.join(ticks_svg)
+
         rows.append(f"""
-    <text x="{bar_x - 10}" y="{y+5}" font-family="Shippori Mincho" font-size="13"
+    <text x="{bar_x - 12}" y="{y+5}" font-family="Shippori Mincho" font-size="13"
           font-weight="500" text-anchor="end" fill="#3D3633">{left}</text>
     <line x1="{bar_x}" y1="{y}" x2="{bar_x+bar_w}" y2="{y}" stroke="#C0B69E" stroke-width="1"/>
-    <line x1="{bar_x}" y1="{y-3}" x2="{bar_x}" y2="{y+3}" stroke="#C0B69E" stroke-width="1.5"/>
-    <line x1="{bar_x+bar_w}" y1="{y-3}" x2="{bar_x+bar_w}" y2="{y+3}" stroke="#C0B69E" stroke-width="1.5"/>
-    <circle cx="{dot_x:.1f}" cy="{y}" r="7" fill="#A8351F"/>
-    <circle cx="{dot_x:.1f}" cy="{y}" r="11" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.4"/>
-    <text x="{bar_x+bar_w+10}" y="{y+5}" font-family="Shippori Mincho" font-size="13"
-          font-weight="500" fill="#3D3633">{right}</text>""")
+    {ticks_html}
+    <circle cx="{dot_x:.1f}" cy="{y}" r="8" fill="#A8351F"/>
+    <circle cx="{dot_x:.1f}" cy="{y}" r="13" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.35"/>
+    <text x="{bar_x+bar_w+12}" y="{y+5}" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" fill="#3D3633">{right}</text>
+    <text x="{dot_x:.1f}" y="{y-12}" font-family="Cormorant Garamond" font-style="italic"
+          font-size="13" font-weight="500" text-anchor="middle" fill="#A8351F">{score:.1f}</text>""")
     return f"""<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" aria-label="4軸構造スケール">
 {''.join(rows)}
 </svg>"""
@@ -553,17 +575,31 @@ main { position:relative; z-index:1; }
   font-family:'Shippori Mincho', serif; font-weight:700;
   font-size:1.15rem; line-height:1.5; margin-bottom:1.25rem; color:#F5F0E7;
 }
-.purchase-card__btn {
-  display:block; text-align:center; padding:.9rem 1.25rem;
-  background:#A8351F; color:#F5F0E7; text-decoration:none;
-  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
-  font-size:.92rem; letter-spacing:.12em; text-transform:uppercase;
-  transition:background .25s;
+.purchase-card__btns {
+  display:flex; flex-direction:column; gap:.6rem;
 }
-.purchase-card__btn:hover { background:#862719; }
+.purchase-card__btn {
+  display:block; text-align:center; padding:.95rem 1.25rem;
+  color:#F5F0E7; text-decoration:none;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.95rem; letter-spacing:.1em;
+  transition:filter .25s, transform .15s;
+  position:relative;
+}
+.purchase-card__btn:hover { filter:brightness(1.1); transform:translateY(-1px); }
+.purchase-card__btn--rakuten {
+  background:linear-gradient(135deg, #BF0000 0%, #C9242E 100%);
+}
+.purchase-card__btn--amazon {
+  background:linear-gradient(135deg, #232F3E 0%, #FF9900 100%);
+}
+.purchase-card__btn--official {
+  background:#16100E; border:1px solid #635C57;
+}
 .purchase-card__note {
   font-family:'Noto Sans JP', sans-serif; font-weight:400;
   font-size:.72rem; color:#C0B69E; margin-top:.85rem; letter-spacing:.05em;
+  text-align:center;
 }
 
 /* ===== SOURCES ===== */
@@ -644,6 +680,10 @@ def main():
 
     scale4_svg = gen_scale4_svg(b["scale4"])
     radar6_svg = gen_radar6_svg(b["radar6"])
+
+    # アフィリリンク（もしも経由・楽天/Amazon検索）
+    rakuten_url = rakuten_search(b["name"])
+    amazon_url = amazon_search(b["name"])
 
     # Recipe rows
     recipe_rows = []
@@ -892,12 +932,16 @@ def main():
       </div>
       <div class="purchase-card">
         <div>
-          <div class="purchase-card__label">— OFFICIAL EC</div>
-          <div class="purchase-card__title">公式オンラインショップで購入</div>
+          <div class="purchase-card__label">— PURCHASE</div>
+          <div class="purchase-card__title">「{b['name']}」を探す</div>
         </div>
         <div>
-          <a class="purchase-card__btn" href="{b['official_ec_url']}" target="_blank" rel="noopener">haccoba.com で見る →</a>
-          <div class="purchase-card__note">PR ／ クール便配送・公式EC直リンク</div>
+          <div class="purchase-card__btns">
+            <a class="purchase-card__btn purchase-card__btn--rakuten" href="{rakuten_url}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>
+            <a class="purchase-card__btn purchase-card__btn--amazon" href="{amazon_url}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>
+            <a class="purchase-card__btn purchase-card__btn--official" href="{b['official_ec_url']}" target="_blank" rel="noopener">公式EC（haccoba.com）で探す →</a>
+          </div>
+          <div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>
         </div>
       </div>
     </div>
