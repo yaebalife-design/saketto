@@ -310,14 +310,15 @@ main { position: relative; z-index: 1; }
 }
 
 .axis {
-  padding: 2rem 1.5rem;
+  padding: 2rem 1.5rem 2.25rem;
   border-bottom: 1px solid var(--line);
   position: relative;
+  overflow: hidden;
   transition: background .35s ease, transform .35s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: .75rem;
+  gap: .7rem;
   text-decoration: none;
   color: inherit;
 }
@@ -359,27 +360,37 @@ main { position: relative; z-index: 1; }
 .axis:hover::before { transform: scaleX(1); }
 
 .axis__icon {
-  width: 28px;
-  height: 28px;
-  color: var(--ink);
+  width: 30px;
+  height: 30px;
+  color: var(--accent);
   stroke: currentColor;
   fill: none;
-  stroke-width: 1.5;
+  stroke-width: 1.4;
   stroke-linecap: round;
   stroke-linejoin: round;
-  margin-bottom: .25rem;
+  margin-bottom: .35rem;
+  transition: transform .35s ease;
 }
+.axis:hover .axis__icon { transform: translateY(-2px) scale(1.06); }
+/* 大判ナンバー（雑誌風の透かし） */
 .axis__num {
+  position: absolute;
+  top: .9rem;
+  right: 1.1rem;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: .95rem;
-  color: var(--accent);
-  letter-spacing: .08em;
+  font-size: 2.9rem;
+  line-height: 1;
+  color: var(--line);
+  letter-spacing: 0;
+  transition: color .35s ease;
+  pointer-events: none;
 }
+.axis:hover .axis__num { color: var(--accent); }
 .axis__name {
   font-family: 'Shippori Mincho', serif;
   font-weight: 700;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   letter-spacing: .04em;
   color: var(--ink);
 }
@@ -390,6 +401,29 @@ main { position: relative; z-index: 1; }
   color: var(--ink-soft);
   letter-spacing: .02em;
   line-height: 1.65;
+}
+/* 実例タグ（中身が見える索引チップ） */
+.axis__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin-top: .15rem;
+}
+.axis__tag {
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-weight: 500;
+  font-size: .76rem;
+  letter-spacing: .02em;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: .24rem .6rem;
+  transition: border-color .3s ease, color .3s ease, background .3s ease;
+}
+.axis:hover .axis__tag {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: transparent;
 }
 .axis__unique-tag {
   font-family: 'Cormorant Garamond', serif;
@@ -717,7 +751,9 @@ footer {
         </svg>
         <div class="axis__num">01</div>
         <div class="axis__name">副原料</div>
-        <div class="axis__hint">ホップ・果実・茶葉・ハーブ・米のみから</div>
+        <div class="axis__tags">
+          <span class="axis__tag">ホップ</span><span class="axis__tag">果実</span><span class="axis__tag">茶葉</span><span class="axis__tag">ハーブ</span><span class="axis__tag">米のみ</span>
+        </div>
       </a>
 
       <a class="axis" href="#breweries">
@@ -728,7 +764,9 @@ footer {
         </svg>
         <div class="axis__num">02</div>
         <div class="axis__name">蔵</div>
-        <div class="axis__hint">醸造所のストーリー・代表者・哲学から</div>
+        <div class="axis__tags">
+          <span class="axis__tag">稲とアガベ</span><span class="axis__tag">haccoba</span><span class="axis__tag">ほか全25蔵</span>
+        </div>
       </a>
 
       <a class="axis" href="region/">
@@ -738,7 +776,9 @@ footer {
         </svg>
         <div class="axis__num">03</div>
         <div class="axis__name">地域</div>
-        <div class="axis__hint">全国の蔵元マップ・産地別</div>
+        <div class="axis__tags">
+          <span class="axis__tag">東北</span><span class="axis__tag">関東</span><span class="axis__tag">中部</span><span class="axis__tag">関西</span><span class="axis__tag">九州</span><span class="axis__tag">沖縄</span>
+        </div>
       </a>
 
       <a class="axis axis--unique" href="genre/">
@@ -751,7 +791,9 @@ footer {
         </svg>
         <div class="axis__num">04</div>
         <div class="axis__name">ジャンル</div>
-        <div class="axis__hint">ホップサケ・古典どぶろく・全麹酒・木桶仕込み</div>
+        <div class="axis__tags">
+          <span class="axis__tag">ホップサケ</span><span class="axis__tag">古典どぶろく</span><span class="axis__tag">全麹酒</span><span class="axis__tag">木桶仕込み</span>
+        </div>
         <div class="axis__unique-tag">— saketto独自</div>
       </a>
 
@@ -762,7 +804,9 @@ footer {
         </svg>
         <div class="axis__num">05</div>
         <div class="axis__name">入手性</div>
-        <div class="axis__hint">通販可・特約店のみ・極希少</div>
+        <div class="axis__tags">
+          <span class="axis__tag">通販可</span><span class="axis__tag">特約店のみ</span><span class="axis__tag">極希少</span>
+        </div>
         <div class="axis__unique-tag">— saketto独自</div>
       </a>
 
