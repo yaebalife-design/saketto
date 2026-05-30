@@ -25,17 +25,17 @@ REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
 CSS = """
 :root {
   --bg: #F5F0E7; --bg-alt: #EDE5D2; --paper: #FAF6ED;
-  --ink: #1A1717; --ink-soft: #4A4441; --ink-mute: #7A7470;
-  --accent: #B33A2A; --accent-deep: #862719;
-  --warm: #8B7355; --line: #C9BFA8; --line-soft: #DFD5BD;
+  --ink: #16100E; --ink-soft: #3D3633; --ink-mute: #635C57;
+  --accent: #A8351F; --accent-deep: #862719;
+  --warm: #7A6447; --line: #C0B69E; --line-soft: #D6CCB3;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body {
   background:var(--bg); color:var(--ink);
-  font-family:'Noto Sans JP', sans-serif; font-weight:300;
-  line-height:1.75; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-  overflow-x:hidden;
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  line-height:1.8; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden; font-size:16px;
 }
 body::before {
   content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
@@ -50,8 +50,8 @@ main { position:relative; z-index:1; }
 .masthead {
   border-bottom:1px solid var(--line); padding:1rem 2rem;
   display:flex; justify-content:space-between; align-items:center;
-  font-family:'Zen Kaku Gothic Antique', sans-serif;
-  font-size:.7rem; letter-spacing:.2em; color:var(--ink-mute); text-transform:uppercase;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.8rem; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;
 }
 .masthead a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
 .masthead a:hover { color:var(--accent); }
@@ -75,8 +75,9 @@ main { position:relative; z-index:1; }
 }
 .hero__title .accent { color:var(--accent); }
 .hero__lede {
-  font-size:.95rem; color:var(--ink-soft); max-width:680px;
-  border-left:2px solid var(--accent); padding-left:1.5rem; line-height:1.95;
+  font-size:1.05rem; color:var(--ink-soft); max-width:680px;
+  border-left:3px solid var(--accent); padding-left:1.5rem; line-height:1.9;
+  font-weight:400;
 }
 
 .section { max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
@@ -85,27 +86,28 @@ main { position:relative; z-index:1; }
 }
 .section-meta__num {
   font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:1.05rem; color:var(--accent); letter-spacing:.1em;
+  font-size:1.15rem; color:var(--accent); letter-spacing:.05em;
 }
 .section-meta__label {
   font-family:'Zen Kaku Gothic Antique', sans-serif;
-  font-size:.7rem; font-weight:700; letter-spacing:.35em; color:var(--ink);
+  font-size:.88rem; font-weight:700; letter-spacing:.18em; color:var(--ink);
   text-transform:uppercase;
 }
 .section-meta__count {
   font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:.9rem; color:var(--ink-mute); letter-spacing:.1em;
+  font-size:1rem; color:var(--ink-soft); letter-spacing:.05em;
 }
 .section-meta__rule { flex:1; height:1px; background:var(--line); }
 
 .cat-title {
-  font-family:'Shippori Mincho', serif; font-weight:600;
-  font-size:1.5rem; letter-spacing:.02em; color:var(--ink);
-  margin-bottom:.5rem;
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.65rem; letter-spacing:.02em; color:var(--ink);
+  margin-bottom:.6rem;
 }
 .cat-title .accent { color:var(--accent); }
 .cat-desc {
-  font-size:.85rem; color:var(--ink-soft); margin-bottom:1.25rem; line-height:1.7;
+  font-size:.98rem; color:var(--ink-soft); margin-bottom:1.5rem; line-height:1.8;
+  font-weight:400;
 }
 
 .entries {
@@ -124,19 +126,20 @@ main { position:relative; z-index:1; }
 }
 .entry:hover { background:var(--paper); }
 .entry__brand {
-  font-family:'Shippori Mincho', serif; font-weight:500;
-  font-size:1rem; color:var(--ink);
+  font-family:'Shippori Mincho', serif; font-weight:600;
+  font-size:1.08rem; color:var(--ink); line-height:1.5;
 }
 .entry__brewery {
-  font-family:'Zen Kaku Gothic Antique', sans-serif;
-  font-size:.78rem; color:var(--ink-soft); letter-spacing:.04em;
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.88rem; color:var(--ink-soft); letter-spacing:.02em;
+  margin-top:.15rem;
 }
 .entry__brewery::before { content:"— "; color:var(--accent); }
-.entry__specs { display:flex; gap:.35rem; flex-wrap:wrap; }
+.entry__specs { display:flex; gap:.4rem; flex-wrap:wrap; }
 .spec-pill {
-  font-family:'Zen Kaku Gothic Antique', sans-serif;
-  font-size:.68rem; letter-spacing:.04em; color:var(--ink-soft);
-  background:var(--bg-alt); padding:.2rem .55rem;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.78rem; letter-spacing:.02em; color:var(--ink-soft);
+  background:var(--bg-alt); padding:.25rem .65rem;
 }
 .spec-pill.accent { color:var(--accent); background:transparent; border:1px solid var(--accent); }
 .spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
@@ -159,18 +162,19 @@ main { position:relative; z-index:1; }
 .brewery-card:hover { background:var(--paper); padding-left:1.75rem; }
 .brewery-card__num {
   font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:.75rem; color:var(--accent); letter-spacing:.1em;
+  font-size:.85rem; color:var(--accent); letter-spacing:.05em;
 }
 .brewery-card__name {
-  font-family:'Shippori Mincho', serif; font-weight:600;
-  font-size:1.15rem; color:var(--ink);
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.25rem; color:var(--ink); letter-spacing:.02em;
 }
 .brewery-card__meta {
-  font-family:'Zen Kaku Gothic Antique', sans-serif;
-  font-size:.72rem; color:var(--ink-soft); letter-spacing:.05em;
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-soft); letter-spacing:.02em;
 }
 .brewery-card__features {
-  font-size:.78rem; color:var(--ink-soft); line-height:1.6; margin-top:.25rem;
+  font-size:.9rem; color:var(--ink-soft); line-height:1.7; margin-top:.35rem;
+  font-weight:400;
 }
 
 .empty-region {
@@ -209,8 +213,8 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   font-weight:400; letter-spacing:.08em;
 }
 .colophon__notes {
-  font-family:'Zen Kaku Gothic Antique', sans-serif;
-  font-size:.75rem; color:var(--ink-soft); line-height:1.95; letter-spacing:.04em;
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.88rem; color:var(--ink-soft); line-height:1.9; letter-spacing:.02em;
 }
 .colophon__notes strong { color:var(--accent); font-weight:500; }
 .colophon__sep { color:var(--line); margin:0 .5rem; }

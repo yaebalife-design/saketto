@@ -14,14 +14,14 @@
   --bg: #F5F0E7;
   --bg-alt: #EDE5D2;
   --paper: #FAF6ED;
-  --ink: #1A1717;
-  --ink-soft: #4A4441;
-  --ink-mute: #7A7470;
-  --accent: #B33A2A;
+  --ink: #16100E;
+  --ink-soft: #3D3633;
+  --ink-mute: #635C57;
+  --accent: #A8351F;
   --accent-deep: #862719;
-  --warm: #8B7355;
-  --line: #C9BFA8;
-  --line-soft: #DFD5BD;
+  --warm: #7A6447;
+  --line: #C0B69E;
+  --line-soft: #D6CCB3;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -29,11 +29,12 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 300;
-  line-height: 1.75;
+  font-weight: 400;
+  line-height: 1.8;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  font-size: 16px;
 }
 
 /* 紙質感の米粒テクスチャ */
@@ -74,9 +75,10 @@ main { position: relative; z-index: 1; }
   justify-content: space-between;
   align-items: center;
   font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .7rem;
-  letter-spacing: .2em;
-  color: var(--ink-mute);
+  font-weight: 500;
+  font-size: .8rem;
+  letter-spacing: .12em;
+  color: var(--ink-soft);
   text-transform: uppercase;
 }
 .masthead .left { display: flex; gap: 1.5rem; align-items: center; }
@@ -155,10 +157,11 @@ main { position: relative; z-index: 1; }
 }
 
 .lede {
-  font-size: .95rem;
+  font-size: 1.05rem;
+  font-weight: 400;
   color: var(--ink-soft);
-  line-height: 1.95;
-  border-left: 2px solid var(--accent);
+  line-height: 1.9;
+  border-left: 3px solid var(--accent);
   padding-left: 1.5rem;
 }
 .lede strong { color: var(--ink); font-weight: 500; }
@@ -201,15 +204,15 @@ main { position: relative; z-index: 1; }
 .section-meta__num {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: var(--accent);
-  letter-spacing: .1em;
+  letter-spacing: .05em;
 }
 .section-meta__label {
   font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .75rem;
+  font-size: .88rem;
   font-weight: 700;
-  letter-spacing: .35em;
+  letter-spacing: .18em;
   color: var(--ink);
   text-transform: uppercase;
 }
@@ -229,9 +232,11 @@ main { position: relative; z-index: 1; }
 .section-title .accent { color: var(--accent); }
 .section-desc {
   color: var(--ink-soft);
-  font-size: .92rem;
-  max-width: 600px;
+  font-size: 1rem;
+  font-weight: 400;
+  max-width: 640px;
   margin-bottom: 3rem;
+  line-height: 1.85;
 }
 
 /* ─────────── 5軸 ─────────── */
@@ -312,23 +317,24 @@ main { position: relative; z-index: 1; }
 .axis__num {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: .85rem;
+  font-size: .95rem;
   color: var(--accent);
-  letter-spacing: .15em;
+  letter-spacing: .08em;
 }
 .axis__name {
   font-family: 'Shippori Mincho', serif;
-  font-weight: 600;
-  font-size: 1.25rem;
+  font-weight: 700;
+  font-size: 1.35rem;
   letter-spacing: .04em;
   color: var(--ink);
 }
 .axis__hint {
-  font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .78rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: .9rem;
   color: var(--ink-soft);
-  letter-spacing: .03em;
-  line-height: 1.6;
+  letter-spacing: .02em;
+  line-height: 1.65;
 }
 .axis__unique-tag {
   font-family: 'Cormorant Garamond', serif;
@@ -378,16 +384,17 @@ main { position: relative; z-index: 1; }
 }
 .bignum-desc h3 {
   font-family: 'Shippori Mincho', serif;
-  font-weight: 600;
-  font-size: 1.25rem;
-  margin-bottom: .85rem;
+  font-weight: 700;
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
   color: var(--ink);
   letter-spacing: .02em;
 }
 .bignum-desc p {
   color: var(--ink-soft);
-  font-size: .88rem;
-  line-height: 1.85;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.9;
 }
 
 /* 蔵リスト */
@@ -405,24 +412,25 @@ main { position: relative; z-index: 1; }
 }
 .kura-list__title {
   font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .75rem;
+  font-size: .88rem;
   font-weight: 700;
-  letter-spacing: .25em;
+  letter-spacing: .15em;
   color: var(--ink);
 }
 .kura-list__note {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: .8rem;
+  font-size: .9rem;
   color: var(--accent);
-  letter-spacing: .08em;
+  letter-spacing: .05em;
 }
 .kura-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0 1.5rem;
   font-family: 'Shippori Mincho', serif;
-  font-size: .92rem;
+  font-weight: 500;
+  font-size: 1rem;
   color: var(--ink);
   line-height: 2.2;
 }
@@ -491,11 +499,12 @@ footer {
   letter-spacing: .08em;
 }
 .colophon__notes {
-  font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .75rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: .88rem;
   color: var(--ink-soft);
-  line-height: 1.95;
-  letter-spacing: .04em;
+  line-height: 1.9;
+  letter-spacing: .02em;
 }
 .colophon__notes strong { color: var(--accent); font-weight: 500; }
 .colophon__sep { color: var(--line); margin: 0 .5rem; }
@@ -542,16 +551,18 @@ footer {
 }
 .axis-extra__name {
   font-family: 'Shippori Mincho', serif;
-  font-weight: 600;
-  font-size: 1.2rem;
+  font-weight: 700;
+  font-size: 1.3rem;
   letter-spacing: .03em;
   color: var(--ink);
 }
 .axis-extra__hint {
-  font-family: 'Zen Kaku Gothic Antique', sans-serif;
-  font-size: .76rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: .88rem;
   color: var(--ink-soft);
-  letter-spacing: .03em;
+  letter-spacing: .02em;
+  line-height: 1.6;
 }
 .axis-extra__icon {
   width: 26px;
