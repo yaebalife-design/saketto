@@ -532,7 +532,7 @@ def gen_subingredients():
         img_name = SUB_IMG_MAP.get(cat_key, "")
         img_html = (
             f'<figure class="cat-image"><img src="../assets/images/{img_name}.png" alt="" loading="lazy">'
-            f'<span class="cat-image__cap">画像はイメージ</span></figure>'
+            f'</figure>'
         ) if img_name else ''
         html += f"""
   <section class="section" style="padding-bottom:2rem">
@@ -591,7 +591,7 @@ def gen_regions():
         img_name = REGION_IMG_MAP.get(region, "")
         img_html = (
             f'<figure class="cat-image"><img src="../assets/images/{img_name}.png" alt="" loading="lazy">'
-            f'<span class="cat-image__cap">画像はイメージ</span></figure>'
+            f'</figure>'
         ) if img_name else ''
         html += f"""
   <section class="section">
