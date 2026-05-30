@@ -571,14 +571,6 @@ main { position:relative; z-index:1; }
   text-transform:uppercase; text-decoration:none;
   border-bottom:1px solid var(--accent); padding-bottom:.15rem;
 }
-.kura-card__official {
-  display:block; margin-top:1rem;
-  font-family:'Noto Sans JP', sans-serif; font-weight:400;
-  font-size:.82rem; color:var(--ink-mute); letter-spacing:.03em;
-  text-decoration:none; border-bottom:1px dotted var(--line);
-  padding-bottom:.15rem; width:fit-content; transition:color .25s;
-}
-.kura-card__official:hover { color:var(--ink-soft); }
 .purchase-card {
   background:var(--ink); color:#F5F0E7; padding:1.75rem 2rem;
   display:flex; flex-direction:column; justify-content:space-between;
@@ -663,6 +655,18 @@ main { position:relative; z-index:1; }
 .divider .rule { flex:1; height:1px; background:var(--line); }
 .divider .ornament { width:8px; height:8px; background:var(--accent); transform:rotate(45deg); }
 .divider .ornament.outer { width:4px; height:4px; background:var(--warm); }
+
+/* ===== 公式サイト（最下部・控えめ） ===== */
+.official-foot {
+  max-width:1100px; margin:0 auto; padding:0 2rem 3rem; text-align:center;
+}
+.official-foot a {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-mute); letter-spacing:.04em;
+  text-decoration:none; border-bottom:1px dotted var(--line); padding-bottom:.2rem;
+  transition:color .25s;
+}
+.official-foot a:hover { color:var(--ink-soft); }
 
 /* ===== Footer ===== */
 footer { margin-top:4rem; border-top:1px solid var(--ink); }
@@ -937,7 +941,6 @@ def main():
         <div class="kura-card__meta">{brewery['prefecture']}・{brewery['city']}　／　創業 {brewery['founded']}</div>
         <p class="kura-card__philo">{brewery['philosophy']}</p>
         <a class="kura-card__link" href="../brewery/{b['brewery_slug']}.html">蔵の詳細を見る →</a>
-        <a class="kura-card__official" href="{b['official_ec_url']}" target="_blank" rel="noopener">公式サイト（haccoba.com）→</a>
       </div>
       <div class="purchase-card">
         <div>
@@ -965,6 +968,11 @@ def main():
     <dl class="glossary">{glossary_html}
     </dl>
   </section>
+
+  <!-- 公式サイト（情報リンク・控えめ） -->
+  <div class="official-foot">
+    <a href="{b['official_ec_url']}" target="_blank" rel="noopener">{brewery['name']} 公式サイト（{b['official_ec_url'].split('//')[-1].split('/')[0]}）→</a>
+  </div>
 
   <footer>
     <div class="colophon">

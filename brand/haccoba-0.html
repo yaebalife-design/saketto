@@ -312,14 +312,6 @@ main { position:relative; z-index:1; }
   text-transform:uppercase; text-decoration:none;
   border-bottom:1px solid var(--accent); padding-bottom:.15rem;
 }
-.kura-card__official {
-  display:block; margin-top:1rem;
-  font-family:'Noto Sans JP', sans-serif; font-weight:400;
-  font-size:.82rem; color:var(--ink-mute); letter-spacing:.03em;
-  text-decoration:none; border-bottom:1px dotted var(--line);
-  padding-bottom:.15rem; width:fit-content; transition:color .25s;
-}
-.kura-card__official:hover { color:var(--ink-soft); }
 .purchase-card {
   background:var(--ink); color:#F5F0E7; padding:1.75rem 2rem;
   display:flex; flex-direction:column; justify-content:space-between;
@@ -404,6 +396,18 @@ main { position:relative; z-index:1; }
 .divider .rule { flex:1; height:1px; background:var(--line); }
 .divider .ornament { width:8px; height:8px; background:var(--accent); transform:rotate(45deg); }
 .divider .ornament.outer { width:4px; height:4px; background:var(--warm); }
+
+/* ===== 公式サイト（最下部・控えめ） ===== */
+.official-foot {
+  max-width:1100px; margin:0 auto; padding:0 2rem 3rem; text-align:center;
+}
+.official-foot a {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-mute); letter-spacing:.04em;
+  text-decoration:none; border-bottom:1px dotted var(--line); padding-bottom:.2rem;
+  transition:color .25s;
+}
+.official-foot a:hover { color:var(--ink-soft); }
 
 /* ===== Footer ===== */
 footer { margin-top:4rem; border-top:1px solid var(--ink); }
@@ -727,7 +731,6 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
         <div class="kura-card__meta">福島県・南相馬市小高区　／　創業 2021</div>
         <p class="kura-card__philo">かつての民俗的なドブロクづくりを現代的に表現し、クラフトビールの自由なカルチャーで日本酒を再編集。</p>
         <a class="kura-card__link" href="../brewery/haccoba.html">蔵の詳細を見る →</a>
-        <a class="kura-card__official" href="https://haccoba.com/products/hanauta-hops20" target="_blank" rel="noopener">公式サイト（haccoba.com）→</a>
       </div>
       <div class="purchase-card">
         <div>
@@ -767,6 +770,11 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
         </div>
     </dl>
   </section>
+
+  <!-- 公式サイト（情報リンク・控えめ） -->
+  <div class="official-foot">
+    <a href="https://haccoba.com/products/hanauta-hops20" target="_blank" rel="noopener">haccoba 公式サイト（haccoba.com）→</a>
+  </div>
 
   <footer>
     <div class="colophon">
