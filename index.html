@@ -299,6 +299,11 @@ main { position: relative; z-index: 1; }
 }
 
 /* ─────────── 5軸 ─────────── */
+@property --veil {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0.9;
+}
 .axes {
   display: grid;
   grid-template-columns: 1fr;
@@ -310,11 +315,18 @@ main { position: relative; z-index: 1; }
 }
 
 .axis {
+  --veil: 0.90;
   padding: 2rem 1.5rem 2.25rem;
   border-bottom: 1px solid var(--line);
   position: relative;
   overflow: hidden;
-  transition: background .35s ease, transform .35s ease;
+  background-image:
+    linear-gradient(rgba(245,240,231,var(--veil)), rgba(245,240,231,var(--veil))),
+    var(--axis-bg, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: --veil .4s ease, transform .35s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -322,6 +334,11 @@ main { position: relative; z-index: 1; }
   text-decoration: none;
   color: inherit;
 }
+.axes .axis:nth-child(1) { --axis-bg: url('assets/images/axis_sub.png'); }
+.axes .axis:nth-child(2) { --axis-bg: url('assets/images/axis_kura.png'); }
+.axes .axis:nth-child(3) { --axis-bg: url('assets/images/axis_region.png'); }
+.axes .axis:nth-child(4) { --axis-bg: url('assets/images/axis_genre.png'); }
+.axes .axis:nth-child(5) { --axis-bg: url('assets/images/axis_avail.png'); }
 .axis:last-child { border-bottom: none; }
 .axis::after {
   content: "→";
@@ -343,7 +360,7 @@ main { position: relative; z-index: 1; }
   .axis:last-child { border-right: none; }
 }
 .axis:hover {
-  background: var(--paper);
+  --veil: 0.72;
 }
 .axis::before {
   content: "";
@@ -435,72 +452,6 @@ main { position: relative; z-index: 1; }
   padding-top: .5rem;
   margin-top: auto;
 }
-
-/* ─────────── FEATURED（墨の見せ場・明暗のリズム） ─────────── */
-.featured {
-  position: relative;
-  background: var(--ink);
-  overflow: hidden;
-  margin: 1rem 0;
-}
-.featured__inner {
-  position: relative; z-index: 2;
-  max-width: 1100px; margin: 0 auto;
-  padding: 5rem 2rem 5.5rem;
-}
-.featured__seal {
-  position: absolute; z-index: 1;
-  right: clamp(-3rem, 1vw, 2rem); top: 50%; transform: translateY(-50%);
-  font-family: 'Shippori Mincho', serif; font-weight: 700;
-  font-size: clamp(14rem, 30vw, 24rem); line-height: 1;
-  color: rgba(179,58,42,0.15);
-  pointer-events: none; user-select: none;
-}
-.featured__eyebrow {
-  font-family: 'Cormorant Garamond', serif; font-style: italic;
-  font-size: .95rem; color: #D9694F; letter-spacing: .15em; margin-bottom: 1.6rem;
-}
-.featured__kura {
-  font-family: 'Shippori Mincho', serif; font-size: 1.05rem;
-  color: #C9BFAE; letter-spacing: .04em; margin-bottom: 1rem;
-  display: flex; align-items: center; gap: .6rem;
-}
-.featured__kura-chip {
-  font-family: 'Zen Kaku Gothic Antique', sans-serif; font-weight: 700;
-  font-size: .7rem; letter-spacing: .18em; line-height: 1;
-  padding: .2rem .55rem; border: 1px solid #8A7A5E; color: #C9BFAE;
-}
-.featured__name {
-  font-family: 'Shippori Mincho', serif; font-weight: 700;
-  font-size: clamp(2.6rem, 6.5vw, 4.6rem); line-height: 1.08;
-  color: #F5F0E7; letter-spacing: .02em; margin-bottom: 1.4rem;
-}
-.featured__tagline {
-  font-family: 'Shippori Mincho', serif; font-weight: 500;
-  font-size: clamp(1rem, 1.8vw, 1.2rem); line-height: 1.8;
-  color: #E3DACA; max-width: 620px; margin-bottom: 2.4rem;
-}
-.featured__specs {
-  display: flex; flex-wrap: wrap; gap: 2.5rem; margin-bottom: 2.6rem;
-}
-.featured__spec { display: flex; flex-direction: column; gap: .35rem; }
-.featured__spec-label {
-  font-family: 'Zen Kaku Gothic Antique', sans-serif; font-weight: 700;
-  font-size: .72rem; letter-spacing: .2em; color: #D9694F;
-}
-.featured__spec-val {
-  font-family: 'Shippori Mincho', serif; font-weight: 700;
-  font-size: 2rem; color: #F5F0E7; line-height: 1;
-}
-.featured__spec-val small { font-size: .5em; color: #C9BFAE; margin-left: .15em; font-weight: 400; }
-.featured__cta {
-  display: inline-block;
-  font-family: 'Zen Kaku Gothic Antique', sans-serif; font-weight: 700;
-  font-size: .9rem; letter-spacing: .1em; color: #F5F0E7;
-  text-decoration: none; padding: .95rem 1.9rem;
-  border: 1px solid #D9694F; transition: background .3s ease, border-color .3s ease;
-}
-.featured__cta:hover { background: var(--accent); border-color: var(--accent); }
 
 /* ─────────── 数字 24 ─────────── */
 .bignum-block {
@@ -878,23 +829,6 @@ footer {
 
     </div>
 
-  </section>
-
-  <!-- FEATURED：編集部が選ぶ一本（墨ブロックで明暗のリズム） -->
-  <section class="featured">
-    <div class="featured__seal" aria-hidden="true">酒</div>
-    <div class="featured__inner">
-      <div class="featured__eyebrow">— FEATURED ／ まずは、この一本から</div>
-      <div class="featured__kura"><span class="featured__kura-chip">蔵</span>haccoba（福島・南相馬）</div>
-      <h2 class="featured__name">はなうたホップス</h2>
-      <p class="featured__tagline">「花酛」の復刻 × クラフトビールのドライホッピング。<br>クラフトサケというジャンルを象徴する、アイコン的な一本。</p>
-      <div class="featured__specs">
-        <div class="featured__spec"><span class="featured__spec-label">ABV</span><span class="featured__spec-val">13<small>%</small></span></div>
-        <div class="featured__spec"><span class="featured__spec-label">VOLUME</span><span class="featured__spec-val">720<small>ml</small></span></div>
-        <div class="featured__spec"><span class="featured__spec-label">PRICE</span><span class="featured__spec-val">¥2,420</span></div>
-      </div>
-      <a class="featured__cta" href="brand/haccoba-0.html">この一本を詳しく見る →</a>
-    </div>
   </section>
 
   <!-- もうひとつの切り口（5つの軸とは別の入り口） -->
