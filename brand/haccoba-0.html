@@ -62,6 +62,14 @@ main { position:relative; z-index:1; }
   font-size:1.15rem; color:var(--ink); line-height:1.75;
   max-width:780px; margin-bottom:2rem;
 }
+.hero__flavor {
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:1.1rem 0; margin-bottom:1.75rem; max-width:780px;
+}
+.hero__flavor-label {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.92rem; color:var(--accent); letter-spacing:.08em; margin-bottom:.7rem;
+}
 .hero__badges { display:flex; flex-wrap:wrap; gap:.55rem; margin-bottom:.5rem; }
 .badge {
   font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
@@ -433,6 +441,10 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
     <h1 class="hero__name">はなうたホップス</h1>
     <div class="hero__kana">ハナウタホップス</div>
     <p class="hero__tagline">「花酛」復刻 × クラフトビールのドライホッピング。haccobaが切り拓いた、クラフトサケのアイコン銘柄。</p>
+    <div class="hero__flavor">
+      <div class="hero__flavor-label">— AROMA &amp; FLAVOR ／ 香り・味の印象</div>
+      <div class="flavor-tags"><span class="flavor-tag">シトラス</span><span class="flavor-tag">グレープフルーツ</span><span class="flavor-tag">マスカット</span><span class="flavor-tag">ホップ香</span><span class="flavor-tag">ライチ（熟成）</span><span class="flavor-tag">レモンのような酸</span></div>
+    </div>
     <div class="hero__badges"><span class="badge badge--cat">— 酒税法分類：その他の醸造酒</span><span class="badge badge--avail">— 入手性：通販可</span></div>
   </section>
 
@@ -656,7 +668,6 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
         <div class="flavor-box__cap">飲み手の印象を6軸で。さけのわ型のスタイル。値は編集部初期値。</div>
       </div>
     </div>
-    <div class="flavor-tags"><span class="flavor-tag">シトラス</span><span class="flavor-tag">グレープフルーツ</span><span class="flavor-tag">マスカット</span><span class="flavor-tag">ホップ</span><span class="flavor-tag">Citra</span><span class="flavor-tag">Talus</span><span class="flavor-tag">花酛</span><span class="flavor-tag">黄麹</span><span class="flavor-tag">白麹</span></div>
   </section>
 
   <div class="divider">

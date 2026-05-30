@@ -95,7 +95,8 @@ BRAND = {
         "米感":     4,
         "複雑性":   4,
     },
-    "flavor_tags": ["シトラス", "グレープフルーツ", "マスカット", "ホップ", "Citra", "Talus", "花酛", "黄麹", "白麹"],
+    # 香り・味の印象キーワードのみ（品種名Citra/Talusや製法用語は混ぜない）
+    "flavor_tags": ["シトラス", "グレープフルーツ", "マスカット", "ホップ香", "ライチ（熟成）", "レモンのような酸"],
 
     # STORY（一次ソース確認済み）
     "story": (
@@ -319,6 +320,14 @@ main { position:relative; z-index:1; }
   font-family:'Shippori Mincho', serif; font-weight:500;
   font-size:1.15rem; color:var(--ink); line-height:1.75;
   max-width:780px; margin-bottom:2rem;
+}
+.hero__flavor {
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:1.1rem 0; margin-bottom:1.75rem; max-width:780px;
+}
+.hero__flavor-label {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.92rem; color:var(--accent); letter-spacing:.08em; margin-bottom:.7rem;
 }
 .hero__badges { display:flex; flex-wrap:wrap; gap:.55rem; margin-bottom:.5rem; }
 .badge {
@@ -778,6 +787,10 @@ def main():
     <h1 class="hero__name">{b['name']}</h1>
     <div class="hero__kana">{b['kana']}</div>
     <p class="hero__tagline">{b['tagline']}</p>
+    <div class="hero__flavor">
+      <div class="hero__flavor-label">— AROMA &amp; FLAVOR ／ 香り・味の印象</div>
+      <div class="flavor-tags">{flavor_tags_html}</div>
+    </div>
     <div class="hero__badges">{cat_badge}{avail_badge}</div>
   </section>
 
@@ -882,7 +895,6 @@ def main():
         <div class="flavor-box__cap">飲み手の印象を6軸で。さけのわ型のスタイル。値は編集部初期値。</div>
       </div>
     </div>
-    <div class="flavor-tags">{flavor_tags_html}</div>
   </section>
 
   <div class="divider">
