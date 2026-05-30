@@ -56,6 +56,19 @@ main { position:relative; z-index:1; }
 .hero {
   max-width:1100px; margin:0 auto; padding:5rem 2rem 3rem;
 }
+/* 役割ラベルチップ（蔵／銘柄の区別） */
+.role-chip {
+  display:inline-block; font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-weight:700; font-size:.72rem; letter-spacing:.18em;
+  padding:.18rem .6rem; vertical-align:middle; line-height:1;
+}
+.role-chip--kura { border:1px solid var(--warm); color:var(--warm); }
+.role-chip--brand { background:var(--accent); color:#FAF6ED; border:1px solid var(--accent); }
+.hero__rolerow { display:flex; align-items:center; flex-wrap:wrap; gap:.75rem; margin-bottom:1.1rem; }
+.hero__rolenote {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-mute); letter-spacing:.04em;
+}
 .hero__eyebrow {
   font-family:'Cormorant Garamond', serif; font-style:italic;
   font-size:.95rem; color:var(--accent); letter-spacing:.15em;
@@ -146,6 +159,10 @@ main { position:relative; z-index:1; }
   font-family:'Shippori Mincho', serif; font-weight:700;
   font-size:1.25rem; letter-spacing:.02em; color:var(--ink);
   margin-bottom:.5rem; line-height:1.45;
+}
+.brand-card__chip {
+  font-size:.6rem; letter-spacing:.14em; padding:.12rem .4rem;
+  margin-right:.6rem; vertical-align:middle; position:relative; top:-2px;
 }
 .brand-card__note {
   font-size:.92rem; color:var(--ink-soft); line-height:1.75;
@@ -360,7 +377,10 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <figure class="region-banner"><div class="region-banner__wrap"><img src="../assets/images/region_kanto.png" alt="" loading="lazy"><span class="region-banner__cap">関東 ／ 画像はイメージ</span></div></figure>
 
   <section class="hero">
-    <div class="hero__eyebrow">— BREWERY No. 05</div>
+    <div class="hero__rolerow">
+      <span class="role-chip role-chip--kura">蔵</span>
+      <span class="hero__rolenote">BREWERY No. 05 / 25 ・ 東京都の醸造所（造り手）</span>
+    </div>
     <h1 class="hero__name">木花之醸造所</h1>
     <div class="hero__kana">コノハナノジョウゾウショ</div>
     <dl class="hero__meta">
@@ -399,7 +419,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="brands">
       <a class="brand-card" href="../brand/konohanano-0.html" id="b0">
         <div class="brand-card__main">
-          <h3>ハナグモリ</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>ハナグモリ</h3>
           <p class="brand-card__note">看板銘柄。本格純米にごり酒、シュワッとガス感</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
@@ -407,7 +427,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       </a>
       <a class="brand-card" href="../brand/konohanano-1.html" id="b1">
         <div class="brand-card__main">
-          <h3>ハナグモリ THE酸</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>ハナグモリ THE酸</h3>
           <p class="brand-card__note">酸味を強調した派生銘柄</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">500ml</span></div>
@@ -415,7 +435,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       </a>
       <a class="brand-card" href="../brand/konohanano-2.html" id="b2">
         <div class="brand-card__main">
-          <h3>ハナグモリ 焼酎用白麹仕様</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>ハナグモリ 焼酎用白麹仕様</h3>
           <p class="brand-card__note">バリエーション銘柄</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">焼酎用白麹</span></div>

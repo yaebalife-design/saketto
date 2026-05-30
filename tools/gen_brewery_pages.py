@@ -78,6 +78,19 @@ main { position:relative; z-index:1; }
 .hero {
   max-width:1100px; margin:0 auto; padding:5rem 2rem 3rem;
 }
+/* 役割ラベルチップ（蔵／銘柄の区別） */
+.role-chip {
+  display:inline-block; font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-weight:700; font-size:.72rem; letter-spacing:.18em;
+  padding:.18rem .6rem; vertical-align:middle; line-height:1;
+}
+.role-chip--kura { border:1px solid var(--warm); color:var(--warm); }
+.role-chip--brand { background:var(--accent); color:#FAF6ED; border:1px solid var(--accent); }
+.hero__rolerow { display:flex; align-items:center; flex-wrap:wrap; gap:.75rem; margin-bottom:1.1rem; }
+.hero__rolenote {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-mute); letter-spacing:.04em;
+}
 .hero__eyebrow {
   font-family:'Cormorant Garamond', serif; font-style:italic;
   font-size:.95rem; color:var(--accent); letter-spacing:.15em;
@@ -168,6 +181,10 @@ main { position:relative; z-index:1; }
   font-family:'Shippori Mincho', serif; font-weight:700;
   font-size:1.25rem; letter-spacing:.02em; color:var(--ink);
   margin-bottom:.5rem; line-height:1.45;
+}
+.brand-card__chip {
+  font-size:.6rem; letter-spacing:.14em; padding:.12rem .4rem;
+  margin-right:.6rem; vertical-align:middle; position:relative; top:-2px;
 }
 .brand-card__note {
   font-size:.92rem; color:var(--ink-soft); line-height:1.75;
@@ -411,7 +428,7 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
     return f"""
       <a class="brand-card" href="{href}" id="b{idx}">
         <div class="brand-card__main">
-          <h3>{brand['name']}</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>{brand['name']}</h3>
           {note_html}
         </div>
         <div class="brand-card__specs">{specs_html}</div>
@@ -557,7 +574,10 @@ def render(brewery, index, prev_brewery, next_brewery):
   {region_banner}
 
   <section class="hero">
-    <div class="hero__eyebrow">— BREWERY No. {n:02d}</div>
+    <div class="hero__rolerow">
+      <span class="role-chip role-chip--kura">蔵</span>
+      <span class="hero__rolenote">BREWERY No. {n:02d} / {total} ・ {brewery["prefecture"]}の醸造所（造り手）</span>
+    </div>
     <h1 class="hero__name">{brewery["name"]}</h1>
     <div class="hero__kana">{brewery["name_kana"]}</div>
     <dl class="hero__meta">

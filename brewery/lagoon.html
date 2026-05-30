@@ -56,6 +56,19 @@ main { position:relative; z-index:1; }
 .hero {
   max-width:1100px; margin:0 auto; padding:5rem 2rem 3rem;
 }
+/* 役割ラベルチップ（蔵／銘柄の区別） */
+.role-chip {
+  display:inline-block; font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-weight:700; font-size:.72rem; letter-spacing:.18em;
+  padding:.18rem .6rem; vertical-align:middle; line-height:1;
+}
+.role-chip--kura { border:1px solid var(--warm); color:var(--warm); }
+.role-chip--brand { background:var(--accent); color:#FAF6ED; border:1px solid var(--accent); }
+.hero__rolerow { display:flex; align-items:center; flex-wrap:wrap; gap:.75rem; margin-bottom:1.1rem; }
+.hero__rolenote {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-mute); letter-spacing:.04em;
+}
 .hero__eyebrow {
   font-family:'Cormorant Garamond', serif; font-style:italic;
   font-size:.95rem; color:var(--accent); letter-spacing:.15em;
@@ -146,6 +159,10 @@ main { position:relative; z-index:1; }
   font-family:'Shippori Mincho', serif; font-weight:700;
   font-size:1.25rem; letter-spacing:.02em; color:var(--ink);
   margin-bottom:.5rem; line-height:1.45;
+}
+.brand-card__chip {
+  font-size:.6rem; letter-spacing:.14em; padding:.12rem .4rem;
+  margin-right:.6rem; vertical-align:middle; position:relative; top:-2px;
 }
 .brand-card__note {
   font-size:.92rem; color:var(--ink-soft); line-height:1.75;
@@ -360,7 +377,10 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <figure class="region-banner"><div class="region-banner__wrap"><img src="../assets/images/region_chubu.png" alt="" loading="lazy"><span class="region-banner__cap">中部 ／ 画像はイメージ</span></div></figure>
 
   <section class="hero">
-    <div class="hero__eyebrow">— BREWERY No. 03</div>
+    <div class="hero__rolerow">
+      <span class="role-chip role-chip--kura">蔵</span>
+      <span class="hero__rolenote">BREWERY No. 03 / 25 ・ 新潟県の醸造所（造り手）</span>
+    </div>
     <h1 class="hero__name">LAGOON BREWERY</h1>
     <div class="hero__kana">ラグーンブリュワリー</div>
     <dl class="hero__meta">
@@ -399,7 +419,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="brands">
       <a class="brand-card" href="../brand/lagoon-0.html" id="b0">
         <div class="brand-card__main">
-          <h3>翔空 HOP SAKE ほっぺ</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 HOP SAKE ほっぺ</h3>
           <p class="brand-card__note">看板銘柄。柑橘香と爽快さを兼備</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 15%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">ホップ（シトラ）</span></div>
@@ -407,7 +427,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       </a>
       <a class="brand-card" href="../brand/lagoon-1.html" id="b1">
         <div class="brand-card__main">
-          <h3>翔空 ニゴリのHOP SAKE ほっぺ</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 ニゴリのHOP SAKE ほっぺ</h3>
           <p class="brand-card__note">ニゴリ仕様、約100本限定</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 15.5%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">ホップ（シトラ）</span></div>
@@ -415,7 +435,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       </a>
       <a class="brand-card" href="../brand/lagoon-2.html" id="b2">
         <div class="brand-card__main">
-          <h3>翔空 酔いどれ洋梨2025-2026 槽搾り生</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 酔いどれ洋梨2025-2026 槽搾り生</h3>
           <p class="brand-card__note">新潟ブランド洋梨×純米香</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">ル・レクチェ（洋梨）</span></div>
@@ -423,7 +443,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       </a>
       <a class="brand-card" href="../brand/lagoon-3.html" id="b3">
         <div class="brand-card__main">
-          <h3>翔空 酔いどれメロン2025 ドブロク</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 酔いどれメロン2025 ドブロク</h3>
           <p class="brand-card__note">千葉産高級メロン使用</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 12%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">マスクメロン</span></div>
@@ -431,7 +451,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       </a>
       <a class="brand-card" href="../brand/lagoon-4.html" id="b4">
         <div class="brand-card__main">
-          <h3>翔空 酔いどれイチゴ2025 槽絞り生</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 酔いどれイチゴ2025 槽絞り生</h3>
           <p class="brand-card__note">新潟産イチゴ約200kg使用</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">越後姫（イチゴ）</span></div>
@@ -439,7 +459,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       </a>
       <a class="brand-card" href="../brand/lagoon-5.html" id="b5">
         <div class="brand-card__main">
-          <h3>翔空 SAKEマルゲリータ Unpressed</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 SAKEマルゲリータ Unpressed</h3>
           <p class="brand-card__note">ピザマルゲリータをイメージしたドブロク</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">トマト</span> <span class="spec-pill">バジル</span></div>
@@ -447,7 +467,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       </a>
       <a class="brand-card" href="../brand/lagoon-6.html" id="b6">
         <div class="brand-card__main">
-          <h3>翔空 自然栽培亀の尾どぶろく</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 自然栽培亀の尾どぶろく</h3>
           <p class="brand-card__note">幻の米「亀ノ尾」100%使用、192本限定</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 17%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
