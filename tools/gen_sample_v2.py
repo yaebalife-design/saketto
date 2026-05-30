@@ -1,15 +1,251 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>はなうたホップス ／ haccoba — saketto.</title>
-<meta name="description" content="「花酛」復刻 × クラフトビールのドライホッピング。haccobaが切り拓いた、クラフトサケのアイコン銘柄。">
-<meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<style>
+# -*- coding: utf-8 -*-
+"""saketto / 銘柄詳細ページ V2 サンプル
+
+社長指示: いったん1本作って判断 → 横展開
+対象: haccoba「はなうたホップス」(haccoba-0.html を上書き)
+
+V2の新セクション:
+- 酒税法分類バッジ
+- 大判 CORE SPECS (ABV / Volume / Price)
+- RECIPE 詳細テーブル (米品種・精米歩合・酒母・麹菌・酵母・仕込水・容器・火入れ)
+- HOW TO ENJOY (保存・温度・グラス・ペアリング)
+- TASTING 3段 (香り / 含み香 / 余韻)
+- FLAVOR PROFILE (4軸構造スケール SVG + 6軸レーダー SVG + タグ)
+- STORY (コラボ・LAB背景)
+- AWARDS (per銘柄)
+- KURA + PURCHASE
+- 関連 + 出典 + データ更新日 + 専門用語ミニ解説
+"""
+
+import math
+import os
+import sys
+from pathlib import Path
+
+sys.path.insert(0, os.path.dirname(__file__))
+from breweries_master import by_slug
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+OUT = REPO_ROOT / "brand" / "haccoba-0.html"
+
+
+# ────────────── サンプル銘柄データ (はなうたホップス) ──────────────
+# 一次ソース確認済み + 編集部初期値（要更新の項目は data_status で明示）
+
+BRAND = {
+    "brewery_slug": "haccoba",
+    "name": "はなうたホップス",
+    "kana": "ハナウタホップス",
+    "category": "その他の醸造酒",
+    "tagline": "「花酛」復刻 × クラフトビールのドライホッピング。haccobaが切り拓いた、クラフトサケのアイコン銘柄。",
+
+    # CORE SPECS（2025BY No.1 基準）
+    "abv": 13,
+    "abv_note": "ロットにより11〜13%帯で変動。本ページは2025BY No.1基準",
+    "volume_ml": 720,
+    "price": 2420,
+    "price_note": "参考価格・確認日 2026/05/30",
+
+    # RECIPE（一次ソース確認済み・2025BY No.1基準）
+    "sub_ingredients": ["ホップ", "唐花草（カラハナソウ）"],
+    "sub_ingredients_detail": "Citra・Talus・Motueka・Galaxy等のアロマホップ（ロット別組合せ）+ 古来からの唐花草",
+    "rice_variety": "天のつぶ（福島県産）",
+    "rice_polish": 88,
+    "shubo": "花酛（はなもと）",
+    "shubo_note": "東北に伝わる幻のどぶろく製法。haccobaが復刻し、ドライホッピングと融合",
+    "koji": "黄麹＋白麹（併用）",
+    "yeast": "ロット別（2023BY No.4 は BRY-97 ビール酵母、他公式非開示）",
+    "water": "公式非開示",
+    "vessel": "公式非開示（発酵温度18〜22℃の高温発酵）",
+    "pasteurized": False,  # 生酒
+    "draft": None,
+
+    # HOW TO ENJOY
+    "preservation": "要冷蔵・クール便必須",
+    "open_days": None,
+    "serving_temp": "8℃推奨（公式）",
+    "glass": "白ワイン用の小ぶりなワイングラス（編集部推奨）",
+    "pairing": [
+        "白身魚のカルパッチョ",
+        "ナンプラー・パクチーのエスニック料理",
+        "イタリアン（カプレーゼ等）",
+        "山羊チーズ",
+    ],
+
+    # TASTING（IMADEYA + haccoba note より）
+    "tasting_nose": "柑橘やマスカットなどの香りが広がるアロマホップ、グレープフルーツのようなシトラスのアロマ。",
+    "tasting_palate": "グレープフルーツのような味わいが口いっぱいに広がり、お米とホップが調和した「セッション」。黄麹由来の米の甘みと白麹由来のレモンのような酸。",
+    "tasting_finish": "熟成していくと全く表情が変わり、ライチなどの熟したフルーツのような印象に変化。",
+    "tasting_source_name": "IMADEYA ONLINE STORE / haccoba note",
+    "tasting_source_url": "https://imadeya.co.jp/products/8180977172645",
+
+    # FLAVOR PROFILE（編集部初期値）
+    "scale4": {
+        "body":    0.35,
+        "sweet":   0.42,
+        "acid":    0.65,
+        "clarity": 0.55,
+    },
+    "radar6": {
+        "華やか":   5,
+        "酸味":     4,
+        "甘味":     3,
+        "コク":     3,
+        "米感":     4,
+        "複雑性":   4,
+    },
+    "flavor_tags": ["シトラス", "グレープフルーツ", "マスカット", "ホップ", "Citra", "Talus", "花酛", "黄麹", "白麹"],
+
+    # STORY（一次ソース確認済み）
+    "story": (
+        "haccoba は2021年2月、東日本大震災で一度ゴーストタウン化した福島県南相馬市小高区に、"
+        "元IT職の佐藤太亮氏が立ち上げたクラフトサケ蔵。"
+        "「金はないけど、熱はある」を合言葉に、清酒免許の制約を逃れる"
+        "「その他の醸造酒」枠で表現の自由を確保した。"
+        "看板銘柄「はなうたホップス」は、東北に伝わる幻のどぶろく製法「花酛（はなもと）」——"
+        "古来カラハナソウを使った歴史をヒントに、黄麹で米の甘み、白麹でレモンのような酸を引き出し、"
+        "クラフトビールのドライホッピング技法で Citra・Talus・Motueka・Galaxy 等のアロマホップを重ねた一本。"
+        "Makuakeでの人気投票A案から2021年6月14日に商品化された。"
+        "佐藤氏は「昔の酒づくりはもっと自由だった。これからも自由な方が良い」と語る。"
+    ),
+    "story_source_name": "PR TIMES／Diamond Online／haccoba note",
+    "story_source_url": "https://prtimes.jp/main/html/rd/p/000000003.000061904.html",
+
+    # AWARDS（per銘柄。受賞は蔵単位だが銘柄に紐づくものを記載）
+    "awards": [
+        {
+            "year": 2023,
+            "title": "ICC SAKE AWARD 準決勝進出",
+            "where": "ICC KYOTO 2023",
+            "source": "https://industry-co-creation.com/news/93891",
+        },
+    ],
+    # 蔵全体としては「日本パッケージデザイン大賞2025 銀賞（水を編むシリーズ）」「東北アントレプレナー大賞2025」も
+    # ただしはなうたホップス単独の受賞ではないので含めない（嘘ゼロ運用）
+
+    # AVAILABILITY
+    "availability": "online",
+    "official_ec_url": "https://haccoba.com/products/hanauta-hops20",
+
+    # META
+    "data_updated": "2026/05/30",
+    "sources_extra": [
+        "https://haccoba.com/products/hanauta-hops23",
+        "https://imadeya.co.jp/products/8180977172645",
+        "https://note.com/haccoba/n/n22d0797a17cb",
+        "https://note.com/haccoba/n/na8aae391dec3",
+        "https://prtimes.jp/main/html/rd/p/000000003.000061904.html",
+        "https://diamond.jp/articles/-/292641",
+        "https://industry-co-creation.com/news/93891",
+    ],
+
+    # 専門用語（その銘柄に登場する用語のみ）
+    "glossary": [
+        ("花酛（はなもと）", "東北地方に伝わるどぶろくの古典製法。「東洋のホップ」と呼ばれる唐花草（カラハナソウ）を使って自然発酵させる。明治の自家醸造禁止で衰退していたものを haccoba が復刻。"),
+        ("その他の醸造酒", "酒税法上、副原料を加えた米由来の醸造酒は「清酒」を名乗れず、この区分に分類される。クラフトサケの大半がこのカテゴリ。"),
+        ("ドライホッピング", "発酵後にホップを漬け込み、香りを抽出するクラフトビールの技法。haccobaは日本酒製造にこれを応用。"),
+    ],
+}
+
+
+# ────────────── SVG 生成ヘルパー ──────────────
+
+def gen_scale4_svg(scale):
+    """4軸構造スケール: 横長バー × 4 + 位置ドット"""
+    axes = [
+        ("軽快", "濃醇", scale["body"]),
+        ("甘口", "辛口", scale["sweet"]),
+        ("酸控", "酸強", scale["acid"]),
+        ("清澄", "にごり", scale["clarity"]),
+    ]
+    W, H = 460, 200
+    rows = []
+    bar_x = 80
+    bar_w = 300
+    for i, (left, right, val) in enumerate(axes):
+        y = 30 + i * 42
+        dot_x = bar_x + val * bar_w
+        rows.append(f"""
+    <text x="{bar_x - 10}" y="{y+5}" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" text-anchor="end" fill="#3D3633">{left}</text>
+    <line x1="{bar_x}" y1="{y}" x2="{bar_x+bar_w}" y2="{y}" stroke="#C0B69E" stroke-width="1"/>
+    <line x1="{bar_x}" y1="{y-3}" x2="{bar_x}" y2="{y+3}" stroke="#C0B69E" stroke-width="1.5"/>
+    <line x1="{bar_x+bar_w}" y1="{y-3}" x2="{bar_x+bar_w}" y2="{y+3}" stroke="#C0B69E" stroke-width="1.5"/>
+    <circle cx="{dot_x:.1f}" cy="{y}" r="7" fill="#A8351F"/>
+    <circle cx="{dot_x:.1f}" cy="{y}" r="11" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.4"/>
+    <text x="{bar_x+bar_w+10}" y="{y+5}" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" fill="#3D3633">{right}</text>""")
+    return f"""<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" aria-label="4軸構造スケール">
+{''.join(rows)}
+</svg>"""
+
+
+def gen_radar6_svg(values):
+    """6軸レーダー: 1-5スケール、6カテゴリ"""
+    cx, cy = 130, 130
+    max_r = 90
+    max_val = 5
+    axes = ["華やか", "酸味", "甘味", "コク", "米感", "複雑性"]
+
+    def point(angle_deg, r):
+        rad = math.radians(angle_deg - 90)
+        return (cx + r * math.cos(rad), cy + r * math.sin(rad))
+
+    # 同心六角形（参照）
+    rings_svg = ""
+    for level in range(1, max_val + 1):
+        r = max_r * level / max_val
+        pts = " ".join(f"{x:.1f},{y:.1f}" for x, y in [point(i*60, r) for i in range(6)])
+        opacity = 0.18 if level == max_val else 0.10
+        rings_svg += f'<polygon points="{pts}" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="{opacity}"/>\n    '
+
+    # 軸線
+    axis_svg = ""
+    for i in range(6):
+        x, y = point(i*60, max_r)
+        axis_svg += f'<line x1="{cx}" y1="{cy}" x2="{x:.1f}" y2="{y:.1f}" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>\n    '
+
+    # データ多角形
+    data_pts = []
+    for i, name in enumerate(axes):
+        v = values.get(name, 0)
+        r = max_r * v / max_val
+        x, y = point(i*60, r)
+        data_pts.append(f"{x:.1f},{y:.1f}")
+    data_poly = " ".join(data_pts)
+
+    # データ頂点ドット
+    dots_svg = ""
+    for i, name in enumerate(axes):
+        v = values.get(name, 0)
+        r = max_r * v / max_val
+        x, y = point(i*60, r)
+        dots_svg += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="#A8351F"/>\n    '
+
+    # 軸ラベル
+    labels_svg = ""
+    for i, name in enumerate(axes):
+        lx, ly = point(i*60, max_r + 22)
+        labels_svg += f'<text x="{lx:.1f}" y="{ly:.1f}" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">{name}</text>\n    '
+
+    # 値ラベル
+    value_labels = ""
+    for i, name in enumerate(axes):
+        v = values.get(name, 0)
+        r = max_r * v / max_val
+        x, y = point(i*60, r + 12)
+        value_labels += f'<text x="{x:.1f}" y="{y:.1f}" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">{v}</text>\n    '
+
+    return f"""<svg viewBox="0 0 260 280" xmlns="http://www.w3.org/2000/svg" aria-label="6軸フレーバープロファイル">
+    {rings_svg}{axis_svg}
+    <polygon points="{data_poly}" fill="#A8351F" fill-opacity="0.18" stroke="#A8351F" stroke-width="1.5"/>
+    {dots_svg}{labels_svg}{value_labels}
+</svg>"""
+
+
+# ────────────── HTMLテンプレート ──────────────
+
+CSS = """
 :root {
   --bg: #F5F0E7; --bg-alt: #EDE5D2; --paper: #FAF6ED;
   --ink: #16100E; --ink-soft: #3D3633; --ink-mute: #635C57;
@@ -399,7 +635,90 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
 }
 .colophon__notes strong { color:var(--accent); font-weight:500; }
 .colophon__sep { color:var(--line); margin:0 .5rem; }
-</style>
+"""
+
+
+def main():
+    b = BRAND
+    brewery = by_slug(b["brewery_slug"])
+
+    scale4_svg = gen_scale4_svg(b["scale4"])
+    radar6_svg = gen_radar6_svg(b["radar6"])
+
+    # Recipe rows
+    recipe_rows = []
+    def row(label, val, sub=None, unknown=False):
+        cls = " unknown" if unknown else ""
+        sub_html = f"<small>{sub}</small>" if sub else ""
+        recipe_rows.append(f"""
+        <div class="recipe-row">
+          <div class="recipe-row__label">{label}</div>
+          <div class="recipe-row__value{cls}">{val}{sub_html}</div>
+        </div>""")
+
+    row("品目（酒税法）", b["category"])
+    row("副原料", "・".join(b["sub_ingredients"]), sub=b.get("sub_ingredients_detail"))
+    row("米品種", b["rice_variety"] if b["rice_variety"] != "公式非開示" else "公式非開示", unknown=(b["rice_variety"] == "公式非開示"))
+    row("精米歩合", f"{b['rice_polish']}%" if b["rice_polish"] else "公式非開示", unknown=(b["rice_polish"] is None))
+    row("酒母", b["shubo"], sub=b.get("shubo_note"))
+    row("麹菌", b["koji"] if b["koji"] != "公式非開示" else "公式非開示", unknown=(b["koji"] == "公式非開示"))
+    row("酵母", b["yeast"] if b["yeast"] != "公式非開示" else "公式非開示", unknown=(b["yeast"] == "公式非開示"))
+    row("仕込水", b["water"] if b["water"] != "公式非開示" else "公式非開示", unknown=(b["water"] == "公式非開示"))
+    row("発酵容器", b["vessel"] if b["vessel"] != "公式非開示" else "公式非開示", unknown=(b["vessel"] == "公式非開示"))
+    row("火入れ／生酒", "公式非開示" if b["pasteurized"] is None else ("火入れ" if b["pasteurized"] else "生酒"), unknown=(b["pasteurized"] is None))
+    row("加水／原酒", "公式非開示" if b["draft"] is None else ("加水" if not b["draft"] else "原酒"), unknown=(b["draft"] is None))
+    recipe_html = ''.join(recipe_rows)
+
+    # Pairing chips
+    pairing_chips = ''.join(f'<span class="pairing-chip">{p}</span>' for p in b["pairing"])
+
+    # Flavor tags
+    flavor_tags_html = ''.join(f'<span class="flavor-tag">{t}</span>' for t in b["flavor_tags"])
+
+    # Awards
+    awards_html = ''.join(f"""
+        <div class="award-card">
+          <div class="award-year">{a["year"]}</div>
+          <div>
+            <div class="award-title">{a["title"]}</div>
+            <div class="award-where">{a["where"]}</div>
+          </div>
+        </div>""" for a in b["awards"]) if b["awards"] else '<p style="font-size:.92rem; color:var(--ink-soft); padding:.5rem 0">本銘柄単独の受賞情報は現時点で確認できず（蔵全体としての受賞は <a href="../brewery/haccoba.html" style="color:var(--accent)">蔵詳細</a> 参照）</p>'
+
+    # Sources
+    all_sources = [b["official_ec_url"], b["tasting_source_url"], b["story_source_url"]] + b["sources_extra"]
+    seen = set()
+    uniq_sources = []
+    for u in all_sources:
+        if u and u not in seen:
+            uniq_sources.append(u)
+            seen.add(u)
+    sources_html = ''.join(f'<li><a href="{u}" target="_blank" rel="noopener">{u}</a></li>' for u in uniq_sources)
+
+    # Glossary
+    glossary_html = ''.join(f"""
+        <div class="glossary-item">
+          <dt>{term}</dt>
+          <dd>{desc}</dd>
+        </div>""" for term, desc in b["glossary"])
+
+    # Category badge
+    cat_badge = f'<span class="badge badge--cat">— 酒税法分類：{b["category"]}</span>'
+    avail_label = {"online": "通販可", "tokuyaku": "特約店", "rare": "極希少"}.get(b["availability"], "—")
+    avail_badge = f'<span class="badge badge--avail">— 入手性：{avail_label}</span>'
+
+    html = f"""<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{b['name']} ／ {brewery['name']} — saketto.</title>
+<meta name="description" content="{b['tagline'][:120]}">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>{CSS}</style>
 </head>
 <body>
 <main>
@@ -408,35 +727,35 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
   <div class="masthead">
     <div class="left">
       <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
-      <a href="../brewery/haccoba.html">← haccoba</a>
+      <a href="../brewery/{b['brewery_slug']}.html">← {brewery['name']}</a>
     </div>
-    <div class="right">BRAND SAMPLE V2 — 2026/05/30</div>
+    <div class="right">BRAND SAMPLE V2 — {b['data_updated']}</div>
   </div>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__brewery"><a href="../brewery/haccoba.html">— haccoba</a></div>
-    <h1 class="hero__name">はなうたホップス</h1>
-    <div class="hero__kana">ハナウタホップス</div>
-    <p class="hero__tagline">「花酛」復刻 × クラフトビールのドライホッピング。haccobaが切り拓いた、クラフトサケのアイコン銘柄。</p>
-    <div class="hero__badges"><span class="badge badge--cat">— 酒税法分類：その他の醸造酒</span><span class="badge badge--avail">— 入手性：通販可</span></div>
+    <div class="hero__brewery"><a href="../brewery/{b['brewery_slug']}.html">— {brewery['name']}</a></div>
+    <h1 class="hero__name">{b['name']}</h1>
+    <div class="hero__kana">{b['kana']}</div>
+    <p class="hero__tagline">{b['tagline']}</p>
+    <div class="hero__badges">{cat_badge}{avail_badge}</div>
   </section>
 
   <!-- 大判 SPECS -->
   <div class="spec-board">
     <div class="spec-cell">
       <div class="spec-cell__label">— ABV</div>
-      <div class="spec-cell__value">13<small>% ALC.</small></div>
-      <div class="spec-cell__sub">ロットにより11〜13%帯で変動。本ページは2025BY No.1基準</div>
+      <div class="spec-cell__value">{b['abv']}<small>% ALC.</small></div>
+      <div class="spec-cell__sub">{b['abv_note']}</div>
     </div>
     <div class="spec-cell">
       <div class="spec-cell__label">— VOLUME</div>
-      <div class="spec-cell__value">720<small>ml</small></div>
+      <div class="spec-cell__value">{b['volume_ml']}<small>ml</small></div>
     </div>
     <div class="spec-cell">
       <div class="spec-cell__label">— PRICE</div>
-      <div class="spec-cell__value">¥2,420</div>
-      <div class="spec-cell__sub">参考価格・確認日 2026/05/30</div>
+      <div class="spec-cell__value">¥{b['price']:,}</div>
+      <div class="spec-cell__sub">{b['price_note']}</div>
     </div>
   </div>
 
@@ -447,51 +766,7 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
       <span class="section-meta__label">RECIPE / 仕込み</span>
       <span class="section-meta__rule"></span>
     </div>
-    <div class="recipe">
-        <div class="recipe-row">
-          <div class="recipe-row__label">品目（酒税法）</div>
-          <div class="recipe-row__value">その他の醸造酒</div>
-        </div>
-        <div class="recipe-row">
-          <div class="recipe-row__label">副原料</div>
-          <div class="recipe-row__value">ホップ・唐花草（カラハナソウ）<small>Citra・Talus・Motueka・Galaxy等のアロマホップ（ロット別組合せ）+ 古来からの唐花草</small></div>
-        </div>
-        <div class="recipe-row">
-          <div class="recipe-row__label">米品種</div>
-          <div class="recipe-row__value">天のつぶ（福島県産）</div>
-        </div>
-        <div class="recipe-row">
-          <div class="recipe-row__label">精米歩合</div>
-          <div class="recipe-row__value">88%</div>
-        </div>
-        <div class="recipe-row">
-          <div class="recipe-row__label">酒母</div>
-          <div class="recipe-row__value">花酛（はなもと）<small>東北に伝わる幻のどぶろく製法。haccobaが復刻し、ドライホッピングと融合</small></div>
-        </div>
-        <div class="recipe-row">
-          <div class="recipe-row__label">麹菌</div>
-          <div class="recipe-row__value">黄麹＋白麹（併用）</div>
-        </div>
-        <div class="recipe-row">
-          <div class="recipe-row__label">酵母</div>
-          <div class="recipe-row__value">ロット別（2023BY No.4 は BRY-97 ビール酵母、他公式非開示）</div>
-        </div>
-        <div class="recipe-row">
-          <div class="recipe-row__label">仕込水</div>
-          <div class="recipe-row__value unknown">公式非開示</div>
-        </div>
-        <div class="recipe-row">
-          <div class="recipe-row__label">発酵容器</div>
-          <div class="recipe-row__value">公式非開示（発酵温度18〜22℃の高温発酵）</div>
-        </div>
-        <div class="recipe-row">
-          <div class="recipe-row__label">火入れ／生酒</div>
-          <div class="recipe-row__value">生酒</div>
-        </div>
-        <div class="recipe-row">
-          <div class="recipe-row__label">加水／原酒</div>
-          <div class="recipe-row__value unknown">公式非開示</div>
-        </div>
+    <div class="recipe">{recipe_html}
     </div>
   </section>
 
@@ -505,20 +780,20 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
     <div class="enjoy">
       <div class="enjoy-cell">
         <div class="enjoy-cell__label">— TEMPERATURE</div>
-        <div class="enjoy-cell__value">8℃推奨（公式）</div>
+        <div class="enjoy-cell__value">{b['serving_temp'] or '公式推奨なし'}</div>
       </div>
       <div class="enjoy-cell">
         <div class="enjoy-cell__label">— GLASS</div>
-        <div class="enjoy-cell__value">白ワイン用の小ぶりなワイングラス（編集部推奨）</div>
+        <div class="enjoy-cell__value">{b['glass'] or '公式推奨なし'}</div>
       </div>
       <div class="enjoy-cell">
         <div class="enjoy-cell__label">— PRESERVATION</div>
-        <div class="enjoy-cell__value">要冷蔵・クール便必須<small>開封後の目安: 公式非開示</small></div>
+        <div class="enjoy-cell__value">{b['preservation']}<small>開封後の目安: {b['open_days'] or '公式非開示'}</small></div>
       </div>
       <div class="enjoy-cell">
         <div class="enjoy-cell__label">— PAIRING</div>
         <div class="enjoy-cell__value">編集部おすすめ料理
-          <div class="pairing-list"><span class="pairing-chip">白身魚のカルパッチョ</span><span class="pairing-chip">ナンプラー・パクチーのエスニック料理</span><span class="pairing-chip">イタリアン（カプレーゼ等）</span><span class="pairing-chip">山羊チーズ</span></div>
+          <div class="pairing-list">{pairing_chips}</div>
         </div>
       </div>
     </div>
@@ -534,18 +809,18 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
     <div class="tasting-3">
       <div class="tasting-row">
         <div class="tasting-row__label">— NOSE　<strong>香り</strong></div>
-        <div class="tasting-row__text">柑橘やマスカットなどの香りが広がるアロマホップ、グレープフルーツのようなシトラスのアロマ。</div>
+        <div class="tasting-row__text">{b['tasting_nose']}</div>
       </div>
       <div class="tasting-row">
         <div class="tasting-row__label">— PALATE　<strong>含み香・味わい</strong></div>
-        <div class="tasting-row__text">グレープフルーツのような味わいが口いっぱいに広がり、お米とホップが調和した「セッション」。黄麹由来の米の甘みと白麹由来のレモンのような酸。</div>
+        <div class="tasting-row__text">{b['tasting_palate']}</div>
       </div>
       <div class="tasting-row">
         <div class="tasting-row__label">— FINISH　<strong>余韻</strong></div>
-        <div class="tasting-row__text">熟成していくと全く表情が変わり、ライチなどの熟したフルーツのような印象に変化。</div>
+        <div class="tasting-row__text">{b['tasting_finish']}</div>
       </div>
     </div>
-    <div class="tasting-source">出典：<a href="https://imadeya.co.jp/products/8180977172645" target="_blank" rel="noopener">IMADEYA ONLINE STORE / haccoba note</a></div>
+    <div class="tasting-source">出典：<a href="{b['tasting_source_url']}" target="_blank" rel="noopener">{b['tasting_source_name']}</a></div>
   </section>
 
   <!-- FLAVOR PROFILE -->
@@ -558,87 +833,16 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
     <div class="flavor-wrap">
       <div class="flavor-box">
         <div class="flavor-box__title">— STRUCTURE　<strong>4軸構造スケール</strong></div>
-        <svg viewBox="0 0 460 200" xmlns="http://www.w3.org/2000/svg" aria-label="4軸構造スケール">
-
-    <text x="70" y="35" font-family="Shippori Mincho" font-size="13"
-          font-weight="500" text-anchor="end" fill="#3D3633">軽快</text>
-    <line x1="80" y1="30" x2="380" y2="30" stroke="#C0B69E" stroke-width="1"/>
-    <line x1="80" y1="27" x2="80" y2="33" stroke="#C0B69E" stroke-width="1.5"/>
-    <line x1="380" y1="27" x2="380" y2="33" stroke="#C0B69E" stroke-width="1.5"/>
-    <circle cx="185.0" cy="30" r="7" fill="#A8351F"/>
-    <circle cx="185.0" cy="30" r="11" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.4"/>
-    <text x="390" y="35" font-family="Shippori Mincho" font-size="13"
-          font-weight="500" fill="#3D3633">濃醇</text>
-    <text x="70" y="77" font-family="Shippori Mincho" font-size="13"
-          font-weight="500" text-anchor="end" fill="#3D3633">甘口</text>
-    <line x1="80" y1="72" x2="380" y2="72" stroke="#C0B69E" stroke-width="1"/>
-    <line x1="80" y1="69" x2="80" y2="75" stroke="#C0B69E" stroke-width="1.5"/>
-    <line x1="380" y1="69" x2="380" y2="75" stroke="#C0B69E" stroke-width="1.5"/>
-    <circle cx="206.0" cy="72" r="7" fill="#A8351F"/>
-    <circle cx="206.0" cy="72" r="11" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.4"/>
-    <text x="390" y="77" font-family="Shippori Mincho" font-size="13"
-          font-weight="500" fill="#3D3633">辛口</text>
-    <text x="70" y="119" font-family="Shippori Mincho" font-size="13"
-          font-weight="500" text-anchor="end" fill="#3D3633">酸控</text>
-    <line x1="80" y1="114" x2="380" y2="114" stroke="#C0B69E" stroke-width="1"/>
-    <line x1="80" y1="111" x2="80" y2="117" stroke="#C0B69E" stroke-width="1.5"/>
-    <line x1="380" y1="111" x2="380" y2="117" stroke="#C0B69E" stroke-width="1.5"/>
-    <circle cx="275.0" cy="114" r="7" fill="#A8351F"/>
-    <circle cx="275.0" cy="114" r="11" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.4"/>
-    <text x="390" y="119" font-family="Shippori Mincho" font-size="13"
-          font-weight="500" fill="#3D3633">酸強</text>
-    <text x="70" y="161" font-family="Shippori Mincho" font-size="13"
-          font-weight="500" text-anchor="end" fill="#3D3633">清澄</text>
-    <line x1="80" y1="156" x2="380" y2="156" stroke="#C0B69E" stroke-width="1"/>
-    <line x1="80" y1="153" x2="80" y2="159" stroke="#C0B69E" stroke-width="1.5"/>
-    <line x1="380" y1="153" x2="380" y2="159" stroke="#C0B69E" stroke-width="1.5"/>
-    <circle cx="245.0" cy="156" r="7" fill="#A8351F"/>
-    <circle cx="245.0" cy="156" r="11" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.4"/>
-    <text x="390" y="161" font-family="Shippori Mincho" font-size="13"
-          font-weight="500" fill="#3D3633">にごり</text>
-</svg>
+        {scale4_svg}
         <div class="flavor-box__cap">蔵の設計意図を構造で示す。Vivino型の4軸。値は編集部初期値（公式テイスティング記述から推定）。社長承認後に各銘柄個別チューニング予定。</div>
       </div>
       <div class="flavor-box">
         <div class="flavor-box__title">— PROFILE　<strong>6軸レーダー</strong></div>
-        <svg viewBox="0 0 260 280" xmlns="http://www.w3.org/2000/svg" aria-label="6軸フレーバープロファイル">
-    <polygon points="130.0,112.0 145.6,121.0 145.6,139.0 130.0,148.0 114.4,139.0 114.4,121.0" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="0.1"/>
-    <polygon points="130.0,94.0 161.2,112.0 161.2,148.0 130.0,166.0 98.8,148.0 98.8,112.0" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="0.1"/>
-    <polygon points="130.0,76.0 176.8,103.0 176.8,157.0 130.0,184.0 83.2,157.0 83.2,103.0" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="0.1"/>
-    <polygon points="130.0,58.0 192.4,94.0 192.4,166.0 130.0,202.0 67.6,166.0 67.6,94.0" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="0.1"/>
-    <polygon points="130.0,40.0 207.9,85.0 207.9,175.0 130.0,220.0 52.1,175.0 52.1,85.0" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="0.18"/>
-    <line x1="130" y1="130" x2="130.0" y2="40.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
-    <line x1="130" y1="130" x2="207.9" y2="85.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
-    <line x1="130" y1="130" x2="207.9" y2="175.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
-    <line x1="130" y1="130" x2="130.0" y2="220.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
-    <line x1="130" y1="130" x2="52.1" y2="175.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
-    <line x1="130" y1="130" x2="52.1" y2="85.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
-    
-    <polygon points="130.0,40.0 192.4,94.0 176.8,157.0 130.0,184.0 67.6,166.0 67.6,94.0" fill="#A8351F" fill-opacity="0.18" stroke="#A8351F" stroke-width="1.5"/>
-    <circle cx="130.0" cy="40.0" r="3.5" fill="#A8351F"/>
-    <circle cx="192.4" cy="94.0" r="3.5" fill="#A8351F"/>
-    <circle cx="176.8" cy="157.0" r="3.5" fill="#A8351F"/>
-    <circle cx="130.0" cy="184.0" r="3.5" fill="#A8351F"/>
-    <circle cx="67.6" cy="166.0" r="3.5" fill="#A8351F"/>
-    <circle cx="67.6" cy="94.0" r="3.5" fill="#A8351F"/>
-    <text x="130.0" y="18.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">華やか</text>
-    <text x="227.0" y="74.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">酸味</text>
-    <text x="227.0" y="186.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">甘味</text>
-    <text x="130.0" y="242.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">コク</text>
-    <text x="33.0" y="186.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">米感</text>
-    <text x="33.0" y="74.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">複雑性</text>
-    <text x="130.0" y="28.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">5</text>
-    <text x="202.7" y="88.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">4</text>
-    <text x="187.2" y="163.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">3</text>
-    <text x="130.0" y="196.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">3</text>
-    <text x="57.3" y="172.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">4</text>
-    <text x="57.3" y="88.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">4</text>
-    
-</svg>
+        {radar6_svg}
         <div class="flavor-box__cap">飲み手の印象を6軸で。さけのわ型のスタイル。値は編集部初期値。</div>
       </div>
     </div>
-    <div class="flavor-tags"><span class="flavor-tag">シトラス</span><span class="flavor-tag">グレープフルーツ</span><span class="flavor-tag">マスカット</span><span class="flavor-tag">ホップ</span><span class="flavor-tag">Citra</span><span class="flavor-tag">Talus</span><span class="flavor-tag">花酛</span><span class="flavor-tag">黄麹</span><span class="flavor-tag">白麹</span></div>
+    <div class="flavor-tags">{flavor_tags_html}</div>
   </section>
 
   <div class="divider">
@@ -657,8 +861,8 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
       <span class="section-meta__rule"></span>
     </div>
     <div class="story-block">
-      <p class="story-text">haccoba は2021年2月、東日本大震災で一度ゴーストタウン化した福島県南相馬市小高区に、元IT職の佐藤太亮氏が立ち上げたクラフトサケ蔵。「金はないけど、熱はある」を合言葉に、清酒免許の制約を逃れる「その他の醸造酒」枠で表現の自由を確保した。看板銘柄「はなうたホップス」は、東北に伝わる幻のどぶろく製法「花酛（はなもと）」——古来カラハナソウを使った歴史をヒントに、黄麹で米の甘み、白麹でレモンのような酸を引き出し、クラフトビールのドライホッピング技法で Citra・Talus・Motueka・Galaxy 等のアロマホップを重ねた一本。Makuakeでの人気投票A案から2021年6月14日に商品化された。佐藤氏は「昔の酒づくりはもっと自由だった。これからも自由な方が良い」と語る。</p>
-      <div class="story-source">出典：<a href="https://prtimes.jp/main/html/rd/p/000000003.000061904.html" target="_blank" rel="noopener">PR TIMES／Diamond Online／haccoba note</a></div>
+      <p class="story-text">{b['story']}</p>
+      <div class="story-source">出典：<a href="{b['story_source_url']}" target="_blank" rel="noopener">{b['story_source_name']}</a></div>
     </div>
   </section>
 
@@ -669,14 +873,7 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
       <span class="section-meta__label">ACCOLADES / 受賞</span>
       <span class="section-meta__rule"></span>
     </div>
-    <div class="awards-list">
-        <div class="award-card">
-          <div class="award-year">2023</div>
-          <div>
-            <div class="award-title">ICC SAKE AWARD 準決勝進出</div>
-            <div class="award-where">ICC KYOTO 2023</div>
-          </div>
-        </div></div>
+    <div class="awards-list">{awards_html}</div>
   </section>
 
   <!-- KURA + PURCHASE -->
@@ -688,10 +885,10 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
     </div>
     <div class="kura-purchase">
       <div class="kura-card">
-        <div class="kura-card__name">haccoba</div>
-        <div class="kura-card__meta">福島県・南相馬市小高区　／　創業 2021</div>
-        <p class="kura-card__philo">かつての民俗的なドブロクづくりを現代的に表現し、クラフトビールの自由なカルチャーで日本酒を再編集。</p>
-        <a class="kura-card__link" href="../brewery/haccoba.html">蔵の詳細を見る →</a>
+        <div class="kura-card__name">{brewery['name']}</div>
+        <div class="kura-card__meta">{brewery['prefecture']}・{brewery['city']}　／　創業 {brewery['founded']}</div>
+        <p class="kura-card__philo">{brewery['philosophy']}</p>
+        <a class="kura-card__link" href="../brewery/{b['brewery_slug']}.html">蔵の詳細を見る →</a>
       </div>
       <div class="purchase-card">
         <div>
@@ -699,7 +896,7 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
           <div class="purchase-card__title">公式オンラインショップで購入</div>
         </div>
         <div>
-          <a class="purchase-card__btn" href="https://haccoba.com/products/hanauta-hops20" target="_blank" rel="noopener">haccoba.com で見る →</a>
+          <a class="purchase-card__btn" href="{b['official_ec_url']}" target="_blank" rel="noopener">haccoba.com で見る →</a>
           <div class="purchase-card__note">PR ／ クール便配送・公式EC直リンク</div>
         </div>
       </div>
@@ -713,19 +910,7 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
       <span class="section-meta__label">GLOSSARY / 専門用語ミニ解説</span>
       <span class="section-meta__rule"></span>
     </div>
-    <dl class="glossary">
-        <div class="glossary-item">
-          <dt>花酛（はなもと）</dt>
-          <dd>東北地方に伝わるどぶろくの古典製法。「東洋のホップ」と呼ばれる唐花草（カラハナソウ）を使って自然発酵させる。明治の自家醸造禁止で衰退していたものを haccoba が復刻。</dd>
-        </div>
-        <div class="glossary-item">
-          <dt>その他の醸造酒</dt>
-          <dd>酒税法上、副原料を加えた米由来の醸造酒は「清酒」を名乗れず、この区分に分類される。クラフトサケの大半がこのカテゴリ。</dd>
-        </div>
-        <div class="glossary-item">
-          <dt>ドライホッピング</dt>
-          <dd>発酵後にホップを漬け込み、香りを抽出するクラフトビールの技法。haccobaは日本酒製造にこれを応用。</dd>
-        </div>
+    <dl class="glossary">{glossary_html}
     </dl>
   </section>
 
@@ -738,8 +923,8 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
     </div>
     <div class="sources">
       <h4>本ページのデータ出典</h4>
-      <ul><li><a href="https://haccoba.com/products/hanauta-hops20" target="_blank" rel="noopener">https://haccoba.com/products/hanauta-hops20</a></li><li><a href="https://imadeya.co.jp/products/8180977172645" target="_blank" rel="noopener">https://imadeya.co.jp/products/8180977172645</a></li><li><a href="https://prtimes.jp/main/html/rd/p/000000003.000061904.html" target="_blank" rel="noopener">https://prtimes.jp/main/html/rd/p/000000003.000061904.html</a></li><li><a href="https://haccoba.com/products/hanauta-hops23" target="_blank" rel="noopener">https://haccoba.com/products/hanauta-hops23</a></li><li><a href="https://note.com/haccoba/n/n22d0797a17cb" target="_blank" rel="noopener">https://note.com/haccoba/n/n22d0797a17cb</a></li><li><a href="https://note.com/haccoba/n/na8aae391dec3" target="_blank" rel="noopener">https://note.com/haccoba/n/na8aae391dec3</a></li><li><a href="https://diamond.jp/articles/-/292641" target="_blank" rel="noopener">https://diamond.jp/articles/-/292641</a></li><li><a href="https://industry-co-creation.com/news/93891" target="_blank" rel="noopener">https://industry-co-creation.com/news/93891</a></li></ul>
-      <div class="sources__meta">データ最終更新日：2026/05/30（saketto編集部）</div>
+      <ul>{sources_html}</ul>
+      <div class="sources__meta">データ最終更新日：{b['data_updated']}（saketto編集部）</div>
     </div>
   </section>
 
@@ -762,3 +947,11 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
 </main>
 </body>
 </html>
+"""
+
+    OUT.write_text(html, encoding="utf-8")
+    print(f"✓ サンプル生成: {OUT}")
+
+
+if __name__ == "__main__":
+    main()
