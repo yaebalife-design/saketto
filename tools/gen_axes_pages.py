@@ -811,14 +811,17 @@ AWARDS_CSS = """
 /* ICC 殿堂（墨バンド） */
 .icc { background:var(--ink); position:relative; overflow:hidden; margin:1.5rem 0 3.5rem; }
 .icc__inner { max-width:1100px; margin:0 auto; padding:3.75rem 2rem 4rem; position:relative; z-index:1; }
-.icc__seal { position:absolute; right:clamp(-3rem,1vw,1rem); top:50%; transform:translateY(-50%);
-  font-family:'Shippori Mincho',serif; font-weight:700; font-size:clamp(11rem,24vw,19rem);
-  color:rgba(179,58,42,.13); line-height:1; pointer-events:none; z-index:0; }
+.icc__emblem { position:absolute; right:clamp(1rem,4vw,3.5rem); top:2.8rem;
+  width:clamp(140px,16vw,200px); height:auto; opacity:.95; z-index:0; pointer-events:none; }
+@media (max-width:760px) { .icc__emblem { position:static; display:block; margin:0 auto 1.75rem; width:150px; } }
 .icc__eyebrow { font-family:'Cormorant Garamond',serif; font-style:italic; color:#D9694F; letter-spacing:.15em; font-size:.95rem; margin-bottom:.9rem; }
+.icc-year { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.55rem; color:#D9694F;
+  letter-spacing:.05em; padding:1.7rem 0 .5rem; margin-top:.4rem; }
+.icc-year:first-child { margin-top:0; }
 .icc__title { font-family:'Shippori Mincho',serif; font-weight:700; color:#F5F0E7; font-size:clamp(1.9rem,4.2vw,2.9rem); line-height:1.2; margin-bottom:.8rem; }
 .icc__desc { color:#C9BFAE; font-size:.95rem; line-height:1.9; max-width:660px; margin-bottom:2.4rem; }
 .icc-list { display:flex; flex-direction:column; border-top:1px solid #463c36; }
-.icc-row { display:grid; grid-template-columns:6.5em 1fr auto; gap:1.4rem; align-items:center;
+.icc-row { display:grid; grid-template-columns:6.5em 1fr; gap:1.4rem; align-items:center;
   padding:1.3rem .25rem; border-bottom:1px solid #463c36; text-decoration:none; transition:padding-left .25s; }
 .icc-row:hover { padding-left:.6rem; }
 .icc-row__brewery { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.2rem; color:#F5F0E7; letter-spacing:.02em; transition:color .25s; }
@@ -893,7 +896,6 @@ def gen_awards():
             return (4, "準決勝", "fin")
         return (5, "出場", "fin")
 
-    icc_entries.sort(key=lambda x: (rank_meta(x[1]["title"])[0], -(x[1].get("year") or 0)))
     award_brewery_count = len(set(s for s, _ in icc_entries) | set(s for s, _ in other_awards))
 
     html = page_head("受賞と海外進出", "ICC SAKE AWARD歴代の頂点、Disfrutar・Mugaritzでの提供、欧米アジア輸出 — クラフトサケと世界のつながり。")
@@ -907,24 +909,36 @@ def gen_awards():
     html += '<div class="awards-wrap">'
 
     # ── No.01 ICC SAKE AWARD（墨の殿堂）──
-    icc_rows = ""
+    # 年別グルーピング（新しい年順）、各年内はランク序列
+    by_year = defaultdict(list)
     for slug, it in icc_entries:
-        b = by_slug(slug)
-        if not b:
-            continue
-        _, label, variant = rank_meta(it["title"])
-        brand_html = f'<div class="icc-row__brand">{it["brand"]}</div>' if it.get("brand") else ''
-        year_html = f'<div class="icc-row__year">{it["year"]}</div>' if it.get("year") else '<div class="icc-row__year">—</div>'
-        icc_rows += f"""
+        by_year[it.get("year") or 0].append((slug, it))
+    icc_rows = ""
+    for y in sorted(by_year.keys(), reverse=True):
+        ylabel = str(y) if y else "年不明"
+        icc_rows += f'\n        <div class="icc-year">{ylabel}</div>'
+        for slug, it in sorted(by_year[y], key=lambda x: rank_meta(x[1]["title"])[0]):
+            b = by_slug(slug)
+            if not b:
+                continue
+            _, label, variant = rank_meta(it["title"])
+            brand_html = f'<div class="icc-row__brand">{it["brand"]}</div>' if it.get("brand") else ''
+            icc_rows += f"""
         <a class="icc-row" href="../brewery/{slug}.html">
           <span class="rank-chip rank-chip--{variant}">{label}</span>
           <div><div class="icc-row__brewery">{b['name']}</div>{brand_html}</div>
-          {year_html}
         </a>"""
     html += f"""
   </div>
   <section class="icc">
-    <div class="icc__seal" aria-hidden="true">賞</div>
+    <svg class="icc__emblem" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-label="ICC SAKE AWARD">
+      <circle cx="110" cy="110" r="92" fill="none" stroke="#B33A2A" stroke-width="2.5"/>
+      <circle cx="110" cy="110" r="83" fill="none" stroke="#B33A2A" stroke-width="1"/>
+      <text x="110" y="62" text-anchor="middle" font-size="14" letter-spacing="4" fill="#B33A2A">★ ★ ★</text>
+      <text x="110" y="120" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="700" font-size="58" letter-spacing="4" fill="#E8917B">ICC</text>
+      <line x1="68" y1="134" x2="152" y2="134" stroke="#B33A2A" stroke-width="0.8" opacity="0.55"/>
+      <text x="110" y="156" text-anchor="middle" font-family="'Zen Kaku Gothic Antique', sans-serif" font-weight="700" font-size="16" letter-spacing="6" fill="#D9694F">SAKE AWARD</text>
+    </svg>
     <div class="icc__inner">
       <div class="icc__eyebrow">— No.01 ／ ICC SAKE AWARD</div>
       <h2 class="icc__title">クラフトサケ、<br>歴代の頂点。</h2>
@@ -1005,23 +1019,12 @@ def gen_awards():
     </div>
   </section>"""
 
-    # ── No.04 メディア ──
-    media_rows = "".join(acc_row(s, it) for s, it in sorted(media_entries, key=lambda x: -(x[1].get("year") or 0)))
-    html += f"""
-  <section class="awards-sec">
-    <div class="section-meta"><span class="section-meta__num">No. 04</span><span class="section-meta__label">MEDIA SPOTLIGHTS</span><span class="section-meta__count">/ {len(media_entries)} 件</span><span class="section-meta__rule"></span></div>
-    <h2 class="cat-title">メディアが追う。</h2>
-    <p class="awards-sec__desc">Forbes JAPAN、dancyu、日経新聞、Diamond、経済産業省METI Journal、日本アカデミー賞アフターパーティー — 各界がこの新ジャンルに注目している。</p>
-    <div>{media_rows}
-    </div>
-  </section>"""
-
     html += '</div>'
     html += footer()
 
     out = OUT / "index.html"
     out.write_text(html, encoding="utf-8")
-    print(f"  awards/index.html  (ICC{len(icc_entries)} / 海外{len(global_entries)} / 他受賞{len(other_awards)} / メディア{len(media_entries)})")
+    print(f"  awards/index.html  (ICC{len(icc_entries)} / 海外{len(global_entries)} / 他受賞{len(other_awards)} ※メディア非掲載)")
 
 
 def main():

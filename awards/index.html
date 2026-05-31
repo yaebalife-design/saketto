@@ -247,14 +247,17 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 /* ICC 殿堂（墨バンド） */
 .icc { background:var(--ink); position:relative; overflow:hidden; margin:1.5rem 0 3.5rem; }
 .icc__inner { max-width:1100px; margin:0 auto; padding:3.75rem 2rem 4rem; position:relative; z-index:1; }
-.icc__seal { position:absolute; right:clamp(-3rem,1vw,1rem); top:50%; transform:translateY(-50%);
-  font-family:'Shippori Mincho',serif; font-weight:700; font-size:clamp(11rem,24vw,19rem);
-  color:rgba(179,58,42,.13); line-height:1; pointer-events:none; z-index:0; }
+.icc__emblem { position:absolute; right:clamp(1rem,4vw,3.5rem); top:2.8rem;
+  width:clamp(140px,16vw,200px); height:auto; opacity:.95; z-index:0; pointer-events:none; }
+@media (max-width:760px) { .icc__emblem { position:static; display:block; margin:0 auto 1.75rem; width:150px; } }
 .icc__eyebrow { font-family:'Cormorant Garamond',serif; font-style:italic; color:#D9694F; letter-spacing:.15em; font-size:.95rem; margin-bottom:.9rem; }
+.icc-year { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.55rem; color:#D9694F;
+  letter-spacing:.05em; padding:1.7rem 0 .5rem; margin-top:.4rem; }
+.icc-year:first-child { margin-top:0; }
 .icc__title { font-family:'Shippori Mincho',serif; font-weight:700; color:#F5F0E7; font-size:clamp(1.9rem,4.2vw,2.9rem); line-height:1.2; margin-bottom:.8rem; }
 .icc__desc { color:#C9BFAE; font-size:.95rem; line-height:1.9; max-width:660px; margin-bottom:2.4rem; }
 .icc-list { display:flex; flex-direction:column; border-top:1px solid #463c36; }
-.icc-row { display:grid; grid-template-columns:6.5em 1fr auto; gap:1.4rem; align-items:center;
+.icc-row { display:grid; grid-template-columns:6.5em 1fr; gap:1.4rem; align-items:center;
   padding:1.3rem .25rem; border-bottom:1px solid #463c36; text-decoration:none; transition:padding-left .25s; }
 .icc-row:hover { padding-left:.6rem; }
 .icc-row__brewery { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.2rem; color:#F5F0E7; letter-spacing:.02em; transition:color .25s; }
@@ -314,41 +317,45 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 <div class="awards-wrap">
   </div>
   <section class="icc">
-    <div class="icc__seal" aria-hidden="true">賞</div>
+    <svg class="icc__emblem" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-label="ICC SAKE AWARD">
+      <circle cx="110" cy="110" r="92" fill="none" stroke="#B33A2A" stroke-width="2.5"/>
+      <circle cx="110" cy="110" r="83" fill="none" stroke="#B33A2A" stroke-width="1"/>
+      <text x="110" y="62" text-anchor="middle" font-size="14" letter-spacing="4" fill="#B33A2A">★ ★ ★</text>
+      <text x="110" y="120" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="700" font-size="58" letter-spacing="4" fill="#E8917B">ICC</text>
+      <line x1="68" y1="134" x2="152" y2="134" stroke="#B33A2A" stroke-width="0.8" opacity="0.55"/>
+      <text x="110" y="156" text-anchor="middle" font-family="'Zen Kaku Gothic Antique', sans-serif" font-weight="700" font-size="16" letter-spacing="6" fill="#D9694F">SAKE AWARD</text>
+    </svg>
     <div class="icc__inner">
       <div class="icc__eyebrow">— No.01 ／ ICC SAKE AWARD</div>
       <h2 class="icc__title">クラフトサケ、<br>歴代の頂点。</h2>
       <p class="icc__desc">ICCサミットが主催するSAKEの品評会「ICC SAKE AWARD」。米×副原料の新ジャンルが、年に一度ここで頂点を競う。saketto収録の蔵が刻んだ戦績を、序列で並べた。</p>
       <div class="icc-list">
+        <div class="icc-year">2025</div>
         <a class="icc-row" href="../brewery/pukupuku.html">
           <span class="rank-chip rank-chip--win">優勝</span>
           <div><div class="icc-row__brewery">ぷくぷく醸造</div><div class="icc-row__brand">#ODAKA – 蔵付酵母 木桶どぶろく –</div></div>
-          <div class="icc-row__year">2025</div>
-        </a>
-        <a class="icc-row" href="../brewery/ine-to-agave.html">
-          <span class="rank-chip rank-chip--win">初代優勝</span>
-          <div><div class="icc-row__brewery">稲とアガベ醸造所</div><div class="icc-row__brand">稲とアガベ OGAラベル</div></div>
-          <div class="icc-row__year">2023</div>
         </a>
         <a class="icc-row" href="../brewery/linne.html">
           <span class="rank-chip rank-chip--2nd">準優勝</span>
           <div><div class="icc-row__brewery">LINNÉ</div><div class="icc-row__brand">800 大麦 樽熟成</div></div>
-          <div class="icc-row__year">2025</div>
         </a>
+        <div class="icc-year">2024</div>
         <a class="icc-row" href="../brewery/ine-to-agave.html">
           <span class="rank-chip rank-chip--3rd">第3位</span>
           <div><div class="icc-row__brewery">稲とアガベ醸造所</div><div class="icc-row__brand">花風</div></div>
-          <div class="icc-row__year">2024</div>
         </a>
         <a class="icc-row" href="../brewery/pukupuku.html">
           <span class="rank-chip rank-chip--fin">決勝進出</span>
           <div><div class="icc-row__brewery">ぷくぷく醸造</div></div>
-          <div class="icc-row__year">2024</div>
+        </a>
+        <div class="icc-year">2023</div>
+        <a class="icc-row" href="../brewery/ine-to-agave.html">
+          <span class="rank-chip rank-chip--win">初代優勝</span>
+          <div><div class="icc-row__brewery">稲とアガベ醸造所</div><div class="icc-row__brand">稲とアガベ OGAラベル</div></div>
         </a>
         <a class="icc-row" href="../brewery/haccoba.html">
           <span class="rank-chip rank-chip--fin">準決勝</span>
           <div><div class="icc-row__brewery">haccoba</div></div>
-          <div class="icc-row__year">2023</div>
         </a>
       </div>
     </div>
@@ -407,49 +414,6 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <a class="acc-row" href="../brewery/dejima-hosendo.html">
         <div><div class="acc-row__title">Tokyo酒チャレンジ 金賞</div><div class="acc-row__brewery">でじま芳扇堂／芳扇 吟雲（九州初作付・初収穫の美山錦100%どぶろく）</div></div>
         <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">長崎県</span></div>
-      </a>
-    </div>
-  </section>
-  <section class="awards-sec">
-    <div class="section-meta"><span class="section-meta__num">No. 04</span><span class="section-meta__label">MEDIA SPOTLIGHTS</span><span class="section-meta__count">/ 9 件</span><span class="section-meta__rule"></span></div>
-    <h2 class="cat-title">メディアが追う。</h2>
-    <p class="awards-sec__desc">Forbes JAPAN、dancyu、日経新聞、Diamond、経済産業省METI Journal、日本アカデミー賞アフターパーティー — 各界がこの新ジャンルに注目している。</p>
-    <div>
-      <a class="acc-row" href="../brewery/sakenova.html">
-        <div><div class="acc-row__title">日経新聞「サケアイ、佐渡に『クラフトサケ』の醸造所」</div><div class="acc-row__brewery">SAKENOVA BREWERY</div></div>
-        <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">新潟県</span></div>
-      </a>
-      <a class="acc-row" href="../brewery/sakenova.html">
-        <div><div class="acc-row__title">日本アカデミー賞アフターパーティーで唯一の日本酒ブランドとして提供（約500名）</div><div class="acc-row__brewery">SAKENOVA BREWERY／SAKENOVA</div></div>
-        <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">新潟県</span></div>
-      </a>
-      <a class="acc-row" href="../brewery/ine-to-agave.html">
-        <div><div class="acc-row__title">Forbes JAPAN「CULTURE-PRENEURS 30」選出</div><div class="acc-row__brewery">稲とアガベ醸造所／岡住修兵代表</div></div>
-        <div class="acc-row__right"><span class="acc-row__year">2024</span><span class="acc-row__pref">秋田県</span></div>
-      </a>
-      <a class="acc-row" href="../brewery/pukupuku.html">
-        <div><div class="acc-row__title">京都芸術大学「クラフトサケ学」非常勤講師開設</div><div class="acc-row__brewery">ぷくぷく醸造／代表・立川哲之氏</div></div>
-        <div class="acc-row__right"><span class="acc-row__year">2024</span><span class="acc-row__pref">福島県</span></div>
-      </a>
-      <a class="acc-row" href="../brewery/pukupuku.html">
-        <div><div class="acc-row__title">経済産業省METI Journal・greenz.jp・BS朝日他</div><div class="acc-row__brewery">ぷくぷく醸造</div></div>
-        <div class="acc-row__right"><span class="acc-row__year">2024</span><span class="acc-row__pref">福島県</span></div>
-      </a>
-      <a class="acc-row" href="../brewery/happy-taro.html">
-        <div><div class="acc-row__title">dancyu「クラフトSAKE醸造所訪問レポート ネオどぶろく」前後編大型特集</div><div class="acc-row__brewery">ハッピー太郎醸造所</div></div>
-        <div class="acc-row__right"><span class="acc-row__year">2023</span><span class="acc-row__pref">滋賀県</span></div>
-      </a>
-      <a class="acc-row" href="../brewery/tokyo-station.html">
-        <div><div class="acc-row__title">日経新聞「東京駅の店内で日本酒製造へ 国税庁、小売りに初認可」大型報道</div><div class="acc-row__brewery">東京駅酒造場</div></div>
-        <div class="acc-row__right"><span class="acc-row__year">2020</span><span class="acc-row__pref">東京都</span></div>
-      </a>
-      <a class="acc-row" href="../brewery/ine-to-agave.html">
-        <div><div class="acc-row__title">日経・朝日・毎日・週刊ダイヤモンド・Discover Japan他多数</div><div class="acc-row__brewery">稲とアガベ醸造所</div></div>
-        <div class="acc-row__right"><span class="acc-row__pref">秋田県</span></div>
-      </a>
-      <a class="acc-row" href="../brewery/heiroku.html">
-        <div><div class="acc-row__title">Diamond『新日本酒紀行』掲載</div><div class="acc-row__brewery">平六醸造</div></div>
-        <div class="acc-row__right"><span class="acc-row__pref">岩手県</span></div>
       </a>
     </div>
   </section></div>
