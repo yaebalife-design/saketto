@@ -299,7 +299,13 @@ main { position:relative; z-index:1; }
 .masthead a { color:var(--ink-soft); text-decoration:none; transition:color .25s; }
 .masthead a:hover { color:var(--accent); }
 .masthead .accent-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; margin-right:.5rem; }
-.masthead .left { display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; }
+.masthead { flex-wrap:wrap; gap:.7rem 1.2rem; }
+.masthead .left { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
+.masthead .brand-link { color:var(--ink); font-weight:700; }
+.masthead-nav { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
+.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead-nav a:hover { color:var(--accent); }
+@media (max-width:640px){ .masthead-nav{ gap:.9rem; font-size:.72rem; } }
 .masthead .right { font-family:'Cormorant Garamond', serif; font-style:italic; letter-spacing:.1em; }
 
 /* ===== HERO ===== */

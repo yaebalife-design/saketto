@@ -107,8 +107,13 @@ main { position:relative; z-index:1; }
 .masthead a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
 .masthead a:hover { color:var(--accent); }
 .masthead .accent-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; margin-right:.5rem; }
-.masthead .left { display:flex; gap:1.5rem; align-items:center; }
-.masthead .right { font-family:'Cormorant Garamond', serif; font-style:italic; letter-spacing:.1em; }
+.masthead { flex-wrap:wrap; gap:.7rem 1.2rem; }
+.masthead .left { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
+.masthead .brand-link { color:var(--ink); font-weight:700; }
+.masthead-nav { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
+.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead-nav a:hover { color:var(--accent); }
+@media (max-width:640px){ .masthead-nav{ gap:.9rem; font-size:.72rem; } }
 
 /* HERO */
 .hero {
@@ -657,10 +662,17 @@ def render(brewery, index, prev_brewery, next_brewery):
     html += f"""
   <div class="masthead">
     <div class="left">
-      <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
+      <a class="brand-link" href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
       <span>BREWERY No. {n:02d} / {total}</span>
     </div>
-    <div class="right">{brewery["prefecture"]} — A. D. {brewery["founded"]}</div>
+    <nav class="masthead-nav" aria-label="ナビ">
+      <a href="../subingredients/">副原料</a>
+      <a href="../index.html#breweries">蔵</a>
+      <a href="../region/">地域</a>
+      <a href="../genre/">ジャンル</a>
+      <a href="../availability/">入手性</a>
+      <a href="../guide/">読みもの</a>
+    </nav>
   </div>
 
   {region_banner}

@@ -374,8 +374,15 @@ def build_html(brand, detail, brewery, idx):
 <body>
 <main>
   <div class="masthead">
-    <div class="left"><a href="../index.html"><span class="accent-dot"></span>SAKETTO</a><a href="../brewery/{slug}.html">← {brewery['name']}</a></div>
-    <div class="right">BRAND — 2026/05/31</div>
+    <div class="left"><a class="brand-link" href="../index.html"><span class="accent-dot"></span>SAKETTO</a><a href="../brewery/{slug}.html">← {brewery['name']}</a></div>
+    <nav class="masthead-nav" aria-label="ナビ">
+      <a href="../subingredients/">副原料</a>
+      <a href="../index.html#breweries">蔵</a>
+      <a href="../region/">地域</a>
+      <a href="../genre/">ジャンル</a>
+      <a href="../availability/">入手性</a>
+      <a href="../guide/">読みもの</a>
+    </nav>
   </div>
 {hero}
 {spec_board}

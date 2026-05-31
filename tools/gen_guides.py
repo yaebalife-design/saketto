@@ -138,14 +138,21 @@ def page_head(title, description):
 """
 
 
-def masthead(label, right_text):
+def masthead(label, right_text=""):
     return f"""
   <div class="masthead">
     <div class="left">
-      <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
+      <a class="brand-link" href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
       <span>{label}</span>
     </div>
-    <div class="right">{right_text}</div>
+    <nav class="masthead-nav" aria-label="ナビ">
+      <a href="../subingredients/">副原料</a>
+      <a href="../index.html#breweries">蔵</a>
+      <a href="../region/">地域</a>
+      <a href="../genre/">ジャンル</a>
+      <a href="../availability/">入手性</a>
+      <a href="../guide/">読みもの</a>
+    </nav>
   </div>
 """
 
