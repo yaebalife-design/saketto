@@ -619,20 +619,6 @@ def render(brewery, index, prev_brewery, next_brewery):
 
   {awards_section}
 
-  {tasting_section}
-
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. {sources_section_num:02d}</span>
-      <span class="section-meta__label">SOURCES / 一次ソース</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <div class="sources">
-      <h4>本ページのデータ出典</h4>
-      <ul>{sources_html}</ul>
-    </div>
-  </section>
-
   <nav class="nav-prev-next">
     {prev_html}
     {next_html}
