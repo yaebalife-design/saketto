@@ -95,6 +95,24 @@ EXTRA_CSS = """
 .sub-h { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.3rem; color:var(--ink); margin:.4rem 0 .9rem; letter-spacing:.02em; line-height:1.5; }
 .sub-h.tight { margin-top:1.8rem; }
 .sub-h .accent { color:var(--accent); }
+
+/* 読みもの一覧（ガイドのハブ） */
+.guide-list { border-top:1px solid var(--line); max-width:980px; margin:0 auto; }
+.guide-card {
+  display:grid; grid-template-columns:auto 1fr auto; gap:1.5rem; align-items:center;
+  padding:1.9rem 1rem; border-bottom:1px solid var(--line);
+  text-decoration:none; color:var(--ink); transition:background .3s,padding-left .3s;
+}
+.guide-card:hover { background:var(--paper); padding-left:1.5rem; }
+.guide-card__num { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2.6rem; color:var(--line); line-height:1; }
+.guide-card:hover .guide-card__num { color:var(--accent); }
+.guide-card__eyebrow { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; }
+.guide-card__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.5rem; color:var(--ink); margin-bottom:.5rem; line-height:1.4; }
+.guide-card__sum { font-size:.92rem; color:var(--ink-soft); line-height:1.8; }
+.guide-card__arr { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); font-size:1rem; white-space:nowrap; letter-spacing:.08em; }
+@media (max-width:680px){ .guide-card { grid-template-columns:auto 1fr; } .guide-card__arr{ display:none; } }
+.guide-foot { max-width:760px; margin:2.6rem auto 0; font-size:.95rem; color:var(--ink-soft); line-height:1.9; }
+.guide-foot a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
 """
 
 
@@ -218,6 +236,60 @@ def kura_link(slug):
     return f'<a href="../brewery/{slug}.html">{KURA.get(slug, slug)}</a>'
 
 
+# ────────────── 記事メタ（一覧の元データ。記事を増やすときはここに1件追加） ──────────────
+
+ARTICLES = [
+    {
+        "slug": "craftsake-towa",
+        "num": "01",
+        "eyebrow": "WHAT IS CRAFT SAKE",
+        "title": "クラフトサケとは",
+        "summary": "米と副原料で醸す新ジャンルの酒「クラフトサケ」。その定義、日本酒・どぶろくとの区分の違い、新規参入の仕組み、協会、世界の潮流、醸造のことばまで、全体像をやさしく。",
+    },
+    {
+        "slug": "nomikata",
+        "num": "02",
+        "eyebrow": "HOW TO ENJOY",
+        "title": "クラフトサケの飲み方・楽しみ方",
+        "summary": "温度で変わる味わい、生酒・にごりの保存、活性タイプの開け方、器の選び方、ソーダ割りなどのスタイル、料理とのペアリング、和らぎ水まで。自由な酒の楽しみ方。",
+    },
+]
+
+
+def build_index():
+    cards = ""
+    for a in ARTICLES:
+        cards += f"""    <a class="guide-card" href="{a['slug']}.html">
+      <div class="guide-card__num">{a['num']}</div>
+      <div class="guide-card__body">
+        <div class="guide-card__eyebrow">{a['eyebrow']}</div>
+        <div class="guide-card__title">{a['title']}</div>
+        <div class="guide-card__sum">{a['summary']}</div>
+      </div>
+      <div class="guide-card__arr">READ →</div>
+    </a>
+"""
+    body = f"""
+  <div class="article">
+    <section class="section">
+      <div class="guide-list">
+{cards}      </div>
+      <p class="guide-foot">クラフトサケの世界を、知って・楽しむための読みもの。これから少しずつ増えていきます。まず一本に出会いたい方は、<a href="../index.html">トップ</a>の5つの軸からどうぞ。</p>
+    </section>
+  </div>
+"""
+    html = page_head("読みもの — クラフトサケのガイド",
+                     "クラフトサケを知り、楽しむためのガイド記事の一覧。「クラフトサケとは」「飲み方・楽しみ方」など、米から生まれた自由な酒を深く味わうための読みものをまとめています。")
+    html += masthead("READING — 読みもの", "A Field Guide")
+    html += hero(
+        "READING — 読みもの",
+        'クラフトサケを、<span class="accent">もっと知る</span>。',
+        "そもそもクラフトサケとは何か。どう飲めば、もっとおいしいのか。一本に出会う前に読んでおきたい、saketto のガイド記事。")
+    html += body
+    html += footer()
+    return html
+
+
 # ────────────── 記事①：クラフトサケとは ──────────────
 
 def build_towa():
@@ -333,9 +405,9 @@ def build_towa():
             <div class="readmore__k">NEXT READING — 02</div>
             <div class="readmore__t">クラフトサケの飲み方・楽しみ方</div>
           </a>
-          <a href="../index.html">
-            <div class="readmore__k">BACK TO</div>
-            <div class="readmore__t">saketto トップへ</div>
+          <a href="index.html">
+            <div class="readmore__k">INDEX</div>
+            <div class="readmore__t">読みもの一覧へ</div>
           </a>
         </div>
       </div>
@@ -483,9 +555,9 @@ def build_nomikata():
             <div class="readmore__k">READING — 01</div>
             <div class="readmore__t">そもそもクラフトサケとは？</div>
           </a>
-          <a href="../index.html">
-            <div class="readmore__k">BACK TO</div>
-            <div class="readmore__t">saketto トップへ</div>
+          <a href="index.html">
+            <div class="readmore__k">INDEX</div>
+            <div class="readmore__t">読みもの一覧へ</div>
           </a>
         </div>
       </div>
@@ -509,9 +581,10 @@ def build_nomikata():
 
 def main():
     OUT_DIR.mkdir(exist_ok=True)
+    (OUT_DIR / "index.html").write_text(build_index(), encoding="utf-8")
     (OUT_DIR / "craftsake-towa.html").write_text(build_towa(), encoding="utf-8")
     (OUT_DIR / "nomikata.html").write_text(build_nomikata(), encoding="utf-8")
-    print("OK ガイド記事生成: guide/craftsake-towa.html, guide/nomikata.html")
+    print(f"OK ガイド生成: guide/index.html（一覧）＋ 記事{len(ARTICLES)}本")
 
 
 if __name__ == "__main__":

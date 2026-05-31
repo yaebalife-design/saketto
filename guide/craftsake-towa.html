@@ -304,6 +304,24 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 .sub-h { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.3rem; color:var(--ink); margin:.4rem 0 .9rem; letter-spacing:.02em; line-height:1.5; }
 .sub-h.tight { margin-top:1.8rem; }
 .sub-h .accent { color:var(--accent); }
+
+/* 読みもの一覧（ガイドのハブ） */
+.guide-list { border-top:1px solid var(--line); max-width:980px; margin:0 auto; }
+.guide-card {
+  display:grid; grid-template-columns:auto 1fr auto; gap:1.5rem; align-items:center;
+  padding:1.9rem 1rem; border-bottom:1px solid var(--line);
+  text-decoration:none; color:var(--ink); transition:background .3s,padding-left .3s;
+}
+.guide-card:hover { background:var(--paper); padding-left:1.5rem; }
+.guide-card__num { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2.6rem; color:var(--line); line-height:1; }
+.guide-card:hover .guide-card__num { color:var(--accent); }
+.guide-card__eyebrow { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; }
+.guide-card__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.5rem; color:var(--ink); margin-bottom:.5rem; line-height:1.4; }
+.guide-card__sum { font-size:.92rem; color:var(--ink-soft); line-height:1.8; }
+.guide-card__arr { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); font-size:1rem; white-space:nowrap; letter-spacing:.08em; }
+@media (max-width:680px){ .guide-card { grid-template-columns:auto 1fr; } .guide-card__arr{ display:none; } }
+.guide-foot { max-width:760px; margin:2.6rem auto 0; font-size:.95rem; color:var(--ink-soft); line-height:1.9; }
+.guide-foot a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
 </style>
 </head>
 <body>
@@ -492,9 +510,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
             <div class="readmore__k">NEXT READING — 02</div>
             <div class="readmore__t">クラフトサケの飲み方・楽しみ方</div>
           </a>
-          <a href="../index.html">
-            <div class="readmore__k">BACK TO</div>
-            <div class="readmore__t">saketto トップへ</div>
+          <a href="index.html">
+            <div class="readmore__k">INDEX</div>
+            <div class="readmore__t">読みもの一覧へ</div>
           </a>
         </div>
       </div>
