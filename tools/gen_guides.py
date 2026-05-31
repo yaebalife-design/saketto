@@ -204,8 +204,9 @@ def footer():
         <small>— クラフトサケの図鑑</small>
       </div>
       <div class="colophon__notes">
-        <strong>準備中</strong><span class="colophon__sep">／</span>
-        2026年夏、本サイト公開予定<span class="colophon__sep">／</span>
+        <a href="/about.html">運営者情報</a><span class="colophon__sep">／</span>
+        <a href="/privacy.html">プライバシーポリシー</a><span class="colophon__sep">／</span>
+        <a href="/disclaimer.html">免責事項・広告表記</a><span class="colophon__sep">／</span>
         20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
         PR ／ アフィリエイトリンクを含みます<span class="colophon__sep">／</span>
         © 2026 saketto.

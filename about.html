@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>読みもの — クラフトサケのガイド — saketto.</title>
-<meta name="description" content="クラフトサケを知り、選び、楽しむためのガイド記事の一覧。基礎を知る・選ぶ・深く味わうの分類で、米から生まれた自由な酒を味わうための読みものをまとめています。">
+<title>運営者情報 — saketto.</title>
+<meta name="description" content="saketto（クラフトサケDB）の運営者情報・編集方針（一次ソース主義）・お問い合わせ。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -242,93 +242,28 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   padding: .15rem .5rem;
 }
 
-.article { max-width:1100px; margin:0 auto; padding:0 2rem 2rem; }
-.prose { max-width:760px; }
-.prose p { font-size:1.02rem; color:var(--ink-soft); line-height:1.95; margin-bottom:1.4rem; }
-.prose strong { color:var(--ink); font-weight:600; }
-.prose a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); transition:border-color .25s; }
-.prose a:hover { border-bottom-color:var(--accent); }
-.lead {
-  font-family:'Shippori Mincho', serif; font-size:1.22rem; line-height:1.95;
-  color:var(--ink); margin-bottom:1.8rem; font-weight:500;
-}
-.lead .accent { color:var(--accent); }
-
-/* 用語・区分グリッド */
-.term-grid { display:grid; grid-template-columns:1fr; border:1px solid var(--line); margin:1rem 0 2.5rem; max-width:860px; }
-@media (min-width:680px){ .term-grid { grid-template-columns:1fr 1fr; } }
-.term { padding:1.2rem 1.4rem; border-bottom:1px solid var(--line); background:var(--bg); }
-@media (min-width:680px){ .term { border-right:1px solid var(--line); } .term:nth-child(2n){ border-right:none; } }
-.term:last-child{ border-bottom:none; }
-.term__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.12rem; color:var(--ink); margin-bottom:.4rem; }
-.term__name .en { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.82rem; color:var(--accent); margin-left:.5rem; letter-spacing:.05em; }
-.term__desc { font-size:.92rem; color:var(--ink-soft); line-height:1.8; }
-
-/* 温度テーブル */
-.temp-table { width:100%; max-width:760px; border-collapse:collapse; margin:1rem 0 1rem; font-size:.92rem; }
-.temp-table th, .temp-table td { text-align:left; padding:.7rem 1rem; border-bottom:1px solid var(--line-soft); }
-.temp-table thead th {
-  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; letter-spacing:.1em;
-  font-size:.75rem; text-transform:uppercase; color:var(--ink); border-bottom:1px solid var(--line);
-}
-.temp-table td.t { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-style:normal; color:var(--accent); white-space:nowrap; font-size:1rem; letter-spacing:.01em; }
-.temp-table tr.grp td { background:var(--bg-alt); font-family:'Shippori Mincho',serif; font-weight:600; color:var(--ink); letter-spacing:.04em; }
-.temp-note { font-size:.82rem; color:var(--ink-mute); margin:0 0 2.2rem; max-width:760px; line-height:1.7; }
-
-/* 注意ボックス */
-.callout { background:var(--bg-alt); border-left:3px solid var(--accent); padding:1.3rem 1.5rem; margin:1.6rem 0 2.2rem; max-width:760px; }
-.callout__label {
-  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; letter-spacing:.12em;
-  font-size:.74rem; color:var(--accent); text-transform:uppercase; margin-bottom:.5rem;
-}
-.callout p { font-size:.9rem; color:var(--ink-soft); line-height:1.85; margin:0; }
-.callout a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
-
-/* ハブへのリンク行 */
-.pill-links { display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0 2.5rem; }
-.pill-links a {
-  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.9rem;
-  letter-spacing:.03em; color:var(--ink); text-decoration:none;
-  border:1px solid var(--line); padding:.55rem 1.1rem; transition:border-color .25s,color .25s;
-}
-.pill-links a:hover { border-color:var(--accent); color:var(--accent); }
-.pill-links a .arr { color:var(--accent); margin-left:.45rem; }
-
-/* 蔵リンクのインライン群 */
-.kura-links { display:flex; flex-wrap:wrap; gap:.55rem 1rem; margin:.2rem 0 2rem; max-width:760px; }
-.kura-links a { font-family:'Shippori Mincho',serif; font-size:.98rem; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:1px; transition:color .25s,border-color .25s; }
-.kura-links a:hover { color:var(--accent); border-bottom-color:var(--accent); }
-
-/* 次に読む */
-.readmore { display:grid; grid-template-columns:1fr; gap:1rem; margin:1.5rem 0 0; max-width:860px; }
-@media (min-width:680px){ .readmore { grid-template-columns:1fr 1fr; } }
-.readmore a { display:block; border:1px solid var(--line); padding:1.4rem 1.5rem; text-decoration:none; background:var(--bg); transition:background .3s,padding-left .3s; }
-.readmore a:hover { background:var(--paper); padding-left:1.75rem; }
-.readmore__k { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.8rem; color:var(--accent); letter-spacing:.08em; }
-.readmore__t { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.18rem; color:var(--ink); margin-top:.3rem; line-height:1.4; }
-
-.sub-h { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.3rem; color:var(--ink); margin:.4rem 0 .9rem; letter-spacing:.02em; line-height:1.5; }
-.sub-h.tight { margin-top:1.8rem; }
-.sub-h .accent { color:var(--accent); }
-
-/* 読みもの一覧（ガイドのハブ） */
-.guide-list { border-top:1px solid var(--line); max-width:980px; margin:0 auto; }
-.guide-card {
-  display:grid; grid-template-columns:auto 1fr auto; gap:1.5rem; align-items:center;
-  padding:1.9rem 1rem; border-bottom:1px solid var(--line);
-  text-decoration:none; color:var(--ink); transition:background .3s,padding-left .3s;
-}
-.guide-card:hover { background:var(--paper); padding-left:1.5rem; }
-.guide-card__mark { width:10px; height:10px; background:var(--line); transform:rotate(45deg); transition:background .3s; }
-.guide-card:hover .guide-card__mark { background:var(--accent); }
-.guide-card__eyebrow { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; }
-.guide-card__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.5rem; color:var(--ink); margin-bottom:.5rem; line-height:1.4; }
-.guide-card__sum { font-size:.92rem; color:var(--ink-soft); line-height:1.8; }
-.guide-card__arr { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); font-size:1rem; white-space:nowrap; letter-spacing:.08em; }
-@media (max-width:680px){ .guide-card { grid-template-columns:auto 1fr; } .guide-card__arr{ display:none; } }
-.cat-lead { max-width:760px; font-size:.95rem; color:var(--ink-soft); line-height:1.85; margin:-.4rem 0 1.2rem; }
-.guide-foot { max-width:760px; margin:2.6rem auto 0; font-size:.95rem; color:var(--ink-soft); line-height:1.9; }
-.guide-foot a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
+.static { max-width: 760px; margin: 0 auto; padding: 56px 28px 96px; position: relative; z-index: 1; }
+.breadcrumb { font-size: 12px; letter-spacing: .08em; color: var(--ink-mute); margin-bottom: 28px; }
+.breadcrumb a { color: var(--ink-mute); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { margin: 0 .5em; color: var(--line); }
+.static h1 { font-family: 'Shippori Mincho', serif; font-size: 30px; font-weight: 600; letter-spacing: .04em; color: var(--ink); margin-bottom: 10px; }
+.static .updated { font-size: 12px; color: var(--ink-mute); letter-spacing: .06em; margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--line-soft); }
+.static h2 { font-family: 'Zen Kaku Gothic Antique', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin: 40px 0 14px; padding-left: 14px; border-left: 3px solid var(--accent); }
+.static h3 { font-family: 'Zen Kaku Gothic Antique', sans-serif; font-size: 15px; font-weight: 700; color: var(--ink-soft); margin: 26px 0 10px; }
+.static p { font-size: 15px; line-height: 1.95; color: var(--ink-soft); margin-bottom: 14px; }
+.static ul { margin: 0 0 16px 1.2em; }
+.static li { font-size: 15px; line-height: 1.9; color: var(--ink-soft); margin-bottom: 6px; }
+.static a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--line); }
+.static a:hover { color: var(--accent-deep); border-bottom-color: var(--accent); }
+.static table { width: 100%; border-collapse: collapse; margin: 8px 0 20px; font-size: 14px; }
+.static th, .static td { text-align: left; padding: 12px 14px; border: 1px solid var(--line-soft); vertical-align: top; }
+.static th { width: 30%; background: var(--bg-alt); font-weight: 700; color: var(--ink); white-space: nowrap; }
+.static td { color: var(--ink-soft); }
+.contact-btn { display: inline-block; margin-top: 8px; padding: 13px 26px; background: var(--accent); color: var(--paper); font-family: 'Zen Kaku Gothic Antique', sans-serif; font-weight: 500; letter-spacing: .06em; text-decoration: none; border: 1px solid var(--accent); }
+.contact-btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: var(--paper); }
+.contact-pending { display: inline-block; margin-top: 8px; padding: 13px 26px; border: 1px dashed var(--line); color: var(--ink-mute); font-size: 14px; }
+@media (max-width: 600px) { .static { padding: 40px 20px 72px; } .static h1 { font-size: 25px; } .static th { width: 38%; } }
 </style>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="any">
@@ -341,76 +276,73 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   gtag('js', new Date());
   gtag('config', 'G-REYY1OPEK2');
 </script>
-<script src="../assets/age-gate.js" defer></script>
+<script src="assets/age-gate.js" defer></script>
 </head>
 <body>
 <main>
 
   <div class="masthead">
     <div class="left">
-      <a class="brand-link" href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
-      <span>READING — 読みもの</span>
+      <a class="brand-link" href="/index.html"><span class="accent-dot"></span>SAKETTO</a>
+      <span>ABOUT</span>
     </div>
     <nav class="masthead-nav" aria-label="ナビ">
-      <a href="../subingredients/">副原料</a>
-      <a href="../index.html#breweries">蔵</a>
-      <a href="../region/">地域</a>
-      <a href="../genre/">ジャンル</a>
-      <a href="../guide/">読みもの</a>
+      <a href="/subingredients/">副原料</a>
+      <a href="/index.html#breweries">蔵</a>
+      <a href="/region/">地域</a>
+      <a href="/genre/">ジャンル</a>
+      <a href="/guide/">読みもの</a>
     </nav>
   </div>
 
-  <section class="hero">
-    <div class="hero__eyebrow">READING — 読みもの</div>
-    <h1 class="hero__title">クラフトサケを、<span class="accent">もっと知る</span>。</h1>
-    <p class="hero__lede">そもそもクラフトサケとは何か。どう飲めば、もっとおいしいのか。基礎を知り、選び、深く味わう——saketto のガイド記事を、分類でまとめています。</p>
-  </section>
+  <article class="static">
+    <div class="breadcrumb"><a href="/index.html">トップ</a><span>›</span>運営者情報</div>
 
-  <div class="divider">
-    <div class="rule"></div>
-    <div class="ornament outer"></div>
-    <div class="ornament"></div>
-    <div class="ornament outer"></div>
-    <div class="rule"></div>
-  </div>
+  <h1>運営者情報</h1>
+  <p class="updated">最終更新日: 2026年5月31日</p>
 
-  <div class="article">
+  <h2>サイト概要</h2>
+  <table>
+    <tr><th>サイト名</th><td>saketto（さけっと／クラフトサケDB）</td></tr>
+    <tr><th>URL</th><td>https://saketto.com</td></tr>
+    <tr><th>運営開始</th><td>2026年</td></tr>
+    <tr><th>サイトの目的</th><td>米と副原料で醸す新ジャンルの酒「クラフトサケ」の蔵と銘柄を、副原料・蔵・地域・ジャンルの4軸から横断的に探せる無料データベースを提供する</td></tr>
+    <tr><th>運営者</th><td>saketto 編集部</td></tr>
+    <tr><th>連絡先</th><td>下記「お問い合わせ」をご覧ください</td></tr>
+  </table>
 
-    <section class="section">
-      <div class="section-meta">
-        <span class="section-meta__num">KNOW</span>
-        <span class="section-meta__label">基礎を知る</span>
-        <span class="section-meta__rule"></span>
-      </div>
-      <p class="cat-lead">クラフトサケを初めて知る人へ。まず読んでおきたい入門。</p>
-      <div class="guide-list">
-        <a class="guide-card" href="craftsake-towa.html">
-          <div class="guide-card__mark"></div>
-          <div class="guide-card__body">
-            <div class="guide-card__eyebrow">WHAT IS CRAFT SAKE</div>
-            <div class="guide-card__title">クラフトサケとは</div>
-            <div class="guide-card__sum">米と副原料で醸す新ジャンルの酒「クラフトサケ」。その定義、日本酒・どぶろくとの区分の違い、新規参入の仕組み、協会、世界の潮流、醸造のことばまで、全体像をやさしく。</div>
-          </div>
-          <div class="guide-card__arr">READ →</div>
-        </a>
-        <a class="guide-card" href="nomikata.html">
-          <div class="guide-card__mark"></div>
-          <div class="guide-card__body">
-            <div class="guide-card__eyebrow">HOW TO ENJOY</div>
-            <div class="guide-card__title">クラフトサケの飲み方・楽しみ方</div>
-            <div class="guide-card__sum">温度で変わる味わい、生酒・にごりの保存、活性タイプの開け方、器の選び方、ソーダ割りなどのスタイル、料理とのペアリング、和らぎ水まで。自由な酒の楽しみ方。</div>
-          </div>
-          <div class="guide-card__arr">READ →</div>
-        </a>
-      </div>
-    </section>
-    <p class="guide-foot">クラフトサケの世界を、知って・選んで・深く味わうための読みもの。これから少しずつ増えていきます。まず一本に出会いたい方は、<a href="../index.html">トップ</a>の4つの軸からどうぞ。</p>
-  </div>
+  <h2>本サイトについて</h2>
+  <p>saketto は、日本国内で造られているクラフトサケ（酒税法上の「その他の醸造酒」「清酒以外の発酵酒」に当たる、米＋副原料の自由な酒）の情報を集約し、副原料・蔵・地域・ジャンルなど複数の切り口から横断検索できる無料データベースです。</p>
+  <p>各蔵の公開情報、各コンテストの公表情報、各ふるさと納税ポータルの公開情報をもとに編集し、情報の更新には自動化（プログラムによる生成・整形）を活用しています。最終的な公開の判断は運営者（人間）が行っています。</p>
+
+  <h2>編集方針 — 一次ソース主義</h2>
+  <ul>
+    <li>蔵名・所在地・創業・銘柄名・度数・容量・副原料は、各蔵の公式情報で確認したうえで掲載しています</li>
+    <li>受賞歴は、各コンテストの公式発表・各蔵の公式リリースに基づく事実情報を引用しています</li>
+    <li>確認できない情報は掲載しない、または出典・確認日を明示する方針です</li>
+    <li>蔵の建物等の写真は原則として無断掲載せず、雰囲気を表すイメージ画像で代替しています</li>
+    <li>価格・在庫・度数等の最新情報は、各蔵・各販売サイトでご確認ください</li>
+  </ul>
+
+  <h2>収益について</h2>
+  <p>当サイトはアフィリエイトプログラム・広告サービスを利用しており、リンク経由で商品が購入・寄附された場合に運営者が報酬を受け取ることがあります。詳しくは<a href="/disclaimer.html">免責事項・広告表記</a>をご確認ください。</p>
+
+  <h2>お問い合わせ</h2>
+  <p>掲載情報の修正依頼・新規の蔵／銘柄の掲載依頼・その他のお問い合わせは、お問い合わせフォームよりお願いいたします。</p>
+  <p><span class="contact-pending">お問い合わせフォームは準備中です</span></p>
+
+  <h2>関連ページ</h2>
+  <ul>
+    <li><a href="/privacy.html">プライバシーポリシー</a></li>
+    <li><a href="/disclaimer.html">免責事項・広告表記</a></li>
+  </ul>
+
+  </article>
 
   <footer>
     <div class="colophon">
       <div class="colophon__brand">
-        <a href="../index.html">saketto<span class="dot">.</span></a>
+        <a href="/index.html">saketto<span class="dot">.</span></a>
         <small>— クラフトサケの図鑑</small>
       </div>
       <div class="colophon__notes">
