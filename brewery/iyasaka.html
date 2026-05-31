@@ -143,6 +143,18 @@ main { position:relative; z-index:1; }
   font-size:1.06rem; color:var(--ink); line-height:2.0;
   margin-top:1.6rem;
 }
+/* 蔵のファクトシート */
+.factsheet { border:1px solid var(--line); margin-top:1.9rem; }
+.fact-row { display:grid; grid-template-columns:140px 1fr; border-bottom:1px solid var(--line); padding:.9rem 1.5rem; background:var(--bg); }
+.fact-row:last-child { border-bottom:none; }
+.fact-row:nth-child(even) { background:var(--paper); }
+.fact-row__label { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.76rem; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; line-height:1.9; }
+.fact-row__value { font-family:'Shippori Mincho', serif; font-weight:500; font-size:1rem; color:var(--ink); line-height:1.7; }
+.fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent); }
+.fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
+.fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+@media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
@@ -406,6 +418,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">米麹100%の「十割麹酒」で清酒規格にとらわれない新しい酒のかたちを提案。</p>
     <p class="about-body">代表・坂本イッコー(坂本一浩)の「人生初の責任醸造」として始まった蔵。菊正宗酒造、未来日本酒店店長を経て阿部酒造で修業。白米を一切使わず米麹だけで醸す全麹酒「ITTEKI(一擲)」が看板で、蜂蜜のような甘みと旨味、滑らかなテクスチャーが特徴。銘柄名は「乾坤一擲」と酒の「一滴」を掛けている。</p>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">新潟県・柏崎市宮之下集落</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2026年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">坂本 一浩（イッコー）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">1 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">米のみ（副原料を使わない純米仕込み）</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">全麹仕込み</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://sakestreet.com/ja/media/pioneers-iyasaka-brewery-niigata" target="_blank" rel="noopener">sakestreet.com</a></div></div></div>
     <p class="features">2026年1月「その他の醸造酒」製造免許取得。副原料なしだが米麹のみで造るため清酒規格外。</p>
   </section>
 

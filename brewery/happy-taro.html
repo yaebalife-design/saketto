@@ -143,6 +143,18 @@ main { position:relative; z-index:1; }
   font-size:1.06rem; color:var(--ink); line-height:2.0;
   margin-top:1.6rem;
 }
+/* 蔵のファクトシート */
+.factsheet { border:1px solid var(--line); margin-top:1.9rem; }
+.fact-row { display:grid; grid-template-columns:140px 1fr; border-bottom:1px solid var(--line); padding:.9rem 1.5rem; background:var(--bg); }
+.fact-row:last-child { border-bottom:none; }
+.fact-row:nth-child(even) { background:var(--paper); }
+.fact-row__label { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.76rem; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; line-height:1.9; }
+.fact-row__value { font-family:'Shippori Mincho', serif; font-weight:500; font-size:1rem; color:var(--ink); line-height:1.7; }
+.fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent); }
+.fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
+.fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+@media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
@@ -406,6 +418,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">「醗酵でつなぐ、しあわせ」。糀屋ならではの完熟糀を使い、顔の見える生産者の原材料と伊吹山伏流水で醸す。</p>
     <p class="about-body">滋賀県長浜市の蔵。糀(こうじ)づくりの技術を土台に、米の旨味をふくよかに引き出すどぶろくを醸す。琵琶湖北部・菅浦の八朔、政所(まんどころ)の茶、音羽の森のクロモジなど、地元の自然素材を副原料に用いるのが特徴。生酛・酵母無添加の限定醸造や、ビール醸造家とのコラボ「something happy」シリーズも手がける。</p>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">滋賀県・長浜市元浜町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2017年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">クラフトサケ協会 加盟</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">7 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">ホップ・八朔・茶葉・黒文字</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">生酛</span><span class="fact-tag">ドライホッピング</span><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://happytaro.jp/" target="_blank" rel="noopener">happytaro.jp</a></div></div></div>
     <p class="features">糀屋（発酵食品店）×どぶろくのハイブリッド。「something happy」シリーズで茶葉・八朔・黒文字など多彩な副原料を展開。</p>
   </section>
 

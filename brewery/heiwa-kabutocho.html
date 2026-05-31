@@ -143,6 +143,18 @@ main { position:relative; z-index:1; }
   font-size:1.06rem; color:var(--ink); line-height:2.0;
   margin-top:1.6rem;
 }
+/* 蔵のファクトシート */
+.factsheet { border:1px solid var(--line); margin-top:1.9rem; }
+.fact-row { display:grid; grid-template-columns:140px 1fr; border-bottom:1px solid var(--line); padding:.9rem 1.5rem; background:var(--bg); }
+.fact-row:last-child { border-bottom:none; }
+.fact-row:nth-child(even) { background:var(--paper); }
+.fact-row__label { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.76rem; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; line-height:1.9; }
+.fact-row__value { font-family:'Shippori Mincho', serif; font-weight:500; font-size:1rem; color:var(--ink); line-height:1.7; }
+.fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent); }
+.fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
+.fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+@media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
@@ -406,6 +418,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">和歌山「紀土」蔵元の平和酒造が、東京・兜町で都市型どぶろく醸造所を展開。</p>
     <p class="about-body">和歌山の清酒「紀土」で知られる平和酒造(1928年創業)が、東京・兜町に開いたどぶろく醸造所。ブルワリーパブ形式で、造り手がカウンター越しにできたてを提供する。和歌山の仕込み水を東京へ運び、小型容器で少量仕込み。プレーン・小豆・黒豆・ホップ・白麹に加え、週替わりの季節どぶろくも。</p>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">東京都・中央区日本橋兜町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2022年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">5 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">小豆・黒豆・ホップ・季節副原料</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://www.heiwashuzou.co.jp/heiwa-doburoku-kabutocho" target="_blank" rel="noopener">www.heiwashuzou.co.jp</a></div></div></div>
     <p class="features">副原料にホップ・果実・豆類・穀類・ハーブ（ミント・レモングラス・スイートバジル等）多彩。</p>
   </section>
 

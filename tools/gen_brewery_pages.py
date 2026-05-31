@@ -10,6 +10,8 @@
 
 import os
 import sys
+import json
+import glob
 from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -17,7 +19,40 @@ from breweries_master import BREWERIES
 from breweries_brands import BRANDS
 from awards import AWARDS
 from tasting import TASTING
-from brewery_about import about_of
+from brewery_about import about_of, founder_of
+
+# brand_data（一次ソース調査済み）を読み込み、製法特徴の抽出に使う
+_DETAILS = {}
+for _f in glob.glob(os.path.join(os.path.dirname(__file__), "brand_data", "*.json")):
+    _d = json.load(open(_f, encoding="utf-8"))
+    _DETAILS[_d["brewery"]] = list(_d["brands"].values())
+
+# 製法・特徴キーワード → 表示ラベル
+_METHOD_TAGS = [
+    ("花酛", "花酛"), ("水もと", "水酛"), ("水酛", "水酛"), ("生酛", "生酛"),
+    ("差酛", "差酛"), ("菩提酛", "菩提酛"), ("全麹", "全麹仕込み"), ("木桶", "木桶仕込み"),
+    ("ドライホッピング", "ドライホッピング"), ("酵母無添加", "酵母無添加"),
+    ("袋吊り", "袋吊り"), ("発芽玄米", "発芽玄米"), ("高温糖化", "高温糖化"),
+    ("白麹", "白麹"), ("黄麹", "黄麹"),
+]
+
+
+def method_tags_for(slug):
+    """その蔵のbrand_dataから製法・特徴タグを集約（出現順・重複なし）"""
+    details = _DETAILS.get(slug, [])
+    if not details:
+        return []
+    blob = ""
+    for d in details:
+        for k in ("shubo", "koji", "vessel", "flavor_basis", "sub_ingredients_detail", "story"):
+            v = d.get(k)
+            if v:
+                blob += str(v) + " "
+    tags = []
+    for kw, label in _METHOD_TAGS:
+        if kw in blob and label not in tags:
+            tags.append(label)
+    return tags
 
 REGION_IMG = {
     "東北": "region_tohoku", "関東": "region_kanto", "中部": "region_chubu",
@@ -166,6 +201,18 @@ main { position:relative; z-index:1; }
   font-size:1.06rem; color:var(--ink); line-height:2.0;
   margin-top:1.6rem;
 }
+/* 蔵のファクトシート */
+.factsheet { border:1px solid var(--line); margin-top:1.9rem; }
+.fact-row { display:grid; grid-template-columns:140px 1fr; border-bottom:1px solid var(--line); padding:.9rem 1.5rem; background:var(--bg); }
+.fact-row:last-child { border-bottom:none; }
+.fact-row:nth-child(even) { background:var(--paper); }
+.fact-row__label { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.76rem; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; line-height:1.9; }
+.fact-row__value { font-family:'Shippori Mincho', serif; font-weight:500; font-size:1rem; color:var(--ink); line-height:1.7; }
+.fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent); }
+.fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
+.fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+@media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
@@ -451,6 +498,48 @@ def render(brewery, index, prev_brewery, next_brewery):
     philosophy_short = brewery.get("philosophy", "")[:120].replace('"', "'")
     about_text = about_of(brewery["slug"]) or ""
 
+    # ── ファクトシート（蔵のデータ） ──
+    slug = brewery["slug"]
+    fact_rows = []
+
+    def fact(label, value):
+        if value:
+            fact_rows.append(f'<div class="fact-row"><div class="fact-row__label">{label}</div><div class="fact-row__value">{value}</div></div>')
+
+    fact("所在地", f'{brewery["prefecture"]}・{brewery["city"]}')
+    fact("創業", f'{brewery["founded"]}年' if brewery.get("founded") else None)
+    fact("代表者", founder_of(slug))
+    fact("協会", "クラフトサケ協会 加盟" if brewery.get("association") else "非加盟（独立系）")
+    fact("収録銘柄", f'{len(brands)} 銘柄' if brands else None)
+
+    subs = []
+    for br in brands:
+        for ing in (br.get("sub_ingredients") or []):
+            base = ing.split("（")[0].strip()
+            if base and base != "米のみ" and base not in subs:
+                subs.append(base)
+    if not subs and brands:
+        subs = ["米のみ（副原料を使わない純米仕込み）"]
+    fact("主な副原料", "・".join(subs[:8]) if subs else None)
+
+    mtags = method_tags_for(slug)
+    if mtags:
+        tags_html = '<div class="fact-tags">' + "".join(f'<span class="fact-tag">{t}</span>' for t in mtags) + '</div>'
+        fact("製法・特徴", tags_html)
+
+    aw = [it for it in AWARDS.get(slug, []) if it["type"] == "award"]
+    if aw:
+        fact("受賞", "、".join(it["title"] + (f'（{it["year"]}）' if it.get("year") else "") for it in aw))
+    gl = [it for it in AWARDS.get(slug, []) if it["type"] == "global"]
+    if gl:
+        fact("海外進出", "、".join(it["title"] for it in gl))
+
+    if brewery.get("official_url"):
+        host = brewery["official_url"].split("//")[-1].split("/")[0]
+        fact("公式サイト", f'<a href="{brewery["official_url"]}" target="_blank" rel="noopener">{host}</a>')
+
+    factsheet_html = ('<div class="factsheet">' + "".join(fact_rows) + '</div>') if fact_rows else ''
+
     assoc_html = '<span class="hero__assoc">CRAFTSAKE ASSOC.</span>' \
         if brewery.get("association") else ''
 
@@ -605,6 +694,7 @@ def render(brewery, index, prev_brewery, next_brewery):
     </div>
     <p class="story">{brewery["philosophy"]}</p>
     {(f'<p class="about-body">{about_text}</p>') if about_text else ''}
+    {factsheet_html}
     <p class="features">{brewery["features"]}</p>
   </section>
 

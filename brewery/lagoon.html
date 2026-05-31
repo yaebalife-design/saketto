@@ -143,6 +143,18 @@ main { position:relative; z-index:1; }
   font-size:1.06rem; color:var(--ink); line-height:2.0;
   margin-top:1.6rem;
 }
+/* 蔵のファクトシート */
+.factsheet { border:1px solid var(--line); margin-top:1.9rem; }
+.fact-row { display:grid; grid-template-columns:140px 1fr; border-bottom:1px solid var(--line); padding:.9rem 1.5rem; background:var(--bg); }
+.fact-row:last-child { border-bottom:none; }
+.fact-row:nth-child(even) { background:var(--paper); }
+.fact-row__label { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.76rem; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; line-height:1.9; }
+.fact-row__value { font-family:'Shippori Mincho', serif; font-weight:500; font-size:1rem; color:var(--ink); line-height:1.7; }
+.fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent); }
+.fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
+.fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+@media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
@@ -406,6 +418,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">「感激できる、多様なおいしさ」をモットーに、極小規模と持続可能性にこだわった醸造。福島潟のほとりで地域素材を活用。</p>
     <p class="about-body">新潟市北区で田中洋介が営む、日本酒の製法をベースにホップや果実を醸し込むクラフトSAKEの蔵。五百万石・こしいぶき・亀の尾など新潟の米に、シトラホップや越後姫いちご、ル・レクチェ洋梨など地元の恵みを掛け合わせる。黄麹と白麹のハイブリッド仕込みで、日本酒の骨格とジューシーな果実感を両立させる。</p>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">新潟県・新潟市北区前新田乙</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2021年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">田中 洋介</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">クラフトサケ協会 加盟</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">7 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">ホップ・ル・レクチェ・マスクメロン・越後姫・トマト・バジル</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">高温糖化</span><span class="fact-tag">白麹</span><span class="fact-tag">黄麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://www.lagoon-brewery.com/home" target="_blank" rel="noopener">www.lagoon-brewery.com</a></div></div></div>
     <p class="features">ブランド名は「翔空（しょうくう）」。果実・ホップ・トマト＋バジルまで副原料の幅が極めて広い。</p>
   </section>
 

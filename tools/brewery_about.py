@@ -131,5 +131,26 @@ ABOUT = {
 }
 
 
+# 代表者・杜氏（一次ソースで確認できた蔵のみ。不確実なものは載せない）
+FOUNDERS = {
+    "ine-to-agave": "岡住 修兵（新政酒造で修業）",
+    "haccoba": "佐藤 太亮（元IT職）",
+    "lagoon": "田中 洋介",
+    "konohanano": "細井 洋佑",
+    "nondo": "佐々木 要太郎（四代目）",
+    "pukupuku": "立川 哲之",
+    "linne": "今井 翔也（新政・WAKAZE出身）",
+    "amanosato": "中山 雄介",
+    "iyasaka": "坂本 一浩（イッコー）",
+    "yamane": "若林 福成（生物研究家）",
+    "dejima-hosendo": "日向 勇人（醸造家）",
+    "salmon-brewery": "労働者協同組合（創業メンバー5名）",
+}
+
+
 def about_of(slug):
     return ABOUT.get(slug)
+
+
+def founder_of(slug):
+    return FOUNDERS.get(slug)

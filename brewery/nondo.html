@@ -143,6 +143,18 @@ main { position:relative; z-index:1; }
   font-size:1.06rem; color:var(--ink); line-height:2.0;
   margin-top:1.6rem;
 }
+/* 蔵のファクトシート */
+.factsheet { border:1px solid var(--line); margin-top:1.9rem; }
+.fact-row { display:grid; grid-template-columns:140px 1fr; border-bottom:1px solid var(--line); padding:.9rem 1.5rem; background:var(--bg); }
+.fact-row:last-child { border-bottom:none; }
+.fact-row:nth-child(even) { background:var(--paper); }
+.fact-row__label { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.76rem; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; line-height:1.9; }
+.fact-row__value { font-family:'Shippori Mincho', serif; font-weight:500; font-size:1rem; color:var(--ink); line-height:1.7; }
+.fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent); }
+.fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
+.fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+@media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
@@ -406,6 +418,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">遠野の風土と自然栽培「遠野1号」米から、無添加の米飲料・どぶろく・甘酒・米酢を醸す。</p>
     <p class="about-body">岩手県遠野市。四代目・佐々木要太郎が、自然栽培米「遠野1号」と室町〜江戸の古典製法(水もと・生酛)で醸す。協会酵母も醸造用乳酸も使わず、木桶で150日を超える完全発酵。米糠まで活かした「権化」シリーズが代名詞。世界ベストレストラン1位「Disfrutar」や旧3つ星「Mugaritz」が求めた、遠野のどぶろく。</p>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">岩手県・遠野市</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2022年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">佐々木 要太郎（四代目）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">9 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">米のみ（副原料を使わない純米仕込み）</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">水酛</span><span class="fact-tag">生酛</span><span class="fact-tag">木桶仕込み</span></div></div></div><div class="fact-row"><div class="fact-row__label">海外進出</div><div class="fact-row__value">Mugaritz（スペイン・旧3つ星）で提供、Disfrutar（バルセロナ・世界ベストレストラン2024年1位）で提供</div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://nondo-tono.life/" target="_blank" rel="noopener">nondo-tono.life</a></div></div></div>
     <p class="features">自然栽培「遠野1号」米。四代目佐々木要太郎が長年取り組む遠野のクラフトサケ。</p>
   </section>
 

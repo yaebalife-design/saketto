@@ -143,6 +143,18 @@ main { position:relative; z-index:1; }
   font-size:1.06rem; color:var(--ink); line-height:2.0;
   margin-top:1.6rem;
 }
+/* 蔵のファクトシート */
+.factsheet { border:1px solid var(--line); margin-top:1.9rem; }
+.fact-row { display:grid; grid-template-columns:140px 1fr; border-bottom:1px solid var(--line); padding:.9rem 1.5rem; background:var(--bg); }
+.fact-row:last-child { border-bottom:none; }
+.fact-row:nth-child(even) { background:var(--paper); }
+.fact-row__label { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.76rem; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; line-height:1.9; }
+.fact-row__value { font-family:'Shippori Mincho', serif; font-weight:500; font-size:1rem; color:var(--ink); line-height:1.7; }
+.fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent); }
+.fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
+.fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+@media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
@@ -406,6 +418,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">労働者協同組合方式で、多古米と副原料で「限りなく日本酒に近いクラフトサケ」を目指す。</p>
     <p class="about-body">千葉県香取郡多古町を拠点に、2024年に労働者協同組合として設立(自社蔵建設までは千葉・山武市の守屋酒造で受託醸造)。蔵名は、太平洋側で日本最南端の鮭遡上河川「栗山川」を遡る鮭に由来し、「鮭のように地球を豊かにする存在に」との理念を込める。多古町産の在来米「中生神力」を生酛・酵母無添加で醸す、限りなく日本酒に近いクラフトサケ。</p>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">千葉県・香取郡多古町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2024年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">労働者協同組合（創業メンバー5名）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">1 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">米のみ（副原料を使わない純米仕込み）</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">生酛</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://salmonbre.official.ec/" target="_blank" rel="noopener">salmonbre.official.ec</a></div></div></div>
     <p class="features">生酛造り＋副原料の組合せで独自の路線。日経新聞・Sake Worldで「クラフトサケ」と明記。</p>
   </section>
 

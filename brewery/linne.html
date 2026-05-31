@@ -143,6 +143,18 @@ main { position:relative; z-index:1; }
   font-size:1.06rem; color:var(--ink); line-height:2.0;
   margin-top:1.6rem;
 }
+/* 蔵のファクトシート */
+.factsheet { border:1px solid var(--line); margin-top:1.9rem; }
+.fact-row { display:grid; grid-template-columns:140px 1fr; border-bottom:1px solid var(--line); padding:.9rem 1.5rem; background:var(--bg); }
+.fact-row:last-child { border-bottom:none; }
+.fact-row:nth-child(even) { background:var(--paper); }
+.fact-row__label { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.76rem; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; line-height:1.9; }
+.fact-row__value { font-family:'Shippori Mincho', serif; font-weight:500; font-size:1rem; color:var(--ink); line-height:1.7; }
+.fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent); }
+.fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
+.fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+@media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
@@ -406,6 +418,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">元WAKAZE杜氏・今井翔也創業。米以外の麹（大麦麹・蕎麦・芋麹）でつくる「800（ヤオ）」シリーズ。</p>
     <p class="about-body">京都の今井翔也(新政・WAKAZE出身)が2024年に創業したファントムブリュワリー。2026年には京都・五条坂に自社蔵を構える予定。「異を醸す」をコンセプトに、米以外の麹——大麦麹・蕎麦麹・白麹——で醸す「800(ヤオ)」シリーズが看板。世界初を謳う大麦100%醸造酒など、麹そのものから常識を問い直す。</p>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">京都府・京都市（活動拠点）／群馬県渋川市（法人登記）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2024年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">今井 翔也（新政・WAKAZE出身）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">3 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">大麦麹・蕎麦麹・米麹のみ</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span><span class="fact-tag">黄麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">受賞</div><div class="fact-row__value">ICC SAKE AWARD 準優勝（2025）</div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://sakeworld.jp/sakebrewery/kyoto-linne/" target="_blank" rel="noopener">sakeworld.jp</a></div></div></div>
     <p class="features">haccoba・阿部酒造・LIBROMで委託醸造のファントムブリュワリー。2026年京都自社醸造所開設予定。</p>
   </section>
 
