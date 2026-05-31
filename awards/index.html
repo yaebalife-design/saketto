@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>受賞・メディア・海外進出 — saketto.</title>
-<meta name="description" content="クラフトサケのICC SAKE AWARD等の受賞、業界メディア露出、海外進出を横断的に追跡。">
+<title>受賞と海外進出 — saketto.</title>
+<meta name="description" content="ICC SAKE AWARD歴代の頂点、Disfrutar・Mugaritzでの提供、欧米アジア輸出 — クラフトサケと世界のつながり。">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -239,19 +239,69 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 </head>
 <body>
 <main>
+<style>
+.awards-wrap { max-width:1100px; margin:0 auto; padding:0 2rem; }
+.awards-sec { margin-bottom:3.5rem; }
+.awards-sec__desc { color:var(--ink-soft); font-size:.97rem; line-height:1.85; max-width:680px; margin:-1rem 0 1.75rem; }
 
+/* ICC 殿堂（墨バンド） */
+.icc { background:var(--ink); position:relative; overflow:hidden; margin:1.5rem 0 3.5rem; }
+.icc__inner { max-width:1100px; margin:0 auto; padding:3.75rem 2rem 4rem; position:relative; z-index:1; }
+.icc__seal { position:absolute; right:clamp(-3rem,1vw,1rem); top:50%; transform:translateY(-50%);
+  font-family:'Shippori Mincho',serif; font-weight:700; font-size:clamp(11rem,24vw,19rem);
+  color:rgba(179,58,42,.13); line-height:1; pointer-events:none; z-index:0; }
+.icc__eyebrow { font-family:'Cormorant Garamond',serif; font-style:italic; color:#D9694F; letter-spacing:.15em; font-size:.95rem; margin-bottom:.9rem; }
+.icc__title { font-family:'Shippori Mincho',serif; font-weight:700; color:#F5F0E7; font-size:clamp(1.9rem,4.2vw,2.9rem); line-height:1.2; margin-bottom:.8rem; }
+.icc__desc { color:#C9BFAE; font-size:.95rem; line-height:1.9; max-width:660px; margin-bottom:2.4rem; }
+.icc-list { display:flex; flex-direction:column; border-top:1px solid #463c36; }
+.icc-row { display:grid; grid-template-columns:6.5em 1fr auto; gap:1.4rem; align-items:center;
+  padding:1.3rem .25rem; border-bottom:1px solid #463c36; text-decoration:none; transition:padding-left .25s; }
+.icc-row:hover { padding-left:.6rem; }
+.icc-row__brewery { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.2rem; color:#F5F0E7; letter-spacing:.02em; transition:color .25s; }
+.icc-row:hover .icc-row__brewery { color:#fff; }
+.icc-row__brand { font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.85rem; color:#A99C8C; margin-top:.25rem; line-height:1.5; }
+.icc-row__year { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; color:#8a7d6e; }
+.rank-chip { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.8rem;
+  letter-spacing:.08em; padding:.45rem .2rem; text-align:center; line-height:1; }
+.rank-chip--win { background:var(--accent); color:#FAF6ED; }
+.rank-chip--2nd { border:1px solid #D9694F; color:#E8917B; }
+.rank-chip--3rd { border:1px solid #8a7d6e; color:#C9BFAE; }
+.rank-chip--fin { border:1px solid #463c36; color:#8a7d6e; }
+
+/* GLOBAL 行先カード */
+.global-grid { display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+@media (min-width:760px) { .global-grid { grid-template-columns:1fr 1fr; } }
+.global-card { background:var(--bg); padding:1.7rem 1.85rem; text-decoration:none; color:inherit;
+  display:flex; flex-direction:column; gap:.55rem; transition:background .3s, padding-left .25s; }
+.global-card:hover { background:var(--paper); padding-left:2.1rem; }
+.global-card__dest { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.92rem; color:var(--accent); letter-spacing:.06em; }
+.global-card__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.18rem; color:var(--ink); line-height:1.55; }
+.global-card__brewery { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.85rem; color:var(--ink-soft); letter-spacing:.04em; }
+.global-card__note { font-size:.86rem; color:var(--ink-mute); line-height:1.75; }
+
+/* その他受賞・メディア 行 */
+.acc-row { display:grid; grid-template-columns:1fr auto; gap:1.1rem; align-items:start;
+  padding:1.15rem 0; border-bottom:1px solid var(--line); text-decoration:none; color:inherit; transition:padding-left .25s; }
+.acc-row:hover { padding-left:.5rem; }
+.acc-row:last-child { border-bottom:none; }
+.acc-row__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.02rem; color:var(--ink); line-height:1.55; }
+.acc-row__brewery { font-size:.85rem; color:var(--ink-soft); margin-top:.3rem; }
+.acc-row__right { text-align:right; white-space:nowrap; }
+.acc-row__year { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; color:var(--accent); }
+.acc-row__pref { display:block; font-size:.8rem; color:var(--ink-mute); margin-top:.2rem; }
+</style>
   <div class="masthead">
     <div class="left">
       <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
-      <span>EXTRA — ACCOLADES & MEDIA</span>
+      <span>EXTRA — ACCOLADES & GLOBAL</span>
     </div>
-    <div class="right">5 awarded</div>
+    <div class="right">5 breweries awarded</div>
   </div>
 
   <section class="hero">
-    <div class="hero__eyebrow">— ACCOLADES & EXPOSURE</div>
-    <h1 class="hero__title">受賞と<span class="accent">海外進出</span>から、見つける。</h1>
-    <p class="hero__lede">ICC SAKE AWARD、Tokyo酒チャレンジ、日本パッケージデザイン大賞、Mugaritz・Disfrutarでの提供、欧米輸出開始 — クラフトサケと「世界」のつながりを一覧する。</p>
+    <div class="hero__eyebrow">— 実績で選ぶ ／ ACCOLADES & GLOBAL</div>
+    <h1 class="hero__title">頂点と、<span class="accent">世界</span>から。</h1>
+    <p class="hero__lede">まだ10年に満たない新ジャンルが、競技会で頂点を競い、世界best1のレストランに選ばれ、欧米アジアへ渡っていく。クラフトサケの"現在地"を、受賞と海外進出から見つける。</p>
   </section>
 
   <div class="divider">
@@ -261,224 +311,145 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="ornament outer"></div>
     <div class="rule"></div>
   </div>
-<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">AWARDS</span>
-      <span class="section-meta__count">/ 5 蔵</span>
-      <span class="section-meta__rule"></span>
+<div class="awards-wrap">
+  </div>
+  <section class="icc">
+    <div class="icc__seal" aria-hidden="true">賞</div>
+    <div class="icc__inner">
+      <div class="icc__eyebrow">— No.01 ／ ICC SAKE AWARD</div>
+      <h2 class="icc__title">クラフトサケ、<br>歴代の頂点。</h2>
+      <p class="icc__desc">ICCサミットが主催するSAKEの品評会「ICC SAKE AWARD」。米×副原料の新ジャンルが、年に一度ここで頂点を競う。saketto収録の蔵が刻んだ戦績を、序列で並べた。</p>
+      <div class="icc-list">
+        <a class="icc-row" href="../brewery/pukupuku.html">
+          <span class="rank-chip rank-chip--win">優勝</span>
+          <div><div class="icc-row__brewery">ぷくぷく醸造</div><div class="icc-row__brand">#ODAKA – 蔵付酵母 木桶どぶろく –</div></div>
+          <div class="icc-row__year">2025</div>
+        </a>
+        <a class="icc-row" href="../brewery/ine-to-agave.html">
+          <span class="rank-chip rank-chip--win">初代優勝</span>
+          <div><div class="icc-row__brewery">稲とアガベ醸造所</div><div class="icc-row__brand">稲とアガベ OGAラベル</div></div>
+          <div class="icc-row__year">2023</div>
+        </a>
+        <a class="icc-row" href="../brewery/linne.html">
+          <span class="rank-chip rank-chip--2nd">準優勝</span>
+          <div><div class="icc-row__brewery">LINNÉ</div><div class="icc-row__brand">800 大麦 樽熟成</div></div>
+          <div class="icc-row__year">2025</div>
+        </a>
+        <a class="icc-row" href="../brewery/ine-to-agave.html">
+          <span class="rank-chip rank-chip--3rd">第3位</span>
+          <div><div class="icc-row__brewery">稲とアガベ醸造所</div><div class="icc-row__brand">花風</div></div>
+          <div class="icc-row__year">2024</div>
+        </a>
+        <a class="icc-row" href="../brewery/pukupuku.html">
+          <span class="rank-chip rank-chip--fin">決勝進出</span>
+          <div><div class="icc-row__brewery">ぷくぷく醸造</div></div>
+          <div class="icc-row__year">2024</div>
+        </a>
+        <a class="icc-row" href="../brewery/haccoba.html">
+          <span class="rank-chip rank-chip--fin">準決勝</span>
+          <div><div class="icc-row__brewery">haccoba</div></div>
+          <div class="icc-row__year">2023</div>
+        </a>
+      </div>
     </div>
-    <h2 class="cat-title">受賞</h2>
-    <p class="cat-desc">ICC SAKE AWARD、Tokyo酒チャレンジ、日本パッケージデザイン大賞、東北アントレプレナー大賞ほか。</p>
-    <div class="entries">
-      <a class="entry" href="../brewery/ine-to-agave.html">
-        <div>
-          <div class="entry__brand">ICC SAKE AWARD 初代優勝</div>
-          <div class="entry__brewery">稲とアガベ醸造所（稲とアガベ OGAラベル）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2023</span></div>
-        <div class="entry__brewery" style="text-align:right">秋田県</div>
+  </section>
+  <div class="awards-wrap">
+  <section class="awards-sec">
+    <div class="section-meta"><span class="section-meta__num">No. 02</span><span class="section-meta__label">GLOBAL EXPANSION</span><span class="section-meta__count">/ 3 蔵</span><span class="section-meta__rule"></span></div>
+    <h2 class="cat-title">世界へ、渡っていく。</h2>
+    <p class="awards-sec__desc">世界ベストレストラン2024年1位「Disfrutar」、旧3つ星「Mugaritz」が選んだ遠野のどぶろく。欧米・アジアへの輸出、海外法人の設立 — クラフトサケはもう国境を越えている。</p>
+    <div class="global-grid">
+      <a class="global-card" href="../brewery/nondo.html">
+        <div class="global-card__dest">— SPAIN　／　2024</div>
+        <div class="global-card__title">Disfrutar（バルセロナ・世界ベストレストラン2024年1位）で提供</div>
+        <div class="global-card__brewery">nondo（non°）（岩手県）</div>
+        
       </a>
-      <a class="entry" href="../brewery/ine-to-agave.html">
-        <div>
-          <div class="entry__brand">ICC SAKE AWARD 第3位</div>
-          <div class="entry__brewery">稲とアガベ醸造所（花風）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
-        <div class="entry__brewery" style="text-align:right">秋田県</div>
+      <a class="global-card" href="../brewery/nondo.html">
+        <div class="global-card__dest">— SPAIN　／　2024</div>
+        <div class="global-card__title">Mugaritz（スペイン・旧3つ星）で提供</div>
+        <div class="global-card__brewery">nondo（non°）（岩手県）</div>
+        
       </a>
-      <a class="entry" href="../brewery/haccoba.html">
-        <div>
-          <div class="entry__brand">日本パッケージデザイン大賞 銀賞（酒類カテゴリ）</div>
-          <div class="entry__brewery">haccoba（水を編む シリーズ）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
-        <div class="entry__brewery" style="text-align:right">福島県</div>
+      <a class="global-card" href="../brewery/haccoba.html">
+        <div class="global-card__dest">— USA / EUROPE　／　2025</div>
+        <div class="global-card__title">欧米進出開始（米/オランダ/ドイツ）</div>
+        <div class="global-card__brewery">haccoba（福島県）</div>
+        <div class="global-card__note">Sunflower Sake(ポートランド)/Restaurant Flore(アムステルダム)/Enter Sake Berlin</div>
       </a>
-      <a class="entry" href="../brewery/haccoba.html">
-        <div>
-          <div class="entry__brand">東北アントレプレナー大賞（第32回東北ニュービジネス大賞）</div>
-          <div class="entry__brewery">haccoba</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
-        <div class="entry__brewery" style="text-align:right">福島県</div>
+      <a class="global-card" href="../brewery/librom.html">
+        <div class="global-card__dest">— ITALY　／　2023</div>
+        <div class="global-card__title">イタリア法人「LIBROM ITALY」設立</div>
+        <div class="global-card__brewery">LIBROM（福岡県）</div>
+        <div class="global-card__note">バルバレスコ地区で現地米使用テスト醸造中</div>
       </a>
-      <a class="entry" href="../brewery/haccoba.html">
-        <div>
-          <div class="entry__brand">ICC SAKE AWARD 準決勝進出</div>
-          <div class="entry__brewery">haccoba</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2023</span></div>
-        <div class="entry__brewery" style="text-align:right">福島県</div>
-      </a>
-      <a class="entry" href="../brewery/pukupuku.html">
-        <div>
-          <div class="entry__brand">ICC SAKE AWARD 優勝</div>
-          <div class="entry__brewery">ぷくぷく醸造（#ODAKA – 蔵付酵母 木桶どぶろく –）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
-        <div class="entry__brewery" style="text-align:right">福島県</div>
-      </a>
-      <a class="entry" href="../brewery/pukupuku.html">
-        <div>
-          <div class="entry__brand">ICC SAKE AWARD 決勝進出</div>
-          <div class="entry__brewery">ぷくぷく醸造</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
-        <div class="entry__brewery" style="text-align:right">福島県</div>
-      </a>
-      <a class="entry" href="../brewery/linne.html">
-        <div>
-          <div class="entry__brand">ICC SAKE AWARD 準優勝</div>
-          <div class="entry__brewery">LINNÉ（800 大麦 樽熟成）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
-        <div class="entry__brewery" style="text-align:right">京都府</div>
-      </a>
-      <a class="entry" href="../brewery/dejima-hosendo.html">
-        <div>
-          <div class="entry__brand">Tokyo酒チャレンジ 金賞</div>
-          <div class="entry__brewery">でじま芳扇堂（芳扇 吟雲（九州初作付・初収穫の美山錦100%どぶろく））</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
-        <div class="entry__brewery" style="text-align:right">長崎県</div>
+      <a class="global-card" href="../brewery/haccoba.html">
+        <div class="global-card__dest">— ASIA</div>
+        <div class="global-card__title">アジア圏輸出（タイ/香港/シンガポール/台湾）</div>
+        <div class="global-card__brewery">haccoba（福島県）</div>
+        
       </a>
     </div>
   </section>
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 02</span>
-      <span class="section-meta__label">GLOBAL EXPANSION</span>
-      <span class="section-meta__count">/ 3 蔵</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <h2 class="cat-title">海外進出・国際的提供</h2>
-    <p class="cat-desc">輸出開始、海外法人設立、ミシュランレストランでの提供などクラフトサケの世界展開。</p>
-    <div class="entries">
-      <a class="entry" href="../brewery/haccoba.html">
-        <div>
-          <div class="entry__brand">欧米進出開始（米/オランダ/ドイツ）</div>
-          <div class="entry__brewery">haccoba（Sunflower Sake(ポートランド)/Restaurant Flore(アムステルダム)/Enter Sake Berlin）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
-        <div class="entry__brewery" style="text-align:right">福島県</div>
+  <section class="awards-sec">
+    <div class="section-meta"><span class="section-meta__num">No. 03</span><span class="section-meta__label">OTHER ACCOLADES</span><span class="section-meta__count">/ 3 件</span><span class="section-meta__rule"></span></div>
+    <h2 class="cat-title">その他の受賞。</h2>
+    <p class="awards-sec__desc">日本パッケージデザイン大賞、東北アントレプレナー大賞、Tokyo酒チャレンジ金賞 — 味だけでなく、デザイン・起業・品質でも評価される。</p>
+    <div>
+      <a class="acc-row" href="../brewery/haccoba.html">
+        <div><div class="acc-row__title">日本パッケージデザイン大賞 銀賞（酒類カテゴリ）</div><div class="acc-row__brewery">haccoba／水を編む シリーズ</div></div>
+        <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">福島県</span></div>
       </a>
-      <a class="entry" href="../brewery/haccoba.html">
-        <div>
-          <div class="entry__brand">アジア圏輸出（タイ/香港/シンガポール/台湾）</div>
-          <div class="entry__brewery">haccoba</div>
-        </div>
-        <div class="entry__specs"></div>
-        <div class="entry__brewery" style="text-align:right">福島県</div>
+      <a class="acc-row" href="../brewery/haccoba.html">
+        <div><div class="acc-row__title">東北アントレプレナー大賞（第32回東北ニュービジネス大賞）</div><div class="acc-row__brewery">haccoba</div></div>
+        <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">福島県</span></div>
       </a>
-      <a class="entry" href="../brewery/nondo.html">
-        <div>
-          <div class="entry__brand">Mugaritz（スペイン・旧3つ星）で提供</div>
-          <div class="entry__brewery">nondo（non°）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
-        <div class="entry__brewery" style="text-align:right">岩手県</div>
-      </a>
-      <a class="entry" href="../brewery/nondo.html">
-        <div>
-          <div class="entry__brand">Disfrutar（バルセロナ・世界ベストレストラン2024年1位）で提供</div>
-          <div class="entry__brewery">nondo（non°）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
-        <div class="entry__brewery" style="text-align:right">岩手県</div>
-      </a>
-      <a class="entry" href="../brewery/librom.html">
-        <div>
-          <div class="entry__brand">イタリア法人「LIBROM ITALY」設立</div>
-          <div class="entry__brewery">LIBROM（バルバレスコ地区で現地米使用テスト醸造中）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2023</span></div>
-        <div class="entry__brewery" style="text-align:right">福岡県</div>
+      <a class="acc-row" href="../brewery/dejima-hosendo.html">
+        <div><div class="acc-row__title">Tokyo酒チャレンジ 金賞</div><div class="acc-row__brewery">でじま芳扇堂／芳扇 吟雲（九州初作付・初収穫の美山錦100%どぶろく）</div></div>
+        <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">長崎県</span></div>
       </a>
     </div>
   </section>
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 03</span>
-      <span class="section-meta__label">MEDIA SPOTLIGHTS</span>
-      <span class="section-meta__count">/ 6 蔵</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <h2 class="cat-title">メディア露出</h2>
-    <p class="cat-desc">Forbes JAPAN、dancyu、日経新聞、Diamond、経済産業省METI Journal等での主要露出。</p>
-    <div class="entries">
-      <a class="entry" href="../brewery/ine-to-agave.html">
-        <div>
-          <div class="entry__brand">Forbes JAPAN「CULTURE-PRENEURS 30」選出</div>
-          <div class="entry__brewery">稲とアガベ醸造所（岡住修兵代表）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
-        <div class="entry__brewery" style="text-align:right">秋田県</div>
+  <section class="awards-sec">
+    <div class="section-meta"><span class="section-meta__num">No. 04</span><span class="section-meta__label">MEDIA SPOTLIGHTS</span><span class="section-meta__count">/ 9 件</span><span class="section-meta__rule"></span></div>
+    <h2 class="cat-title">メディアが追う。</h2>
+    <p class="awards-sec__desc">Forbes JAPAN、dancyu、日経新聞、Diamond、経済産業省METI Journal、日本アカデミー賞アフターパーティー — 各界がこの新ジャンルに注目している。</p>
+    <div>
+      <a class="acc-row" href="../brewery/sakenova.html">
+        <div><div class="acc-row__title">日経新聞「サケアイ、佐渡に『クラフトサケ』の醸造所」</div><div class="acc-row__brewery">SAKENOVA BREWERY</div></div>
+        <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">新潟県</span></div>
       </a>
-      <a class="entry" href="../brewery/ine-to-agave.html">
-        <div>
-          <div class="entry__brand">日経・朝日・毎日・週刊ダイヤモンド・Discover Japan他多数</div>
-          <div class="entry__brewery">稲とアガベ醸造所</div>
-        </div>
-        <div class="entry__specs"></div>
-        <div class="entry__brewery" style="text-align:right">秋田県</div>
+      <a class="acc-row" href="../brewery/sakenova.html">
+        <div><div class="acc-row__title">日本アカデミー賞アフターパーティーで唯一の日本酒ブランドとして提供（約500名）</div><div class="acc-row__brewery">SAKENOVA BREWERY／SAKENOVA</div></div>
+        <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">新潟県</span></div>
       </a>
-      <a class="entry" href="../brewery/pukupuku.html">
-        <div>
-          <div class="entry__brand">京都芸術大学「クラフトサケ学」非常勤講師開設</div>
-          <div class="entry__brewery">ぷくぷく醸造（代表・立川哲之氏）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
-        <div class="entry__brewery" style="text-align:right">福島県</div>
+      <a class="acc-row" href="../brewery/ine-to-agave.html">
+        <div><div class="acc-row__title">Forbes JAPAN「CULTURE-PRENEURS 30」選出</div><div class="acc-row__brewery">稲とアガベ醸造所／岡住修兵代表</div></div>
+        <div class="acc-row__right"><span class="acc-row__year">2024</span><span class="acc-row__pref">秋田県</span></div>
       </a>
-      <a class="entry" href="../brewery/pukupuku.html">
-        <div>
-          <div class="entry__brand">経済産業省METI Journal・greenz.jp・BS朝日他</div>
-          <div class="entry__brewery">ぷくぷく醸造</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2024</span></div>
-        <div class="entry__brewery" style="text-align:right">福島県</div>
+      <a class="acc-row" href="../brewery/pukupuku.html">
+        <div><div class="acc-row__title">京都芸術大学「クラフトサケ学」非常勤講師開設</div><div class="acc-row__brewery">ぷくぷく醸造／代表・立川哲之氏</div></div>
+        <div class="acc-row__right"><span class="acc-row__year">2024</span><span class="acc-row__pref">福島県</span></div>
       </a>
-      <a class="entry" href="../brewery/happy-taro.html">
-        <div>
-          <div class="entry__brand">dancyu「クラフトSAKE醸造所訪問レポート ネオどぶろく」前後編大型特集</div>
-          <div class="entry__brewery">ハッピー太郎醸造所</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2023</span></div>
-        <div class="entry__brewery" style="text-align:right">滋賀県</div>
+      <a class="acc-row" href="../brewery/pukupuku.html">
+        <div><div class="acc-row__title">経済産業省METI Journal・greenz.jp・BS朝日他</div><div class="acc-row__brewery">ぷくぷく醸造</div></div>
+        <div class="acc-row__right"><span class="acc-row__year">2024</span><span class="acc-row__pref">福島県</span></div>
       </a>
-      <a class="entry" href="../brewery/heiroku.html">
-        <div>
-          <div class="entry__brand">Diamond『新日本酒紀行』掲載</div>
-          <div class="entry__brewery">平六醸造</div>
-        </div>
-        <div class="entry__specs"></div>
-        <div class="entry__brewery" style="text-align:right">岩手県</div>
+      <a class="acc-row" href="../brewery/happy-taro.html">
+        <div><div class="acc-row__title">dancyu「クラフトSAKE醸造所訪問レポート ネオどぶろく」前後編大型特集</div><div class="acc-row__brewery">ハッピー太郎醸造所</div></div>
+        <div class="acc-row__right"><span class="acc-row__year">2023</span><span class="acc-row__pref">滋賀県</span></div>
       </a>
-      <a class="entry" href="../brewery/tokyo-station.html">
-        <div>
-          <div class="entry__brand">日経新聞「東京駅の店内で日本酒製造へ 国税庁、小売りに初認可」大型報道</div>
-          <div class="entry__brewery">東京駅酒造場</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2020</span></div>
-        <div class="entry__brewery" style="text-align:right">東京都</div>
+      <a class="acc-row" href="../brewery/tokyo-station.html">
+        <div><div class="acc-row__title">日経新聞「東京駅の店内で日本酒製造へ 国税庁、小売りに初認可」大型報道</div><div class="acc-row__brewery">東京駅酒造場</div></div>
+        <div class="acc-row__right"><span class="acc-row__year">2020</span><span class="acc-row__pref">東京都</span></div>
       </a>
-      <a class="entry" href="../brewery/sakenova.html">
-        <div>
-          <div class="entry__brand">日経新聞「サケアイ、佐渡に『クラフトサケ』の醸造所」</div>
-          <div class="entry__brewery">SAKENOVA BREWERY</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
-        <div class="entry__brewery" style="text-align:right">新潟県</div>
+      <a class="acc-row" href="../brewery/ine-to-agave.html">
+        <div><div class="acc-row__title">日経・朝日・毎日・週刊ダイヤモンド・Discover Japan他多数</div><div class="acc-row__brewery">稲とアガベ醸造所</div></div>
+        <div class="acc-row__right"><span class="acc-row__pref">秋田県</span></div>
       </a>
-      <a class="entry" href="../brewery/sakenova.html">
-        <div>
-          <div class="entry__brand">日本アカデミー賞アフターパーティーで唯一の日本酒ブランドとして提供（約500名）</div>
-          <div class="entry__brewery">SAKENOVA BREWERY（SAKENOVA）</div>
-        </div>
-        <div class="entry__specs"><span class="spec-pill accent">2025</span></div>
-        <div class="entry__brewery" style="text-align:right">新潟県</div>
+      <a class="acc-row" href="../brewery/heiroku.html">
+        <div><div class="acc-row__title">Diamond『新日本酒紀行』掲載</div><div class="acc-row__brewery">平六醸造</div></div>
+        <div class="acc-row__right"><span class="acc-row__pref">岩手県</span></div>
       </a>
     </div>
   </section></div>

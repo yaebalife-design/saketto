@@ -803,104 +803,216 @@ def gen_furusato():
     print(f"  furusato/index.html  ({len(confirmed)}社確認 / {len(not_confirmed)}社未確認)")
 
 
+AWARDS_CSS = """
+.awards-wrap { max-width:1100px; margin:0 auto; padding:0 2rem; }
+.awards-sec { margin-bottom:3.5rem; }
+.awards-sec__desc { color:var(--ink-soft); font-size:.97rem; line-height:1.85; max-width:680px; margin:-1rem 0 1.75rem; }
+
+/* ICC 殿堂（墨バンド） */
+.icc { background:var(--ink); position:relative; overflow:hidden; margin:1.5rem 0 3.5rem; }
+.icc__inner { max-width:1100px; margin:0 auto; padding:3.75rem 2rem 4rem; position:relative; z-index:1; }
+.icc__seal { position:absolute; right:clamp(-3rem,1vw,1rem); top:50%; transform:translateY(-50%);
+  font-family:'Shippori Mincho',serif; font-weight:700; font-size:clamp(11rem,24vw,19rem);
+  color:rgba(179,58,42,.13); line-height:1; pointer-events:none; z-index:0; }
+.icc__eyebrow { font-family:'Cormorant Garamond',serif; font-style:italic; color:#D9694F; letter-spacing:.15em; font-size:.95rem; margin-bottom:.9rem; }
+.icc__title { font-family:'Shippori Mincho',serif; font-weight:700; color:#F5F0E7; font-size:clamp(1.9rem,4.2vw,2.9rem); line-height:1.2; margin-bottom:.8rem; }
+.icc__desc { color:#C9BFAE; font-size:.95rem; line-height:1.9; max-width:660px; margin-bottom:2.4rem; }
+.icc-list { display:flex; flex-direction:column; border-top:1px solid #463c36; }
+.icc-row { display:grid; grid-template-columns:6.5em 1fr auto; gap:1.4rem; align-items:center;
+  padding:1.3rem .25rem; border-bottom:1px solid #463c36; text-decoration:none; transition:padding-left .25s; }
+.icc-row:hover { padding-left:.6rem; }
+.icc-row__brewery { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.2rem; color:#F5F0E7; letter-spacing:.02em; transition:color .25s; }
+.icc-row:hover .icc-row__brewery { color:#fff; }
+.icc-row__brand { font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.85rem; color:#A99C8C; margin-top:.25rem; line-height:1.5; }
+.icc-row__year { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; color:#8a7d6e; }
+.rank-chip { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.8rem;
+  letter-spacing:.08em; padding:.45rem .2rem; text-align:center; line-height:1; }
+.rank-chip--win { background:var(--accent); color:#FAF6ED; }
+.rank-chip--2nd { border:1px solid #D9694F; color:#E8917B; }
+.rank-chip--3rd { border:1px solid #8a7d6e; color:#C9BFAE; }
+.rank-chip--fin { border:1px solid #463c36; color:#8a7d6e; }
+
+/* GLOBAL 行先カード */
+.global-grid { display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+@media (min-width:760px) { .global-grid { grid-template-columns:1fr 1fr; } }
+.global-card { background:var(--bg); padding:1.7rem 1.85rem; text-decoration:none; color:inherit;
+  display:flex; flex-direction:column; gap:.55rem; transition:background .3s, padding-left .25s; }
+.global-card:hover { background:var(--paper); padding-left:2.1rem; }
+.global-card__dest { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.92rem; color:var(--accent); letter-spacing:.06em; }
+.global-card__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.18rem; color:var(--ink); line-height:1.55; }
+.global-card__brewery { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.85rem; color:var(--ink-soft); letter-spacing:.04em; }
+.global-card__note { font-size:.86rem; color:var(--ink-mute); line-height:1.75; }
+
+/* その他受賞・メディア 行 */
+.acc-row { display:grid; grid-template-columns:1fr auto; gap:1.1rem; align-items:start;
+  padding:1.15rem 0; border-bottom:1px solid var(--line); text-decoration:none; color:inherit; transition:padding-left .25s; }
+.acc-row:hover { padding-left:.5rem; }
+.acc-row:last-child { border-bottom:none; }
+.acc-row__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.02rem; color:var(--ink); line-height:1.55; }
+.acc-row__brewery { font-size:.85rem; color:var(--ink-soft); margin-top:.3rem; }
+.acc-row__right { text-align:right; white-space:nowrap; }
+.acc-row__year { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; color:var(--accent); }
+.acc-row__pref { display:block; font-size:.8rem; color:var(--ink-mute); margin-top:.2rem; }
+"""
+
+
 def gen_awards():
-    """受賞・メディア・海外進出ハブ"""
+    """受賞・メディア・海外進出ハブ（殿堂デザイン）"""
     OUT = REPO_ROOT / "awards"
     OUT.mkdir(exist_ok=True)
 
-    awarded_slugs = []
-    media_slugs = []
-    global_slugs = []
+    # 分類
+    icc_entries = []      # (slug, it)  ICC SAKE AWARD
+    other_awards = []     # (slug, it)  ICC以外の受賞
+    global_entries = []   # (slug, it)
+    media_entries = []    # (slug, it)
     for slug, items in AWARDS.items():
-        if any(it["type"] == "award" for it in items):
-            awarded_slugs.append(slug)
-        if any(it["type"] == "media" for it in items):
-            media_slugs.append(slug)
-        if any(it["type"] == "global" for it in items):
-            global_slugs.append(slug)
+        for it in items:
+            if it["type"] == "award":
+                if "ICC SAKE AWARD" in it["title"]:
+                    icc_entries.append((slug, it))
+                else:
+                    other_awards.append((slug, it))
+            elif it["type"] == "global":
+                global_entries.append((slug, it))
+            elif it["type"] == "media":
+                media_entries.append((slug, it))
 
-    html = page_head("受賞・メディア・海外進出", "クラフトサケのICC SAKE AWARD等の受賞、業界メディア露出、海外進出を横断的に追跡。")
-    html += masthead("EXTRA — ACCOLADES & MEDIA", f"{len(awarded_slugs)} awarded")
+    # ICC: ランク序列でソート
+    def rank_meta(title):
+        if "準優勝" in title:
+            return (1, "準優勝", "2nd")
+        if "優勝" in title:  # 優勝・初代優勝
+            label = "初代優勝" if "初代" in title else "優勝"
+            return (0, label, "win")
+        if "第3位" in title:
+            return (2, "第3位", "3rd")
+        if "決勝進出" in title and "準決勝" not in title:
+            return (3, "決勝進出", "fin")
+        if "準決勝" in title:
+            return (4, "準決勝", "fin")
+        return (5, "出場", "fin")
+
+    icc_entries.sort(key=lambda x: (rank_meta(x[1]["title"])[0], -(x[1].get("year") or 0)))
+    award_brewery_count = len(set(s for s, _ in icc_entries) | set(s for s, _ in other_awards))
+
+    html = page_head("受賞と海外進出", "ICC SAKE AWARD歴代の頂点、Disfrutar・Mugaritzでの提供、欧米アジア輸出 — クラフトサケと世界のつながり。")
+    html += f"<style>{AWARDS_CSS}</style>"
+    html += masthead("EXTRA — ACCOLADES & GLOBAL", f"{award_brewery_count} breweries awarded")
     html += hero(
-        "— ACCOLADES & EXPOSURE",
-        '受賞と<span class="accent">海外進出</span>から、見つける。',
-        'ICC SAKE AWARD、Tokyo酒チャレンジ、日本パッケージデザイン大賞、Mugaritz・Disfrutarでの提供、欧米輸出開始 — クラフトサケと「世界」のつながりを一覧する。'
+        "— 実績で選ぶ ／ ACCOLADES & GLOBAL",
+        '頂点と、<span class="accent">世界</span>から。',
+        'まだ10年に満たない新ジャンルが、競技会で頂点を競い、世界best1のレストランに選ばれ、欧米アジアへ渡っていく。クラフトサケの"現在地"を、受賞と海外進出から見つける。'
     )
-    html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
+    html += '<div class="awards-wrap">'
 
-    def render_award_entry(slug, it):
+    # ── No.01 ICC SAKE AWARD（墨の殿堂）──
+    icc_rows = ""
+    for slug, it in icc_entries:
+        b = by_slug(slug)
+        if not b:
+            continue
+        _, label, variant = rank_meta(it["title"])
+        brand_html = f'<div class="icc-row__brand">{it["brand"]}</div>' if it.get("brand") else ''
+        year_html = f'<div class="icc-row__year">{it["year"]}</div>' if it.get("year") else '<div class="icc-row__year">—</div>'
+        icc_rows += f"""
+        <a class="icc-row" href="../brewery/{slug}.html">
+          <span class="rank-chip rank-chip--{variant}">{label}</span>
+          <div><div class="icc-row__brewery">{b['name']}</div>{brand_html}</div>
+          {year_html}
+        </a>"""
+    html += f"""
+  </div>
+  <section class="icc">
+    <div class="icc__seal" aria-hidden="true">賞</div>
+    <div class="icc__inner">
+      <div class="icc__eyebrow">— No.01 ／ ICC SAKE AWARD</div>
+      <h2 class="icc__title">クラフトサケ、<br>歴代の頂点。</h2>
+      <p class="icc__desc">ICCサミットが主催するSAKEの品評会「ICC SAKE AWARD」。米×副原料の新ジャンルが、年に一度ここで頂点を競う。saketto収録の蔵が刻んだ戦績を、序列で並べた。</p>
+      <div class="icc-list">{icc_rows}
+      </div>
+    </div>
+  </section>
+  <div class="awards-wrap">"""
+
+    # ── No.02 GLOBAL ──
+    def dest_label(it):
+        t = it["title"]
+        if "Disfrutar" in t or "Mugaritz" in t:
+            return "SPAIN"
+        if "欧米" in t:
+            return "USA / EUROPE"
+        if "アジア" in t:
+            return "ASIA"
+        if "イタリア" in t or "ITALY" in t:
+            return "ITALY"
+        return "GLOBAL"
+
+    # 物語が映える順（ミシュラン→欧米→法人→アジア）に軽く並べ替え
+    global_order = {"Disfrutar": 0, "Mugaritz": 1, "欧米": 2, "イタリア": 3, "アジア": 4}
+    def gkey(x):
+        t = x[1]["title"]
+        for k, v in global_order.items():
+            if k in t:
+                return v
+        return 9
+    global_entries.sort(key=gkey)
+
+    global_cards = ""
+    for slug, it in global_entries:
+        b = by_slug(slug)
+        if not b:
+            continue
+        note_html = f'<div class="global-card__note">{it["brand"]}</div>' if it.get("brand") else ''
+        yr = f'　／　{it["year"]}' if it.get("year") else ''
+        global_cards += f"""
+      <a class="global-card" href="../brewery/{slug}.html">
+        <div class="global-card__dest">— {dest_label(it)}{yr}</div>
+        <div class="global-card__title">{it['title']}</div>
+        <div class="global-card__brewery">{b['name']}（{b['prefecture']}）</div>
+        {note_html}
+      </a>"""
+    html += f"""
+  <section class="awards-sec">
+    <div class="section-meta"><span class="section-meta__num">No. 02</span><span class="section-meta__label">GLOBAL EXPANSION</span><span class="section-meta__count">/ {len(set(s for s,_ in global_entries))} 蔵</span><span class="section-meta__rule"></span></div>
+    <h2 class="cat-title">世界へ、渡っていく。</h2>
+    <p class="awards-sec__desc">世界ベストレストラン2024年1位「Disfrutar」、旧3つ星「Mugaritz」が選んだ遠野のどぶろく。欧米・アジアへの輸出、海外法人の設立 — クラフトサケはもう国境を越えている。</p>
+    <div class="global-grid">{global_cards}
+    </div>
+  </section>"""
+
+    # ── No.03 その他の受賞 ──
+    def acc_row(slug, it, show_pref=True):
         b = by_slug(slug)
         if not b:
             return ""
-        year_html = f'<span class="spec-pill accent">{it["year"]}</span>' if it.get("year") else ''
-        brand_part = f"（{it['brand']}）" if it.get('brand') else ''
+        brand_html = f'<div class="acc-row__brewery">{b["name"]}{("／" + it["brand"]) if it.get("brand") else ""}</div>'
+        yr = f'<span class="acc-row__year">{it["year"]}</span>' if it.get("year") else ''
+        pref = f'<span class="acc-row__pref">{b["prefecture"]}</span>' if show_pref else ''
         return f"""
-      <a class="entry" href="../brewery/{slug}.html">
-        <div>
-          <div class="entry__brand">{it['title']}</div>
-          <div class="entry__brewery">{b['name']}{brand_part}</div>
-        </div>
-        <div class="entry__specs">{year_html}</div>
-        <div class="entry__brewery" style="text-align:right">{b['prefecture']}</div>
+      <a class="acc-row" href="../brewery/{slug}.html">
+        <div><div class="acc-row__title">{it['title']}</div>{brand_html}</div>
+        <div class="acc-row__right">{yr}{pref}</div>
       </a>"""
 
-    # AWARDS section
+    other_rows = "".join(acc_row(s, it) for s, it in sorted(other_awards, key=lambda x: -(x[1].get("year") or 0)))
     html += f"""
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">AWARDS</span>
-      <span class="section-meta__count">/ {len(awarded_slugs)} 蔵</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <h2 class="cat-title">受賞</h2>
-    <p class="cat-desc">ICC SAKE AWARD、Tokyo酒チャレンジ、日本パッケージデザイン大賞、東北アントレプレナー大賞ほか。</p>
-    <div class="entries">"""
-    for slug in awarded_slugs:
-        for it in AWARDS[slug]:
-            if it["type"] == "award":
-                html += render_award_entry(slug, it)
-    html += """
+  <section class="awards-sec">
+    <div class="section-meta"><span class="section-meta__num">No. 03</span><span class="section-meta__label">OTHER ACCOLADES</span><span class="section-meta__count">/ {len(other_awards)} 件</span><span class="section-meta__rule"></span></div>
+    <h2 class="cat-title">その他の受賞。</h2>
+    <p class="awards-sec__desc">日本パッケージデザイン大賞、東北アントレプレナー大賞、Tokyo酒チャレンジ金賞 — 味だけでなく、デザイン・起業・品質でも評価される。</p>
+    <div>{other_rows}
     </div>
   </section>"""
 
-    # GLOBAL section
+    # ── No.04 メディア ──
+    media_rows = "".join(acc_row(s, it) for s, it in sorted(media_entries, key=lambda x: -(x[1].get("year") or 0)))
     html += f"""
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 02</span>
-      <span class="section-meta__label">GLOBAL EXPANSION</span>
-      <span class="section-meta__count">/ {len(global_slugs)} 蔵</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <h2 class="cat-title">海外進出・国際的提供</h2>
-    <p class="cat-desc">輸出開始、海外法人設立、ミシュランレストランでの提供などクラフトサケの世界展開。</p>
-    <div class="entries">"""
-    for slug in global_slugs:
-        for it in AWARDS[slug]:
-            if it["type"] == "global":
-                html += render_award_entry(slug, it)
-    html += """
-    </div>
-  </section>"""
-
-    # MEDIA section
-    html += f"""
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 03</span>
-      <span class="section-meta__label">MEDIA SPOTLIGHTS</span>
-      <span class="section-meta__count">/ {len(media_slugs)} 蔵</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <h2 class="cat-title">メディア露出</h2>
-    <p class="cat-desc">Forbes JAPAN、dancyu、日経新聞、Diamond、経済産業省METI Journal等での主要露出。</p>
-    <div class="entries">"""
-    for slug in media_slugs:
-        for it in AWARDS[slug]:
-            if it["type"] == "media":
-                html += render_award_entry(slug, it)
-    html += """
+  <section class="awards-sec">
+    <div class="section-meta"><span class="section-meta__num">No. 04</span><span class="section-meta__label">MEDIA SPOTLIGHTS</span><span class="section-meta__count">/ {len(media_entries)} 件</span><span class="section-meta__rule"></span></div>
+    <h2 class="cat-title">メディアが追う。</h2>
+    <p class="awards-sec__desc">Forbes JAPAN、dancyu、日経新聞、Diamond、経済産業省METI Journal、日本アカデミー賞アフターパーティー — 各界がこの新ジャンルに注目している。</p>
+    <div>{media_rows}
     </div>
   </section>"""
 
@@ -909,7 +1021,7 @@ def gen_awards():
 
     out = OUT / "index.html"
     out.write_text(html, encoding="utf-8")
-    print(f"  awards/index.html  (受賞{len(awarded_slugs)} / 海外{len(global_slugs)} / メディア{len(media_slugs)})")
+    print(f"  awards/index.html  (ICC{len(icc_entries)} / 海外{len(global_entries)} / 他受賞{len(other_awards)} / メディア{len(media_entries)})")
 
 
 def main():
