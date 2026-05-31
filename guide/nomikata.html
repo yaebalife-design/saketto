@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クラフトサケの飲み方・楽しみ方 — saketto.</title>
+<meta name="description" content="クラフトサケをもっとおいしく。温度帯の選び方、生酒・にごりの保存、ワイングラスやソーダ割りといったスタイル、料理とのペアリングまで、自由な酒の楽しみ方を解説します。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F0E7; --bg-alt: #EDE5D2; --paper: #FAF6ED;
+  --ink: #16100E; --ink-soft: #3D3633; --ink-mute: #635C57;
+  --accent: #A8351F; --accent-deep: #862719;
+  --warm: #7A6447; --line: #C0B69E; --line-soft: #D6CCB3;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg); color:var(--ink);
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  line-height:1.8; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden; font-size:16px;
+}
+body::before {
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    radial-gradient(ellipse 1.5px 2.2px at 18% 22%, rgba(184,73,58,0.035) 60%, transparent 70%),
+    radial-gradient(ellipse 1.2px 1.8px at 67% 38%, rgba(139,115,85,0.04) 60%, transparent 70%),
+    radial-gradient(ellipse 1.5px 2.3px at 42% 71%, rgba(26,23,23,0.025) 60%, transparent 70%);
+  background-size: 64px 64px, 96px 96px, 80px 80px;
+}
+main { position:relative; z-index:1; }
+
+.masthead {
+  border-bottom:1px solid var(--line); padding:1rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.8rem; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;
+}
+.masthead a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead a:hover { color:var(--accent); }
+.masthead .accent-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; margin-right:.5rem; }
+.masthead .left { display:flex; gap:1.5rem; align-items:center; }
+.masthead .right { font-family:'Cormorant Garamond', serif; font-style:italic; letter-spacing:.1em; }
+
+.hero {
+  max-width:1100px; margin:0 auto; padding:5rem 2rem 3rem;
+}
+.hero__eyebrow {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.95rem; color:var(--accent); letter-spacing:.15em;
+  margin-bottom:1rem;
+}
+.hero__title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:clamp(2.5rem, 6vw, 4rem);
+  letter-spacing:.02em; line-height:1.2; color:var(--ink);
+  margin-bottom:1rem;
+}
+.hero__title .accent { color:var(--accent); }
+.hero__lede {
+  font-size:1.05rem; color:var(--ink-soft); max-width:680px;
+  border-left:3px solid var(--accent); padding-left:1.5rem; line-height:1.9;
+  font-weight:400;
+}
+
+.section { max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
+.section-meta {
+  display:flex; align-items:baseline; gap:1.25rem; margin-bottom:1.5rem;
+}
+.section-meta__num {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.15rem; color:var(--accent); letter-spacing:.05em;
+}
+.section-meta__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.88rem; font-weight:700; letter-spacing:.18em; color:var(--ink);
+  text-transform:uppercase;
+}
+.section-meta__count {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1rem; color:var(--ink-soft); letter-spacing:.05em;
+}
+.section-meta__rule { flex:1; height:1px; background:var(--line); }
+
+.cat-title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.65rem; letter-spacing:.02em; color:var(--ink);
+  margin-bottom:.6rem;
+}
+.cat-title .accent { color:var(--accent); }
+.cat-desc {
+  font-size:.98rem; color:var(--ink-soft); margin-bottom:1.5rem; line-height:1.8;
+  font-weight:400;
+}
+
+.entries {
+  display:flex; flex-direction:column;
+  border:1px solid var(--line);
+  margin-bottom:3rem;
+}
+.entry {
+  background:var(--bg); padding:1.1rem 1.5rem;
+  display:grid; grid-template-columns:1fr; gap:.4rem;
+  transition:background .3s;
+  text-decoration:none; color:var(--ink);
+  border-bottom:1px solid var(--line);
+}
+.entry:last-child { border-bottom:none; }
+@media (min-width:760px) {
+  .entry { grid-template-columns:1.5fr 1fr 1fr; align-items:center; gap:1rem; }
+}
+.entry:hover { background:var(--paper); }
+.entry__brand {
+  font-family:'Shippori Mincho', serif; font-weight:600;
+  font-size:1.08rem; color:var(--ink); line-height:1.5;
+}
+.entry__brewery {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.88rem; color:var(--ink-soft); letter-spacing:.02em;
+  margin-top:.15rem;
+}
+.entry__brewery::before { content:"— "; color:var(--accent); }
+.entry__specs { display:flex; gap:.4rem; flex-wrap:wrap; }
+.spec-pill {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.78rem; letter-spacing:.02em; color:var(--ink-soft);
+  background:var(--bg-alt); padding:.25rem .65rem;
+}
+.spec-pill.accent { color:var(--accent); background:transparent; border:1px solid var(--accent); }
+.spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
+
+.brewery-grid {
+  display:grid; grid-template-columns:1fr; gap:0;
+  border-top:1px solid var(--line);
+}
+@media (min-width:600px) { .brewery-grid { grid-template-columns:repeat(2, 1fr); } }
+.brewery-card {
+  padding:1.5rem; border-bottom:1px solid var(--line);
+  background:var(--bg); text-decoration:none; color:var(--ink);
+  display:flex; flex-direction:column; gap:.4rem;
+  transition:background .3s, padding-left .3s;
+}
+@media (min-width:600px) {
+  .brewery-card { border-right:1px solid var(--line); }
+  .brewery-card:nth-child(2n) { border-right:none; }
+}
+.brewery-card:hover { background:var(--paper); padding-left:1.75rem; }
+.brewery-card__num {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.85rem; color:var(--accent); letter-spacing:.05em;
+}
+.brewery-card__name {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.25rem; color:var(--ink); letter-spacing:.02em;
+}
+.brewery-card__meta {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-soft); letter-spacing:.02em;
+}
+.brewery-card__features {
+  font-size:.9rem; color:var(--ink-soft); line-height:1.7; margin-top:.35rem;
+  font-weight:400;
+}
+
+.empty-region {
+  background:var(--bg-alt); padding:2rem; border-left:2px solid var(--warm);
+  font-family:'Shippori Mincho', serif;
+  color:var(--ink-soft); font-size:.95rem;
+}
+.empty-region em {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  color:var(--accent); letter-spacing:.05em;
+}
+
+.divider {
+  max-width:1100px; margin:3rem auto; padding:0 2rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.divider .rule { flex:1; height:1px; background:var(--line); }
+.divider .ornament { width:8px; height:8px; background:var(--accent); transform:rotate(45deg); }
+.divider .ornament.outer { width:4px; height:4px; background:var(--warm); }
+
+footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-index:1; }
+.colophon {
+  max-width:1100px; margin:0 auto; padding:2rem;
+  display:grid; grid-template-columns:1fr; gap:1.5rem;
+}
+@media (min-width:700px) { .colophon { grid-template-columns:2fr 3fr; } }
+.colophon__brand {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.5rem; letter-spacing:.02em;
+}
+.colophon__brand .dot { color:var(--accent); }
+.colophon__brand a { color:var(--ink); text-decoration:none; }
+.colophon__brand small {
+  display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-soft); margin-top:.25rem;
+  font-weight:400; letter-spacing:.08em;
+}
+.colophon__notes {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.88rem; color:var(--ink-soft); line-height:1.9; letter-spacing:.02em;
+}
+.colophon__notes strong { color:var(--accent); font-weight:500; }
+.colophon__sep { color:var(--line); margin:0 .5rem; }
+
+/* セクションヘッダー画像 (Vertex AI) */
+.cat-image {
+  margin: 0 0 2rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  position: relative;
+}
+.cat-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: cover;
+  filter: contrast(0.98) saturate(0.95);
+}
+.cat-image__cap {
+  position: absolute;
+  bottom: .5rem;
+  right: .75rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .65rem;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: .12em;
+  background: rgba(26,23,23,0.45);
+  padding: .15rem .5rem;
+}
+
+.article { max-width:1100px; margin:0 auto; padding:0 2rem 2rem; }
+.prose { max-width:760px; }
+.prose p { font-size:1.02rem; color:var(--ink-soft); line-height:1.95; margin-bottom:1.4rem; }
+.prose strong { color:var(--ink); font-weight:600; }
+.prose a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); transition:border-color .25s; }
+.prose a:hover { border-bottom-color:var(--accent); }
+.lead {
+  font-family:'Shippori Mincho', serif; font-size:1.22rem; line-height:1.95;
+  color:var(--ink); margin-bottom:1.8rem; font-weight:500;
+}
+.lead .accent { color:var(--accent); }
+
+/* 用語グリッド */
+.term-grid { display:grid; grid-template-columns:1fr; border:1px solid var(--line); margin:1rem 0 2.5rem; max-width:860px; }
+@media (min-width:680px){ .term-grid { grid-template-columns:1fr 1fr; } }
+.term { padding:1.2rem 1.4rem; border-bottom:1px solid var(--line); background:var(--bg); }
+@media (min-width:680px){ .term { border-right:1px solid var(--line); } .term:nth-child(2n){ border-right:none; } }
+.term:last-child{ border-bottom:none; }
+.term__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.12rem; color:var(--ink); margin-bottom:.4rem; }
+.term__name .en { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.82rem; color:var(--accent); margin-left:.5rem; letter-spacing:.05em; }
+.term__desc { font-size:.92rem; color:var(--ink-soft); line-height:1.8; }
+
+/* 温度テーブル */
+.temp-table { width:100%; max-width:760px; border-collapse:collapse; margin:1rem 0 1rem; font-size:.92rem; }
+.temp-table th, .temp-table td { text-align:left; padding:.7rem 1rem; border-bottom:1px solid var(--line-soft); }
+.temp-table thead th {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; letter-spacing:.1em;
+  font-size:.75rem; text-transform:uppercase; color:var(--ink); border-bottom:1px solid var(--line);
+}
+.temp-table td.t { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); white-space:nowrap; }
+.temp-table tr.grp td { background:var(--bg-alt); font-family:'Shippori Mincho',serif; font-weight:600; color:var(--ink); letter-spacing:.04em; }
+.temp-note { font-size:.82rem; color:var(--ink-mute); margin:0 0 2.2rem; max-width:760px; }
+
+/* 注意ボックス */
+.callout { background:var(--bg-alt); border-left:3px solid var(--accent); padding:1.3rem 1.5rem; margin:1.6rem 0 2.2rem; max-width:760px; }
+.callout__label {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; letter-spacing:.12em;
+  font-size:.74rem; color:var(--accent); text-transform:uppercase; margin-bottom:.5rem;
+}
+.callout p { font-size:.9rem; color:var(--ink-soft); line-height:1.85; margin:0; }
+.callout a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
+
+/* ハブへのリンク行 */
+.pill-links { display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0 2.5rem; }
+.pill-links a {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.9rem;
+  letter-spacing:.03em; color:var(--ink); text-decoration:none;
+  border:1px solid var(--line); padding:.55rem 1.1rem; transition:border-color .25s,color .25s;
+}
+.pill-links a:hover { border-color:var(--accent); color:var(--accent); }
+.pill-links a .arr { color:var(--accent); margin-left:.45rem; }
+
+/* 蔵リンクのインライン群 */
+.kura-links { display:flex; flex-wrap:wrap; gap:.55rem 1rem; margin:.2rem 0 2rem; max-width:760px; }
+.kura-links a { font-family:'Shippori Mincho',serif; font-size:.98rem; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:1px; transition:color .25s,border-color .25s; }
+.kura-links a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+
+/* 次に読む */
+.readmore { display:grid; grid-template-columns:1fr; gap:1rem; margin:1.5rem 0 0; max-width:860px; }
+@media (min-width:680px){ .readmore { grid-template-columns:1fr 1fr; } }
+.readmore a { display:block; border:1px solid var(--line); padding:1.4rem 1.5rem; text-decoration:none; background:var(--bg); transition:background .3s,padding-left .3s; }
+.readmore a:hover { background:var(--paper); padding-left:1.75rem; }
+.readmore__k { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.8rem; color:var(--accent); letter-spacing:.08em; }
+.readmore__t { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.18rem; color:var(--ink); margin-top:.3rem; line-height:1.4; }
+
+.sub-h { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.3rem; color:var(--ink); margin:0 0 .8rem; letter-spacing:.02em; }
+.sub-h .accent { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="masthead">
+    <div class="left">
+      <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
+      <span>READING 02 — HOW TO ENJOY</span>
+    </div>
+    <div class="right">A Field Guide</div>
+  </div>
+
+  <section class="hero">
+    <div class="hero__eyebrow">READING 02 — HOW TO ENJOY</div>
+    <h1 class="hero__title">クラフトサケの<span class="accent">飲み方</span>。<br>自由だから、おいしい。</h1>
+    <p class="hero__lede">冷やでも燗でも、グラスでもソーダ割りでも。温度・保存・スタイル・ペアリングのちょっとしたコツで、クラフトサケはもっと豊かに楽しめます。</p>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="article">
+
+    <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 01</span>
+      <span class="section-meta__label">TEMPERATURE / 温度</span>
+      <span class="section-meta__rule"></span>
+    </div>
+      <div class="prose">
+        <p class="lead">クラフトサケは、低アルコールのものから濃厚な原酒まで、<span class="accent">味わいの幅</span>がとても広い。まずは「冷や」で、その個性を確かめるのがおすすめ。</p>
+        <p>日本酒には、温度帯ごとに風流な呼び名がある。クラフトサケも基本は同じ。冷やすと香りは締まりシャープに、温めると米や麹の旨みがふくらむ。同じ一本でも温度で表情が変わるので、少しずつ試してみてほしい。</p>
+      </div>
+      <table class="temp-table">
+        <thead><tr><th>呼び名</th><th>目安</th><th>表情</th></tr></thead>
+        <tbody>
+        <tr class="grp"><td colspan="3">冷やして — COLD</td></tr>
+        <tr><td>雪冷え</td><td class="t">約5℃前後</td><td>香りは控えめ、きりりと締まった口当たり</td></tr>
+        <tr><td>花冷え</td><td class="t">約10℃</td><td>繊細な味わい、香りが少しずつ開く</td></tr>
+        <tr><td>涼冷え</td><td class="t">約15℃</td><td>はっきりした冷たさに、華やかな香り</td></tr>
+        <tr class="grp"><td colspan="3">常温で — ROOM</td></tr>
+        <tr><td>冷や（常温）</td><td class="t">約15〜20℃</td><td>「冷や」は本来この常温のこと。酒の素の表情が出る</td></tr>
+        <tr class="grp"><td colspan="3">温めて — WARM</td></tr>
+        <tr><td>人肌燗</td><td class="t">約35℃</td><td>米と麹の香り、さらりとやわらかく</td></tr>
+        <tr><td>ぬる燗</td><td class="t">約40℃</td><td>香りがもっとも豊かにふくらむ</td></tr>
+        <tr><td>あつ燗</td><td class="t">約50℃</td><td>シャープに引き締まり、キレのある辛口に</td></tr>
+        </tbody>
+      </table>
+      <p class="temp-note">※ 温度帯の呼称は日本酒造組合中央会による。℃はおおよその目安です。最適な温度は銘柄ごとに異なるため、各蔵のおすすめがあればそれを優先してください。</p>
+    </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+    <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 02</span>
+      <span class="section-meta__label">STORAGE / 保存</span>
+      <span class="section-meta__rule"></span>
+    </div>
+      <div class="prose">
+        <h2 class="sub-h">生酒・にごりは、<span class="accent">冷蔵</span>が基本</h2>
+        <p>クラフトサケには、加熱処理（火入れ）をしていない<strong>生酒</strong>や、澱（おり）を残した<strong>にごり・おりがらみ</strong>が多い。これらは繊細で変化しやすいため、<strong>冷蔵庫での保管</strong>が基本。火入れされたタイプも、品質を保つなら冷暗所が安心。</p>
+        <p>開栓後は風味が変わりやすいので、なるべく早めに飲み切るのがおすすめ。発酵由来のガスを含むにごりやどぶろくは、<strong>開栓時に噴き出す</strong>ことがある。冷やしてから、ゆっくり少しずつ開けるのがコツ。</p>
+        <div class="callout">
+          <div class="callout__label">ボトルの表示を確認</div>
+          <p>「要冷蔵」「開栓注意」などの表示は、その酒の個性そのもの。ラベルや蔵の案内に従うのが、いちばんおいしく楽しむ近道です。</p>
+        </div>
+      </div>
+    </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+    <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <span class="section-meta__label">GLASS & STYLE / 器と飲み方</span>
+      <span class="section-meta__rule"></span>
+    </div>
+      <div class="prose">
+        <h2 class="sub-h">ワイングラスでも、<span class="accent">ソーダ割り</span>でも</h2>
+        <p>香りの華やかなクラフトサケは、<strong>ワイングラス</strong>に注ぐと立ちのぼる香りを楽しめる。フルーティーな果実サケやホップサケは、とくにグラス選びで印象が変わる。</p>
+        <p>味のしっかりした銘柄なら、<strong>ロック</strong>や<strong>ソーダ割り</strong>も楽しい。クラフトサケは自由な酒。炭酸で割れば食前酒のように軽やかになり、低アルコールのタイプは飲み慣れていない人の入り口にもなる。にごりやどぶろくは、ぬる燗にすると米の甘みがふっくら開く。</p>
+        <p>どんなスタイルが合うかは、銘柄ごとに蔵がおすすめを示していることも多い。迷ったら、<strong>蔵の推奨に従う</strong>のがいちばん。</p>
+      </div>
+    </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+    <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <span class="section-meta__label">PAIRING / 料理と合わせる</span>
+      <span class="section-meta__rule"></span>
+    </div>
+      <div class="prose">
+        <p>副原料や製法の個性は、合わせる料理を選ぶ楽しみにもつながる。あくまで一例だが、ジャンル別の相性の目安を挙げてみる。</p>
+      </div>
+      <div class="term-grid"><div class="term"><div class="term__name">果実サケ<span class="en">FRUIT</span></div><div class="term__desc">前菜、生ハム、フレッシュチーズ、サラダ。果実の甘酸っぱさが軽やかな一皿に寄り添う。</div></div><div class="term"><div class="term__name">ホップサケ<span class="en">HOP</span></div><div class="term__desc">揚げ物、スパイスの効いた料理、エスニック。ホップのほろ苦さと香りが油やスパイスを受け止める。</div></div><div class="term"><div class="term__name">古典どぶろく<span class="en">DOBUROKU</span></div><div class="term__desc">味噌・漬物などの発酵食品、鍋もの。米の旨みと酸が、滋味深い和の食卓と好相性とされる。</div></div><div class="term"><div class="term__name">全麹・濃醇タイプ<span class="en">FULL KOJI</span></div><div class="term__desc">熟成チーズ、ナッツ、食後の一杯に。とろりと濃い甘旨味は、デザート感覚でも楽しめる。</div></div><div class="term"><div class="term__name">白麹・酸の効いた酒<span class="en">ACIDIC</span></div><div class="term__desc">脂ののった料理をさっぱりと。クエン酸由来の爽やかな酸が後味を切り替える。</div></div></div>
+      <div class="prose">
+        <p>こうしたジャンルは、saketto の<a href="../genre/">ジャンル</a>や<a href="../subingredients/">副原料</a>の軸から探せる。気分や食卓に合わせて、一本を選んでみてほしい。</p>
+      </div>
+    </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+    <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 05</span>
+      <span class="section-meta__label">AVAILABILITY / 入手性で選ぶ</span>
+      <span class="section-meta__rule"></span>
+    </div>
+      <div class="prose">
+        <h2 class="sub-h">「<span class="accent">限定流通</span>」も、味のうち</h2>
+        <p>クラフトサケは少量仕込みが多く、通販で気軽に買えるものから、特約店だけ、現地だけ、抽選——と入手の難しさもさまざま。その希少さ自体が、この酒の魅力のひとつ。saketto では入手性の軸からも逆引きできる。</p>
+        <div class="pill-links">
+          <a href="../availability/">入手性から探す<span class="arr">→</span></a>
+          <a href="../furusato/">ふるさと納税から探す<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+    <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 06</span>
+      <span class="section-meta__label">PLEASE NOTE / お願い</span>
+      <span class="section-meta__rule"></span>
+    </div>
+      <div class="prose">
+        <div class="callout">
+          <div class="callout__label">楽しむ前に</div>
+          <p><strong>20歳未満の飲酒は法律で禁じられています。</strong>　お酒を飲んだら運転はできません（飲酒運転は法律で禁止されています）。妊娠中・授乳期の飲酒は、おなかの赤ちゃんに影響することがあります。適量を守り、自分のペースで楽しんでください。</p>
+        </div>
+        <div class="readmore">
+          <a href="craftsake-towa.html">
+            <div class="readmore__k">READING — 01</div>
+            <div class="readmore__t">そもそもクラフトサケとは？</div>
+          </a>
+          <a href="../index.html">
+            <div class="readmore__k">BACK TO</div>
+            <div class="readmore__t">saketto トップへ</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="colophon">
+      <div class="colophon__brand">
+        <a href="../index.html">saketto<span class="dot">.</span></a>
+        <small>— クラフトサケの図鑑</small>
+      </div>
+      <div class="colophon__notes">
+        <strong>準備中</strong><span class="colophon__sep">／</span>
+        2026年夏、本サイト公開予定<span class="colophon__sep">／</span>
+        20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
+        PR ／ アフィリエイトリンクを含みます<span class="colophon__sep">／</span>
+        © 2026 saketto.
+      </div>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
