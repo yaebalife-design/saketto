@@ -24,6 +24,7 @@ from breweries_master import by_slug, BREWERIES
 from breweries_brands import BRANDS
 from moshimo_link import rakuten_search, amazon_search
 from gen_sample_v2 import CSS, gen_scale4_svg, gen_radar6_svg, AFFILIATE_ENABLED
+from story_overrides import story_override
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "brand"
@@ -287,14 +288,15 @@ def build_html(brand, detail, brewery, idx):
     </div>
   </section>"""
 
-    # ── STORY（しっかり背景になっている充実したものだけ。薄い事実列挙は出さない）──
+    # ── STORY（充実版上書き優先。薄い事実列挙は出さない）──
+    story_txt = story_override(slug, name) or d.get("story") or ""
     story_section = ""
-    if d.get("story") and len(d.get("story", "")) >= 70:
+    if len(story_txt) >= 70:
         story_section = f"""
   <div class="divider"><div class="rule"></div><div class="ornament outer"></div><div class="ornament"></div><div class="ornament outer"></div><div class="rule"></div></div>
   <section class="section">
     <div class="section-meta"><span class="section-meta__num">No. 05</span><span class="section-meta__label">STORY / この銘柄が生まれた背景</span><span class="section-meta__rule"></span></div>
-    <div class="story-block"><p class="story-text">{esc(d["story"])}</p></div>
+    <div class="story-block"><p class="story-text">{esc(story_txt)}</p></div>
   </section>"""
 
     # ── AWARDS（あれば）──
