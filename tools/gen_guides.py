@@ -19,6 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 from gen_axes_pages import CSS as BASE_CSS  # 世界観CSSを流用
+from site_common import head_extra
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
 OUT_DIR = REPO_ROOT / "guide"
@@ -132,6 +133,7 @@ def page_head(title, description):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>{BASE_CSS}{EXTRA_CSS}</style>
+{head_extra()}
 </head>
 <body>
 <main>

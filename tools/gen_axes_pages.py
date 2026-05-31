@@ -15,6 +15,7 @@ from breweries_master import BREWERIES, REGIONS, by_slug
 from breweries_brands import BRANDS
 from awards import AWARDS
 from furusato_data import FURUSATO, PORTAL_NAMES
+from site_common import head_extra
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
@@ -372,6 +373,7 @@ def page_head(title, description):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>{CSS}</style>
+{head_extra()}
 </head>
 <body>
 <main>

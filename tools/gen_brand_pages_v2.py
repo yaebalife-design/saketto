@@ -25,6 +25,7 @@ from breweries_brands import BRANDS
 from moshimo_link import rakuten_search, amazon_search
 from gen_sample_v2 import CSS, gen_scale4_svg, gen_radar6_svg, AFFILIATE_ENABLED
 from story_overrides import story_override
+from site_common import head_extra
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "brand"
@@ -368,6 +369,7 @@ def build_html(brand, detail, brewery, idx):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>{CSS}</style>
+{head_extra()}
 </head>
 <body>
 <main>

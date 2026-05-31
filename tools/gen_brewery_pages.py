@@ -20,6 +20,7 @@ from breweries_brands import BRANDS
 from awards import AWARDS
 from tasting import TASTING
 from brewery_about import about_of, founder_of
+from site_common import head_extra
 
 # brand_data（一次ソース調査済み）を読み込み、製法特徴の抽出に使う
 _DETAILS = {}
@@ -457,6 +458,7 @@ HEAD = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>{css}</style>
+{head_extra}
 </head>
 <body>
 <main>
@@ -657,7 +659,7 @@ def render(brewery, index, prev_brewery, next_brewery):
 
     html = HEAD.format(name=brewery["name"], prefecture=brewery["prefecture"],
                        city=brewery["city"], philosophy_short=philosophy_short,
-                       css=CSS)
+                       css=CSS, head_extra=head_extra())
 
     html += f"""
   <div class="masthead">
