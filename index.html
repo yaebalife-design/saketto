@@ -81,9 +81,15 @@ main { position: relative; z-index: 1; }
   color: var(--ink-soft);
   text-transform: uppercase;
 }
+.masthead { gap: 1rem; flex-wrap: wrap; }
 .masthead .left { display: flex; gap: 1.5rem; align-items: center; }
+.masthead .brand-link { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink); text-decoration: none; font-weight: 700; }
 .masthead .accent-dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; display: inline-block; }
-.masthead .right { font-family: 'Cormorant Garamond', serif; font-style: italic; letter-spacing: .1em; }
+.masthead-nav { display: flex; gap: 1.35rem; align-items: center; flex-wrap: wrap; }
+.masthead-nav a { color: var(--ink-mute); text-decoration: none; transition: color .25s; }
+.masthead-nav a:hover { color: var(--accent); }
+.masthead-nav a.is-reading { color: var(--ink-soft); }
+@media (max-width: 640px) { .masthead-nav { gap: 1rem; font-size: .74rem; } }
 
 /* ─────────── HERO ─────────── */
 .hero {
@@ -687,13 +693,19 @@ footer {
 <body>
 <main>
 
-  <!-- マストヘッド -->
+  <!-- マストヘッド（ナビ） -->
   <div class="masthead">
     <div class="left">
-      <span><span class="accent-dot"></span>&nbsp;&nbsp;SAKETTO</span>
-      <span>VOL. 001 — PROLOGUE</span>
+      <a class="brand-link" href="index.html"><span class="accent-dot"></span>SAKETTO</a>
     </div>
-    <div class="right">A. D. 2026 — Edition β</div>
+    <nav class="masthead-nav" aria-label="グローバルナビ">
+      <a href="subingredients/">副原料</a>
+      <a href="#breweries">蔵</a>
+      <a href="region/">地域</a>
+      <a href="genre/">ジャンル</a>
+      <a href="availability/">入手性</a>
+      <a class="is-reading" href="guide/">読みもの</a>
+    </nav>
   </div>
 
   <!-- HERO -->
