@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VaVaVa Spring 2026 DDH Doburoku ／ ぷくぷく醸造 — saketto.</title>
-<meta name="description" content="VaVaVa Spring 2026 DDH Doburoku（ぷくぷく醸造）。">
+<meta name="description" content="">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,74 +20,91 @@
 html { scroll-behavior:smooth; }
 body {
   background:var(--bg); color:var(--ink);
-  font-family:'Noto Sans JP', sans-serif;
-  font-weight:400; line-height:1.8;
+  font-family:'Noto Sans JP', sans-serif; font-weight:400; line-height:1.8;
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   overflow-x:hidden; font-size:16px;
 }
-body::before {
-  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
-  background-image:
-    radial-gradient(ellipse 1.5px 2.2px at 18% 22%, rgba(168,53,31,0.03) 60%, transparent 70%),
-    radial-gradient(ellipse 1.2px 1.8px at 67% 38%, rgba(122,100,71,0.035) 60%, transparent 70%);
-  background-size: 64px 64px, 96px 96px;
-}
 main { position:relative; z-index:1; }
 
-/* マストヘッド */
+/* ===== マストヘッド ===== */
 .masthead {
-  border-bottom:1px solid var(--line);
-  padding:1rem 2rem;
+  border-bottom:1px solid var(--line); padding:1rem 2rem;
   display:flex; justify-content:space-between; align-items:center;
   font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
-  font-size:.8rem; letter-spacing:.12em; color:var(--ink-soft);
-  text-transform:uppercase;
+  font-size:.8rem; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;
 }
 .masthead a { color:var(--ink-soft); text-decoration:none; transition:color .25s; }
 .masthead a:hover { color:var(--accent); }
 .masthead .accent-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; margin-right:.5rem; }
-.masthead .left { display:flex; gap:1.5rem; align-items:center; }
+.masthead .left { display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; }
 .masthead .right { font-family:'Cormorant Garamond', serif; font-style:italic; letter-spacing:.1em; }
 
-/* HERO */
+/* ===== HERO ===== */
 .hero {
-  max-width:1100px; margin:0 auto; padding:4rem 2rem 3rem;
+  max-width:1100px; margin:0 auto; padding:4rem 2rem 2.5rem;
 }
+/* ===== 役割ラベルチップ（蔵／銘柄の区別） ===== */
+.role-chip {
+  display:inline-block; font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-weight:700; font-size:.7rem; letter-spacing:.18em;
+  padding:.16rem .55rem; margin-right:.65rem; vertical-align:middle;
+  line-height:1;
+}
+.role-chip--kura { border:1px solid var(--warm); color:var(--warm); }
+.role-chip--brand { background:var(--accent); color:#FAF6ED; border:1px solid var(--accent); }
+
 .hero__brewery {
-  font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:1rem; color:var(--accent); letter-spacing:.1em;
-  margin-bottom:.85rem;
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.1rem; color:var(--warm); letter-spacing:.04em; margin-bottom:1.1rem;
+  display:flex; align-items:center; flex-wrap:wrap;
 }
-.hero__brewery a {
-  color:var(--accent); text-decoration:none;
-  border-bottom:1px dotted var(--accent);
+.hero__brewery a { color:var(--warm); text-decoration:none; border-bottom:1px dotted var(--warm); }
+.hero__brewery a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.hero__brewery-loc {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.82rem; color:var(--ink-mute); letter-spacing:.02em; margin-left:.5rem;
 }
-.hero__brewery a:hover { color:var(--accent-deep); }
+.hero__brandrow { margin-bottom:.5rem; }
 .hero__name {
   font-family:'Shippori Mincho', serif; font-weight:700;
-  font-size:clamp(2rem, 5.5vw, 3.6rem);
-  letter-spacing:.01em; line-height:1.2; color:var(--ink);
-  margin-bottom:1.2rem;
+  font-size:clamp(2.2rem, 6vw, 4rem);
+  letter-spacing:.01em; line-height:1.15; color:var(--ink); margin-bottom:1rem;
 }
-.hero__note {
+.hero__kana {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.88rem; letter-spacing:.2em; color:var(--ink-soft); margin-bottom:1.5rem;
+}
+.hero__tagline {
   font-family:'Shippori Mincho', serif; font-weight:500;
-  font-size:1.1rem; color:var(--ink-soft); line-height:1.75;
-  margin-bottom:2.5rem; max-width:680px;
+  font-size:1.15rem; color:var(--ink); line-height:1.75;
+  max-width:780px; margin-bottom:2rem;
 }
+.hero__flavor {
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:1.1rem 0; margin-bottom:1.75rem; max-width:780px;
+}
+.hero__flavor-label {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.92rem; color:var(--accent); letter-spacing:.08em; margin-bottom:.7rem;
+}
+.hero__badges { display:flex; flex-wrap:wrap; gap:.55rem; margin-bottom:.5rem; }
+.badge {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.75rem; letter-spacing:.12em; padding:.4rem .85rem;
+  border:1px solid currentColor;
+}
+.badge--cat { color:var(--accent); }
+.badge--avail { color:var(--warm); }
+.badge--filled { color:#fff; background:var(--accent); border-color:var(--accent); }
 
-/* SPECS - 大判ディスプレイ */
-.specs-board {
+/* ===== Spec Board (大判) ===== */
+.spec-board {
+  max-width:1100px; margin:0 auto; padding:0 2rem 2rem;
   display:grid; grid-template-columns:1fr; gap:0;
-  border:1px solid var(--line); margin-bottom:3rem;
-  background:var(--paper);
+  border:1px solid var(--line); background:var(--paper);
 }
-@media (min-width:640px) {
-  .specs-board { grid-template-columns:repeat(3, 1fr); }
-}
-.spec-cell {
-  padding:1.5rem 1.75rem;
-  border-bottom:1px solid var(--line);
-}
+@media (min-width:640px) { .spec-board { grid-template-columns:repeat(3, 1fr); } }
+.spec-cell { padding:1.6rem 1.75rem; border-bottom:1px solid var(--line); }
 @media (min-width:640px) {
   .spec-cell { border-bottom:none; border-right:1px solid var(--line); }
   .spec-cell:last-child { border-right:none; }
@@ -95,54 +112,22 @@ main { position:relative; z-index:1; }
 .spec-cell:last-child { border-bottom:none; }
 .spec-cell__label {
   font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:.85rem; color:var(--accent); letter-spacing:.1em;
-  margin-bottom:.4rem;
+  font-size:.88rem; color:var(--accent); letter-spacing:.1em; margin-bottom:.5rem;
 }
 .spec-cell__value {
   font-family:'Shippori Mincho', serif; font-weight:700;
-  font-size:1.8rem; color:var(--ink); letter-spacing:.02em; line-height:1.2;
+  font-size:2rem; color:var(--ink); letter-spacing:.02em; line-height:1.15;
 }
 .spec-cell__value small {
   font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:.65em; color:var(--ink-soft); font-weight:400;
-  margin-left:.25rem;
+  font-size:.55em; color:var(--ink-soft); font-weight:400; margin-left:.3rem;
 }
-.spec-cell__unknown {
-  font-family:'Shippori Mincho', serif; font-size:1.1rem;
-  color:var(--ink-mute); font-weight:500;
-}
-.spec-cell__pills {
-  display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.3rem;
-}
-.pill {
-  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
-  font-size:.85rem; letter-spacing:.02em; color:var(--ink);
-  background:var(--bg); padding:.3rem .7rem;
-  border:1px solid var(--line);
+.spec-cell__sub {
+  font-family:'Noto Sans JP', sans-serif;
+  font-size:.78rem; color:var(--ink-soft); margin-top:.5rem; line-height:1.5;
 }
 
-/* PRICE */
-.price-block {
-  display:flex; justify-content:space-between; align-items:baseline;
-  padding:1.5rem 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-  margin-bottom:3rem; flex-wrap:wrap; gap:.5rem;
-}
-.price-block__label {
-  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
-  font-size:.85rem; letter-spacing:.18em; color:var(--ink);
-  text-transform:uppercase;
-}
-.price-block__value {
-  font-family:'Shippori Mincho', serif; font-weight:700;
-  font-size:1.6rem; color:var(--ink);
-}
-.price-block__value small {
-  font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:.65em; color:var(--ink-soft); font-weight:400;
-  margin-left:.4rem;
-}
-
-/* SECTION */
+/* ===== Section common ===== */
 .section { max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
 .section-meta {
   display:flex; align-items:baseline; gap:1.25rem; margin-bottom:1.5rem;
@@ -158,86 +143,238 @@ main { position:relative; z-index:1; }
 }
 .section-meta__rule { flex:1; height:1px; background:var(--line); }
 
-/* TASTING */
-.tasting-block {
-  background:var(--paper); padding:2rem 2.25rem;
-  border-left:3px solid var(--accent); margin-bottom:1rem;
+/* ===== Recipe Table ===== */
+.recipe {
+  border:1px solid var(--line);
 }
-.tasting-notes {
+.recipe-row {
+  display:grid; grid-template-columns:170px 1fr;
+  border-bottom:1px solid var(--line); padding:1rem 1.5rem;
+  background:var(--bg);
+}
+.recipe-row:last-child { border-bottom:none; }
+.recipe-row:nth-child(even) { background:var(--paper); }
+.recipe-row__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.82rem; letter-spacing:.12em; color:var(--accent);
+  text-transform:uppercase; line-height:1.6;
+}
+.recipe-row__value {
   font-family:'Shippori Mincho', serif; font-weight:500;
-  font-size:1.1rem; color:var(--ink); line-height:1.95; margin-bottom:1.2rem;
+  font-size:1rem; color:var(--ink); line-height:1.65;
 }
-.tasting-meta {
-  display:flex; flex-wrap:wrap; gap:.5rem 1.5rem;
-  font-size:.92rem; color:var(--ink-soft); margin-bottom:.8rem;
+.recipe-row__value small {
+  display:block; font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.82rem; color:var(--ink-soft); margin-top:.3rem; line-height:1.6;
 }
-.tasting-meta__row { display:inline-flex; align-items:baseline; }
-.tasting-meta strong {
-  color:var(--accent); font-weight:700; margin-right:.5rem;
-  font-family:'Zen Kaku Gothic Antique', sans-serif;
-  font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+.recipe-row__value.unknown { color:var(--ink-mute); font-style:italic; font-weight:400; }
+@media (max-width:640px) {
+  .recipe-row { grid-template-columns:1fr; gap:.4rem; }
+}
+
+/* ===== How To Enjoy ===== */
+.enjoy {
+  display:grid; grid-template-columns:1fr; gap:1px; background:var(--line);
+  border:1px solid var(--line);
+}
+@media (min-width:760px) { .enjoy { grid-template-columns:repeat(2, 1fr); } }
+.enjoy-cell { background:var(--bg); padding:1.5rem 1.75rem; }
+.enjoy-cell__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.78rem; letter-spacing:.18em; color:var(--accent);
+  text-transform:uppercase; margin-bottom:.5rem;
+}
+.enjoy-cell__value {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.1rem; color:var(--ink); line-height:1.7;
+}
+.enjoy-cell__value small {
+  display:block; font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.82rem; color:var(--ink-soft); margin-top:.4rem; line-height:1.65;
+}
+
+.pairing-list {
+  display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.65rem;
+}
+.pairing-chip {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:.95rem; padding:.4rem .85rem;
+  background:var(--paper); border:1px solid var(--line);
+  color:var(--ink); letter-spacing:.02em;
+}
+
+/* ===== TASTING 3段 ===== */
+.tasting-3 {
+  display:grid; grid-template-columns:1fr; gap:0;
+  border:1px solid var(--line); border-left:4px solid var(--accent);
+  background:var(--paper); margin-bottom:1rem;
+}
+.tasting-row {
+  padding:1.4rem 1.75rem;
+  border-bottom:1px solid var(--line);
+}
+.tasting-row:last-child { border-bottom:none; }
+.tasting-row__label {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.95rem; color:var(--accent); letter-spacing:.1em; margin-bottom:.45rem;
+}
+.tasting-row__label strong {
+  display:block; font-family:'Shippori Mincho', serif; font-style:normal;
+  font-weight:700; font-size:1.05rem; color:var(--ink); letter-spacing:.05em;
+}
+.tasting-row__text {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.05rem; color:var(--ink); line-height:1.95;
 }
 .tasting-source {
   font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:.88rem; color:var(--ink-soft); padding-top:.85rem;
-  border-top:1px dotted var(--line);
+  font-size:.88rem; color:var(--ink-soft); padding-top:.75rem;
+  border-top:1px dotted var(--line); margin-top:1rem;
 }
 .tasting-source a { color:var(--ink); border-bottom:1px dotted var(--line); text-decoration:none; }
 .tasting-source a:hover { color:var(--accent); border-bottom-color:var(--accent); }
 
-/* KURA CONTEXT */
-.kura-context {
-  background:var(--bg-alt); padding:2rem 2.25rem; border:1px solid var(--line);
-  margin-bottom:1rem;
+/* ===== Flavor Profile (4軸 + 6軸) ===== */
+.flavor-wrap {
+  display:grid; grid-template-columns:1fr; gap:2rem;
+  margin-bottom:2rem;
 }
-.kura-context__name {
-  font-family:'Shippori Mincho', serif; font-weight:700;
-  font-size:1.35rem; color:var(--ink); margin-bottom:.4rem;
+@media (min-width:860px) { .flavor-wrap { grid-template-columns:1.3fr 1fr; } }
+.flavor-box {
+  background:var(--paper); border:1px solid var(--line);
+  padding:1.5rem 1.5rem;
 }
-.kura-context__meta {
+.flavor-box__title {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1rem; color:var(--accent); letter-spacing:.1em; margin-bottom:1rem;
+  display:flex; align-items:center; gap:.5rem;
+}
+.flavor-box__title strong {
+  font-family:'Shippori Mincho', serif; font-weight:600;
+  color:var(--ink); font-size:1.1rem; letter-spacing:.04em; font-style:normal;
+}
+.flavor-box svg { display:block; width:100%; height:auto; }
+.flavor-box__cap {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.78rem; color:var(--ink-soft); margin-top:.75rem; line-height:1.6;
+  border-top:1px dotted var(--line); padding-top:.75rem;
+}
+.flavor-tags { display:flex; flex-wrap:wrap; gap:.45rem; }
+.flavor-tag {
   font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
-  font-size:.85rem; color:var(--ink-soft); letter-spacing:.05em;
-  margin-bottom:1rem;
+  font-size:.85rem; padding:.32rem .75rem; background:var(--bg);
+  border:1px solid var(--line); color:var(--ink); letter-spacing:.02em;
 }
-.kura-context__philosophy {
+
+/* ===== STORY ===== */
+.story-block {
+  background:var(--bg-alt); padding:2rem 2.25rem;
+  border-left:3px solid var(--warm);
+}
+.story-text {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.05rem; color:var(--ink); line-height:1.95; margin-bottom:1rem;
+}
+.story-source {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.85rem; color:var(--ink-soft);
+}
+.story-source a { color:var(--ink); border-bottom:1px dotted var(--line); text-decoration:none; }
+
+/* ===== AWARDS ===== */
+.awards-list {
+  display:flex; flex-direction:column; border:1px solid var(--line);
+}
+.award-card {
+  display:grid; grid-template-columns:auto 1fr; gap:1.2rem;
+  padding:1.25rem 1.5rem; border-bottom:1px solid var(--line);
+  background:var(--bg); border-left:3px solid var(--accent);
+}
+.award-card:last-child { border-bottom:none; }
+.award-year {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.4rem; color:var(--accent); letter-spacing:.05em; min-width:3.5em;
+}
+.award-title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.05rem; color:var(--ink); line-height:1.5;
+}
+.award-where {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-soft); margin-top:.2rem;
+}
+
+/* ===== KURA + PURCHASE ===== */
+.kura-purchase {
+  display:grid; grid-template-columns:1fr; gap:1.5rem;
+}
+@media (min-width:760px) { .kura-purchase { grid-template-columns:2fr 1fr; } }
+.kura-card {
+  background:var(--bg-alt); padding:1.75rem 2rem; border:1px solid var(--line);
+}
+.kura-card__name {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.35rem; color:var(--ink); margin-bottom:.3rem;
+}
+.kura-card__meta {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.85rem; color:var(--ink-soft); letter-spacing:.05em; margin-bottom:1rem;
+}
+.kura-card__philo {
   font-size:.95rem; color:var(--ink); line-height:1.85; margin-bottom:1rem;
 }
-.kura-context__link {
+.kura-card__link {
   display:inline-block; font-family:'Zen Kaku Gothic Antique', sans-serif;
   font-weight:700; font-size:.85rem; color:var(--accent); letter-spacing:.1em;
   text-transform:uppercase; text-decoration:none;
   border-bottom:1px solid var(--accent); padding-bottom:.15rem;
-  transition:color .25s;
 }
-.kura-context__link:hover { color:var(--accent-deep); }
-
-/* RELATED */
-.related {
-  display:grid; grid-template-columns:1fr; gap:0;
-  border:1px solid var(--line);
+.purchase-card {
+  background:var(--ink); color:#F5F0E7; padding:1.75rem 2rem;
+  display:flex; flex-direction:column; justify-content:space-between;
 }
-@media (min-width:700px) { .related { grid-template-columns:repeat(2, 1fr); } }
-.related-card {
-  display:block; padding:1.1rem 1.4rem;
-  background:var(--bg); color:var(--ink); text-decoration:none;
-  border-bottom:1px solid var(--line);
-  transition:background .3s, padding-left .3s;
+.purchase-card__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.78rem; letter-spacing:.18em; color:#A8351F; margin-bottom:.6rem;
+  text-transform:uppercase;
 }
-@media (min-width:700px) {
-  .related-card { border-right:1px solid var(--line); }
-  .related-card:nth-child(2n) { border-right:none; }
+.purchase-card__title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.15rem; line-height:1.5; margin-bottom:1.25rem; color:#F5F0E7;
 }
-.related-card:hover { background:var(--paper); padding-left:1.6rem; }
-.related-card__name {
-  font-family:'Shippori Mincho', serif; font-weight:600;
-  font-size:1rem; color:var(--ink); margin-bottom:.2rem;
+.purchase-card__btns {
+  display:flex; flex-direction:column; gap:.6rem;
 }
-.related-card__sub {
+.purchase-card__btn {
+  display:block; text-align:center; padding:.95rem 1.25rem;
+  color:#F5F0E7; text-decoration:none;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.95rem; letter-spacing:.1em;
+  transition:filter .25s, transform .15s;
+  position:relative;
+}
+.purchase-card__btn:hover { filter:brightness(1.1); transform:translateY(-1px); }
+.purchase-card__btn--rakuten {
+  background:linear-gradient(135deg, #BF0000 0%, #C9242E 100%);
+}
+.purchase-card__btn--amazon {
+  background:linear-gradient(135deg, #232F3E 0%, #FF9900 100%);
+}
+.purchase-card__btn--official {
+  background:#16100E; border:1px solid #635C57;
+}
+.purchase-card__note {
   font-family:'Noto Sans JP', sans-serif; font-weight:400;
-  font-size:.78rem; color:var(--ink-soft);
+  font-size:.72rem; color:#C0B69E; margin-top:.85rem; letter-spacing:.05em;
+  text-align:center;
+}
+.purchase-card__pending {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.92rem; color:#C0B69E; letter-spacing:.08em;
+  text-align:center; padding:1.1rem 0; border:1px dashed #635C57;
 }
 
-/* SOURCES */
+/* ===== SOURCES ===== */
 .sources {
   background:var(--bg-alt); padding:1.75rem 2rem;
   font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -246,33 +383,34 @@ main { position:relative; z-index:1; }
   font-size:.85rem; letter-spacing:.18em; color:var(--ink); font-weight:700;
   margin-bottom:1rem; text-transform:uppercase;
 }
-.sources ul { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
+.sources ul { list-style:none; display:flex; flex-direction:column; gap:.55rem; }
 .sources a {
-  font-size:.95rem; color:var(--ink); text-decoration:none; font-weight:500;
-  border-bottom:1px dotted var(--line); padding-bottom:.2rem;
+  font-size:.92rem; color:var(--ink); text-decoration:none; font-weight:500;
+  border-bottom:1px dotted var(--line); padding-bottom:.15rem;
   word-break:break-all; transition:color .25s;
 }
 .sources a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.sources__meta {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.82rem; color:var(--ink-soft); margin-top:1.25rem;
+  padding-top:1rem; border-top:1px solid var(--line);
+}
 
-/* NAV PREV/NEXT */
-.nav-prev-next {
-  max-width:1100px; margin:0 auto; padding:2rem;
-  display:flex; justify-content:space-between; gap:1rem;
-  font-family:'Shippori Mincho', serif;
+/* ===== Glossary ===== */
+.glossary {
+  border:1px solid var(--line); padding:1.5rem 1.75rem; background:var(--paper);
 }
-.nav-prev-next a {
-  color:var(--ink); text-decoration:none; padding:1rem 0;
-  border-top:1px solid var(--line); flex:1; max-width:48%;
-  transition:color .25s, border-color .25s;
+.glossary-item { padding:.9rem 0; border-bottom:1px dotted var(--line); }
+.glossary-item:last-child { border-bottom:none; padding-bottom:0; }
+.glossary-item dt {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1rem; color:var(--accent); margin-bottom:.35rem;
 }
-.nav-prev-next a:hover { color:var(--accent); border-top-color:var(--accent); }
-.nav-prev-next a small {
-  display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:.85rem; color:var(--ink-soft); letter-spacing:.05em; margin-bottom:.4rem;
+.glossary-item dd {
+  font-size:.92rem; color:var(--ink); line-height:1.75; font-weight:400;
 }
-.nav-prev-next .next { text-align:right; margin-left:auto; }
 
-/* DIVIDER */
+/* ===== Divider ===== */
 .divider {
   max-width:1100px; margin:3rem auto; padding:0 2rem;
   display:flex; align-items:center; gap:1rem;
@@ -281,8 +419,20 @@ main { position:relative; z-index:1; }
 .divider .ornament { width:8px; height:8px; background:var(--accent); transform:rotate(45deg); }
 .divider .ornament.outer { width:4px; height:4px; background:var(--warm); }
 
-/* FOOTER */
-footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-index:1; }
+/* ===== 公式サイト（最下部・控えめ） ===== */
+.official-foot {
+  max-width:1100px; margin:0 auto; padding:0 2rem 3rem; text-align:center;
+}
+.official-foot a {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-mute); letter-spacing:.04em;
+  text-decoration:none; border-bottom:1px dotted var(--line); padding-bottom:.2rem;
+  transition:color .25s;
+}
+.official-foot a:hover { color:var(--ink-soft); }
+
+/* ===== Footer ===== */
+footer { margin-top:4rem; border-top:1px solid var(--ink); }
 .colophon {
   max-width:1100px; margin:0 auto; padding:2rem;
   display:grid; grid-template-columns:1fr; gap:1.5rem;
@@ -296,7 +446,8 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 .colophon__brand a { color:var(--ink); text-decoration:none; }
 .colophon__brand small {
   display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:.8rem; color:var(--ink-soft); margin-top:.25rem; letter-spacing:.08em;
+  font-size:.8rem; color:var(--ink-soft); margin-top:.25rem;
+  font-weight:400; letter-spacing:.08em;
 }
 .colophon__notes {
   font-family:'Noto Sans JP', sans-serif; font-weight:400;
@@ -308,132 +459,153 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 </head>
 <body>
 <main>
-
   <div class="masthead">
-    <div class="left">
-      <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
-      <a href="../brewery/pukupuku.html">← ぷくぷく醸造</a>
-    </div>
-    <div class="right">BRAND 02 / 7</div>
+    <div class="left"><a href="../index.html"><span class="accent-dot"></span>SAKETTO</a><a href="../brewery/pukupuku.html">← ぷくぷく醸造</a></div>
+    <div class="right">BRAND — 2026/05/31</div>
   </div>
 
   <section class="hero">
-    <div class="hero__brewery"><a href="../brewery/pukupuku.html">— ぷくぷく醸造</a></div>
+    <div class="hero__brewery">
+      <span class="role-chip role-chip--kura">蔵</span><a href="../brewery/pukupuku.html">ぷくぷく醸造</a><span class="hero__brewery-loc">（福島県）が醸造</span>
+    </div>
+    <div class="hero__brandrow"><span class="role-chip role-chip--brand">銘柄</span></div>
     <h1 class="hero__name">VaVaVa Spring 2026 DDH Doburoku</h1>
     
-
-    <div class="specs-board">
-      <div class="spec-cell">
-        <div class="spec-cell__label">— ABV</div>
-        <div class="spec-cell__unknown">公式非開示</div>
-      </div>
-      <div class="spec-cell">
-        <div class="spec-cell__label">— VOLUME</div>
-        <div class="spec-cell__value">660<small>ml</small></div>
-      </div>
-      <div class="spec-cell">
-        <div class="spec-cell__label">— SUB-INGREDIENTS</div>
-        <div class="spec-cell__pills"><span class="pill">ホップ</span></div>
-      </div>
+    <p class="hero__tagline"></p>
+    <div class="hero__flavor">
+      <div class="hero__flavor-label">— AROMA &amp; FLAVOR ／ 香り・味の印象</div>
+      <div class="flavor-tags"><span class="flavor-tag">トロピカル</span><span class="flavor-tag">ホップ</span><span class="flavor-tag">ドライ</span><span class="flavor-tag">甘酸っぱ</span></div>
     </div>
+  </section>
+<div class="spec-board"><div class="spec-cell"><div class="spec-cell__label">— VOLUME</div><div class="spec-cell__value">660<small>ml</small></div></div><div class="spec-cell"><div class="spec-cell__label">— PRICE</div><div class="spec-cell__value">¥2,640</div><div class="spec-cell__sub">IMADEYA税込2,640円。通常版660ml=2,604円等ロット変動</div></div></div>
 
+  <section class="section" style="padding-top:3rem">
+    <div class="section-meta"><span class="section-meta__num">No. 01</span><span class="section-meta__label">RECIPE / 仕込み</span><span class="section-meta__rule"></span></div>
+    <div class="recipe"><div class="recipe-row"><div class="recipe-row__label">品目（酒税法）</div><div class="recipe-row__value">その他の醸造酒</div></div><div class="recipe-row"><div class="recipe-row__label">副原料</div><div class="recipe-row__value">ホップ<small>ホップ。DDH(ダブルドライホッピング)で香り強調。ロットで品種変動(過去Crush/Cascade)</small></div></div><div class="recipe-row"><div class="recipe-row__label">火入れ／生酒</div><div class="recipe-row__value">生酒</div></div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-meta"><span class="section-meta__num">No. 02</span><span class="section-meta__label">HOW TO ENJOY / 楽しみ方</span><span class="section-meta__rule"></span></div>
+    <div class="enjoy"><div class="enjoy-cell"><div class="enjoy-cell__label">— PRESERVATION</div><div class="enjoy-cell__value">要冷蔵。遮光保管(ホップは紫外線に弱い)</div></div><div class="enjoy-cell"><div class="enjoy-cell__label">— PAIRING</div><div class="enjoy-cell__value">公式・取扱店より<div class="pairing-list"><span class="pairing-chip">スパイシーなビリヤニ</span><span class="pairing-chip">ガパオライス</span><span class="pairing-chip">パッタイ</span><span class="pairing-chip">ソーダ割り</span></div></div></div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-meta"><span class="section-meta__num">No. 03</span><span class="section-meta__label">TASTING NOTES / 香り・味わい・余韻</span><span class="section-meta__rule"></span></div>
+    <div class="tasting-3"><div class="tasting-row"><div class="tasting-row__label">— NOSE　<strong>香り</strong></div><div class="tasting-row__text">力強いホップの香り、トロピカル</div></div><div class="tasting-row"><div class="tasting-row__label">— PALATE　<strong>含み香・味わい</strong></div><div class="tasting-row__text">トロピカルなジューシーさと爽やかさ、どぶろくらしい甘酸っぱさ</div></div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-meta"><span class="section-meta__num">No. 04</span><span class="section-meta__label">FLAVOR PROFILE / 味わいの構造</span><span class="section-meta__rule"></span></div>
+    <div class="flavor-wrap">
+      <div class="flavor-box"><div class="flavor-box__title">— STRUCTURE　<strong>4軸構造スケール</strong></div><svg viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-label="4軸構造スケール">
+
+    <text x="68" y="40" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" text-anchor="end" fill="#3D3633">軽快</text>
+    <line x1="80" y1="35" x2="400" y2="35" stroke="#C0B69E" stroke-width="1"/>
+    <line x1="80.0" y1="30" x2="80.0" y2="40" stroke="#C0B69E" stroke-width="1"/><text x="80.0" y="54" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">1</text><line x1="160.0" y1="30" x2="160.0" y2="40" stroke="#C0B69E" stroke-width="1"/><text x="160.0" y="54" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">2</text><line x1="240.0" y1="30" x2="240.0" y2="40" stroke="#C0B69E" stroke-width="1"/><text x="240.0" y="54" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">3</text><line x1="320.0" y1="30" x2="320.0" y2="40" stroke="#C0B69E" stroke-width="1"/><text x="320.0" y="54" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">4</text><line x1="400.0" y1="30" x2="400.0" y2="40" stroke="#C0B69E" stroke-width="1"/><text x="400.0" y="54" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">5</text>
+    <circle cx="240.0" cy="35" r="8" fill="#A8351F"/>
+    <circle cx="240.0" cy="35" r="13" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.35"/>
+    <text x="412" y="40" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" fill="#3D3633">濃醇</text>
+    <text x="240.0" y="23" font-family="Cormorant Garamond" font-style="italic"
+          font-size="13" font-weight="500" text-anchor="middle" fill="#A8351F">3.0</text>
+    <text x="68" y="96" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" text-anchor="end" fill="#3D3633">甘口</text>
+    <line x1="80" y1="91" x2="400" y2="91" stroke="#C0B69E" stroke-width="1"/>
+    <line x1="80.0" y1="86" x2="80.0" y2="96" stroke="#C0B69E" stroke-width="1"/><text x="80.0" y="110" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">1</text><line x1="160.0" y1="86" x2="160.0" y2="96" stroke="#C0B69E" stroke-width="1"/><text x="160.0" y="110" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">2</text><line x1="240.0" y1="86" x2="240.0" y2="96" stroke="#C0B69E" stroke-width="1"/><text x="240.0" y="110" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">3</text><line x1="320.0" y1="86" x2="320.0" y2="96" stroke="#C0B69E" stroke-width="1"/><text x="320.0" y="110" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">4</text><line x1="400.0" y1="86" x2="400.0" y2="96" stroke="#C0B69E" stroke-width="1"/><text x="400.0" y="110" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">5</text>
+    <circle cx="240.0" cy="91" r="8" fill="#A8351F"/>
+    <circle cx="240.0" cy="91" r="13" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.35"/>
+    <text x="412" y="96" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" fill="#3D3633">辛口</text>
+    <text x="240.0" y="79" font-family="Cormorant Garamond" font-style="italic"
+          font-size="13" font-weight="500" text-anchor="middle" fill="#A8351F">3.0</text>
+    <text x="68" y="152" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" text-anchor="end" fill="#3D3633">酸控</text>
+    <line x1="80" y1="147" x2="400" y2="147" stroke="#C0B69E" stroke-width="1"/>
+    <line x1="80.0" y1="142" x2="80.0" y2="152" stroke="#C0B69E" stroke-width="1"/><text x="80.0" y="166" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">1</text><line x1="160.0" y1="142" x2="160.0" y2="152" stroke="#C0B69E" stroke-width="1"/><text x="160.0" y="166" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">2</text><line x1="240.0" y1="142" x2="240.0" y2="152" stroke="#C0B69E" stroke-width="1"/><text x="240.0" y="166" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">3</text><line x1="320.0" y1="142" x2="320.0" y2="152" stroke="#C0B69E" stroke-width="1"/><text x="320.0" y="166" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">4</text><line x1="400.0" y1="142" x2="400.0" y2="152" stroke="#C0B69E" stroke-width="1"/><text x="400.0" y="166" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">5</text>
+    <circle cx="224.0" cy="147" r="8" fill="#A8351F"/>
+    <circle cx="224.0" cy="147" r="13" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.35"/>
+    <text x="412" y="152" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" fill="#3D3633">酸強</text>
+    <text x="224.0" y="135" font-family="Cormorant Garamond" font-style="italic"
+          font-size="13" font-weight="500" text-anchor="middle" fill="#A8351F">2.8</text>
+    <text x="68" y="208" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" text-anchor="end" fill="#3D3633">清澄</text>
+    <line x1="80" y1="203" x2="400" y2="203" stroke="#C0B69E" stroke-width="1"/>
+    <line x1="80.0" y1="198" x2="80.0" y2="208" stroke="#C0B69E" stroke-width="1"/><text x="80.0" y="222" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">1</text><line x1="160.0" y1="198" x2="160.0" y2="208" stroke="#C0B69E" stroke-width="1"/><text x="160.0" y="222" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">2</text><line x1="240.0" y1="198" x2="240.0" y2="208" stroke="#C0B69E" stroke-width="1"/><text x="240.0" y="222" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">3</text><line x1="320.0" y1="198" x2="320.0" y2="208" stroke="#C0B69E" stroke-width="1"/><text x="320.0" y="222" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">4</text><line x1="400.0" y1="198" x2="400.0" y2="208" stroke="#C0B69E" stroke-width="1"/><text x="400.0" y="222" font-family="Cormorant Garamond" font-style="italic" font-size="11" text-anchor="middle" fill="#635C57">5</text>
+    <circle cx="342.4" cy="203" r="8" fill="#A8351F"/>
+    <circle cx="342.4" cy="203" r="13" fill="none" stroke="#A8351F" stroke-width="1" opacity="0.35"/>
+    <text x="412" y="208" font-family="Shippori Mincho" font-size="13"
+          font-weight="500" fill="#3D3633">にごり</text>
+    <text x="342.4" y="191" font-family="Cormorant Garamond" font-style="italic"
+          font-size="13" font-weight="500" text-anchor="middle" fill="#A8351F">4.3</text>
+</svg><div class="flavor-box__cap">公式テイスティング記述・成分値に基づく saketto 編集部評価。</div></div>
+      <div class="flavor-box"><div class="flavor-box__title">— PROFILE　<strong>6軸レーダー</strong></div><svg viewBox="0 0 260 280" xmlns="http://www.w3.org/2000/svg" aria-label="6軸フレーバープロファイル">
+    <polygon points="130.0,112.0 145.6,121.0 145.6,139.0 130.0,148.0 114.4,139.0 114.4,121.0" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="0.1"/>
+    <polygon points="130.0,94.0 161.2,112.0 161.2,148.0 130.0,166.0 98.8,148.0 98.8,112.0" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="0.1"/>
+    <polygon points="130.0,76.0 176.8,103.0 176.8,157.0 130.0,184.0 83.2,157.0 83.2,103.0" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="0.1"/>
+    <polygon points="130.0,58.0 192.4,94.0 192.4,166.0 130.0,202.0 67.6,166.0 67.6,94.0" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="0.1"/>
+    <polygon points="130.0,40.0 207.9,85.0 207.9,175.0 130.0,220.0 52.1,175.0 52.1,85.0" fill="none" stroke="#C0B69E" stroke-width="0.7" opacity="0.18"/>
+    <line x1="130" y1="130" x2="130.0" y2="40.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
+    <line x1="130" y1="130" x2="207.9" y2="85.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
+    <line x1="130" y1="130" x2="207.9" y2="175.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
+    <line x1="130" y1="130" x2="130.0" y2="220.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
+    <line x1="130" y1="130" x2="52.1" y2="175.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
+    <line x1="130" y1="130" x2="52.1" y2="85.0" stroke="#C0B69E" stroke-width="0.5" opacity="0.5"/>
     
-  <div class="price-block">
-    <div class="price-block__label">PRICE</div>
-    <div class="price-block__value">¥2,640<small>参考 2026.05.30</small></div>
-  </div>
+    <polygon points="130.0,40.0 176.8,103.0 176.8,157.0 130.0,184.0 83.2,157.0 83.2,103.0" fill="#A8351F" fill-opacity="0.18" stroke="#A8351F" stroke-width="1.5"/>
+    <circle cx="130.0" cy="40.0" r="3.5" fill="#A8351F"/>
+    <circle cx="176.8" cy="103.0" r="3.5" fill="#A8351F"/>
+    <circle cx="176.8" cy="157.0" r="3.5" fill="#A8351F"/>
+    <circle cx="130.0" cy="184.0" r="3.5" fill="#A8351F"/>
+    <circle cx="83.2" cy="157.0" r="3.5" fill="#A8351F"/>
+    <circle cx="83.2" cy="103.0" r="3.5" fill="#A8351F"/>
+    <text x="130.0" y="18.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">華やか</text>
+    <text x="227.0" y="74.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">酸味</text>
+    <text x="227.0" y="186.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">甘味</text>
+    <text x="130.0" y="242.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">コク</text>
+    <text x="33.0" y="186.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">米感</text>
+    <text x="33.0" y="74.0" font-family="Shippori Mincho" font-size="13" font-weight="600" fill="#16100E" text-anchor="middle" dominant-baseline="middle">複雑性</text>
+    <text x="130.0" y="28.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">5</text>
+    <text x="187.2" y="97.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">3</text>
+    <text x="187.2" y="163.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">3</text>
+    <text x="130.0" y="196.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">3</text>
+    <text x="72.8" y="163.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">3</text>
+    <text x="72.8" y="97.0" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">3</text>
+    
+</svg><div class="flavor-box__cap">同上。飲み手の印象を6軸で。</div></div>
+    </div>
   </section>
 
-  <div class="divider">
-    <div class="rule"></div>
-    <div class="ornament outer"></div>
-    <div class="ornament"></div>
-    <div class="ornament outer"></div>
-    <div class="rule"></div>
-  </div>
-
-  
-  
+  <div class="divider"><div class="rule"></div><div class="ornament outer"></div><div class="ornament"></div><div class="ornament outer"></div><div class="rule"></div></div>
   <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">KURA / 蔵について</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <div class="kura-context">
-      <div class="kura-context__name">ぷくぷく醸造</div>
-      <div class="kura-context__meta">福島県・南相馬市小高区仲町　／　創業 2022</div>
-      <p class="kura-context__philosophy">自然発酵（全量酵母無添加）とビール技法を掛け合わせ、「異文化との境界線を溶かした日本酒」を目指す。</p>
-      <a class="kura-context__link" href="../brewery/pukupuku.html">蔵の詳細を見る →</a>
-    </div>
-  </section>
-  
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 02</span>
-      <span class="section-meta__label">RELATED / 同じ蔵の他銘柄</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <div class="related">
-      <a class="related-card" href="pukupuku-0.html">
-        <div class="related-card__name">#plot 酵母無添加 ホップサケ</div>
-        <div class="related-card__sub">ABV 7%　／　ホップ</div>
-      </a>
-      <a class="related-card" href="pukupuku-2.html">
-        <div class="related-card__name">KiKiKi Spring 2026 Hopped Sour</div>
-        <div class="related-card__sub">660ml　／　ホップ</div>
-      </a>
-      <a class="related-card" href="pukupuku-3.html">
-        <div class="related-card__name">#wildpath 水もとホップどぶろく</div>
-        <div class="related-card__sub">500ml　／　ホップ</div>
-      </a>
-      <a class="related-card" href="pukupuku-4.html">
-        <div class="related-card__name">#ODAKA 蔵付酵母 木桶どぶろく</div>
-        <div class="related-card__sub">米のみ</div>
-      </a>
-      <a class="related-card" href="pukupuku-5.html">
-        <div class="related-card__name">木桶発酵 全麹酒 雫取り</div>
-        <div class="related-card__sub">500ml　／　米のみ（全麹）</div>
-      </a>
-      <a class="related-card" href="pukupuku-6.html">
-        <div class="related-card__name">アマーロどぶろく feat.伊勢屋酒造</div>
-        <div class="related-card__sub">460ml　／　ハーブ・ボタニカル</div>
-      </a></div>
-  </section>
-  
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 03</span>
-      <span class="section-meta__label">SOURCES / 一次ソース</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <div class="sources">
-      <h4>本ページのデータ出典</h4>
-      <ul><li><a href="https://note.com/pukupukubrewing/" target="_blank" rel="noopener">https://note.com/pukupukubrewing/</a></li></ul>
-    </div>
+    <div class="section-meta"><span class="section-meta__num">No. 05</span><span class="section-meta__label">STORY / この銘柄が生まれた背景</span><span class="section-meta__rule"></span></div>
+    <div class="story-block"><p class="story-text">ぷくぷくホップ定番シリーズ(SuSuSu/VaVaVa/KiKiKi)。VaVaVaはDDHでホップキャラと苦味を前面に。Spring2026は季節限定</p></div>
   </section>
 
-  <nav class="nav-prev-next">
-    <a href="pukupuku-0.html"><small>← Prev</small>#plot 酵母無添加 ホップサケ</a>
-    <a class="next" href="pukupuku-2.html"><small>Next →</small>KiKiKi Spring 2026 Hopped Sour</a>
-  </nav>
 
+  <section class="section">
+    <div class="section-meta"><span class="section-meta__num">No. 07</span><span class="section-meta__label">KURA &amp; PURCHASE / 蔵元と入手</span><span class="section-meta__rule"></span></div>
+    <div class="kura-purchase">
+      <div class="kura-card">
+        <div class="kura-card__name">ぷくぷく醸造</div>
+        <div class="kura-card__meta">福島県・南相馬市小高区仲町　／　創業 2022</div>
+        <p class="kura-card__philo">自然発酵（全量酵母無添加）とビール技法を掛け合わせ、「異文化との境界線を溶かした日本酒」を目指す。</p>
+        <a class="kura-card__link" href="../brewery/pukupuku.html">蔵の詳細を見る →</a>
+      </div>
+      <div class="purchase-card">
+        <div><div class="purchase-card__label">— PURCHASE</div><div class="purchase-card__title">「VaVaVa Spring 2026 DDH Doburoku」を探す</div></div>
+        <div><div class="purchase-card__pending">お取り扱い情報は準備中です</div></div>
+      </div>
+    </div>
+  </section>
+<div class="official-foot"><a href="https://note.com/pukupukubrewing/" target="_blank" rel="noopener">ぷくぷく醸造 公式サイト（note.com）→</a></div>
   <footer>
     <div class="colophon">
-      <div class="colophon__brand">
-        <a href="../index.html">saketto<span class="dot">.</span></a>
-        <small>— クラフトサケの図鑑</small>
-      </div>
-      <div class="colophon__notes">
-        <strong>準備中</strong><span class="colophon__sep">／</span>
-        価格・度数は公式サイトでご確認ください<span class="colophon__sep">／</span>
-        20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
-        PR ／ アフィリエイトリンクを含みます<span class="colophon__sep">／</span>
-        © 2026 saketto.
-      </div>
+      <div class="colophon__brand"><a href="../index.html">saketto<span class="dot">.</span></a><small>— クラフトサケの図鑑</small></div>
+      <div class="colophon__notes"><strong>準備中</strong><span class="colophon__sep">／</span>価格・度数は公式サイトでご確認ください<span class="colophon__sep">／</span>20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>PR ／ アフィリエイトリンクを含みます<span class="colophon__sep">／</span>© 2026 saketto.</div>
     </div>
   </footer>
-
 </main>
 </body>
 </html>
