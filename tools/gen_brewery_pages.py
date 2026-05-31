@@ -527,13 +527,6 @@ def render(brewery, index, prev_brewery, next_brewery):
         tags_html = '<div class="fact-tags">' + "".join(f'<span class="fact-tag">{t}</span>' for t in mtags) + '</div>'
         fact("製法・特徴", tags_html)
 
-    aw = [it for it in AWARDS.get(slug, []) if it["type"] == "award"]
-    if aw:
-        fact("受賞", "、".join(it["title"] + (f'（{it["year"]}）' if it.get("year") else "") for it in aw))
-    gl = [it for it in AWARDS.get(slug, []) if it["type"] == "global"]
-    if gl:
-        fact("海外進出", "、".join(it["title"] for it in gl))
-
     if brewery.get("official_url"):
         host = brewery["official_url"].split("//")[-1].split("/")[0]
         fact("公式サイト", f'<a href="{brewery["official_url"]}" target="_blank" rel="noopener">{host}</a>')
@@ -565,9 +558,11 @@ def render(brewery, index, prev_brewery, next_brewery):
     extra_sources = []
     for it in brewery_awards:
         typ = it["type"]
-        label = {"award": "AWARD", "media": "MEDIA", "global": "GLOBAL"}.get(typ, "")
-        cls = {"award": "award", "media": "media", "global": "global"}.get(typ, "")
-        type_cls = {"award": "", "media": " mute", "global": " warm"}.get(typ, "")
+        if typ == "media":
+            continue  # メディア露出は掲載しない（キリがなく格が弱いため）
+        label = {"award": "AWARD", "global": "GLOBAL"}.get(typ, "")
+        cls = {"award": "award", "global": "global"}.get(typ, "")
+        type_cls = {"award": "", "global": " warm"}.get(typ, "")
         year_html = f'<div class="acc-year">{it["year"]}</div>' if it.get("year") else '<div class="acc-year">—</div>'
         brand_html = f'<div class="acc-brand">{it["brand"]}</div>' if it.get("brand") else ''
         awards_cards.append(f"""
@@ -639,7 +634,7 @@ def render(brewery, index, prev_brewery, next_brewery):
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. {awards_section_num:02d}</span>
-      <span class="section-meta__label">ACCOLADES & MEDIA</span>
+      <span class="section-meta__label">ACCOLADES & GLOBAL</span>
       <span class="section-meta__rule"></span>
     </div>
     {awards_html_block}
