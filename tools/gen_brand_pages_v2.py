@@ -401,22 +401,18 @@ def build_html(brand, detail, brewery, idx):
 def main():
     OUT_DIR.mkdir(exist_ok=True)
     count = 0
-    skipped_haccoba = 0
     for brewery in BREWERIES:
         slug = brewery["slug"]
         brands = BRANDS.get(slug, [])
         if not brands:
             continue
-        if slug == "haccoba":
-            skipped_haccoba = len(brands)
-            continue  # showcase の haccoba-0.html を維持
         details = DETAILS.get(slug, [])
         for i, brand in enumerate(brands):
             detail = details[i] if i < len(details) else {}
             html = build_html(brand, detail, brewery, i)
             (OUT_DIR / f"{slug}-{i}.html").write_text(html, encoding="utf-8")
             count += 1
-    print(f"OK 生成: {count}件 / haccoba {skipped_haccoba}件は据え置き")
+    print(f"OK 生成: {count}件")
 
 
 if __name__ == "__main__":
