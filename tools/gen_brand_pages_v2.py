@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug, BREWERIES
 from breweries_brands import BRANDS
 from moshimo_link import rakuten_search, amazon_search
-from gen_sample_v2 import CSS, gen_scale4_svg, gen_radar6_svg, AFFILIATE_ENABLED
+from gen_sample_v2 import CSS, gen_scale4_svg, gen_radar6_svg, RAKUTEN_ENABLED, AMAZON_ENABLED
 from story_overrides import story_override
 from site_common import head_extra
 
@@ -311,13 +311,15 @@ def build_html(brand, detail, brewery, idx):
     <div class="awards-list">{cards}</div>
   </section>"""
 
-    # ── KURA & PURCHASE ──
-    if AFFILIATE_ENABLED:
-        purchase_inner = f"""<div class="purchase-card__btns">
-            <a class="purchase-card__btn purchase-card__btn--rakuten" href="{rakuten_url}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>
-            <a class="purchase-card__btn purchase-card__btn--amazon" href="{amazon_url}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>
-          </div>
-          <div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>"""
+    # ── KURA & PURCHASE ──（提携済みのボタンのみ表示。無ければ「準備中」）
+    _btns = []
+    if RAKUTEN_ENABLED:
+        _btns.append(f'<a class="purchase-card__btn purchase-card__btn--rakuten" href="{rakuten_url}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>')
+    if AMAZON_ENABLED:
+        _btns.append(f'<a class="purchase-card__btn purchase-card__btn--amazon" href="{amazon_url}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>')
+    if _btns:
+        purchase_inner = ('<div class="purchase-card__btns">' + "".join(_btns) + '</div>'
+                          '<div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>')
     else:
         purchase_inner = '<div class="purchase-card__pending">お取り扱い情報は準備中です</div>'
 

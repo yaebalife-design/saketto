@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
 """saketto / もしもアフィリエイト リンク生成
 
-GIN-DB と同じ もしも ID を使用（社長確認済み・運用中）。
-- 楽天: 検索URLのみ使用（商品個別URLは規約違反リスク）
-- Amazon: 検索URL使用
+- 楽天: **saketto専用ID**（2026/05/31 社長がsaketto媒体で取得・提携済）。検索URLのみ使用（商品個別URLは規約違反リスク）
+- Amazon: ⚠️ 下記は **GIN-DBの値が残っている**。saketto媒体でのAmazon提携はまだ未取得。
+  → AMAZON_ENABLED=False（gen_sample_v2.py）で非表示中。承認・リンク取得後にここをsaketto専用値へ差し替えてからONにすること。
 """
 import urllib.parse
 
-# 楽天プロモ
-RAKUTEN_AID = "5538619"
+# 楽天プロモ（saketto専用 / a_id=5607459）
+# pl_id=616 は &url= でリンク先を指定できる「商品リンク(MyLink)」型（社長提供リンクで確認）。
+# 本DBは各銘柄名の楽天検索URLを &url= に渡すため、この型を使う。
+RAKUTEN_AID = "5607459"
 RAKUTEN_PID = "54"
 RAKUTEN_PC_ID = "54"
 RAKUTEN_PL_ID = "616"
 
-# Amazonプロモ
+# Amazonプロモ（⚠️未取得＝GIN-DBの値。承認後に差し替えるまでONにしない）
 AMAZON_AID = "5538622"
 AMAZON_PID = "170"
 AMAZON_PC_ID = "185"

@@ -30,9 +30,12 @@ from site_common import head_extra
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT = REPO_ROOT / "brand" / "haccoba-0.html"
 
-# アフィリエイト（もしも経由 楽天/Amazon）の表示制御
-# サイト登録が完了したら True に戻すと購入ボタンが復活する
-AFFILIATE_ENABLED = False
+# アフィリエイト（もしも経由）の表示制御＝楽天/Amazon個別。
+# saketto媒体で提携が取れたものを True にする（moshimo_link.py のIDもsaketto専用に揃える）。
+RAKUTEN_ENABLED = True    # 2026/05/31 楽天 saketto提携済 → ON
+AMAZON_ENABLED = False    # Amazonはsaketto媒体で未取得 → 「準備中」のまま
+# 後方互換（どちらか有効ならアフィリ表示扱い）
+AFFILIATE_ENABLED = RAKUTEN_ENABLED or AMAZON_ENABLED
 
 
 # ────────────── サンプル銘柄データ (はなうたホップス) ──────────────
@@ -739,13 +742,15 @@ def main():
     rakuten_url = rakuten_search(b["name"])
     amazon_url = amazon_search(b["name"])
 
-    # 購入ボックス（アフィリ未登録時はボタンを出さず「準備中」表示）
-    if AFFILIATE_ENABLED:
-        purchase_inner = f"""<div class="purchase-card__btns">
-            <a class="purchase-card__btn purchase-card__btn--rakuten" href="{rakuten_url}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>
-            <a class="purchase-card__btn purchase-card__btn--amazon" href="{amazon_url}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>
-          </div>
-          <div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>"""
+    # 購入ボックス（提携済みプラットフォームのボタンのみ表示。無ければ「準備中」）
+    _btns = []
+    if RAKUTEN_ENABLED:
+        _btns.append(f'<a class="purchase-card__btn purchase-card__btn--rakuten" href="{rakuten_url}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>')
+    if AMAZON_ENABLED:
+        _btns.append(f'<a class="purchase-card__btn purchase-card__btn--amazon" href="{amazon_url}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>')
+    if _btns:
+        purchase_inner = ('<div class="purchase-card__btns">' + "".join(_btns) + '</div>'
+                          '<div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>')
     else:
         purchase_inner = """<div class="purchase-card__pending">お取り扱い情報は準備中です</div>"""
 
