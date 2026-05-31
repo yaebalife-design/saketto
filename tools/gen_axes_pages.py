@@ -835,16 +835,22 @@ AWARDS_CSS = """
 .rank-chip--3rd { border:1px solid #8a7d6e; color:#C9BFAE; }
 .rank-chip--fin { border:1px solid #463c36; color:#8a7d6e; }
 
-/* GLOBAL 行先カード */
-.global-grid { display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
-@media (min-width:760px) { .global-grid { grid-template-columns:1fr 1fr; } }
-.global-card { background:var(--bg); padding:1.7rem 1.85rem; text-decoration:none; color:inherit;
-  display:flex; flex-direction:column; gap:.55rem; transition:background .3s, padding-left .25s; }
-.global-card:hover { background:var(--paper); padding-left:2.1rem; }
-.global-card__dest { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.92rem; color:var(--accent); letter-spacing:.06em; }
-.global-card__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.18rem; color:var(--ink); line-height:1.55; }
-.global-card__brewery { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.85rem; color:var(--ink-soft); letter-spacing:.04em; }
-.global-card__note { font-size:.86rem; color:var(--ink-mute); line-height:1.75; }
+/* GLOBAL 行先（地域別・旅程インデックス） */
+.dest-group { border-top:1px solid var(--line); padding:1.6rem 0 1.2rem; }
+.dest-group:last-child { border-bottom:1px solid var(--line); }
+.dest-head { display:flex; align-items:baseline; gap:1.1rem; margin-bottom:1.1rem; }
+.dest-head__name { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:700;
+  font-size:clamp(1.9rem,4.5vw,2.8rem); color:var(--accent); letter-spacing:.03em; line-height:1; white-space:nowrap; }
+.dest-head__rule { flex:1; height:1px; background:var(--line); }
+.dest-head__count { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.76rem; letter-spacing:.12em; color:var(--ink-mute); white-space:nowrap; }
+.dest-item { display:block; text-decoration:none; color:inherit; padding:.7rem 0 .7rem 1.3rem;
+  border-left:2px solid var(--line-soft); margin-bottom:.7rem; transition:border-color .25s, padding-left .25s; }
+.dest-item:last-child { margin-bottom:0; }
+.dest-item:hover { border-left-color:var(--accent); padding-left:1.7rem; }
+.dest-item__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.12rem; color:var(--ink); line-height:1.5; }
+.dest-item__year { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.92rem; color:var(--accent); margin-left:.55rem; }
+.dest-item__meta { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.84rem; color:var(--ink-soft); letter-spacing:.04em; margin-top:.3rem; }
+.dest-item__note { font-size:.83rem; color:var(--ink-mute); line-height:1.75; margin-top:.3rem; }
 
 /* その他受賞・メディア 行 */
 .acc-row { display:grid; grid-template-columns:1fr auto; gap:1.1rem; align-items:start;
@@ -962,37 +968,40 @@ def gen_awards():
             return "ITALY"
         return "GLOBAL"
 
-    # 物語が映える順（ミシュラン→欧米→法人→アジア）に軽く並べ替え
-    global_order = {"Disfrutar": 0, "Mugaritz": 1, "欧米": 2, "イタリア": 3, "アジア": 4}
-    def gkey(x):
-        t = x[1]["title"]
-        for k, v in global_order.items():
-            if k in t:
-                return v
-        return 9
-    global_entries.sort(key=gkey)
-
-    global_cards = ""
+    # 地域でグルーピング（物語順）。地名を主役にした旅程インデックス
+    region_groups = defaultdict(list)
     for slug, it in global_entries:
-        b = by_slug(slug)
-        if not b:
-            continue
-        note_html = f'<div class="global-card__note">{it["brand"]}</div>' if it.get("brand") else ''
-        yr = f'　／　{it["year"]}' if it.get("year") else ''
-        global_cards += f"""
-      <a class="global-card" href="../brewery/{slug}.html">
-        <div class="global-card__dest">— {dest_label(it)}{yr}</div>
-        <div class="global-card__title">{it['title']}</div>
-        <div class="global-card__brewery">{b['name']}（{b['prefecture']}）</div>
-        {note_html}
-      </a>"""
+        region_groups[dest_label(it)].append((slug, it))
+    region_order = ["SPAIN", "USA / EUROPE", "ITALY", "ASIA", "GLOBAL"]
+    ordered_regions = [r for r in region_order if r in region_groups] + \
+                      [r for r in region_groups if r not in region_order]
+
+    dest_html = ""
+    for region in ordered_regions:
+        items = region_groups[region]
+        disp = region.replace(" / ", " · ")
+        item_rows = ""
+        for slug, it in items:
+            b = by_slug(slug)
+            if not b:
+                continue
+            yr = f'<span class="dest-item__year">{it["year"]}</span>' if it.get("year") else ''
+            note = f'<div class="dest-item__note">{it["brand"]}</div>' if it.get("brand") else ''
+            item_rows += f"""
+        <a class="dest-item" href="../brewery/{slug}.html">
+          <div class="dest-item__title">{it['title']}{yr}</div>
+          <div class="dest-item__meta">{b['name']}（{b['prefecture']}）</div>{note}
+        </a>"""
+        dest_html += f"""
+      <div class="dest-group">
+        <div class="dest-head"><span class="dest-head__name">{disp}</span><span class="dest-head__rule"></span><span class="dest-head__count">{len(items)} 件</span></div>{item_rows}
+      </div>"""
     html += f"""
   <section class="awards-sec">
     <div class="section-meta"><span class="section-meta__num">No. 02</span><span class="section-meta__label">GLOBAL EXPANSION</span><span class="section-meta__count">/ {len(set(s for s,_ in global_entries))} 蔵</span><span class="section-meta__rule"></span></div>
     <h2 class="cat-title">世界へ、渡っていく。</h2>
     <p class="awards-sec__desc">世界ベストレストラン2024年1位「Disfrutar」、旧3つ星「Mugaritz」が選んだ遠野のどぶろく。欧米・アジアへの輸出、海外法人の設立 — クラフトサケはもう国境を越えている。</p>
-    <div class="global-grid">{global_cards}
-    </div>
+    {dest_html}
   </section>"""
 
     # ── No.03 その他の受賞 ──
