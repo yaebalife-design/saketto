@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>クラフトサケの飲み方・楽しみ方 — saketto.</title>
-<meta name="description" content="クラフトサケをもっとおいしく。温度帯の選び方、生酒・にごりの保存、ワイングラスやソーダ割りといったスタイル、料理とのペアリングまで、自由な酒の楽しみ方を解説します。">
+<meta name="description" content="クラフトサケをもっとおいしく。温度帯による味の変化、生酒・にごりの保存、活性タイプの開け方、ワイングラスやソーダ割りといったスタイル、料理とのペアリング、和らぎ水まで、自由な酒の楽しみ方を解説します。">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -248,7 +248,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 .lead .accent { color:var(--accent); }
 
-/* 用語グリッド */
+/* 用語・区分グリッド */
 .term-grid { display:grid; grid-template-columns:1fr; border:1px solid var(--line); margin:1rem 0 2.5rem; max-width:860px; }
 @media (min-width:680px){ .term-grid { grid-template-columns:1fr 1fr; } }
 .term { padding:1.2rem 1.4rem; border-bottom:1px solid var(--line); background:var(--bg); }
@@ -265,9 +265,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; letter-spacing:.1em;
   font-size:.75rem; text-transform:uppercase; color:var(--ink); border-bottom:1px solid var(--line);
 }
-.temp-table td.t { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); white-space:nowrap; }
+.temp-table td.t { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-style:normal; color:var(--accent); white-space:nowrap; font-size:1rem; letter-spacing:.01em; }
 .temp-table tr.grp td { background:var(--bg-alt); font-family:'Shippori Mincho',serif; font-weight:600; color:var(--ink); letter-spacing:.04em; }
-.temp-note { font-size:.82rem; color:var(--ink-mute); margin:0 0 2.2rem; max-width:760px; }
+.temp-note { font-size:.82rem; color:var(--ink-mute); margin:0 0 2.2rem; max-width:760px; line-height:1.7; }
 
 /* 注意ボックス */
 .callout { background:var(--bg-alt); border-left:3px solid var(--accent); padding:1.3rem 1.5rem; margin:1.6rem 0 2.2rem; max-width:760px; }
@@ -301,7 +301,8 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 .readmore__k { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.8rem; color:var(--accent); letter-spacing:.08em; }
 .readmore__t { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.18rem; color:var(--ink); margin-top:.3rem; line-height:1.4; }
 
-.sub-h { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.3rem; color:var(--ink); margin:0 0 .8rem; letter-spacing:.02em; }
+.sub-h { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.3rem; color:var(--ink); margin:.4rem 0 .9rem; letter-spacing:.02em; line-height:1.5; }
+.sub-h.tight { margin-top:1.8rem; }
 .sub-h .accent { color:var(--accent); }
 </style>
 </head>
@@ -319,7 +320,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="hero">
     <div class="hero__eyebrow">READING 02 — HOW TO ENJOY</div>
     <h1 class="hero__title">クラフトサケの<span class="accent">飲み方</span>。<br>自由だから、おいしい。</h1>
-    <p class="hero__lede">冷やでも燗でも、グラスでもソーダ割りでも。温度・保存・スタイル・ペアリングのちょっとしたコツで、クラフトサケはもっと豊かに楽しめます。</p>
+    <p class="hero__lede">冷やでも燗でも、グラスでもソーダ割りでも。温度・保存・濁りの扱い・器・ペアリングのちょっとしたコツで、クラフトサケはもっと豊かに楽しめます。</p>
   </section>
 
   <div class="divider">
@@ -340,24 +341,29 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
       <div class="prose">
         <p class="lead">クラフトサケは、低アルコールのものから濃厚な原酒まで、<span class="accent">味わいの幅</span>がとても広い。まずは「冷や」で、その個性を確かめるのがおすすめ。</p>
-        <p>日本酒には、温度帯ごとに風流な呼び名がある。クラフトサケも基本は同じ。冷やすと香りは締まりシャープに、温めると米や麹の旨みがふくらむ。同じ一本でも温度で表情が変わるので、少しずつ試してみてほしい。</p>
+        <p>クラフトサケの多くは、加熱処理をしない<strong>生酒</strong>や、澱を残した<strong>にごり</strong>。発酵の余韻が生きた、繊細で変化に富む酒だ。だから保存も飲み方も、基本は日本酒の生酒に準じて考えるとうまくいく。</p>
+        <h2 class="sub-h tight">温度で、酒の<span class="accent">表情</span>が変わる。</h2>
+        <p>日本酒には、温度帯ごとに風流な呼び名がある。クラフトサケも基本は同じ。一般に、<strong>冷やすと</strong>酸味がはっきりして香りは控えめになり、きりっとシャープな印象に。<strong>温めると</strong>甘味と旨味、そして香りがふくらみ、口当たりがまろやかになる。同じ一本でも、温度しだいで驚くほど表情が変わる。</p>
       </div>
       <table class="temp-table">
         <thead><tr><th>呼び名</th><th>目安</th><th>表情</th></tr></thead>
         <tbody>
         <tr class="grp"><td colspan="3">冷やして — COLD</td></tr>
-        <tr><td>雪冷え</td><td class="t">約5℃前後</td><td>香りは控えめ、きりりと締まった口当たり</td></tr>
-        <tr><td>花冷え</td><td class="t">約10℃</td><td>繊細な味わい、香りが少しずつ開く</td></tr>
-        <tr><td>涼冷え</td><td class="t">約15℃</td><td>はっきりした冷たさに、華やかな香り</td></tr>
+        <tr><td>雪冷え</td><td class="t">5℃</td><td>香りは控えめ、きりりと締まった口当たり</td></tr>
+        <tr><td>花冷え</td><td class="t">10℃</td><td>繊細な味わい、香りが少しずつ開く</td></tr>
+        <tr><td>涼冷え</td><td class="t">15℃</td><td>はっきりした冷たさに、華やかな香り</td></tr>
         <tr class="grp"><td colspan="3">常温で — ROOM</td></tr>
-        <tr><td>冷や（常温）</td><td class="t">約15〜20℃</td><td>「冷や」は本来この常温のこと。酒の素の表情が出る</td></tr>
+        <tr><td>冷や（常温）</td><td class="t">15-20℃</td><td>「冷や」は本来この常温のこと。酒の素の表情が出る</td></tr>
         <tr class="grp"><td colspan="3">温めて — WARM</td></tr>
-        <tr><td>人肌燗</td><td class="t">約35℃</td><td>米と麹の香り、さらりとやわらかく</td></tr>
-        <tr><td>ぬる燗</td><td class="t">約40℃</td><td>香りがもっとも豊かにふくらむ</td></tr>
-        <tr><td>あつ燗</td><td class="t">約50℃</td><td>シャープに引き締まり、キレのある辛口に</td></tr>
+        <tr><td>人肌燗</td><td class="t">35℃</td><td>米と麹の香り、さらりとやわらかく</td></tr>
+        <tr><td>ぬる燗</td><td class="t">40℃</td><td>香りがもっとも豊かにふくらむ</td></tr>
+        <tr><td>あつ燗</td><td class="t">50℃</td><td>シャープに引き締まり、キレのある辛口に</td></tr>
         </tbody>
       </table>
-      <p class="temp-note">※ 温度帯の呼称は日本酒造組合中央会による。℃はおおよその目安です。最適な温度は銘柄ごとに異なるため、各蔵のおすすめがあればそれを優先してください。</p>
+      <p class="temp-note">※ 温度帯の呼称は日本酒造組合中央会による。温度はおおよその目安です。最適な温度は銘柄ごとに異なるため、各蔵のおすすめがあればそれを優先してください。</p>
+      <div class="prose">
+        <p>ただし、温めすぎるとせっかくの香りが飛んでしまうことも。まずは冷やで個性を確かめ、そこから少しずつ温度を上げて、自分の好みの表情を探してみてほしい。</p>
+      </div>
     </section>
 
   <div class="divider">
@@ -375,12 +381,13 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
       <div class="prose">
-        <h2 class="sub-h">生酒・にごりは、<span class="accent">冷蔵</span>が基本</h2>
-        <p>クラフトサケには、加熱処理（火入れ）をしていない<strong>生酒</strong>や、澱（おり）を残した<strong>にごり・おりがらみ</strong>が多い。これらは繊細で変化しやすいため、<strong>冷蔵庫での保管</strong>が基本。火入れされたタイプも、品質を保つなら冷暗所が安心。</p>
-        <p>開栓後は風味が変わりやすいので、なるべく早めに飲み切るのがおすすめ。発酵由来のガスを含むにごりやどぶろくは、<strong>開栓時に噴き出す</strong>ことがある。冷やしてから、ゆっくり少しずつ開けるのがコツ。</p>
+        <h2 class="sub-h">生酒・にごりは、<span class="accent">冷蔵</span>が基本。</h2>
+        <p>日本酒には、加熱処理（火入れ）を2回・1回・0回と行う段階があり、火入れが少ないほど酵母や酵素が生きていて、味が変わりやすい。クラフトサケに多い<strong>生酒（火入れなし）</strong>や<strong>にごり</strong>は、まさにその変わりやすいタイプ。<strong>約5℃以下の冷蔵</strong>を目安に保管したい。火入れされたものも、品質を保つなら冷暗所が安心だ。</p>
+        <p>大敵は、高温・光・時間。温度が高いと「老香（ひねか）」と呼ばれる劣化した香りが出やすく、紫外線（日光や蛍光灯の光）に当たると「日光臭」というネギのような匂いがつくことがある。<strong>冷蔵庫の奥（温度の変わりやすいドアポケットは避ける）に、立てて、光を遮って</strong>保管するのがいい。</p>
+        <p>開栓したあとは風味が変わりやすいので、<strong>遅くとも2週間ほど</strong>を目安に飲み切るのがおすすめ。これらはあくまで一般的な目安。ボトルに「要冷蔵」などの表示があれば、それが何よりのガイドになる。</p>
         <div class="callout">
           <div class="callout__label">ボトルの表示を確認</div>
-          <p>「要冷蔵」「開栓注意」などの表示は、その酒の個性そのもの。ラベルや蔵の案内に従うのが、いちばんおいしく楽しむ近道です。</p>
+          <p>「要冷蔵」「開栓注意」といった表示は、その酒の個性そのもの。ラベルや蔵の案内に従うのが、いちばんおいしく楽しむ近道です。</p>
         </div>
       </div>
     </section>
@@ -396,60 +403,18 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
-      <span class="section-meta__label">GLASS & STYLE / 器と飲み方</span>
+      <span class="section-meta__label">NIGORI / 濁りと澱</span>
       <span class="section-meta__rule"></span>
     </div>
       <div class="prose">
-        <h2 class="sub-h">ワイングラスでも、<span class="accent">ソーダ割り</span>でも</h2>
-        <p>香りの華やかなクラフトサケは、<strong>ワイングラス</strong>に注ぐと立ちのぼる香りを楽しめる。フルーティーな果実サケやホップサケは、とくにグラス選びで印象が変わる。</p>
-        <p>味のしっかりした銘柄なら、<strong>ロック</strong>や<strong>ソーダ割り</strong>も楽しい。クラフトサケは自由な酒。炭酸で割れば食前酒のように軽やかになり、低アルコールのタイプは飲み慣れていない人の入り口にもなる。にごりやどぶろくは、ぬる燗にすると米の甘みがふっくら開く。</p>
-        <p>どんなスタイルが合うかは、銘柄ごとに蔵がおすすめを示していることも多い。迷ったら、<strong>蔵の推奨に従う</strong>のがいちばん。</p>
-      </div>
-    </section>
-
-  <div class="divider">
-    <div class="rule"></div>
-    <div class="ornament outer"></div>
-    <div class="ornament"></div>
-    <div class="ornament outer"></div>
-    <div class="rule"></div>
-  </div>
-
-    <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 04</span>
-      <span class="section-meta__label">PAIRING / 料理と合わせる</span>
-      <span class="section-meta__rule"></span>
-    </div>
-      <div class="prose">
-        <p>副原料や製法の個性は、合わせる料理を選ぶ楽しみにもつながる。あくまで一例だが、ジャンル別の相性の目安を挙げてみる。</p>
-      </div>
-      <div class="term-grid"><div class="term"><div class="term__name">果実サケ<span class="en">FRUIT</span></div><div class="term__desc">前菜、生ハム、フレッシュチーズ、サラダ。果実の甘酸っぱさが軽やかな一皿に寄り添う。</div></div><div class="term"><div class="term__name">ホップサケ<span class="en">HOP</span></div><div class="term__desc">揚げ物、スパイスの効いた料理、エスニック。ホップのほろ苦さと香りが油やスパイスを受け止める。</div></div><div class="term"><div class="term__name">古典どぶろく<span class="en">DOBUROKU</span></div><div class="term__desc">味噌・漬物などの発酵食品、鍋もの。米の旨みと酸が、滋味深い和の食卓と好相性とされる。</div></div><div class="term"><div class="term__name">全麹・濃醇タイプ<span class="en">FULL KOJI</span></div><div class="term__desc">熟成チーズ、ナッツ、食後の一杯に。とろりと濃い甘旨味は、デザート感覚でも楽しめる。</div></div><div class="term"><div class="term__name">白麹・酸の効いた酒<span class="en">ACIDIC</span></div><div class="term__desc">脂ののった料理をさっぱりと。クエン酸由来の爽やかな酸が後味を切り替える。</div></div></div>
-      <div class="prose">
-        <p>こうしたジャンルは、saketto の<a href="../genre/">ジャンル</a>や<a href="../subingredients/">副原料</a>の軸から探せる。気分や食卓に合わせて、一本を選んでみてほしい。</p>
-      </div>
-    </section>
-
-  <div class="divider">
-    <div class="rule"></div>
-    <div class="ornament outer"></div>
-    <div class="ornament"></div>
-    <div class="ornament outer"></div>
-    <div class="rule"></div>
-  </div>
-
-    <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. 05</span>
-      <span class="section-meta__label">AVAILABILITY / 入手性で選ぶ</span>
-      <span class="section-meta__rule"></span>
-    </div>
-      <div class="prose">
-        <h2 class="sub-h">「<span class="accent">限定流通</span>」も、味のうち</h2>
-        <p>クラフトサケは少量仕込みが多く、通販で気軽に買えるものから、特約店だけ、現地だけ、抽選——と入手の難しさもさまざま。その希少さ自体が、この酒の魅力のひとつ。saketto では入手性の軸からも逆引きできる。</p>
-        <div class="pill-links">
-          <a href="../availability/">入手性から探す<span class="arr">→</span></a>
-          <a href="../furusato/">ふるさと納税から探す<span class="arr">→</span></a>
+        <h2 class="sub-h">澱（おり）は、<span class="accent">味のうち</span>。</h2>
+        <p>ひと口に「濁った酒」といっても、いくつか種類がある。もろみを搾らずそのまま味わうのが<strong>どぶろく</strong>、粗く漉して米の固形分を多めに残すのが<strong>にごり酒</strong>、搾ったあとの澱をあえて少し残したのが<strong>おりがらみ</strong>。濁りの濃さも、とろみも口当たりも、それぞれに違う。</p>
+        <p>瓶の底に沈んだ澱は、二通りに楽しめる。立てたまま上澄みだけを注いで<strong>すっきりと飲み、後から濃い澱を味わう</strong>「分けて飲む」スタイル。もしくは、瓶をゆっくり傾けて<strong>澱を均一に混ぜ、クリーミーな口当たり</strong>を楽しむスタイル。ひと瓶で二度おいしい。</p>
+        <h2 class="sub-h tight">活性タイプは、<span class="accent">ゆっくり</span>開ける。</h2>
+        <p>火入れをしていない<strong>活性（発泡）にごり</strong>は、瓶の中で炭酸ガスが生きている。勢いよく開けると噴き出すので、手順が大切だ。まず<strong>冷蔵庫でよく冷やし、立てて</strong>落ち着かせる。栓は一気に開けず、<strong>少し開けてはガスを逃がし、また閉める</strong>——これを何度も繰り返す。落ち着くまで時間がかかることもあるので、こぼれてもいい場所で、あせらず、ゆっくりと。</p>
+        <div class="callout">
+          <div class="callout__label">開け方は商品の案内を優先</div>
+          <p>活性タイプは、商品ごとに開栓の注意書きや専用の手順が指定されていることがあります。安全のため、まずはボトルの表示と蔵の案内を最優先にしてください。</p>
         </div>
       </div>
     </section>
@@ -464,11 +429,82 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 
     <section class="section">
     <div class="section-meta">
-      <span class="section-meta__num">No. 06</span>
-      <span class="section-meta__label">PLEASE NOTE / お願い</span>
+      <span class="section-meta__num">No. 04</span>
+      <span class="section-meta__label">GLASS / 器</span>
       <span class="section-meta__rule"></span>
     </div>
       <div class="prose">
+        <h2 class="sub-h">器で、<span class="accent">香り</span>が立つ。</h2>
+        <p>同じ酒でも、注ぐ器で印象が変わる。口の広い<strong>ワイングラス</strong>は、グラスの中で香りがふわりと広がり、フルーティーな果実サケや華やかなホップサケの魅力を引き出す。香りを楽しみたいなら、まずはワイングラスがおすすめだ。</p>
+        <p>小ぶりな<strong>おちょこ</strong>は、温度が変わる前に飲み切れるので冷酒や燗に向く。少し深い<strong>ぐい呑み</strong>は、温度や香りの移ろいを味わえる。木の<strong>升</strong>は、木の香りが移って爽やかさが加わる。器を替えるだけで、一本の酒がいくつもの顔を見せてくれる。</p>
+        <p>ちなみに、ワイングラスで香りが引き立つのには理由がある。ワインを対象にしたある研究では、グラスの中でアルコールの蒸気がリング状に分布し、中央では刺激が抑えられて香りだけを感じやすくなることが示された。口のすぼまった形が、立ちのぼる香りをやさしくまとめてくれるのだ。</p>
+      </div>
+    </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+    <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 05</span>
+      <span class="section-meta__label">STYLE / 割り方とアレンジ</span>
+      <span class="section-meta__rule"></span>
+    </div>
+      <div class="prose">
+        <h2 class="sub-h">ロックも、<span class="accent">ソーダ割り</span>も。</h2>
+        <p>クラフトサケは、自由な酒。味のしっかりした銘柄なら、ストレートだけでなくアレンジも楽しい。<strong>ソーダ割り</strong>は、まず<strong>酒1：炭酸1</strong>を基準に、好みで炭酸を増やして軽やかに。よく冷やして、冷えたグラスでつくるのがコツだ。</p>
+        <p>度数の高い原酒は<strong>ロック</strong>で、冷やしながらゆっくりと。寒い日には<strong>お湯割り</strong>で、米の甘みをふっくらと。柑橘やミント、ジンジャーを添えれば、カクテルのようにも遊べる。低アルコールのタイプは、お酒に飲み慣れていない人の入り口にもなる。</p>
+        <p>もっとも、どんな飲み方が合うかは、銘柄ごとに蔵がおすすめを示していることも多い。割って楽しんでほしい酒、そのまま味わってほしい酒——迷ったら、<strong>蔵の推奨に従う</strong>のがいちばんだ。</p>
+      </div>
+    </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+    <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 06</span>
+      <span class="section-meta__label">PAIRING / 料理と合わせる</span>
+      <span class="section-meta__rule"></span>
+    </div>
+      <div class="prose">
+        <h2 class="sub-h">料理と、<span class="accent">響き合わせる</span>。</h2>
+        <p>ペアリングの基本は、<strong>味の強さを合わせる</strong>こと。軽やかな酒には淡白な料理、濃厚な酒にはしっかりした味つけ。香りや酸味の方向性を料理と揃えると、互いに引き立て合う。脂の多い料理には、酸でさっぱり流すか、旨味で受け止めるか——その選び方も楽しい。下は、ジャンル別の相性の目安。あくまで出発点として、自由に組み合わせてみてほしい。</p>
+      </div>
+      <div class="term-grid"><div class="term"><div class="term__name">果実サケ<span class="en">FRUIT</span></div><div class="term__desc">生ハム、フレッシュチーズ、サーモンの香草焼き、サラダ。華やかな香りと果実の甘酸っぱさが、前菜や軽い一皿に寄り添う。</div></div><div class="term"><div class="term__name">ホップサケ<span class="en">HOP</span></div><div class="term__desc">揚げ物、スパイス料理、エスニック。ホップのほろ苦さと柑橘のような香りが、油やスパイスをすっきり受け止める。</div></div><div class="term"><div class="term__name">古典どぶろく<span class="en">DOBUROKU</span></div><div class="term__desc">味噌・漬物などの発酵食品、鍋もの、焼き魚。米の濃い旨みと酸が、滋味深い和の食卓と響き合う。</div></div><div class="term"><div class="term__name">全麹・濃醇タイプ<span class="en">FULL-BODIED</span></div><div class="term__desc">おでん、ぶり大根、熟成チーズ、グラタン。とろりと濃い甘旨味は、こっくりした料理やデザート感覚でも。</div></div><div class="term"><div class="term__name">白麹・酸の効いた酒<span class="en">ACIDIC</span></div><div class="term__desc">揚げ物や脂ののった肉を、さっぱりと。クエン酸由来の爽やかな酸が、後味を軽やかに切り替える。</div></div></div>
+      <div class="prose">
+        <p>こうしたジャンルは、saketto の<a href="../genre/">ジャンル</a>や<a href="../subingredients/">副原料</a>の軸から探せる。今夜の食卓に合わせて、一本を選んでみてほしい。</p>
+      </div>
+    </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+
+    <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 07</span>
+      <span class="section-meta__label">ENJOY WELL / 心地よく楽しむ</span>
+      <span class="section-meta__rule"></span>
+    </div>
+      <div class="prose">
+        <h2 class="sub-h">水を飲みながら、<span class="accent">自分のペース</span>で。</h2>
+        <p>おいしいお酒ほど、つい杯が進んでしまう。合間に飲む水「<strong>和らぎ水（やわらぎみず）</strong>」を用意しておくと、酔いがゆるやかになり、口の中もリフレッシュされて、次の一杯と料理がいっそう鮮やかに感じられる。お酒と同じくらいの量の水を飲むのを、目安に。</p>
+        <p>厚生労働省は、節度ある適度な飲酒の目安を「1日あたり純アルコールで約20グラム程度」としている。日本酒なら、おおよそ1合（180ml）にあたる量だ（あくまで一般的な目安で、お酒の強さには個人差がある）。自分のペースを大切に、休む日もつくりながら、この自由な酒と長く付き合っていきたい。</p>
         <div class="callout">
           <div class="callout__label">楽しむ前に</div>
           <p><strong>20歳未満の飲酒は法律で禁じられています。</strong>　お酒を飲んだら運転はできません（飲酒運転は法律で禁止されています）。妊娠中・授乳期の飲酒は、おなかの赤ちゃんに影響することがあります。適量を守り、自分のペースで楽しんでください。</p>
