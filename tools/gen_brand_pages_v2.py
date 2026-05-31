@@ -183,8 +183,6 @@ def build_html(brand, detail, brewery, idx):
       <div class="flavor-tags">{chips}</div>
     </div>"""
 
-    avail_label = {"online": "通販可", "tokuyaku": "特約店", "rare": "極希少"}.get(b.get("availability", "online"), "通販可")
-
     # ── SPEC BOARD（取れたものだけ）──
     specs = []
     if abv not in (None, ""):
@@ -380,7 +378,6 @@ def build_html(brand, detail, brewery, idx):
       <a href="../index.html#breweries">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
-      <a href="../availability/">入手性</a>
       <a href="../guide/">読みもの</a>
     </nav>
   </div>

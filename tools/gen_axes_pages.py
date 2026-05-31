@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """saketto / 逆引きハブページ生成スクリプト
 
-副原料軸・地域軸・ジャンル軸・入手性軸の4ハブページを生成する。
+副原料軸・地域軸・ジャンル軸＋ふるさと納税・受賞の5ハブページを生成する。
 実行: cd ツール/saketto_repo/tools && python gen_axes_pages.py
 """
 
@@ -357,38 +357,6 @@ def get_brewery_genres(brewery):
     return genres
 
 
-# ────────────── 入手性分類 ──────────────
-
-AVAILABILITY = [
-    ("online", "通販可", "ONLINE", "公式EC・酒販ECで誰でも入手可能な蔵。"),
-    ("tokuyaku", "特約店中心", "TOKUYAKU ONLY", "特約店を通じた流通が中心。公式ECがない or 限定的。"),
-    ("rare", "極希少・限定流通", "EXTREMELY RARE", "本数限定・抽選販売・現地限定など、入手が困難な銘柄を中心に持つ蔵。"),
-]
-
-
-def get_brewery_availability(brewery):
-    """蔵の入手性カテゴリを判定"""
-    slug = brewery["slug"]
-    brands = BRANDS.get(slug, [])
-    features = brewery.get("features", "")
-
-    # 極希少：限定本数・限定数本・限定 等の記述
-    rare_keywords = ["限定本数", "限定数本", "限定100本", "限定192本", "限定約100",
-                     "100本限定", "192本限定", "抽選", "現地限定"]
-    rare_count = sum(1 for b in brands for kw in rare_keywords
-                     if kw in b.get("note", ""))
-    if rare_count >= 2:
-        return "rare"
-
-    # 特約店中心：特約店扱い・公式EC不明
-    tokuyaku_count = sum(1 for b in brands if "特約店" in b.get("note", ""))
-    if tokuyaku_count >= 2 or "特約店" in features:
-        return "tokuyaku"
-
-    # それ以外は通販可（公式ECある前提）
-    return "online"
-
-
 # ────────────── HTML テンプレート ──────────────
 
 def page_head(title, description):
@@ -422,7 +390,6 @@ def masthead(label, right_text=""):
       <a href="../index.html#breweries">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
-      <a href="../availability/">入手性</a>
       <a href="../guide/">読みもの</a>
     </nav>
   </div>
@@ -691,52 +658,6 @@ def gen_genres():
     out_path = OUT / "index.html"
     out_path.write_text(html, encoding="utf-8")
     print(f"  genre/index.html  ({len([g for g in GENRES if by_genre.get(g[0])])}ジャンル)")
-
-
-def gen_availability():
-    """入手性逆引きハブ（saketto独自）"""
-    OUT = REPO_ROOT / "availability"
-    OUT.mkdir(exist_ok=True)
-
-    by_avail = defaultdict(list)
-    for brewery in BREWERIES:
-        a = get_brewery_availability(brewery)
-        by_avail[a].append(brewery)
-
-    html = page_head("入手性から探す", "クラフトサケを入手性（通販可・特約店中心・極希少）から横断検索。saketto独自軸。")
-    html += masthead("AXIS 05 — AVAILABILITY / SAKETTO独自", f"{len(BREWERIES)} breweries classified")
-    html += hero(
-        "— SAKETTO ORIGINAL AXIS",
-        '入手性から、<span class="accent">探す</span>。',
-        'クラフトサケは少量生産が前提。誰でもネットで買える蔵もあれば、特約店経由でしか買えない蔵、限定本数で即完売する蔵も。「いつでも飲める酒」と「狙い撃ちすべき酒」を分ける軸。'
-    )
-    html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
-
-    for idx, (a_key, a_jp, a_en, a_desc) in enumerate(AVAILABILITY, 1):
-        breweries = by_avail.get(a_key, [])
-        html += f"""
-  <section class="section">
-    <div class="section-meta">
-      <span class="section-meta__num">No. {idx:02d}</span>
-      <span class="section-meta__label">{a_en}</span>
-      <span class="section-meta__count">/ {len(breweries)} 蔵</span>
-      <span class="section-meta__rule"></span>
-    </div>
-    <h2 class="cat-title">{a_jp}</h2>
-    <p class="cat-desc">{a_desc}</p>
-    <div class="brewery-grid">"""
-        for i, b in enumerate(breweries, 1):
-            html += render_brewery_card(b, i)
-        html += """
-    </div>
-  </section>"""
-
-    html += '</div>'
-    html += footer()
-
-    out_path = OUT / "index.html"
-    out_path.write_text(html, encoding="utf-8")
-    print(f"  availability/index.html  ({len(BREWERIES)}蔵分類)")
 
 
 def gen_furusato():
@@ -1053,10 +974,9 @@ def main():
     gen_subingredients()
     gen_regions()
     gen_genres()
-    gen_availability()
     gen_furusato()
     gen_awards()
-    print("\n✓ 6ハブページ生成完了")
+    print("\n✓ 5ハブページ生成完了（副原料・地域・ジャンル・ふるさと納税・受賞）")
 
 
 if __name__ == "__main__":

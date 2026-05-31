@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>saketto — クラフトサケの図鑑</title>
-<meta name="description" content="米と副原料で醸す新ジャンルの酒「クラフトサケ」を、副原料・蔵・地域・ジャンル・入手性から横断的に探せる、唯一の専門データベース。">
+<meta name="description" content="米と副原料で醸す新ジャンルの酒「クラフトサケ」を、副原料・蔵・地域・ジャンルの4つの軸から横断的に探せる、唯一の専門データベース。">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -317,7 +317,7 @@ main { position: relative; z-index: 1; }
   border: 1px solid var(--line);
 }
 @media (min-width: 700px) {
-  .axes { grid-template-columns: repeat(5, 1fr); }
+  .axes { grid-template-columns: repeat(4, 1fr); }
 }
 
 .axis {
@@ -344,7 +344,6 @@ main { position: relative; z-index: 1; }
 .axes .axis:nth-child(2) { --axis-bg: url('assets/images/axis_kura.png'); }
 .axes .axis:nth-child(3) { --axis-bg: url('assets/images/axis_region.png'); }
 .axes .axis:nth-child(4) { --axis-bg: url('assets/images/axis_genre.png'); }
-.axes .axis:nth-child(5) { --axis-bg: url('assets/images/axis_avail.png'); }
 .axis:last-child { border-bottom: none; }
 .axis::after {
   content: "→";
@@ -703,7 +702,6 @@ footer {
       <a href="#breweries">蔵</a>
       <a href="region/">地域</a>
       <a href="genre/">ジャンル</a>
-      <a href="availability/">入手性</a>
       <a class="is-reading" href="guide/">読みもの</a>
     </nav>
   </div>
@@ -738,15 +736,14 @@ footer {
           <h2 class="tagline">次に出会う、<br>クラフトサケの<span class="accent">図鑑</span>。</h2>
         </div>
         <div class="lede">
-          米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」を、副原料・蔵・地域・ジャンル・入手性の5つの軸から横断的に探せる、唯一の専門データベース。
+          米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」を、副原料・蔵・地域・ジャンルの4つの軸から横断的に探せる、唯一の専門データベース。
         </div>
         <div class="hero__entries">
-          <span class="hero__entries-label">— 5つの軸から探す</span>
+          <span class="hero__entries-label">— 4つの軸から探す</span>
           <a class="hero__entry" href="subingredients/">副原料<span class="arr">→</span></a>
           <a class="hero__entry" href="#breweries">蔵<span class="arr">→</span></a>
           <a class="hero__entry" href="region/">地域<span class="arr">→</span></a>
           <a class="hero__entry" href="genre/">ジャンル<span class="arr">→</span></a>
-          <a class="hero__entry" href="availability/">入手性<span class="arr">→</span></a>
         </div>
       </div>
     </div>
@@ -765,11 +762,11 @@ footer {
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">FIVE AXES TO EXPLORE</span>
+      <span class="section-meta__label">FOUR AXES TO EXPLORE</span>
       <span class="section-meta__rule"></span>
     </div>
-    <h2 class="section-title">5つの軸から、<span class="accent">探す</span>。</h2>
-    <p class="section-desc">クラフトサケは「銘柄で指名買い」だけが正解ではない。次の一本を見つけるための、5つの入り口。</p>
+    <h2 class="section-title">4つの軸から、<span class="accent">探す</span>。</h2>
+    <p class="section-desc">クラフトサケは「銘柄で指名買い」だけが正解ではない。次の一本を見つけるための、4つの入り口。</p>
 
     <div class="axes">
 
@@ -826,24 +823,11 @@ footer {
         <div class="axis__unique-tag">— saketto独自</div>
       </a>
 
-      <a class="axis axis--unique" href="availability/">
-        <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
-          <rect x="8" y="14" width="16" height="14" rx="1"/>
-          <path d="M12 14 L12 9 C12 6 14 4 16 4 C18 4 20 6 20 9 L20 14"/>
-        </svg>
-        <div class="axis__num">05</div>
-        <div class="axis__name">入手性</div>
-        <div class="axis__tags">
-          <span class="axis__tag">通販可</span><span class="axis__tag">特約店のみ</span><span class="axis__tag">極希少</span>
-        </div>
-        <div class="axis__unique-tag">— saketto独自</div>
-      </a>
-
     </div>
 
   </section>
 
-  <!-- もうひとつの切り口（5つの軸とは別の入り口） -->
+  <!-- もうひとつの切り口（4つの軸とは別の入り口） -->
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">＋</span>
@@ -851,7 +835,7 @@ footer {
       <span class="section-meta__rule"></span>
     </div>
     <h2 class="section-title">特典・お墨付きから、<span class="accent">選ぶ</span>。</h2>
-    <p class="section-desc">5つの軸とは別の入り口。ふるさと納税の返礼品として、また受賞・海外進出という“お墨付き”からも辿れる。</p>
+    <p class="section-desc">4つの軸とは別の入り口。ふるさと納税の返礼品として、また受賞・海外進出という“お墨付き”からも辿れる。</p>
 
     <div class="axes-extra">
       <a class="axis-extra" href="furusato/">

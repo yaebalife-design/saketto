@@ -150,7 +150,6 @@ def masthead(label, right_text=""):
       <a href="../index.html#breweries">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
-      <a href="../availability/">入手性</a>
       <a href="../guide/">読みもの</a>
     </nav>
   </div>
@@ -325,7 +324,7 @@ def build_index():
 """
     body = f"""
   <div class="article">
-{blocks}    <p class="guide-foot">クラフトサケの世界を、知って・選んで・深く味わうための読みもの。これから少しずつ増えていきます。まず一本に出会いたい方は、<a href="../index.html">トップ</a>の5つの軸からどうぞ。</p>
+{blocks}    <p class="guide-foot">クラフトサケの世界を、知って・選んで・深く味わうための読みもの。これから少しずつ増えていきます。まず一本に出会いたい方は、<a href="../index.html">トップ</a>の4つの軸からどうぞ。</p>
   </div>
 """
     html = page_head("読みもの — クラフトサケのガイド",
@@ -441,13 +440,12 @@ def build_towa():
     <section class="section">
 {section_meta("07", "HOW TO EXPLORE / 探し方")}
       <div class="prose">
-        <h2 class="sub-h">5つの軸から、<span class="accent">次の一本</span>へ。</h2>
-        <p>クラフトサケの面白さは、その多様さにある。saketto では、25の蔵と120を超える銘柄を、5つの軸から横断的に探せる。気になる入り口から、次に出会う一本を見つけてほしい。</p>
+        <h2 class="sub-h">4つの軸から、<span class="accent">次の一本</span>へ。</h2>
+        <p>クラフトサケの面白さは、その多様さにある。saketto では、25の蔵と120を超える銘柄を、4つの軸から横断的に探せる。気になる入り口から、次に出会う一本を見つけてほしい。</p>
         <div class="pill-links">
           <a href="../subingredients/">副原料から<span class="arr">→</span></a>
           <a href="../region/">地域から<span class="arr">→</span></a>
           <a href="../genre/">ジャンルから<span class="arr">→</span></a>
-          <a href="../availability/">入手性から<span class="arr">→</span></a>
           <a href="../furusato/">ふるさと納税から<span class="arr">→</span></a>
         </div>
         <div class="readmore">
