@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>読みもの — クラフトサケのガイド — saketto.</title>
-<meta name="description" content="クラフトサケを知り、楽しむためのガイド記事の一覧。「クラフトサケとは」「飲み方・楽しみ方」など、米から生まれた自由な酒を深く味わうための読みものをまとめています。">
+<meta name="description" content="クラフトサケを知り、選び、楽しむためのガイド記事の一覧。基礎を知る・選ぶ・深く味わうの分類で、米から生まれた自由な酒を味わうための読みものをまとめています。">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -313,13 +313,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   text-decoration:none; color:var(--ink); transition:background .3s,padding-left .3s;
 }
 .guide-card:hover { background:var(--paper); padding-left:1.5rem; }
-.guide-card__num { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2.6rem; color:var(--line); line-height:1; }
-.guide-card:hover .guide-card__num { color:var(--accent); }
+.guide-card__mark { width:10px; height:10px; background:var(--line); transform:rotate(45deg); transition:background .3s; }
+.guide-card:hover .guide-card__mark { background:var(--accent); }
 .guide-card__eyebrow { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; }
 .guide-card__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.5rem; color:var(--ink); margin-bottom:.5rem; line-height:1.4; }
 .guide-card__sum { font-size:.92rem; color:var(--ink-soft); line-height:1.8; }
 .guide-card__arr { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); font-size:1rem; white-space:nowrap; letter-spacing:.08em; }
 @media (max-width:680px){ .guide-card { grid-template-columns:auto 1fr; } .guide-card__arr{ display:none; } }
+.cat-lead { max-width:760px; font-size:.95rem; color:var(--ink-soft); line-height:1.85; margin:-.4rem 0 1.2rem; }
 .guide-foot { max-width:760px; margin:2.6rem auto 0; font-size:.95rem; color:var(--ink-soft); line-height:1.9; }
 .guide-foot a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
 </style>
@@ -338,7 +339,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="hero">
     <div class="hero__eyebrow">READING — 読みもの</div>
     <h1 class="hero__title">クラフトサケを、<span class="accent">もっと知る</span>。</h1>
-    <p class="hero__lede">そもそもクラフトサケとは何か。どう飲めば、もっとおいしいのか。一本に出会う前に読んでおきたい、saketto のガイド記事。</p>
+    <p class="hero__lede">そもそもクラフトサケとは何か。どう飲めば、もっとおいしいのか。基礎を知り、選び、深く味わう——saketto のガイド記事を、分類でまとめています。</p>
   </section>
 
   <div class="divider">
@@ -350,29 +351,36 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   </div>
 
   <div class="article">
+
     <section class="section">
+      <div class="section-meta">
+        <span class="section-meta__num">KNOW</span>
+        <span class="section-meta__label">基礎を知る</span>
+        <span class="section-meta__rule"></span>
+      </div>
+      <p class="cat-lead">クラフトサケを初めて知る人へ。まず読んでおきたい入門。</p>
       <div class="guide-list">
-    <a class="guide-card" href="craftsake-towa.html">
-      <div class="guide-card__num">01</div>
-      <div class="guide-card__body">
-        <div class="guide-card__eyebrow">WHAT IS CRAFT SAKE</div>
-        <div class="guide-card__title">クラフトサケとは</div>
-        <div class="guide-card__sum">米と副原料で醸す新ジャンルの酒「クラフトサケ」。その定義、日本酒・どぶろくとの区分の違い、新規参入の仕組み、協会、世界の潮流、醸造のことばまで、全体像をやさしく。</div>
+        <a class="guide-card" href="craftsake-towa.html">
+          <div class="guide-card__mark"></div>
+          <div class="guide-card__body">
+            <div class="guide-card__eyebrow">WHAT IS CRAFT SAKE</div>
+            <div class="guide-card__title">クラフトサケとは</div>
+            <div class="guide-card__sum">米と副原料で醸す新ジャンルの酒「クラフトサケ」。その定義、日本酒・どぶろくとの区分の違い、新規参入の仕組み、協会、世界の潮流、醸造のことばまで、全体像をやさしく。</div>
+          </div>
+          <div class="guide-card__arr">READ →</div>
+        </a>
+        <a class="guide-card" href="nomikata.html">
+          <div class="guide-card__mark"></div>
+          <div class="guide-card__body">
+            <div class="guide-card__eyebrow">HOW TO ENJOY</div>
+            <div class="guide-card__title">クラフトサケの飲み方・楽しみ方</div>
+            <div class="guide-card__sum">温度で変わる味わい、生酒・にごりの保存、活性タイプの開け方、器の選び方、ソーダ割りなどのスタイル、料理とのペアリング、和らぎ水まで。自由な酒の楽しみ方。</div>
+          </div>
+          <div class="guide-card__arr">READ →</div>
+        </a>
       </div>
-      <div class="guide-card__arr">READ →</div>
-    </a>
-    <a class="guide-card" href="nomikata.html">
-      <div class="guide-card__num">02</div>
-      <div class="guide-card__body">
-        <div class="guide-card__eyebrow">HOW TO ENJOY</div>
-        <div class="guide-card__title">クラフトサケの飲み方・楽しみ方</div>
-        <div class="guide-card__sum">温度で変わる味わい、生酒・にごりの保存、活性タイプの開け方、器の選び方、ソーダ割りなどのスタイル、料理とのペアリング、和らぎ水まで。自由な酒の楽しみ方。</div>
-      </div>
-      <div class="guide-card__arr">READ →</div>
-    </a>
-      </div>
-      <p class="guide-foot">クラフトサケの世界を、知って・楽しむための読みもの。これから少しずつ増えていきます。まず一本に出会いたい方は、<a href="../index.html">トップ</a>の5つの軸からどうぞ。</p>
     </section>
+    <p class="guide-foot">クラフトサケの世界を、知って・選んで・深く味わうための読みもの。これから少しずつ増えていきます。まず一本に出会いたい方は、<a href="../index.html">トップ</a>の5つの軸からどうぞ。</p>
   </div>
 
   <footer>

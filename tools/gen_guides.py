@@ -104,13 +104,14 @@ EXTRA_CSS = """
   text-decoration:none; color:var(--ink); transition:background .3s,padding-left .3s;
 }
 .guide-card:hover { background:var(--paper); padding-left:1.5rem; }
-.guide-card__num { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2.6rem; color:var(--line); line-height:1; }
-.guide-card:hover .guide-card__num { color:var(--accent); }
+.guide-card__mark { width:10px; height:10px; background:var(--line); transform:rotate(45deg); transition:background .3s; }
+.guide-card:hover .guide-card__mark { background:var(--accent); }
 .guide-card__eyebrow { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; }
 .guide-card__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.5rem; color:var(--ink); margin-bottom:.5rem; line-height:1.4; }
 .guide-card__sum { font-size:.92rem; color:var(--ink-soft); line-height:1.8; }
 .guide-card__arr { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); font-size:1rem; white-space:nowrap; letter-spacing:.08em; }
 @media (max-width:680px){ .guide-card { grid-template-columns:auto 1fr; } .guide-card__arr{ display:none; } }
+.cat-lead { max-width:760px; font-size:.95rem; color:var(--ink-soft); line-height:1.85; margin:-.4rem 0 1.2rem; }
 .guide-foot { max-width:760px; margin:2.6rem auto 0; font-size:.95rem; color:var(--ink-soft); line-height:1.9; }
 .guide-foot a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
 """
@@ -238,53 +239,95 @@ def kura_link(slug):
 
 # ────────────── 記事メタ（一覧の元データ。記事を増やすときはここに1件追加） ──────────────
 
+# 分類（カテゴリ）。表示はこの順。記事の無いカテゴリは一覧に出さない。
+CATEGORIES = [
+    {"key": "know", "en": "KNOW", "ja": "基礎を知る",
+     "desc": "クラフトサケを初めて知る人へ。まず読んでおきたい入門。"},
+    {"key": "choose", "en": "CHOOSE", "ja": "選ぶ・探す",
+     "desc": "副原料やふるさと納税から、自分にぴったりの一本を見つける。"},
+    {"key": "deep", "en": "DEEP", "ja": "深く味わう",
+     "desc": "製法や文化を掘り下げ、クラフトサケをもっと深く楽しむ。"},
+]
+CAT_BY_KEY = {c["key"]: c for c in CATEGORIES}
+
+# 記事メタ（記事を増やすときはここに1件追加し、build関数を1つ書く）
 ARTICLES = [
     {
         "slug": "craftsake-towa",
-        "num": "01",
-        "eyebrow": "WHAT IS CRAFT SAKE",
+        "category": "know",
+        "eyebrow_en": "WHAT IS CRAFT SAKE",
         "title": "クラフトサケとは",
         "summary": "米と副原料で醸す新ジャンルの酒「クラフトサケ」。その定義、日本酒・どぶろくとの区分の違い、新規参入の仕組み、協会、世界の潮流、醸造のことばまで、全体像をやさしく。",
     },
     {
         "slug": "nomikata",
-        "num": "02",
-        "eyebrow": "HOW TO ENJOY",
+        "category": "know",
+        "eyebrow_en": "HOW TO ENJOY",
         "title": "クラフトサケの飲み方・楽しみ方",
         "summary": "温度で変わる味わい、生酒・にごりの保存、活性タイプの開け方、器の選び方、ソーダ割りなどのスタイル、料理とのペアリング、和らぎ水まで。自由な酒の楽しみ方。",
     },
 ]
 
 
+def article_meta(slug):
+    """slug から (article, category) を返す。"""
+    art = next(a for a in ARTICLES if a["slug"] == slug)
+    return art, CAT_BY_KEY[art["category"]]
+
+
+def article_eyebrow(slug):
+    """記事ページのアイブロウ（分類 ／ 分類名）。番号は使わない。"""
+    art, cat = article_meta(slug)
+    return f'{cat["en"]} ／ {cat["ja"]}'
+
+
+def article_masthead_label(slug):
+    art, cat = article_meta(slug)
+    return f'{cat["en"]} — {art["eyebrow_en"]}'
+
+
 def build_index():
-    cards = ""
-    for a in ARTICLES:
-        cards += f"""    <a class="guide-card" href="{a['slug']}.html">
-      <div class="guide-card__num">{a['num']}</div>
-      <div class="guide-card__body">
-        <div class="guide-card__eyebrow">{a['eyebrow']}</div>
-        <div class="guide-card__title">{a['title']}</div>
-        <div class="guide-card__sum">{a['summary']}</div>
+    blocks = ""
+    for cat in CATEGORIES:
+        arts = [a for a in ARTICLES if a["category"] == cat["key"]]
+        if not arts:
+            continue  # 記事の無い分類は出さない
+        cards = ""
+        for a in arts:
+            cards += f"""        <a class="guide-card" href="{a['slug']}.html">
+          <div class="guide-card__mark"></div>
+          <div class="guide-card__body">
+            <div class="guide-card__eyebrow">{a['eyebrow_en']}</div>
+            <div class="guide-card__title">{a['title']}</div>
+            <div class="guide-card__sum">{a['summary']}</div>
+          </div>
+          <div class="guide-card__arr">READ →</div>
+        </a>
+"""
+        blocks += f"""
+    <section class="section">
+      <div class="section-meta">
+        <span class="section-meta__num">{cat['en']}</span>
+        <span class="section-meta__label">{cat['ja']}</span>
+        <span class="section-meta__rule"></span>
       </div>
-      <div class="guide-card__arr">READ →</div>
-    </a>
+      <p class="cat-lead">{cat['desc']}</p>
+      <div class="guide-list">
+{cards}      </div>
+    </section>
 """
     body = f"""
   <div class="article">
-    <section class="section">
-      <div class="guide-list">
-{cards}      </div>
-      <p class="guide-foot">クラフトサケの世界を、知って・楽しむための読みもの。これから少しずつ増えていきます。まず一本に出会いたい方は、<a href="../index.html">トップ</a>の5つの軸からどうぞ。</p>
-    </section>
+{blocks}    <p class="guide-foot">クラフトサケの世界を、知って・選んで・深く味わうための読みもの。これから少しずつ増えていきます。まず一本に出会いたい方は、<a href="../index.html">トップ</a>の5つの軸からどうぞ。</p>
   </div>
 """
     html = page_head("読みもの — クラフトサケのガイド",
-                     "クラフトサケを知り、楽しむためのガイド記事の一覧。「クラフトサケとは」「飲み方・楽しみ方」など、米から生まれた自由な酒を深く味わうための読みものをまとめています。")
+                     "クラフトサケを知り、選び、楽しむためのガイド記事の一覧。基礎を知る・選ぶ・深く味わうの分類で、米から生まれた自由な酒を味わうための読みものをまとめています。")
     html += masthead("READING — 読みもの", "A Field Guide")
     html += hero(
         "READING — 読みもの",
         'クラフトサケを、<span class="accent">もっと知る</span>。',
-        "そもそもクラフトサケとは何か。どう飲めば、もっとおいしいのか。一本に出会う前に読んでおきたい、saketto のガイド記事。")
+        "そもそもクラフトサケとは何か。どう飲めば、もっとおいしいのか。基礎を知り、選び、深く味わう——saketto のガイド記事を、分類でまとめています。")
     html += body
     html += footer()
     return html
@@ -402,7 +445,7 @@ def build_towa():
         </div>
         <div class="readmore">
           <a href="nomikata.html">
-            <div class="readmore__k">NEXT READING — 02</div>
+            <div class="readmore__k">つづけて読む</div>
             <div class="readmore__t">クラフトサケの飲み方・楽しみ方</div>
           </a>
           <a href="index.html">
@@ -417,9 +460,9 @@ def build_towa():
 """
     html = page_head("クラフトサケとは — 米から生まれた、自由な酒",
                      "クラフトサケとは何か。酒税法上の「その他の醸造酒」という位置づけ、日本酒・どぶろくとの区分の違い、新規参入の仕組み、クラフトサケブリュワリー協会、花酛・白麹・全麹などの醸造用語まで、その全体像をやさしく解説します。")
-    html += masthead("READING 01 — WHAT IS CRAFT SAKE", "A Field Guide")
+    html += masthead(article_masthead_label("craftsake-towa"), "A Field Guide")
     html += hero(
-        "READING 01 — WHAT IS CRAFT SAKE",
+        article_eyebrow("craftsake-towa"),
         'クラフトサケとは。<br>米から生まれた、<span class="accent">自由な酒</span>。',
         "日本酒づくりの技術を土台に、あえて「日本酒」の枠の外へ。米と副原料で醸す新ジャンル「クラフトサケ」の成り立ちを、法律・歴史・世界の潮流・醸造のことばからひもときます。")
     html += body
@@ -552,7 +595,7 @@ def build_nomikata():
         </div>
         <div class="readmore">
           <a href="craftsake-towa.html">
-            <div class="readmore__k">READING — 01</div>
+            <div class="readmore__k">あわせて読む</div>
             <div class="readmore__t">そもそもクラフトサケとは？</div>
           </a>
           <a href="index.html">
@@ -567,9 +610,9 @@ def build_nomikata():
 """
     html = page_head("クラフトサケの飲み方・楽しみ方",
                      "クラフトサケをもっとおいしく。温度帯による味の変化、生酒・にごりの保存、活性タイプの開け方、ワイングラスやソーダ割りといったスタイル、料理とのペアリング、和らぎ水まで、自由な酒の楽しみ方を解説します。")
-    html += masthead("READING 02 — HOW TO ENJOY", "A Field Guide")
+    html += masthead(article_masthead_label("nomikata"), "A Field Guide")
     html += hero(
-        "READING 02 — HOW TO ENJOY",
+        article_eyebrow("nomikata"),
         'クラフトサケの<span class="accent">飲み方</span>。<br>自由だから、おいしい。',
         "冷やでも燗でも、グラスでもソーダ割りでも。温度・保存・濁りの扱い・器・ペアリングのちょっとしたコツで、クラフトサケはもっと豊かに楽しめます。")
     html += body

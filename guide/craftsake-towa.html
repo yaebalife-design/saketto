@@ -313,13 +313,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   text-decoration:none; color:var(--ink); transition:background .3s,padding-left .3s;
 }
 .guide-card:hover { background:var(--paper); padding-left:1.5rem; }
-.guide-card__num { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2.6rem; color:var(--line); line-height:1; }
-.guide-card:hover .guide-card__num { color:var(--accent); }
+.guide-card__mark { width:10px; height:10px; background:var(--line); transform:rotate(45deg); transition:background .3s; }
+.guide-card:hover .guide-card__mark { background:var(--accent); }
 .guide-card__eyebrow { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; }
 .guide-card__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.5rem; color:var(--ink); margin-bottom:.5rem; line-height:1.4; }
 .guide-card__sum { font-size:.92rem; color:var(--ink-soft); line-height:1.8; }
 .guide-card__arr { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); font-size:1rem; white-space:nowrap; letter-spacing:.08em; }
 @media (max-width:680px){ .guide-card { grid-template-columns:auto 1fr; } .guide-card__arr{ display:none; } }
+.cat-lead { max-width:760px; font-size:.95rem; color:var(--ink-soft); line-height:1.85; margin:-.4rem 0 1.2rem; }
 .guide-foot { max-width:760px; margin:2.6rem auto 0; font-size:.95rem; color:var(--ink-soft); line-height:1.9; }
 .guide-foot a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
 </style>
@@ -330,13 +331,13 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <div class="masthead">
     <div class="left">
       <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
-      <span>READING 01 — WHAT IS CRAFT SAKE</span>
+      <span>KNOW — WHAT IS CRAFT SAKE</span>
     </div>
     <div class="right">A Field Guide</div>
   </div>
 
   <section class="hero">
-    <div class="hero__eyebrow">READING 01 — WHAT IS CRAFT SAKE</div>
+    <div class="hero__eyebrow">KNOW ／ 基礎を知る</div>
     <h1 class="hero__title">クラフトサケとは。<br>米から生まれた、<span class="accent">自由な酒</span>。</h1>
     <p class="hero__lede">日本酒づくりの技術を土台に、あえて「日本酒」の枠の外へ。米と副原料で醸す新ジャンル「クラフトサケ」の成り立ちを、法律・歴史・世界の潮流・醸造のことばからひもときます。</p>
   </section>
@@ -507,7 +508,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         </div>
         <div class="readmore">
           <a href="nomikata.html">
-            <div class="readmore__k">NEXT READING — 02</div>
+            <div class="readmore__k">つづけて読む</div>
             <div class="readmore__t">クラフトサケの飲み方・楽しみ方</div>
           </a>
           <a href="index.html">
