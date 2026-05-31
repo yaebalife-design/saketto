@@ -31,6 +31,15 @@ def age_gate_tag(prefix="../"):
     return f'<script src="{prefix}assets/age-gate.js" defer></script>'
 
 
+def favicon_head():
+    """ファビコン群（絶対パス参照なのでページ階層に依存しない）。"""
+    return (
+        '<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n'
+        '<link rel="alternate icon" href="/favicon.ico" sizes="any">\n'
+        '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
+    )
+
+
 def head_extra(prefix="../"):
     """head 末尾（</head> 直前）に入れる共通ブロック。"""
-    return analytics_head() + "\n" + age_gate_tag(prefix)
+    return favicon_head() + "\n" + analytics_head() + "\n" + age_gate_tag(prefix)
