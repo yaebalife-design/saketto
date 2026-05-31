@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">「自由な醸造スタイルで酒造りにロマンを。」社名はLIBERTA（自由）+ROMANZO（ロマン）の造語。米を主原料に果物・ハーブ・野菜・スパイスを副原料に。</p>
+    <p class="about-body">福岡市・春吉で営むクラフトサケ醸造所。杜氏が若い頃にドイツで過ごした3年間に着想を得て、ビール文化と日本酒を掛け合わせる。低精米の福岡県産米に、トマト・あまおう・木酢とラベンダー・コーラシロップなど自由な副原料を混醸。2023年にはイタリアに法人「LIBROM ITALY」を設立し、バルバレスコ地区で現地米を使ったテスト醸造にも挑む。</p>
     <p class="features">九州・福岡県産の果物・ハーブ・野菜・スパイスを副原料に。バー併設の醸造所。</p>
   </section>
 

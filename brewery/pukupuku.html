@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">自然発酵（全量酵母無添加）とビール技法を掛け合わせ、「異文化との境界線を溶かした日本酒」を目指す。</p>
+    <p class="about-body">福島県南相馬市小高区。代表・立川哲之が営む、日本酒とクラフトビールの設備を同じ場所に併設する稀有な蔵。水酛・花酛・差酛といった古典的な酒母や、白麹を通常の3倍以上使う仕込み、木桶・全麹など製法の探究で知られる。ICC SAKE AWARD 優勝、立川は京都芸術大学で「クラフトサケ学」の講師も務める。</p>
     <p class="features">全量酵母無添加×ビール技法のハイブリッド。元haccoba醸造責任者の立川氏が独立。木桶仕込みの全麹酒も展開。</p>
   </section>
 

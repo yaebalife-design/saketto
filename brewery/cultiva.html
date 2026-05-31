@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">「米のテロワール」がコンセプト。日本各地の米品種ごとに個性を表現するどぶろく。生酛・木桶仕込み。</p>
+    <p class="about-body">福岡県糸島市加布里に2025年夏オープンした新蔵。コンセプトは「米のテロワール」。山恵錦・ヒノヒカリ・山田錦など日本各地の米を品種ごとに醸し分け、土地と品種の個性をどぶろくで描く。江戸期に確立された生酛造りと木桶仕込みで、米を磨きすぎず「理解する」ことを掲げる。</p>
     <p class="features">公式に「クラフトサケの醸造所」と明記。日本各地の米品種を品種別に醸し分ける珍しい蔵。</p>
   </section>
 

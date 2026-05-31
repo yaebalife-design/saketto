@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">かつての民俗的なドブロクづくりを現代的に表現し、クラフトビールの自由なカルチャーで日本酒を再編集。</p>
+    <p class="about-body">東日本大震災で一度ゴーストタウン化した福島県南相馬市小高区に、元IT職の佐藤太亮が2021年に立ち上げた。「金はないけど、熱はある」を合言葉に、清酒の制約を離れた「その他の醸造酒」で表現の自由を確保。東北に伝わる幻のどぶろく製法「花酛」を復刻し、クラフトビールのドライホッピングと融合させた——クラフトサケの先駆けとして知られる。</p>
     <p class="features">クラフトサケジャンルの先駆者。「花酛」復刻＋ホップ・ハーブ・ベルギービール製法・バーボンバレル熟成も実験。</p>
   </section>
 

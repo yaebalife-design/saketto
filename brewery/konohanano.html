@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">浅草の代表的観光地で国内外に誇れる名物の酒造りを。若い蔵人が活躍できる「新しい修行の場」として独立を支援。</p>
+    <p class="about-body">東京・浅草、台東区駒形で2020年に創業（代表・細井洋佑）。バー「ALL WRIGHT」を併設し、できたてのどぶろくをその場で提供する都市型の蔵。看板の「ハナグモリ」は米と米麹だけのシンプルな造り。焼酎用の白麹を使いクエン酸の酸を効かせた「THE酸」も。若い醸造家が独立を目指せる「新しい修行の場」としての役割も担う。</p>
     <p class="features">浅草・駒形のどぶろく醸造所。ALL (W)RIGHT sake placeを併設しバーで提供。若手醸造家の修行拠点的役割。</p>
   </section>
 

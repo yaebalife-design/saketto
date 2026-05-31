@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">「感激できる、多様なおいしさ」をモットーに、極小規模と持続可能性にこだわった醸造。福島潟のほとりで地域素材を活用。</p>
+    <p class="about-body">新潟市北区で田中洋介が営む、日本酒の製法をベースにホップや果実を醸し込むクラフトSAKEの蔵。五百万石・こしいぶき・亀の尾など新潟の米に、シトラホップや越後姫いちご、ル・レクチェ洋梨など地元の恵みを掛け合わせる。黄麹と白麹のハイブリッド仕込みで、日本酒の骨格とジューシーな果実感を両立させる。</p>
     <p class="features">ブランド名は「翔空（しょうくう）」。果実・ホップ・トマト＋バジルまで副原料の幅が極めて広い。</p>
   </section>
 

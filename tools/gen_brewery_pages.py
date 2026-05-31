@@ -17,6 +17,7 @@ from breweries_master import BREWERIES
 from breweries_brands import BRANDS
 from awards import AWARDS
 from tasting import TASTING
+from brewery_about import about_of
 
 REGION_IMG = {
     "東北": "region_tohoku", "関東": "region_kanto", "中部": "region_chubu",
@@ -156,8 +157,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -442,6 +449,7 @@ def render(brewery, index, prev_brewery, next_brewery):
     brands = BRANDS.get(brewery["slug"], [])
 
     philosophy_short = brewery.get("philosophy", "")[:120].replace('"', "'")
+    about_text = about_of(brewery["slug"]) or ""
 
     assoc_html = '<span class="hero__assoc">CRAFTSAKE ASSOC.</span>' \
         if brewery.get("association") else ''
@@ -589,13 +597,14 @@ def render(brewery, index, prev_brewery, next_brewery):
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">{brewery["philosophy"]}</p>
+    {(f'<p class="about-body">{about_text}</p>') if about_text else ''}
     <p class="features">{brewery["features"]}</p>
   </section>
 

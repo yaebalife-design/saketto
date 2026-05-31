@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">和歌山「紀土」蔵元の平和酒造が、東京・兜町で都市型どぶろく醸造所を展開。</p>
+    <p class="about-body">和歌山の清酒「紀土」で知られる平和酒造(1928年創業)が、東京・兜町に開いたどぶろく醸造所。ブルワリーパブ形式で、造り手がカウンター越しにできたてを提供する。和歌山の仕込み水を東京へ運び、小型容器で少量仕込み。プレーン・小豆・黒豆・ホップ・白麹に加え、週替わりの季節どぶろくも。</p>
     <p class="features">副原料にホップ・果実・豆類・穀類・ハーブ（ミント・レモングラス・スイートバジル等）多彩。</p>
   </section>
 

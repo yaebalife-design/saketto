@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">元WAKAZE杜氏・今井翔也創業。米以外の麹（大麦麹・蕎麦・芋麹）でつくる「800（ヤオ）」シリーズ。</p>
+    <p class="about-body">京都の今井翔也(新政・WAKAZE出身)が2024年に創業したファントムブリュワリー。2026年には京都・五条坂に自社蔵を構える予定。「異を醸す」をコンセプトに、米以外の麹——大麦麹・蕎麦麹・白麹——で醸す「800(ヤオ)」シリーズが看板。世界初を謳う大麦100%醸造酒など、麹そのものから常識を問い直す。</p>
     <p class="features">haccoba・阿部酒造・LIBROMで委託醸造のファントムブリュワリー。2026年京都自社醸造所開設予定。</p>
   </section>
 

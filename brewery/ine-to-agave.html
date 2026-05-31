@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">男鹿の風土を醸す。米と米麹をフルーツやハーブと一緒に発酵させた新ジャンルのクラフトサケ。全量無肥料無農薬の自然栽培米、精米歩合90%統一。</p>
+    <p class="about-body">秋田県男鹿市で2021年秋に創業。新政酒造で修業した岡住修兵が「男鹿の風土を醸す」を理念に立ち上げたクラフトサケの旗手。無肥料・無農薬の食用米を低精米で使い、アガベシロップやホップ、果実などの副原料を加えて醸す。ICC SAKE AWARD 初代優勝、岡住はForbes JAPAN「CULTURE-PRENEURS 30」にも選ばれた、ジャンルを象徴する一蔵。</p>
     <p class="features">アガベシロップを副原料に使う代表格。クラフトサケジャンル創設者格。</p>
   </section>
 

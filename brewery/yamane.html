@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">西川材の杉木桶で、埼玉県産米と地元素材を醸す。</p>
+    <p class="about-body">埼玉県飯能市の蔵。生物研究家でもある代表・若林福成が「その土地のゆりかご」で育まれる酒を掲げる。飯能産の茶葉や蜂蜜、発芽玄米を副原料に、飯能産西川材の道具と木桶、全量袋吊りで醸す。売上の一部を飯能市の自然保全活動に充てる、土地と自然に根ざした酒造り。</p>
     <p class="features">副原料に狭山茶・発芽玄米。クラフトサケ醸造は2022年から本格化。</p>
   </section>
 

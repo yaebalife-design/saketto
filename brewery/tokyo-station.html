@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">世界初の駅ナカ醸造所。フルーツどぶろくと共同醸造シリーズを展開。</p>
+    <p class="about-body">JR東京駅構内グランスタ東京の地下に2020年開業した、はせがわ酒店運営の「エキナカ醸造所」。小売店として初めて酒類製造免許を取得し、わずか22.8m²で洗米から瓶詰までを完結させる世界でも稀な立地。兵庫県産山田錦のどぶろくと、清酒に果汁を合わせたヨーグルト感覚の季節フルーツどぶろくが名物。</p>
     <p class="features">運営はせがわ酒店。マンゴー・リンゴ・みかん・パイン・桃・ぶどう・ハニーレモンなど多彩なフルーツどぶろく。</p>
   </section>
 

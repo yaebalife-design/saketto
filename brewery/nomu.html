@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">沖縄県内初の「その他の醸造酒製造免許」取得。西表島・恩納村産米と県産フルーツで醸す。</p>
+    <p class="about-body">沖縄市コザ一番街で2025年に免許を取得した、沖縄県初のクラフトサケ醸造所(運営・TABELU)。木花之醸造所の技術協力で立ち上がった。自家製造の白麹と沖縄県産米を使い、シークヮーサーなど南国の果実を活かす計画。「食べる酒」TABERUや、できたての「シシカム」、ノンアル甘酒OFFZAKEなど、沖縄の食文化に寄り添う。</p>
     <p class="features">副原料にアセロラ・パイナップル・シークワーサーなど沖縄の素材。木花之醸造所が技術協力。</p>
   </section>
 

@@ -134,8 +134,14 @@ main { position:relative; z-index:1; }
   margin-bottom:1.5rem;
 }
 .features {
-  font-size:1rem; color:var(--ink-soft); line-height:1.9;
-  padding-left:1.5rem; font-weight:400;
+  font-size:.95rem; color:var(--ink-mute); line-height:1.85;
+  padding-left:1.5rem; font-weight:400; margin-top:1.5rem;
+}
+.features::before { content:"特徴 ─ "; color:var(--accent); font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.08em; }
+.about-body {
+  font-family:'Shippori Mincho', serif; font-weight:400;
+  font-size:1.06rem; color:var(--ink); line-height:2.0;
+  margin-top:1.6rem;
 }
 
 /* 銘柄カード */
@@ -392,13 +398,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">PHILOSOPHY</span>
+      <span class="section-meta__label">ABOUT / この蔵について</span>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">遠野の風土と自然栽培「遠野1号」米から、無添加の米飲料・どぶろく・甘酒・米酢を醸す。</p>
+    <p class="about-body">岩手県遠野市。四代目・佐々木要太郎が、自然栽培米「遠野1号」と室町〜江戸の古典製法(水もと・生酛)で醸す。協会酵母も醸造用乳酸も使わず、木桶で150日を超える完全発酵。米糠まで活かした「権化」シリーズが代名詞。世界ベストレストラン1位「Disfrutar」や旧3つ星「Mugaritz」が求めた、遠野のどぶろく。</p>
     <p class="features">自然栽培「遠野1号」米。四代目佐々木要太郎が長年取り組む遠野のクラフトサケ。</p>
   </section>
 
