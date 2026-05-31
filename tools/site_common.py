@@ -9,7 +9,7 @@
 #   管理 → データストリーム → タグ設定 → 内部トラフィックの定義（自宅IPを登録）
 #   → 管理 → データフィルタ → 「Internal Traffic」を有効化
 # コード側は標準 gtag のままでよい（IP除外はサーバー/管理画面側で完結）。
-GA_ID = "G-XXXXXXXXXX"
+GA_ID = "G-REYY1OPEK2"
 
 
 def analytics_head():
