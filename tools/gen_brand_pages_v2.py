@@ -287,9 +287,9 @@ def build_html(brand, detail, brewery, idx):
     </div>
   </section>"""
 
-    # ── STORY（あれば）──
+    # ── STORY（しっかり背景になっている充実したものだけ。薄い事実列挙は出さない）──
     story_section = ""
-    if d.get("story"):
+    if d.get("story") and len(d.get("story", "")) >= 70:
         story_section = f"""
   <div class="divider"><div class="rule"></div><div class="ornament outer"></div><div class="ornament"></div><div class="ornament outer"></div><div class="rule"></div></div>
   <section class="section">
