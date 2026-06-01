@@ -319,6 +319,13 @@ ARTICLES = [
         "title": "クラフトサケ おすすめ12選",
         "summary": "「はじめの一本」から通好みまで、saketto編集部がタイプ別に選んだ12本。稲とアガベ・haccoba・LAGOON・ぷくぷく醸造ほか、収録DBの確認済みスペックとともに紹介。各銘柄から探せます。",
     },
+    {
+        "slug": "kioke",
+        "category": "deep",
+        "eyebrow_en": "KIOKE BREWING",
+        "title": "木桶仕込みとは",
+        "summary": "なぜ木の桶で醸すのか。江戸期に主流だった木桶がホーロー・ステンレスに置き換わった歴史、桶に棲む蔵付き微生物、木桶職人復活プロジェクト、そしてクラフトサケが木桶に回帰する理由を深掘り。",
+    },
 ]
 
 
@@ -884,6 +891,117 @@ def build_osusume():
     return html
 
 
+# ────────────── 記事④：木桶仕込みとは（DEEP） ──────────────
+
+def build_kioke():
+    # 木桶にまつわることば
+    kioke_terms = term_grid([
+        ("木桶 / 大桶", "KIOKE", "杉などの木材を、竹や金属の「箍（たが）」で締めて作る発酵容器。酒蔵で使う大型のものは「大桶」とも。数十年から、手入れ次第で100年以上使われることもある。"),
+        ("箍（たが）", "TAGA", "桶の側板（がわいた）を外周から締め、固定する輪。かつては真竹が使われた。緩むと桶がばらける——「たがが外れる」の語源でもある。"),
+        ("蔵付き酵母・乳酸菌", "HOUSE MICROBES", "蔵や木桶に棲みつき、その蔵だけの発酵をもたらす微生物たち。木桶の細かな隙間は、彼らの棲み家になりやすいとされる。"),
+        ("欠減（けつげん）", "LOSS", "醸造中に蒸発や漏れで中身が減ること。木桶はホーロー・ステンレスより欠減が大きく、これも近代化で敬遠された一因。"),
+    ])
+
+    body = f"""
+  <div class="article">
+
+    <section class="section">
+{section_meta("01", "WHAT IS / 木桶仕込みとは")}
+      <div class="prose">
+        <p class="lead">木桶仕込みとは、ステンレスやホーローのタンクではなく、<span class="accent">木の桶</span>で酒を発酵させること。いま、クラフトサケの造り手たちが、あえてこの“古くて新しい”容器へ回帰している。</p>
+        <p>木桶は、杉などの板を「箍（たが）」で締めてつくる発酵の器。かつては日本中の酒蔵・醤油蔵・味噌蔵で当たり前に使われていた。だが20世紀のあいだに、その姿はほとんど消えてしまう。なぜ消え、そしてなぜ今、選び直されているのか。木桶という一つの器から、クラフトサケの思想が見えてくる。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("02", "HISTORY / なぜ木桶は消えたか")}
+      <div class="prose">
+        <h2 class="sub-h">江戸の主役は、<span class="accent">百年</span>で姿を消した。</h2>
+        <p>木の仕込み桶は、江戸時代を通じて酒造りの主役だった。ところが近代になると、木桶は「隙間に雑菌が棲むかもしれない、不衛生だ」と見なされるようになる。大正期に登場したのが、鉄の表面にガラス質を焼き付けた<strong>ホーロー（琺瑯）タンク</strong>。やがてステンレスタンクも普及した。</p>
+        <p>これらの金属タンクは、洗って清潔を保ちやすく、発酵中の温度を冷やしやすく、そして<strong>欠減（蒸発や漏れによる目減り）が少ない</strong>。管理のしやすさは圧倒的で、行政も普及を後押しした。こうして木の大桶は急速に置き換わり、<strong>1960年頃までに、酒蔵の現場からほとんど姿を消した</strong>とされる。効率の時代に、手のかかる木桶は割に合わなくなったのだ。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("03", "WHY / 木桶が宿す力")}
+      <div class="prose">
+        <h2 class="sub-h">木桶は、<span class="accent">呼吸</span>する。</h2>
+        <p>では、なぜ造り手は木桶に戻るのか。鍵は、木という素材そのものにある。木桶は金属タンクと違って、<strong>わずかに「呼吸する」</strong>といわれる。天然の木材がもつ細かな隙間や繊維が空気をゆるやかに通し、発酵に繊細な揺らぎをもたらす——そう考えられている。</p>
+        <p>そしてその隙間は、<strong>微生物の棲み家</strong>になる。長年使い込まれた木桶には、酵母や乳酸菌といった<strong>「蔵付き」の微生物</strong>が棲みつき、その蔵・その桶でしか出せない発酵を生む。無機質なステンレスでは再現しにくい、桶ごとの“個性”がそこに宿るとされる。同じレシピでも、桶が変われば酒の表情が変わる——木桶仕込みの面白さは、この<strong>不均一さ・予測しきれなさ</strong>にある。</p>
+        <div class="callout">
+          <div class="callout__label">編集部より</div>
+          <p>木桶の発酵が「呼吸」「蔵付き微生物」によるとする説明は、造り手や専門メディアで広く語られる見方です。科学的な機序には諸説あり、ここでは一般的な考え方として紹介しています。味わいの感じ方には個人差があります。</p>
+        </div>
+      </div>
+      {kioke_terms}
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("04", "REVIVAL / 木桶を、未来へ")}
+      <div class="prose">
+        <h2 class="sub-h">桶を“つくれる人”が、<span class="accent">いなくなる</span>。</h2>
+        <p>木桶が消えていったことで、もう一つの危機が訪れた。<strong>大桶を新しくつくれる職人が、ほとんどいなくなった</strong>のだ。需要が絶えれば、技術も途絶える。残っていた木桶は古いものばかりで、このままでは木桶文化そのものが終わる——そんな瀬戸際だった。</p>
+        <p>ここで動いたのが、香川・小豆島の醤油蔵<strong>ヤマロク醤油</strong>の五代目・山本康夫さん。2011年から2012年にかけて、同級生の大工たちとともに<strong>「木桶職人復活プロジェクト」</strong>を立ち上げ、最後の桶屋に弟子入りした。約2年の試行錯誤の末、<strong>2013年に奈良の吉野杉と真竹の箍で新桶を完成</strong>させる。以来、毎年冬に小豆島で新桶づくりが続けられ、その輪は醤油から<strong>酒・味噌など発酵食品の作り手へと広がっている</strong>。技術を独占せず、共有して「つくれる人」ごと増やす——その思想が、木桶を未来へつないでいる。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("05", "SUSTAINABILITY / 百年の器")}
+      <div class="prose">
+        <h2 class="sub-h">手入れすれば、<span class="accent">百年</span>使える。</h2>
+        <p>木桶は、一度つくれば長く生きる器でもある。箍を締め直し、手入れをしながら使えば、<strong>数十年、ときに100年以上</strong>現役で働く。役目を終えた酒蔵の大桶が、醤油蔵や味噌蔵へ“second life”として渡っていくこともある。木という再生可能な素材を、世代を越えて使い続ける。木桶仕込みは、いまの<strong>サステナビリティ</strong>の感覚とも、自然に響き合う。</p>
+        <p>手間がかかり、欠減もある。効率だけを見れば不利な器を、それでも選ぶ。そこには「<strong>その土地の、その蔵の、その桶でしか出せない味</strong>」を信じる造り手の覚悟がある。クラフトサケが木桶に向かうのは、自由な発想で“らしさ”を突き詰める、この酒の精神そのものだ。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("06", "IN CRAFT SAKE / 木桶を選んだ蔵")}
+      <div class="prose">
+        <h2 class="sub-h">saketto で出会える、<span class="accent">木桶の酒</span>。</h2>
+        <p>クラフトサケの世界にも、木桶仕込みに挑む蔵がいる。saketto に収録している中から、木桶と関わりの深い蔵を紹介したい。</p>
+        <p><a href="../brewery/nondo.html">nondo（岩手・遠野）</a>は、上級シリーズ「権化」を<strong>水もと × 木桶 × 150日超の長期発酵</strong>で醸す。<a href="../brewery/pukupuku.html">ぷくぷく醸造（福島・小高）</a>は、蔵付き酵母を使った木桶どぶろく「#ODAKA」でICC SAKE AWARD 2025の頂点に立ち、木桶仕込みの<strong>全麹酒</strong>も手がける。<a href="../brewery/yamane.html">やまね酒造（埼玉・飯能）</a>は、地元・西川材の<strong>杉の木桶</strong>で米と地域の素材を醸す。どの蔵も、木桶でしか出せない味を追いかけている。</p>
+        <div class="pill-links">
+          <a href="../genre/">ジャンル「木桶仕込み」から探す<span class="arr">→</span></a>
+          <a href="../subingredients/">副原料から<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("07", "READ ON / もっと味わう")}
+      <div class="prose">
+        <p>木桶は、クラフトサケの造りを彩る技法のひとつ。花酛・水もと・生酛・全麹といったほかの製法のことばは、入門記事でまとめて紹介している。製法を知れば、ひと口の背景がぐっと立体的になる。</p>
+        <div class="callout">
+          <div class="callout__label">楽しむ前に</div>
+          <p><strong>20歳未満の飲酒は法律で禁じられています。</strong>　飲酒運転は法律で禁止されています。妊娠中・授乳期の飲酒はお控えください。適量を守り、自分のペースでお楽しみください。</p>
+        </div>
+        <div class="readmore">
+          <a href="craftsake-towa.html">
+            <div class="readmore__k">あわせて読む</div>
+            <div class="readmore__t">クラフトサケとは（製法のことば）</div>
+          </a>
+          <a href="osusume.html">
+            <div class="readmore__k">CHOOSE</div>
+            <div class="readmore__t">おすすめ12選から探す</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+"""
+    html = page_head("木桶仕込みとは — 木の桶が醸す、時間と微生物の酒",
+                     "木桶仕込みとは何か。江戸期に主流だった木桶がホーロー・ステンレスタンクに置き換わった歴史、木桶に棲む蔵付き微生物の働き、木桶職人復活プロジェクト、そしてクラフトサケが木桶へ回帰する理由を、一次情報をもとに深掘りします。")
+    html += masthead(article_masthead_label("kioke"), "A Field Guide")
+    html += hero(
+        article_eyebrow("kioke"),
+        '木桶仕込みとは。<br>木が醸す、<span class="accent">時間の酒</span>。',
+        "効率を求めて消えた木の桶に、クラフトサケはなぜ戻るのか。歴史・微生物・職人の技から、木桶仕込みの奥行きをひもときます。")
+    html += body
+    html += footer()
+    return html
+
+
 # ────────────── 実行 ──────────────
 
 def main():
@@ -892,6 +1010,7 @@ def main():
     (OUT_DIR / "craftsake-towa.html").write_text(build_towa(), encoding="utf-8")
     (OUT_DIR / "nomikata.html").write_text(build_nomikata(), encoding="utf-8")
     (OUT_DIR / "osusume.html").write_text(build_osusume(), encoding="utf-8")
+    (OUT_DIR / "kioke.html").write_text(build_kioke(), encoding="utf-8")
     print(f"OK ガイド生成: guide/index.html（一覧）＋ 記事{len(ARTICLES)}本")
 
 
