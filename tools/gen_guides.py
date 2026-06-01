@@ -20,6 +20,10 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
 from gen_axes_pages import CSS as BASE_CSS  # 世界観CSSを流用
 from site_common import head_extra
+from breweries_brands import BRANDS          # おすすめ記事：スペックを一次ソースDBから直接引く
+from breweries_master import by_slug
+from moshimo_link import rakuten_search
+from gen_sample_v2 import RAKUTEN_ENABLED
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
 OUT_DIR = REPO_ROOT / "guide"
@@ -115,6 +119,40 @@ EXTRA_CSS = """
 .cat-lead { max-width:760px; font-size:.95rem; color:var(--ink-soft); line-height:1.85; margin:-.4rem 0 1.2rem; }
 .guide-foot { max-width:760px; margin:2.6rem auto 0; font-size:.95rem; color:var(--ink-soft); line-height:1.9; }
 .guide-foot a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
+
+/* おすすめ（ランキング）カード */
+.pick-group { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.18rem; color:var(--ink); max-width:820px; margin:2.6rem 0 1.1rem; padding-bottom:.5rem; border-bottom:1px solid var(--line); letter-spacing:.03em; }
+.pick-group:first-of-type { margin-top:.6rem; }
+.pick-group .en { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.8rem; color:var(--accent); margin-left:.6rem; letter-spacing:.06em; }
+.pick { display:grid; grid-template-columns:auto 1fr; gap:1.1rem 1.3rem; max-width:820px; padding:1.5rem 0; border-bottom:1px solid var(--line-soft); }
+.pick__no { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2rem; line-height:1; color:var(--line); padding-top:.1rem; }
+.pick__head { display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem .9rem; margin-bottom:.5rem; }
+.pick__kura { font-size:.82rem; color:var(--ink-mute); letter-spacing:.04em; }
+.pick__kura a { color:var(--warm); text-decoration:none; border-bottom:1px solid var(--line-soft); }
+.pick__kura a:hover { color:var(--accent); }
+.pick__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.24rem; color:var(--ink); line-height:1.4; width:100%; }
+.pick__tags { display:flex; flex-wrap:wrap; gap:.4rem; margin:.1rem 0 .55rem; }
+.pick__tag { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem; letter-spacing:.04em; color:var(--ink-soft); border:1px solid var(--line); padding:.16rem .6rem; }
+.pick__spec { font-size:.84rem; color:var(--ink-mute); letter-spacing:.02em; margin-bottom:.6rem; }
+.pick__spec b { color:var(--ink-soft); font-weight:600; }
+.pick__note { font-size:.95rem; color:var(--ink-soft); line-height:1.85; margin-bottom:.9rem; }
+.pick__links { display:flex; flex-wrap:wrap; gap:.6rem .9rem; align-items:center; }
+.pick__detail { font-family:'Shippori Mincho',serif; font-size:.92rem; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:1px; }
+.pick__detail:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.pick__btn { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.9rem; letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent); padding:.5rem 1.1rem; text-decoration:none; }
+.pick__btn:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
+.pick__pr { font-size:.72rem; color:var(--ink-mute); letter-spacing:.04em; }
+@media (max-width:600px){ .pick { grid-template-columns:1fr; gap:.2rem; } .pick__no { font-size:1.4rem; } }
+
+/* スペック比較表 */
+.cmp-wrap { max-width:820px; overflow-x:auto; margin:1rem 0 1rem; }
+.cmp { width:100%; border-collapse:collapse; font-size:.84rem; white-space:nowrap; }
+.cmp th, .cmp td { text-align:left; padding:.6rem .8rem; border-bottom:1px solid var(--line-soft); }
+.cmp thead th { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; letter-spacing:.06em; font-size:.72rem; color:var(--ink); border-bottom:1px solid var(--line); }
+.cmp td.nm { font-family:'Shippori Mincho',serif; color:var(--ink); white-space:normal; min-width:11rem; }
+.cmp td.p { font-family:'Zen Kaku Gothic Antique',sans-serif; color:var(--accent); font-weight:700; }
+.cmp a { color:inherit; text-decoration:none; border-bottom:1px solid var(--line-soft); }
+.cmp a:hover { color:var(--accent); }
 """
 
 
@@ -273,6 +311,13 @@ ARTICLES = [
         "eyebrow_en": "HOW TO ENJOY",
         "title": "クラフトサケの飲み方・楽しみ方",
         "summary": "温度で変わる味わい、生酒・にごりの保存、活性タイプの開け方、器の選び方、ソーダ割りなどのスタイル、料理とのペアリング、和らぎ水まで。自由な酒の楽しみ方。",
+    },
+    {
+        "slug": "osusume",
+        "category": "choose",
+        "eyebrow_en": "EDITORS' PICKS",
+        "title": "クラフトサケ おすすめ12選",
+        "summary": "「はじめの一本」から通好みまで、saketto編集部がタイプ別に選んだ12本。稲とアガベ・haccoba・LAGOON・ぷくぷく醸造ほか、収録DBの確認済みスペックとともに紹介。各銘柄から探せます。",
     },
 ]
 
@@ -627,6 +672,188 @@ def build_nomikata():
     return html
 
 
+# ────────────── 記事③：おすすめ12選（編集部セレクト） ──────────────
+
+# 編集部セレクト。番号は人気・売上順ではなく、タイプ別に並べた見取り図。
+# スペックは BRANDS[slug][idx] から直接引くため転記ミス（＝嘘）が出ない。
+OSUSUME_PICKS = [
+    ("はじめの一本に", "FIRST BOTTLE", "ine-to-agave", 0,
+     "クラフトサケの代名詞ともいえる一本。白ブドウや白桃を思わせる柔らかな香りで、「日本酒ともワインとも違う」第一印象をくれる。まず一本選ぶなら、ここから。"),
+    ("はじめの一本に", "FIRST BOTTLE", "haccoba", 0,
+     "クラフトサケというムーブメントを切り拓いた蔵の看板。東北の古い製法「花酛」にビール由来のドライホッピングを掛け合わせた、爽やかで親しみやすい味わい。"),
+    ("はじめの一本に", "FIRST BOTTLE", "konohanano", 0,
+     "本格純米のにごりに、シュワッとした微発泡。価格も手に取りやすく、にごり酒の心地よさを知る入り口にうってつけ。"),
+    ("ホップサケ — ビール好きに", "HOP SAKE", "lagoon", 0,
+     "「シトラ」というホップ由来の柑橘香と、米の旨みが同居する一本。クラフトビール好きが「サケ」へ踏み出す、ちょうどいい橋渡し。"),
+    ("ホップサケ — ビール好きに", "HOP SAKE", "librom", 4,
+     "福岡のブルワリー的アプローチ。ホップ品種をはっきり打ち出した、香り重視の設計。米の酒の概念がやわらかくほどける。"),
+    ("果実サケ — 華やかに", "FRUIT SAKE", "librom", 3,
+     "福岡県産いちご「あまおう」を絡めた、甘酸っぱく華やかな果実サケ。ワインやナチュールが好きな人への一本に。"),
+    ("果実サケ — 華やかに", "FRUIT SAKE", "lagoon", 2,
+     "新潟のブランド洋梨ル・レクチェを使った季節銘柄。果実のみずみずしい香りと、純米の旨みが静かに重なる。"),
+    ("古典どぶろく・純米 — 米の旨み", "DOBUROKU", "happy-taro", 0,
+     "米だけで醸す、定番のどぶろく。濃い米の旨みと優しい甘み。味噌や漬物などの発酵食品、和の食卓と響き合う、日々に寄り添う一本。"),
+    ("古典どぶろく・純米 — 米の旨み", "DOBUROKU", "nondo", 5,
+     "岩手・遠野の、水もと仕込み・無添加の生どぶろく。乳酸由来の綺麗な酸が、米の旨みをきりりと引き締める。"),
+    ("通好み・受賞・特別な一本", "CONNOISSEUR", "pukupuku", 4,
+     "蔵付き酵母を使い、木桶で醸したどぶろく。ICC SAKE AWARD 2025で頂点に立った、いま最も注目される造りのひとつ。"),
+    ("通好み・受賞・特別な一本", "CONNOISSEUR", "nondo", 0,
+     "水もと × 木桶 × 150日超の長期発酵。米糠まで活かし、柑橘を思わせる香りと軽やかな甘みをまとう。贈り物にもふさわしい。"),
+    ("通好み・受賞・特別な一本", "CONNOISSEUR", "adachi-noujo", 0,
+     "焼酎用の白麹で仕込んだ、スッキリとした綺麗さと心地よい酸。クラフトサケの「酸」の表現を味わいたい人に。"),
+]
+
+
+def _osusume_spec(b):
+    parts = []
+    parts.append(f"度数 <b>{b['abv']}%</b>" if b.get("abv") is not None else "度数 <b>非公開</b>")
+    parts.append(f"容量 <b>{b['volume_ml']}ml</b>" if b.get("volume_ml") else "容量 <b>—</b>")
+    parts.append(f"参考価格 <b>¥{b['price']:,}</b>" if b.get("price") else "価格 <b>公式非開示</b>")
+    return " ／ ".join(parts)
+
+
+def _osusume_tags(b):
+    subs = b.get("sub_ingredients") or []
+    if not subs:
+        return '<span class="pick__tag">副原料 非開示</span>'
+    return "".join(f'<span class="pick__tag">{s}</span>' for s in subs)
+
+
+def build_osusume():
+    cards = ""
+    cur_group = None
+    for i, (group, group_en, slug, idx, comment) in enumerate(OSUSUME_PICKS, start=1):
+        if group != cur_group:
+            cur_group = group
+            cards += f'    <div class="pick-group">{group}<span class="en">{group_en}</span></div>\n'
+        kura = by_slug(slug)
+        b = BRANDS[slug][idx]
+        btn = (f'<a class="pick__btn" href="{rakuten_search(b["name"])}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>'
+               '<span class="pick__pr">PR</span>') if RAKUTEN_ENABLED else ""
+        cards += f"""    <div class="pick">
+      <div class="pick__no">{i:02d}</div>
+      <div class="pick__body">
+        <div class="pick__head">
+          <span class="pick__kura"><a href="../brewery/{slug}.html">{kura['name']}</a>　{kura['prefecture']}</span>
+          <span class="pick__name">{b['name']}</span>
+        </div>
+        <div class="pick__tags">{_osusume_tags(b)}</div>
+        <div class="pick__spec">{_osusume_spec(b)}</div>
+        <p class="pick__note">{comment}</p>
+        <div class="pick__links">
+          <a class="pick__detail" href="../brand/{slug}-{idx}.html">銘柄の詳細を見る →</a>
+          {btn}
+        </div>
+      </div>
+    </div>
+"""
+
+    # スペック比較表
+    rows = ""
+    for i, (group, group_en, slug, idx, comment) in enumerate(OSUSUME_PICKS, start=1):
+        kura = by_slug(slug)
+        b = BRANDS[slug][idx]
+        subs = b.get("sub_ingredients") or []
+        typ = subs[0] if subs else "—"
+        abv = f"{b['abv']}%" if b.get("abv") is not None else "—"
+        vol = f"{b['volume_ml']}ml" if b.get("volume_ml") else "—"
+        price = f"¥{b['price']:,}" if b.get("price") else "—"
+        rows += (f'<tr><td class="nm"><a href="../brand/{slug}-{idx}.html">{b["name"]}</a></td>'
+                 f'<td>{kura["name"]}</td><td>{typ}</td><td>{abv}</td><td>{vol}</td>'
+                 f'<td class="p">{price}</td></tr>\n')
+
+    body = f"""
+  <div class="article">
+
+    <section class="section">
+{section_meta("01", "EDITORS' PICKS / 選び方の地図")}
+      <div class="prose">
+        <p class="lead">クラフトサケは、<span class="accent">自由</span>な酒。ホップ、果実、ハーブ、米だけの濃いどぶろく——幅が広いぶん、最初の一本に迷う。そこで saketto 編集部が、収録する25の蔵・120を超える銘柄から、<span class="accent">タイプ別に12本</span>を選びました。</p>
+        <p>「日本酒は知っているけれど、クラフトサケは初めて」という人も、「もう何本か飲んだから、次の一本を」という人も。下のグループを入り口に、自分に合いそうな一本を見つけてください。各銘柄のスペックは、saketto が一次ソース（各蔵の公式情報）で確認したものです。</p>
+        <div class="callout">
+          <div class="callout__label">この12選について</div>
+          <p>このリストは、収録銘柄の中から「タイプの代表性・はじめての入りやすさ・話題性・入手のしやすさ」を目安に編集部が選んだものです。<strong>番号は人気や売上の順位ではなく</strong>、タイプ別に読みやすく並べた見取り図です。価格・度数などは2026年5月時点の確認値で、ロットや時期によって変わります。最新の価格・在庫は各リンク先でご確認ください。</p>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("02", "THE 12 / 12本")}
+      <div class="prose">
+        <p>気になった一本は、銘柄ページから味わいの詳細や蔵の物語を辿れます。「楽天市場で探す」では、その銘柄名で楽天市場の検索結果へ移動します（在庫・価格は時期により変動します）。</p>
+      </div>
+{cards}    </section>
+{divider()}
+    <section class="section">
+{section_meta("03", "COMPARISON / スペック比較")}
+      <div class="prose">
+        <h2 class="sub-h">12本を、<span class="accent">ひと目</span>で。</h2>
+        <p>度数・容量・参考価格を一覧で。「—」は公式に非開示、またはロットで変動するものです。</p>
+      </div>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead><tr><th>銘柄</th><th>蔵</th><th>タイプ</th><th>度数</th><th>容量</th><th>参考価格</th></tr></thead>
+          <tbody>
+{rows}          </tbody>
+        </table>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("04", "HOW TO CHOOSE / 選び方")}
+      <div class="prose">
+        <h2 class="sub-h">迷ったら、<span class="accent">入り口</span>を決める。</h2>
+        <p>選び方に正解はありませんが、目安はあります。<strong>ビールやクラフトビールが好き</strong>なら、ホップサケから。<strong>ワインやナチュールが好き</strong>なら、果実サケや酸の効いた一本へ。<strong>日本酒の旨みが好き</strong>なら、米だけで醸す古典どぶろくへ。迷ったら、まず「はじめの一本に」の3本から始めるのがおすすめです。</p>
+        <p>もっと自由に探したいときは、saketto の4つの軸が役立ちます。香りの素材から辿る<a href="../subingredients/">副原料</a>、造りや個性で選ぶ<a href="../genre/">ジャンル</a>、旅するように探す<a href="../region/">地域</a>、お得に試す<a href="../furusato/">ふるさと納税</a>。</p>
+        <div class="pill-links">
+          <a href="../subingredients/">副原料から<span class="arr">→</span></a>
+          <a href="../genre/">ジャンルから<span class="arr">→</span></a>
+          <a href="../region/">地域から<span class="arr">→</span></a>
+          <a href="../furusato/">ふるさと納税から<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("05", "FAQ / よくある質問")}
+      <div class="prose">
+        <h2 class="sub-h tight">クラフトサケは、どこで買えますか。</h2>
+        <p>多くは各蔵の公式オンラインショップや取扱酒販店、楽天市場などのECで手に入ります。少量生産・限定流通の銘柄も多く、季節や入荷のタイミングで在庫は変わります。気になる一本は、見かけたときが買いどきです。</p>
+        <h2 class="sub-h tight">日本酒とどう違うのですか。</h2>
+        <p>ざっくり言えば、クラフトサケは「日本酒（清酒）の定義の<strong>外</strong>」で自由に醸された米の酒。副原料を加えたり、もろみを濾さなかったりするため、酒税法上は多くが「その他の醸造酒」に分類されます。詳しくは<a href="craftsake-towa.html">クラフトサケとは</a>をご覧ください。</p>
+        <h2 class="sub-h tight">どう飲むのがおいしいですか。</h2>
+        <p>まずは冷やして、その個性を確かめるのがおすすめ。温度・保存・濁りの扱い・器・割り方のコツは<a href="nomikata.html">飲み方・楽しみ方</a>でまとめています。</p>
+        <div class="callout">
+          <div class="callout__label">楽しむ前に</div>
+          <p><strong>20歳未満の飲酒は法律で禁じられています。</strong>　飲酒運転は法律で禁止されています。妊娠中・授乳期の飲酒はお控えください。適量を守り、自分のペースでお楽しみください。</p>
+        </div>
+        <div class="readmore">
+          <a href="craftsake-towa.html">
+            <div class="readmore__k">あわせて読む</div>
+            <div class="readmore__t">そもそもクラフトサケとは？</div>
+          </a>
+          <a href="index.html">
+            <div class="readmore__k">INDEX</div>
+            <div class="readmore__t">読みもの一覧へ</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+"""
+    html = page_head("クラフトサケ おすすめ12選 — はじめの一本から通好みまで【編集部セレクト】",
+                     "クラフトサケのおすすめを、saketto編集部がタイプ別に12本厳選。稲とアガベ・haccoba・LAGOON・ぷくぷく醸造など、収録DBの確認済みスペック（度数・容量・参考価格）とともに、はじめての一本から通好みの受賞銘柄までを紹介します。")
+    html += masthead(article_masthead_label("osusume"), "A Field Guide")
+    html += hero(
+        article_eyebrow("osusume"),
+        'クラフトサケ、<br><span class="accent">最初の12本</span>。',
+        "ホップ、果実、米だけの濃いどぶろく——自由な酒だから、入り口も自由。編集部がタイプ別に選んだ12本を、確認済みのスペックとともに。")
+    html += body
+    html += footer()
+    return html
+
+
 # ────────────── 実行 ──────────────
 
 def main():
@@ -634,6 +861,7 @@ def main():
     (OUT_DIR / "index.html").write_text(build_index(), encoding="utf-8")
     (OUT_DIR / "craftsake-towa.html").write_text(build_towa(), encoding="utf-8")
     (OUT_DIR / "nomikata.html").write_text(build_nomikata(), encoding="utf-8")
+    (OUT_DIR / "osusume.html").write_text(build_osusume(), encoding="utf-8")
     print(f"OK ガイド生成: guide/index.html（一覧）＋ 記事{len(ARTICLES)}本")
 
 
