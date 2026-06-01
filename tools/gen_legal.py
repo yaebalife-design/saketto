@@ -44,6 +44,9 @@ STATIC_CSS = """
 .contact-btn { display: inline-block; margin-top: 8px; padding: 13px 26px; background: var(--accent); color: var(--paper); font-family: 'Zen Kaku Gothic Antique', sans-serif; font-weight: 500; letter-spacing: .06em; text-decoration: none; border: 1px solid var(--accent); }
 .contact-btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: var(--paper); }
 .contact-pending { display: inline-block; margin-top: 8px; padding: 13px 26px; border: 1px dashed var(--line); color: var(--ink-mute); font-size: 14px; }
+.disclosure { background: var(--bg-alt); border-left: 3px solid var(--accent); padding: 1.1rem 1.3rem; margin: 1rem 0 1.8rem; }
+.disclosure p { margin: 0 0 .5rem; font-size: 14.5px; line-height: 1.85; color: var(--ink); }
+.disclosure p:last-child { margin-bottom: 0; }
 @media (max-width: 600px) { .static { padding: 40px 20px 72px; } .static h1 { font-size: 25px; } .static th { width: 38%; } }
 """
 
@@ -145,6 +148,7 @@ PRIVACY_BODY = f"""
 
   <h3>Amazonアソシエイト・プログラム</h3>
   <p>当サイトは、Amazon.co.jp を宣伝しリンクすることによって紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です。</p>
+  <p>Amazonのアソシエイトとして、当サイト（saketto）は適格販売により収入を得ています。</p>
 
   <h2>4. 第三者への情報提供</h2>
   <p>当サイトは、利用者の個人情報を法令で定められた場合を除き、本人の同意なしに第三者へ開示・提供することはありません。</p>
@@ -165,6 +169,10 @@ DISCLAIMER_BODY = f"""
   <p class="updated">最終更新日: {UPDATED}</p>
 
   <h2>1. アフィリエイト・広告表記</h2>
+  <div class="disclosure">
+    <p>当サイト（saketto）は、アフィリエイト広告（Amazonアソシエイトを含む）を掲載しています。</p>
+    <p>Amazonのアソシエイトとして、当サイト（saketto）は適格販売により収入を得ています。</p>
+  </div>
   <p>当サイト（saketto）は、以下のアフィリエイトプログラム・広告サービスに参加しており、リンク経由で商品・サービスが購入された場合、運営者が紹介料を受け取ることがあります。</p>
   <ul>
     <li>もしもアフィリエイト（楽天市場 等）</li>
@@ -243,6 +251,7 @@ ABOUT_BODY = f"""
 
   <h2>収益について</h2>
   <p>当サイトはアフィリエイトプログラム・広告サービスを利用しており、リンク経由で商品が購入・寄附された場合に運営者が報酬を受け取ることがあります。詳しくは<a href="/disclaimer.html">免責事項・広告表記</a>をご確認ください。</p>
+  <p>当サイト（saketto）は、アフィリエイト広告（Amazonアソシエイトを含む）を掲載しています。Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
 
   <h2>お問い合わせ</h2>
   <p>掲載情報の修正依頼・新規の蔵／銘柄の掲載依頼・その他のお問い合わせは、お問い合わせフォームよりお願いいたします。</p>
