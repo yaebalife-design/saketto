@@ -46,7 +46,7 @@ FURUSATO = {
         "city": "大阪府高槻市",
         "portals": ["c", "r"],
         "donation_yen": 15000,
-        "rep_brand": "KOYOI / MIYOI Origin 720ml",
+        "rep_brand": "KOYOI 720ml",
         "urls": {
             "r": "https://item.rakuten.co.jp/f272078-takatsuki/em001/",
         },
@@ -57,7 +57,7 @@ FURUSATO = {
         "city": "福岡県福智町",
         "portals": ["c", "r", "f", "s"],
         "donation_yen": 13000,
-        "rep_brand": "在る宵 緒奏（しょそう）720ml",
+        "rep_brand": "在る 緒奏（しょそう）720ml",
         "urls": {
             "r": "https://item.rakuten.co.jp/f406104-fukuchi/w37-02/",
         },

@@ -516,7 +516,7 @@ def render(brewery, index, prev_brewery, next_brewery):
             fact_rows.append(f'<div class="fact-row"><div class="fact-row__label">{label}</div><div class="fact-row__value">{value}</div></div>')
 
     fact("所在地", f'{brewery["prefecture"]}・{brewery["city"]}')
-    fact("創業", f'{brewery["founded"]}年' if brewery.get("founded") else None)
+    fact("創業", (f'{brewery["founded"]}年' if str(brewery.get("founded", "")).isdigit() else brewery.get("founded")) if brewery.get("founded") else None)
     fact("代表者", founder_of(slug))
     fact("協会", "クラフトサケ協会 加盟" if brewery.get("association") else "非加盟（独立系）")
     fact("収録銘柄", f'{len(brands)} 銘柄' if brands else None)

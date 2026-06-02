@@ -275,14 +275,17 @@ def categorize_ingredient(ing):
     if not ing:
         return None
     s = ing
+    if "製法" in s:          # 「ベルギービール製法」等は副原料ではないので分類しない
+        return None
     if "ホップ" in s:
         return "hop"
-    if any(k in s for k in ["リンゴ", "りんご", "ブドウ", "ぶどう", "洋梨", "洋ナシ",
-                            "ル・レクチェ", "ル レクチエ", "メロン", "イチゴ",
-                            "あまおう", "越後姫", "桃", "マンゴー", "パイナップル",
-                            "パイン", "シークワーサー", "アセロラ", "ミカン",
-                            "黒イチジク", "ハニーレモン", "果汁", "果物",
-                            "柚子", "八朔", "ブルーベリー"]):
+    if (any(k in s for k in ["リンゴ", "りんご", "ブドウ", "ぶどう", "洋梨", "洋ナシ",
+                             "ル・レクチェ", "ル レクチエ", "メロン", "イチゴ",
+                             "あまおう", "越後姫", "桃", "マンゴー", "パイナップル",
+                             "パイン", "シークワーサー", "シークヮーサー", "アセロラ", "ミカン",
+                             "黒イチジク", "レモン", "カボス", "果汁", "果物",
+                             "柚子", "八朔", "ブルーベリー"])
+            and "レモングラス" not in s and "レモネード" not in s):  # レモングラス/レモネードは茶ハーブ
         return "fruit"
     if "茶" in s and "焼酎" not in s:
         return "tea-herb"
@@ -324,15 +327,19 @@ def get_brewery_genres(brewery):
 
         if "ホップ" in all_text:
             genres.add("hop-sake")
-        if any(k in all_text for k in ["リンゴ", "ブドウ", "洋梨", "メロン", "イチゴ",
+        if (any(k in all_text for k in ["リンゴ", "ブドウ", "洋梨", "メロン", "イチゴ",
                                         "あまおう", "桃", "マンゴー", "パイナップル",
-                                        "シークワーサー", "アセロラ", "黒イチジク",
-                                        "ハニーレモン", "果汁", "果物", "ル・レクチェ",
+                                        "シークワーサー", "シークヮーサー", "アセロラ", "黒イチジク",
+                                        "レモン", "カボス", "果汁", "果物", "ル・レクチェ",
                                         "ル レクチエ", "ぶどう", "りんご", "八朔",
-                                        "ブルーベリー", "ミカン"]):
+                                        "ブルーベリー", "ミカン"])
+                and "レモングラス" not in all_text and "レモネード" not in all_text):
             genres.add("fruit-sake")
         if "どぶろく" in name or "ドブロク" in name or "ドブロク" in note:
-            genres.add("doburoku")
+            # 古典どぶろく＝副原料を使わない（米と麹のみ）もののみ。果実・ホップ入りは各ジャンルへ
+            _subs = b.get("sub_ingredients") or []
+            if not any(x and x != "米のみ" and "米" not in x for x in _subs):
+                genres.add("doburoku")
         if "全麹" in all_text or "米麹100%" in all_text or "十割麹" in name:
             genres.add("full-koji")
         if "木桶" in all_text:
@@ -854,7 +861,7 @@ def gen_awards():
     html += hero(
         "— 実績で選ぶ ／ ACCOLADES & GLOBAL",
         '頂点と、<span class="accent">世界</span>から。',
-        'まだ10年に満たない新ジャンルが、競技会で頂点を競い、世界best1のレストランに選ばれ、欧米アジアへ渡っていく。クラフトサケの"現在地"を、受賞と海外進出から見つける。'
+        'まだ10年に満たない新ジャンルが、競技会で頂点を競い、世界のトップレストランに選ばれ、欧米アジアへ渡っていく。クラフトサケの"現在地"を、受賞と海外進出から見つける。'
     )
     html += '<div class="awards-wrap">'
 

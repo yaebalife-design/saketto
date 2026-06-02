@@ -161,7 +161,7 @@ BREWERIES = [
         "founded": "2019",
         "official_url": "https://yamaneshuzo.jp/",
         "philosophy": "西川材の杉木桶で、埼玉県産米と地元素材を醸す。",
-        "features": "副原料に狭山茶・発芽玄米。クラフトサケ醸造は2022年から本格化。",
+        "features": "副原料に飯能産の茶葉・蜂蜜・発芽玄米など、地元素材を活用。クラフトサケ醸造は2022年から本格化。",
         "association": False,
     },
     {
