@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug
 from moshimo_link import rakuten_search, amazon_search
-from site_common import head_extra
+from site_common import head_extra, seo_head, breadcrumb, SITE_URL
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT = REPO_ROOT / "brand" / "haccoba-0.html"
@@ -806,13 +806,24 @@ def main():
     # Category badge
     cat_badge = f'<span class="badge badge--cat">— 酒税法分類：{b["category"]}</span>'
 
+    _desc = b['tagline'][:120]
+    _path = f"/brand/{b['brewery_slug']}-0.html"
+    _seo = seo_head(_path, f"{b['name']} ／ {brewery['name']}", _desc, og_type="product", jsonld=[
+        {"@context": "https://schema.org/", "@type": "Product", "name": b['name'],
+         "brand": {"@type": "Brand", "name": brewery['name']},
+         "category": "クラフトサケ（その他の醸造酒）", "description": _desc,
+         "url": SITE_URL + _path},
+        breadcrumb([("トップ", "/"), (brewery['name'], f"/brewery/{b['brewery_slug']}.html"), (b['name'], _path)]),
+    ])
+
     html = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{b['name']} ／ {brewery['name']} — saketto.</title>
-<meta name="description" content="{b['tagline'][:120]}">
+<meta name="description" content="{_desc}">
+{_seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">

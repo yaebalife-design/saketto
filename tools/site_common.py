@@ -43,3 +43,64 @@ def favicon_head():
 def head_extra(prefix="../"):
     """head 末尾（</head> 直前）に入れる共通ブロック。"""
     return favicon_head() + "\n" + analytics_head() + "\n" + age_gate_tag(prefix)
+
+
+# ────────────── OGP / canonical / 構造化データ(JSON-LD) ──────────────
+import json as _json
+
+SITE_URL = "https://saketto.com"
+SITE_NAME = "saketto"
+OG_IMAGE = SITE_URL + "/assets/images/og.png"
+
+
+def _attr(s):
+    """HTML属性値用エスケープ。"""
+    return (str(s).replace("&", "&amp;").replace('"', "&quot;")
+            .replace("<", "&lt;").replace(">", "&gt;"))
+
+
+def breadcrumb(items):
+    """items=[(name, path), ...]（path はサイト内絶対パス）→ BreadcrumbList dict。"""
+    return {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": name,
+             "item": SITE_URL + path}
+            for i, (name, path) in enumerate(items)
+        ],
+    }
+
+
+def website_node():
+    return {"@type": "WebSite", "name": SITE_NAME, "url": SITE_URL + "/"}
+
+
+def seo_head(path, og_title, description, og_type="website", image=None, jsonld=None):
+    """canonical + OGP + Twitterカード + JSON-LD をまとめて返す。
+    path: サイト内絶対パス（例 "/", "/brand/haccoba-0.html", "/genre/"）。
+    jsonld: dict または dict のリスト（各々 <script type=ld+json> 1個に）。
+    """
+    url = SITE_URL + path
+    img = image or OG_IMAGE
+    t, dsc = _attr(og_title), _attr(description)
+    lines = [
+        f'<link rel="canonical" href="{url}">',
+        f'<meta property="og:type" content="{og_type}">',
+        f'<meta property="og:site_name" content="{SITE_NAME}">',
+        f'<meta property="og:title" content="{t}">',
+        f'<meta property="og:description" content="{dsc}">',
+        f'<meta property="og:url" content="{url}">',
+        f'<meta property="og:image" content="{img}">',
+        '<meta property="og:locale" content="ja_JP">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:title" content="{t}">',
+        f'<meta name="twitter:description" content="{dsc}">',
+        f'<meta name="twitter:image" content="{img}">',
+    ]
+    if jsonld:
+        nodes = jsonld if isinstance(jsonld, list) else [jsonld]
+        for n in nodes:
+            lines.append('<script type="application/ld+json">'
+                         + _json.dumps(n, ensure_ascii=False) + '</script>')
+    return "\n".join(lines)

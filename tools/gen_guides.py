@@ -19,7 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 from gen_axes_pages import CSS as BASE_CSS  # 世界観CSSを流用
-from site_common import head_extra
+from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL
 from breweries_brands import BRANDS          # おすすめ記事：スペックを一次ソースDBから直接引く
 from breweries_master import by_slug
 from moshimo_link import rakuten_search
@@ -158,7 +158,27 @@ EXTRA_CSS = """
 
 # ────────────── ページ骨格 ──────────────
 
-def page_head(title, description):
+def page_head(title, description, path="/guide/", og_type="website"):
+    short = title.split(" — ")[0].split("【")[0].strip()  # パンくず/headline用の短縮名
+    if og_type == "article":
+        jsonld = [
+            {"@context": "https://schema.org/", "@type": "Article",
+             "headline": short, "description": description, "inLanguage": "ja",
+             "author": {"@type": "Organization", "name": "saketto 編集部"},
+             "publisher": {"@type": "Organization", "name": "saketto", "url": SITE_URL + "/"},
+             "image": SITE_URL + "/assets/images/og.png",
+             "mainEntityOfPage": SITE_URL + path},
+            breadcrumb([("トップ", "/"), ("読みもの", "/guide/"), (short, path)]),
+        ]
+    else:
+        crumb = [("トップ", "/")] + ([] if path == "/guide/" else [("読みもの", "/guide/")]) + [("読みもの" if path == "/guide/" else short, path)]
+        jsonld = [
+            {"@context": "https://schema.org/", "@type": "CollectionPage",
+             "name": f"{title} — saketto.", "description": description,
+             "url": SITE_URL + path, "isPartOf": website_node()},
+            breadcrumb(crumb),
+        ]
+    seo = seo_head(path, title, description, og_type=og_type, jsonld=jsonld)
     return f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -166,6 +186,7 @@ def page_head(title, description):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} — saketto.</title>
 <meta name="description" content="{description}">
+{seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -525,7 +546,8 @@ def build_towa():
   </div>
 """
     html = page_head("クラフトサケとは — 米から生まれた、自由な酒",
-                     "クラフトサケとは何か。酒税法上の「その他の醸造酒」という位置づけ、日本酒・どぶろくとの区分の違い、新規参入の仕組み、クラフトサケブリュワリー協会、花酛・白麹・全麹などの醸造用語まで、その全体像をやさしく解説します。")
+                     "クラフトサケとは何か。酒税法上の「その他の醸造酒」という位置づけ、日本酒・どぶろくとの区分の違い、新規参入の仕組み、クラフトサケブリュワリー協会、花酛・白麹・全麹などの醸造用語まで、その全体像をやさしく解説します。",
+                     "/guide/craftsake-towa.html", "article")
     html += masthead(article_masthead_label("craftsake-towa"), "A Field Guide")
     html += hero(
         article_eyebrow("craftsake-towa"),
@@ -675,7 +697,8 @@ def build_nomikata():
   </div>
 """
     html = page_head("クラフトサケの飲み方・楽しみ方",
-                     "クラフトサケをもっとおいしく。温度帯による味の変化、生酒・にごりの保存、活性タイプの開け方、ワイングラスやソーダ割りといったスタイル、料理とのペアリング、和らぎ水まで、自由な酒の楽しみ方を解説します。")
+                     "クラフトサケをもっとおいしく。温度帯による味の変化、生酒・にごりの保存、活性タイプの開け方、ワイングラスやソーダ割りといったスタイル、料理とのペアリング、和らぎ水まで、自由な酒の楽しみ方を解説します。",
+                     "/guide/nomikata.html", "article")
     html += masthead(article_masthead_label("nomikata"), "A Field Guide")
     html += hero(
         article_eyebrow("nomikata"),
@@ -887,7 +910,8 @@ def build_osusume():
   </div>
 """
     html = page_head("クラフトサケ おすすめ12選 — はじめの一本から通好みまで【編集部セレクト】",
-                     "クラフトサケのおすすめを、saketto編集部がタイプ別に12本厳選。稲とアガベ・haccoba・LAGOON・ぷくぷく醸造など、収録DBの確認済みスペック（度数・容量・参考価格）とともに、はじめての一本から通好みの受賞銘柄までを紹介します。")
+                     "クラフトサケのおすすめを、saketto編集部がタイプ別に12本厳選。稲とアガベ・haccoba・LAGOON・ぷくぷく醸造など、収録DBの確認済みスペック（度数・容量・参考価格）とともに、はじめての一本から通好みの受賞銘柄までを紹介します。",
+                     "/guide/osusume.html", "article")
     html += masthead(article_masthead_label("osusume"), "A Field Guide")
     html += hero(
         article_eyebrow("osusume"),
@@ -1037,7 +1061,8 @@ def build_kioke():
   </div>
 """
     html = page_head("木桶仕込みとは — 木の桶が醸す、時間と微生物の酒",
-                     "木桶仕込みとは何か。江戸期に主流だった木桶がホーロー・ステンレスタンクに置き換わった歴史、木桶に棲む蔵付き微生物の働き、木桶職人復活プロジェクト、そしてクラフトサケが木桶へ回帰する理由を、一次情報をもとに深掘りします。")
+                     "木桶仕込みとは何か。江戸期に主流だった木桶がホーロー・ステンレスタンクに置き換わった歴史、木桶に棲む蔵付き微生物の働き、木桶職人復活プロジェクト、そしてクラフトサケが木桶へ回帰する理由を、一次情報をもとに深掘りします。",
+                     "/guide/kioke.html", "article")
     html += masthead(article_masthead_label("kioke"), "A Field Guide")
     html += hero(
         article_eyebrow("kioke"),
@@ -1217,7 +1242,8 @@ def build_gift():
   </div>
 """
     html = page_head("ギフトに贈るクラフトサケ — シーンと予算で選ぶ贈りもの【編集部セレクト】",
-                     "クラフトサケのギフト・贈り物を、saketto編集部がシーンと予算別に厳選。手土産・誕生日・お祝い・自分へのご褒美まで、稲とアガベ・haccoba・権化ほか話題の銘柄を、確認済みスペックと贈るときの注意点（年齢確認・要冷蔵・熨斗対応）とともに紹介します。")
+                     "クラフトサケのギフト・贈り物を、saketto編集部がシーンと予算別に厳選。手土産・誕生日・お祝い・自分へのご褒美まで、稲とアガベ・haccoba・権化ほか話題の銘柄を、確認済みスペックと贈るときの注意点（年齢確認・要冷蔵・熨斗対応）とともに紹介します。",
+                     "/guide/gift.html", "article")
     html += masthead(article_masthead_label("gift"), "A Field Guide")
     html += hero(
         article_eyebrow("gift"),

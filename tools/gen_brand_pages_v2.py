@@ -25,7 +25,7 @@ from breweries_brands import BRANDS
 from moshimo_link import rakuten_search, amazon_search
 from gen_sample_v2 import CSS, gen_scale4_svg, gen_radar6_svg, RAKUTEN_ENABLED, AMAZON_ENABLED
 from story_overrides import story_override
-from site_common import head_extra
+from site_common import head_extra, seo_head, breadcrumb, SITE_URL
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "brand"
@@ -366,6 +366,15 @@ def build_html(brand, detail, brewery, idx):
                  or f"{brewery['name']}（{brewery['prefecture']}）のクラフトサケ「{name}」。{_sub_txt}、米の新ジャンルの一本。saketto（クラフトサケの図鑑）の銘柄ページ。")
     meta_desc = meta_desc[:120]
 
+    _path = f"/brand/{slug}-{idx}.html"
+    _seo = seo_head(_path, f"{name} ／ {brewery['name']}", meta_desc, og_type="product", jsonld=[
+        {"@context": "https://schema.org/", "@type": "Product", "name": name,
+         "brand": {"@type": "Brand", "name": brewery["name"]},
+         "category": "クラフトサケ（その他の醸造酒）", "description": meta_desc,
+         "url": SITE_URL + _path},
+        breadcrumb([("トップ", "/"), (brewery["name"], f"/brewery/{slug}.html"), (name, _path)]),
+    ])
+
     html = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -373,6 +382,7 @@ def build_html(brand, detail, brewery, idx):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{name} ／ {brewery['name']} — saketto.</title>
 <meta name="description" content="{meta_desc}">
+{_seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">

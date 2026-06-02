@@ -12,7 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 from gen_axes_pages import CSS
-from site_common import head_extra
+from site_common import head_extra, seo_head, breadcrumb, SITE_URL
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -86,7 +86,12 @@ FOOTER = """
 """
 
 
-def page(title, label, description, body):
+def page(title, label, description, body, path="/"):
+    seo = seo_head(path, title, description, og_type="website", jsonld=[
+        {"@context": "https://schema.org/", "@type": "WebPage",
+         "name": f"{title} — saketto.", "description": description, "url": SITE_URL + path},
+        breadcrumb([("トップ", "/"), (title, path)]),
+    ])
     return f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -94,6 +99,7 @@ def page(title, label, description, body):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} — saketto.</title>
 <meta name="description" content="{description}">
+{seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -275,7 +281,7 @@ def main():
          "saketto（クラフトサケDB）の運営者情報・編集方針（一次ソース主義）・お問い合わせ。", ABOUT_BODY),
     ]
     for fname, title, label, desc, body in pages:
-        (REPO_ROOT / fname).write_text(page(title, label, desc, body), encoding="utf-8")
+        (REPO_ROOT / fname).write_text(page(title, label, desc, body, "/" + fname), encoding="utf-8")
         print(f"  {fname}  ({title})")
     if not CONTACT_FORM_URL:
         print("  ※ お問い合わせフォームURL未設定（about.htmlは「準備中」表示）。URL取得後 CONTACT_FORM_URL に設定して再生成")

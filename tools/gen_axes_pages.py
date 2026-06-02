@@ -15,7 +15,7 @@ from breweries_master import BREWERIES, REGIONS, by_slug
 from breweries_brands import BRANDS
 from awards import AWARDS
 from furusato_data import FURUSATO, PORTAL_NAMES
-from site_common import head_extra
+from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
@@ -362,7 +362,13 @@ def get_brewery_genres(brewery):
 
 # ────────────── HTML テンプレート ──────────────
 
-def page_head(title, description):
+def page_head(title, description, path="/"):
+    seo = seo_head(path, title, description, og_type="website", jsonld=[
+        {"@context": "https://schema.org/", "@type": "CollectionPage",
+         "name": f"{title} — saketto.", "description": description,
+         "url": SITE_URL + path, "isPartOf": website_node()},
+        breadcrumb([("トップ", "/"), (title, path)]),
+    ])
     return f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -370,6 +376,7 @@ def page_head(title, description):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} — saketto.</title>
 <meta name="description" content="{description}">
+{seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -499,7 +506,7 @@ def gen_subingredients():
 
     total_brands = sum(len(v) for v in by_cat.values())
 
-    html = page_head("副原料から探す", "クラフトサケを副原料（ホップ・果実・茶葉・ハーブ・米のみ・特殊副原料）から横断的に検索する逆引きデータベース。")
+    html = page_head("副原料から探す", "クラフトサケを副原料（ホップ・果実・茶葉・ハーブ・米のみ・特殊副原料）から横断的に検索する逆引きデータベース。", "/subingredients/")
     html += masthead("AXIS 01 — SUB-INGREDIENTS", f"5 categories")
     html += hero(
         "— FIVE CATEGORIES",
@@ -555,7 +562,7 @@ def gen_regions():
     populated = [r for r in REGIONS if by_region[r]]
     empty = [r for r in REGIONS if not by_region[r]]
 
-    html = page_head("地域から探す", "全国のクラフトサケ醸造所を9地域別に横断検索する逆引きデータベース。")
+    html = page_head("地域から探す", "全国のクラフトサケ醸造所を9地域別に横断検索する逆引きデータベース。", "/region/")
     html += masthead("AXIS 03 — REGION", f"{len(populated)} regions populated")
     html += hero(
         "— BY REGION",
@@ -626,7 +633,7 @@ def gen_genres():
         for g in genres:
             by_genre[g].append(brewery)
 
-    html = page_head("ジャンルから探す", "クラフトサケのジャンル（ホップサケ・果実サケ・古典どぶろく・全麹酒・木桶仕込み・異素材麹・茶葉ハーブサケ）から横断検索。saketto独自軸。")
+    html = page_head("ジャンルから探す", "クラフトサケのジャンル（ホップサケ・果実サケ・古典どぶろく・全麹酒・木桶仕込み・異素材麹・茶葉ハーブサケ）から横断検索。saketto独自軸。", "/genre/")
     html += masthead("AXIS 04 — GENRE / SAKETTO独自", "7 genres")
     html += hero(
         "— SAKETTO ORIGINAL AXIS",
@@ -672,7 +679,7 @@ def gen_furusato():
     confirmed = [b for b in BREWERIES if b["slug"] in FURUSATO]
     not_confirmed = [b for b in BREWERIES if b["slug"] not in FURUSATO]
 
-    html = page_head("ふるさと納税から探す", "クラフトサケのふるさと納税返礼品を一次ソース確認の上で横断検索。")
+    html = page_head("ふるさと納税から探す", "クラフトサケのふるさと納税返礼品を一次ソース確認の上で横断検索。", "/furusato/")
     html += masthead("EXTRA — FURUSATO TAX", f"{len(confirmed)} confirmed")
     html += hero(
         "— TAX-DEDUCTIBLE DISCOVERY",
@@ -841,7 +848,7 @@ def gen_awards():
 
     award_brewery_count = len(set(s for s, _ in icc_entries) | set(s for s, _ in other_awards))
 
-    html = page_head("受賞と海外進出", "ICC SAKE AWARD歴代の頂点、Disfrutar・Mugaritzでの提供、欧米アジア輸出 — クラフトサケと世界のつながり。")
+    html = page_head("受賞と海外進出", "ICC SAKE AWARD歴代の頂点、Disfrutar・Mugaritzでの提供、欧米アジア輸出 — クラフトサケと世界のつながり。", "/awards/")
     html += f"<style>{AWARDS_CSS}</style>"
     html += masthead("EXTRA — ACCOLADES & GLOBAL", f"{award_brewery_count} breweries awarded")
     html += hero(

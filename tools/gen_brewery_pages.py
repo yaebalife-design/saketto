@@ -20,7 +20,7 @@ from breweries_brands import BRANDS
 from awards import AWARDS
 from tasting import TASTING
 from brewery_about import about_of, founder_of
-from site_common import head_extra
+from site_common import head_extra, seo_head, breadcrumb, SITE_URL
 
 # brand_data（一次ソース調査済み）を読み込み、製法特徴の抽出に使う
 _DETAILS = {}
@@ -455,6 +455,7 @@ HEAD = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{name} — saketto.</title>
 <meta name="description" content="{name}（{prefecture}・{city}）。{philosophy_short}">
+{seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -658,9 +659,20 @@ def render(brewery, index, prev_brewery, next_brewery):
     {tasting_html_block}
   </section>""" if tasting_section_num else ''
 
+    _path = f"/brewery/{brewery['slug']}.html"
+    _bdesc = f"{brewery['name']}（{brewery['prefecture']}・{brewery['city']}）。{philosophy_short}"
+    seo = seo_head(_path, brewery["name"], _bdesc, og_type="website", jsonld=[
+        {"@context": "https://schema.org/", "@type": "Organization",
+         "name": brewery["name"],
+         "address": {"@type": "PostalAddress", "addressRegion": brewery["prefecture"],
+                     "addressLocality": brewery["city"], "addressCountry": "JP"},
+         "url": brewery.get("official_url") or (SITE_URL + _path),
+         "description": philosophy_short},
+        breadcrumb([("トップ", "/"), (brewery["name"], _path)]),
+    ])
     html = HEAD.format(name=brewery["name"], prefecture=brewery["prefecture"],
                        city=brewery["city"], philosophy_short=philosophy_short,
-                       css=CSS, head_extra=head_extra())
+                       css=CSS, head_extra=head_extra(), seo=seo)
 
     html += f"""
   <div class="masthead">
