@@ -528,7 +528,7 @@ def build_towa():
       </div>
       {terms}
       <div class="prose">
-        <p>こうした製法や副原料の個性は、saketto では<a href="../genre/">ジャンル</a>や<a href="../subingredients/">副原料</a>の軸からも辿れる。気になることばを入り口に、酒を探してみてほしい。</p>
+        <p>とりわけ奥が深い<a href="hanamoto.html">花酛（はなもと）</a>と<a href="kioke.html">木桶仕込み</a>は、それぞれ一本の読みものとして掘り下げている。こうした製法や副原料の個性は、saketto では<a href="../genre/">ジャンル</a>や<a href="../subingredients/">副原料</a>の軸からも辿れる。気になることばを入り口に、酒を探してみてほしい。</p>
       </div>
     </section>
 {divider()}

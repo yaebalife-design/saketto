@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""saketto / クラフトサケ醸造所マスター (24社)
+"""saketto / クラフトサケ醸造所マスター (25蔵)
 
 すべて 2026-05-30 時点で公式サイト・公式ECで一次ソース確認済み。
 出典は ナレッジ/醸造所検証データ_20260530.md を参照。
@@ -174,7 +174,7 @@ BREWERIES = [
         "founded": "2022",
         "official_url": "https://www.heiwashuzou.co.jp/heiwa-doburoku-kabutocho",
         "philosophy": "和歌山「紀土」蔵元の平和酒造が、東京・兜町で都市型どぶろく醸造所を展開。",
-        "features": "副原料にホップ・果実・豆類・穀類・ハーブ（ミント・レモングラス・スイートバジル等）多彩。",
+        "features": "小豆・黒豆・ホップなど多彩な副原料と、日替わりの『本日のどぶろく』。和歌山「紀土」の平和酒造による都市型どぶろく醸造所。",
         "association": False,
     },
     {
@@ -265,7 +265,7 @@ BREWERIES = [
         "founded": "2025",
         "official_url": "https://www.instagram.com/nomu_okinawa/",
         "philosophy": "沖縄県内初の「その他の醸造酒製造免許」取得。西表島・恩納村産米と県産フルーツで醸す。",
-        "features": "副原料にアセロラ・パイナップル・シークワーサーなど沖縄の素材。木花之醸造所が技術協力。",
+        "features": "シークヮーサーなど沖縄の素材を使うクラフトサケ。木花之醸造所が技術協力。",
         "association": False,
     },
     {
