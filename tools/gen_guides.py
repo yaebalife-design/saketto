@@ -326,6 +326,13 @@ ARTICLES = [
         "title": "木桶仕込みとは",
         "summary": "なぜ木の桶で醸すのか。江戸期に主流だった木桶がホーロー・ステンレスに置き換わった歴史、桶に棲む蔵付き微生物、木桶職人復活プロジェクト、そしてクラフトサケが木桶に回帰する理由を深掘り。",
     },
+    {
+        "slug": "gift",
+        "category": "choose",
+        "eyebrow_en": "GIFT GUIDE",
+        "title": "ギフトに贈るクラフトサケ",
+        "summary": "手土産・誕生日・お祝い・自分へのご褒美。シーンと予算別に、贈って喜ばれるクラフトサケを編集部が厳選。話題性や華やかさ、物語のある一本を、確認済みスペックと贈るときの注意点とともに。",
+    },
 ]
 
 
@@ -1041,6 +1048,186 @@ def build_kioke():
     return html
 
 
+# ────────────── 記事⑤：ギフトに贈るクラフトサケ（CHOOSE） ──────────────
+
+GIFT_SCENE_INTROS = {
+    "手土産・ちょっとしたお礼に":
+        "気負わず渡せて、それでいて「お、いいね」と思わせる。2,000〜2,500円ほどの、ちょっとした手土産やお礼にちょうどいい一群。話題性や見た目の華やかさで選ぶと喜ばれる。",
+    "誕生日・記念日に":
+        "大切な人の特別な日に。香りや見た目が華やかで、食卓を彩る一本を。お酒が得意でない相手にも、果実やお茶の香りの一本なら喜ばれやすい。",
+    "お祝い・改まった贈り物に":
+        "昇進・結婚・長寿のお祝いなど、改まった贈り物に。受賞歴や手間のかかる造り、特別仕込みなど“物語”のある一本は記憶に残る。熨斗や化粧箱の対応は各蔵に確認を。",
+    "自分へのご褒美に":
+        "誰かにではなく、自分に。頑張った日の夜、特別な一本をゆっくりと。受賞銘柄や最高峰の仕込みで、クラフトサケの奥深さを心ゆくまで味わいたい。",
+}
+
+# シーン別ギフトセレクト。スペックは BRANDS から直接引く。コメントの事実部分は
+# breweries_master / breweries_brands / awards の確認済データに基づく（味/贈答の所感は編集部）。
+GIFT_PICKS = [
+    ("手土産・ちょっとしたお礼に", "CASUAL", "konohanano", 0,
+     "微発泡のにごりは、開けた瞬間の華やぎで場を和ませる。浅草・木花之醸造所の看板で、2,000円を切る手頃さも気軽な手土産にぴったり。日本酒好きにも、にごり初心者にも喜ばれる、外さない一本。"),
+    ("手土産・ちょっとしたお礼に", "CASUAL", "haccoba", 0,
+     "「クラフトサケって何？」から会話が弾む、話題性のある一本。ジャンルを切り拓いたhaccobaの看板で、ホップの華やかな香りは贈った相手の記憶に残る。物語ごと渡せるのが、ギフトとして嬉しい。"),
+    ("手土産・ちょっとしたお礼に", "CASUAL", "lagoon", 4,
+     "新潟産いちご「越後姫」をたっぷり使った、見た目も味も華やかな果実サケ。LAGOONの季節仕込みで、フルーツ好きへの手土産や、お酒が得意でない人へのプレゼントにも向く。"),
+    ("誕生日・記念日に", "BIRTHDAY", "ine-to-agave", 0,
+     "迷ったらこれ、という安心感。クラフトサケの代名詞で、白ブドウや白桃を思わせる上品な香りは誕生日の食卓に映える。「いま話題のクラフトサケ」を贈りたいときの、王道の一本。"),
+    ("誕生日・記念日に", "BIRTHDAY", "librom", 3,
+     "福岡の高級いちご「あまおう」の甘酸っぱさが華やかに香る、記念日にふさわしい一本。ワインのように楽しめるので、お祝いの乾杯にも。LIBROMの遊び心が、贈り物に彩りを添える。"),
+    ("誕生日・記念日に", "BIRTHDAY", "ine-to-agave", 2,
+     "ジャスミンの茶葉を副原料にした、香り高く上品な一本。少し背伸びした誕生日プレゼントや、香りにこだわる人への贈り物に。クラフトサケの先駆者・稲とアガベが見せる“特別な顔”。"),
+    ("お祝い・改まった贈り物に", "CELEBRATION", "nondo", 0,
+     "水もと × 木桶 × 150日超の長期発酵という、手間の結晶。一本に蔵の思想が宿る物語性は、昇進祝いや大切な節目の贈り物にふさわしい。じっくり味わう時間ごと、贈りたい一本。"),
+    ("お祝い・改まった贈り物に", "CELEBRATION", "ine-to-agave", 4,
+     "稲とアガベが特別な機会に放つ、スペシャルエディション。りんごを纏わせた贅沢な果実表現で、ハレの日の贈り物に。価格帯にも、改まった贈答にふさわしい特別感がある。"),
+    ("お祝い・改まった贈り物に", "CELEBRATION", "pukupuku", 5,
+     "木桶仕込み × 全麹という、クラフトサケの技を凝縮したぷくぷく醸造のハイエンド。甘みと旨みが濃密で、酒通へのとっておきの贈り物に。一万円を超える、まさに特別な一本。"),
+    ("お祝い・改まった贈り物に", "CELEBRATION", "heiroku", 2,
+     "「百年の眠りから目覚めた酵母」で醸す平六醸造の最高峰。発芽玄米ベースの奥行きある味わいは、忘れられない記念の贈り物に。古民家を改装した蔵から生まれる、物語のある一本。"),
+    ("自分へのご褒美に", "FOR YOURSELF", "pukupuku", 4,
+     "ICC SAKE AWARD 2025の頂点に立った、いま最も語られる一本。頑張った自分へのご褒美に、受賞の味を確かめてみては。蔵付き酵母と木桶が生む、発酵の力を存分に味わえる。"),
+    ("自分へのご褒美に", "FOR YOURSELF", "nondo", 2,
+     "nondoが水もと・木桶で醸す、権化シリーズの最高峰。無濾過生原酒の濃密な世界は、特別な夜にゆっくり向き合いたい。誰かにではなく、頑張った自分へ贈る、最上の一本。"),
+]
+
+
+def build_gift():
+    cards = ""
+    cur = None
+    for i, (scene, scene_en, slug, idx, comment) in enumerate(GIFT_PICKS, start=1):
+        if scene != cur:
+            cur = scene
+            cards += f'    <div class="pick-group">{scene}<span class="en">{scene_en}</span></div>\n'
+            cards += f'    <p class="cat-lead" style="max-width:820px;">{GIFT_SCENE_INTROS[scene]}</p>\n'
+        kura = by_slug(slug)
+        b = BRANDS[slug][idx]
+        btn = (f'<a class="pick__btn" href="{rakuten_search(b["name"])}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>'
+               '<span class="pick__pr">PR</span>') if RAKUTEN_ENABLED else ""
+        cards += f"""    <div class="pick">
+      <div class="pick__no">{i:02d}</div>
+      <div class="pick__body">
+        <div class="pick__head">
+          <span class="pick__kura"><a href="../brewery/{slug}.html">{kura['name']}</a>　{kura['prefecture']}</span>
+          <span class="pick__name">{b['name']}</span>
+        </div>
+        <div class="pick__tags">{_osusume_tags(b)}</div>
+        <div class="pick__spec">{_osusume_spec(b)}</div>
+        <p class="pick__note">{comment}</p>
+        <div class="pick__links">
+          <a class="pick__detail" href="../brand/{slug}-{idx}.html">銘柄の詳細を見る →</a>
+          {btn}
+        </div>
+      </div>
+    </div>
+"""
+
+    # 予算で並べた比較表
+    rows = ""
+    ordered = sorted(GIFT_PICKS, key=lambda p: (BRANDS[p[2]][p[3]].get("price") or 10**9))
+    for scene, scene_en, slug, idx, comment in ordered:
+        kura = by_slug(slug)
+        b = BRANDS[slug][idx]
+        price = f"¥{b['price']:,}" if b.get("price") else "—"
+        vol = f"{b['volume_ml']}ml" if b.get("volume_ml") else "—"
+        rows += (f'<tr><td class="p">{price}</td>'
+                 f'<td class="nm"><a href="../brand/{slug}-{idx}.html">{b["name"]}</a></td>'
+                 f'<td>{kura["name"]}</td><td>{vol}</td><td>{scene}</td></tr>\n')
+
+    body = f"""
+  <div class="article">
+
+    <section class="section">
+{section_meta("01", "GIFT GUIDE / 贈りものに")}
+      <div class="prose">
+        <p class="lead">米と副原料で醸す、<span class="accent">自由</span>な酒。話題性があって、見た目も華やか、しかも“物語”がついてくる——クラフトサケは、実は<span class="accent">贈りもの</span>にとても向いている。</p>
+        <p>少量生産で、ほかではなかなか手に入らない特別感。蔵ごとの背景や、ホップ・果実・木桶といった造りのストーリー。渡しながら「これはね」と一言添えられるのが、クラフトサケのギフトの楽しさだ。この記事では、saketto 編集部が<strong>シーンと予算</strong>に分けて、贈って喜ばれる一本を選びました。スペックは、すべて一次ソースで確認した値です。</p>
+        <div class="callout">
+          <div class="callout__label">この選びかたについて</div>
+          <p>収録銘柄の中から「贈り物としての華やかさ・話題性・物語性・予算帯のバランス」を目安に編集部が選びました。<strong>番号は順位ではなく、シーン別の並び</strong>です。価格は2026年5〜6月時点の確認値で、ロットや時期により変わります。最新の価格・在庫・ギフト対応は各リンク先でご確認ください。</p>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("02", "BY SCENE / シーンで選ぶ")}
+      <div class="prose">
+        <p>気になった一本は、銘柄ページから味わいや蔵の物語を辿れます。「楽天市場で探す」では、その銘柄名で楽天市場の検索結果へ移動します（在庫・価格・ギフト対応は時期や販売店により異なります）。</p>
+      </div>
+{cards}    </section>
+{divider()}
+    <section class="section">
+{section_meta("03", "BY BUDGET / 予算で選ぶ")}
+      <div class="prose">
+        <h2 class="sub-h">予算から、<span class="accent">ひと目</span>で。</h2>
+        <p>手頃な手土産から、改まったお祝いまで。価格の安い順に並べました。「—」は公式に非開示、またはロットで変動するものです。</p>
+      </div>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead><tr><th>参考価格</th><th>銘柄</th><th>蔵</th><th>容量</th><th>シーン</th></tr></thead>
+          <tbody>
+{rows}          </tbody>
+        </table>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("04", "BEFORE YOU SEND / 贈るときに")}
+      <div class="prose">
+        <h2 class="sub-h">贈る前に、<span class="accent">確認したいこと</span>。</h2>
+        <p>クラフトサケをギフトに選ぶときは、いくつか気をつけたい点があります。せっかくの贈り物を、いちばんいい状態で届けるために。</p>
+        <ul>
+          <li><strong>年齢の確認を</strong>　酒類は、20歳未満の方へ贈ることはできません。贈る相手が20歳以上かどうか、必ず確認してください。</li>
+          <li><strong>多くは「要冷蔵」</strong>　クラフトサケは火入れをしない生酒・にごりが多く、冷蔵保管が基本です。配送はクール便で、相手が受け取れるタイミングに合わせて。手渡しのときも保冷を心がけて。</li>
+          <li><strong>熨斗・ラッピングは要確認</strong>　熨斗・化粧箱・ギフト包装に対応しているかは、蔵や販売店によって異なります。注文の前に、各蔵の公式サイトや販売ページで確認しておくと安心です。</li>
+          <li><strong>早めの手配を</strong>　少量生産・限定流通のものが多く、人気銘柄や季節限定品は売り切れることもあります。余裕をもって用意するのがおすすめです。</li>
+        </ul>
+        <div class="callout">
+          <div class="callout__label">活性タイプはとくに注意</div>
+          <p>発泡する「活性にごり」は、輸送・開栓に注意が必要な場合があります。贈る相手に開け方を一言添えるか、商品ページの案内を確認しておくと親切です。</p>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("05", "FAQ / よくある質問")}
+      <div class="prose">
+        <h2 class="sub-h tight">予算は、どのくらいが<span class="accent">目安</span>？</h2>
+        <p>ちょっとした手土産なら2,000円前後、誕生日・記念日は2,500〜3,500円ほど、改まったお祝いには5,000円から一万円を超えるものまで。相手との関係性やシーンに合わせて選べます。上の「予算で選ぶ」表も参考にしてください。</p>
+        <h2 class="sub-h tight">お酒が強くない人へは？</h2>
+        <p>果実やお茶の香りの一本、度数が穏やかなものや、微発泡のにごりが喜ばれやすいです。ジュース感覚で楽しめる果実サケや、低アルコールの銘柄も多くあります。</p>
+        <h2 class="sub-h tight">どこで買えますか？</h2>
+        <p>各蔵の公式オンラインショップ・取扱酒販店・楽天市場などで購入できます。ギフト対応や在庫の有無は、各販売ページでご確認ください。</p>
+        <div class="callout">
+          <div class="callout__label">贈る前に</div>
+          <p><strong>20歳未満の方への酒類の贈与はできません。</strong>　飲酒運転は法律で禁止されています。妊娠中・授乳期の飲酒はお控えください。贈る相手にも、適量で楽しんでもらえますように。</p>
+        </div>
+        <div class="readmore">
+          <a href="osusume.html">
+            <div class="readmore__k">あわせて読む</div>
+            <div class="readmore__t">クラフトサケ おすすめ12選</div>
+          </a>
+          <a href="nomikata.html">
+            <div class="readmore__k">KNOW</div>
+            <div class="readmore__t">飲み方・楽しみ方</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+"""
+    html = page_head("ギフトに贈るクラフトサケ — シーンと予算で選ぶ贈りもの【編集部セレクト】",
+                     "クラフトサケのギフト・贈り物を、saketto編集部がシーンと予算別に厳選。手土産・誕生日・お祝い・自分へのご褒美まで、稲とアガベ・haccoba・権化ほか話題の銘柄を、確認済みスペックと贈るときの注意点（年齢確認・要冷蔵・熨斗対応）とともに紹介します。")
+    html += masthead(article_masthead_label("gift"), "A Field Guide")
+    html += hero(
+        article_eyebrow("gift"),
+        'クラフトサケを、<br><span class="accent">贈る</span>。',
+        "話題性も、華やかさも、物語も。シーンと予算で選ぶ、贈って喜ばれるクラフトサケ。贈るときに気をつけたいことまで。")
+    html += body
+    html += footer()
+    return html
+
+
 # ────────────── 実行 ──────────────
 
 def main():
@@ -1050,6 +1237,7 @@ def main():
     (OUT_DIR / "nomikata.html").write_text(build_nomikata(), encoding="utf-8")
     (OUT_DIR / "osusume.html").write_text(build_osusume(), encoding="utf-8")
     (OUT_DIR / "kioke.html").write_text(build_kioke(), encoding="utf-8")
+    (OUT_DIR / "gift.html").write_text(build_gift(), encoding="utf-8")
     print(f"OK ガイド生成: guide/index.html（一覧）＋ 記事{len(ARTICLES)}本")
 
 
