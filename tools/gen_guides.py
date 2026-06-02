@@ -354,6 +354,13 @@ ARTICLES = [
         "title": "ギフトに贈るクラフトサケ",
         "summary": "手土産・誕生日・お祝い・自分へのご褒美。シーンと予算別に、贈って喜ばれるクラフトサケを編集部が厳選。話題性や華やかさ、物語のある一本を、確認済みスペックと贈るときの注意点とともに。",
     },
+    {
+        "slug": "hanamoto",
+        "category": "deep",
+        "eyebrow_en": "HANAMOTO",
+        "title": "花酛（はなもと）とは",
+        "summary": "東北に伝わる“幻のどぶろく製法”、花酛。東洋のホップ「唐花草」を使い、ビールのように醸す。なぜ幻になり、haccobaがどう甦らせ、それがなぜクラフトサケの原点なのかを深掘り。",
+    },
 ]
 
 
@@ -1254,6 +1261,130 @@ def build_gift():
     return html
 
 
+# ────────────── 記事⑥：花酛（はなもと）とは（DEEP） ──────────────
+
+def build_hanamoto():
+    hana_terms = term_grid([
+        ("花酛 / 華もと", "HANAMOTO", "東北地方に伝わるとされる、幻のどぶろく製法。唐花草（からはなそう）を用い、まるでビールのように醸す。文献『諸国ドブロク宝典』に記録が残る。"),
+        ("唐花草", "KARAHANASOU", "「東洋のホップ」と呼ばれる、ホップの近縁種。東北の山奥などに自生する。ビールに使うホップの和名は「セイヨウカラハナソウ」。"),
+        ("どぶろく", "DOBUROKU", "もろみを「こさない」米の酒。固液を分けないため清酒の定義を外れ、酒税法上は「その他の醸造酒」に分類される。"),
+        ("ドライホッピング", "DRY HOPPING", "ビールづくり由来の技法。発酵の後半などにホップを加え、華やかな香りを引き出す。haccobaは花酛にこれを掛け合わせる。"),
+    ])
+
+    body = f"""
+  <div class="article">
+
+    <section class="section">
+{section_meta("01", "WHAT IS / 花酛とは")}
+      <div class="prose">
+        <p class="lead">花酛（はなもと）とは、東北地方に伝わるとされる<span class="accent">“幻のどぶろく製法”</span>。「東洋のホップ」と呼ばれる植物<span class="accent">唐花草（からはなそう）</span>を使い、まるでビールのように醸す——米の酒とホップが、ずっと昔に出会っていた証のような造りだ。</p>
+        <p>クラフトサケといえば「ホップを使った日本酒」のイメージを持つ人も多い。その源流をたどると、現代の発明ではなく、<strong>日本の家庭に伝わっていた古い製法</strong>にたどり着く。それが花酛。いまやほとんど忘れられたこの製法を、福島の小さな蔵が甦らせたことから、クラフトサケのひとつの潮流が生まれた。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("02", "KARAHANASOU / 東洋のホップ")}
+      <div class="prose">
+        <h2 class="sub-h">ホップは、<span class="accent">日本</span>にも生えていた。</h2>
+        <p>花酛の鍵をにぎるのが、<strong>唐花草（からはなそう）</strong>という植物だ。ビールの苦味と香りをつくるホップ。その<strong>近縁種</strong>にあたり、東北の山奥などに<strong>自生</strong>している。だから「東洋のホップ」とも呼ばれる。じつは、ビールに使われるあのホップの和名は<strong>「セイヨウカラハナソウ」</strong>——つまり、日本の唐花草と西洋のホップは、植物として親戚どうしなのだ。</p>
+        <p>かつての人々は、身近な山に生えるこの唐花草を摘み、酒づくりに使った。その煎じ汁には、雑菌の繁殖をやわらげる働きがあるとされ、ホップがビールの保存性を高めるのと同じ知恵が、米の酒にも生きていた。日本の山里に、ホップを効かせた酒が——その事実が、ビールと日本酒をへだてる壁を、軽やかに飛び越えていく。</p>
+      </div>
+      {hana_terms}
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("03", "WHY PHANTOM / なぜ“幻”になったか")}
+      <div class="prose">
+        <h2 class="sub-h">家庭の酒が、<span class="accent">消えた</span>とき。</h2>
+        <p>花酛は、<strong>かつて各家庭でどぶろくづくりを楽しんでいた時代に行われていた</strong>とされる製法だ。専門の蔵だけでなく、ふつうの家の台所で、その土地の植物を使って米を醸す——そんな暮らしの酒の一つだった。記録は、各地の自家醸造を集めた文献『諸国ドブロク宝典』などにわずかに残る。</p>
+        <p>しかし、家庭での酒づくりがやがて姿を消していくなかで、花酛もまた忘れられていった。受け継ぐ人がいなくなれば、製法は途絶える。山の唐花草で醸す酒は、いつしか「幻」と呼ばれるようになった。木桶仕込みがそうであったように、効率や制度の流れのなかで、手のかかる小さな知恵が静かに失われていったのだ。</p>
+        <div class="callout">
+          <div class="callout__label">編集部より</div>
+          <p>花酛の歴史や来歴は、文献や伝承に基づく部分が多く、細部には諸説あります。本記事は、再現に取り組む蔵（haccoba）の公式情報と『諸国ドブロク宝典』等の記述をもとに、一般的に語られる内容を紹介しています。</p>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("04", "REVIVAL / 小高から、もう一度")}
+      <div class="prose">
+        <h2 class="sub-h">「自由を、醸そう。」<span class="accent">はじまりの一本</span>。</h2>
+        <p>その幻の製法に光を当てたのが、<a href="../brewery/haccoba.html">haccoba</a>。2021年2月、福島県南相馬市小高区で立ち上がったクラフトサケの先駆けだ。この蔵が初めて世に出した一本「<strong>はなうたドロップス</strong>」は、まさに花酛を再現したどぶろく。唐花草の軽やかな苦味で、お米と麹のやさしい味わいを際立たせた。失われた製法を、現代の蔵がもう一度かたちにしたのだ。</p>
+        <p>さらに haccoba は、この古い花酛に、<strong>ビールの「ドライホッピング」技法を掛け合わせる</strong>。発酵の後半にホップを加えて香りを開かせる、クラフトビールの自由な発想だ。こうして生まれた看板銘柄が「<a href="../brand/haccoba-0.html">はなうたホップス</a>」。米のクリアな甘みと、華やかなホップの香りが同居する一本は、いまのクラフトサケを象徴する味になった。「花酛」の名を冠した復刻版「<a href="../brand/haccoba-4.html">水を編む</a>」もある。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("05", "MEANING / 「枠の外」の原点")}
+      <div class="prose">
+        <h2 class="sub-h">米の酒とホップは、<span class="accent">敵じゃない</span>。</h2>
+        <p>花酛がクラフトサケにとって特別なのは、それが単なる懐古ではないからだ。「日本酒にホップなんて邪道だ」——そんな声に対して、花酛は静かにこう答える。<strong>米の酒とホップは、もともと日本で出会っていた</strong>、と。</p>
+        <p>クラフトサケは、清酒（日本酒）の定義の<strong>外</strong>で自由に醸される米の酒。ホップや果実を使い、もろみを濾さない。一見すると「新しすぎる」その造りは、じつは古い知恵の再発見でもある。花酛という原点があるからこそ、造り手たちは胸を張ってホップを使い、自由に副原料を選べる。伝統に根ざしながら、誰も見たことのない味へ——その精神の出発点に、花酛は立っている。クラフトサケの成り立ちそのものは、<a href="craftsake-towa.html">クラフトサケとは</a>でも詳しく紹介している。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("06", "IN SAKETTO / ホップの酒を探す")}
+      <div class="prose">
+        <h2 class="sub-h">花酛から、<span class="accent">いまの一本</span>へ。</h2>
+        <p>花酛を起点に生まれた「ホップサケ」は、いまや多くの蔵が手がける一大ジャンルになった。先駆者 <a href="../brewery/haccoba.html">haccoba</a> の<a href="../brand/haccoba-0.html">はなうたホップス</a>や、花酛の名を冠した復刻版<a href="../brand/haccoba-4.html">水を編む</a>はもちろん、収録する蔵にもホップの造り手は多い。</p>
+        <p>たとえば、新潟・福島潟のほとりで醸す<a href="../brewery/lagoon.html">LAGOON BREWERY</a>の「翔空 HOP SAKE」、ホップ品種を打ち出す福岡の<a href="../brewery/librom.html">LIBROM</a>、低アルコールのホップサケも手がける福島・小高の<a href="../brewery/pukupuku.html">ぷくぷく醸造</a>、糀屋ならではのホップどぶろくを醸す滋賀の<a href="../brewery/happy-taro.html">ハッピー太郎醸造所</a>、そして「花風」でホップ（唐花草）を使う<a href="../brewery/ine-to-agave.html">稲とアガベ</a>。それぞれの解釈で、米とホップの出会いを描いている。唐花草・ホップを使った酒は、saketto の各軸からたどれる。</p>
+        <div class="pill-links">
+          <a href="../subingredients/">副原料「ホップ」から<span class="arr">→</span></a>
+          <a href="../genre/">ジャンル「ホップサケ」から<span class="arr">→</span></a>
+          <a href="../brewery/haccoba.html">haccoba の銘柄<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("07", "FAQ / よくある質問")}
+      <div class="prose">
+        <h2 class="sub-h tight">花酛のお酒は、どんな<span class="accent">味</span>？</h2>
+        <p>唐花草やホップ由来の軽やかな苦味と華やかな香りに、米と麹のやさしい甘みが重なります。ビールほど苦くなく、日本酒ほど甘くない——その中間のような心地よさ、とイメージするとわかりやすいでしょう。よく冷やして、香りの立つグラスで楽しむのがおすすめです。</p>
+        <h2 class="sub-h tight">唐花草とビールのホップは、<span class="accent">同じもの</span>？</h2>
+        <p>近縁の“別種”です。ビールに使うホップの和名は「セイヨウカラハナソウ」、日本の山に自生するのが「カラハナソウ（唐花草）」。いわば親戚どうしで、どちらも酒に苦味と香りをもたらします。だから、唐花草で醸す花酛は「日本に昔からあったホップの酒」とも言えるのです。</p>
+        <h2 class="sub-h tight">花酛のお酒は、<span class="accent">どこで買える</span>？</h2>
+        <p>haccobaの公式オンラインショップや取扱酒販店、楽天市場などで手に入ります。少量生産で、季節やロットによって入荷が変わるため、気になる一本は見かけたときが買いどきです。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("08", "READ ON / もっと味わう")}
+      <div class="prose">
+        <p>花酛は、クラフトサケの自由を支える原点のひとつ。木桶仕込みや全麹など、ほかの造りのことばも知れば、ひと口の背景がさらに立体的になる。</p>
+        <div class="callout">
+          <div class="callout__label">楽しむ前に</div>
+          <p><strong>20歳未満の飲酒は法律で禁じられています。</strong>　飲酒運転は法律で禁止されています。妊娠中・授乳期の飲酒はお控えください。適量を守り、自分のペースでお楽しみください。</p>
+        </div>
+        <div class="readmore">
+          <a href="kioke.html">
+            <div class="readmore__k">あわせて読む</div>
+            <div class="readmore__t">木桶仕込みとは</div>
+          </a>
+          <a href="osusume.html">
+            <div class="readmore__k">CHOOSE</div>
+            <div class="readmore__t">おすすめ12選から探す</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+"""
+    html = page_head("花酛（はなもと）とは — 東洋のホップで醸す、幻のどぶろく",
+                     "花酛（はなもと）とは何か。東北に伝わる幻のどぶろく製法で、「東洋のホップ」唐花草を使いビールのように醸す。なぜ幻になり、haccobaがどう甦らせ、それがなぜクラフトサケの原点なのかを、一次情報をもとに深掘りします。",
+                     "/guide/hanamoto.html", "article")
+    html += masthead(article_masthead_label("hanamoto"), "A Field Guide")
+    html += hero(
+        article_eyebrow("hanamoto"),
+        '花酛とは。<br>米とホップの、<span class="accent">古い約束</span>。',
+        "東北に伝わる幻のどぶろく製法、花酛。東洋のホップ「唐花草」で醸すその酒に、クラフトサケの自由の原点がある。")
+    html += body
+    html += footer()
+    return html
+
+
 # ────────────── 実行 ──────────────
 
 def main():
@@ -1264,6 +1395,7 @@ def main():
     (OUT_DIR / "osusume.html").write_text(build_osusume(), encoding="utf-8")
     (OUT_DIR / "kioke.html").write_text(build_kioke(), encoding="utf-8")
     (OUT_DIR / "gift.html").write_text(build_gift(), encoding="utf-8")
+    (OUT_DIR / "hanamoto.html").write_text(build_hanamoto(), encoding="utf-8")
     print(f"OK ガイド生成: guide/index.html（一覧）＋ 記事{len(ARTICLES)}本")
 
 
