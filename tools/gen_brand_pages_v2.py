@@ -16,6 +16,7 @@ import json
 import glob
 import math
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -56,7 +57,7 @@ def derive_flavor(detail, brand):
 
     # ── 4軸（0=左, 1=右）──
     # body: 軽快(0) ↔ 濃醇(1)
-    if _has(text, "濃醇", "濃厚", "リッチ", "フルボディ", "とろみ", "とろとろ", "ムース", "コク", "膨らみ", "ボリューム", "旨味が強", "旨みを強"):
+    if _has(text, "濃醇", "濃厚", "リッチ", "フルボディ", "とろみ", "とろとろ", "ムース", "コク", "膨らみ", "ボリューム", "旨味が強", "旨みを強", "完全発酵", "食い切", "長期発酵", "全麹", "濃密", "凝縮"):
         body = 0.72
     elif _has(text, "淡麗", "軽快", "さらり", "ライト", "すっきり", "クリア", "クリーン", "スイスイ", "ドリンカブル"):
         body = 0.32
@@ -71,9 +72,9 @@ def derive_flavor(detail, brand):
     # sweet: 甘口(0) ↔ 辛口(1)
     nihonshudo = detail.get("flavor_basis", "")
     sweet = 0.5
-    if _has(text, "ドライ", "辛口", "キレ", "シャープ"):
+    if _has(text, "ドライ", "辛口", "キレ", "シャープ", "完全発酵", "食い切", "切れ味"):
         sweet = 0.68
-    if _has(text, "甘味", "甘み", "甘さ", "甘酸", "甘旨", "やさしい甘", "優しい甘", "濃厚な甘"):
+    if _has(text, "甘口", "甘味", "甘み", "甘さ", "甘酸", "甘旨", "やさしい甘", "優しい甘", "濃厚な甘", "しっかりした甘", "甘やか"):
         sweet = 0.35 if sweet == 0.5 else 0.5
     # 日本酒度の数値があれば優先（-で甘、+で辛）
     import re
@@ -153,6 +154,23 @@ def esc(s):
     return str(s) if s is not None else ""
 
 
+# 読者に出してはいけない内部調査メモの語。これらを含む注記/括弧は表示時に除去する。
+_CAVEAT_WORDS = ["要再確認", "未確認", "要確認", "Wikipedia", "ウィキペディア", "検索集約",
+                 "閲覧不可", "テンプレ", "独立SKU", "推測", "暫定", "確認できず", "null",
+                 "誤記", "残存", "準一次"]
+_CAVEAT_PAREN = re.compile(r"[（(][^（()）]*(?:%s)[^（()）]*[)）]" % "|".join(_CAVEAT_WORDS))
+
+
+def clean_note(s):
+    """表示用に内部メモを除去。括弧内メモを削り、文全体がメモなら空にする。"""
+    if not s:
+        return s
+    s = _CAVEAT_PAREN.sub("", str(s)).strip("　 、。/／").strip()
+    if any(w in s for w in _CAVEAT_WORDS):  # 括弧外で残ったメモ語＝丸ごと内部メモ
+        return ""
+    return s
+
+
 def build_html(brand, detail, brewery, idx):
     b = brand
     d = detail or {}
@@ -164,9 +182,9 @@ def build_html(brand, detail, brewery, idx):
     abv = d.get("abv") if d.get("abv") not in (None, "") else b.get("abv")
     volume = d.get("volume_ml") if d.get("volume_ml") not in (None, "") else b.get("volume_ml")
     price = d.get("price") if d.get("price") not in (None, "") else b.get("price")
-    price_note = d.get("price_note") or ("参考価格・確認日 2026/05/31" if price else "")
+    price_note = clean_note(d.get("price_note")) or ("参考価格・確認日 2026/05/31" if price else "")
     subs = b.get("sub_ingredients") or []
-    sub_detail = d.get("sub_ingredients_detail")
+    sub_detail = clean_note(d.get("sub_ingredients_detail"))
     category = "その他の醸造酒"
 
     scale4, radar6, tags = derive_flavor(d, b)
@@ -188,7 +206,8 @@ def build_html(brand, detail, brewery, idx):
     specs = []
     if abv not in (None, ""):
         av = f"{abv}" if not isinstance(abv, str) else abv
-        sub = f'<div class="spec-cell__sub">{esc(d.get("abv_note"))}</div>' if d.get("abv_note") else ""
+        _an = clean_note(d.get("abv_note"))
+        sub = f'<div class="spec-cell__sub">{esc(_an)}</div>' if _an else ""
         specs.append(f'<div class="spec-cell"><div class="spec-cell__label">— ABV</div><div class="spec-cell__value">{av}<small>% ALC.</small></div>{sub}</div>')
     if volume not in (None, ""):
         specs.append(f'<div class="spec-cell"><div class="spec-cell__label">— VOLUME</div><div class="spec-cell__value">{volume}<small>ml</small></div></div>')
@@ -201,14 +220,25 @@ def build_html(brand, detail, brewery, idx):
     rows = []
 
     def row(label, val, sub=None):
+        if isinstance(val, str):
+            val = clean_note(val)
+        if isinstance(sub, str):
+            sub = clean_note(sub)
         if val in (None, "", []):
             return
         sub_html = f"<small>{esc(sub)}</small>" if sub else ""
         rows.append(f'<div class="recipe-row"><div class="recipe-row__label">{label}</div><div class="recipe-row__value">{esc(val)}{sub_html}</div></div>')
 
     row("品目（酒税法）", category)
-    if subs:
-        row("副原料", "・".join(subs), sub=sub_detail)
+    # 副原料：「米のみ」系は副原料行を出さず「原料」行に。自己矛盾（副原料: 米のみ／なし）を解消
+    non_rice = [s for s in subs if s and "米のみ" not in s]
+    if non_rice:
+        _sd = sub_detail
+        if _sd and ("・".join(non_rice) in _sd or _sd in "・".join(non_rice)):
+            _sd = None  # 副原料名と重複する詳細は省く
+        row("副原料", "・".join(non_rice), sub=_sd)
+    elif subs:  # 米のみ系のみ
+        row("原料", "米・米麹のみ")
     elif sub_detail:
         row("副原料", sub_detail)
     row("米品種", d.get("rice_variety"))
@@ -217,7 +247,7 @@ def build_html(brand, detail, brewery, idx):
         row("精米歩合", f"{rp}%")
     elif isinstance(rp, str) and rp:
         row("精米歩合", rp)
-    row("酒母", d.get("shubo"), sub=d.get("shubo_note"))
+    row("酒母", d.get("shubo"), sub=clean_note(d.get("shubo_note")))
     row("麹", d.get("koji"))
     row("酵母", d.get("yeast"))
     row("仕込水", d.get("water"))
@@ -243,7 +273,7 @@ def build_html(brand, detail, brewery, idx):
     enjoy_cells = []
     if d.get("serving_temp"):
         enjoy_cells.append(f'<div class="enjoy-cell"><div class="enjoy-cell__label">— TEMPERATURE</div><div class="enjoy-cell__value">{esc(d["serving_temp"])}</div></div>')
-    if d.get("glass"):
+    if d.get("glass") and str(d["glass"]).strip() not in ("グラス", "グラス全般", "—", "ガラス"):
         enjoy_cells.append(f'<div class="enjoy-cell"><div class="enjoy-cell__label">— GLASS</div><div class="enjoy-cell__value">{esc(d["glass"])}</div></div>')
     if d.get("preservation"):
         enjoy_cells.append(f'<div class="enjoy-cell"><div class="enjoy-cell__label">— PRESERVATION</div><div class="enjoy-cell__value">{esc(d["preservation"])}</div></div>')
@@ -275,15 +305,24 @@ def build_html(brand, detail, brewery, idx):
     <div class="tasting-3">{''.join(t_rows)}</div>
   </section>"""
 
-    # ── FLAVOR PROFILE（常時・導出値）──
-    scale4_svg = gen_scale4_svg(scale4)
-    radar6_svg = gen_radar6_svg(radar6)
-    flavor_section = f"""
+    # ── FLAVOR PROFILE（根拠＝公式テイスティング記述 or 成分値/製法情報がある銘柄のみ。
+    #    根拠の無い平坦グラフは「特徴の無い酒」に見え誤解を招くため出さない）──
+    has_tasting = bool(d.get("tasting_nose") or d.get("tasting_palate") or d.get("tasting_finish"))
+    has_basis = bool(d.get("flavor_basis")) or has_tasting
+    flat_radar = len(set(radar6.values())) == 1            # 6軸が全部同値＝導出できていない
+    informative_scale = any(abs(v - 0.5) >= 0.12 for v in scale4.values())
+    flavor_section = ""
+    if has_basis and (informative_scale or not flat_radar):
+        _cap = ("公式テイスティング記述・成分値に基づく saketto 編集部評価。" if has_tasting
+                else "公式の製法・原料・成分の情報に基づく saketto 編集部評価。")
+        boxes = f'<div class="flavor-box"><div class="flavor-box__title">— STRUCTURE　<strong>4軸構造スケール</strong></div>{gen_scale4_svg(scale4)}<div class="flavor-box__cap">{_cap}</div></div>'
+        if not flat_radar:   # 平坦な6軸レーダーは「特徴の無い酒」に見えるため出さない
+            boxes += f'<div class="flavor-box"><div class="flavor-box__title">— PROFILE　<strong>6軸レーダー</strong></div>{gen_radar6_svg(radar6)}<div class="flavor-box__cap">同上。飲み手の印象を6軸で。</div></div>'
+        flavor_section = f"""
   <section class="section">
     <div class="section-meta"><span class="section-meta__num">No. 04</span><span class="section-meta__label">FLAVOR PROFILE / 味わいの構造</span><span class="section-meta__rule"></span></div>
     <div class="flavor-wrap">
-      <div class="flavor-box"><div class="flavor-box__title">— STRUCTURE　<strong>4軸構造スケール</strong></div>{scale4_svg}<div class="flavor-box__cap">公式テイスティング記述・成分値に基づく saketto 編集部評価。</div></div>
-      <div class="flavor-box"><div class="flavor-box__title">— PROFILE　<strong>6軸レーダー</strong></div>{radar6_svg}<div class="flavor-box__cap">同上。飲み手の印象を6軸で。</div></div>
+      {boxes}
     </div>
   </section>"""
 
