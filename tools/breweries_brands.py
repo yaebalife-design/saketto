@@ -209,9 +209,9 @@ BRANDS = {
         {"name": "サケベイビー エクスペリメンタル", "abv": None, "volume_ml": None,
          "sub_ingredients": [], "price": None,
          "note": "実験シリーズ。度数が5%超になることも"},
-        {"name": "カボセットショコラ", "abv": None, "volume_ml": None,
-         "sub_ingredients": ["カボス", "カカオ"], "price": 2700,
-         "note": "季節限定デザートサケ"},
+        {"name": "カボセットショコラ", "abv": 4, "volume_ml": 375,
+         "sub_ingredients": ["カボス", "ココアパウダー", "蜂蜜"], "price": 2700,
+         "note": "フランス菓子オランジェットを思わせる季節限定デザート酒。火入れ"},
     ],
 
     # やまね酒造（埼玉県飯能市）/ 副原料は「飯能産」が正（狭山茶は誤り）

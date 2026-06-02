@@ -805,8 +805,6 @@ def main():
 
     # Category badge
     cat_badge = f'<span class="badge badge--cat">— 酒税法分類：{b["category"]}</span>'
-    avail_label = {"online": "通販可", "tokuyaku": "特約店", "rare": "極希少"}.get(b["availability"], "—")
-    avail_badge = f'<span class="badge badge--avail">— 入手性：{avail_label}</span>'
 
     html = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -826,11 +824,14 @@ def main():
 
   <!-- マストヘッド -->
   <div class="masthead">
-    <div class="left">
-      <a href="../index.html"><span class="accent-dot"></span>SAKETTO</a>
-      <a href="../brewery/{b['brewery_slug']}.html">← {brewery['name']}</a>
-    </div>
-    <div class="right">BRAND SAMPLE V2 — {b['data_updated']}</div>
+    <div class="left"><a class="brand-link" href="../index.html"><span class="accent-dot"></span>SAKETTO</a><a href="../brewery/{b['brewery_slug']}.html">← {brewery['name']}</a></div>
+    <nav class="masthead-nav" aria-label="ナビ">
+      <a href="../subingredients/">副原料</a>
+      <a href="../index.html#breweries">蔵</a>
+      <a href="../region/">地域</a>
+      <a href="../genre/">ジャンル</a>
+      <a href="../guide/">読みもの</a>
+    </nav>
   </div>
 
   <!-- HERO -->
@@ -846,7 +847,7 @@ def main():
       <div class="hero__flavor-label">— AROMA &amp; FLAVOR ／ 香り・味の印象</div>
       <div class="flavor-tags">{flavor_tags_html}</div>
     </div>
-    <div class="hero__badges">{cat_badge}{avail_badge}</div>
+    <div class="hero__badges">{cat_badge}</div>
   </section>
 
   <!-- 大判 SPECS -->

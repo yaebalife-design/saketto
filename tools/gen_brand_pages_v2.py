@@ -359,13 +359,20 @@ def build_html(brand, detail, brewery, idx):
     <p class="hero__tagline">{esc(b.get('note',''))}</p>{flavor_tags_html}
   </section>"""
 
+    # ── meta description（note優先、空なら蔵・銘柄・副原料から生成してSEOの空欄を防ぐ）──
+    _subs = [s for s in (b.get('sub_ingredients') or []) if s and s != "米のみ"]
+    _sub_txt = ("副原料に" + "・".join(_subs) + "を使った") if _subs else "米と米麹で醸す"
+    meta_desc = (esc(b.get('note', '')).strip()
+                 or f"{brewery['name']}（{brewery['prefecture']}）のクラフトサケ「{name}」。{_sub_txt}、米の新ジャンルの一本。saketto（クラフトサケの図鑑）の銘柄ページ。")
+    meta_desc = meta_desc[:120]
+
     html = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{name} ／ {brewery['name']} — saketto.</title>
-<meta name="description" content="{esc(b.get('note',''))[:120]}">
+<meta name="description" content="{meta_desc}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
