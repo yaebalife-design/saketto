@@ -661,13 +661,17 @@ def render(brewery, index, prev_brewery, next_brewery):
 
     _path = f"/brewery/{brewery['slug']}.html"
     _bdesc = f"{brewery['name']}（{brewery['prefecture']}・{brewery['city']}）。{philosophy_short}"
+    _org = {"@context": "https://schema.org/", "@type": ["Brewery", "LocalBusiness"],
+            "@id": SITE_URL + _path + "#brewery",
+            "name": brewery["name"],
+            "address": {"@type": "PostalAddress", "addressRegion": brewery["prefecture"],
+                        "addressLocality": brewery["city"], "addressCountry": "JP"},
+            "url": SITE_URL + _path,
+            "description": philosophy_short}
+    if brewery.get("official_url"):
+        _org["sameAs"] = [brewery["official_url"]]
     seo = seo_head(_path, brewery["name"], _bdesc, og_type="website", jsonld=[
-        {"@context": "https://schema.org/", "@type": "Organization",
-         "name": brewery["name"],
-         "address": {"@type": "PostalAddress", "addressRegion": brewery["prefecture"],
-                     "addressLocality": brewery["city"], "addressCountry": "JP"},
-         "url": brewery.get("official_url") or (SITE_URL + _path),
-         "description": philosophy_short},
+        _org,
         breadcrumb([("トップ", "/"), (brewery["name"], _path)]),
     ])
     html = HEAD.format(name=brewery["name"], prefecture=brewery["prefecture"],

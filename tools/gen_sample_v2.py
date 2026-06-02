@@ -811,7 +811,9 @@ def main():
     _seo = seo_head(_path, f"{b['name']} ／ {brewery['name']}", _desc, og_type="product", jsonld=[
         {"@context": "https://schema.org/", "@type": "Product", "name": b['name'],
          "brand": {"@type": "Brand", "name": brewery['name']},
+         "manufacturer": {"@id": SITE_URL + f"/brewery/{b['brewery_slug']}.html#brewery"},
          "category": "クラフトサケ（その他の醸造酒）", "description": _desc,
+         "image": SITE_URL + "/assets/images/og.png",
          "url": SITE_URL + _path},
         breadcrumb([("トップ", "/"), (brewery['name'], f"/brewery/{b['brewery_slug']}.html"), (b['name'], _path)]),
     ])

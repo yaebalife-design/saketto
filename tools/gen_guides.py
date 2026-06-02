@@ -28,6 +28,10 @@ from gen_sample_v2 import RAKUTEN_ENABLED
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
 OUT_DIR = REPO_ROOT / "guide"
 
+# 読みものの構造化データ用 日付（ISO8601）。内容を大きく更新したら dateModified を更新する。
+ARTICLE_PUBLISHED = "2026-05-31"
+ARTICLE_MODIFIED = "2026-06-03"
+
 
 # ────────────── 記事用 追加CSS ──────────────
 
@@ -164,8 +168,10 @@ def page_head(title, description, path="/guide/", og_type="website"):
         jsonld = [
             {"@context": "https://schema.org/", "@type": "Article",
              "headline": short, "description": description, "inLanguage": "ja",
+             "datePublished": ARTICLE_PUBLISHED, "dateModified": ARTICLE_MODIFIED,
              "author": {"@type": "Organization", "name": "saketto 編集部"},
-             "publisher": {"@type": "Organization", "name": "saketto", "url": SITE_URL + "/"},
+             "publisher": {"@type": "Organization", "name": "saketto", "url": SITE_URL + "/",
+                           "logo": {"@type": "ImageObject", "url": SITE_URL + "/apple-touch-icon.png"}},
              "image": SITE_URL + "/assets/images/og.png",
              "mainEntityOfPage": SITE_URL + path},
             breadcrumb([("トップ", "/"), ("読みもの", "/guide/"), (short, path)]),

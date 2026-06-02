@@ -409,7 +409,9 @@ def build_html(brand, detail, brewery, idx):
     _seo = seo_head(_path, f"{name} ／ {brewery['name']}", meta_desc, og_type="product", jsonld=[
         {"@context": "https://schema.org/", "@type": "Product", "name": name,
          "brand": {"@type": "Brand", "name": brewery["name"]},
+         "manufacturer": {"@id": SITE_URL + f"/brewery/{slug}.html#brewery"},
          "category": "クラフトサケ（その他の醸造酒）", "description": meta_desc,
+         "image": SITE_URL + "/assets/images/og.png",
          "url": SITE_URL + _path},
         breadcrumb([("トップ", "/"), (brewery["name"], f"/brewery/{slug}.html"), (name, _path)]),
     ])
