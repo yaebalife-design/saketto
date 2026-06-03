@@ -272,6 +272,10 @@ main { position:relative; z-index:1; }
   font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--ink-mute);
   margin-left:.5rem; font-size:.78rem; letter-spacing:.03em;
 }
+.brand-card__price--na {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.82rem;
+  color:var(--ink-mute); letter-spacing:.02em;
+}
 .brand-card__links {
   display:flex; align-items:center; gap:1.2rem; margin-top:auto;
   padding-top:.85rem; border-top:1px solid var(--line-soft);
@@ -510,7 +514,7 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
     if brand.get("price") is not None:
         price_html = f'<div class="brand-card__price">参考価格 <b>¥{brand["price"]:,}</b><small>記載時点</small></div>'
     else:
-        price_html = ''
+        price_html = '<div class="brand-card__price brand-card__price--na">価格は各リンク先でご確認ください</div>'
 
     shop_html = (f'<a class="brand-card__shoplink brand-card__shoplink--buy" href="{rakuten_search(name)}" target="_blank" rel="noopener sponsored">楽天市場で見る</a>'
                  if RAKUTEN_ENABLED else '')
