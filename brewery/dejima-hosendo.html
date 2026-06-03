@@ -175,6 +175,7 @@ main { position:relative; z-index:1; }
 @media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード */
+.brands-note { font-size:.8rem; color:var(--ink-mute); line-height:1.7; margin:0 0 1rem; max-width:780px; }
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
 .brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
 .brand-card:hover { background:var(--paper); }
@@ -225,18 +226,12 @@ main { position:relative; z-index:1; }
   font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
   letter-spacing:.03em;
 }
-.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; white-space:nowrap; }
-.brand-card__actions { display:flex; flex-direction:column; align-items:flex-end; gap:.5rem; }
-.brand-card__detail { font-family:'Shippori Mincho', serif; font-size:.86rem; color:var(--ink-soft); text-decoration:none; }
-.brand-card__detail:hover { color:var(--accent); }
-.brand-card__buy {
-  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.86rem;
-  letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent);
-  padding:.48rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
-}
-.brand-card__buy:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
-.brand-card__pr { font-size:.62rem; letter-spacing:.06em; opacity:.85; }
-@media (min-width:760px) { .brand-card__actions { flex-direction:row; align-items:center; } }
+.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.6rem; white-space:nowrap; }
+.brand-card__shops { display:flex; gap:.4rem 1.1rem; flex-wrap:wrap; justify-content:flex-end; }
+.brand-card__shoplink { font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.88rem; letter-spacing:.02em; color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.brand-card__shoplink:hover { color:var(--accent); }
+.brand-card__shoplink--buy { color:var(--accent); font-weight:500; }
+.brand-card__shoplink--buy:hover { color:var(--accent-deep); }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -488,6 +483,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__label">BRANDS / 13 銘柄</span>
       <span class="section-meta__rule"></span>
     </div>
+    <p class="brands-note">価格は記載時点の参考値です。最新の価格・在庫は各リンク先でご確認ください。少量生産・限定流通のため、店頭・店内提供のみの銘柄もあります。</p>
     <div class="brands">
       <div class="brand-card" id="b0">
         <div class="brand-card__main">
@@ -497,9 +493,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥2,750<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-0.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E9%259B%25B2%25201st%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-0.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E9%259B%25B2%25201st%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -511,9 +507,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">雲仙市産黒米（古代米）</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥6,600<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-1.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E7%25B4%25AB%25E9%259B%25B2%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-1.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E7%25B4%25AB%25E9%259B%25B2%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -525,9 +521,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥4,180<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-2.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E5%2590%259F%25E9%259B%25B2%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-2.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E5%2590%259F%25E9%259B%25B2%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -539,9 +535,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥3,850<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-3.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25A1%259C%25E9%259B%25B2%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-3.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25A1%259C%25E9%259B%25B2%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -553,9 +549,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥3,300<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-4.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E9%259B%25B7%25E9%259B%25B2%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-4.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E9%259B%25B7%25E9%259B%25B2%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -567,9 +563,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 15%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥2,750<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-5.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25B3%25A2%25201st%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-5.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25B3%25A2%25201st%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -581,9 +577,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥3,300<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-6.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E5%258F%258B%2520%25E5%2586%2585%25E7%2594%25B0%25E7%25B1%25B3%25E3%2583%25AC%25E3%2582%25A4%25E3%2583%259B%25E3%2582%25A6%2520%25E8%258F%25A9%25E6%258F%2590%25E9%2585%259B%25E4%25BB%2595%25E8%25BE%25BC%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-6.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E5%258F%258B%2520%25E5%2586%2585%25E7%2594%25B0%25E7%25B1%25B3%25E3%2583%25AC%25E3%2582%25A4%25E3%2583%259B%25E3%2582%25A6%2520%25E8%258F%25A9%25E6%258F%2590%25E9%2585%259B%25E4%25BB%2595%25E8%25BE%25BC%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -595,9 +591,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥3,520<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-7.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E5%258F%258B%2520%25E5%2586%2585%25E7%2594%25B0%25E7%25B1%25B3%25E7%25BE%258E%25E5%25B1%25B1%25E9%258C%25A6%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-7.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E5%258F%258B%2520%25E5%2586%2585%25E7%2594%25B0%25E7%25B1%25B3%25E7%25BE%258E%25E5%25B1%25B1%25E9%258C%25A6%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -609,9 +605,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥3,300<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-8.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E5%258F%258B%2520%25E7%259B%25AE%25E9%25BB%2592%25E7%25B1%25B3%25E9%259B%2584%25E7%2594%25BA%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-8.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E5%258F%258B%2520%25E7%259B%25AE%25E9%25BB%2592%25E7%25B1%25B3%25E9%259B%2584%25E7%2594%25BA%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -623,9 +619,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥3,300<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-9.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25B3%25A2%2520%25E5%2586%2585%25E7%2594%25B0%25E7%25B1%25B3%25E3%2583%25AC%25E3%2582%25A4%25E3%2583%259B%25E3%2582%25A6%2520%25E8%258F%25A9%25E6%258F%2590%25E9%2585%259B%25E4%25BB%2595%25E8%25BE%25BC%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-9.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25B3%25A2%2520%25E5%2586%2585%25E7%2594%25B0%25E7%25B1%25B3%25E3%2583%25AC%25E3%2582%25A4%25E3%2583%259B%25E3%2582%25A6%2520%25E8%258F%25A9%25E6%258F%2590%25E9%2585%259B%25E4%25BB%2595%25E8%25BE%25BC%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -637,9 +633,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥3,520<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-10.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25B3%25A2%2520%25E5%2586%2585%25E7%2594%25B0%25E7%25B1%25B3%25E7%25BE%258E%25E5%25B1%25B1%25E9%258C%25A6%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-10.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25B3%25A2%2520%25E5%2586%2585%25E7%2594%25B0%25E7%25B1%25B3%25E7%25BE%258E%25E5%25B1%25B1%25E9%258C%25A6%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -651,9 +647,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥3,300<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-11.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25B3%25A2%2520%25E7%259B%25AE%25E9%25BB%2592%25E7%25B1%25B3%25E9%259B%2584%25E7%2594%25BA%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-11.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25B3%25A2%2520%25E7%259B%25AE%25E9%25BB%2592%25E7%25B1%25B3%25E9%259B%2584%25E7%2594%25BA%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>
@@ -665,9 +661,9 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">米のみ</span></div>
         <div class="brand-card__side">
           <div class="brand-card__price">¥3,300<small>参考</small></div>
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="../brand/dejima-hosendo-12.html">詳細 →</a>
-            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25B3%25A2%2520%25E3%2583%2594%25E3%2583%25B3%25E3%2582%25AF%25E3%2583%25A9%25E3%2583%2599%25E3%2583%25AB%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="../brand/dejima-hosendo-12.html">詳細を見る</a>
+            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E8%258A%25B3%25E6%2589%2587%2520%25E6%25B3%25A2%2520%25E3%2583%2594%25E3%2583%25B3%25E3%2582%25AF%25E3%2583%25A9%25E3%2583%2599%25E3%2583%25AB%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
           </div>
         </div>
       </div>

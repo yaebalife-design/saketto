@@ -223,6 +223,7 @@ main { position:relative; z-index:1; }
 @media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード */
+.brands-note { font-size:.8rem; color:var(--ink-mute); line-height:1.7; margin:0 0 1rem; max-width:780px; }
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
 .brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
 .brand-card:hover { background:var(--paper); }
@@ -273,18 +274,12 @@ main { position:relative; z-index:1; }
   font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
   letter-spacing:.03em;
 }
-.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; white-space:nowrap; }
-.brand-card__actions { display:flex; flex-direction:column; align-items:flex-end; gap:.5rem; }
-.brand-card__detail { font-family:'Shippori Mincho', serif; font-size:.86rem; color:var(--ink-soft); text-decoration:none; }
-.brand-card__detail:hover { color:var(--accent); }
-.brand-card__buy {
-  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.86rem;
-  letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent);
-  padding:.48rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
-}
-.brand-card__buy:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
-.brand-card__pr { font-size:.62rem; letter-spacing:.06em; opacity:.85; }
-@media (min-width:760px) { .brand-card__actions { flex-direction:row; align-items:center; } }
+.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.6rem; white-space:nowrap; }
+.brand-card__shops { display:flex; gap:.4rem 1.1rem; flex-wrap:wrap; justify-content:flex-end; }
+.brand-card__shoplink { font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.88rem; letter-spacing:.02em; color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.brand-card__shoplink:hover { color:var(--accent); }
+.brand-card__shoplink--buy { color:var(--accent); font-weight:500; }
+.brand-card__shoplink--buy:hover { color:var(--accent-deep); }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -504,8 +499,8 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
     note_html = f'<p class="brand-card__note">{note}</p>' if note else ''
 
     href = f"../brand/{brewery_slug}-{idx}.html" if brewery_slug else "#"
-    buy_html = (f'<a class="brand-card__buy" href="{rakuten_search(brand["name"])}" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>'
-                if RAKUTEN_ENABLED else '')
+    shop_html = (f'<a class="brand-card__shoplink brand-card__shoplink--buy" href="{rakuten_search(brand["name"])}" target="_blank" rel="noopener sponsored">楽天市場で見る</a>'
+                 if RAKUTEN_ENABLED else '')
     return f"""
       <div class="brand-card" id="b{idx}">
         <div class="brand-card__main">
@@ -515,9 +510,9 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
         <div class="brand-card__specs">{specs_html}</div>
         <div class="brand-card__side">
           {price_html}
-          <div class="brand-card__actions">
-            <a class="brand-card__detail" href="{href}">詳細 →</a>
-            {buy_html}
+          <div class="brand-card__shops">
+            <a class="brand-card__shoplink" href="{href}">詳細を見る</a>
+            {shop_html}
           </div>
         </div>
       </div>"""
@@ -761,6 +756,7 @@ def render(brewery, index, prev_brewery, next_brewery):
       <span class="section-meta__label">BRANDS / {len(brands)} 銘柄</span>
       <span class="section-meta__rule"></span>
     </div>
+    <p class="brands-note">価格は記載時点の参考値です。最新の価格・在庫は各リンク先でご確認ください。少量生産・限定流通のため、店頭・店内提供のみの銘柄もあります。</p>
     <div class="brands">{brand_cards_html}
     </div>
   </section>
