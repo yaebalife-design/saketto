@@ -179,16 +179,25 @@ main { position:relative; z-index:1; }
 .brands { display:grid; grid-template-columns:1fr; gap:1rem; }
 @media (min-width:720px) { .brands { grid-template-columns:1fr 1fr; gap:1.1rem; } }
 .brand-card {
+  position:relative; overflow:hidden;
   background:var(--paper); border:1px solid var(--line); padding:1.5rem 1.6rem 1.3rem;
   display:flex; flex-direction:column; gap:.62rem; scroll-margin-top:80px;
-  transition:border-color .35s, box-shadow .35s;
+  transition:border-color .35s, box-shadow .35s, transform .35s;
 }
-.brand-card:hover { border-color:var(--warm); box-shadow:0 6px 22px rgba(26,23,23,.05); }
+.brand-card:hover { border-color:var(--warm); box-shadow:0 10px 28px rgba(26,23,23,.07); transform:translateY(-2px); }
 .brand-card:target { border-color:var(--accent); animation:highlight 2s ease-out; }
 @keyframes highlight { 0% { background:rgba(168,53,31,.10); } 100% { background:var(--paper); } }
+/* 大判ナンバー透かし（雑誌風） */
+.brand-card__no {
+  position:absolute; top:.55rem; right:1rem;
+  font-family:'Cormorant Garamond', serif; font-style:italic; font-size:3.1rem; line-height:1;
+  color:var(--line-soft); letter-spacing:0; pointer-events:none; transition:color .35s ease;
+}
+.brand-card:hover .brand-card__no { color:var(--accent); }
 .brand-card__title {
-  font-family:'Shippori Mincho', serif; font-weight:700; font-size:1.22rem;
-  letter-spacing:.02em; color:var(--ink); line-height:1.45; margin:0;
+  font-family:'Shippori Mincho', serif; font-weight:700; font-size:1.28rem;
+  letter-spacing:.02em; color:var(--ink); line-height:1.45; margin:0; padding-right:2.6rem;
+  position:relative;
 }
 .brand-card__chip {
   font-size:.58rem; letter-spacing:.14em; padding:.12rem .4rem;

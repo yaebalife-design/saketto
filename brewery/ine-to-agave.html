@@ -179,16 +179,25 @@ main { position:relative; z-index:1; }
 .brands { display:grid; grid-template-columns:1fr; gap:1rem; }
 @media (min-width:720px) { .brands { grid-template-columns:1fr 1fr; gap:1.1rem; } }
 .brand-card {
+  position:relative; overflow:hidden;
   background:var(--paper); border:1px solid var(--line); padding:1.5rem 1.6rem 1.3rem;
   display:flex; flex-direction:column; gap:.62rem; scroll-margin-top:80px;
-  transition:border-color .35s, box-shadow .35s;
+  transition:border-color .35s, box-shadow .35s, transform .35s;
 }
-.brand-card:hover { border-color:var(--warm); box-shadow:0 6px 22px rgba(26,23,23,.05); }
+.brand-card:hover { border-color:var(--warm); box-shadow:0 10px 28px rgba(26,23,23,.07); transform:translateY(-2px); }
 .brand-card:target { border-color:var(--accent); animation:highlight 2s ease-out; }
 @keyframes highlight { 0% { background:rgba(168,53,31,.10); } 100% { background:var(--paper); } }
+/* 大判ナンバー透かし（雑誌風） */
+.brand-card__no {
+  position:absolute; top:.55rem; right:1rem;
+  font-family:'Cormorant Garamond', serif; font-style:italic; font-size:3.1rem; line-height:1;
+  color:var(--line-soft); letter-spacing:0; pointer-events:none; transition:color .35s ease;
+}
+.brand-card:hover .brand-card__no { color:var(--accent); }
 .brand-card__title {
-  font-family:'Shippori Mincho', serif; font-weight:700; font-size:1.22rem;
-  letter-spacing:.02em; color:var(--ink); line-height:1.45; margin:0;
+  font-family:'Shippori Mincho', serif; font-weight:700; font-size:1.28rem;
+  letter-spacing:.02em; color:var(--ink); line-height:1.45; margin:0; padding-right:2.6rem;
+  position:relative;
 }
 .brand-card__chip {
   font-size:.58rem; letter-spacing:.14em; padding:.12rem .4rem;
@@ -480,6 +489,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <p class="brands-note">価格は記載時点の参考値です。最新の価格・在庫は各リンク先でご確認ください。少量生産・限定流通のため、店頭・店内提供のみの銘柄もあります。</p>
     <div class="brands">
       <div class="brand-card" id="b0">
+        <div class="brand-card__no">01</div>
         <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/ine-to-agave-0.html">稲とアガベ CRAFT series</a></h3>
         <div class="brand-card__spec">度数 14% ／ 500ml</div>
         <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>アガベシロップ</div>
@@ -491,6 +501,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         </div>
       </div>
       <div class="brand-card" id="b1">
+        <div class="brand-card__no">02</div>
         <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/ine-to-agave-1.html">花風（ぐるりこ®）</a></h3>
         <div class="brand-card__spec">度数 14% ／ 720ml</div>
         <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>ホップ</div>
@@ -502,6 +513,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         </div>
       </div>
       <div class="brand-card" id="b2">
+        <div class="brand-card__no">03</div>
         <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/ine-to-agave-2.html">稲とジャスミン</a></h3>
         
         <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>ジャスミン茶葉</div>
@@ -513,6 +525,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         </div>
       </div>
       <div class="brand-card" id="b3">
+        <div class="brand-card__no">04</div>
         <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/ine-to-agave-3.html">稲とハチミツ</a></h3>
         <div class="brand-card__spec">度数 15% ／ 500ml</div>
         <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>ハチミツ</div>
@@ -524,6 +537,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         </div>
       </div>
       <div class="brand-card" id="b4">
+        <div class="brand-card__no">05</div>
         <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/ine-to-agave-4.html">稲とリンゴ SPECIAL EDITION</a></h3>
         <div class="brand-card__spec">500ml</div>
         <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>リンゴ</div>
@@ -535,6 +549,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         </div>
       </div>
       <div class="brand-card" id="b5">
+        <div class="brand-card__no">06</div>
         <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/ine-to-agave-5.html">稲とブドウ SPECIAL EDITION</a></h3>
         <div class="brand-card__spec">500ml</div>
         <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>ブドウ</div>
