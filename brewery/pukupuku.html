@@ -174,63 +174,57 @@ main { position:relative; z-index:1; }
 .fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
 @media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
-/* 銘柄カード */
-.brands-note { font-size:.8rem; color:var(--ink-mute); line-height:1.7; margin:0 0 1rem; max-width:780px; }
-.brands { display:flex; flex-direction:column; border:1px solid var(--line); }
-.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
-.brand-card:hover { background:var(--paper); }
-.brand-card:last-child { border-bottom:none; }
-.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
-.brand-card__name:hover { color:var(--accent); }
-.brand-card:target {
-  background:var(--paper);
-  border-left:4px solid var(--accent);
-  animation:highlight 2s ease-out;
+/* 銘柄カード（縦型カード） */
+.brands-note { font-size:.8rem; color:var(--ink-mute); line-height:1.7; margin:0 0 1.4rem; max-width:820px; }
+.brands { display:grid; grid-template-columns:1fr; gap:1rem; }
+@media (min-width:720px) { .brands { grid-template-columns:1fr 1fr; gap:1.1rem; } }
+.brand-card {
+  background:var(--paper); border:1px solid var(--line); padding:1.5rem 1.6rem 1.3rem;
+  display:flex; flex-direction:column; gap:.62rem; scroll-margin-top:80px;
+  transition:border-color .35s, box-shadow .35s;
 }
-@keyframes highlight {
-  0% { background:rgba(168,53,31,.18); }
-  100% { background:var(--paper); }
-}
-.brand-card:hover { background:var(--paper); }
-@media (min-width:760px) { .brand-card { grid-template-columns:1.4fr 1fr auto; padding:1.5rem 2rem; } }
-
-.brand-card__main h3 {
-  font-family:'Shippori Mincho', serif; font-weight:700;
-  font-size:1.25rem; letter-spacing:.02em; color:var(--ink);
-  margin-bottom:.5rem; line-height:1.45;
+.brand-card:hover { border-color:var(--warm); box-shadow:0 6px 22px rgba(26,23,23,.05); }
+.brand-card:target { border-color:var(--accent); animation:highlight 2s ease-out; }
+@keyframes highlight { 0% { background:rgba(168,53,31,.10); } 100% { background:var(--paper); } }
+.brand-card__title {
+  font-family:'Shippori Mincho', serif; font-weight:700; font-size:1.22rem;
+  letter-spacing:.02em; color:var(--ink); line-height:1.45; margin:0;
 }
 .brand-card__chip {
-  font-size:.6rem; letter-spacing:.14em; padding:.12rem .4rem;
-  margin-right:.6rem; vertical-align:middle; position:relative; top:-2px;
+  font-size:.58rem; letter-spacing:.14em; padding:.12rem .4rem;
+  margin-right:.55rem; vertical-align:middle; position:relative; top:-3px;
 }
-.brand-card__note {
-  font-size:.92rem; color:var(--ink-soft); line-height:1.75;
-  font-weight:400;
+.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
+.brand-card__name:hover { color:var(--accent); }
+.brand-card__spec {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.84rem;
+  color:var(--ink-mute); letter-spacing:.04em;
 }
-.brand-card__specs {
-  display:flex; gap:.45rem; flex-wrap:wrap; align-items:flex-start;
+.brand-card__sub {
+  background:var(--bg-alt); border-left:3px solid var(--accent);
+  padding:.6rem .85rem; font-size:.88rem; color:var(--ink-soft); line-height:1.7;
 }
-.spec-pill {
-  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
-  font-size:.82rem; letter-spacing:.02em; color:var(--ink-soft);
-  background:var(--bg-alt); padding:.28rem .7rem; border-radius:0;
+.brand-card__sub-label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.7rem;
+  color:var(--accent); letter-spacing:.1em; margin-right:.6rem;
 }
-.spec-pill.accent { color:var(--accent); background:transparent; border:1px solid var(--accent); }
-.spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
-.brand-card__price {
-  font-family:'Shippori Mincho', serif; font-weight:700;
-  font-size:1.1rem; color:var(--ink); white-space:nowrap; align-self:flex-start;
-}
+.brand-card__note { font-size:.86rem; color:var(--ink-soft); line-height:1.75; margin:0; }
+.brand-card__price { font-family:'Shippori Mincho', serif; font-size:.9rem; color:var(--ink-soft); }
+.brand-card__price b { font-size:1.18rem; font-weight:700; color:var(--ink); }
 .brand-card__price small {
-  display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
-  letter-spacing:.03em;
+  font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--ink-mute);
+  margin-left:.5rem; font-size:.78rem; letter-spacing:.03em;
 }
-.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.6rem; white-space:nowrap; }
-.brand-card__shops { display:flex; gap:.4rem 1.1rem; flex-wrap:wrap; justify-content:flex-end; }
-.brand-card__shoplink { font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.88rem; letter-spacing:.02em; color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.brand-card__links {
+  display:flex; align-items:center; gap:1.2rem; margin-top:auto;
+  padding-top:.85rem; border-top:1px solid var(--line-soft);
+}
+.brand-card__shoplink {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.88rem; letter-spacing:.02em;
+  color:var(--ink-mute); text-decoration:none; transition:color .25s;
+}
 .brand-card__shoplink:hover { color:var(--accent); }
-.brand-card__shoplink--buy { color:var(--accent); font-weight:500; }
+.brand-card__shoplink--buy { color:var(--accent); font-weight:500; margin-left:auto; }
 .brand-card__shoplink--buy:hover { color:var(--accent-deep); }
 
 .no-brands {
@@ -486,101 +480,80 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <p class="brands-note">価格は記載時点の参考値です。最新の価格・在庫は各リンク先でご確認ください。少量生産・限定流通のため、店頭・店内提供のみの銘柄もあります。</p>
     <div class="brands">
       <div class="brand-card" id="b0">
-        <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-0.html">#plot 酵母無添加 ホップサケ</a></h3>
-          <p class="brand-card__note">低アルコールのホップサケ</p>
-        </div>
-        <div class="brand-card__specs"><span class="spec-pill accent">ABV 7%</span> <span class="spec-pill">ホップ</span></div>
-        <div class="brand-card__side">
-          
-          <div class="brand-card__shops">
-            <a class="brand-card__shoplink" href="../brand/pukupuku-0.html">詳細を見る</a>
-            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%2523plot%2520%25E9%2585%25B5%25E6%25AF%258D%25E7%2584%25A1%25E6%25B7%25BB%25E5%258A%25A0%2520%25E3%2583%259B%25E3%2583%2583%25E3%2583%2597%25E3%2582%25B5%25E3%2582%25B1%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
-          </div>
+        <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-0.html">#plot 酵母無添加 ホップサケ</a></h3>
+        <div class="brand-card__spec">度数 7%</div>
+        <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>ホップ</div>
+        <p class="brand-card__note">低アルコールのホップサケ</p>
+        
+        <div class="brand-card__links">
+          <a class="brand-card__shoplink" href="../brand/pukupuku-0.html">詳細を見る</a>
+          <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%2523plot%2520%25E9%2585%25B5%25E6%25AF%258D%25E7%2584%25A1%25E6%25B7%25BB%25E5%258A%25A0%2520%25E3%2583%259B%25E3%2583%2583%25E3%2583%2597%25E3%2582%25B5%25E3%2582%25B1%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
         </div>
       </div>
       <div class="brand-card" id="b1">
-        <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-1.html">VaVaVa Spring 2026 DDH Doburoku</a></h3>
-          
-        </div>
-        <div class="brand-card__specs"><span class="spec-pill warm">660ml</span> <span class="spec-pill">ホップ</span></div>
-        <div class="brand-card__side">
-          <div class="brand-card__price">¥2,640<small>参考</small></div>
-          <div class="brand-card__shops">
-            <a class="brand-card__shoplink" href="../brand/pukupuku-1.html">詳細を見る</a>
-            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2FVaVaVa%2520Spring%25202026%2520DDH%2520Doburoku%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
-          </div>
+        <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-1.html">VaVaVa Spring 2026 DDH Doburoku</a></h3>
+        <div class="brand-card__spec">660ml</div>
+        <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>ホップ</div>
+        
+        <div class="brand-card__price">参考価格 <b>¥2,640</b><small>記載時点</small></div>
+        <div class="brand-card__links">
+          <a class="brand-card__shoplink" href="../brand/pukupuku-1.html">詳細を見る</a>
+          <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2FVaVaVa%2520Spring%25202026%2520DDH%2520Doburoku%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
         </div>
       </div>
       <div class="brand-card" id="b2">
-        <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-2.html">KiKiKi Spring 2026 Hopped Sour</a></h3>
-          
-        </div>
-        <div class="brand-card__specs"><span class="spec-pill warm">660ml</span> <span class="spec-pill">ホップ</span></div>
-        <div class="brand-card__side">
-          <div class="brand-card__price">¥2,530<small>参考</small></div>
-          <div class="brand-card__shops">
-            <a class="brand-card__shoplink" href="../brand/pukupuku-2.html">詳細を見る</a>
-            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2FKiKiKi%2520Spring%25202026%2520Hopped%2520Sour%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
-          </div>
+        <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-2.html">KiKiKi Spring 2026 Hopped Sour</a></h3>
+        <div class="brand-card__spec">660ml</div>
+        <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>ホップ</div>
+        
+        <div class="brand-card__price">参考価格 <b>¥2,530</b><small>記載時点</small></div>
+        <div class="brand-card__links">
+          <a class="brand-card__shoplink" href="../brand/pukupuku-2.html">詳細を見る</a>
+          <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2FKiKiKi%2520Spring%25202026%2520Hopped%2520Sour%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
         </div>
       </div>
       <div class="brand-card" id="b3">
-        <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-3.html">#wildpath 水もとホップどぶろく</a></h3>
-          
-        </div>
-        <div class="brand-card__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">ホップ</span></div>
-        <div class="brand-card__side">
-          <div class="brand-card__price">¥2,163<small>参考</small></div>
-          <div class="brand-card__shops">
-            <a class="brand-card__shoplink" href="../brand/pukupuku-3.html">詳細を見る</a>
-            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%2523wildpath%2520%25E6%25B0%25B4%25E3%2582%2582%25E3%2581%25A8%25E3%2583%259B%25E3%2583%2583%25E3%2583%2597%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
-          </div>
+        <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-3.html">#wildpath 水もとホップどぶろく</a></h3>
+        <div class="brand-card__spec">500ml</div>
+        <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>ホップ</div>
+        
+        <div class="brand-card__price">参考価格 <b>¥2,163</b><small>記載時点</small></div>
+        <div class="brand-card__links">
+          <a class="brand-card__shoplink" href="../brand/pukupuku-3.html">詳細を見る</a>
+          <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%2523wildpath%2520%25E6%25B0%25B4%25E3%2582%2582%25E3%2581%25A8%25E3%2583%259B%25E3%2583%2583%25E3%2583%2597%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
         </div>
       </div>
       <div class="brand-card" id="b4">
-        <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-4.html">#ODAKA 蔵付酵母 木桶どぶろく</a></h3>
-          <p class="brand-card__note">ICC SAKE AWARD 2025優勝銘柄</p>
-        </div>
-        <div class="brand-card__specs"><span class="spec-pill">米のみ</span></div>
-        <div class="brand-card__side">
-          
-          <div class="brand-card__shops">
-            <a class="brand-card__shoplink" href="../brand/pukupuku-4.html">詳細を見る</a>
-            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%2523ODAKA%2520%25E8%2594%25B5%25E4%25BB%2598%25E9%2585%25B5%25E6%25AF%258D%2520%25E6%259C%25A8%25E6%25A1%25B6%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
-          </div>
+        <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-4.html">#ODAKA 蔵付酵母 木桶どぶろく</a></h3>
+        
+        <div class="brand-card__sub"><span class="brand-card__sub-label">原料</span>米と米麹のみ</div>
+        <p class="brand-card__note">ICC SAKE AWARD 2025優勝銘柄</p>
+        
+        <div class="brand-card__links">
+          <a class="brand-card__shoplink" href="../brand/pukupuku-4.html">詳細を見る</a>
+          <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%2523ODAKA%2520%25E8%2594%25B5%25E4%25BB%2598%25E9%2585%25B5%25E6%25AF%258D%2520%25E6%259C%25A8%25E6%25A1%25B6%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
         </div>
       </div>
       <div class="brand-card" id="b5">
-        <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-5.html">木桶発酵 全麹酒 雫取り</a></h3>
-          <p class="brand-card__note">木桶仕込みの全麹酒、ハイエンド</p>
-        </div>
-        <div class="brand-card__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ（全麹）</span></div>
-        <div class="brand-card__side">
-          <div class="brand-card__price">¥11,000<small>参考</small></div>
-          <div class="brand-card__shops">
-            <a class="brand-card__shoplink" href="../brand/pukupuku-5.html">詳細を見る</a>
-            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E6%259C%25A8%25E6%25A1%25B6%25E7%2599%25BA%25E9%2585%25B5%2520%25E5%2585%25A8%25E9%25BA%25B9%25E9%2585%2592%2520%25E9%259B%25AB%25E5%258F%2596%25E3%2582%258A%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
-          </div>
+        <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-5.html">木桶発酵 全麹酒 雫取り</a></h3>
+        <div class="brand-card__spec">500ml</div>
+        <div class="brand-card__sub"><span class="brand-card__sub-label">原料</span>米と米麹のみ</div>
+        <p class="brand-card__note">木桶仕込みの全麹酒、ハイエンド</p>
+        <div class="brand-card__price">参考価格 <b>¥11,000</b><small>記載時点</small></div>
+        <div class="brand-card__links">
+          <a class="brand-card__shoplink" href="../brand/pukupuku-5.html">詳細を見る</a>
+          <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E6%259C%25A8%25E6%25A1%25B6%25E7%2599%25BA%25E9%2585%25B5%2520%25E5%2585%25A8%25E9%25BA%25B9%25E9%2585%2592%2520%25E9%259B%25AB%25E5%258F%2596%25E3%2582%258A%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
         </div>
       </div>
       <div class="brand-card" id="b6">
-        <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-6.html">アマーロどぶろく feat.伊勢屋酒造</a></h3>
-          <p class="brand-card__note">他蔵コラボ</p>
-        </div>
-        <div class="brand-card__specs"><span class="spec-pill warm">460ml</span> <span class="spec-pill">ハーブ</span> <span class="spec-pill">ボタニカル</span></div>
-        <div class="brand-card__side">
-          <div class="brand-card__price">¥2,750<small>参考</small></div>
-          <div class="brand-card__shops">
-            <a class="brand-card__shoplink" href="../brand/pukupuku-6.html">詳細を見る</a>
-            <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2582%25A2%25E3%2583%259E%25E3%2583%25BC%25E3%2583%25AD%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520feat.%25E4%25BC%258A%25E5%258B%25A2%25E5%25B1%258B%25E9%2585%2592%25E9%2580%25A0%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
-          </div>
+        <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/pukupuku-6.html">アマーロどぶろく feat.伊勢屋酒造</a></h3>
+        <div class="brand-card__spec">460ml</div>
+        <div class="brand-card__sub"><span class="brand-card__sub-label">副原料</span>ハーブ、ボタニカル</div>
+        <p class="brand-card__note">他蔵コラボ</p>
+        <div class="brand-card__price">参考価格 <b>¥2,750</b><small>記載時点</small></div>
+        <div class="brand-card__links">
+          <a class="brand-card__shoplink" href="../brand/pukupuku-6.html">詳細を見る</a>
+          <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2582%25A2%25E3%2583%259E%25E3%2583%25BC%25E3%2583%25AD%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520feat.%25E4%25BC%258A%25E5%258B%25A2%25E5%25B1%258B%25E9%2585%2592%25E9%2580%25A0%2F" target="_blank" rel="noopener sponsored">楽天市場で見る</a>
         </div>
       </div>
     </div>

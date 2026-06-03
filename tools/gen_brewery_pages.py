@@ -222,63 +222,57 @@ main { position:relative; z-index:1; }
 .fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
 @media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
-/* 銘柄カード */
-.brands-note { font-size:.8rem; color:var(--ink-mute); line-height:1.7; margin:0 0 1rem; max-width:780px; }
-.brands { display:flex; flex-direction:column; border:1px solid var(--line); }
-.brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
-.brand-card:hover { background:var(--paper); }
-.brand-card:last-child { border-bottom:none; }
-.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
-.brand-card__name:hover { color:var(--accent); }
-.brand-card:target {
-  background:var(--paper);
-  border-left:4px solid var(--accent);
-  animation:highlight 2s ease-out;
+/* 銘柄カード（縦型カード） */
+.brands-note { font-size:.8rem; color:var(--ink-mute); line-height:1.7; margin:0 0 1.4rem; max-width:820px; }
+.brands { display:grid; grid-template-columns:1fr; gap:1rem; }
+@media (min-width:720px) { .brands { grid-template-columns:1fr 1fr; gap:1.1rem; } }
+.brand-card {
+  background:var(--paper); border:1px solid var(--line); padding:1.5rem 1.6rem 1.3rem;
+  display:flex; flex-direction:column; gap:.62rem; scroll-margin-top:80px;
+  transition:border-color .35s, box-shadow .35s;
 }
-@keyframes highlight {
-  0% { background:rgba(168,53,31,.18); }
-  100% { background:var(--paper); }
-}
-.brand-card:hover { background:var(--paper); }
-@media (min-width:760px) { .brand-card { grid-template-columns:1.4fr 1fr auto; padding:1.5rem 2rem; } }
-
-.brand-card__main h3 {
-  font-family:'Shippori Mincho', serif; font-weight:700;
-  font-size:1.25rem; letter-spacing:.02em; color:var(--ink);
-  margin-bottom:.5rem; line-height:1.45;
+.brand-card:hover { border-color:var(--warm); box-shadow:0 6px 22px rgba(26,23,23,.05); }
+.brand-card:target { border-color:var(--accent); animation:highlight 2s ease-out; }
+@keyframes highlight { 0% { background:rgba(168,53,31,.10); } 100% { background:var(--paper); } }
+.brand-card__title {
+  font-family:'Shippori Mincho', serif; font-weight:700; font-size:1.22rem;
+  letter-spacing:.02em; color:var(--ink); line-height:1.45; margin:0;
 }
 .brand-card__chip {
-  font-size:.6rem; letter-spacing:.14em; padding:.12rem .4rem;
-  margin-right:.6rem; vertical-align:middle; position:relative; top:-2px;
+  font-size:.58rem; letter-spacing:.14em; padding:.12rem .4rem;
+  margin-right:.55rem; vertical-align:middle; position:relative; top:-3px;
 }
-.brand-card__note {
-  font-size:.92rem; color:var(--ink-soft); line-height:1.75;
-  font-weight:400;
+.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
+.brand-card__name:hover { color:var(--accent); }
+.brand-card__spec {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.84rem;
+  color:var(--ink-mute); letter-spacing:.04em;
 }
-.brand-card__specs {
-  display:flex; gap:.45rem; flex-wrap:wrap; align-items:flex-start;
+.brand-card__sub {
+  background:var(--bg-alt); border-left:3px solid var(--accent);
+  padding:.6rem .85rem; font-size:.88rem; color:var(--ink-soft); line-height:1.7;
 }
-.spec-pill {
-  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
-  font-size:.82rem; letter-spacing:.02em; color:var(--ink-soft);
-  background:var(--bg-alt); padding:.28rem .7rem; border-radius:0;
+.brand-card__sub-label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.7rem;
+  color:var(--accent); letter-spacing:.1em; margin-right:.6rem;
 }
-.spec-pill.accent { color:var(--accent); background:transparent; border:1px solid var(--accent); }
-.spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
-.brand-card__price {
-  font-family:'Shippori Mincho', serif; font-weight:700;
-  font-size:1.1rem; color:var(--ink); white-space:nowrap; align-self:flex-start;
-}
+.brand-card__note { font-size:.86rem; color:var(--ink-soft); line-height:1.75; margin:0; }
+.brand-card__price { font-family:'Shippori Mincho', serif; font-size:.9rem; color:var(--ink-soft); }
+.brand-card__price b { font-size:1.18rem; font-weight:700; color:var(--ink); }
 .brand-card__price small {
-  display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
-  font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
-  letter-spacing:.03em;
+  font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--ink-mute);
+  margin-left:.5rem; font-size:.78rem; letter-spacing:.03em;
 }
-.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.6rem; white-space:nowrap; }
-.brand-card__shops { display:flex; gap:.4rem 1.1rem; flex-wrap:wrap; justify-content:flex-end; }
-.brand-card__shoplink { font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.88rem; letter-spacing:.02em; color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.brand-card__links {
+  display:flex; align-items:center; gap:1.2rem; margin-top:auto;
+  padding-top:.85rem; border-top:1px solid var(--line-soft);
+}
+.brand-card__shoplink {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.88rem; letter-spacing:.02em;
+  color:var(--ink-mute); text-decoration:none; transition:color .25s;
+}
 .brand-card__shoplink:hover { color:var(--accent); }
-.brand-card__shoplink--buy { color:var(--accent); font-weight:500; }
+.brand-card__shoplink--buy { color:var(--accent); font-weight:500; margin-left:auto; }
 .brand-card__shoplink--buy:hover { color:var(--accent-deep); }
 
 .no-brands {
@@ -479,41 +473,48 @@ HEAD = """<!DOCTYPE html>
 
 
 def render_brand_card(brand, idx=0, brewery_slug=""):
-    specs = []
+    name = brand["name"]
+    href = f"../brand/{brewery_slug}-{idx}.html" if brewery_slug else "#"
+
+    # スペック行（度数 ／ 容量）
+    sp = []
     if brand.get("abv") is not None:
-        specs.append(f'<span class="spec-pill accent">ABV {brand["abv"]}%</span>')
+        sp.append(f'度数 {brand["abv"]}%')
     if brand.get("volume_ml") is not None:
-        specs.append(f'<span class="spec-pill warm">{brand["volume_ml"]}ml</span>')
-    for ing in brand.get("sub_ingredients") or []:
-        specs.append(f'<span class="spec-pill">{ing}</span>')
+        sp.append(f'{brand["volume_ml"]}ml')
+    spec_html = f'<div class="brand-card__spec">{" ／ ".join(sp)}</div>' if sp else ''
 
-    specs_html = ' '.join(specs) if specs else \
-        '<span class="spec-pill">公式非開示</span>'
-
-    if brand.get("price") is not None:
-        price_html = f'<div class="brand-card__price">¥{brand["price"]:,}<small>参考</small></div>'
+    # 副原料ボックス（米のみは「原料」表記、自己矛盾を回避）
+    subs = [s for s in (brand.get("sub_ingredients") or []) if s]
+    non_rice = [s for s in subs if "米のみ" not in s]
+    if non_rice:
+        sub_label, sub_val = "副原料", "、".join(non_rice)
+    elif subs:
+        sub_label, sub_val = "原料", "米と米麹のみ"
     else:
-        price_html = ''  # 価格非開示・店内提供等は「市場実勢」等の誤解を招く表示をしない
+        sub_label, sub_val = "副原料", "公式非開示"
+    sub_html = f'<div class="brand-card__sub"><span class="brand-card__sub-label">{sub_label}</span>{sub_val}</div>'
 
     note = brand.get("note", "")
     note_html = f'<p class="brand-card__note">{note}</p>' if note else ''
 
-    href = f"../brand/{brewery_slug}-{idx}.html" if brewery_slug else "#"
-    shop_html = (f'<a class="brand-card__shoplink brand-card__shoplink--buy" href="{rakuten_search(brand["name"])}" target="_blank" rel="noopener sponsored">楽天市場で見る</a>'
+    if brand.get("price") is not None:
+        price_html = f'<div class="brand-card__price">参考価格 <b>¥{brand["price"]:,}</b><small>記載時点</small></div>'
+    else:
+        price_html = ''
+
+    shop_html = (f'<a class="brand-card__shoplink brand-card__shoplink--buy" href="{rakuten_search(name)}" target="_blank" rel="noopener sponsored">楽天市場で見る</a>'
                  if RAKUTEN_ENABLED else '')
     return f"""
       <div class="brand-card" id="b{idx}">
-        <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="{href}">{brand['name']}</a></h3>
-          {note_html}
-        </div>
-        <div class="brand-card__specs">{specs_html}</div>
-        <div class="brand-card__side">
-          {price_html}
-          <div class="brand-card__shops">
-            <a class="brand-card__shoplink" href="{href}">詳細を見る</a>
-            {shop_html}
-          </div>
+        <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="{href}">{name}</a></h3>
+        {spec_html}
+        {sub_html}
+        {note_html}
+        {price_html}
+        <div class="brand-card__links">
+          <a class="brand-card__shoplink" href="{href}">詳細を見る</a>
+          {shop_html}
         </div>
       </div>"""
 
