@@ -177,8 +177,10 @@ main { position:relative; z-index:1; }
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
 .brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
-.brand-card:hover { background:var(--paper); padding-left:2rem; }
+.brand-card:hover { background:var(--paper); }
 .brand-card:last-child { border-bottom:none; }
+.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
+.brand-card__name:hover { color:var(--accent); }
 .brand-card:target {
   background:var(--paper);
   border-left:4px solid var(--accent);
@@ -223,6 +225,18 @@ main { position:relative; z-index:1; }
   font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
   letter-spacing:.03em;
 }
+.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; white-space:nowrap; }
+.brand-card__actions { display:flex; flex-direction:column; align-items:flex-end; gap:.5rem; }
+.brand-card__detail { font-family:'Shippori Mincho', serif; font-size:.86rem; color:var(--ink-soft); text-decoration:none; }
+.brand-card__detail:hover { color:var(--accent); }
+.brand-card__buy {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.86rem;
+  letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent);
+  padding:.48rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
+}
+.brand-card__buy:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
+.brand-card__pr { font-size:.62rem; letter-spacing:.06em; opacity:.85; }
+@media (min-width:760px) { .brand-card__actions { flex-direction:row; align-items:center; } }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -475,46 +489,76 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <a class="brand-card" href="../brand/haccoba-0.html" id="b0">
+      <div class="brand-card" id="b0">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>はなうたホップス</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/haccoba-0.html">はなうたホップス</a></h3>
           <p class="brand-card__note">看板銘柄。「花酛」とクラフトビールのドライホッピングを融合</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">ホップ</span></div>
-        <div class="brand-card__price">¥2,420<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/haccoba-1.html" id="b1">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,420<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/haccoba-0.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2581%25AF%25E3%2581%25AA%25E3%2581%2586%25E3%2581%259F%25E3%2583%259B%25E3%2583%2583%25E3%2583%2597%25E3%2582%25B9%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b1">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>hanamoto bretta [kriek]</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/haccoba-1.html">hanamoto bretta [kriek]</a></h3>
           <p class="brand-card__note">「花酛」とベルギービール製法の融合</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">花酛</span> <span class="spec-pill">ベルギービール製法</span></div>
-        <div class="brand-card__price">¥2,640<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/haccoba-2.html" id="b2">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,640<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/haccoba-1.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2Fhanamoto%2520bretta%2520%255Bkriek%255D%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b2">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>zairai [森 forest]</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/haccoba-2.html">zairai [森 forest]</a></h3>
           <p class="brand-card__note">在来植物による地酒表現</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">地元在来植物</span></div>
-        <div class="brand-card__price">¥2,420<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/haccoba-3.html" id="b3">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,420<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/haccoba-2.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2Fzairai%2520%255B%25E6%25A3%25AE%2520forest%255D%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b3">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>kasu [sansho lemonade]</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/haccoba-3.html">kasu [sansho lemonade]</a></h3>
           <p class="brand-card__note">未利用資源によるアップサイクル</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">720ml</span> <span class="spec-pill">山椒</span> <span class="spec-pill">レモネード</span></div>
-        <div class="brand-card__price">¥2,420<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/haccoba-4.html" id="b4">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,420<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/haccoba-3.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2Fkasu%2520%255Bsansho%2520lemonade%255D%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b4">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>水を編む</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/haccoba-4.html">水を編む</a></h3>
           <p class="brand-card__note">ドブロク製法「花酛」の復刻版。日本パッケージデザイン大賞2025銀賞</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">公式非開示</span></div>
-        <div class="brand-card__price"><small>市場実勢</small></div>
-      </a>
+        <div class="brand-card__side">
+          
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/haccoba-4.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E6%25B0%25B4%25E3%2582%2592%25E7%25B7%25A8%25E3%2582%2580%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

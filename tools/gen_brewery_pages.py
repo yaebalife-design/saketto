@@ -21,6 +21,8 @@ from awards import AWARDS
 from tasting import TASTING
 from brewery_about import about_of, founder_of
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL
+from moshimo_link import rakuten_search
+from gen_sample_v2 import RAKUTEN_ENABLED
 
 # brand_data（一次ソース調査済み）を読み込み、製法特徴の抽出に使う
 _DETAILS = {}
@@ -223,8 +225,10 @@ main { position:relative; z-index:1; }
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
 .brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
-.brand-card:hover { background:var(--paper); padding-left:2rem; }
+.brand-card:hover { background:var(--paper); }
 .brand-card:last-child { border-bottom:none; }
+.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
+.brand-card__name:hover { color:var(--accent); }
 .brand-card:target {
   background:var(--paper);
   border-left:4px solid var(--accent);
@@ -269,6 +273,18 @@ main { position:relative; z-index:1; }
   font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
   letter-spacing:.03em;
 }
+.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; white-space:nowrap; }
+.brand-card__actions { display:flex; flex-direction:column; align-items:flex-end; gap:.5rem; }
+.brand-card__detail { font-family:'Shippori Mincho', serif; font-size:.86rem; color:var(--ink-soft); text-decoration:none; }
+.brand-card__detail:hover { color:var(--accent); }
+.brand-card__buy {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.86rem;
+  letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent);
+  padding:.48rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
+}
+.brand-card__buy:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
+.brand-card__pr { font-size:.62rem; letter-spacing:.06em; opacity:.85; }
+@media (min-width:760px) { .brand-card__actions { flex-direction:row; align-items:center; } }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -480,23 +496,31 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
         '<span class="spec-pill">公式非開示</span>'
 
     if brand.get("price") is not None:
-        price_html = f'<div class="brand-card__price">¥{brand["price"]:,}<small>参考 2026.05.30</small></div>'
+        price_html = f'<div class="brand-card__price">¥{brand["price"]:,}<small>参考</small></div>'
     else:
-        price_html = f'<div class="brand-card__price"><small>市場実勢</small></div>'
+        price_html = ''  # 価格非開示・店内提供等は「市場実勢」等の誤解を招く表示をしない
 
     note = brand.get("note", "")
     note_html = f'<p class="brand-card__note">{note}</p>' if note else ''
 
     href = f"../brand/{brewery_slug}-{idx}.html" if brewery_slug else "#"
+    buy_html = (f'<a class="brand-card__buy" href="{rakuten_search(brand["name"])}" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>'
+                if RAKUTEN_ENABLED else '')
     return f"""
-      <a class="brand-card" href="{href}" id="b{idx}">
+      <div class="brand-card" id="b{idx}">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>{brand['name']}</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="{href}">{brand['name']}</a></h3>
           {note_html}
         </div>
         <div class="brand-card__specs">{specs_html}</div>
-        {price_html}
-      </a>"""
+        <div class="brand-card__side">
+          {price_html}
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="{href}">詳細 →</a>
+            {buy_html}
+          </div>
+        </div>
+      </div>"""
 
 
 def render(brewery, index, prev_brewery, next_brewery):

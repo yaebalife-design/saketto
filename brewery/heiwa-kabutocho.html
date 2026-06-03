@@ -177,8 +177,10 @@ main { position:relative; z-index:1; }
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
 .brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
-.brand-card:hover { background:var(--paper); padding-left:2rem; }
+.brand-card:hover { background:var(--paper); }
 .brand-card:last-child { border-bottom:none; }
+.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
+.brand-card__name:hover { color:var(--accent); }
 .brand-card:target {
   background:var(--paper);
   border-left:4px solid var(--accent);
@@ -223,6 +225,18 @@ main { position:relative; z-index:1; }
   font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
   letter-spacing:.03em;
 }
+.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; white-space:nowrap; }
+.brand-card__actions { display:flex; flex-direction:column; align-items:flex-end; gap:.5rem; }
+.brand-card__detail { font-family:'Shippori Mincho', serif; font-size:.86rem; color:var(--ink-soft); text-decoration:none; }
+.brand-card__detail:hover { color:var(--accent); }
+.brand-card__buy {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.86rem;
+  letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent);
+  padding:.48rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
+}
+.brand-card__buy:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
+.brand-card__pr { font-size:.62rem; letter-spacing:.06em; opacity:.85; }
+@media (min-width:760px) { .brand-card__actions { flex-direction:row; align-items:center; } }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -475,46 +489,76 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <a class="brand-card" href="../brand/heiwa-kabutocho-0.html" id="b0">
+      <div class="brand-card" id="b0">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>平和どぶろく プレーン</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/heiwa-kabutocho-0.html">平和どぶろく プレーン</a></h3>
           <p class="brand-card__note">店内提供70ml/500円</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">70ml</span> <span class="spec-pill">米のみ</span></div>
-        <div class="brand-card__price">¥500<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/heiwa-kabutocho-1.html" id="b1">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥500<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/heiwa-kabutocho-0.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E5%25B9%25B3%25E5%2592%258C%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E3%2583%2597%25E3%2583%25AC%25E3%2583%25BC%25E3%2583%25B3%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b1">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>平和どぶろく 小豆</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/heiwa-kabutocho-1.html">平和どぶろく 小豆</a></h3>
           <p class="brand-card__note">看板副原料3種の一つ</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">小豆</span></div>
-        <div class="brand-card__price"><small>市場実勢</small></div>
-      </a>
-      <a class="brand-card" href="../brand/heiwa-kabutocho-2.html" id="b2">
+        <div class="brand-card__side">
+          
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/heiwa-kabutocho-1.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E5%25B9%25B3%25E5%2592%258C%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E5%25B0%258F%25E8%25B1%2586%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b2">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>平和どぶろく 黒豆</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/heiwa-kabutocho-2.html">平和どぶろく 黒豆</a></h3>
           <p class="brand-card__note">看板副原料3種の一つ</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">黒豆</span></div>
-        <div class="brand-card__price"><small>市場実勢</small></div>
-      </a>
-      <a class="brand-card" href="../brand/heiwa-kabutocho-3.html" id="b3">
+        <div class="brand-card__side">
+          
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/heiwa-kabutocho-2.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E5%25B9%25B3%25E5%2592%258C%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E9%25BB%2592%25E8%25B1%2586%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b3">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>平和どぶろく ホップ</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/heiwa-kabutocho-3.html">平和どぶろく ホップ</a></h3>
           <p class="brand-card__note">看板副原料3種の一つ</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">ホップ</span></div>
-        <div class="brand-card__price"><small>市場実勢</small></div>
-      </a>
-      <a class="brand-card" href="../brand/heiwa-kabutocho-4.html" id="b4">
+        <div class="brand-card__side">
+          
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/heiwa-kabutocho-3.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E5%25B9%25B3%25E5%2592%258C%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E3%2583%259B%25E3%2583%2583%25E3%2583%2597%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b4">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>本日のどぶろく（生姜など）</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/heiwa-kabutocho-4.html">本日のどぶろく（生姜など）</a></h3>
           <p class="brand-card__note">店内日替り。生姜等</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">70ml</span> <span class="spec-pill">季節副原料</span></div>
-        <div class="brand-card__price">¥550<small>参考 2026.05.30</small></div>
-      </a>
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥550<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/heiwa-kabutocho-4.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E6%259C%25AC%25E6%2597%25A5%25E3%2581%25AE%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%25EF%25BC%2588%25E7%2594%259F%25E5%25A7%259C%25E3%2581%25AA%25E3%2581%25A9%25EF%25BC%2589%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

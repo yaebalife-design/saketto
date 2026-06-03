@@ -177,8 +177,10 @@ main { position:relative; z-index:1; }
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
 .brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
-.brand-card:hover { background:var(--paper); padding-left:2rem; }
+.brand-card:hover { background:var(--paper); }
 .brand-card:last-child { border-bottom:none; }
+.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
+.brand-card__name:hover { color:var(--accent); }
 .brand-card:target {
   background:var(--paper);
   border-left:4px solid var(--accent);
@@ -223,6 +225,18 @@ main { position:relative; z-index:1; }
   font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
   letter-spacing:.03em;
 }
+.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; white-space:nowrap; }
+.brand-card__actions { display:flex; flex-direction:column; align-items:flex-end; gap:.5rem; }
+.brand-card__detail { font-family:'Shippori Mincho', serif; font-size:.86rem; color:var(--ink-soft); text-decoration:none; }
+.brand-card__detail:hover { color:var(--accent); }
+.brand-card__buy {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.86rem;
+  letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent);
+  padding:.48rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
+}
+.brand-card__buy:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
+.brand-card__pr { font-size:.62rem; letter-spacing:.06em; opacity:.85; }
+@media (min-width:760px) { .brand-card__actions { flex-direction:row; align-items:center; } }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -475,78 +489,132 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <a class="brand-card" href="../brand/nondo-0.html" id="b0">
+      <div class="brand-card" id="b0">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>権化 土の密℃</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/nondo-0.html">権化 土の密℃</a></h3>
           <p class="brand-card__note">水もと仕込み・木桶・150日超発酵。柑橘香と軽い甘み</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">525ml</span> <span class="spec-pill">米のみ（米糠活用）</span></div>
-        <div class="brand-card__price">¥4,950<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/nondo-1.html" id="b1">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥4,950<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/nondo-0.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E6%25A8%25A9%25E5%258C%2596%2520%25E5%259C%259F%25E3%2581%25AE%25E5%25AF%2586%25E2%2584%2583%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b1">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>権化 Rafters</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/nondo-1.html">権化 Rafters</a></h3>
           <p class="brand-card__note">古民家梁を再利用した搾り機。シャープな酸</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">525ml</span> <span class="spec-pill">米のみ（米糠活用）</span></div>
-        <div class="brand-card__price">¥4,950<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/nondo-2.html" id="b2">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥4,950<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/nondo-1.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E6%25A8%25A9%25E5%258C%2596%2520Rafters%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b2">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>権化 MARO 無濾過生原酒</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/nondo-2.html">権化 MARO 無濾過生原酒</a></h3>
           <p class="brand-card__note">水もと・木桶仕込み150日超の無濾過生原酒（公式525ml。720ml流通版もあり）</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 12%</span> <span class="spec-pill warm">525ml</span> <span class="spec-pill">米のみ（米糠活用）</span></div>
-        <div class="brand-card__price">¥4,950<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/nondo-3.html" id="b3">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥4,950<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/nondo-2.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E6%25A8%25A9%25E5%258C%2596%2520MARO%2520%25E7%2584%25A1%25E6%25BF%25BE%25E9%2581%258E%25E7%2594%259F%25E5%258E%259F%25E9%2585%2592%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b3">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>権化 MO CHUISLE</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/nondo-3.html">権化 MO CHUISLE</a></h3>
           <p class="brand-card__note">権化シリーズ。度数公式非開示</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">525ml</span> <span class="spec-pill">米のみ（米糠活用）</span></div>
-        <div class="brand-card__price">¥4,950<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/nondo-4.html" id="b4">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥4,950<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/nondo-3.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E6%25A8%25A9%25E5%258C%2596%2520MO%2520CHUISLE%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b4">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>権化生酛</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/nondo-4.html">権化生酛</a></h3>
           <p class="brand-card__note">生酛仕込み版</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">525ml</span> <span class="spec-pill">米のみ（米糠活用）</span></div>
-        <div class="brand-card__price">¥4,950<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/nondo-5.html" id="b5">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥4,950<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/nondo-4.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E6%25A8%25A9%25E5%258C%2596%25E7%2594%259F%25E9%2585%259B%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b5">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>とおの どぶろく 水もと無添加 生</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/nondo-5.html">とおの どぶろく 水もと無添加 生</a></h3>
           <p class="brand-card__note">水もと・無添加。要冷蔵</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
-        <div class="brand-card__price">¥2,750<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/nondo-6.html" id="b6">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,750<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/nondo-5.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2581%25A8%25E3%2581%258A%25E3%2581%25AE%2520%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E6%25B0%25B4%25E3%2582%2582%25E3%2581%25A8%25E7%2584%25A1%25E6%25B7%25BB%25E5%258A%25A0%2520%25E7%2594%259F%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b6">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>とおの どぶろく 生酛無添加 生</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/nondo-6.html">とおの どぶろく 生酛無添加 生</a></h3>
           <p class="brand-card__note">生酛・無添加</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
-        <div class="brand-card__price">¥2,970<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/nondo-7.html" id="b7">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,970<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/nondo-6.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2581%25A8%25E3%2581%258A%25E3%2581%25AE%2520%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E7%2594%259F%25E9%2585%259B%25E7%2584%25A1%25E6%25B7%25BB%25E5%258A%25A0%2520%25E7%2594%259F%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b7">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>とおの どぶろく 速醸 生</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/nondo-7.html">とおの どぶろく 速醸 生</a></h3>
           <p class="brand-card__note">速醸仕込み・生</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
-        <div class="brand-card__price">¥2,750<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/nondo-8.html" id="b8">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,750<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/nondo-7.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2581%25A8%25E3%2581%258A%25E3%2581%25AE%2520%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E9%2580%259F%25E9%2586%25B8%2520%25E7%2594%259F%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b8">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>とおの どぶろく 速醸火入れ</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/nondo-8.html">とおの どぶろく 速醸火入れ</a></h3>
           <p class="brand-card__note">速醸火入れ</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
-        <div class="brand-card__price">¥2,420<small>参考 2026.05.30</small></div>
-      </a>
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,420<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/nondo-8.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2581%25A8%25E3%2581%258A%25E3%2581%25AE%2520%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E9%2580%259F%25E9%2586%25B8%25E7%2581%25AB%25E5%2585%25A5%25E3%2582%258C%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

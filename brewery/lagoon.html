@@ -177,8 +177,10 @@ main { position:relative; z-index:1; }
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
 .brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
-.brand-card:hover { background:var(--paper); padding-left:2rem; }
+.brand-card:hover { background:var(--paper); }
 .brand-card:last-child { border-bottom:none; }
+.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
+.brand-card__name:hover { color:var(--accent); }
 .brand-card:target {
   background:var(--paper);
   border-left:4px solid var(--accent);
@@ -223,6 +225,18 @@ main { position:relative; z-index:1; }
   font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
   letter-spacing:.03em;
 }
+.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; white-space:nowrap; }
+.brand-card__actions { display:flex; flex-direction:column; align-items:flex-end; gap:.5rem; }
+.brand-card__detail { font-family:'Shippori Mincho', serif; font-size:.86rem; color:var(--ink-soft); text-decoration:none; }
+.brand-card__detail:hover { color:var(--accent); }
+.brand-card__buy {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.86rem;
+  letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent);
+  padding:.48rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
+}
+.brand-card__buy:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
+.brand-card__pr { font-size:.62rem; letter-spacing:.06em; opacity:.85; }
+@media (min-width:760px) { .brand-card__actions { flex-direction:row; align-items:center; } }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -475,62 +489,104 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <a class="brand-card" href="../brand/lagoon-0.html" id="b0">
+      <div class="brand-card" id="b0">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 HOP SAKE ほっぺ</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/lagoon-0.html">翔空 HOP SAKE ほっぺ</a></h3>
           <p class="brand-card__note">看板銘柄。柑橘香と爽快さを兼備</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 15%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">ホップ（シトラ）</span></div>
-        <div class="brand-card__price">¥2,420<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/lagoon-1.html" id="b1">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,420<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/lagoon-0.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E7%25BF%2594%25E7%25A9%25BA%2520HOP%2520SAKE%2520%25E3%2581%25BB%25E3%2581%25A3%25E3%2581%25BA%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b1">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 ニゴリのHOP SAKE ほっぺ</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/lagoon-1.html">翔空 ニゴリのHOP SAKE ほっぺ</a></h3>
           <p class="brand-card__note">ニゴリ仕様、約100本限定</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 15.5%</span> <span class="spec-pill warm">720ml</span> <span class="spec-pill">ホップ（シトラ）</span></div>
-        <div class="brand-card__price">¥2,420<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/lagoon-2.html" id="b2">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,420<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/lagoon-1.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E7%25BF%2594%25E7%25A9%25BA%2520%25E3%2583%258B%25E3%2582%25B4%25E3%2583%25AA%25E3%2581%25AEHOP%2520SAKE%2520%25E3%2581%25BB%25E3%2581%25A3%25E3%2581%25BA%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b2">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 酔いどれ洋梨2025-2026 槽搾り生</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/lagoon-2.html">翔空 酔いどれ洋梨2025-2026 槽搾り生</a></h3>
           <p class="brand-card__note">新潟ブランド洋梨×純米香</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 13%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">ル・レクチェ（洋梨）</span></div>
-        <div class="brand-card__price">¥2,420<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/lagoon-3.html" id="b3">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,420<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/lagoon-2.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E7%25BF%2594%25E7%25A9%25BA%2520%25E9%2585%2594%25E3%2581%2584%25E3%2581%25A9%25E3%2582%258C%25E6%25B4%258B%25E6%25A2%25A82025-2026%2520%25E6%25A7%25BD%25E6%2590%25BE%25E3%2582%258A%25E7%2594%259F%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b3">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 酔いどれメロン2025 ドブロク</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/lagoon-3.html">翔空 酔いどれメロン2025 ドブロク</a></h3>
           <p class="brand-card__note">千葉産高級メロン使用</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 12%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">マスクメロン</span></div>
-        <div class="brand-card__price">¥2,310<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/lagoon-4.html" id="b4">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,310<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/lagoon-3.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E7%25BF%2594%25E7%25A9%25BA%2520%25E9%2585%2594%25E3%2581%2584%25E3%2581%25A9%25E3%2582%258C%25E3%2583%25A1%25E3%2583%25AD%25E3%2583%25B32025%2520%25E3%2583%2589%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25AF%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b4">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 酔いどれイチゴ2025 槽絞り生</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/lagoon-4.html">翔空 酔いどれイチゴ2025 槽絞り生</a></h3>
           <p class="brand-card__note">新潟産イチゴ約200kg使用</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">越後姫（イチゴ）</span></div>
-        <div class="brand-card__price">¥2,310<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/lagoon-5.html" id="b5">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,310<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/lagoon-4.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E7%25BF%2594%25E7%25A9%25BA%2520%25E9%2585%2594%25E3%2581%2584%25E3%2581%25A9%25E3%2582%258C%25E3%2582%25A4%25E3%2583%2581%25E3%2582%25B42025%2520%25E6%25A7%25BD%25E7%25B5%259E%25E3%2582%258A%25E7%2594%259F%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b5">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 SAKEマルゲリータ Unpressed</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/lagoon-5.html">翔空 SAKEマルゲリータ Unpressed</a></h3>
           <p class="brand-card__note">ピザマルゲリータをイメージしたドブロク</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 14%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">トマト</span> <span class="spec-pill">バジル</span></div>
-        <div class="brand-card__price">¥1,980<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/lagoon-6.html" id="b6">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥1,980<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/lagoon-5.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E7%25BF%2594%25E7%25A9%25BA%2520SAKE%25E3%2583%259E%25E3%2583%25AB%25E3%2582%25B2%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25BF%2520Unpressed%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b6">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>翔空 自然栽培亀の尾どぶろく</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/lagoon-6.html">翔空 自然栽培亀の尾どぶろく</a></h3>
           <p class="brand-card__note">幻の米「亀ノ尾」100%使用、192本限定</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill accent">ABV 17%</span> <span class="spec-pill warm">500ml</span> <span class="spec-pill">米のみ</span></div>
-        <div class="brand-card__price">¥2,100<small>参考 2026.05.30</small></div>
-      </a>
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,100<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/lagoon-6.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E7%25BF%2594%25E7%25A9%25BA%2520%25E8%2587%25AA%25E7%2584%25B6%25E6%25A0%25BD%25E5%259F%25B9%25E4%25BA%2580%25E3%2581%25AE%25E5%25B0%25BE%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

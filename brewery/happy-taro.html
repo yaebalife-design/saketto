@@ -177,8 +177,10 @@ main { position:relative; z-index:1; }
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
 .brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
-.brand-card:hover { background:var(--paper); padding-left:2rem; }
+.brand-card:hover { background:var(--paper); }
 .brand-card:last-child { border-bottom:none; }
+.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
+.brand-card__name:hover { color:var(--accent); }
 .brand-card:target {
   background:var(--paper);
   border-left:4px solid var(--accent);
@@ -223,6 +225,18 @@ main { position:relative; z-index:1; }
   font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
   letter-spacing:.03em;
 }
+.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; white-space:nowrap; }
+.brand-card__actions { display:flex; flex-direction:column; align-items:flex-end; gap:.5rem; }
+.brand-card__detail { font-family:'Shippori Mincho', serif; font-size:.86rem; color:var(--ink-soft); text-decoration:none; }
+.brand-card__detail:hover { color:var(--accent); }
+.brand-card__buy {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.86rem;
+  letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent);
+  padding:.48rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
+}
+.brand-card__buy:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
+.brand-card__pr { font-size:.62rem; letter-spacing:.06em; opacity:.85; }
+@media (min-width:760px) { .brand-card__actions { flex-direction:row; align-items:center; } }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -475,62 +489,104 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <a class="brand-card" href="../brand/happy-taro-0.html" id="b0">
+      <div class="brand-card" id="b0">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>ハッピーどぶろく 穂の恵み</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/happy-taro-0.html">ハッピーどぶろく 穂の恵み</a></h3>
           <p class="brand-card__note">定番どぶろく</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">米のみ（穂の恵み米）</span></div>
-        <div class="brand-card__price">¥1,870<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/happy-taro-1.html" id="b1">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥1,870<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/happy-taro-0.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2583%258F%25E3%2583%2583%25E3%2583%2594%25E3%2583%25BC%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E7%25A9%2582%25E3%2581%25AE%25E6%2581%25B5%25E3%2581%25BF%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b1">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>ハッピーどぶろく 生もと 酵母無添加</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/happy-taro-1.html">ハッピーどぶろく 生もと 酵母無添加</a></h3>
           <p class="brand-card__note">生もと造り、酵母無添加</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">米のみ</span></div>
-        <div class="brand-card__price">¥2,310<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/happy-taro-2.html" id="b2">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,310<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/happy-taro-1.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2583%258F%25E3%2583%2583%25E3%2583%2594%25E3%2583%25BC%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E7%2594%259F%25E3%2582%2582%25E3%2581%25A8%2520%25E9%2585%25B5%25E6%25AF%258D%25E7%2584%25A1%25E6%25B7%25BB%25E5%258A%25A0%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b2">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>ハッピーどぶろく ホップ Huell Melon</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/happy-taro-2.html">ハッピーどぶろく ホップ Huell Melon</a></h3>
           
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">ホップ（Huell Melon）</span></div>
-        <div class="brand-card__price">¥2,310<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/happy-taro-3.html" id="b3">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,310<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/happy-taro-2.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2583%258F%25E3%2583%2583%25E3%2583%2594%25E3%2583%25BC%25E3%2581%25A9%25E3%2581%25B6%25E3%2582%258D%25E3%2581%258F%2520%25E3%2583%259B%25E3%2583%2583%25E3%2583%2597%2520Huell%2520Melon%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b3">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>something happy うきうきホップ</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/happy-taro-3.html">something happy うきうきホップ</a></h3>
           
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">ホップ</span></div>
-        <div class="brand-card__price">¥2,530<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/happy-taro-4.html" id="b4">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,530<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/happy-taro-3.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2Fsomething%2520happy%2520%25E3%2581%2586%25E3%2581%258D%25E3%2581%2586%25E3%2581%258D%25E3%2583%259B%25E3%2583%2583%25E3%2583%2597%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b4">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>something happy 菅浦の八朔</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/happy-taro-4.html">something happy 菅浦の八朔</a></h3>
           
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">八朔</span></div>
-        <div class="brand-card__price">¥2,970<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/happy-taro-5.html" id="b5">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,970<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/happy-taro-4.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2Fsomething%2520happy%2520%25E8%258F%2585%25E6%25B5%25A6%25E3%2581%25AE%25E5%2585%25AB%25E6%259C%2594%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b5">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>something happy 政所と共に</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/happy-taro-5.html">something happy 政所と共に</a></h3>
           
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">茶葉（政所茶）</span></div>
-        <div class="brand-card__price">¥2,530<small>参考 2026.05.30</small></div>
-      </a>
-      <a class="brand-card" href="../brand/happy-taro-6.html" id="b6">
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,530<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/happy-taro-5.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2Fsomething%2520happy%2520%25E6%2594%25BF%25E6%2589%2580%25E3%2581%25A8%25E5%2585%25B1%25E3%2581%25AB%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b6">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>something happy 音羽の黒文字</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/happy-taro-6.html">something happy 音羽の黒文字</a></h3>
           
         </div>
         <div class="brand-card__specs"><span class="spec-pill warm">480ml</span> <span class="spec-pill">黒文字</span></div>
-        <div class="brand-card__price">¥2,970<small>参考 2026.05.30</small></div>
-      </a>
+        <div class="brand-card__side">
+          <div class="brand-card__price">¥2,970<small>参考</small></div>
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/happy-taro-6.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2Fsomething%2520happy%2520%25E9%259F%25B3%25E7%25BE%25BD%25E3%2581%25AE%25E9%25BB%2592%25E6%2596%2587%25E5%25AD%2597%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

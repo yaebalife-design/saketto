@@ -177,8 +177,10 @@ main { position:relative; z-index:1; }
 /* 銘柄カード */
 .brands { display:flex; flex-direction:column; border:1px solid var(--line); }
 .brand-card { background:var(--bg); padding:1.5rem 1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; transition:background .4s, border-left-color .4s, padding-left .3s; border-bottom:1px solid var(--line); border-left:4px solid transparent; scroll-margin-top:60px; text-decoration:none; color:inherit; }
-.brand-card:hover { background:var(--paper); padding-left:2rem; }
+.brand-card:hover { background:var(--paper); }
 .brand-card:last-child { border-bottom:none; }
+.brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
+.brand-card__name:hover { color:var(--accent); }
 .brand-card:target {
   background:var(--paper);
   border-left:4px solid var(--accent);
@@ -223,6 +225,18 @@ main { position:relative; z-index:1; }
   font-size:.78rem; color:var(--ink-soft); margin-top:.2rem; font-weight:400;
   letter-spacing:.03em;
 }
+.brand-card__side { display:flex; flex-direction:column; align-items:flex-end; gap:.7rem; white-space:nowrap; }
+.brand-card__actions { display:flex; flex-direction:column; align-items:flex-end; gap:.5rem; }
+.brand-card__detail { font-family:'Shippori Mincho', serif; font-size:.86rem; color:var(--ink-soft); text-decoration:none; }
+.brand-card__detail:hover { color:var(--accent); }
+.brand-card__buy {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.86rem;
+  letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent);
+  padding:.48rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
+}
+.brand-card__buy:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
+.brand-card__pr { font-size:.62rem; letter-spacing:.06em; opacity:.85; }
+@media (min-width:760px) { .brand-card__actions { flex-direction:row; align-items:center; } }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -475,30 +489,48 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="brands">
-      <a class="brand-card" href="../brand/cultiva-0.html" id="b0">
+      <div class="brand-card" id="b0">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>Sankeinishiki NAGANO 2025BY</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/cultiva-0.html">Sankeinishiki NAGANO 2025BY</a></h3>
           <p class="brand-card__note">長野県産山恵錦で醸す品種別どぶろく。生酛・木桶仕込み</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">米のみ（山恵錦・長野県産）</span></div>
-        <div class="brand-card__price"><small>市場実勢</small></div>
-      </a>
-      <a class="brand-card" href="../brand/cultiva-1.html" id="b1">
+        <div class="brand-card__side">
+          
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/cultiva-0.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2FSankeinishiki%2520NAGANO%25202025BY%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b1">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>Hinohikari FUKUOKA 2025BY</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/cultiva-1.html">Hinohikari FUKUOKA 2025BY</a></h3>
           <p class="brand-card__note">福岡県産ヒノヒカリで醸す品種別どぶろく</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">米のみ（ヒノヒカリ・福岡県産）</span></div>
-        <div class="brand-card__price"><small>市場実勢</small></div>
-      </a>
-      <a class="brand-card" href="../brand/cultiva-2.html" id="b2">
+        <div class="brand-card__side">
+          
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/cultiva-1.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2FHinohikari%2520FUKUOKA%25202025BY%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-card" id="b2">
         <div class="brand-card__main">
-          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span>Yamadanishiki FUKUOKA 2025BY</h3>
+          <h3><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="../brand/cultiva-2.html">Yamadanishiki FUKUOKA 2025BY</a></h3>
           <p class="brand-card__note">福岡県産山田錦で醸す品種別どぶろく</p>
         </div>
         <div class="brand-card__specs"><span class="spec-pill">米のみ（山田錦・福岡県産）</span></div>
-        <div class="brand-card__price"><small>市場実勢</small></div>
-      </a>
+        <div class="brand-card__side">
+          
+          <div class="brand-card__actions">
+            <a class="brand-card__detail" href="../brand/cultiva-2.html">詳細 →</a>
+            <a class="brand-card__buy" href="https://af.moshimo.com/af/c/click?a_id=5607459&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2FYamadanishiki%2520FUKUOKA%25202025BY%2F" target="_blank" rel="noopener sponsored">楽天で探す →<span class="brand-card__pr">PR</span></a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
