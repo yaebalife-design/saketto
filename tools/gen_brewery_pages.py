@@ -21,8 +21,8 @@ from awards import AWARDS
 from tasting import TASTING
 from brewery_about import about_of, founder_of
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL
-from moshimo_link import rakuten_search
-from gen_sample_v2 import RAKUTEN_ENABLED
+from moshimo_link import rakuten_search, amazon_search
+from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
 
 # brand_data（一次ソース調査済み）を読み込み、製法特徴の抽出に使う
 _DETAILS = {}
@@ -287,6 +287,8 @@ main { position:relative; z-index:1; }
 .brand-card__shoplink:hover { color:var(--accent); }
 .brand-card__shoplink--buy { color:var(--accent); font-weight:500; margin-left:auto; }
 .brand-card__shoplink--buy:hover { color:var(--accent-deep); }
+.brand-card__shoplink--amazon { color:var(--accent); font-weight:500; }
+.brand-card__shoplink--amazon:hover { color:var(--accent-deep); }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -516,8 +518,11 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
     else:
         price_html = '<div class="brand-card__price brand-card__price--na">価格は各リンク先でご確認ください</div>'
 
-    shop_html = (f'<a class="brand-card__shoplink brand-card__shoplink--buy" href="{rakuten_search(name)}" target="_blank" rel="noopener sponsored">楽天市場で見る</a>'
-                 if RAKUTEN_ENABLED else '')
+    shop_html = ''
+    if RAKUTEN_ENABLED:
+        shop_html += f'<a class="brand-card__shoplink brand-card__shoplink--buy" href="{rakuten_search(name)}" target="_blank" rel="noopener sponsored">楽天市場で見る</a>'
+    if AMAZON_ENABLED:
+        shop_html += f'<a class="brand-card__shoplink brand-card__shoplink--amazon" href="{amazon_search(name)}" target="_blank" rel="noopener sponsored">Amazonで見る</a>'
     return f"""
       <div class="brand-card" id="b{idx}">
         <div class="brand-card__no">{idx + 1:02d}</div>

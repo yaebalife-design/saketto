@@ -22,8 +22,8 @@ from gen_axes_pages import CSS as BASE_CSS  # 世界観CSSを流用
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL
 from breweries_brands import BRANDS          # おすすめ記事：スペックを一次ソースDBから直接引く
 from breweries_master import by_slug
-from moshimo_link import rakuten_search
-from gen_sample_v2 import RAKUTEN_ENABLED
+from moshimo_link import rakuten_search, amazon_search
+from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
 OUT_DIR = REPO_ROOT / "guide"
@@ -145,6 +145,8 @@ EXTRA_CSS = """
 .pick__detail:hover { color:var(--accent); border-bottom-color:var(--accent); }
 .pick__btn { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.9rem; letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent); padding:.5rem 1.1rem; text-decoration:none; }
 .pick__btn:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
+.pick__btn--amazon { color:var(--accent); background:transparent; border:1px solid var(--accent); margin-left:.5rem; }
+.pick__btn--amazon:hover { color:var(--paper); background:var(--accent); }
 .pick__pr { font-size:.72rem; color:var(--ink-mute); letter-spacing:.04em; }
 @media (max-width:600px){ .pick { grid-template-columns:1fr; gap:.2rem; } .pick__no { font-size:1.4rem; } }
 
@@ -794,8 +796,13 @@ def build_osusume():
             cards += f'    <p class="cat-lead" style="max-width:820px;">{GROUP_INTROS[group]}</p>\n'
         kura = by_slug(slug)
         b = BRANDS[slug][idx]
-        btn = (f'<a class="pick__btn" href="{rakuten_search(b["name"])}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>'
-               '<span class="pick__pr">PR</span>') if RAKUTEN_ENABLED else ""
+        btn = ""
+        if RAKUTEN_ENABLED:
+            btn += f'<a class="pick__btn" href="{rakuten_search(b["name"])}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>'
+        if AMAZON_ENABLED:
+            btn += f'<a class="pick__btn pick__btn--amazon" href="{amazon_search(b["name"])}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>'
+        if btn:
+            btn += '<span class="pick__pr">PR</span>'
         cards += f"""    <div class="pick">
       <div class="pick__no">{i:02d}</div>
       <div class="pick__body">
@@ -1139,8 +1146,13 @@ def build_gift():
             cards += f'    <p class="cat-lead" style="max-width:820px;">{GIFT_SCENE_INTROS[scene]}</p>\n'
         kura = by_slug(slug)
         b = BRANDS[slug][idx]
-        btn = (f'<a class="pick__btn" href="{rakuten_search(b["name"])}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>'
-               '<span class="pick__pr">PR</span>') if RAKUTEN_ENABLED else ""
+        btn = ""
+        if RAKUTEN_ENABLED:
+            btn += f'<a class="pick__btn" href="{rakuten_search(b["name"])}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>'
+        if AMAZON_ENABLED:
+            btn += f'<a class="pick__btn pick__btn--amazon" href="{amazon_search(b["name"])}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>'
+        if btn:
+            btn += '<span class="pick__pr">PR</span>'
         cards += f"""    <div class="pick">
       <div class="pick__no">{i:02d}</div>
       <div class="pick__body">
