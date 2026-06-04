@@ -2,8 +2,8 @@
 """saketto / もしもアフィリエイト リンク生成
 
 - 楽天: **saketto専用ID**（2026/05/31 社長がsaketto媒体で取得・提携済）。検索URLのみ使用（商品個別URLは規約違反リスク）
-- Amazon: ⚠️ 下記は **GIN-DBの値が残っている**。saketto媒体でのAmazon提携はまだ未取得。
-  → AMAZON_ENABLED=False（gen_sample_v2.py）で非表示中。承認・リンク取得後にここをsaketto専用値へ差し替えてからONにすること。
+- Amazon: **saketto専用ID**（2026/06/05 社長がsaketto媒体でAmazon提携承認・ID取得を確認）。検索URLのみ使用（楽天と同方針）。
+  → gen_sample_v2.py の AMAZON_ENABLED=True で表示。
 """
 import urllib.parse
 
@@ -15,8 +15,8 @@ RAKUTEN_PID = "54"
 RAKUTEN_PC_ID = "54"
 RAKUTEN_PL_ID = "616"
 
-# Amazonプロモ（⚠️未取得＝GIN-DBの値。承認後に差し替えるまでONにしない）
-AMAZON_AID = "5538622"
+# Amazonプロモ（saketto専用 / a_id=5609637 ／ 2026/06/05 提携承認確認）
+AMAZON_AID = "5609637"
 AMAZON_PID = "170"
 AMAZON_PC_ID = "185"
 AMAZON_PL_ID = "4062"
