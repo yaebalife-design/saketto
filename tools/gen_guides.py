@@ -22,7 +22,7 @@ from gen_axes_pages import CSS as BASE_CSS  # 世界観CSSを流用
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL
 from breweries_brands import BRANDS          # おすすめ記事：スペックを一次ソースDBから直接引く
 from breweries_master import by_slug
-from moshimo_link import rakuten_search, amazon_search
+from moshimo_link import resolve_rakuten, resolve_amazon
 from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
@@ -797,10 +797,12 @@ def build_osusume():
         kura = by_slug(slug)
         b = BRANDS[slug][idx]
         btn = ""
-        if RAKUTEN_ENABLED:
-            btn += f'<a class="pick__btn" href="{rakuten_search(b["name"])}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>'
-        if AMAZON_ENABLED:
-            btn += f'<a class="pick__btn pick__btn--amazon" href="{amazon_search(b["name"])}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>'
+        _rk = resolve_rakuten(slug, idx, b["name"]) if RAKUTEN_ENABLED else None
+        _az = resolve_amazon(slug, idx, b["name"]) if AMAZON_ENABLED else None
+        if _rk:
+            btn += f'<a class="pick__btn" href="{_rk}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>'
+        if _az:
+            btn += f'<a class="pick__btn pick__btn--amazon" href="{_az}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>'
         if btn:
             btn += '<span class="pick__pr">PR</span>'
         cards += f"""    <div class="pick">
@@ -1147,10 +1149,12 @@ def build_gift():
         kura = by_slug(slug)
         b = BRANDS[slug][idx]
         btn = ""
-        if RAKUTEN_ENABLED:
-            btn += f'<a class="pick__btn" href="{rakuten_search(b["name"])}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>'
-        if AMAZON_ENABLED:
-            btn += f'<a class="pick__btn pick__btn--amazon" href="{amazon_search(b["name"])}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>'
+        _rk = resolve_rakuten(slug, idx, b["name"]) if RAKUTEN_ENABLED else None
+        _az = resolve_amazon(slug, idx, b["name"]) if AMAZON_ENABLED else None
+        if _rk:
+            btn += f'<a class="pick__btn" href="{_rk}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>'
+        if _az:
+            btn += f'<a class="pick__btn pick__btn--amazon" href="{_az}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>'
         if btn:
             btn += '<span class="pick__pr">PR</span>'
         cards += f"""    <div class="pick">

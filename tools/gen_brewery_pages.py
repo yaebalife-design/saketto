@@ -21,7 +21,7 @@ from awards import AWARDS
 from tasting import TASTING
 from brewery_about import about_of, founder_of
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL
-from moshimo_link import rakuten_search, amazon_search
+from moshimo_link import resolve_rakuten, resolve_amazon
 from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
 
 # brand_data（一次ソース調査済み）を読み込み、製法特徴の抽出に使う
@@ -518,11 +518,18 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
     else:
         price_html = '<div class="brand-card__price brand-card__price--na">価格は各リンク先でご確認ください</div>'
 
+    # 実購入できる銘柄だけボタンを出す（買えない酒は非表示）。先頭リンクを右寄せ(--buy)にする。
+    _shop = []
+    rk = resolve_rakuten(brewery_slug, idx, name) if RAKUTEN_ENABLED else None
+    az = resolve_amazon(brewery_slug, idx, name) if AMAZON_ENABLED else None
+    if rk:
+        _shop.append(("楽天市場で見る", rk))
+    if az:
+        _shop.append(("Amazonで見る", az))
     shop_html = ''
-    if RAKUTEN_ENABLED:
-        shop_html += f'<a class="brand-card__shoplink brand-card__shoplink--buy" href="{rakuten_search(name)}" target="_blank" rel="noopener sponsored">楽天市場で見る</a>'
-    if AMAZON_ENABLED:
-        shop_html += f'<a class="brand-card__shoplink brand-card__shoplink--amazon" href="{amazon_search(name)}" target="_blank" rel="noopener sponsored">Amazonで見る</a>'
+    for _i, (_label, _url) in enumerate(_shop):
+        _cls = "brand-card__shoplink--buy" if _i == 0 else "brand-card__shoplink--amazon"
+        shop_html += f'<a class="brand-card__shoplink {_cls}" href="{_url}" target="_blank" rel="noopener sponsored">{_label}</a>'
     return f"""
       <div class="brand-card" id="b{idx}">
         <div class="brand-card__no">{idx + 1:02d}</div>

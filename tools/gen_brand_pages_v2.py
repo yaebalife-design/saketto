@@ -23,7 +23,7 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug, BREWERIES
 from breweries_brands import BRANDS
-from moshimo_link import rakuten_search, amazon_search
+from moshimo_link import resolve_rakuten, resolve_amazon
 from gen_sample_v2 import CSS, gen_scale4_svg, gen_radar6_svg, RAKUTEN_ENABLED, AMAZON_ENABLED
 from story_overrides import story_override
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL
@@ -189,8 +189,8 @@ def build_html(brand, detail, brewery, idx):
 
     scale4, radar6, tags = derive_flavor(d, b)
 
-    rakuten_url = rakuten_search(name)
-    amazon_url = amazon_search(name)
+    rakuten_url = resolve_rakuten(slug, idx, name)  # 実購入できない銘柄はNone（非表示）
+    amazon_url = resolve_amazon(slug, idx, name)
 
     # ── HERO タグ（香り・味の印象）──
     flavor_tags_html = ""
@@ -352,9 +352,9 @@ def build_html(brand, detail, brewery, idx):
 
     # ── KURA & PURCHASE ──（提携済みのボタンのみ表示。無ければ「準備中」）
     _btns = []
-    if RAKUTEN_ENABLED:
+    if RAKUTEN_ENABLED and rakuten_url:
         _btns.append(f'<a class="purchase-card__btn purchase-card__btn--rakuten" href="{rakuten_url}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>')
-    if AMAZON_ENABLED:
+    if AMAZON_ENABLED and amazon_url:
         _btns.append(f'<a class="purchase-card__btn purchase-card__btn--amazon" href="{amazon_url}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>')
     if _btns:
         purchase_inner = ('<div class="purchase-card__btns">' + "".join(_btns) + '</div>'

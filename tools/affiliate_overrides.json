@@ -1,0 +1,1502 @@
+{
+ "lagoon:0": {
+  "name": "翔空 HOP SAKE ほっぺ",
+  "amazon": {
+   "show": true,
+   "query": "翔空 HOP SAKE ほっぺ",
+   "product_url": "https://www.amazon.co.jp/dp/B0DNH5PBMK"
+  },
+  "rakuten": {
+   "show": true,
+   "query": "翔空 HOP SAKE ほっぺ"
+  }
+ },
+ "lagoon:1": {
+  "name": "翔空 ニゴリのHOP SAKE ほっぺ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "lagoon:2": {
+  "name": "翔空 酔いどれ洋梨2025-2026 槽搾り生",
+  "amazon": {
+   "show": true,
+   "query": "翔空 酔いどれ洋梨",
+   "product_url": "https://www.amazon.co.jp/dp/B0CSJTDVHB"
+  },
+  "rakuten": {
+   "show": true,
+   "query": "翔空 酔いどれ洋梨"
+  }
+ },
+ "lagoon:3": {
+  "name": "翔空 酔いどれメロン2025 ドブロク",
+  "amazon": {
+   "show": true,
+   "query": "翔空 酔いどれメロン",
+   "product_url": "https://www.amazon.co.jp/dp/B0CGH1SMWD"
+  },
+  "rakuten": {
+   "show": true,
+   "query": "翔空 酔いどれメロン"
+  }
+ },
+ "lagoon:4": {
+  "name": "翔空 酔いどれイチゴ2025 槽絞り生",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "翔空 酔いどれイチゴ"
+  }
+ },
+ "lagoon:5": {
+  "name": "翔空 SAKEマルゲリータ Unpressed",
+  "amazon": {
+   "show": true,
+   "query": "翔空 SAKEマルゲリータ",
+   "product_url": "https://www.amazon.co.jp/dp/B0BQ22R13X"
+  },
+  "rakuten": {
+   "show": true,
+   "query": "翔空 SAKEマルゲリータ"
+  }
+ },
+ "lagoon:6": {
+  "name": "翔空 自然栽培亀の尾どぶろく",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "librom:0": {
+  "name": "LIBROMモスコミュール",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "librom:1": {
+  "name": "博多美人",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "librom:2": {
+  "name": "TOMATO",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "librom:3": {
+  "name": "あまおうのおさけ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "librom:4": {
+  "name": "FREROM Hallertau Blanc",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "librom:5": {
+  "name": "サワーコーラ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "adachi-noujo:0": {
+  "name": "KOYOI ～la première année～",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "KOYOI ラ・プレミア・アネー"
+  }
+ },
+ "adachi-noujo:1": {
+  "name": "KOYOI La deuxième",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "fermenteria:0": {
+  "name": "サケベイビー オリジナル",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "fermenteria:1": {
+  "name": "サケベイビー シーズナル",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "fermenteria:2": {
+  "name": "サケベイビー エクスペリメンタル",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "fermenteria:3": {
+  "name": "カボセット ショコラ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiwa-namba:0": {
+  "name": "どぶろく プレーン",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiwa-namba:1": {
+  "name": "どぶろく 小豆",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiwa-namba:2": {
+  "name": "どぶろく 黒豆",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiwa-namba:3": {
+  "name": "どぶろく ホップ",
+  "amazon": {
+   "show": true,
+   "query": "平和どぶろく 参ノ濁",
+   "product_url": "https://www.amazon.co.jp/dp/B0C24147ZC"
+  },
+  "rakuten": {
+   "show": true,
+   "query": "平和どぶろく 参ノ濁"
+  }
+ },
+ "heiwa-namba:4": {
+  "name": "どぶろく 白麹",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiwa-namba:5": {
+  "name": "どぶろく 桜（季節限定）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiwa-namba:6": {
+  "name": "どぶろく 抹茶（季節限定）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "tokyo-station:0": {
+  "name": "東京駅 どぶろく",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "tokyo-station:1": {
+  "name": "季節のフルーツどぶろく マンゴー",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "tokyo-station:2": {
+  "name": "季節のフルーツどぶろく リンゴ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "tokyo-station:3": {
+  "name": "季節のフルーツどぶろく ぶどう",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "tokyo-station:4": {
+  "name": "季節のフルーツどぶろく 桃",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "tokyo-station:5": {
+  "name": "季節のフルーツどぶろく パイナップル",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "tokyo-station:6": {
+  "name": "季節のフルーツどぶろく みかん",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "tokyo-station:7": {
+  "name": "季節のフルーツどぶろく ハニーレモン",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "iyasaka:0": {
+  "name": "ITTEKI（一擲）十割麹酒 Vol.0-1",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "sakenova:0": {
+  "name": "Brew Note 001 HONEY",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "sakenova:1": {
+  "name": "Brew Note 002 APPLE & MIKAN",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "sakenova:2": {
+  "name": "Brew Note 006 Strawberry",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "linne:0": {
+  "name": "800 大麦",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "linne:1": {
+  "name": "800 蕎麦",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "linne:2": {
+  "name": "800 米",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "amanosato:0": {
+  "name": "在る 緒奏（しょそう）720ml",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "天郷醸造所 在る宵 緒奏"
+  }
+ },
+ "amanosato:1": {
+  "name": "在る 小暖（こはる）500ml",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "amanosato:2": {
+  "name": "在る 寒夜（かんや）500ml",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "nomu:0": {
+  "name": "シシカム",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "nomu:1": {
+  "name": "OFFZAKE（ノンアル甘酒）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "nomu:2": {
+  "name": "NOMU（クラフトサケ）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "nomu:3": {
+  "name": "TABERU（食べる酒）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "salmon-brewery:0": {
+  "name": "生酛純米酒 鮭（第1弾）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:0": {
+  "name": "芳扇 雲 1st",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:1": {
+  "name": "芳扇 紫雲",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:2": {
+  "name": "芳扇 吟雲",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:3": {
+  "name": "芳扇 桜雲",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:4": {
+  "name": "芳扇 雷雲",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:5": {
+  "name": "芳扇 波 1st",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:6": {
+  "name": "芳扇 友 内田米レイホウ 菩提酛仕込",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:7": {
+  "name": "芳扇 友 内田米美山錦",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:8": {
+  "name": "芳扇 友 目黒米雄町",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:9": {
+  "name": "芳扇 波 内田米レイホウ 菩提酛仕込",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:10": {
+  "name": "芳扇 波 内田米美山錦",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:11": {
+  "name": "芳扇 波 目黒米雄町",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "dejima-hosendo:12": {
+  "name": "芳扇 波 ピンクラベル",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "cultiva:0": {
+  "name": "Sankeinishiki NAGANO 2025BY",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "cultiva:1": {
+  "name": "Hinohikari FUKUOKA 2025BY",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "cultiva:2": {
+  "name": "Yamadanishiki FUKUOKA 2025BY",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "ine-to-agave:0": {
+  "name": "稲とアガベ CRAFT series",
+  "amazon": {
+   "show": true,
+   "query": "稲とアガベ CRAFT series",
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とアガベ CRAFT series"
+  }
+ },
+ "ine-to-agave:1": {
+  "name": "花風（ぐるりこ®）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とアガベ 花風"
+  }
+ },
+ "ine-to-agave:2": {
+  "name": "稲とジャスミン",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "ine-to-agave:3": {
+  "name": "稲とハチミツ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とハチミツ"
+  }
+ },
+ "ine-to-agave:4": {
+  "name": "稲とリンゴ SPECIAL EDITION",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "ine-to-agave:5": {
+  "name": "稲とブドウ SPECIAL EDITION",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "haccoba:0": {
+  "name": "はなうたホップス",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "haccoba はなうたホップス"
+  }
+ },
+ "haccoba:1": {
+  "name": "hanamoto bretta [kriek]",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "haccoba hanamoto bretta"
+  }
+ },
+ "haccoba:2": {
+  "name": "zairai [森 forest]",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "haccoba zairai forest"
+  }
+ },
+ "haccoba:3": {
+  "name": "kasu [sansho lemonade]",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "haccoba kasu sansho lemonade"
+  }
+ },
+ "haccoba:4": {
+  "name": "水を編む",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "haccoba 水を編む"
+  }
+ },
+ "konohanano:0": {
+  "name": "ハナグモリ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "ハナグモリ 濁酒"
+  }
+ },
+ "konohanano:1": {
+  "name": "ハナグモリ THE酸",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "ハナグモリ THE酸"
+  }
+ },
+ "konohanano:2": {
+  "name": "ハナグモリ 焼酎用白麹仕様",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "happy-taro:0": {
+  "name": "ハッピーどぶろく 穂の恵み",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "happy-taro:1": {
+  "name": "ハッピーどぶろく 生もと 酵母無添加",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "ハッピーどぶろく 生もと"
+  }
+ },
+ "happy-taro:2": {
+  "name": "ハッピーどぶろく ホップ Huell Melon",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "happy-taro:3": {
+  "name": "something happy うきうきホップ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "something happy うきうきホップ"
+  }
+ },
+ "happy-taro:4": {
+  "name": "something happy 菅浦の八朔",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "happy-taro:5": {
+  "name": "something happy 政所と共に",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "happy-taro:6": {
+  "name": "something happy 音羽の黒文字",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiroku:0": {
+  "name": "Re:vive 久遠 misty おりがらみ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "平六醸造 Re:vive 久遠 misty"
+  }
+ },
+ "heiroku:1": {
+  "name": "Re:vive 刹那",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "平六醸造 Re:vive 刹那"
+  }
+ },
+ "heiroku:2": {
+  "name": "Re:vive Origin アカツキ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "平六醸造 Re:vive Origin アカツキ"
+  }
+ },
+ "heiroku:3": {
+  "name": "layer 洋ナシ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "平六醸造 layer 洋ナシ"
+  }
+ },
+ "heiroku:4": {
+  "name": "layer ぶどう",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "平六醸造 layer ぶどう"
+  }
+ },
+ "heiroku:5": {
+  "name": "layer りんご",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "pukupuku:0": {
+  "name": "#plot 酵母無添加 ホップサケ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "pukupuku:1": {
+  "name": "VaVaVa Spring 2026 DDH Doburoku",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "pukupuku:2": {
+  "name": "KiKiKi Spring 2026 Hopped Sour",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "pukupuku:3": {
+  "name": "#wildpath 水もとホップどぶろく",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "pukupuku:4": {
+  "name": "#ODAKA 蔵付酵母 木桶どぶろく",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "pukupuku:5": {
+  "name": "木桶発酵 全麹酒 雫取り",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "pukupuku:6": {
+  "name": "アマーロどぶろく feat.伊勢屋酒造",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "nondo:0": {
+  "name": "権化 土の密℃",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "権化 土の密℃"
+  }
+ },
+ "nondo:1": {
+  "name": "権化 Rafters",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "権化 Rafters"
+  }
+ },
+ "nondo:2": {
+  "name": "権化 MARO 無濾過生原酒",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "権化 MARO"
+  }
+ },
+ "nondo:3": {
+  "name": "権化 MO CHUISLE",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "権化 MO CHUISLE"
+  }
+ },
+ "nondo:4": {
+  "name": "権化生酛",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "どぶろく生酛"
+  }
+ },
+ "nondo:5": {
+  "name": "とおの どぶろく 水もと無添加 生",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "とおの どぶろく 水もと"
+  }
+ },
+ "nondo:6": {
+  "name": "とおの どぶろく 生酛無添加 生",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "とおの どぶろく 生酛"
+  }
+ },
+ "nondo:7": {
+  "name": "とおの どぶろく 速醸 生",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "とおの どぶろく 速醸"
+  }
+ },
+ "nondo:8": {
+  "name": "とおの どぶろく 速醸火入れ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "とおの どぶろく 速醸火入れ"
+  }
+ },
+ "yamane:0": {
+  "name": "やまねのみのり（茶Ver.）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "yamane:1": {
+  "name": "やまねのみのり（蜂蜜Ver.）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "yamane:2": {
+  "name": "やまねのみのり（発芽玄米Ver.）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiwa-kabutocho:0": {
+  "name": "平和どぶろく プレーン",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiwa-kabutocho:1": {
+  "name": "平和どぶろく 小豆",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiwa-kabutocho:2": {
+  "name": "平和どぶろく 黒豆",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "heiwa-kabutocho:3": {
+  "name": "平和どぶろく ホップ",
+  "amazon": {
+   "show": true,
+   "query": "平和どぶろく 参ノ濁",
+   "product_url": "https://www.amazon.co.jp/dp/B0C24147ZC"
+  },
+  "rakuten": {
+   "show": true,
+   "query": "平和どぶろく 参ノ濁"
+  }
+ },
+ "heiwa-kabutocho:4": {
+  "name": "本日のどぶろく（生姜など）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "hakutsuru-sakecraft:0": {
+  "name": "HAKUTSURU SAKE CRAFT No.1",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "hakutsuru-sakecraft:1": {
+  "name": "HAKUTSURU SAKE CRAFT No.2",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "hakutsuru-sakecraft:2": {
+  "name": "HAKUTSURU SAKE CRAFT No.3",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "hakutsuru-sakecraft:3": {
+  "name": "HAKUTSURU SAKE CRAFT No.4",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "hakutsuru-sakecraft:4": {
+  "name": "HAKUTSURU SAKE CRAFT No.5",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "hakutsuru-sakecraft:5": {
+  "name": "HAKUTSURU SAKE CRAFT No.6",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "hakutsuru-sakecraft:6": {
+  "name": "HAKUTSURU SAKE CRAFT No.7",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "hakutsuru-sakecraft:7": {
+  "name": "HAKUTSURU SAKE CRAFT No.15",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "hakutsuru-sakecraft:8": {
+  "name": "HAKUTSURU SAKE CRAFT THE PREMIUM 2026",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "白鶴 SAKE CRAFT THE PREMIUM"
+  }
+ }
+}
