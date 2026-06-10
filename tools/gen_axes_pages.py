@@ -891,7 +891,7 @@ def gen_awards():
     <svg class="icc__emblem" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-label="ICC SAKE AWARD">
       <circle cx="110" cy="110" r="92" fill="none" stroke="#B33A2A" stroke-width="2.5"/>
       <circle cx="110" cy="110" r="83" fill="none" stroke="#B33A2A" stroke-width="1"/>
-      <text x="110" y="62" text-anchor="middle" font-size="14" letter-spacing="4" fill="#B33A2A">★ ★ ★</text>
+      <g fill="#B33A2A"><path d="M88 51l5 7-5 7-5-7z"/><path d="M110 49l5.5 8-5.5 8-5.5-8z"/><path d="M132 51l5 7-5 7-5-7z"/></g>
       <text x="110" y="120" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="700" font-size="58" letter-spacing="4" fill="#E8917B">ICC</text>
       <line x1="68" y1="134" x2="152" y2="134" stroke="#B33A2A" stroke-width="0.8" opacity="0.55"/>
       <text x="110" y="156" text-anchor="middle" font-family="'Zen Kaku Gothic Antique', sans-serif" font-weight="700" font-size="16" letter-spacing="6" fill="#D9694F">SAKE AWARD</text>

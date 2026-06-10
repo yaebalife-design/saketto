@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>ページが見つかりません ｜ saketto</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+Antique:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root { --paper:#FAF6ED; --ink:#16100E; --ink-mute:#6B6358; --accent:#A8351F; --accent-deep:#862719; --line:#C0B69E; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:var(--paper); color:var(--ink);
+  font-family:'Shippori Mincho', serif;
+  min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:2rem; text-align:center;
+}
+.code {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:clamp(4.5rem, 14vw, 8rem); font-weight:400;
+  color:var(--accent); line-height:1; letter-spacing:.06em;
+}
+.rule { width:64px; height:1px; background:var(--line); margin:1.8rem auto; }
+h1 { font-size:1.15rem; font-weight:600; letter-spacing:.14em; margin-bottom:.9rem; }
+p { font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.92rem; color:var(--ink-mute); line-height:2; letter-spacing:.04em; }
+.actions { margin-top:2.4rem; display:flex; gap:1.6rem; flex-wrap:wrap; justify-content:center; }
+.actions a {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.9rem; letter-spacing:.08em;
+  color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent);
+  padding-bottom:2px; transition:color .25s, border-color .25s;
+}
+.actions a:hover { color:var(--accent-deep); border-color:var(--accent-deep); }
+.brand { margin-top:4rem; font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.78rem; letter-spacing:.3em; color:var(--ink-mute); }
+</style>
+</head>
+<body>
+  <div class="code">404</div>
+  <div class="rule"></div>
+  <h1>ページが見つかりません</h1>
+  <p>お探しのページは移動したか、存在しないようです。<br>次の一本との出会いは、トップページからどうぞ。</p>
+  <div class="actions">
+    <a href="/">トップページへ</a>
+    <a href="/genre/">ジャンルから探す</a>
+    <a href="/guide/">読みものを見る</a>
+  </div>
+  <div class="brand">SAKETTO</div>
+</body>
+</html>

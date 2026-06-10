@@ -156,7 +156,7 @@ BRANDS = {
          "sub_ingredients": ["米のみ（全麹）"], "price": 11000,
          "note": "木桶仕込みの全麹酒、ハイエンド"},
         {"name": "アマーロどぶろく feat.伊勢屋酒造", "abv": None, "volume_ml": 460,
-         "sub_ingredients": ["ハーブ", "ボタニカル"], "price": 2750,
+         "sub_ingredients": ["ハーブ（アマーロ粕由来）"], "price": 2750,
          "note": "他蔵コラボ"},
     ],
 

@@ -398,12 +398,15 @@ def build_html(brand, detail, brewery, idx):
     <p class="hero__tagline">{esc(b.get('note',''))}</p>{flavor_tags_html}
   </section>"""
 
-    # ── meta description（note優先、空なら蔵・銘柄・副原料から生成してSEOの空欄を防ぐ）──
+    # ── meta description（蔵・銘柄・note・副原料を常に合成。noteだけだと10字前後になりCTRを落とすため）──
     _subs = [s for s in (b.get('sub_ingredients') or []) if s and s != "米のみ"]
     _sub_txt = ("副原料に" + "・".join(_subs) + "を使った") if _subs else "米と米麹で醸す"
-    meta_desc = (esc(b.get('note', '')).strip()
-                 or f"{brewery['name']}（{brewery['prefecture']}）のクラフトサケ「{name}」。{_sub_txt}、米の新ジャンルの一本。saketto（クラフトサケの図鑑）の銘柄ページ。")
-    meta_desc = meta_desc[:120]
+    _note = esc(b.get('note', '')).strip()
+    if _note and not _note.endswith("。"):
+        _note += "。"
+    meta_desc = (f"{brewery['name']}（{brewery['prefecture']}）のクラフトサケ「{name}」。"
+                 f"{_note}{_sub_txt}一本。味わい・参考価格・購入リンクをsaketto（クラフトサケの図鑑）で。")
+    meta_desc = meta_desc[:155]
 
     _path = f"/brand/{slug}-{idx}.html"
     _seo = seo_head(_path, f"{name} ／ {brewery['name']}", meta_desc, og_type="product", jsonld=[
