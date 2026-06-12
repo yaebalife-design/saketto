@@ -667,14 +667,21 @@ def render(brewery, index, prev_brewery, next_brewery):
         section_n += 1
     sources_section_num = section_n
 
-    # 地域バナー
+    # 蔵バナー（蔵専用イメージ優先・無ければ地域イメージ）。AI生成のため「画像はイメージ」を併記
+    _kura_img = REPO_ROOT / "assets" / "images" / "brewery" / f'{brewery["slug"]}.webp'
     region_img_name = REGION_IMG.get(brewery["region"], "")
+    if _kura_img.exists():
+        _img_src = f'../assets/images/brewery/{brewery["slug"]}.webp'
+    elif region_img_name:
+        _img_src = f'../assets/images/{region_img_name}.webp'
+    else:
+        _img_src = ""
     region_banner = (
         f'<figure class="region-banner"><div class="region-banner__wrap">'
-        f'<img src="../assets/images/{region_img_name}.webp" alt="" loading="lazy" width="1376" height="768">'
-        f'<span class="region-banner__cap">{brewery["region"]}</span>'
+        f'<img src="{_img_src}" alt="" loading="lazy" width="1376" height="768">'
+        f'<span class="region-banner__cap">{brewery["region"]} ／ 画像はイメージ</span>'
         f'</div></figure>'
-    ) if region_img_name else ''
+    ) if _img_src else ''
 
     # 出典 - 公式 + 受賞/テイスティングの出典
     src_links = [f'<li><a href="{brewery["official_url"]}" target="_blank" rel="noopener">{brewery["official_url"]}</a></li>']
