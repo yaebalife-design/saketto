@@ -671,7 +671,7 @@ def render(brewery, index, prev_brewery, next_brewery):
     region_img_name = REGION_IMG.get(brewery["region"], "")
     region_banner = (
         f'<figure class="region-banner"><div class="region-banner__wrap">'
-        f'<img src="../assets/images/{region_img_name}.png" alt="" loading="lazy">'
+        f'<img src="../assets/images/{region_img_name}.webp" alt="" loading="lazy" width="1376" height="768">'
         f'<span class="region-banner__cap">{brewery["region"]}</span>'
         f'</div></figure>'
     ) if region_img_name else ''

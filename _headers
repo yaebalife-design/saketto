@@ -1,0 +1,21 @@
+# Cloudflare Pages カスタムヘッダ
+# 画像・JSは内容が変わったらファイル名ごと変える運用のため長期キャッシュ。
+# HTMLは再生成・再デプロイで更新されるため短め＋再検証。
+
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+/favicon.svg
+  Cache-Control: public, max-age=604800
+
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800
+
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate

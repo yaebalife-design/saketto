@@ -528,7 +528,7 @@ def gen_subingredients():
         entries = by_cat.get(cat_key, [])
         img_name = SUB_IMG_MAP.get(cat_key, "")
         img_html = (
-            f'<figure class="cat-image"><img src="../assets/images/{img_name}.png" alt="" loading="lazy">'
+            f'<figure class="cat-image"><img src="../assets/images/{img_name}.webp" alt="" loading="lazy" width="1024" height="1024">'
             f'</figure>'
         ) if img_name else ''
         html += f"""
@@ -587,7 +587,7 @@ def gen_regions():
         breweries = by_region[region]
         img_name = REGION_IMG_MAP.get(region, "")
         img_html = (
-            f'<figure class="cat-image"><img src="../assets/images/{img_name}.png" alt="" loading="lazy">'
+            f'<figure class="cat-image"><img src="../assets/images/{img_name}.webp" alt="" loading="lazy" width="1376" height="768">'
             f'</figure>'
         ) if img_name else ''
         html += f"""
