@@ -85,6 +85,13 @@ main { position:relative; z-index:1; }
   border-left:3px solid var(--accent); padding-left:1.5rem; line-height:1.9;
   font-weight:400;
 }
+.hero__guide {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.92rem; color:var(--ink-mute); max-width:680px;
+  margin-top:1.6rem; line-height:2.1; letter-spacing:.02em; font-weight:400;
+}
+.hero__guide a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:1px; }
+.hero__guide a:hover { color:var(--accent-deep); border-color:var(--accent-deep); }
 
 .section { max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
 .section-meta {
@@ -413,12 +420,13 @@ def masthead(label, right_text=""):
 """
 
 
-def hero(eyebrow, title_html, lede):
+def hero(eyebrow, title_html, lede, guide=""):
+    guide_html = f'\n    <p class="hero__guide">{guide}</p>' if guide else ""
     return f"""
   <section class="hero">
     <div class="hero__eyebrow">{eyebrow}</div>
     <h1 class="hero__title">{title_html}</h1>
-    <p class="hero__lede">{lede}</p>
+    <p class="hero__lede">{lede}</p>{guide_html}
   </section>
 
   <div class="divider">
@@ -518,7 +526,8 @@ def gen_subingredients():
     html += hero(
         "— FIVE CATEGORIES",
         '副原料から、<span class="accent">探す</span>。',
-        '何を入れた酒か。クラフトサケの自由さを最も雄弁に語るのが副原料。ホップから茶葉、ハーブ、果実、そして米と麹のみまで、5つのカテゴリで横断する。'
+        '何を入れた酒か。クラフトサケの自由さを最も雄弁に語るのが副原料。ホップから茶葉、ハーブ、果実、そして米と麹のみまで、5つのカテゴリで横断する。',
+        'クラフトサケの味の輪郭は、米と麹に「何を重ねるか」で大きく変わる。ホップを選べば柑橘やハーブを思わせる香りが立つビール好きに馴染む一本に、果実を選べばワインのような酸と甘みの方向へ、茶葉やハーブなら和の余韻に近づく。逆に副原料を使わない「米と麹のみ」は、どぶろくや全麹といった製法の個性がそのまま顔を出す。はじめてなら、ふだん好きな飲み物——ビール、白ワイン、日本酒——に近いカテゴリから入るのが早道だ。気になる素材をひとつ選んで、そこから蔵へ、銘柄へと辿ってほしい。製法の背景は<a href="../guide/craftsake-towa.html">「クラフトサケとは」</a>でも読める。'
     )
     html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
 
@@ -574,7 +583,8 @@ def gen_regions():
     html += hero(
         "— BY REGION",
         '地域から、<span class="accent">探す</span>。',
-        f'クラフトサケは復興と再生の文脈と深く結びついている。福島・宮城・岩手といった東北、首都圏の都市型、関西の団地酒蔵、九州・沖縄の南国素材まで、{len(BREWERIES)}蔵が日本列島に散らばる。'
+        f'クラフトサケは復興と再生の文脈と深く結びついている。福島・宮城・岩手といった東北、首都圏の都市型、関西の団地酒蔵、九州・沖縄の南国素材まで、{len(BREWERIES)}蔵が日本列島に散らばる。',
+        'クラフトサケの蔵は、その土地の事情と切り離せない。震災からの再生を懸けて立ち上がった東北の蔵があり、駅ナカや街なかで醸す都市型の醸造所があり、南の島では地元の素材を仕込みに使う蔵が生まれている。同じ「米と麹の酒」でも、土地が変われば動機も素材も変わる——そこがこのジャンルの面白さだ。旅先や出身地、いつか行ってみたい町。縁のある地域から選べば、一本の酒がその地域の物語への入口になる。気に入った蔵が見つかったら、<a href="../furusato/">ふるさと納税</a>で応援するという選び方もある。'
     )
 
     html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
@@ -645,7 +655,8 @@ def gen_genres():
     html += hero(
         "— SAKETTO ORIGINAL AXIS",
         'ジャンルから、<span class="accent">探す</span>。',
-        '副原料の選び方、製法の系譜、麹の素材。クラフトサケの中にも明確な"系"がある。これはsaketto独自の分類軸。'
+        '副原料の選び方、製法の系譜、麹の素材。クラフトサケの中にも明確な"系"がある。これはsaketto独自の分類軸。',
+        'ジャンルは、sakettoが銘柄を読み解くために置いた独自のものさしだ。ホップを効かせた「ホップサケ」、果実を醸し込む「果実サケ」、伝統の製法に立ち返る「古典どぶろく」、麹の力だけで設計する「全麹酒」、木の香りをまとう「木桶仕込み」、麹の素材そのものを変える「異素材麹」——どの"系"に連なる一本かが分かると、初めての銘柄でも味の見当がつくようになる。蔵の数だけ解釈があるので、同じジャンルの中で蔵ごとの違いを飲み比べるのも、この軸ならではの楽しみ方だ。'
     )
     html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
 
@@ -691,7 +702,8 @@ def gen_furusato():
     html += hero(
         "— TAX-DEDUCTIBLE DISCOVERY",
         'ふるさと納税から、<span class="accent">支援する</span>。',
-        f'クラフトサケのふるさと納税返礼品を一次ソース確認の上で集約。寄附で蔵を支えながら、地域の挑戦と希少な酒に出会える。確認できた {len(confirmed)} 蔵のみ掲載、残り {len(not_confirmed)} 蔵は今後の出品を追跡。'
+        f'クラフトサケのふるさと納税返礼品を一次ソース確認の上で集約。寄附で蔵を支えながら、地域の挑戦と希少な酒に出会える。確認できた {len(confirmed)} 蔵のみ掲載、残り {len(not_confirmed)} 蔵は今後の出品を追跡。',
+        'ふるさと納税は、クラフトサケと出会うもうひとつの入口だ。小さな蔵の酒は流通量が少なく、ECでは売り切れていることも多いが、返礼品なら蔵の地元自治体への寄附を通じて手に入ることがある。しかも寄附はそのまま、蔵が根を張る町に届く——一本を受け取ることが地域の応援になる仕組みだ。このページに載せているのは、自治体やポータルでの出品を一次ソースで確認できた蔵だけ。返礼品は時期によって入れ替わるため、申し込む前にリンク先で最新の受付状況を確かめてほしい。'
     )
     html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
 
@@ -861,7 +873,8 @@ def gen_awards():
     html += hero(
         "— 実績で選ぶ ／ ACCOLADES & GLOBAL",
         '頂点と、<span class="accent">世界</span>から。',
-        'まだ10年に満たない新ジャンルが、競技会で頂点を競い、世界のトップレストランに選ばれ、欧米アジアへ渡っていく。クラフトサケの"現在地"を、受賞と海外進出から見つける。'
+        'まだ10年に満たない新ジャンルが、競技会で頂点を競い、世界のトップレストランに選ばれ、欧米アジアへ渡っていく。クラフトサケの"現在地"を、受賞と海外進出から見つける。',
+        '評価の物差しがまだ固まっていない新ジャンルだからこそ、第三者の評価は銘柄選びの確かな手がかりになる。ここに載せているのは、コンテストの受賞歴や海外進出の実績を、蔵やコンテストの公式発表で確認できたものだけ。賞は「その年・その場での評価」であって絶対の序列ではないが、初めての一本を外したくないとき、贈り物で間違いたくないときの指針には十分役立つ。受賞銘柄から蔵のページへ進めば、同じ蔵の別の表現にも出会える。贈答用途なら<a href="../guide/gift.html">ギフトガイド</a>も合わせてどうぞ。'
     )
     html += '<div class="awards-wrap">'
 
