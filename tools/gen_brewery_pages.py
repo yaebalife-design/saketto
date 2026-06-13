@@ -679,7 +679,7 @@ def render(brewery, index, prev_brewery, next_brewery):
     region_banner = (
         f'<figure class="region-banner"><div class="region-banner__wrap">'
         f'<img src="{_img_src}" alt="" loading="lazy" width="1376" height="768">'
-        f'<span class="region-banner__cap">{brewery["region"]} ／ 画像はイメージ</span>'
+        f'<span class="region-banner__cap">画像はイメージ</span>'
         f'</div></figure>'
     ) if _img_src else ''
 
