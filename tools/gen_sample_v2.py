@@ -33,7 +33,7 @@ OUT = REPO_ROOT / "brand" / "haccoba-0.html"
 # アフィリエイト（もしも経由）の表示制御＝楽天/Amazon個別。
 # saketto媒体で提携が取れたものを True にする（moshimo_link.py のIDもsaketto専用に揃える）。
 RAKUTEN_ENABLED = True    # 2026/05/31 楽天 saketto提携済 → ON
-AMAZON_ENABLED = True     # 2026/06/05 Amazon saketto提携承認確認（a_id=5609637）→ ON
+AMAZON_ENABLED = False    # 2026/06/14 もしも媒体作り直しで旧Amazon ID無効 → 新ID受領まで一時OFF
 # 後方互換（どちらか有効ならアフィリ表示扱い）
 AFFILIATE_ENABLED = RAKUTEN_ENABLED or AMAZON_ENABLED
 
