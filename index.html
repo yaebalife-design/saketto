@@ -3,25 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>saketto — クラフトサケの図鑑</title>
+<title>クラフトサケの図鑑 saketto｜銘柄・蔵・副原料の横断データベース</title>
 <meta name="description" content="米と副原料で醸す新ジャンルの酒「クラフトサケ」を、副原料・蔵・地域・ジャンルの4つの軸から横断的に探せる専門データベース。">
 <link rel="canonical" href="https://saketto.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="saketto">
-<meta property="og:title" content="saketto — クラフトサケの図鑑">
+<meta property="og:title" content="クラフトサケの図鑑 saketto｜銘柄・蔵・副原料の横断データベース">
 <meta property="og:description" content="米と副原料で醸す新ジャンルの酒「クラフトサケ」を、副原料・蔵・地域・ジャンルの4つの軸から横断的に探せる専門データベース。">
 <meta property="og:url" content="https://saketto.com/">
 <meta property="og:image" content="https://saketto.com/assets/images/og.png">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="saketto — クラフトサケの図鑑">
+<meta name="twitter:title" content="クラフトサケの図鑑 saketto｜銘柄・蔵・副原料の横断データベース">
 <meta name="twitter:description" content="米と副原料で醸す新ジャンルの酒「クラフトサケ」を、副原料・蔵・地域・ジャンルの4つの軸から横断的に探せる専門データベース。">
 <meta name="twitter:image" content="https://saketto.com/assets/images/og.png">
 <script type="application/ld+json">{"@context": "https://schema.org/", "@type": "WebSite", "name": "saketto", "alternateName": "クラフトサケの図鑑", "url": "https://saketto.com/", "description": "米と副原料で醸す新ジャンルの酒「クラフトサケ」を、副原料・蔵・地域・ジャンルの4つの軸から横断的に探せる専門データベース。", "inLanguage": "ja"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org/", "@type": "Organization", "name": "saketto", "url": "https://saketto.com/", "logo": "https://saketto.com/apple-touch-icon.png"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/images/hero_nigori.webp">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #F5F0E7;
@@ -38,6 +39,7 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 body {
   background: var(--bg);
   color: var(--ink);
@@ -99,9 +101,8 @@ main { position: relative; z-index: 1; }
 .masthead .brand-link { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink); text-decoration: none; font-weight: 700; }
 .masthead .accent-dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; display: inline-block; }
 .masthead-nav { display: flex; gap: 1.35rem; align-items: center; flex-wrap: wrap; }
-.masthead-nav a { color: var(--ink-mute); text-decoration: none; transition: color .25s; }
+.masthead-nav a { color: var(--ink-mute); text-decoration: none; transition: color .25s; padding: .45rem .25rem; margin: -.45rem -.25rem; }
 .masthead-nav a:hover { color: var(--accent); }
-.masthead-nav a.is-reading { color: var(--ink-soft); }
 @media (max-width: 640px) { .masthead-nav { gap: 1rem; font-size: .74rem; } }
 
 /* ─────────── HERO ─────────── */
@@ -214,6 +215,58 @@ main { position: relative; z-index: 1; }
   background: var(--paper);
 }
 .hero__entry .arr { color: var(--accent); margin-left: .35rem; }
+
+/* サイト内検索（静的インデックス） */
+.sk-search { position: relative; max-width: 560px; }
+.sk-search input {
+  width: 100%;
+  padding: .9rem 1.1rem;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+.sk-search input::placeholder { color: var(--ink-mute); font-size: .9rem; }
+.sk-search input:focus { border-color: var(--accent); outline: none; }
+.sk-search__results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: none;
+  max-height: 340px;
+  overflow-y: auto;
+  box-shadow: 0 14px 34px rgba(26,23,23,.10);
+}
+.search-hit {
+  display: block;
+  padding: .7rem 1.1rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-soft);
+}
+.search-hit:last-child { border-bottom: none; }
+.search-hit:hover { background: var(--bg-alt); }
+.search-hit__name {
+  display: block;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.search-hit__meta {
+  display: block;
+  font-size: .78rem;
+  color: var(--ink-soft);
+  letter-spacing: .02em;
+}
+.search-hit--none { padding: .8rem 1.1rem; font-size: .85rem; color: var(--ink-mute); }
 
 .tagline {
   font-family: 'Shippori Mincho', serif;
@@ -562,7 +615,7 @@ main { position: relative; z-index: 1; }
 @media (min-width: 1000px) { .kura-grid { grid-template-columns: repeat(4, 1fr); } }
 .kura-grid li {
   list-style: none;
-  border-bottom: 1px dotted var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
   padding-bottom: .15rem;
 }
 .kura-grid li a {
@@ -728,10 +781,10 @@ footer {
     </div>
     <nav class="masthead-nav" aria-label="グローバルナビ">
       <a href="subingredients/">副原料</a>
-      <a href="#breweries">蔵</a>
+      <a href="brewery/">蔵</a>
       <a href="region/">地域</a>
       <a href="genre/">ジャンル</a>
-      <a class="is-reading" href="guide/">読みもの</a>
+      <a href="guide/">読みもの</a>
     </nav>
   </div>
 
@@ -767,10 +820,15 @@ footer {
         <div class="lede">
           米と副原料で醸す、新ジャンルの酒「<strong>クラフトサケ</strong>」。指名買いではなく、副原料・蔵・地域・ジャンルの4つの入り口から“次の一本”に出会うための専門データベース。
         </div>
+        <div class="sk-search">
+          <span class="hero__entries-label">— 銘柄・蔵・副原料をまとめて検索</span>
+          <input id="skSearch" type="search" placeholder="銘柄名・蔵名・副原料で探す（例: ホップ／どぶろく／haccoba）" autocomplete="off" aria-label="サイト内検索">
+          <div class="sk-search__results" id="skSearchResults" hidden></div>
+        </div>
         <div class="hero__entries">
           <span class="hero__entries-label">— 4つの軸から探す</span>
           <a class="hero__entry" href="subingredients/">副原料<span class="arr">→</span></a>
-          <a class="hero__entry" href="#breweries">蔵<span class="arr">→</span></a>
+          <a class="hero__entry" href="brewery/">蔵<span class="arr">→</span></a>
           <a class="hero__entry" href="region/">地域<span class="arr">→</span></a>
           <a class="hero__entry" href="genre/">ジャンル<span class="arr">→</span></a>
         </div>
@@ -811,7 +869,7 @@ footer {
         </div>
       </a>
 
-      <a class="axis" href="#breweries">
+      <a class="axis" href="brewery/">
         <svg class="axis__icon" viewBox="0 0 32 32" aria-hidden="true">
           <path d="M4 28 L4 14 L16 6 L28 14 L28 28 Z"/>
           <path d="M12 28 L12 18 L20 18 L20 28"/>
@@ -854,6 +912,18 @@ footer {
 
     </div>
 
+  </section>
+
+  <!-- クラフトサケとは（定義の要約 → 読みものへ） -->
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">＋</span>
+      <span class="section-meta__label">WHAT IS CRAFT SAKE</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <h2 class="section-title">クラフトサケとは、<span class="accent">何か</span>。</h2>
+    <p class="section-desc" style="margin-bottom:1.25rem">米と米麹の酒づくりをベースに、ホップや果実などの副原料を重ねたり、どぶろく・全麹といった伝統製法を再解釈したりして醸す、新しいジャンルの酒。酒税法上は「清酒」ではなく主に「その他の醸造酒」に区分され、既存の枠に縛られない自由な設計が、そのまま蔵の個性になる。</p>
+    <p class="section-desc">担い手のほとんどは2020年代に生まれた新しい醸造所で、いまも全国で増え続けている。成り立ちを法律・歴史・醸造のことばから整理した<a href="guide/craftsake-towa.html" style="color:var(--accent);text-decoration:none;">「クラフトサケとは」</a>で、詳しく読める。</p>
   </section>
 
   <!-- もうひとつの切り口（4つの軸とは別の入り口） -->
@@ -1017,5 +1087,44 @@ footer {
   </footer>
 
 </main>
+<script>
+(function () {
+  var input = document.getElementById('skSearch');
+  var box = document.getElementById('skSearchResults');
+  if (!input || !box) return;
+  var data = null, requested = false;
+  function load() {
+    if (requested) return;
+    requested = true;
+    fetch('assets/search-index.json')
+      .then(function (r) { return r.json(); })
+      .then(function (j) { data = j; render(); })
+      .catch(function () { requested = false; });
+  }
+  function render() {
+    var q = input.value.trim().toLowerCase();
+    if (!q) { box.hidden = true; box.innerHTML = ''; return; }
+    if (!data) { load(); return; }
+    var hits = [];
+    for (var i = 0; i < data.length && hits.length < 8; i++) {
+      if (data[i].t.indexOf(q) !== -1) hits.push(data[i]);
+    }
+    if (!hits.length) {
+      box.innerHTML = '<div class="search-hit--none">該当が見つかりませんでした — 別の表記でお試しください</div>';
+    } else {
+      box.innerHTML = hits.map(function (h) {
+        return '<a class="search-hit" href="' + h.u + '"><span class="search-hit__name">' + h.n +
+               '</span><span class="search-hit__meta">' + h.m + '</span></a>';
+      }).join('');
+    }
+    box.hidden = false;
+  }
+  input.addEventListener('focus', load);
+  input.addEventListener('input', render);
+  document.addEventListener('click', function (e) {
+    if (!input.contains(e.target) && !box.contains(e.target)) box.hidden = true;
+  });
+})();
+</script>
 </body>
 </html>

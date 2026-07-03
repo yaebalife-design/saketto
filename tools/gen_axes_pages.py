@@ -32,6 +32,7 @@ CSS = """
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
+a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
 body {
   background:var(--bg); color:var(--ink);
   font-family:'Noto Sans JP', sans-serif; font-weight:400;
@@ -61,7 +62,7 @@ main { position:relative; z-index:1; }
 .masthead .left { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
 .masthead .brand-link { color:var(--ink); font-weight:700; }
 .masthead-nav { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
-.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; padding:.45rem .25rem; margin:-.45rem -.25rem; }
 .masthead-nav a:hover { color:var(--accent); }
 @media (max-width:640px){ .masthead-nav{ gap:.9rem; font-size:.72rem; } }
 
@@ -411,7 +412,7 @@ def masthead(label, right_text=""):
     </div>
     <nav class="masthead-nav" aria-label="ナビ">
       <a href="../subingredients/">副原料</a>
-      <a href="../index.html#breweries">蔵</a>
+      <a href="../brewery/">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
       <a href="../guide/">読みもの</a>
@@ -521,7 +522,7 @@ def gen_subingredients():
 
     total_brands = sum(len(v) for v in by_cat.values())
 
-    html = page_head("副原料から探す", "クラフトサケを副原料（ホップ・果実・茶葉・ハーブ・米のみ・特殊副原料）から横断的に検索する逆引きデータベース。", "/subingredients/")
+    html = page_head("クラフトサケを副原料から探す", "クラフトサケを副原料（ホップ・果実・茶葉・ハーブ・米のみ・特殊副原料）から横断的に検索する逆引きデータベース。", "/subingredients/")
     html += masthead("AXIS 01 — SUB-INGREDIENTS", f"5 categories")
     html += hero(
         "— FIVE CATEGORIES",
@@ -578,7 +579,7 @@ def gen_regions():
     populated = [r for r in REGIONS if by_region[r]]
     empty = [r for r in REGIONS if not by_region[r]]
 
-    html = page_head("地域から探す", "全国のクラフトサケ醸造所を9地域別に横断検索する逆引きデータベース。", "/region/")
+    html = page_head("クラフトサケを地域から探す", f"全国のクラフトサケ醸造所{len(BREWERIES)}蔵を東北・関東・中部・関西・九州・沖縄の地域別に横断検索。震災復興の東北、駅ナカの都市型、南国素材の九州・沖縄まで、土地の物語から次の一本へ。", "/region/")
     html += masthead("AXIS 03 — REGION", f"{len(populated)} regions populated")
     html += hero(
         "— BY REGION",
@@ -604,7 +605,7 @@ def gen_regions():
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. {idx:02d}</span>
-      <span class="section-meta__label">{region}</span>
+      <h2 class="section-meta__label">{region}</h2>
       <span class="section-meta__count">/ {len(breweries)} 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
@@ -650,7 +651,7 @@ def gen_genres():
         for g in genres:
             by_genre[g].append(brewery)
 
-    html = page_head("ジャンルから探す", "クラフトサケのジャンル（ホップサケ・果実サケ・古典どぶろく・全麹酒・木桶仕込み・異素材麹・茶葉ハーブサケ）から横断検索。saketto独自軸。", "/genre/")
+    html = page_head("クラフトサケをジャンルから探す", "クラフトサケのジャンル（ホップサケ・果実サケ・古典どぶろく・全麹酒・木桶仕込み・異素材麹・茶葉ハーブサケ）から横断検索。saketto独自軸。", "/genre/")
     html += masthead("AXIS 04 — GENRE / SAKETTO独自", "7 genres")
     html += hero(
         "— SAKETTO ORIGINAL AXIS",
@@ -697,7 +698,7 @@ def gen_furusato():
     confirmed = [b for b in BREWERIES if b["slug"] in FURUSATO]
     not_confirmed = [b for b in BREWERIES if b["slug"] not in FURUSATO]
 
-    html = page_head("ふるさと納税から探す", "クラフトサケのふるさと納税返礼品を一次ソース確認の上で横断検索。", "/furusato/")
+    html = page_head("クラフトサケをふるさと納税から探す", f"クラフトサケのふるさと納税返礼品を一次ソース確認の上で横断検索。返礼品を確認できた{len(confirmed)}蔵を寄附額・ポータル別に掲載。寄附で蔵の地元を支えながら、限定流通の一本に出会う。", "/furusato/")
     html += masthead("EXTRA — FURUSATO TAX", f"{len(confirmed)} confirmed")
     html += hero(
         "— TAX-DEDUCTIBLE DISCOVERY",
@@ -711,7 +712,7 @@ def gen_furusato():
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">CONFIRMED LISTINGS</span>
+      <h2 class="section-meta__label">CONFIRMED LISTINGS</h2>
       <span class="section-meta__count">/ {len(confirmed)} 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
@@ -743,7 +744,7 @@ def gen_furusato():
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
-      <span class="section-meta__label">PENDING / NOT YET LISTED</span>
+      <h2 class="section-meta__label">PENDING / NOT YET LISTED</h2>
       <span class="section-meta__count">/ {len(not_confirmed)} 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
@@ -867,7 +868,7 @@ def gen_awards():
 
     award_brewery_count = len(set(s for s, _ in icc_entries) | set(s for s, _ in other_awards))
 
-    html = page_head("受賞と海外進出", "ICC SAKE AWARD歴代の頂点、Disfrutar・Mugaritzでの提供、欧米アジア輸出 — クラフトサケと世界のつながり。", "/awards/")
+    html = page_head("クラフトサケの受賞と海外進出", "ICC SAKE AWARD歴代の頂点、Disfrutar・Mugaritzでの提供、欧米アジア輸出 — クラフトサケと世界のつながり。", "/awards/")
     html += f"<style>{AWARDS_CSS}</style>"
     html += masthead("EXTRA — ACCOLADES & GLOBAL", f"{award_brewery_count} breweries awarded")
     html += hero(
@@ -1000,14 +1001,58 @@ def gen_awards():
     print(f"  awards/index.html  (ICC{len(icc_entries)} / 海外{len(global_entries)} / 他受賞{len(other_awards)} ※メディア非掲載)")
 
 
+def gen_breweries_hub():
+    """蔵ハブ（4軸の「蔵」の受けページ。従来は index.html#breweries アンカーのみで非対称だった）"""
+    OUT = REPO_ROOT / "brewery"
+    OUT.mkdir(exist_ok=True)
+
+    total = len(BREWERIES)
+    assoc = sum(1 for b in BREWERIES if b.get("association"))
+    indep = total - assoc
+
+    html = page_head(
+        "クラフトサケの蔵から探す",
+        f"全国のクラフトサケ醸造所{total}蔵（協会加盟{assoc}＋独立系{indep}）を一覧で横断。所在地・創業・特徴・収録銘柄まで、公式サイトで一次確認した情報だけを収録した蔵の索引。",
+        "/brewery/")
+    html += masthead("AXIS 02 — BREWERIES", f"{total} breweries")
+    html += hero(
+        "— ALL BREWERIES",
+        '蔵から、<span class="accent">探す</span>。',
+        f'クラフトサケは、蔵の思想がそのまま味になる酒。震災復興の東北から、駅ナカの都市型、南国素材の蔵まで、{total}蔵の物語から次の一本を選ぶ。',
+        'クラフトサケの蔵は、そのほとんどが2020年代に生まれたばかり。だからこそ、どの蔵にも「なぜ酒を造るのか」の物語が色濃く残っている。蔵のページでは、成り立ちと哲学、仕込みの特徴、収録銘柄までまとめて読める。土地から辿りたいなら<a href="../region/">地域から探す</a>、造りの系統で選びたいなら<a href="../genre/">ジャンルから探す</a>も合わせてどうぞ。'
+    )
+    html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
+    html += f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 01</span>
+      <h2 class="section-meta__label">ALL BREWERIES</h2>
+      <span class="section-meta__count">/ {total} 蔵</span>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="brewery-grid">"""
+    for i, b in enumerate(BREWERIES, 1):
+        html += render_brewery_card(b, i)
+    html += """
+    </div>
+  </section>"""
+    html += '</div>'
+    html += footer()
+
+    out_path = OUT / "index.html"
+    out_path.write_text(html, encoding="utf-8")
+    print(f"  brewery/index.html  ({total}蔵の索引)")
+
+
 def main():
     print("生成中...")
     gen_subingredients()
+    gen_breweries_hub()
     gen_regions()
     gen_genres()
     gen_furusato()
     gen_awards()
-    print("\n✓ 5ハブページ生成完了（副原料・地域・ジャンル・ふるさと納税・受賞）")
+    print("\n✓ 6ハブページ生成完了（副原料・蔵・地域・ジャンル・ふるさと納税・受賞）")
 
 
 if __name__ == "__main__":

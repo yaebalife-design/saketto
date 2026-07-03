@@ -1,10 +1,20 @@
 # Cloudflare Pages カスタムヘッダ
-# 画像・JSは内容が変わったらファイル名ごと変える運用のため長期キャッシュ。
-# HTMLは再生成・再デプロイで更新されるため短め＋再検証。
 
+# 全ページ共通：セキュリティヘッダ
+# ・インラインCSS/JS構成のため style/script に 'unsafe-inline' が必要
+# ・GA(gtag) と Google Fonts のみ外部許可
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.googletagmanager.com https://*.analytics.google.com; frame-ancestors 'none'
+
+# 画像は同名上書きで再生成する運用のため immutable にしない（1週間キャッシュ）
 /assets/images/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=604800
 
+# JS・検索インデックス等（不具合修正が翌日には反映される長さに留める）
 /assets/*
   Cache-Control: public, max-age=86400
 
@@ -17,5 +27,6 @@
 /apple-touch-icon.png
   Cache-Control: public, max-age=604800
 
+# HTMLは再生成・再デプロイで更新されるため短め＋再検証
 /*.html
   Cache-Control: public, max-age=3600, must-revalidate

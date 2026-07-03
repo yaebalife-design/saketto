@@ -84,14 +84,25 @@
     document.body.appendChild(gate);
     document.documentElement.style.overflow = 'hidden';
 
-    document.getElementById('skAgeYes').addEventListener('click', function () {
+    var yesBtn = document.getElementById('skAgeYes');
+    var noBtn = document.getElementById('skAgeNo');
+
+    // ダイアログとしての体裁：初期フォーカス＋フォーカストラップ（Tabで背後に抜けない）
+    yesBtn.focus();
+    gate.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey && document.activeElement === yesBtn) { e.preventDefault(); noBtn.focus(); }
+      else if (!e.shiftKey && document.activeElement === noBtn) { e.preventDefault(); yesBtn.focus(); }
+    });
+
+    yesBtn.addEventListener('click', function () {
       try { localStorage.setItem(KEY, '1'); } catch (e) {}
       gate.classList.add('sk-age--hidden');
       document.documentElement.style.overflow = '';
       setTimeout(function () { if (gate && gate.parentNode) gate.parentNode.removeChild(gate); }, 450);
     });
 
-    document.getElementById('skAgeNo').addEventListener('click', function () {
+    noBtn.addEventListener('click', function () {
       window.location.replace('https://www.google.com/');
     });
   }

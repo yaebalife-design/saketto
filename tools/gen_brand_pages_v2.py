@@ -27,6 +27,7 @@ from moshimo_link import resolve_rakuten, resolve_amazon
 from gen_sample_v2 import CSS, gen_scale4_svg, gen_radar6_svg, RAKUTEN_ENABLED, AMAZON_ENABLED
 from story_overrides import story_override
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL
+from related import next_section_html
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "brand"
@@ -191,6 +192,7 @@ def build_html(brand, detail, brewery, idx):
 
     rakuten_url = resolve_rakuten(slug, idx, name)  # 実購入できない銘柄はNone（非表示）
     amazon_url = resolve_amazon(slug, idx, name)
+    has_buy = bool((RAKUTEN_ENABLED and rakuten_url) or (AMAZON_ENABLED and amazon_url))
 
     # ── HERO タグ（香り・味の印象）──
     flavor_tags_html = ""
@@ -213,7 +215,8 @@ def build_html(brand, detail, brewery, idx):
         specs.append(f'<div class="spec-cell"><div class="spec-cell__label">— VOLUME</div><div class="spec-cell__value">{volume}<small>ml</small></div></div>')
     if price not in (None, ""):
         pn = f'<div class="spec-cell__sub">{esc(price_note)}</div>' if price_note else ""
-        specs.append(f'<div class="spec-cell"><div class="spec-cell__label">— PRICE</div><div class="spec-cell__value">¥{int(price):,}</div>{pn}</div>')
+        gb = '<a class="spec-cell__gobuy" href="#purchase">購入リンクへ ↓</a>' if has_buy else ""
+        specs.append(f'<div class="spec-cell"><div class="spec-cell__label">— PRICE</div><div class="spec-cell__value">¥{int(price):,}</div>{pn}{gb}</div>')
     spec_board = ('<div class="spec-board">' + "".join(specs) + "</div>") if specs else ""
 
     # ── RECIPE（値があるものだけ行表示）──
@@ -265,7 +268,7 @@ def build_html(brand, detail, brewery, idx):
     if rows:
         recipe_section = f"""
   <section class="section" style="padding-top:3rem">
-    <div class="section-meta"><span class="section-meta__num">No. 01</span><span class="section-meta__label">RECIPE / 仕込み</span><span class="section-meta__rule"></span></div>
+    <div class="section-meta"><span class="section-meta__num">§NUM§</span><h2 class="section-meta__label">RECIPE / 仕込み</h2><span class="section-meta__rule"></span></div>
     <div class="recipe">{''.join(rows)}</div>
   </section>"""
 
@@ -285,7 +288,7 @@ def build_html(brand, detail, brewery, idx):
     if enjoy_cells:
         enjoy_section = f"""
   <section class="section">
-    <div class="section-meta"><span class="section-meta__num">No. 02</span><span class="section-meta__label">HOW TO ENJOY / 楽しみ方</span><span class="section-meta__rule"></span></div>
+    <div class="section-meta"><span class="section-meta__num">§NUM§</span><h2 class="section-meta__label">HOW TO ENJOY / 楽しみ方</h2><span class="section-meta__rule"></span></div>
     <div class="enjoy">{''.join(enjoy_cells)}</div>
   </section>"""
 
@@ -299,9 +302,12 @@ def build_html(brand, detail, brewery, idx):
         t_rows.append(f'<div class="tasting-row"><div class="tasting-row__label">— FINISH　<strong>余韻</strong></div><div class="tasting-row__text">{esc(d["tasting_finish"])}</div></div>')
     tasting_section = ""
     if t_rows:
+        _t_parts = [lbl for lbl, ok in (("香り", d.get("tasting_nose")),
+                                         ("味わい", d.get("tasting_palate")),
+                                         ("余韻", d.get("tasting_finish"))) if ok]
         tasting_section = f"""
   <section class="section">
-    <div class="section-meta"><span class="section-meta__num">No. 03</span><span class="section-meta__label">TASTING NOTES / 香り・味わい・余韻</span><span class="section-meta__rule"></span></div>
+    <div class="section-meta"><span class="section-meta__num">§NUM§</span><h2 class="section-meta__label">TASTING NOTES / {'・'.join(_t_parts)}</h2><span class="section-meta__rule"></span></div>
     <div class="tasting-3">{''.join(t_rows)}</div>
   </section>"""
 
@@ -320,7 +326,7 @@ def build_html(brand, detail, brewery, idx):
             boxes += f'<div class="flavor-box"><div class="flavor-box__title">— PROFILE　<strong>6軸レーダー</strong></div>{gen_radar6_svg(radar6)}<div class="flavor-box__cap">同上。飲み手の印象を6軸で。</div></div>'
         flavor_section = f"""
   <section class="section">
-    <div class="section-meta"><span class="section-meta__num">No. 04</span><span class="section-meta__label">FLAVOR PROFILE / 味わいの構造</span><span class="section-meta__rule"></span></div>
+    <div class="section-meta"><span class="section-meta__num">§NUM§</span><h2 class="section-meta__label">FLAVOR PROFILE / 味わいの構造</h2><span class="section-meta__rule"></span></div>
     <div class="flavor-wrap">
       {boxes}
     </div>
@@ -333,7 +339,7 @@ def build_html(brand, detail, brewery, idx):
         story_section = f"""
   <div class="divider"><div class="rule"></div><div class="ornament outer"></div><div class="ornament"></div><div class="ornament outer"></div><div class="rule"></div></div>
   <section class="section">
-    <div class="section-meta"><span class="section-meta__num">No. 05</span><span class="section-meta__label">STORY / この銘柄が生まれた背景</span><span class="section-meta__rule"></span></div>
+    <div class="section-meta"><span class="section-meta__num">§NUM§</span><h2 class="section-meta__label">STORY / この銘柄が生まれた背景</h2><span class="section-meta__rule"></span></div>
     <div class="story-block"><p class="story-text">{esc(story_txt)}</p></div>
   </section>"""
 
@@ -346,7 +352,7 @@ def build_html(brand, detail, brewery, idx):
             for a in awards)
         awards_section = f"""
   <section class="section">
-    <div class="section-meta"><span class="section-meta__num">No. 06</span><span class="section-meta__label">ACCOLADES / 受賞</span><span class="section-meta__rule"></span></div>
+    <div class="section-meta"><span class="section-meta__num">§NUM§</span><h2 class="section-meta__label">ACCOLADES / 受賞</h2><span class="section-meta__rule"></span></div>
     <div class="awards-list">{cards}</div>
   </section>"""
 
@@ -363,8 +369,8 @@ def build_html(brand, detail, brewery, idx):
         purchase_inner = '<div class="purchase-card__pending">お取り扱い情報は準備中です</div>'
 
     kura_section = f"""
-  <section class="section">
-    <div class="section-meta"><span class="section-meta__num">No. 07</span><span class="section-meta__label">KURA &amp; PURCHASE / 蔵元と入手</span><span class="section-meta__rule"></span></div>
+  <section class="section" id="purchase">
+    <div class="section-meta"><span class="section-meta__num">§NUM§</span><h2 class="section-meta__label">KURA &amp; PURCHASE / 蔵元と入手</h2><span class="section-meta__rule"></span></div>
     <div class="kura-purchase">
       <div class="kura-card">
         <div class="kura-card__name">{brewery['name']}</div>
@@ -409,22 +415,49 @@ def build_html(brand, detail, brewery, idx):
     meta_desc = meta_desc[:155]
 
     _path = f"/brand/{slug}-{idx}.html"
-    _seo = seo_head(_path, f"{name} ／ {brewery['name']}", meta_desc, og_type="product", jsonld=[
-        {"@context": "https://schema.org/", "@type": "Product", "name": name,
-         "brand": {"@type": "Brand", "name": brewery["name"]},
-         "manufacturer": {"@id": SITE_URL + f"/brewery/{slug}.html#brewery"},
-         "category": "クラフトサケ（その他の醸造酒）", "description": meta_desc,
-         "image": SITE_URL + "/assets/images/og.png",
-         "url": SITE_URL + _path},
+    # title：主要KW「クラフトサケ」を全銘柄ページに。銘柄名が蔵名を含む場合は蔵名を省略（二重表記防止）
+    if brewery["name"] in name:
+        _title_core = f"{name}｜クラフトサケ"
+    else:
+        _title_core = f"{name}｜{brewery['name']}のクラフトサケ"
+    # OG/Product画像：蔵の専用イメージがあれば使う（全銘柄共通og.pngのままにしない）
+    _img_file = REPO_ROOT / "assets" / "images" / "brewery" / f"{slug}.webp"
+    _img = (SITE_URL + f"/assets/images/brewery/{slug}.webp") if _img_file.exists() \
+        else (SITE_URL + "/assets/images/og.png")
+    _product = {"@context": "https://schema.org/", "@type": "Product", "name": name,
+                "brand": {"@type": "Brand", "name": brewery["name"]},
+                "manufacturer": {"@id": SITE_URL + f"/brewery/{slug}.html#brewery"},
+                "category": "クラフトサケ（その他の醸造酒）", "description": meta_desc,
+                "image": _img,
+                "url": SITE_URL + _path}
+    if price not in (None, ""):
+        # ページ本文に表示している確認済み価格をそのまま構造化データへ（嘘ゼロ準拠）
+        _product["offers"] = {"@type": "Offer", "price": str(int(price)),
+                              "priceCurrency": "JPY", "url": SITE_URL + _path}
+    _seo = seo_head(_path, _title_core, meta_desc, og_type="product", image=_img, jsonld=[
+        _product,
         breadcrumb([("トップ", "/"), (brewery["name"], f"/brewery/{slug}.html"), (name, _path)]),
     ])
+
+    # NEXT / 次に出会う（機械選出の関連銘柄・回遊導線）
+    next_section = next_section_html(slug, idx, num_str="§NUM§")
+
+    # セクション採番：存在するセクションだけを表示順に No.01.. と連番にする（欠番を出さない）
+    _n = 0
+    _numbered = []
+    for _s in (recipe_section, enjoy_section, tasting_section, flavor_section,
+               story_section, awards_section, kura_section, next_section):
+        if _s:
+            _n += 1
+            _numbered.append(_s.replace("§NUM§", f"No. {_n:02d}"))
+    body_sections = "".join(_numbered)
 
     html = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{name} ／ {brewery['name']} — saketto.</title>
+<title>{_title_core} — saketto.</title>
 <meta name="description" content="{meta_desc}">
 {_seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -439,7 +472,7 @@ def build_html(brand, detail, brewery, idx):
     <div class="left"><a class="brand-link" href="../index.html"><span class="accent-dot"></span>SAKETTO</a><a href="../brewery/{slug}.html">← {brewery['name']}</a></div>
     <nav class="masthead-nav" aria-label="ナビ">
       <a href="../subingredients/">副原料</a>
-      <a href="../index.html#breweries">蔵</a>
+      <a href="../brewery/">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
       <a href="../guide/">読みもの</a>
@@ -447,13 +480,7 @@ def build_html(brand, detail, brewery, idx):
   </div>
 {hero}
 {spec_board}
-{recipe_section}
-{enjoy_section}
-{tasting_section}
-{flavor_section}
-{story_section}
-{awards_section}
-{kura_section}
+{body_sections}
 {official_foot}
   <footer>
     <div class="colophon">

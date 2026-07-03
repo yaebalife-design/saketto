@@ -26,6 +26,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug
 from moshimo_link import rakuten_search, amazon_search
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL
+from related import next_section_html
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT = REPO_ROOT / "brand" / "haccoba-0.html"
@@ -285,6 +286,7 @@ CSS = """
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
+a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
 body {
   background:var(--bg); color:var(--ink);
   font-family:'Noto Sans JP', sans-serif; font-weight:400; line-height:1.8;
@@ -300,14 +302,14 @@ main { position:relative; z-index:1; }
   font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
   font-size:.8rem; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;
 }
-.masthead a { color:var(--ink-soft); text-decoration:none; transition:color .25s; }
+.masthead a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
 .masthead a:hover { color:var(--accent); }
 .masthead .accent-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; margin-right:.5rem; }
 .masthead { flex-wrap:wrap; gap:.7rem 1.2rem; }
 .masthead .left { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
 .masthead .brand-link { color:var(--ink); font-weight:700; }
 .masthead-nav { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
-.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; padding:.45rem .25rem; margin:-.45rem -.25rem; }
 .masthead-nav a:hover { color:var(--accent); }
 @media (max-width:640px){ .masthead-nav{ gap:.9rem; font-size:.72rem; } }
 .masthead .right { font-family:'Cormorant Garamond', serif; font-style:italic; letter-spacing:.1em; }
@@ -331,7 +333,7 @@ main { position:relative; z-index:1; }
   font-size:1.1rem; color:var(--warm); letter-spacing:.04em; margin-bottom:1.1rem;
   display:flex; align-items:center; flex-wrap:wrap;
 }
-.hero__brewery a { color:var(--warm); text-decoration:none; border-bottom:1px dotted var(--warm); }
+.hero__brewery a { color:var(--warm); text-decoration:none; border-bottom:1px solid var(--warm); }
 .hero__brewery a:hover { color:var(--accent); border-bottom-color:var(--accent); }
 .hero__brewery-loc {
   font-family:'Noto Sans JP', sans-serif; font-weight:400;
@@ -399,6 +401,14 @@ main { position:relative; z-index:1; }
   font-family:'Noto Sans JP', sans-serif;
   font-size:.78rem; color:var(--ink-soft); margin-top:.5rem; line-height:1.5;
 }
+.spec-cell__gobuy {
+  display:inline-block; align-self:flex-start; margin-top:.55rem;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.78rem; letter-spacing:.12em; color:var(--accent);
+  text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:.1rem;
+  text-transform:uppercase;
+}
+.spec-cell__gobuy:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
 /* ===== Section common ===== */
 .section { max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
@@ -608,7 +618,7 @@ main { position:relative; z-index:1; }
 }
 .purchase-card__label {
   font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
-  font-size:.78rem; letter-spacing:.18em; color:#A8351F; margin-bottom:.6rem;
+  font-size:.78rem; letter-spacing:.18em; color:#D9694F; margin-bottom:.6rem;
   text-transform:uppercase;
 }
 .purchase-card__title {
@@ -730,6 +740,33 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
 .colophon__notes a { color:var(--warm); text-decoration:none; }
 .colophon__notes a:hover { color:var(--accent); }
 .colophon__sep { color:var(--line); margin:0 .5rem; }
+
+/* ===== NEXT / 次に出会う ===== */
+.next-note {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-mute); margin:-.5rem 0 1.25rem;
+}
+.next-grid { display:grid; grid-template-columns:1fr; gap:1rem; }
+@media (min-width:760px) { .next-grid { grid-template-columns:repeat(3, 1fr); } }
+.next-card {
+  background:var(--paper); border:1px solid var(--line); padding:1.25rem 1.4rem;
+  text-decoration:none; color:var(--ink);
+  display:flex; flex-direction:column; gap:.45rem;
+  transition:border-color .3s, transform .3s, box-shadow .3s;
+}
+.next-card:hover { border-color:var(--warm); transform:translateY(-2px); box-shadow:0 10px 28px rgba(26,23,23,.07); }
+.next-card__kicker {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.82rem; color:var(--accent); letter-spacing:.08em;
+}
+.next-card__name {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.12rem; line-height:1.5;
+}
+.next-card__meta {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.8rem; color:var(--ink-soft); line-height:1.6;
+}
 """
 
 
@@ -806,15 +843,29 @@ def main():
     # Category badge
     cat_badge = f'<span class="badge badge--cat">— 酒税法分類：{b["category"]}</span>'
 
+    # PRICE セルから購入セクションへの近道（購入ボタンがある場合のみ）
+    gobuy_html = '<a class="spec-cell__gobuy" href="#purchase">購入リンクへ ↓</a>' if _btns else ''
+
+    # NEXT / 次に出会う（機械選出の関連銘柄）
+    next_section = next_section_html(b["brewery_slug"], 0, num_str="No. 08")
+
     _desc = b['tagline'][:120]
     _path = f"/brand/{b['brewery_slug']}-0.html"
-    _seo = seo_head(_path, f"{b['name']} ／ {brewery['name']}", _desc, og_type="product", jsonld=[
-        {"@context": "https://schema.org/", "@type": "Product", "name": b['name'],
-         "brand": {"@type": "Brand", "name": brewery['name']},
-         "manufacturer": {"@id": SITE_URL + f"/brewery/{b['brewery_slug']}.html#brewery"},
-         "category": "クラフトサケ（その他の醸造酒）", "description": _desc,
-         "image": SITE_URL + "/assets/images/og.png",
-         "url": SITE_URL + _path},
+    _img_path = REPO_ROOT / "assets" / "images" / "brewery" / f"{b['brewery_slug']}.webp"
+    _img = (SITE_URL + f"/assets/images/brewery/{b['brewery_slug']}.webp") if _img_path.exists() \
+        else (SITE_URL + "/assets/images/og.png")
+    _product = {"@context": "https://schema.org/", "@type": "Product", "name": b['name'],
+                "brand": {"@type": "Brand", "name": brewery['name']},
+                "manufacturer": {"@id": SITE_URL + f"/brewery/{b['brewery_slug']}.html#brewery"},
+                "category": "クラフトサケ（その他の醸造酒）", "description": _desc,
+                "image": _img,
+                "url": SITE_URL + _path}
+    if b.get("price"):
+        _product["offers"] = {"@type": "Offer", "price": str(int(b["price"])),
+                              "priceCurrency": "JPY", "url": SITE_URL + _path}
+    _seo = seo_head(_path, f"{b['name']}｜{brewery['name']}のクラフトサケ", _desc,
+                    og_type="product", image=_img, jsonld=[
+        _product,
         breadcrumb([("トップ", "/"), (brewery['name'], f"/brewery/{b['brewery_slug']}.html"), (b['name'], _path)]),
     ])
 
@@ -823,7 +874,7 @@ def main():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{b['name']} ／ {brewery['name']} — saketto.</title>
+<title>{b['name']}｜{brewery['name']}のクラフトサケ — saketto.</title>
 <meta name="description" content="{_desc}">
 {_seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -840,7 +891,7 @@ def main():
     <div class="left"><a class="brand-link" href="../index.html"><span class="accent-dot"></span>SAKETTO</a><a href="../brewery/{b['brewery_slug']}.html">← {brewery['name']}</a></div>
     <nav class="masthead-nav" aria-label="ナビ">
       <a href="../subingredients/">副原料</a>
-      <a href="../index.html#breweries">蔵</a>
+      <a href="../brewery/">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
       <a href="../guide/">読みもの</a>
@@ -878,6 +929,7 @@ def main():
       <div class="spec-cell__label">— PRICE</div>
       <div class="spec-cell__value">¥{b['price']:,}</div>
       <div class="spec-cell__sub">{b['price_note']}</div>
+      {gobuy_html}
     </div>
   </div>
 
@@ -885,7 +937,7 @@ def main():
   <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">RECIPE / 仕込み</span>
+      <h2 class="section-meta__label">RECIPE / 仕込み</h2>
       <span class="section-meta__rule"></span>
     </div>
     <div class="recipe">{recipe_html}
@@ -896,7 +948,7 @@ def main():
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
-      <span class="section-meta__label">HOW TO ENJOY / 楽しみ方</span>
+      <h2 class="section-meta__label">HOW TO ENJOY / 楽しみ方</h2>
       <span class="section-meta__rule"></span>
     </div>
     <div class="enjoy">
@@ -925,7 +977,7 @@ def main():
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
-      <span class="section-meta__label">TASTING NOTES / 香り・含み香・余韻</span>
+      <h2 class="section-meta__label">TASTING NOTES / 香り・含み香・余韻</h2>
       <span class="section-meta__rule"></span>
     </div>
     <div class="tasting-3">
@@ -948,19 +1000,19 @@ def main():
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 04</span>
-      <span class="section-meta__label">FLAVOR PROFILE / 味わいの構造</span>
+      <h2 class="section-meta__label">FLAVOR PROFILE / 味わいの構造</h2>
       <span class="section-meta__rule"></span>
     </div>
     <div class="flavor-wrap">
       <div class="flavor-box">
         <div class="flavor-box__title">— STRUCTURE　<strong>4軸構造スケール</strong></div>
         {scale4_svg}
-        <div class="flavor-box__cap">蔵の設計意図を構造で示す。Vivino型の4軸。値は編集部初期値（公式テイスティング記述から推定）。社長承認後に各銘柄個別チューニング予定。</div>
+        <div class="flavor-box__cap">公式テイスティング記述・成分値に基づく saketto 編集部評価。</div>
       </div>
       <div class="flavor-box">
         <div class="flavor-box__title">— PROFILE　<strong>6軸レーダー</strong></div>
         {radar6_svg}
-        <div class="flavor-box__cap">飲み手の印象を6軸で。さけのわ型のスタイル。値は編集部初期値。</div>
+        <div class="flavor-box__cap">同上。飲み手の印象を6軸で。</div>
       </div>
     </div>
   </section>
@@ -977,7 +1029,7 @@ def main():
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 05</span>
-      <span class="section-meta__label">STORY / この銘柄が生まれた背景</span>
+      <h2 class="section-meta__label">STORY / この銘柄が生まれた背景</h2>
       <span class="section-meta__rule"></span>
     </div>
     <div class="story-block">
@@ -989,17 +1041,17 @@ def main():
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 06</span>
-      <span class="section-meta__label">ACCOLADES / 受賞</span>
+      <h2 class="section-meta__label">ACCOLADES / 受賞</h2>
       <span class="section-meta__rule"></span>
     </div>
     <div class="awards-list">{awards_html}</div>
   </section>
 
   <!-- KURA + PURCHASE -->
-  <section class="section">
+  <section class="section" id="purchase">
     <div class="section-meta">
       <span class="section-meta__num">No. 07</span>
-      <span class="section-meta__label">KURA & PURCHASE / 蔵元と入手</span>
+      <h2 class="section-meta__label">KURA & PURCHASE / 蔵元と入手</h2>
       <span class="section-meta__rule"></span>
     </div>
     <div class="kura-purchase">
@@ -1021,11 +1073,13 @@ def main():
     </div>
   </section>
 
+{next_section}
+
   <!-- GLOSSARY -->
   <section class="section">
     <div class="section-meta">
-      <span class="section-meta__num">No. 08</span>
-      <span class="section-meta__label">GLOSSARY / 専門用語ミニ解説</span>
+      <span class="section-meta__num">No. 09</span>
+      <h2 class="section-meta__label">GLOSSARY / 専門用語ミニ解説</h2>
       <span class="section-meta__rule"></span>
     </div>
     <dl class="glossary">{glossary_html}

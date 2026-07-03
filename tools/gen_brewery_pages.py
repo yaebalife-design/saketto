@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import BREWERIES
 from breweries_brands import BRANDS
 from awards import AWARDS
+from furusato_data import FURUSATO
 from tasting import TASTING
 from brewery_about import about_of, founder_of
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL
@@ -79,6 +80,7 @@ CSS = """
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
+a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
 body {
   background:var(--bg); color:var(--ink);
   font-family:'Noto Sans JP', sans-serif;
@@ -114,7 +116,7 @@ main { position:relative; z-index:1; }
 .masthead .left { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
 .masthead .brand-link { color:var(--ink); font-weight:700; }
 .masthead-nav { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
-.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; padding:.45rem .25rem; margin:-.45rem -.25rem; }
 .masthead-nav a:hover { color:var(--accent); }
 @media (max-width:640px){ .masthead-nav{ gap:.9rem; font-size:.72rem; } }
 
@@ -216,7 +218,7 @@ main { position:relative; z-index:1; }
 .fact-row:nth-child(even) { background:var(--paper); }
 .fact-row__label { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700; font-size:.76rem; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; line-height:1.9; }
 .fact-row__value { font-family:'Shippori Mincho', serif; font-weight:500; font-size:1rem; color:var(--ink); line-height:1.7; }
-.fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent); }
+.fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
 .fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
 .fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
 .fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
@@ -248,7 +250,7 @@ main { position:relative; z-index:1; }
   position:relative;
 }
 .brand-card__chip {
-  font-size:.58rem; letter-spacing:.14em; padding:.12rem .4rem;
+  font-size:.66rem; letter-spacing:.14em; padding:.14rem .45rem;
   margin-right:.55rem; vertical-align:middle; position:relative; top:-3px;
 }
 .brand-card__name { color:var(--ink); text-decoration:none; transition:color .25s; }
@@ -295,6 +297,16 @@ main { position:relative; z-index:1; }
   font-size:.95rem; color:var(--ink-soft); padding:2rem 0; text-align:center;
   border-top:1px solid var(--line); border-bottom:1px solid var(--line);
 }
+
+/* セクション末尾の「もっと見る」導線 */
+.section-morelink { margin-top:1.1rem; }
+.section-morelink a {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.85rem; color:var(--accent); letter-spacing:.1em;
+  text-transform:uppercase; text-decoration:none;
+  border-bottom:1px solid var(--accent); padding-bottom:.15rem;
+}
+.section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
 /* 出典 */
 .sources {
@@ -473,7 +485,7 @@ HEAD = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{name} — saketto.</title>
+<title>{name}｜{prefecture}のクラフトサケ醸造所 — saketto.</title>
 <meta name="description" content="{name}（{prefecture}・{city}）。{philosophy_short}">
 {seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -566,6 +578,8 @@ def render(brewery, index, prev_brewery, next_brewery):
     fact("代表者", founder_of(slug))
     fact("協会", "クラフトサケ協会 加盟" if brewery.get("association") else "非加盟（独立系）")
     fact("収録銘柄", f'{len(brands)} 銘柄' if brands else None)
+    if slug in FURUSATO:
+        fact("ふるさと納税", '返礼品を確認済み（<a href="../furusato/">ふるさと納税から探す</a>）')
 
     subs = []
     for br in brands:
@@ -676,9 +690,10 @@ def render(brewery, index, prev_brewery, next_brewery):
         _img_src = f'../assets/images/{region_img_name}.webp'
     else:
         _img_src = ""
+    # ファーストビューのバナーなので lazy にしない（LCP対策）
     region_banner = (
         f'<figure class="region-banner"><div class="region-banner__wrap">'
-        f'<img src="{_img_src}" alt="" loading="lazy" width="1376" height="768">'
+        f'<img src="{_img_src}" alt="" fetchpriority="high" width="1376" height="768">'
         f'<span class="region-banner__cap">画像はイメージ</span>'
         f'</div></figure>'
     ) if _img_src else ''
@@ -696,10 +711,11 @@ def render(brewery, index, prev_brewery, next_brewery):
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. {awards_section_num:02d}</span>
-      <span class="section-meta__label">ACCOLADES & GLOBAL</span>
+      <h2 class="section-meta__label">ACCOLADES & GLOBAL</h2>
       <span class="section-meta__rule"></span>
     </div>
     {awards_html_block}
+    <p class="section-morelink"><a href="../awards/">全蔵の受賞・海外進出を見る →</a></p>
   </section>""" if awards_section_num else ''
 
     tasting_section = f"""
@@ -713,7 +729,7 @@ def render(brewery, index, prev_brewery, next_brewery):
   </section>""" if tasting_section_num else ''
 
     _path = f"/brewery/{brewery['slug']}.html"
-    _bdesc = f"{brewery['name']}（{brewery['prefecture']}・{brewery['city']}）。{philosophy_short}"
+    _bdesc = f"{brewery['name']}（{brewery['prefecture']}・{brewery['city']}）のクラフトサケ醸造所情報。{philosophy_short}"
     _org = {"@context": "https://schema.org/", "@type": ["Brewery", "LocalBusiness"],
             "@id": SITE_URL + _path + "#brewery",
             "name": brewery["name"],
@@ -723,9 +739,12 @@ def render(brewery, index, prev_brewery, next_brewery):
             "description": philosophy_short}
     if brewery.get("official_url"):
         _org["sameAs"] = [brewery["official_url"]]
-    seo = seo_head(_path, brewery["name"], _bdesc, og_type="website", jsonld=[
+    _kura_og = REPO_ROOT / "assets" / "images" / "brewery" / f'{brewery["slug"]}.webp'
+    _og_img = (SITE_URL + f'/assets/images/brewery/{brewery["slug"]}.webp') if _kura_og.exists() else None
+    seo = seo_head(_path, f"{brewery['name']}｜{brewery['prefecture']}のクラフトサケ醸造所",
+                   _bdesc, og_type="website", image=_og_img, jsonld=[
         _org,
-        breadcrumb([("トップ", "/"), (brewery["name"], _path)]),
+        breadcrumb([("トップ", "/"), ("蔵から探す", "/brewery/"), (brewery["name"], _path)]),
     ])
     html = HEAD.format(name=brewery["name"], prefecture=brewery["prefecture"],
                        city=brewery["city"], philosophy_short=philosophy_short,
@@ -739,7 +758,7 @@ def render(brewery, index, prev_brewery, next_brewery):
     </div>
     <nav class="masthead-nav" aria-label="ナビ">
       <a href="../subingredients/">副原料</a>
-      <a href="../index.html#breweries">蔵</a>
+      <a href="../brewery/">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
       <a href="../guide/">読みもの</a>
@@ -767,7 +786,7 @@ def render(brewery, index, prev_brewery, next_brewery):
   <section class="section" style="padding-top:3rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">ABOUT / この蔵について</span>
+      <h2 class="section-meta__label">ABOUT / この蔵について</h2>
       <span class="section-meta__rule"></span>
     </div>
     <p class="story">{brewery["philosophy"]}</p>
@@ -787,7 +806,7 @@ def render(brewery, index, prev_brewery, next_brewery):
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
-      <span class="section-meta__label">BRANDS / {len(brands)} 銘柄</span>
+      <h2 class="section-meta__label">BRANDS / {len(brands)} 銘柄</h2>
       <span class="section-meta__rule"></span>
     </div>
     <p class="brands-note">価格は記載時点の参考値です。最新の価格・在庫は各リンク先でご確認ください。少量生産・限定流通のため、店頭・店内提供のみの銘柄もあります。</p>

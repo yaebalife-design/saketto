@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>地域から探す — saketto.</title>
-<meta name="description" content="全国のクラフトサケ醸造所を9地域別に横断検索する逆引きデータベース。">
+<title>クラフトサケを地域から探す — saketto.</title>
+<meta name="description" content="全国のクラフトサケ醸造所25蔵を東北・関東・中部・関西・九州・沖縄の地域別に横断検索。震災復興の東北、駅ナカの都市型、南国素材の九州・沖縄まで、土地の物語から次の一本へ。">
 <link rel="canonical" href="https://saketto.com/region/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="saketto">
-<meta property="og:title" content="地域から探す">
-<meta property="og:description" content="全国のクラフトサケ醸造所を9地域別に横断検索する逆引きデータベース。">
+<meta property="og:title" content="クラフトサケを地域から探す">
+<meta property="og:description" content="全国のクラフトサケ醸造所25蔵を東北・関東・中部・関西・九州・沖縄の地域別に横断検索。震災復興の東北、駅ナカの都市型、南国素材の九州・沖縄まで、土地の物語から次の一本へ。">
 <meta property="og:url" content="https://saketto.com/region/">
 <meta property="og:image" content="https://saketto.com/assets/images/og.png">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="地域から探す">
-<meta name="twitter:description" content="全国のクラフトサケ醸造所を9地域別に横断検索する逆引きデータベース。">
+<meta name="twitter:title" content="クラフトサケを地域から探す">
+<meta name="twitter:description" content="全国のクラフトサケ醸造所25蔵を東北・関東・中部・関西・九州・沖縄の地域別に横断検索。震災復興の東北、駅ナカの都市型、南国素材の九州・沖縄まで、土地の物語から次の一本へ。">
 <meta name="twitter:image" content="https://saketto.com/assets/images/og.png">
-<script type="application/ld+json">{"@context": "https://schema.org/", "@type": "CollectionPage", "name": "地域から探す — saketto.", "description": "全国のクラフトサケ醸造所を9地域別に横断検索する逆引きデータベース。", "url": "https://saketto.com/region/", "isPartOf": {"@type": "WebSite", "name": "saketto", "url": "https://saketto.com/"}}</script>
-<script type="application/ld+json">{"@context": "https://schema.org/", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "トップ", "item": "https://saketto.com/"}, {"@type": "ListItem", "position": 2, "name": "地域から探す", "item": "https://saketto.com/region/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org/", "@type": "CollectionPage", "name": "クラフトサケを地域から探す — saketto.", "description": "全国のクラフトサケ醸造所25蔵を東北・関東・中部・関西・九州・沖縄の地域別に横断検索。震災復興の東北、駅ナカの都市型、南国素材の九州・沖縄まで、土地の物語から次の一本へ。", "url": "https://saketto.com/region/", "isPartOf": {"@type": "WebSite", "name": "saketto", "url": "https://saketto.com/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org/", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "トップ", "item": "https://saketto.com/"}, {"@type": "ListItem", "position": 2, "name": "クラフトサケを地域から探す", "item": "https://saketto.com/region/"}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -31,6 +31,7 @@
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
+a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
 body {
   background:var(--bg); color:var(--ink);
   font-family:'Noto Sans JP', sans-serif; font-weight:400;
@@ -60,7 +61,7 @@ main { position:relative; z-index:1; }
 .masthead .left { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
 .masthead .brand-link { color:var(--ink); font-weight:700; }
 .masthead-nav { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
-.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; padding:.45rem .25rem; margin:-.45rem -.25rem; }
 .masthead-nav a:hover { color:var(--accent); }
 @media (max-width:640px){ .masthead-nav{ gap:.9rem; font-size:.72rem; } }
 
@@ -286,7 +287,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <nav class="masthead-nav" aria-label="ナビ">
       <a href="../subingredients/">副原料</a>
-      <a href="../index.html#breweries">蔵</a>
+      <a href="../brewery/">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
       <a href="../guide/">読みもの</a>
@@ -311,7 +312,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
-      <span class="section-meta__label">東北</span>
+      <h2 class="section-meta__label">東北</h2>
       <span class="section-meta__count">/ 6 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
@@ -358,7 +359,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
-      <span class="section-meta__label">関東</span>
+      <h2 class="section-meta__label">関東</h2>
       <span class="section-meta__count">/ 6 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
@@ -405,7 +406,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
-      <span class="section-meta__label">中部</span>
+      <h2 class="section-meta__label">中部</h2>
       <span class="section-meta__count">/ 3 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
@@ -434,7 +435,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 04</span>
-      <span class="section-meta__label">関西</span>
+      <h2 class="section-meta__label">関西</h2>
       <span class="section-meta__count">/ 5 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
@@ -475,7 +476,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 05</span>
-      <span class="section-meta__label">九州</span>
+      <h2 class="section-meta__label">九州</h2>
       <span class="section-meta__count">/ 4 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
@@ -510,7 +511,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 06</span>
-      <span class="section-meta__label">沖縄</span>
+      <h2 class="section-meta__label">沖縄</h2>
       <span class="section-meta__count">/ 1 蔵</span>
       <span class="section-meta__rule"></span>
     </div>

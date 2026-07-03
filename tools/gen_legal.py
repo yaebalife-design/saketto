@@ -58,7 +58,7 @@ MASTHEAD = """
     </div>
     <nav class="masthead-nav" aria-label="ナビ">
       <a href="/subingredients/">副原料</a>
-      <a href="/index.html#breweries">蔵</a>
+      <a href="/brewery/">蔵</a>
       <a href="/region/">地域</a>
       <a href="/genre/">ジャンル</a>
       <a href="/guide/">読みもの</a>
