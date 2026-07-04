@@ -1099,8 +1099,8 @@
    "product_url": null
   },
   "rakuten": {
-   "show": false,
-   "query": null
+   "show": true,
+   "query": "平六醸造 layer リンゴ"
   }
  },
  "pukupuku:0": {
