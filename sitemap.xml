@@ -41,9 +41,12 @@
   <url><loc>https://saketto.com/brewery/yamane.html</loc><priority>0.8</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/adachi-noujo-0.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/adachi-noujo-1.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/adachi-noujo-2.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/adachi-noujo-3.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/amanosato-0.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/amanosato-1.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/amanosato-2.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/amanosato-3.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/cultiva-0.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/cultiva-1.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/cultiva-2.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
@@ -85,6 +88,9 @@
   <url><loc>https://saketto.com/brand/happy-taro-4.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/happy-taro-5.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/happy-taro-6.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/happy-taro-7.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/happy-taro-8.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/happy-taro-9.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/heiroku-0.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/heiroku-1.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/heiroku-2.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
@@ -105,14 +111,25 @@
   <url><loc>https://saketto.com/brand/heiwa-namba-6.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/ine-to-agave-0.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/ine-to-agave-1.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/ine-to-agave-10.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/ine-to-agave-11.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/ine-to-agave-12.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/ine-to-agave-13.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/ine-to-agave-14.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/ine-to-agave-15.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/ine-to-agave-2.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/ine-to-agave-3.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/ine-to-agave-4.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/ine-to-agave-5.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/ine-to-agave-6.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/ine-to-agave-7.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/ine-to-agave-8.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/ine-to-agave-9.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/iyasaka-0.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/konohanano-0.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/konohanano-1.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/konohanano-2.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/konohanano-3.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/lagoon-0.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/lagoon-1.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/lagoon-2.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
@@ -120,6 +137,7 @@
   <url><loc>https://saketto.com/brand/lagoon-4.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/lagoon-5.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/lagoon-6.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://saketto.com/brand/lagoon-7.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/librom-0.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/librom-1.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://saketto.com/brand/librom-2.html</loc><priority>0.7</priority><lastmod>2026-08-09</lastmod></url>

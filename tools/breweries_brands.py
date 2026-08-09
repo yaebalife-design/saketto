@@ -12,7 +12,7 @@ BRANDS = {
     # ── 協会加盟9社 ──
 
     "ine-to-agave": [
-        {"name": "稲とアガベ CRAFT series", "abv": 14, "volume_ml": 500,
+        {"name": "稲とアガベ", "abv": 14, "volume_ml": 500,
          "sub_ingredients": ["アガベシロップ"], "price": 2500,
          "note": "ブランドの代名詞。白ブドウや白桃を思わせる柔らかな香り（参考は500ml火入れ版・特約店。公式は720ml）"},
         {"name": "花風（ぐるりこ®）", "abv": 14, "volume_ml": 720,
@@ -24,10 +24,43 @@ BRANDS = {
         {"name": "稲とハチミツ", "abv": 15, "volume_ml": 500,
          "sub_ingredients": ["ハチミツ"], "price": 3300,
          "note": "麹の糖と白麹の酸にトチの蜂蜜を融合した実験的な一本"},
-        {"name": "稲とリンゴ SPECIAL EDITION", "abv": None, "volume_ml": 500,
-         "sub_ingredients": ["リンゴ"], "price": 2959, "note": "特別版"},
-        {"name": "稲とブドウ SPECIAL EDITION", "abv": None, "volume_ml": 500,
-         "sub_ingredients": ["ブドウ"], "price": 2959, "note": "甲州ブドウ×米。日本酒とワインの中間"},
+        {"name": "稲とリンゴ", "abv": None, "volume_ml": 500,
+         "sub_ingredients": ["リンゴ（紅の夢）"], "price": 2959,
+         "note": "秋田県横手市産『紅の夢』（果肉まで赤く酸味が特徴）を米・米麹と発酵。精米歩合90%"},
+        {"name": "稲とブドウ", "abv": None, "volume_ml": 500,
+         "sub_ingredients": ["ブドウ（甲州）"], "price": 2959,
+         "note": "甲州ブドウ×米。日本酒とワインの中間。精米歩合90%"},
+        # ── 2026/08/09 公式オンラインショップ(shop.inetoagave.com)で確認して追加 ──
+        {"name": "稲とリンゴ SPECIAL EDITION", "abv": None, "volume_ml": 720,
+         "sub_ingredients": ["リンゴ（紅の夢）"], "price": 7150,
+         "note": "公式が「稲とアガベ最高峰のクラフトサケ」と位置づける720ml版。紅の夢を米・麹と発酵・熟成。精米歩合90%"},
+        {"name": "稲とブドウ SPECIAL EDITION 2024", "abv": None, "volume_ml": 720,
+         "sub_ingredients": ["ブドウ（甲州）"], "price": 7150,
+         "note": "通常版（500ml）とは別SKUの720ml最高峰シリーズ。精米歩合90%"},
+        {"name": "交酒 花風", "abv": None, "volume_ml": 720,
+         "sub_ingredients": ["ホップ"], "price": 2420,
+         "note": "公式表記の原材料は米・米麹・ホップ。ライチやマスカットを思わせる風味。精米歩合90%"},
+        {"name": "交酒花風（6号酵母）", "abv": None, "volume_ml": 720,
+         "sub_ingredients": None, "price": 2750,
+         "note": "秋田生まれの協会6号酵母を使用した花風。精米歩合90%。原材料は公式非開示"},
+        {"name": "火折", "abv": None, "volume_ml": 720,
+         "sub_ingredients": ["青文字の実", "榧（かや）の枝葉", "花蓬", "アオノクマタケランの葉"], "price": 3850,
+         "note": "日本草木研究所とのコラボ。4種のボタニカルを使用。精米歩合90%"},
+        {"name": "廻", "abv": None, "volume_ml": 720,
+         "sub_ingredients": ["クラフトジンのボタニカル残渣"], "price": 3850,
+         "note": "自社・早苗饗蒸留所のジン製造で出たボタニカル残渣を米・麹と仕込む。原料と副産物が廻り続けることから命名。精米歩合90%"},
+        {"name": "DOBUROKU ホップ", "abv": None, "volume_ml": 500,
+         "sub_ingredients": ["ホップ"], "price": 2695,
+         "note": "米・麹・ホップの定番どぶろく。年1回のみの仕込みで酸味を高めた設計。精米歩合90%"},
+        {"name": "稲とブドウとホップ", "abv": None, "volume_ml": 500,
+         "sub_ingredients": ["ブドウ", "ホップ"], "price": 2950,
+         "note": "日本酒とワインとビールを掛け合わせたクラフトサケ。ホップのポリフェノールでロゼワインのような色合いに。精米歩合90%"},
+        {"name": "SAKE 稲とアガベ×土田酒造", "abv": None, "volume_ml": 720,
+         "sub_ingredients": None, "price": 3300,
+         "note": "群馬・土田酒造で醸造したコラボ。精米歩合90%。原材料は公式非開示"},
+        {"name": "稲とアガベと谷泉", "abv": None, "volume_ml": None,
+         "sub_ingredients": ["ブルーベリー"], "price": None,
+         "note": "能登半島地震で全壊被害を受けた鶴野酒造店（谷泉）との共同醸造。「能登の酒を止めるな！」プロジェクト。度数・容量・価格は公式非開示"},
     ],
 
     "haccoba": [
@@ -70,6 +103,10 @@ BRANDS = {
         {"name": "翔空 自然栽培亀の尾どぶろく", "abv": 17, "volume_ml": 500,
          "sub_ingredients": ["米のみ"], "price": 2100,
          "note": "幻の米「亀ノ尾」100%使用、192本限定"},
+        # ── 2026/08/09 公式オンラインショップ(BASE)で確認して追加 ──
+        {"name": "翔空 微発泡の HOP SAKE ほっぺ", "abv": 15, "volume_ml": 720,
+         "sub_ingredients": ["ホップ（シトラ）"], "price": 2530,
+         "note": "搾ったあとにオリを絡め、ビン内二次発酵で発泡性をもたせたうすにごり。蔵初の品目【発泡酒】製品。原料米は新潟市北区産五百万石100%。度数はロットで変動（公式現行R616は15度）"},
     ],
 
     "librom": [
@@ -100,6 +137,10 @@ BRANDS = {
         {"name": "ハナグモリ 焼酎用白麹仕様", "abv": None, "volume_ml": None,
          "sub_ingredients": ["焼酎用白麹"], "price": None,
          "note": "バリエーション銘柄"},
+        # ── 2026/08/09 公式オンラインストアで確認して追加 ──
+        {"name": "EVAN-GARDE 「木花之醸造所×初号機」", "abv": 13, "volume_ml": None,
+         "sub_ingredients": ["黒米", "ホップ", "エルダーフラワー"], "price": 3200,
+         "note": "エヴァンゲリオン初号機をイメージし、黒米とホップ由来の紫色に仕上げたコラボ品。品目は「その他醸造酒」。精米歩合90%・701号酵母。容量は公式に記載なし"},
     ],
 
     "happy-taro": [
@@ -115,10 +156,22 @@ BRANDS = {
          "sub_ingredients": ["ホップ"], "price": 2530, "note": ""},
         {"name": "something happy 菅浦の八朔", "abv": None, "volume_ml": 480,
          "sub_ingredients": ["八朔"], "price": 2970, "note": ""},
-        {"name": "something happy 政所と共に", "abv": None, "volume_ml": 480,
-         "sub_ingredients": ["茶葉（政所茶）"], "price": 2530, "note": ""},
+        {"name": "something happy 政所の茶縁", "abv": None, "volume_ml": 480,
+         "sub_ingredients": ["茶葉（政所茶）"], "price": 2530,
+         "note": "公式現行表記は「政所の茶縁」（旧「政所と共に」から改称・2026/08/09公式で確認）"},
         {"name": "something happy 音羽の黒文字", "abv": None, "volume_ml": 480,
          "sub_ingredients": ["黒文字"], "price": 2970, "note": ""},
+        # ── 2026/08/09 公式サイト・公式ショップ(BASE)で確認して追加 ──
+        {"name": "something happy オリエンタルホエイ", "abv": 8, "volume_ml": 480,
+         "sub_ingredients": ["ホエー", "ローズペタル", "グリーンカルダモン", "ブラックペッパー", "ドライジンジャー"],
+         "price": 2750,
+         "note": "同じ建物「湖のスコーレ」のチーズ製造で出るホエイにスパイスを合わせたどぶろく。シタール奏者・石濱匡雄がスパイス監修。公式サイトの度数表記は5〜7%、現行ロット裏ラベルは8%"},
+        {"name": "something happy フレッシュハーブティー", "abv": 7, "volume_ml": 480,
+         "sub_ingredients": ["アップルミント", "日本ハッカ"], "price": 2970,
+         "note": "広島・梶谷農園の季節のフレッシュハーブで淹れたハーブティーを仕込水に使用。2022年夏から続くフラッグシップ。公式サイトの度数表記は5〜8%、2026年ロット裏ラベルは7%"},
+        {"name": "something happy 八朔 BITTER 2026", "abv": 9, "volume_ml": 480,
+         "sub_ingredients": ["八朔"], "price": 2970,
+         "note": "菅浦の八朔の今期初登場BITTER版。種由来の苦味を多めに抽出し3か月熟成。冬の商品を夏向けに仕立てた一本"},
     ],
 
     "heiroku": [
@@ -166,6 +219,13 @@ BRANDS = {
          "note": "第一弾。スッキリした綺麗さと心地よい酸"},
         {"name": "KOYOI La deuxième", "abv": 14, "volume_ml": 720,
          "sub_ingredients": ["米のみ"], "price": None, "note": "第二弾"},
+        # ── 2026/08/09 公式サイト・公式ショップで確認して追加（MIYOIは自社醸造所の主力ブランド。KOYOIは委託醸造の第一弾で品目=清酒） ──
+        {"name": "MIYOI(美酔) -ライチ- 生 720ml", "abv": 12, "volume_ml": 720,
+         "sub_ingredients": ["ライチ果汁"], "price": 2420,
+         "note": "公式ショップが「足立農醸の唯一の定番商品」と記載。日本酒の発酵途中でライチを共発酵。原材料は米・米麹・ライチ果汁。搾り月でサブタイトルが変わる"},
+        {"name": "MIYOI -旨すぎて御燗弁。- 燗酒専用酒 720ml", "abv": 15, "volume_ml": 720,
+         "sub_ingredients": ["出汁（かつお節）", "出汁（昆布）"], "price": 2530,
+         "note": "昆布と鰹節の特製出汁を醪へ仕込んだ燗酒専用クラフトサケ。公式推奨温度は50〜60度"},
     ],
 
     # ── 協会非加盟16社（Agent A 2026/05/30公式EC個別確認版） ──
@@ -333,6 +393,10 @@ BRANDS = {
         {"name": "在る 寒夜（かんや）500ml", "abv": 16, "volume_ml": 500,
          "sub_ingredients": ["レモン"], "price": 2860,
          "note": "原材料: 米(福岡産)・米麹(福岡産)・レモン(福智町産)。生酒/おりがらみ生原酒の2種"},
+        # ── 2026/08/09 公式オンラインショップで確認して追加 ──
+        {"name": "在る 陽香（ひのか）500ml", "abv": 15, "volume_ml": 500,
+         "sub_ingredients": ["ほうじ茶（八女産茶葉）"], "price": 2750,
+         "note": "八女産ほうじ茶を使用し、米の旨味と芳ばしさが調和した生酒。原料米は福岡県産山田錦100%。2025年7月一般販売開始。精米歩合は公式非公開"},
     ],
 
     # NOMU醸造所（沖縄・コザ）

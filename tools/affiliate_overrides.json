@@ -828,27 +828,27 @@
   }
  },
  "ine-to-agave:4": {
-  "name": "稲とリンゴ SPECIAL EDITION",
+  "name": "稲とリンゴ",
   "amazon": {
    "show": false,
    "query": null,
    "product_url": null
   },
   "rakuten": {
-   "show": false,
-   "query": null
+   "show": true,
+   "query": "稲とアガベ 稲とリンゴ 紅の夢"
   }
  },
  "ine-to-agave:5": {
-  "name": "稲とブドウ SPECIAL EDITION",
+  "name": "稲とブドウ",
   "amazon": {
    "show": false,
    "query": null,
    "product_url": null
   },
   "rakuten": {
-   "show": false,
-   "query": null
+   "show": true,
+   "query": "稲とアガベ 稲とブドウ 甲州"
   }
  },
  "haccoba:0": {
@@ -1008,7 +1008,7 @@
   }
  },
  "happy-taro:5": {
-  "name": "something happy 政所と共に",
+  "name": "something happy 政所の茶縁",
   "amazon": {
    "show": false,
    "query": null,
@@ -1497,6 +1497,222 @@
   "rakuten": {
    "show": true,
    "query": "白鶴 SAKE CRAFT THE PREMIUM"
+  }
+ },
+ "ine-to-agave:8": {
+  "name": "交酒 花風",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とアガベ 交酒 花風"
+  }
+ },
+ "ine-to-agave:9": {
+  "name": "交酒花風（6号酵母）",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とアガベ 交酒花風 6号酵母"
+  }
+ },
+ "ine-to-agave:10": {
+  "name": "火折",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とアガベ 火折"
+  }
+ },
+ "ine-to-agave:11": {
+  "name": "廻",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とアガベ 廻"
+  }
+ },
+ "ine-to-agave:12": {
+  "name": "DOBUROKU ホップ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とアガベ DOBUROKU ホップ"
+  }
+ },
+ "ine-to-agave:13": {
+  "name": "稲とブドウとホップ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とアガベ 稲とブドウとホップ"
+  }
+ },
+ "ine-to-agave:14": {
+  "name": "SAKE 稲とアガベ×土田酒造",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とアガベ 土田酒造"
+  }
+ },
+ "ine-to-agave:15": {
+  "name": "稲とアガベと谷泉",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "稲とアガベ 谷泉"
+  }
+ },
+ "happy-taro:7": {
+  "name": "something happy オリエンタルホエイ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "ハッピー太郎醸造所 オリエンタルホエイ"
+  }
+ },
+ "happy-taro:8": {
+  "name": "something happy フレッシュハーブティー",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "ハッピー太郎醸造所 フレッシュハーブティ"
+  }
+ },
+ "happy-taro:9": {
+  "name": "something happy 八朔 BITTER 2026",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "ハッピー太郎醸造所 八朔BITTER"
+  }
+ },
+ "lagoon:7": {
+  "name": "翔空 微発泡の HOP SAKE ほっぺ",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "翔空 微発泡 HOP SAKE ほっぺ"
+  }
+ },
+ "amanosato:3": {
+  "name": "在る 陽香（ひのか）500ml",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "天郷醸造所 在る 陽香"
+  }
+ },
+ "adachi-noujo:2": {
+  "name": "MIYOI(美酔) -ライチ- 生 720ml",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "足立農醸 MIYOI 生"
+  }
+ },
+ "adachi-noujo:3": {
+  "name": "MIYOI -旨すぎて御燗弁。- 燗酒専用酒 720ml",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "足立農醸 MIYOI 御燗弁"
+  }
+ },
+ "konohanano:3": {
+  "name": "EVAN-GARDE 「木花之醸造所×初号機」",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": true,
+   "query": "木花之醸造所 EVAN-GARDE"
+  }
+ },
+ "ine-to-agave:6": {
+  "name": "稲とリンゴ SPECIAL EDITION",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
+  }
+ },
+ "ine-to-agave:7": {
+  "name": "稲とブドウ SPECIAL EDITION 2024",
+  "amazon": {
+   "show": false,
+   "query": null,
+   "product_url": null
+  },
+  "rakuten": {
+   "show": false,
+   "query": null
   }
  }
 }
