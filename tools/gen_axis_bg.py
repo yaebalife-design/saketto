@@ -4,7 +4,7 @@
 社長指示: 各軸カードに（ヒーローのように）薄い背景を敷きたい
 薄く敷く前提なので、余白・光が多く抽象的な素材イメージにする。
 
-CLAUDE.md: Vertex AI経由 / gemini-3-pro-image-preview / location=global / 蔵固有画像NG
+CLAUDE.md: Vertex AI経由 / gemini-3-pro-image / location=global / 蔵固有画像NG
 実行: cd ツール/saketto_repo/tools && python gen_axis_bg.py
 出力: saketto_repo/assets/images/axis_*.png
 """
@@ -75,7 +75,7 @@ def gen_one(name, prompt):
         return True
     try:
         resp = client.models.generate_content(
-            model="gemini-3-pro-image-preview",
+            model="gemini-3-pro-image",
             contents=prompt,
         )
         img_bytes = extract_image_bytes(resp)

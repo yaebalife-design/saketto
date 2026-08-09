@@ -3,7 +3,7 @@
 
 CLAUDE.md ルール（親100_クロードコード経営/CLAUDE.md）：
 - 必ずVertex AI経由（クレカ直課金禁止）
-- gemini-3-pro-image-preview を使用
+- gemini-3-pro-image を使用
 - 蔵固有の画像は生成しない（地域風景・素材イメージのみ）
 
 実行: cd ツール/saketto_repo/tools && python gen_images.py
@@ -125,7 +125,7 @@ def gen_one(name, prompt):
 
     try:
         resp = client.models.generate_content(
-            model="gemini-3-pro-image-preview",
+            model="gemini-3-pro-image",
             contents=prompt,
         )
         img_bytes = extract_image_bytes(resp)

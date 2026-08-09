@@ -6,7 +6,7 @@
 
 CLAUDE.md ルール:
 - 必ず Vertex AI 経由（クレカ直課金禁止）
-- gemini-3-pro-image-preview / location="global"
+- gemini-3-pro-image / location="global"
 - 蔵固有の画像は生成しない（素材・抽象イメージのみ）
 
 実行: cd ツール/saketto_repo/tools && python gen_hero_variants.py
@@ -78,7 +78,7 @@ def gen_one(name, prompt):
         return True
     try:
         resp = client.models.generate_content(
-            model="gemini-3-pro-image-preview",
+            model="gemini-3-pro-image",
             contents=prompt,
         )
         img_bytes = extract_image_bytes(resp)

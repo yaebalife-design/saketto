@@ -2,7 +2,7 @@
 """saketto / 蔵ごとのヘッダーイメージ生成（Vertex AI）
 
 CLAUDE.md ルール：
-- 必ずVertex AI経由・gemini-3-pro-image-preview
+- 必ずVertex AI経由・gemini-3-pro-image
 - 蔵固有の建物・看板・ロゴは描かない（素材・土地・製法を連想させる風景/静物のみ）
 - ページ側に「画像はイメージ」表記を入れる（gen_brewery_pages.py 側で対応）
 
@@ -114,7 +114,7 @@ def main():
             continue
         try:
             resp = client.models.generate_content(
-                model="gemini-3-pro-image-preview",
+                model="gemini-3-pro-image",
                 contents=scene + LANDSCAPE,
             )
             img_bytes = extract_image_bytes(resp)
@@ -126,7 +126,7 @@ def main():
             ok += 1
         except Exception as e:
             print(f"  ✗ {slug}: {type(e).__name__}: {e}")
-        time.sleep(15)  # gemini-3-pro-image-preview の分間クォータが小さいため間隔を空ける
+        time.sleep(15)  # gemini-3-pro-image の分間クォータが小さいため間隔を空ける
     print(f"\n✓ 完了: {ok}/{len(SCENES)}")
 
 
