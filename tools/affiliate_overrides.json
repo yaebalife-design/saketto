@@ -415,8 +415,8 @@
    "product_url": null
   },
   "rakuten": {
-   "show": false,
-   "query": null
+   "show": true,
+   "query": "弥栄醸造 一擲ITTEKI"
   }
  },
  "sakenova:0": {
@@ -511,8 +511,8 @@
    "product_url": null
   },
   "rakuten": {
-   "show": false,
-   "query": null
+   "show": true,
+   "query": "天郷醸造所 在る 小暖"
   }
  },
  "amanosato:2": {
@@ -523,8 +523,8 @@
    "product_url": null
   },
   "rakuten": {
-   "show": false,
-   "query": null
+   "show": true,
+   "query": "天郷醸造所 在る 寒夜"
   }
  },
  "nomu:0": {
