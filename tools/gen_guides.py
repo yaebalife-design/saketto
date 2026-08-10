@@ -32,6 +32,15 @@ OUT_DIR = REPO_ROOT / "guide"
 ARTICLE_PUBLISHED = "2026-05-31"
 ARTICLE_MODIFIED = "2026-06-03"
 
+# 記事ごとの公開日の上書き（あとから追加した記事はここに入れる）。
+# 全記事で同じ日付を配信すると、新しい記事も旧日付で公開されたとGoogleに伝わるため。
+ARTICLE_DATES = {
+    "/guide/doburoku.html": ("2026-08-10", "2026-08-10"),
+    "/guide/doko-de-kaeru.html": ("2026-08-10", "2026-08-10"),
+    "/guide/zenkoji.html": ("2026-08-10", "2026-08-10"),
+    "/guide/new-breweries.html": ("2026-08-10", "2026-08-10"),
+}
+
 
 # ────────────── 記事用 追加CSS ──────────────
 
@@ -166,11 +175,12 @@ EXTRA_CSS = """
 
 def page_head(title, description, path="/guide/", og_type="website"):
     short = title.split(" — ")[0].split("【")[0].strip()  # パンくず/headline用の短縮名
+    published, modified = ARTICLE_DATES.get(path, (ARTICLE_PUBLISHED, ARTICLE_MODIFIED))
     if og_type == "article":
         jsonld = [
             {"@context": "https://schema.org/", "@type": "Article",
              "headline": short, "description": description, "inLanguage": "ja",
-             "datePublished": ARTICLE_PUBLISHED, "dateModified": ARTICLE_MODIFIED,
+             "datePublished": published, "dateModified": modified,
              "author": {"@type": "Organization", "name": "saketto 編集部"},
              "publisher": {"@type": "Organization", "name": "saketto", "url": SITE_URL + "/",
                            "logo": {"@type": "ImageObject", "url": SITE_URL + "/apple-touch-icon.png"}},
@@ -368,6 +378,34 @@ ARTICLES = [
         "eyebrow_en": "HANAMOTO",
         "title": "花酛（はなもと）とは",
         "summary": "東北に伝わる“幻のどぶろく製法”、花酛。東洋のホップ「唐花草」を使い、ビールのように醸す。なぜ幻になり、haccobaがどう甦らせ、それがなぜクラフトサケの原点なのかを深掘り。",
+    },
+    {
+        "slug": "doburoku",
+        "category": "know",
+        "eyebrow_en": "WHAT IS DOBUROKU",
+        "title": "どぶろくとは",
+        "summary": "白く濁った米の酒、どぶろく。にごり酒・清酒との違いはどこにあるのか。「こす／こさない」という一線が酒の呼び名を分ける仕組みから、家庭の酒だった歴史、いまクラフトサケの主役になった理由まで。",
+    },
+    {
+        "slug": "doko-de-kaeru",
+        "category": "choose",
+        "eyebrow_en": "WHERE TO BUY",
+        "title": "クラフトサケはどこで買える？",
+        "summary": "少量生産のクラフトサケは、探し方にコツがいる。蔵の公式オンラインショップ、通販モール、ふるさと納税、店頭限定——4つの入口の違いと、要冷蔵・季節限定という壁の越え方を、収録蔵の公式情報をもとに。",
+    },
+    {
+        "slug": "zenkoji",
+        "category": "deep",
+        "eyebrow_en": "FULL KOJI",
+        "title": "全麹酒とは",
+        "summary": "米をすべて麹にして醸す、全麹（ぜんこうじ）。掛米を使わないという一点で、酒は清酒の枠を外れ、濃密な甘みと酸をまとう。なぜ手間をかけてまで麹だけで造るのか、その設計思想を掘り下げる。",
+    },
+    {
+        "slug": "new-breweries",
+        "category": "deep",
+        "eyebrow_en": "NEW BREWERIES",
+        "title": "いま生まれている、新しい蔵",
+        "summary": "駅のホーム、商店街のアーケード、島、団地の一角。2024年以降に生まれたクラフトサケの蔵は、これまで酒蔵がなかった場所に立つ。saketto収録25蔵の開業年から、いま何が起きているのかを読む。",
     },
 ]
 
@@ -1407,6 +1445,492 @@ def build_hanamoto():
     return html
 
 
+def build_doburoku():
+    dobu_terms = term_grid([
+        ("どぶろく", "DOBUROKU", "もろみを「こさない」米の酒。米・米麹・水を発酵させたまま、固形分ごと味わう。酒税法上は清酒ではなく「その他の醸造酒」にあたる。"),
+        ("にごり酒", "NIGORIZAKE", "清酒として搾ったあと、澱（おり）をあえて戻したもの。工程としては清酒の側にいる。見た目は似ていても区分が違う。"),
+        ("清酒", "SEISHU", "米・米麹・水などを原料に発酵させ、「こしたもの」。この「こす」という一語が、日本酒とどぶろくを分ける法律上の境界線になっている。"),
+        ("もろみ", "MOROMI", "米・米麹・水が発酵している最中の、どろりとした状態。これをこせば清酒に、こさなければどぶろくになる。"),
+    ])
+
+    body = f"""
+  <div class="article">
+
+    <section class="section">
+{section_meta("01", "WHAT IS / どぶろくとは")}
+      <div class="prose">
+        <p class="lead">どぶろくとは、発酵したもろみを<span class="accent">こさずに</span>仕上げる米の酒。米粒や麹が溶け残ったまま、白く濁っている。日本でいちばん古い酒のかたちでありながら、いまクラフトサケのもっとも新しい表現でもある——それが、どぶろくという酒だ。</p>
+        <p>甘酒のようにとろりとしたもの、ヨーグルトを思わせる酸味のあるもの、しゅわしゅわと発泡するもの。ひとくちに「どぶろく」といっても味の幅は驚くほど広い。<strong>その振れ幅の大きさこそが、いま造り手たちを惹きつけている理由</strong>でもある。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("02", "THE LINE / 「こす」という一線")}
+      <div class="prose">
+        <h2 class="sub-h">日本酒とどぶろくを分けるのは、<span class="accent">たった一工程</span>。</h2>
+        <p>どぶろくと日本酒（清酒）の違いは、原料でも味でもない。<strong>「こす」かどうか</strong>、ただそれだけだ。酒税法が清酒を「米、米こうじ、水などを原料として発酵させて<strong>こしたもの</strong>」と定めているため、この一工程を経ない酒は、どれだけ丁寧に醸しても清酒とは呼ばれない。分類は「<strong>その他の醸造酒</strong>」になる。</p>
+        <p>ここで多くの人がつまずくのが、<strong>にごり酒との違い</strong>だ。にごり酒も白く濁っているが、あちらは目の粗い布などで<strong>一度こしたうえで</strong>、澱をあえて残している。つまり工程としては清酒の側にいる。見た目がそっくりでも、法律上はまったく別の区分——この境界線を知っておくと、ラベルの「品目」表記の意味が急にはっきり見えてくる。</p>
+      </div>
+      {dobu_terms}
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("03", "HISTORY / 家の酒だったころ")}
+      <div class="prose">
+        <h2 class="sub-h">かつて、酒は<span class="accent">台所</span>で生まれた。</h2>
+        <p>どぶろくは、もともと<strong>家庭で造られる酒</strong>だった。収穫した米と麹を仕込み、その家、その土地の味に育てる。全国各地の自家醸造を記録した文献『諸国ドブロク宝典』には、地域ごとに驚くほど多様な造りが残されている。神社の神事として奉納されるどぶろくは、いまも各地に受け継がれている。</p>
+        <p>しかし、酒造りが免許制になり、家庭での醸造が姿を消していくなかで、どぶろくは日常から遠ざかった。造り手が減れば、レシピも技も途絶える。<a href="hanamoto.html">花酛（はなもと）</a>のように、いちど「幻」と呼ばれるまで忘れられた製法もある。<strong>どぶろくが再び表舞台に戻ってくるまでには、長い空白があった</strong>。</p>
+        <div class="callout">
+          <div class="callout__label">編集部より</div>
+          <p>どぶろくの歴史や地域の慣習には、文献・伝承にもとづく部分が多く、細部には諸説あります。本記事は一般に語られている内容と、収録蔵の公式情報をもとに構成しています。酒類の製造には免許が必要です。</p>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("04", "REVIVAL / なぜ、いま増えているのか")}
+      <div class="prose">
+        <h2 class="sub-h">「こさない」ことが、<span class="accent">自由</span>になった。</h2>
+        <p>日本酒（清酒）の製造免許は、新規に取得することがきわめて難しい。だが「その他の醸造酒」であれば、条件を満たせば新たに免許を得る道がある。<strong>つまり、こさない酒を選ぶことは、新しい造り手が世に出るための現実的な入口だった</strong>。</p>
+        <p>そしてこの枠には、もうひとつの自由がついてくる。清酒の定義から外れる以上、<strong>米と米麹以外のものを使ってもかまわない</strong>。ホップ、果実、茶葉、ハーブ、スパイス——副原料を自由に選べる。制度上の制約から始まったはずの選択が、結果として表現の幅を一気に押し広げた。いまクラフトサケと呼ばれる酒のほとんどが、この地点から生まれている。成り立ちの全体像は<a href="craftsake-towa.html">クラフトサケとは</a>で詳しく紹介している。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("05", "TASTE / 味わいの振れ幅")}
+      <div class="prose">
+        <h2 class="sub-h">甘い、酸っぱい、<span class="accent">しゅわしゅわ</span>。</h2>
+        <p>どぶろくの味を決めるのは、主に<strong>発酵をどこで止めるか</strong>だ。糖が残っているうちに瓶詰めすれば甘口に、発酵を進めればすっきりと辛口に寄る。白麹や乳酸を使えばヨーグルトのような酸が立ち、火入れをしない生タイプなら瓶の中で発酵が続き、開けたときに気泡が上がってくる。</p>
+        <p>米粒の溶け具合も口当たりを大きく変える。ざらりとした粒感を残すもの、なめらかに均一なもの、ムースのように空気を含むもの。<strong>同じ「どぶろく」の三文字でも、蔵によってまるで別の飲みものになる</strong>——飲み比べがこれほど楽しいジャンルはそうない。温度や器の選び方は<a href="nomikata.html">飲み方・楽しみ方</a>にまとめている。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("06", "IN SAKETTO / どぶろくを探す")}
+      <div class="prose">
+        <h2 class="sub-h">米と麹だけの、<span class="accent">まっすぐな一杯</span>。</h2>
+        <p>saketto では、副原料を使わず米と麹だけで醸したものを「<strong>古典どぶろく</strong>」として分類している。ここには、東京駅のエキナカで醸す<a href="../brewery/tokyo-station.html">東京駅酒造場</a>、大阪の<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>と日本橋の<a href="../brewery/heiwa-kabutocho.html">兜町醸造所</a>、岩手・遠野の<a href="../brewery/nondo.html">nondo</a>、福島・小高の<a href="../brewery/pukupuku.html">ぷくぷく醸造</a>、滋賀の糀屋<a href="../brewery/happy-taro.html">ハッピー太郎醸造所</a>などが並ぶ。</p>
+        <p>いっぽうで、ホップを効かせたどぶろく、果実を仕込んだどぶろくも数多い。<a href="../brewery/ine-to-agave.html">稲とアガベ</a>の「DOBUROKU ホップ」、<a href="../brewery/lagoon.html">LAGOON BREWERY</a>の果実を漬け込んだシリーズなどがその代表だ。<strong>「こさない」という一点だけを共有して、あとは自由</strong>——どぶろくというジャンルの広さが、そのまま棚に並んでいる。</p>
+        <div class="pill-links">
+          <a href="../genre/">ジャンル「古典どぶろく」から<span class="arr">→</span></a>
+          <a href="../subingredients/">副原料から探す<span class="arr">→</span></a>
+          <a href="../brewery/">蔵から探す<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("07", "FAQ / よくある質問")}
+      <div class="prose">
+        <h2 class="sub-h tight">どぶろくと甘酒は、<span class="accent">違うもの</span>？</h2>
+        <p>別のものです。甘酒は米と麹の糖化だけでつくる、アルコールをほとんど含まない飲みもの（酒粕を溶いたタイプは微量に含みます）。どぶろくは酵母による発酵を経た<strong>お酒</strong>で、度数はおおむね5〜17度と幅があります。見た目が似ているので混同されやすいところです。</p>
+        <h2 class="sub-h tight">どぶろくは<span class="accent">日本酒</span>ですか？</h2>
+        <p>酒税法上は日本酒（清酒）ではなく「その他の醸造酒」に分類されます。原料も造りも清酒とほぼ同じですが、「こす」工程を経ていないためです。味わいの近さと法律上の区分は別のもの、と考えるとすっきりします。</p>
+        <h2 class="sub-h tight">開けるときに<span class="accent">吹きこぼれ</span>ませんか？</h2>
+        <p>生タイプや活性タイプは瓶内で発酵が続いているため、勢いよく噴き出すことがあります。<strong>よく冷やし、瓶を立てたまま、栓を少しずつ開けてはガスを逃がす</strong>——これを数回くり返すのが基本です。シンクの上で開けると安心です。詳しくは<a href="nomikata.html">飲み方・楽しみ方</a>へ。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("08", "READ ON / もっと味わう")}
+      <div class="prose">
+        <p>「こさない」という選択から、クラフトサケの自由は始まった。その原点にある製法や、麹だけで醸すという極端な設計も知れば、一杯の奥行きがさらに増す。</p>
+        <div class="callout">
+          <div class="callout__label">楽しむ前に</div>
+          <p><strong>20歳未満の飲酒は法律で禁じられています。</strong>　飲酒運転は法律で禁止されています。妊娠中・授乳期の飲酒はお控えください。適量を守り、自分のペースでお楽しみください。</p>
+        </div>
+        <div class="readmore">
+          <a href="hanamoto.html">
+            <div class="readmore__k">あわせて読む</div>
+            <div class="readmore__t">花酛（はなもと）とは</div>
+          </a>
+          <a href="zenkoji.html">
+            <div class="readmore__k">DEEP</div>
+            <div class="readmore__t">全麹酒とは</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+"""
+    html = page_head("どぶろくとは — にごり酒・清酒との違いと、いま増えている理由",
+                     "どぶろくとは何か。もろみを「こさない」米の酒で、酒税法上は清酒ではなく「その他の醸造酒」。にごり酒との違い、家庭の酒だった歴史、そしていまクラフトサケの主役になった理由を、収録蔵の実例とともに解説します。",
+                     "/guide/doburoku.html", "article")
+    html += masthead(article_masthead_label("doburoku"), "A Field Guide")
+    html += hero(
+        article_eyebrow("doburoku"),
+        'どぶろくとは。<br><span class="accent">こさない</span>という選択。',
+        "白く濁った、いちばん古い米の酒。その「こさない」一工程が、いまいちばん新しい自由を生んでいる。")
+    html += body
+    html += footer()
+    return html
+
+
+def build_doko_de_kaeru():
+    ch_terms = term_grid([
+        ("蔵の公式オンラインショップ", "OFFICIAL EC", "いちばん確実で、品揃えも最新。Shopify・BASE・STORES などで蔵が直接運営する。限定品はここにしか出ないことが多い。"),
+        ("通販モール", "ONLINE MALL", "楽天市場などに出店する酒販店経由。ポイントが使え、まとめ買いしやすい。ただし取扱いは蔵によって大きく差がある。"),
+        ("ふるさと納税", "FURUSATO", "蔵のある自治体への寄附の返礼品。実質負担を抑えて手に入る。数量限定・季節限定が多く、通年で出ているとは限らない。"),
+        ("店頭・蔵併設", "IN STORE", "醸造所併設のタップルームや酒販店。搾りたての生など、輸送に向かない酒はここでしか飲めない・買えない。"),
+    ])
+
+    body = f"""
+  <div class="article">
+
+    <section class="section">
+{section_meta("01", "THE PROBLEM / なぜ見つからないのか")}
+      <div class="prose">
+        <p class="lead">クラフトサケは、<span class="accent">探し方にコツがいる</span>。多くの蔵は大量生産を前提としない小さな仕込みを重ね、要冷蔵の生酒が主流で、季節限定も多い。<strong>全国のスーパーに並べるための酒ではない</strong>のだ。</p>
+        <p>だから、経路ごとの性格を知っているかどうかで、目当ての一本に届く確率がはっきり変わる。どこを見れば出会えて、どこには最初から並ばないのか——その地図さえ持っていれば、探すこと自体が楽しくなる。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("02", "FOUR CHANNELS / 4つの入口")}
+      <div class="prose">
+        <h2 class="sub-h">買える場所は、<span class="accent">大きく4つ</span>。</h2>
+        <p>クラフトサケの入手経路は、性格の違う4つに整理できる。どれが優れているという話ではなく、<strong>探しているものによって正解が変わる</strong>。</p>
+      </div>
+      {ch_terms}
+      <div class="prose">
+        <p>ざっくり言えば、<strong>確実さと品揃えなら公式ショップ、手軽さとポイントなら通販モール、お得さならふるさと納税、そこでしか出会えない一杯なら店頭</strong>。以下、それぞれの使いどころを見ていく。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("03", "OFFICIAL / 蔵の公式ショップ")}
+      <div class="prose">
+        <h2 class="sub-h">迷ったら、<span class="accent">蔵に直接</span>。</h2>
+        <p>もっとも確実なのが、蔵が自分で運営するオンラインショップだ。<strong>新商品・限定ロットは真っ先にここへ出る</strong>。造り手が書いた原材料や仕込みの説明を読めるのも、公式ならではの価値だ。</p>
+        <p>saketto が収録25蔵の全銘柄を実際に検索して調べたところ、<strong>通販モールでの取扱いを確認できなかった蔵が11あった</strong>。福岡の<a href="../brewery/librom.html">LIBROM</a>、仙台駅構内の<a href="../brewery/fermenteria.html">Fermenteria</a>、佐渡の<a href="../brewery/sakenova.html">SAKENOVA BREWERY</a>、長崎の<a href="../brewery/dejima-hosendo.html">でじま芳扇堂</a>、埼玉の<a href="../brewery/yamane.html">やまね酒造</a>などがそうだ。<strong>「モールで見つからない＝手に入らない」ではない</strong>。蔵の名前で公式サイトを開くのが近道になる。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("04", "MALL / 通販モールという近道")}
+      <div class="prose">
+        <h2 class="sub-h">出ている蔵は、<span class="accent">かなり出ている</span>。</h2>
+        <p>楽天市場などのモールには、クラフトサケを積極的に扱う酒販店がいる。ポイントが使え、他の買いものとまとめられるのが利点だ。ただし<strong>取扱いの濃淡が激しい</strong>。<a href="../brewery/ine-to-agave.html">稲とアガベ</a>や<a href="../brewery/lagoon.html">LAGOON BREWERY</a>、<a href="../brewery/haccoba.html">haccoba</a>のように多数の銘柄が並ぶ蔵がある一方、1本も出ていない蔵も珍しくない。</p>
+        <p>検索でつまずきやすいのが<strong>商品名の表記ゆれ</strong>だ。蔵の公式名と販売店のつけ方が違うことがよくある。語順や英字・かなが入れ替わっていたり、醸造年度やロット番号が足されていたりする。<strong>銘柄名だけで出てこないときは、蔵の名前と組み合わせて検索し直す</strong>——これだけで見つかることが多い。</p>
+        <div class="callout">
+          <div class="callout__label">saketto の使い方</div>
+          <p>収録している各銘柄のページには、実際に購入できることを確認できたものだけ購入リンクを置いています。<strong>買えない銘柄にボタンは出しません</strong>。リンクが無い銘柄は、公式ショップか店頭を当たるのが確実です。</p>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("05", "FURUSATO / ふるさと納税で手に入れる")}
+      <div class="prose">
+        <h2 class="sub-h">寄附という、<span class="accent">もうひとつの買い方</span>。</h2>
+        <p>意外と知られていないのが、ふるさと納税の返礼品にクラフトサケが並んでいることだ。蔵のある自治体に寄附すると、返礼品として届く。<strong>新しい蔵ほど地域と結びついて立ち上がっているため、この経路と相性がいい</strong>。</p>
+        <p>saketto が公式に確認できた範囲では、秋田県男鹿市の<a href="../brewery/ine-to-agave.html">稲とアガベ</a>、福島県南相馬市の<a href="../brewery/haccoba.html">haccoba</a>、岩手県紫波町の<a href="../brewery/heiroku.html">平六醸造</a>、大阪府高槻市の<a href="../brewery/adachi-noujo.html">足立農醸</a>、福岡県福智町の<a href="../brewery/amanosato.html">天郷醸造所</a>、沖縄県沖縄市の<a href="../brewery/nomu.html">NOMU醸造所</a>が出品を確認できている。<strong>通販モールには出ていないのに、ふるさと納税でだけ買える銘柄もある</strong>ので、見落とさないでほしい。</p>
+        <div class="pill-links">
+          <a href="../furusato/">ふるさと納税で探す<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("06", "IN STORE / そこでしか飲めない酒")}
+      <div class="prose">
+        <h2 class="sub-h">運ばない、という<span class="accent">選択</span>。</h2>
+        <p>クラフトサケには、<strong>意図的に流通させない酒</strong>がある。搾ったばかりの生、瓶内で発酵が進む活性タイプ——輸送や保管で品質が変わってしまうものは、醸造所併設の店やタップルームでしか出さない蔵がある。</p>
+        <p>たとえば東京駅のエキナカで醸す<a href="../brewery/tokyo-station.html">東京駅酒造場</a>、大阪タカシマヤ地下の<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>と日本橋兜町の<a href="../brewery/heiwa-kabutocho.html">兜町醸造所</a>、仙台駅構内の約3.4坪で醸す<a href="../brewery/fermenteria.html">Fermenteria</a>。神戸の<a href="../brewery/hakutsuru-sakecraft.html">HAKUTSURU SAKE CRAFT</a>は、ナンバリングされたシリーズの多くが資料館限定で、一部の特別銘柄だけが公式オンラインに出る。<strong>「買えない」のではなく、「その場所へ行って出会う酒」として設計されている</strong>。旅の目的地にする価値がある。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("07", "TIPS / 買うときの注意点")}
+      <div class="prose">
+        <h2 class="sub-h tight">要冷蔵かどうかを、<span class="accent">必ず確認</span>する。</h2>
+        <p>生タイプはクール便が前提です。常温便しか選べない販売ページでは、火入れ版かどうかを確かめてください。届いたらすぐ冷蔵庫へ。夏場の再配達は品質にひびきます。</p>
+        <h2 class="sub-h tight">「売り切れ」は<span class="accent">終わり</span>ではない。</h2>
+        <p>少量生産なので、公式ショップが品切れでも次のロットが仕込まれていることがよくあります。季節限定は翌年また登場します。入荷通知の登録や、蔵のSNSを追うのがいちばん早い方法です。</p>
+        <h2 class="sub-h tight">見つけたときが、<span class="accent">買いどき</span>。</h2>
+        <p>同じ銘柄でも醸造年度やロットで中身が変わります。「次でいいか」と思った一本が、次はもう別の設計になっていることも。気になったら、その場で確保するのが後悔しないコツです。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("08", "READ ON / 次の一本へ")}
+      <div class="prose">
+        <p>買い方がわかったら、あとは選ぶだけ。タイプ別のおすすめや、贈りものとしての選び方もあわせてどうぞ。</p>
+        <div class="callout">
+          <div class="callout__label">楽しむ前に</div>
+          <p><strong>20歳未満の飲酒は法律で禁じられています。</strong>　飲酒運転は法律で禁止されています。妊娠中・授乳期の飲酒はお控えください。適量を守り、自分のペースでお楽しみください。</p>
+        </div>
+        <div class="readmore">
+          <a href="osusume.html">
+            <div class="readmore__k">あわせて読む</div>
+            <div class="readmore__t">おすすめ12選</div>
+          </a>
+          <a href="gift.html">
+            <div class="readmore__k">CHOOSE</div>
+            <div class="readmore__t">ギフトに贈るクラフトサケ</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+"""
+    html = page_head("クラフトサケはどこで買える？ — 公式EC・通販・ふるさと納税・店頭の探し方",
+                     "少量生産のクラフトサケを確実に手に入れるには。蔵の公式オンラインショップ、通販モール、ふるさと納税、店頭限定という4つの入口の違いと、要冷蔵・表記ゆれ・季節限定という壁の越え方を、収録蔵の公式情報をもとに解説します。",
+                     "/guide/doko-de-kaeru.html", "article")
+    html += masthead(article_masthead_label("doko-de-kaeru"), "A Field Guide")
+    html += hero(
+        article_eyebrow("doko-de-kaeru"),
+        'どこで買える？<br><span class="accent">4つの入口</span>を知る。',
+        "近所の酒屋で見かけないのは、人気がないからではない。流通の量と経路が、そもそも違うからだ。")
+    html += body
+    html += footer()
+    return html
+
+
+def build_zenkoji():
+    koji_terms = term_grid([
+        ("全麹（全麹仕込み）", "FULL KOJI", "仕込みに使う米を、すべて麹にして醸す造り。掛米を使わないため、麹由来の甘みと酸がまっすぐ出る。「十割麹」とも呼ばれる。"),
+        ("掛米", "KAKEMAI", "通常の仕込みで、麹にせず蒸したまま加える米。一般的な清酒では原料米の約8割を占める。全麹ではこれを使わない。"),
+        ("麹", "KOJI", "蒸した米に麹菌を繁殖させたもの。デンプンを糖に変える酵素をつくる、酒造りの心臓部。"),
+        ("その他の醸造酒", "OTHER BREWED", "酒税法上の分類。清酒の定義を外れた米の酒はここに入る。クラフトサケの多くがこの区分にあたる。"),
+    ])
+
+    body = f"""
+  <div class="article">
+
+    <section class="section">
+{section_meta("01", "WHAT IS / 全麹とは")}
+      <div class="prose">
+        <p class="lead">全麹（ぜんこうじ）とは、仕込みに使う米を<span class="accent">すべて麹にして</span>醸す造り。ふつうの酒なら8割ほどを占める「掛米」を、いっさい使わない。極端で、手間がかかり、そして<strong>ほかでは出せない濃密さ</strong>にたどり着く設計だ。</p>
+        <p>ひとくち含むと、まず甘みが来る。次に、その甘さを引き締める酸。とろりとした質感が舌に残り、余韻が長い。<strong>日本酒ともワインとも違う、麹という素材そのものの味</strong>——それが全麹酒の正体だ。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("02", "THE STRUCTURE / なぜ濃くなるのか")}
+      <div class="prose">
+        <h2 class="sub-h">酒造りの<span class="accent">比率</span>を、壊す。</h2>
+        <p>一般的な清酒づくりでは、原料米のうち<strong>約2割を麹にし、残り8割は蒸した掛米として加える</strong>。麹がつくる酵素が掛米のデンプンを糖に変え、その糖を酵母がアルコールに変える——この分業で酒ができあがる。</p>
+        <p>全麹は、この比率を根本から変えてしまう。<strong>米を10割すべて麹にする</strong>のだ。酵素も、麹由来の旨み成分も、通常の何倍もの密度で仕込みに入る。結果として、糖化の力が強く働き、<strong>発酵で消費しきれない糖が残る</strong>。だから甘い。同時に麹由来のアミノ酸や有機酸も濃く出るため、ただ甘いだけでは終わらない、厚みのある味になる。</p>
+      </div>
+      {koji_terms}
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("03", "THE COST / 手間という代償")}
+      <div class="prose">
+        <h2 class="sub-h">麹をつくるのは、<span class="accent">いちばん重い仕事</span>。</h2>
+        <p>製麹（せいきく）——蒸した米に麹菌を植え、温度と湿度を管理しながら二昼夜ほどかけて育てる工程は、酒造りのなかでもっとも神経を使う作業とされる。夜通し数時間おきに手入れをすることもある。</p>
+        <p>全麹とは、その重い工程を<strong>通常の5倍こなす</strong>ということだ。同じ量の酒を仕込むのに、麹室（こうじむろ）の稼働も、人手も、時間も跳ね上がる。<strong>それでも造る蔵があるのは、そこにしかない味があるから</strong>にほかならない。生産量が限られ、価格も高めになりがちなのは、この構造ゆえだ。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("04", "THE LINE / 清酒の枠を外れる")}
+      <div class="prose">
+        <h2 class="sub-h">蒸米を使わない、<span class="accent">米の酒</span>。</h2>
+        <p>興味深いのは、全麹という選択が<strong>法律上の区分にも影響しうる</strong>ことだ。酒税法が定める清酒の原料は「米、米こうじ、水」。全麹では蒸米（掛米）を加えず米麹だけで仕込むため、この原料構成から外れ、<strong>「その他の醸造酒」として造られる</strong>ケースがある。</p>
+        <p>収録銘柄でいえば、新潟・柏崎の<a href="../brewery/iyasaka.html">弥栄醸造</a>が醸す「<a href="../brand/iyasaka-0.html">ITTEKI（一擲）十割麹酒</a>」は、米麹のみで仕込むため清酒規格の外にある一本だ。<strong>米だけで造っているのに、制度上は日本酒と呼べない</strong>——この逆説が、クラフトサケという領域のおもしろさをよく表している。区分の考え方は<a href="doburoku.html">どぶろくとは</a>でも整理している。</p>
+        <div class="callout">
+          <div class="callout__label">編集部より</div>
+          <p>酒類の分類は原料と製法の組み合わせで決まり、個々の商品がどの品目にあたるかは製造者の届出によります。本記事は一般的な仕組みの説明で、特定商品の区分については各蔵の表示をご確認ください。</p>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("05", "IN SAKETTO / 全麹の一本を探す")}
+      <div class="prose">
+        <h2 class="sub-h">濃密さを、<span class="accent">飲みくらべる</span>。</h2>
+        <p>全麹はまだ数の少ない造りだが、それぞれの蔵がまったく違う解釈を見せている。</p>
+        <p>福島・小高の<a href="../brewery/pukupuku.html">ぷくぷく醸造</a>が醸す「<a href="../brand/pukupuku-5.html">木桶発酵 全麹酒 雫取り</a>」は、全麹に<a href="kioke.html">木桶仕込み</a>を掛け合わせた最上位の一本。麹の濃密さに、木桶がもたらす微生物の複雑さが重なる。いっぽう<a href="../brewery/iyasaka.html">弥栄醸造</a>の「<a href="../brand/iyasaka-0.html">ITTEKI（一擲）</a>」は、新潟県柏崎市宮之下産コシヒカリ100%という米の出自を前面に出した設計だ。</p>
+        <p><strong>同じ「全麹」でも、木桶と組めば複雑に、単一品種と組めば澄んだ輪郭に</strong>。麹という土台が強いぶん、そこに何を重ねるかで表情が大きく変わる。</p>
+        <div class="pill-links">
+          <a href="../genre/">ジャンル「全麹酒」から<span class="arr">→</span></a>
+          <a href="../brewery/pukupuku.html">ぷくぷく醸造の銘柄<span class="arr">→</span></a>
+          <a href="../brewery/iyasaka.html">弥栄醸造の銘柄<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("06", "HOW TO DRINK / 飲み方")}
+      <div class="prose">
+        <h2 class="sub-h">濃いから、<span class="accent">小さく</span>注ぐ。</h2>
+        <p>全麹酒は甘みと酸がしっかりしているぶん、<strong>少量をゆっくり</strong>が似合う。ワイングラスなど口の広い器で香りを開かせ、冷やしすぎない温度（10〜15度）から始めると、甘みと酸のバランスが取りやすい。</p>
+        <p>料理を合わせるなら、<strong>甘さに拮抗する塩気や発酵食品</strong>が好相性だ。熟成チーズ、生ハム、味噌を使った料理、レバーパテなど。デザートワインのように、食後に単体で楽しむのもいい。ロックにして薄めながら飲むと、濃度の変化を追えて面白い。詳しくは<a href="nomikata.html">飲み方・楽しみ方</a>へ。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("07", "FAQ / よくある質問")}
+      <div class="prose">
+        <h2 class="sub-h tight">全麹酒は<span class="accent">甘口</span>ばかりですか？</h2>
+        <p>甘みが出やすい造りではありますが、発酵の進め方や酸の設計で辛口寄りに仕上げることもできます。ただ共通して言えるのは<strong>「味が濃い」</strong>こと。甘辛よりも、密度の高さが全麹らしさです。</p>
+        <h2 class="sub-h tight">甘酒と<span class="accent">似ています</span>か？</h2>
+        <p>麹の甘みという点では近い印象を受けるかもしれません（甘酒との違いは<a href="doburoku.html">どぶろくとは</a>で整理しています）。全麹酒はそこに<strong>麹由来の酸と厚み</strong>が乗るぶん、甘酒よりずっと輪郭がはっきりしています。</p>
+        <h2 class="sub-h tight">「十割麹」と<span class="accent">同じ</span>ものですか？</h2>
+        <p>基本的に同じ造りを指す言い方です。米をすべて麹にすることから「全麹」「十割麹」と呼ばれます。蔵によって表記の好みが分かれます。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("08", "READ ON / もっと味わう")}
+      <div class="prose">
+        <p>麹の力を極端まで押し進めたのが全麹なら、容器の力を借りるのが木桶仕込み。造りのことばを知るほど、一本の設計が読めるようになる。</p>
+        <div class="callout">
+          <div class="callout__label">楽しむ前に</div>
+          <p><strong>20歳未満の飲酒は法律で禁じられています。</strong>　飲酒運転は法律で禁止されています。妊娠中・授乳期の飲酒はお控えください。適量を守り、自分のペースでお楽しみください。</p>
+        </div>
+        <div class="readmore">
+          <a href="kioke.html">
+            <div class="readmore__k">あわせて読む</div>
+            <div class="readmore__t">木桶仕込みとは</div>
+          </a>
+          <a href="doburoku.html">
+            <div class="readmore__k">KNOW</div>
+            <div class="readmore__t">どぶろくとは</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+"""
+    html = page_head("全麹酒とは — 米をすべて麹にして醸す、濃密な米の酒",
+                     "全麹（ぜんこうじ）とは何か。仕込む米をすべて麹にし、掛米を使わない造り。なぜ濃密な甘みと酸が生まれるのか、なぜ清酒の枠を外れるのか、そして手間をかけてまで造る理由を、収録銘柄の実例とともに解説します。",
+                     "/guide/zenkoji.html", "article")
+    html += masthead(article_masthead_label("zenkoji"), "A Field Guide")
+    html += hero(
+        article_eyebrow("zenkoji"),
+        '全麹酒とは。<br>米を、<span class="accent">すべて麹に</span>。',
+        "掛米を使わないという一点。製麹の手間は5倍、味は濃密。麹そのものを飲むような一杯がある。")
+    html += body
+    html += footer()
+    return html
+
+
+def build_new_breweries():
+    nb_terms = term_grid([
+        ("その他の醸造酒免許", "OTHER BREWED LICENSE", "清酒の製造免許は新規取得がきわめて困難だが、こちらは条件を満たせば新設の道がある。新しい蔵の多くがこの免許で立ち上がる。"),
+        ("マイクロ醸造所", "MICRO BREWERY", "小さな仕込みを重ねる醸造所。設備がコンパクトなぶん、街なかや駅構内にも設置できる。"),
+        ("委託醸造", "CONTRACT BREWING", "自前の設備を持つ前に、既存の蔵に委託して醸す方式。ブランドを先に立ち上げ、のちに自社醸造へ移る蔵もある。"),
+        ("クラフトサケブリュワリー協会", "ASSOCIATION", "2022年に発足した造り手の団体。「クラフトサケ」という呼称そのものを、造り手たちが定義した。"),
+    ])
+
+    body = f"""
+  <div class="article">
+
+    <section class="section">
+{section_meta("01", "NOW / いま、何が起きているか")}
+      <div class="prose">
+        <p class="lead"><span class="accent">酒蔵が立つはずのなかった場所</span>に、いま次々と醸造所が生まれている。saketto が収録する蔵の開業年をならべると、その速さがはっきり見えてくる。</p>
+        <p>収録25蔵のうち、<strong>2024年以降に立ち上がった蔵が11、さらに開業準備中が1</strong>。ほぼ半数が、ここ2〜3年に集中している計算になる。2024年に5蔵、2025年に5蔵、そして2026年にもすでに新しい名前が加わった。<strong>これは一過性のブームというより、酒づくりの入口が構造的に変わったということだ</strong>。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("02", "WHY / なぜ増えているのか")}
+      <div class="prose">
+        <h2 class="sub-h">閉じた扉の、<span class="accent">横にあった扉</span>。</h2>
+        <p>理由の中心にあるのは免許制度だ。清酒の新規免許がほぼ下りない一方、<strong>「その他の醸造酒」には新設の道が残されている</strong>——この一点の差が、参入の地図を書き換えた。制度の詳しい仕組みは<a href="craftsake-towa.html">クラフトサケとは</a>、こさない造りについては<a href="doburoku.html">どぶろくとは</a>で扱っている。</p>
+        <p>ここで見たいのは、その扉をくぐった蔵が<strong>どこに立ったか</strong>だ。清酒の枠を出るという選択は、造りの自由と引き換えに、既存の酒蔵が積み上げてきた前提——広い敷地、大きなタンク、長い歴史——からも自由になることを意味した。<strong>身軽になった蔵は、これまで酒が生まれるはずのなかった場所へ降りていく</strong>。</p>
+      </div>
+      {nb_terms}
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("03", "PLACE / 蔵が立つ場所が変わった")}
+      <div class="prose">
+        <h2 class="sub-h">酒蔵は、<span class="accent">街の中</span>へ。</h2>
+        <p>設備が小さくて済むということは、立地の自由度が上がるということでもある。新しい蔵のリストを見ると、<strong>従来の酒蔵の常識からすると意外な場所</strong>が並ぶ。</p>
+        <p>宮城の<a href="../brewery/fermenteria.html">Fermenteria</a>は仙台駅のエキナカで、東京の<a href="../brewery/tokyo-station.html">東京駅酒造場</a>は東京駅のエキナカで醸す。沖縄の<a href="../brewery/nomu.html">NOMU醸造所</a>はコザ一番街の商店街に、大阪の<a href="../brewery/adachi-noujo.html">足立農醸</a>は高槻の団地内に立つ。<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>が構えるのは、大阪タカシマヤの地下だ。<strong>造る場所と飲む場所が同じ</strong>——搾りたてをその場で出すという、これまでできなかった体験が成立している。</p>
+        <p>いっぽうで、地域に根ざす動きも強い。福岡県福智町の<a href="../brewery/amanosato.html">天郷醸造所</a>は町のクラフトサケ醸造者募集をきっかけに生まれ、佐渡島の<a href="../brewery/sakenova.html">SAKENOVA BREWERY</a>、新潟県柏崎市の集落に立つ<a href="../brewery/iyasaka.html">弥栄醸造</a>のように、<strong>土地の米と風景を前提にした蔵</strong>も続々と現れている。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("04", "TIMELINE / 開業年で読む")}
+      <div class="prose">
+        <h2 class="sub-h">2020年からの、<span class="accent">5年間</span>。</h2>
+        <p>ここからは、生まれた順に並べ直してみる。世代の輪郭がはっきりする。滋賀の<a href="../brewery/happy-taro.html">ハッピー太郎醸造所</a>（2017年）や埼玉の<a href="../brewery/yamane.html">やまね酒造</a>（2019年）のような先行例はあるものの、収録蔵の多くは2020年以降に集まっている。なかでも<strong>2020〜2021年</strong>には、いまジャンルを牽引する蔵が集中して生まれた。福島・小高の<a href="../brewery/haccoba.html">haccoba</a>、秋田・男鹿の<a href="../brewery/ine-to-agave.html">稲とアガベ</a>、新潟・福島潟の<a href="../brewery/lagoon.html">LAGOON BREWERY</a>、福岡の<a href="../brewery/librom.html">LIBROM</a>、東京・浅草の<a href="../brewery/konohanano.html">木花之醸造所</a>——第一世代というべき蔵たちだ。</p>
+        <p><strong>2022〜2023年</strong>は、その背中を追う世代。<a href="../brewery/pukupuku.html">ぷくぷく醸造</a>、岩手・遠野の<a href="../brewery/nondo.html">nondo</a>、岩手・紫波の<a href="../brewery/heiroku.html">平六醸造</a>、長崎・出島の<a href="../brewery/dejima-hosendo.html">でじま芳扇堂</a>。そして<strong>2024年以降</strong>になると、大手の参入（神戸の<a href="../brewery/hakutsuru-sakecraft.html">HAKUTSURU SAKE CRAFT</a>）や、駅・商店街・離島といった新しい立地が一気に増える。</p>
+        <p>この5年で、<strong>クラフトサケは「一部の先進的な蔵の試み」から「毎年新しい蔵が生まれる領域」へ変わった</strong>。saketto が横断検索のデータベースをつくっているのも、追いかけきれない速さで銘柄が増えているからにほかならない。</p>
+        <div class="pill-links">
+          <a href="../brewery/">収録25蔵を一覧で見る<span class="arr">→</span></a>
+          <a href="../region/">地域から探す<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("05", "ASSOCIATION / 造り手たちの協会")}
+      <div class="prose">
+        <h2 class="sub-h">ばらばらではなく、<span class="accent">ジャンルとして</span>。</h2>
+        <p>個々の蔵が別々に試行錯誤していた段階から、ひとつのジャンルとして名乗る段階へ——その転換点になったのが<strong>クラフトサケブリュワリー協会</strong>の発足だ。「クラフトサケ」という呼び名そのものが、造り手たち自身の手で定義されたことに意味がある。</p>
+        <p>saketto が収録する25蔵のうち、協会に加盟しているのは9蔵。<strong>加盟していない蔵のほうが多い</strong>のは、この領域がまだ広がり続けている証拠でもある。大手酒造の実験的ブランドから、地域おこしとして始まった蔵、駅のエキナカに立つ小さな醸造所まで——出自も規模も動機もばらばらな造り手が、「米で自由に醸す」という一点でゆるやかにつながっている。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("06", "NEXT / これから")}
+      <div class="prose">
+        <h2 class="sub-h">まだ、<span class="accent">増えつづける</span>。</h2>
+        <p>2026年に入っても新しい蔵の名前は増えている。茨城の<a href="../brewery/tsuchiura.html">土浦醸造</a>のように準備段階の蔵もあり、<strong>この記事が古びるのは速い</strong>。saketto はそのつど一次ソースを確認して収録を更新している。</p>
+        <p>新しい蔵の酒は、<strong>まず蔵の公式オンラインショップや店頭に出る</strong>ことが多い。通販モールに並ぶのは、そのあとになる。気になる蔵ができたら、公式サイトとSNSを直接追うのがいちばん早い。買い方のコツは<a href="doko-de-kaeru.html">どこで買える？</a>にまとめている。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("07", "FAQ / よくある質問")}
+      <div class="prose">
+        <h2 class="sub-h tight">クラフトサケの蔵は、全国に<span class="accent">いくつ</span>ありますか？</h2>
+        <p>明確な統計はありません。協会加盟蔵のほか、加盟せずに醸す蔵、大手酒造の実験ブランド、準備中の蔵まで含めると、線の引き方で数が変わるためです。saketto では一次ソースで確認できた蔵を収録しており、現在25蔵を掲載しています。</p>
+        <h2 class="sub-h tight">新しい蔵の酒は、<span class="accent">品質</span>が心配ではないですか？</h2>
+        <p>多くの造り手は、既存の酒蔵での修業歴や醸造の専門教育を経て独立しています。また設備が小さいぶん一仕込みごとに細かく設計を変えられるため、むしろ攻めた造りに挑戦しやすいという利点があります。</p>
+        <h2 class="sub-h tight">どの蔵から<span class="accent">飲めば</span>いいですか？</h2>
+        <p>まずは入手しやすい第一世代の定番から入り、気に入った方向性（ホップ系・果実系・どぶろく系）を決めてから新しい蔵へ広げるのがおすすめです。タイプ別の入口は<a href="osusume.html">おすすめ12選</a>にまとめています。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("08", "READ ON / もっと知る")}
+      <div class="prose">
+        <p>新しい蔵が生まれる背景を知ると、一本の酒の後ろにある選択が見えてくる。ジャンルの成り立ちそのものも、あわせてどうぞ。</p>
+        <div class="callout">
+          <div class="callout__label">楽しむ前に</div>
+          <p><strong>20歳未満の飲酒は法律で禁じられています。</strong>　飲酒運転は法律で禁止されています。妊娠中・授乳期の飲酒はお控えください。適量を守り、自分のペースでお楽しみください。</p>
+        </div>
+        <div class="readmore">
+          <a href="craftsake-towa.html">
+            <div class="readmore__k">あわせて読む</div>
+            <div class="readmore__t">クラフトサケとは</div>
+          </a>
+          <a href="doko-de-kaeru.html">
+            <div class="readmore__k">CHOOSE</div>
+            <div class="readmore__t">どこで買える？</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+"""
+    html = page_head("いま生まれている、新しい蔵 — クラフトサケ醸造所が増えている理由",
+                     "駅構内、商店街、団地、離島。これまで酒蔵がなかった場所にクラフトサケの醸造所が次々と生まれている。saketto収録25蔵の開業年から、免許制度・立地・協会という3つの視点でいま何が起きているのかを読み解きます。",
+                     "/guide/new-breweries.html", "article")
+    html += masthead(article_masthead_label("new-breweries"), "A Field Guide")
+    html += hero(
+        article_eyebrow("new-breweries"),
+        '新しい蔵が、<br><span class="accent">街の中</span>に立つ。',
+        "駅のエキナカ、商店街のアーケード、団地の一角。酒蔵の常識が、この5年で書き換わった。")
+    html += body
+    html += footer()
+    return html
+
+
 # ────────────── 実行 ──────────────
 
 def main():
@@ -1418,6 +1942,10 @@ def main():
     (OUT_DIR / "kioke.html").write_text(build_kioke(), encoding="utf-8")
     (OUT_DIR / "gift.html").write_text(build_gift(), encoding="utf-8")
     (OUT_DIR / "hanamoto.html").write_text(build_hanamoto(), encoding="utf-8")
+    (OUT_DIR / "doburoku.html").write_text(build_doburoku(), encoding="utf-8")
+    (OUT_DIR / "doko-de-kaeru.html").write_text(build_doko_de_kaeru(), encoding="utf-8")
+    (OUT_DIR / "zenkoji.html").write_text(build_zenkoji(), encoding="utf-8")
+    (OUT_DIR / "new-breweries.html").write_text(build_new_breweries(), encoding="utf-8")
     print(f"OK ガイド生成: guide/index.html（一覧）＋ 記事{len(ARTICLES)}本")
 
 
