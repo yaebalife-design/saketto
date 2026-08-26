@@ -285,7 +285,7 @@ def footer():
         <a href="/privacy.html">プライバシーポリシー</a><span class="colophon__sep">／</span>
         <a href="/disclaimer.html">免責事項・広告表記</a><span class="colophon__sep">／</span>
         20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
-        PR ／ アフィリエイトリンクを含みます<span class="colophon__sep">／</span>
+        PR ／ 当サイトはアフィリエイト広告（Amazonアソシエイト含む）を掲載しています<span class="colophon__sep">／</span>
         © 2026 saketto.
       </div>
     </div>
