@@ -320,18 +320,38 @@ GENRES = [
 ]
 
 
+def _load_brand_details():
+    """brand_data/*.json を slug -> [detail] (breweries_brands と同じ順序) で読む。
+    銘柄名や note に現れない製法（木桶・全麹・酒母など）を判定に使うため。"""
+    import glob
+    import json
+    out = {}
+    for p in glob.glob(str(Path(__file__).resolve().parent / "brand_data" / "*.json")):
+        d = json.load(open(p, encoding="utf-8"))
+        out[d["brewery"]] = list(d["brands"].values())
+    return out
+
+
+BRAND_DETAILS = _load_brand_details()
+
+
 def get_brewery_genres(brewery):
     """蔵を複数のジャンルに分類（重複OK）"""
     slug = brewery["slug"]
     brands = BRANDS.get(slug, [])
     features = brewery.get("features", "") + brewery.get("philosophy", "")
     genres = set()
+    _details = BRAND_DETAILS.get(slug, [])
 
-    for b in brands:
+    for _i, b in enumerate(brands):
         ings = b.get("sub_ingredients") or []
         name = b.get("name", "")
         note = b.get("note", "")
-        all_text = " ".join(ings) + " " + name + " " + note
+        # brand_data の製法情報（発酵容器・酒母・麹）も判定材料に含める。
+        # 例：やまね酒造は銘柄名にもnoteにも「木桶」が出ないが vessel は木桶。
+        _d = _details[_i] if _i < len(_details) else {}
+        _method = " ".join(str(_d.get(k) or "") for k in ("vessel", "shubo", "koji"))
+        all_text = " ".join(ings) + " " + name + " " + note + " " + _method
 
         if "ホップ" in all_text:
             genres.add("hop-sake")

@@ -601,7 +601,19 @@ def build_towa():
     </section>
 {divider()}
     <section class="section">
-{section_meta("09", "FAQ / よくある質問")}
+{section_meta("09", "BY THE NUMBERS / 数字で見る")}
+      <div class="prose">
+        <h2 class="sub-h">143本を並べて、<span class="accent">見えたこと</span>。</h2>
+        <p>クラフトサケは「自由な酒」と語られる。だが自由とは具体的に何を指すのか。saketto が収録する143銘柄を実際に集計してみると、その輪郭が数字になって現れる。</p>
+        <p>まず<strong>副原料の表記は76通り</strong>。ホップ、果実、茶葉、ボタニカル、出汁、ホエー、カカオ——143本のなかに、76通りの「米以外」が記録されている。<strong>およそ2本に1種類の割合で新しい素材が登場している</strong>計算だ。日本酒が米・米麹・水という三つの原料で千年以上の表現を積み上げてきたことを思えば、この散らばり方は異様ですらある。</p>
+        <p>分類してみると、<strong>米と麹だけで醸すものが47銘柄</strong>ともっとも多い。次いで<strong>果実が28、ホップが19、アガベ・蜂蜜・出汁などの特殊な副原料が16、茶葉・ハーブが15、大麦麹・蕎麦麹・発芽玄米といった穀物や特殊な麹が10</strong>と続く（副原料を複数使う銘柄は主たるものに寄せて分類。副原料が公式非開示の8銘柄は除く）。<strong>「自由な酒」の三分の一近くが、じつは何も足していない</strong>——この事実は、クラフトサケが副原料の物珍しさだけで成り立っているわけではないことを示している。搾らないという選択そのものが、すでに表現になっているのだ。</p>
+        <p>価格は<strong>中央値2,750円</strong>。判明している101銘柄のうち<strong>54銘柄が2,000円台</strong>に集まり、3,000〜4,999円が27銘柄。5,000円を超えるものは9銘柄しかない。<strong>大半は、日常の食卓に届く価格帯</strong>にある。度数は、ノンアルコールの甘酒を除くと4度から17度まで幅があり、中央値は13度。容量は720mlが49銘柄、500mlが30銘柄で、四合瓶と、その少し小さいサイズが主流だ。</p>
+        <p>これらの数字が語るのは、<strong>クラフトサケが「珍しい実験酒」から「選べる日常の酒」へ移りつつある</strong>ということだろう。76通りの素材という振れ幅を持ちながら、価格と容量はきわめて現実的な範囲に収まっている。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("10", "FAQ / よくある質問")}
       <div class="prose">
         <h2 class="sub-h tight">クラフトサケと日本酒は、<span class="accent">何が違う</span>のですか？</h2>
         <p>原料も造りも近いのですが、酒税法上の区分が違います。日本酒（清酒）は「米・米こうじ・水などを原料として発酵させ、<strong>こしたもの</strong>」と定められており、この定義から外れる酒は「その他の醸造酒」などに分類されます。もろみをこさない、あるいは米以外の副原料を使う——クラフトサケの多くはこの枠で造られています。味の優劣ではなく、あくまで制度上の線引きです。</p>
@@ -615,7 +627,7 @@ def build_towa():
     </section>
 {divider()}
     <section class="section">
-{section_meta("10", "HOW TO EXPLORE / 探し方")}
+{section_meta("11", "HOW TO EXPLORE / 探し方")}
       <div class="prose">
         <h2 class="sub-h">4つの軸から、<span class="accent">次の一本</span>へ。</h2>
         <p>クラフトサケの面白さは、その多様さにある。saketto では、25の蔵と140を超える銘柄を、4つの軸から横断的に探せる。気になる入り口から、次に出会う一本を見つけてほしい。</p>
@@ -791,7 +803,18 @@ def build_nomikata():
     </section>
 {divider()}
     <section class="section">
-{section_meta("09", "FAQ / よくある質問")}
+{section_meta("09", "MAKER'S NOTE / 造り手の推奨に従う")}
+      <div class="prose">
+        <h2 class="sub-h">迷ったら、<span class="accent">蔵の言葉</span>を読む。</h2>
+        <p>ここまで温度や器の話をしてきたが、じつはもっと確実な指針がある。<strong>造り手自身が示している飲み方</strong>だ。saketto が収録する銘柄のうち、<strong>50件で蔵の推奨する温度帯が公開されている</strong>。</p>
+        <p>並べてみると、いちばん多いのは<strong>「冷やして」</strong>。生酒や果実を使った銘柄が多いクラフトサケでは、これが基本になる。だが注目したいのは、<strong>「冷酒から燗まで」「常温15度から42度のお燗酒まで」「ひやからぬる燗」</strong>といった、<strong>幅で示す蔵が少なくない</strong>ことだ。</p>
+        <p>幅で示すというのは、<strong>どこで飲んでも成立するように設計している</strong>という宣言でもある。温度を変えて何度も表情を確かめてほしい——そういう意図が読み取れる。逆に「50〜60度」と狭く指定する銘柄もあり、これは燗酒専用として設計された一本だ。ここを外すと、造り手が意図した味に届かない。</p>
+        <p>ラベルや商品ページに書かれた一行は、<strong>その酒を誰よりも知っている人が残した最短の攻略法</strong>である。ネットで見つけた一般論より、まずそちらを試したい。saketto の各銘柄ページにも、公式で確認できた推奨温度を掲載している。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("10", "FAQ / よくある質問")}
       <div class="prose">
         <h2 class="sub-h tight">グラスは<span class="accent">何を</span>使えばいいですか？</h2>
         <p>迷ったらワイングラスです。口が広く上がすぼまった形は香りをまとめてくれるので、果実サケやホップサケの華やかさがよく出ます。冷酒や燗を少しずつ飲むならおちょこ、温度の移ろいまで味わうならぐい呑み——器を替えるだけで同じ酒が違う顔を見せます。詳しくは本文の「器」の節をご覧ください。</p>
@@ -805,7 +828,7 @@ def build_nomikata():
     </section>
 {divider()}
     <section class="section">
-{section_meta("10", "ENJOY WELL / 心地よく楽しむ")}
+{section_meta("11", "ENJOY WELL / 心地よく楽しむ")}
       <div class="prose">
         <h2 class="sub-h">水を飲みながら、<span class="accent">自分のペース</span>で。</h2>
         <p>おいしいお酒ほど、つい杯が進んでしまう。合間に飲む水「<strong>和らぎ水（やわらぎみず）</strong>」を用意しておくと、酔いがゆるやかになり、口の中もリフレッシュされて、次の一杯と料理がいっそう鮮やかに感じられる。お酒と同じくらいの量の水を飲むのを、目安に。</p>
@@ -865,7 +888,7 @@ OSUSUME_PICKS = [
     ("はじめの一本に", "FIRST BOTTLE", "ine-to-agave", 0,
      "クラフトサケというジャンルそのものを切り拓いた、秋田・男鹿の稲とアガベ醸造所。その代名詞がこのCRAFTシリーズだ。テキーラの原料として知られるアガベのシロップを副原料に用い、白ブドウや白桃を思わせる柔らかな香りをまとう。全量を無肥料・無農薬の自然栽培米で仕込み、精米歩合は90%に統一——米をあえて削りすぎず、その個性をふくよかな旨みとして残す思想が貫かれている。「日本酒ともワインとも違う」第一印象を確かめる、まさに最初の一本。"),
     ("はじめの一本に", "FIRST BOTTLE", "haccoba", 0,
-     "「自由を、醸そう。」を体現する先駆者、福島・小高のhaccoba。看板の“はなうたホップス”は、東北に伝わる幻のどぶろく製法「花酛（はなもと）」に、クラフトビールのドライホッピングを掛け合わせた一本だ。ホップ由来の華やかな香りと、米のやさしい甘みが軽やかに溶け合う。アルコール13%と程よく、するすると飲めてしまう親しみやすさ。クラフトサケの“はじまりの味”を知るなら、外せない蔵の代表作。"),
+     "「自由を、醸そう。」を体現する先駆者、福島・小高のhaccoba。看板の“はなうたホップス”は、東北に伝わる幻のどぶろく製法「花酛（はなもと）」に、クラフトビールのドライホッピングを掛け合わせた一本だ。ホップ由来の華やかな香りと、米のやさしい甘みが軽やかに溶け合う。アルコールはロットにより11〜13%と程よく、するすると飲めてしまう親しみやすさ。クラフトサケの“はじまりの味”を知るなら、外せない蔵の代表作。"),
     ("はじめの一本に", "FIRST BOTTLE", "konohanano", 0,
      "浅草・駒形でどぶろくを醸す木花之醸造所の看板が、この“ハナグモリ”。本格純米のにごりに、瓶の中で生まれたシュワッとした微発泡が心地よく弾ける。米だけで仕込むやさしい甘酸っぱさは、にごり酒が初めての人にもすっと入っていく。バーを併設し、若い蔵人の“新しい修行の場”としても知られる蔵の顔。価格も手に取りやすく、微発泡のにごりから始めたい人にうってつけだ。"),
     ("ホップサケ — ビール好きに", "HOP SAKE", "lagoon", 0,
@@ -971,7 +994,7 @@ def build_osusume():
     <section class="section">
 {section_meta("01", "EDITORS' PICKS / 選び方の地図")}
       <div class="prose">
-        <p class="lead">クラフトサケは、<span class="accent">自由</span>な酒。ホップ、果実、ハーブ、米だけの濃いどぶろく——幅が広いぶん、最初の一本に迷う。そこで saketto 編集部が、収録する25の蔵・120を超える銘柄から、<span class="accent">タイプ別に12本</span>を選びました。</p>
+        <p class="lead">クラフトサケは、<span class="accent">自由</span>な酒。ホップ、果実、ハーブ、米だけの濃いどぶろく——幅が広いぶん、最初の一本に迷う。そこで saketto 編集部が、収録する25の蔵・140を超える銘柄から、<span class="accent">タイプ別に12本</span>を選びました。</p>
         <p>「日本酒は知っているけれど、クラフトサケは初めて」という人も、「もう何本か飲んだから、次の一本を」という人も。下のグループを入り口に、自分に合いそうな一本を見つけてください。各銘柄のスペックは、saketto が一次ソース（各蔵の公式情報）で確認したものです。</p>
         <div class="callout">
           <div class="callout__label">この12選について</div>
@@ -1052,7 +1075,25 @@ def build_osusume():
     </section>
 {divider()}
     <section class="section">
-{section_meta("07", "BY SCENE / 場面で使い分ける")}
+{section_meta("07", "AWARDED / 外から評価された一本")}
+      <div class="prose">
+        <h2 class="sub-h">好みの前に、<span class="accent">実績</span>で選ぶ。</h2>
+        <p>「編集部が選んだ」と言われても、どこまで信用していいか分からない——そう感じる方には、<strong>第三者の評価という物差し</strong>があります。クラフトサケにも、審査を経て賞を受けた銘柄があります。</p>
+        <p>代表的なのが<strong>ICC SAKE AWARD</strong>です。2023年の初代優勝は<a href="../brewery/ine-to-agave.html">稲とアガベ</a>の「稲とアガベ OGAラベル」。2024年には同蔵の「花風」が第3位に入りました。2025年の優勝は<a href="../brewery/pukupuku.html">ぷくぷく醸造</a>の木桶どぶろく「#ODAKA」、準優勝は京都の<a href="../brewery/linne.html">LINNÉ</a>「800 大麦 樽熟成」です。ぷくぷく醸造は2024年にも決勝へ進んでおり、<strong>連続して評価されている蔵</strong>と言えます。</p>
+        <p>ほかにも、長崎の<a href="../brewery/dejima-hosendo.html">でじま芳扇堂</a>「芳扇 吟雲」が2025年のTokyo酒チャレンジで金賞を受賞。九州で初めて作付け・収穫された美山錦を100%使ったどぶろくです。<a href="../brewery/haccoba.html">haccoba</a>は2025年、日本パッケージデザイン大賞の銀賞（酒類カテゴリ）を「水を編む」シリーズで受賞しました。<strong>味だけでなく、瓶に立つ姿まで評価されている</strong>という点で、贈りものを探す方には見逃せない一本です。</p>
+        <p>視点を海外に移すと、評価はさらに鮮明です。岩手・遠野の<a href="../brewery/nondo.html">nondo</a>は、世界ベストレストラン2024年1位に選ばれたバルセロナの「Disfrutar」と、スペインの旧3つ星「Mugaritz」で提供されました。<strong>世界最高峰の料理人が、日本のどぶろくを自分たちの皿に合わせている</strong>——これ以上の評価はそうありません。</p>
+        <div class="callout">
+          <div class="callout__label">賞との付き合い方</div>
+          <p>受賞歴は選ぶときの手がかりになりますが、<strong>賞を取っていない銘柄が劣るわけではありません</strong>。少量生産で出品自体をしない蔵も多く、コンテストに出る・出ないは造り手の方針です。迷ったときの入り口として使うのが、いちばん健全な向き合い方だと思います。</p>
+        </div>
+        <div class="pill-links">
+          <a href="../awards/">受賞から探す<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("08", "BY SCENE / 場面で使い分ける")}
       <div class="prose">
         <h2 class="sub-h">誰と飲むかで、<span class="accent">正解は変わる</span>。</h2>
         <p>同じ12本でも、飲む場面によって向き不向きがあります。味の好みとは別の軸で、実際に選ぶときの目安をまとめておきます。</p>
@@ -1064,7 +1105,7 @@ def build_osusume():
     </section>
 {divider()}
     <section class="section">
-{section_meta("08", "KEEP / 届いてからのこと")}
+{section_meta("09", "KEEP / 届いてからのこと")}
       <div class="prose">
         <h2 class="sub-h">買ったあとが、<span class="accent">半分</span>。</h2>
         <p>せっかく選んだ一本も、扱いを誤ると本来の味に届きません。とくにクラフトサケは生タイプが多く、<strong>届いてからの数時間で印象が変わる</strong>ことがあります。</p>
@@ -1080,7 +1121,7 @@ def build_osusume():
     </section>
 {divider()}
     <section class="section">
-{section_meta("09", "FAQ / よくある質問")}
+{section_meta("10", "FAQ / よくある質問")}
       <div class="prose">
         <h2 class="sub-h tight">クラフトサケは、どこで買えますか。</h2>
         <p>多くは各蔵の公式オンラインショップや取扱酒販店、楽天市場などのECで手に入ります。少量生産・限定流通の銘柄も多く、季節や入荷のタイミングで在庫は変わります。気になる一本は、見かけたときが買いどきです。チャネルごとの違いは<a href="doko-de-kaeru.html">どこで買える？</a>で詳しく扱っています。</p>
@@ -1236,8 +1277,10 @@ def build_kioke():
       <div class="prose">
         <h2 class="sub-h">saketto で出会える、<span class="accent">木桶の酒</span>。</h2>
         <p>木桶への回帰は、クラフトサケだけの話ではない。寺田本家・今代司・人気酒造といった<strong>伝統的な日本酒蔵でも、あえて木桶仕込みに取り組む例が増えている</strong>。「木桶でしか出せない味がある」「自然の力を生かしたい」——ナチュラル志向の高まりも追い風に、古い器がいま静かに見直されているのだ。</p>
-        <p>そして、自由を信条とするクラフトサケの造り手たちは、その先頭を走るひとり。saketto に収録している中から、木桶と関わりの深い蔵を紹介したい。</p>
-        <p><a href="../brewery/nondo.html">nondo（岩手・遠野）</a>は、上級シリーズ「権化」を<strong>水もと × 木桶 × 150日超の長期発酵</strong>で醸す。自然栽培「遠野1号」米と古典製法、そして木桶。時間をかけてしか生まれない複雑さがそこにある。<a href="../brewery/pukupuku.html">ぷくぷく醸造（福島・小高）</a>は、蔵付き酵母を使った木桶どぶろく「#ODAKA」で<strong>ICC SAKE AWARD 2025の頂点</strong>に立ち、木桶仕込みの<strong>全麹酒</strong>も手がける。全量酵母無添加というその思想は、まさに木桶の“棲む微生物に委ねる”造りと相性がいい。<a href="../brewery/yamane.html">やまね酒造（埼玉・飯能）</a>は、地元・西川材の<strong>杉の木桶</strong>で米と地域の素材を醸す——器そのものに土地を宿す試みだ。どの蔵も、効率では測れない「その桶でしか出せない味」を追いかけている。</p>
+        <p>そして、自由を信条とするクラフトサケの造り手たちは、その先頭を走るひとり。saketto の収録銘柄で発酵容器を確認できたもののうち、<strong>木桶を使っているのは13銘柄・4蔵</strong>。数としては多くないが、その中身は蔵ごとにまるで違う。</p>
+        <p><a href="../brewery/nondo.html">nondo（岩手・遠野）</a>は、上級シリーズ「権化」5銘柄すべてを木桶で醸す。<strong>水もと × 木桶 × 長期発酵</strong>という組み合わせで、なかでも「権化 Rafters」は<strong>200年前の古民家の男柱とはね木、江戸期の槽を再生</strong>して搾るという徹底ぶりだ。<a href="../brewery/pukupuku.html">ぷくぷく醸造（福島・小高）</a>は<strong>福島県産の杉と竹で組んだ木桶</strong>を使い、蔵付き酵母の「#ODAKA」で<strong>ICC SAKE AWARD 2025の頂点</strong>に立った。木桶仕込みの全麹酒も手がけている。</p>
+        <p><a href="../brewery/yamane.html">やまね酒造（埼玉・飯能）</a>は、地元・西川材でつくった道具と木桶で醸す。<strong>器そのものに土地を宿す</strong>試みだ。そして福岡の<a href="../brewery/cultiva.html">Cultiva糸島醸造所</a>は、「米のテロワール」を掲げ<strong>収録3銘柄すべてを生酛×木桶</strong>で仕込む。長野産三系錦、福岡産ヒノヒカリ、福岡産山田錦——米の産地と品種を前面に出し、器と製法を固定して<strong>米の違いだけを浮かび上がらせる</strong>設計になっている。</p>
+        <p>興味深いのは、この13銘柄のほとんどが<strong>酒母も古典に戻っている</strong>ことだ。水もと、生酛——木桶を選ぶ蔵は、酵母や乳酸を足さずに微生物に委ねる造りへ向かう傾向がある。<strong>器の選択と製法の選択は、切り離せない</strong>のかもしれない。</p>
         <div class="pill-links">
           <a href="../genre/">ジャンル「木桶仕込み」から探す<span class="arr">→</span></a>
           <a href="../subingredients/">副原料から<span class="arr">→</span></a>
@@ -1271,7 +1314,18 @@ def build_kioke():
     </section>
 {divider()}
     <section class="section">
-{section_meta("12", "FAQ / よくある質問")}
+{section_meta("12", "VESSELS / 桶だけではない、器の話")}
+      <div class="prose">
+        <h2 class="sub-h">7リットルの<span class="accent">鍋</span>から、木桶まで。</h2>
+        <p>木桶を語ってきたが、視野を広げると、クラフトサケの発酵容器はきわめて多様だ。saketto の収録銘柄で発酵容器が公開されているのは<strong>29銘柄</strong>。木桶、試し桶、タンク、オーク樽、そして数リットルの小型容器——<strong>大きく5つの系統</strong>に分かれる。</p>
+        <p>最多はもちろん<strong>木桶</strong>だが、そのすぐ隣に驚く記述が並ぶ。<strong>「7〜8リットルの小型容器（店頭仕込み）」「小型タンク（8L）」「7L容器（カレー鍋大）」</strong>——数リットル規模で仕込まれている銘柄が、実際に存在する。</p>
+        <p>これは駅ナカや商店街に立つ<a href="new-breweries.html">新しい蔵</a>の造りだ。大きなタンクを置く場所がないから、小さな容器で少量ずつ仕込む。<strong>一回の仕込みが数十本にしかならない</strong>かわりに、毎回レシピを変えられる。木桶が「時間をかけて器を育てる」方向の極致だとすれば、こちらは<strong>「回数を重ねて試す」方向の極致</strong>である。</p>
+        <p>おもしろいのは、この両極が同じジャンルの中に共存していることだ。百年使う器と、カレー鍋ほどの容器。<strong>どちらもクラフトサケであり、どちらも「その器でしか出せない酒」を目指している</strong>。器の選択そのものが、造り手の思想を映す鏡になっている。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("13", "FAQ / よくある質問")}
       <div class="prose">
         <h2 class="sub-h tight">木桶仕込みのお酒は、やっぱり<span class="accent">高い</span>の？</h2>
         <p>手間と希少性から、比較的高価になりやすい傾向はあります。長期発酵や少量生産が重なると、一本で数千円、上級銘柄では一万円を超えるものも。ただ、すべてが高価というわけではなく、手の届く一本もあります。価格には、職人がつくった器と、時間と、人の手わざが含まれている——そう考えると、見え方が変わるかもしれません。</p>
@@ -1283,7 +1337,7 @@ def build_kioke():
     </section>
 {divider()}
     <section class="section">
-{section_meta("13", "READ ON / もっと味わう")}
+{section_meta("14", "READ ON / もっと味わう")}
       <div class="prose">
         <p>木桶は、クラフトサケの造りを彩る技法のひとつ。花酛・水もと・生酛・全麹といったほかの製法のことばは、入門記事でまとめて紹介している。製法を知れば、ひと口の背景がぐっと立体的になる。</p>
         <div class="callout">
@@ -1506,7 +1560,20 @@ def build_gift():
     </section>
 {divider()}
     <section class="section">
-{section_meta("08", "FAQ / よくある質問")}
+{section_meta("08", "FURUSATO / ふるさと納税という選択肢")}
+      <div class="prose">
+        <h2 class="sub-h">自分への<span class="accent">贈りもの</span>なら。</h2>
+        <p>人に贈る話を続けてきましたが、<strong>自分へのご褒美</strong>という用途なら、ふるさと納税という手があります。蔵のある自治体に寄附すると、返礼品としてクラフトサケが届く仕組みです。</p>
+        <p>saketto が公式に確認できた範囲では、<strong>6つの蔵</strong>が出品しています。秋田県男鹿市の<a href="../brewery/ine-to-agave.html">稲とアガベ</a>（寄附額10,500円・CRAFT 稲とアガベ OGAラベル 500mlと発酵マヨのセット）、福島県南相馬市の<a href="../brewery/haccoba.html">haccoba</a>（12,000円・はなうたホップス 720ml×2本）、福岡県福智町の<a href="../brewery/amanosato.html">天郷醸造所</a>（13,000円・在る 緒奏 720ml）、大阪府高槻市の<a href="../brewery/adachi-noujo.html">足立農醸</a>（15,000円・KOYOI 720ml）、岩手県紫波町の<a href="../brewery/heiroku.html">平六醸造</a>（40,000円・Re:vive Origin アカツキ 720ml）、沖縄県沖縄市の<a href="../brewery/nomu.html">NOMU醸造所</a>（56,000円・SHISHIKAMU 720ml×6本）です。</p>
+        <p>注意したいのは、<strong>ふるさと納税は「割引」ではない</strong>ということ。寄附に対する税の控除であり、手続きも必要です。ただ<strong>通販モールには出ていない銘柄が、ここでだけ手に入る</strong>ことがあります。返礼品の内容は変わることがあるので、寄附の前に各ポータルで最新の情報を確認してください。</p>
+        <div class="pill-links">
+          <a href="../furusato/">ふるさと納税で探す<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("09", "FAQ / よくある質問")}
       <div class="prose">
         <h2 class="sub-h tight">予算は、どのくらいが<span class="accent">目安</span>？</h2>
         <p>ちょっとした手土産なら2,000円前後、誕生日・記念日は2,500〜3,500円ほど、改まったお祝いには5,000円から一万円を超えるものまで。相手との関係性やシーンに合わせて選べます。上の「予算で選ぶ」表も参考にしてください。</p>
@@ -1630,7 +1697,7 @@ def build_hanamoto():
 {section_meta("07", "NOW / ホップサケの現在地")}
       <div class="prose">
         <h2 class="sub-h">古い製法が、<span class="accent">いちばん新しい</span>棚をつくった。</h2>
-        <p>花酛の再現から始まったホップの酒は、いまクラフトサケのなかでもっとも層の厚いジャンルになっている。saketto がジャンル軸で「ホップサケ」に分類する銘柄は、複数の蔵にまたがって並ぶ。</p>
+        <p>花酛の再現から始まったホップの酒は、いまクラフトサケの主要なジャンルのひとつになっている。saketto がジャンル軸で「ホップサケ」に分類するのは10蔵。米と麹だけの古典どぶろく（16蔵）、果実サケ（12蔵）に次ぐ規模だ。<strong>最大勢力ではないが、この酒が「日本酒の外」へ出るとき最初に開いた扉がここだった</strong>。</p>
         <p>おもしろいのは、<strong>蔵ごとにホップの使い方がまるで違う</strong>ことだ。仕込みの最初から入れて苦味を酒に溶かし込む造り、発酵の後半に加えて香りだけを立たせる造り、品種を明示して個性を打ち出す造り。ビール由来の技法を、それぞれが自分なりに翻訳している。</p>
         <p>ホップの品種名がラベルに載ることも増えた。シトラは柑橘を思わせる香り、ネルソンソーヴィンは白ワインのような風味、ハラタウブランは白ワインを思わせる華やかなアロマ——<strong>ビール好きなら馴染みのある名前が、米の酒のラベルに並ぶ</strong>。これは十年前には考えにくかった光景だ。</p>
         <p>花酛という原点がなければ、ここまで堂々とホップを使えただろうか。「日本酒にホップは邪道」という声に対して、<strong>「もともと日本にあった」と答えられる根拠</strong>があることの意味は大きい。古い製法が、いちばん新しい棚をつくっている。</p>
@@ -1638,10 +1705,21 @@ def build_hanamoto():
     </section>
 {divider()}
     <section class="section">
-{section_meta("08", "IN SAKETTO / ホップの酒を探す")}
+{section_meta("08", "SPREAD / 数字で見る、ホップの広がり")}
+      <div class="prose">
+        <h2 class="sub-h">143本のうち、<span class="accent">19本</span>。</h2>
+        <p>花酛から始まったホップの酒は、いまどれくらいの規模になっているのか。saketto の収録143銘柄を副原料で分類すると、<strong>ホップを使った銘柄は19</strong>。米と麹だけの47銘柄、果実系の28銘柄に次ぐ規模で、アガベ・蜂蜜・出汁などの特殊副原料（16銘柄）と並ぶ主要な一角だ。蔵の数でいえば10蔵が手がけている。</p>
+        <p>副原料そのものは<strong>全体で76通り</strong>を数えるが、そのなかで<strong>ホップは単独の素材として突出して多い</strong>。果実は苺・ぶどう・柑橘などに分かれるため、「ひとつの素材」として見ればホップが最大勢力といっていい。<strong>幻の製法だったものが、いまジャンルの背骨のひとつになっている</strong>。</p>
+        <p>使われ方も一様ではない。品種名まで公開している銘柄があり、シトラを使ったものだけで複数確認できる。ハラタウブランやネルソンソーヴィンといった、クラフトビールで名の通った品種も登場する。<strong>ビールの語彙が、そのまま米の酒のラベルに移植されている</strong>。</p>
+        <p>唐花草を煎じて雑菌を抑えた昔の造りと、品種を選んで香りを設計する現在の造り。<strong>技術の精度はまるで違うが、「米の酒にホップを使う」という一点は同じ</strong>だ。19という数字は、その連続性が現実の棚の上で確かめられるところまで来たことを示している。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("09", "IN SAKETTO / ホップの酒を探す")}
       <div class="prose">
         <h2 class="sub-h">花酛から、<span class="accent">いまの一本</span>へ。</h2>
-        <p>花酛を起点に生まれた「ホップサケ」は、いまや多くの蔵が手がける一大ジャンルになった。先駆者 <a href="../brewery/haccoba.html">haccoba</a> の<a href="../brand/haccoba-0.html">はなうたホップス</a>や、花酛の名を冠した復刻版<a href="../brand/haccoba-4.html">水を編む</a>はもちろん、収録する蔵にもホップの造り手は多い。</p>
+        <p>花酛を起点に生まれた「ホップサケ」は、いまや各地の蔵が手がけるジャンルになった。先駆者 <a href="../brewery/haccoba.html">haccoba</a> の<a href="../brand/haccoba-0.html">はなうたホップス</a>や、花酛の名を冠した復刻版<a href="../brand/haccoba-4.html">水を編む</a>はもちろん、収録する蔵にもホップの造り手は多い。</p>
         <p>たとえば、新潟・福島潟のほとりで醸す<a href="../brewery/lagoon.html">LAGOON BREWERY</a>の「翔空 HOP SAKE」、ホップ品種を打ち出す福岡の<a href="../brewery/librom.html">LIBROM</a>、低アルコールのホップサケも手がける福島・小高の<a href="../brewery/pukupuku.html">ぷくぷく醸造</a>、糀屋ならではのホップどぶろくを醸す滋賀の<a href="../brewery/happy-taro.html">ハッピー太郎醸造所</a>、そして「花風」でホップ（唐花草）を使う<a href="../brewery/ine-to-agave.html">稲とアガベ</a>。それぞれの解釈で、米とホップの出会いを描いている。唐花草・ホップを使った酒は、saketto の各軸からたどれる。</p>
         <div class="pill-links">
           <a href="../subingredients/">副原料「ホップ」から<span class="arr">→</span></a>
@@ -1652,7 +1730,7 @@ def build_hanamoto():
     </section>
 {divider()}
     <section class="section">
-{section_meta("09", "FAQ / よくある質問")}
+{section_meta("10", "FAQ / よくある質問")}
       <div class="prose">
         <h2 class="sub-h tight">花酛のお酒は、どんな<span class="accent">味</span>？</h2>
         <p>唐花草やホップ由来の軽やかな苦味と華やかな香りに、米と麹のやさしい甘みが重なります。ビールほど苦くなく、日本酒ほど甘くない——その中間のような心地よさ、とイメージするとわかりやすいでしょう。よく冷やして、香りの立つグラスで楽しむのがおすすめです。</p>
@@ -1664,7 +1742,7 @@ def build_hanamoto():
     </section>
 {divider()}
     <section class="section">
-{section_meta("10", "READ ON / もっと味わう")}
+{section_meta("11", "READ ON / もっと味わう")}
       <div class="prose">
         <p>花酛は、クラフトサケの自由を支える原点のひとつ。木桶仕込みや全麹など、ほかの造りのことばも知れば、ひと口の背景がさらに立体的になる。</p>
         <div class="callout">
@@ -1789,7 +1867,18 @@ def build_doburoku():
     </section>
 {divider()}
     <section class="section">
-{section_meta("08", "IN SAKETTO / どぶろくを探す")}
+{section_meta("08", "SHUBO / 酒母という分岐点")}
+      <div class="prose">
+        <h2 class="sub-h">同じどぶろくでも、<span class="accent">出発点</span>が違う。</h2>
+        <p>どぶろくの味を左右する要素のうち、飲み手にいちばん見えにくいのが<strong>酒母（しゅぼ）</strong>だ。酵母を安全に増やすための最初の仕込みで、ここで何を使うかによって、酒の酸の出方も香りの方向も変わる。</p>
+        <p>saketto の収録銘柄で酒母が公開されているのは<strong>40銘柄</strong>。表記をそのまま数えれば24通り、書き方の違いをまとめると<strong>9つの系統</strong>になる。もっとも多いのは<strong>高温糖化・生酛系・水もと（水酛）系</strong>で、いずれも7銘柄ずつ。<strong>短期間で安全に立てられる現代的な高温糖化と、手間のかかる古典的な酒母が、ほぼ同じ数だけ並んでいる</strong>。</p>
+        <p>菩提酛や水酛は、室町期の寺院で行われていたとされる古い手法だ。生米を水に漬けて乳酸発酵させ、その酸っぱい水を仕込みに使う。<strong>雑菌を寄せつけない環境を、微生物の力だけでつくる</strong>——冷蔵も薬剤もない時代の知恵である。それが令和のどぶろくで現役で使われている。</p>
+        <p>さらに<a href="hanamoto.html">花酛</a>のように、植物の力を借りる手法もある。<strong>「こさない」という一点で括られるどぶろくの内側に、これだけ違う出発点が並んでいる</strong>——ラベルに酒母の表記があったら、そこは読み飛ばさないでほしい。その一語が、味の設計図を教えてくれる。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("09", "IN SAKETTO / どぶろくを探す")}
       <div class="prose">
         <h2 class="sub-h">米と麹だけの、<span class="accent">まっすぐな一杯</span>。</h2>
         <p>saketto では、副原料を使わず米と麹だけで醸したものを「<strong>古典どぶろく</strong>」として分類している。ここには、東京駅のエキナカで醸す<a href="../brewery/tokyo-station.html">東京駅酒造場</a>、大阪の<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>と日本橋の<a href="../brewery/heiwa-kabutocho.html">兜町醸造所</a>、岩手・遠野の<a href="../brewery/nondo.html">nondo</a>、福島・小高の<a href="../brewery/pukupuku.html">ぷくぷく醸造</a>、滋賀の糀屋<a href="../brewery/happy-taro.html">ハッピー太郎醸造所</a>などが並ぶ。</p>
@@ -1803,7 +1892,7 @@ def build_doburoku():
     </section>
 {divider()}
     <section class="section">
-{section_meta("09", "FAQ / よくある質問")}
+{section_meta("10", "FAQ / よくある質問")}
       <div class="prose">
         <h2 class="sub-h tight">どぶろくと甘酒は、<span class="accent">違うもの</span>？</h2>
         <p>別のものです。甘酒は米と麹の糖化だけでつくる、アルコールをほとんど含まない飲みもの（酒粕を溶いたタイプは微量に含みます）。どぶろくは酵母による発酵を経た<strong>お酒</strong>で、度数はおおむね5〜17度と幅があります。見た目が似ているので混同されやすいところです。</p>
@@ -1815,7 +1904,7 @@ def build_doburoku():
     </section>
 {divider()}
     <section class="section">
-{section_meta("10", "READ ON / もっと味わう")}
+{section_meta("11", "READ ON / もっと味わう")}
       <div class="prose">
         <p>「こさない」という選択から、クラフトサケの自由は始まった。その原点にある製法や、麹だけで醸すという極端な設計も知れば、一杯の奥行きがさらに増す。</p>
         <div class="callout">
@@ -1950,7 +2039,22 @@ def build_doko_de_kaeru():
     </section>
 {divider()}
     <section class="section">
-{section_meta("09", "TIPS / 買うときの注意点")}
+{section_meta("09", "REALITY / 実際に、どれだけ買えるのか")}
+      <div class="prose">
+        <h2 class="sub-h">143銘柄を、<span class="accent">全部検索</span>してみた。</h2>
+        <p>「クラフトサケは手に入りにくい」とよく言われる。では実際どれくらいなのか。saketto では収録している<strong>143銘柄すべてを通販モールで実際に検索し、購入できる出品があるかを一件ずつ確認</strong>している。</p>
+        <p>結果は、<strong>購入リンクを出せたのが58銘柄</strong>。全体の約4割である。残る85銘柄については、確認した時点で取扱いが見つからなかった。<strong>収録の半分以上は、通販モールでは買えない</strong>——これがこのジャンルの現実だ。</p>
+        <p>蔵の単位で見ると、さらにはっきりする。<strong>25蔵のうち11蔵は、通販モールでの取扱いを一件も確認できなかった</strong>。自社ECと店頭だけで売る方針の蔵、要冷蔵の生酒しか造っていない蔵、そもそも醸造所併設の店でしか出さない蔵。<strong>買えないのではなく、売り方がそういう設計になっている</strong>のだ。</p>
+        <p>だからこそ、この記事で挙げた入口を使い分ける意味がある。<strong>モールで見つからないことは、その酒が手に入らないことを意味しない</strong>。公式ショップへ回り、ふるさと納税を調べ、取扱店を探す。経路を変えれば道は開ける。</p>
+        <div class="callout">
+          <div class="callout__label">saketto の方針</div>
+          <p>各銘柄ページには、<strong>実際に購入できる出品を確認できたものだけ</strong>購入リンクを置いています。「たぶん買えるだろう」で表示することはしません。リンクのない銘柄は、公式ショップか店頭を当たってください。調査は定期的にやり直しており、出品が復活すればリンクも戻ります。</p>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("10", "TIPS / 買うときの注意点")}
       <div class="prose">
         <h2 class="sub-h tight">要冷蔵かどうかを、<span class="accent">必ず確認</span>する。</h2>
         <p>生タイプはクール便が前提です。常温便しか選べない販売ページでは、火入れ版かどうかを確かめてください。届いたらすぐ冷蔵庫へ。夏場の再配達は品質にひびきます。</p>
@@ -1962,7 +2066,7 @@ def build_doko_de_kaeru():
     </section>
 {divider()}
     <section class="section">
-{section_meta("10", "READ ON / 次の一本へ")}
+{section_meta("11", "READ ON / 次の一本へ")}
       <div class="prose">
         <p>買い方がわかったら、あとは選ぶだけ。タイプ別のおすすめや、贈りものとしての選び方もあわせてどうぞ。</p>
         <div class="callout">
@@ -2031,7 +2135,7 @@ def build_zenkoji():
       <div class="prose">
         <h2 class="sub-h">麹をつくるのは、<span class="accent">いちばん重い仕事</span>。</h2>
         <p>製麹（せいきく）——蒸した米に麹菌を植え、温度と湿度を管理しながら二昼夜ほどかけて育てる工程は、酒造りのなかでもっとも神経を使う作業とされる。夜通し数時間おきに手入れをすることもある。</p>
-        <p>全麹とは、その重い工程を<strong>通常の5倍こなす</strong>ということだ。同じ量の酒を仕込むのに、麹室（こうじむろ）の稼働も、人手も、時間も跳ね上がる。<strong>それでも造る蔵があるのは、そこにしかない味があるから</strong>にほかならない。生産量が限られ、価格も高めになりがちなのは、この構造ゆえだ。</p>
+        <p>全麹とは、その重い工程を背負う量が跳ね上がるということだ。通常2割の米を麹にするところを10割にするのだから、<strong>製麹する米の量は単純計算で5倍</strong>になる。同じ量の酒を仕込むのに、麹室（こうじむろ）の稼働も、人手も、時間も跳ね上がる。<strong>それでも造る蔵があるのは、そこにしかない味があるから</strong>にほかならない。生産量が限られ、価格も高めになりがちなのは、この構造ゆえだ。</p>
       </div>
     </section>
 {divider()}
@@ -2053,7 +2157,7 @@ def build_zenkoji():
       <div class="prose">
         <h2 class="sub-h">濃密さを、<span class="accent">飲みくらべる</span>。</h2>
         <p>全麹はまだ数の少ない造りだが、それぞれの蔵がまったく違う解釈を見せている。</p>
-        <p>福島・小高の<a href="../brewery/pukupuku.html">ぷくぷく醸造</a>が醸す「<a href="../brand/pukupuku-5.html">木桶発酵 全麹酒 雫取り</a>」は、全麹に<a href="kioke.html">木桶仕込み</a>を掛け合わせた最上位の一本。麹の濃密さに、木桶がもたらす微生物の複雑さが重なる。いっぽう<a href="../brewery/iyasaka.html">弥栄醸造</a>の「<a href="../brand/iyasaka-0.html">ITTEKI（一擲）</a>」は、新潟県柏崎市宮之下産コシヒカリ100%という米の出自を前面に出した設計だ。</p>
+        <p>福島・小高の<a href="../brewery/pukupuku.html">ぷくぷく醸造</a>が醸す「<a href="../brand/pukupuku-5.html">木桶発酵 全麹酒 雫取り</a>」は、全麹に<a href="kioke.html">木桶仕込み</a>を掛け合わせた最上位の一本。麹の濃密さに、木桶がもたらす微生物の複雑さが重なる。いっぽう<a href="../brewery/iyasaka.html">弥栄醸造</a>の「<a href="../brand/iyasaka-0.html">ITTEKI（一擲）</a>」は、柏崎市宮之下の米で醸すことを蔵の方針として掲げる一本だ（この銘柄個別の公式表記は「新潟県産米」）。</p>
         <p><strong>同じ「全麹」でも、木桶と組めば複雑に、単一品種と組めば澄んだ輪郭に</strong>。麹という土台が強いぶん、そこに何を重ねるかで表情が大きく変わる。</p>
         <div class="pill-links">
           <a href="../genre/">ジャンル「全麹酒」から<span class="arr">→</span></a>
@@ -2088,7 +2192,18 @@ def build_zenkoji():
     </section>
 {divider()}
     <section class="section">
-{section_meta("08", "HOW TO DRINK / 飲み方")}
+{section_meta("08", "POLISH / 削らないという選択")}
+      <div class="prose">
+        <h2 class="sub-h">磨くほど良い、<span class="accent">とは限らない</span>。</h2>
+        <p>日本酒の世界では長く、<strong>米を磨くほど上等</strong>とされてきた。精米歩合50%以下を大吟醸と呼び、外側を削るほど雑味が減り、香りが澄んでいく——その価値観は、いまも根強い。</p>
+        <p>ところがクラフトサケの数字を並べると、別の景色が見える。saketto の収録銘柄で精米歩合が公開されている76件を集計すると、<strong>もっとも多いのは90%</strong>だ。次いで92%。<strong>ほとんど削っていない</strong>ということである。もちろん50%や60%まで磨いた銘柄もあるが、分布の重心は明らかに「削らない」側にある。</p>
+        <p>これは手抜きではなく、<strong>設計思想の違い</strong>だ。米の外側には、雑味のもとになると同時に旨みのもとにもなる成分がある。削れば澄むが、その分だけ米の個性も落ちる。<strong>ホップや果実と渡り合うには、澄んだ酒よりも骨格のある酒のほうが向く</strong>——副原料を使う造りだからこそ、米を残す選択に意味が出てくる。</p>
+        <p>全麹酒の場合は事情がもうひとつ重なる。麹にする米は磨きすぎると麹菌が繁殖しにくくなるとされる。<strong>削らないことが、全麹という造りと相性がいい</strong>。精米歩合90%という数字は、粗い酒の証ではなく、麹の力を引き出すための条件なのだ。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("09", "HOW TO DRINK / 飲み方")}
       <div class="prose">
         <h2 class="sub-h">濃いから、<span class="accent">小さく</span>注ぐ。</h2>
         <p>全麹酒は甘みと酸がしっかりしているぶん、<strong>少量をゆっくり</strong>が似合う。ワイングラスなど口の広い器で香りを開かせ、冷やしすぎない温度（10〜15度）から始めると、甘みと酸のバランスが取りやすい。</p>
@@ -2097,7 +2212,7 @@ def build_zenkoji():
     </section>
 {divider()}
     <section class="section">
-{section_meta("09", "FAQ / よくある質問")}
+{section_meta("10", "FAQ / よくある質問")}
       <div class="prose">
         <h2 class="sub-h tight">全麹酒は<span class="accent">甘口</span>ばかりですか？</h2>
         <p>甘みが出やすい造りではありますが、発酵の進め方や酸の設計で辛口寄りに仕上げることもできます。ただ共通して言えるのは<strong>「味が濃い」</strong>こと。甘辛よりも、密度の高さが全麹らしさです。</p>
@@ -2109,7 +2224,7 @@ def build_zenkoji():
     </section>
 {divider()}
     <section class="section">
-{section_meta("10", "READ ON / もっと味わう")}
+{section_meta("11", "READ ON / もっと味わう")}
       <div class="prose">
         <p>麹の力を極端まで押し進めたのが全麹なら、容器の力を借りるのが木桶仕込み。造りのことばを知るほど、一本の設計が読めるようになる。</p>
         <div class="callout">
@@ -2138,7 +2253,7 @@ def build_zenkoji():
     html += hero(
         article_eyebrow("zenkoji"),
         '全麹酒とは。<br>米を、<span class="accent">すべて麹に</span>。',
-        "掛米を使わないという一点。製麹の手間は5倍、味は濃密。麹そのものを飲むような一杯がある。")
+        "掛米を使わないという一点。麹にする米は5倍、味は濃密。麹そのものを飲むような一杯がある。")
     html += body
     html += footer()
     return html
@@ -2236,7 +2351,19 @@ def build_new_breweries():
     </section>
 {divider()}
     <section class="section">
-{section_meta("08", "NEXT / これから")}
+{section_meta("08", "OUTBOUND / 国境を越えはじめた")}
+      <div class="prose">
+        <h2 class="sub-h">日本で生まれて、<span class="accent">世界へ</span>。</h2>
+        <p>新しい蔵の動きは、国内だけにとどまっていない。<strong>立ち上がってまだ数年の蔵が、すでに海を渡っている</strong>。これは従来の酒蔵の歩みからすると、異例の速さだ。</p>
+        <p>福島・小高の<a href="../brewery/haccoba.html">haccoba</a>は2025年に欧米への進出を開始した。米国ポートランドの「Sunflower Sake」、アムステルダムの「Restaurant Flore」、そしてベルリンの「Enter Sake Berlin」——アジア圏でもタイ、香港、シンガポール、台湾へ輸出している。<strong>創業2021年の蔵が、四年ほどで欧米の食卓に並んでいる</strong>。</p>
+        <p>福岡の<a href="../brewery/librom.html">LIBROM</a>はさらに踏み込んだ。2023年にイタリア法人「LIBROM ITALY」を設立し、バルバレスコ地区で<strong>現地の米を使ったテスト醸造</strong>に取り組んでいる。日本の酒を輸出するのではなく、<strong>その土地の米でその土地の酒を醸す</strong>——ワインの産地でクラフトサケを造るという発想は、この酒が「日本の酒」という枠すら越えはじめていることを示している。</p>
+        <p>岩手・遠野の<a href="../brewery/nondo.html">nondo</a>のように、世界最高峰のレストランに採用される例もある。そして新潟・佐渡の<a href="../brewery/sakenova.html">SAKENOVA BREWERY</a>は2025年、日本アカデミー賞のアフターパーティーで唯一の日本酒ブランドとして提供された。約500名が口にした計算になる。</p>
+        <p><strong>なぜこれほど早く外へ出られるのか</strong>。ひとつには、クラフトサケが「日本酒」という既存カテゴリの外にあるからだろう。海外の飲み手にとって、これは比較対象のない新しい飲みものだ。ホップや果実を使った造りは、ワインやクラフトビールに親しんだ舌にも入りやすい。<strong>国内で「規格外」だったことが、国外では「新しい」に変わる</strong>——制度の外に出た酒が、そのまま国境の外へ出ていく構図になっている。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("09", "NEXT / これから")}
       <div class="prose">
         <h2 class="sub-h">まだ、<span class="accent">増えつづける</span>。</h2>
         <p>2026年に入っても新しい蔵の名前は増えている。茨城の<a href="../brewery/tsuchiura.html">土浦醸造</a>のように準備段階の蔵もあり、<strong>この記事が古びるのは速い</strong>。saketto はそのつど一次ソースを確認して収録を更新している。</p>
@@ -2245,7 +2372,7 @@ def build_new_breweries():
     </section>
 {divider()}
     <section class="section">
-{section_meta("09", "FAQ / よくある質問")}
+{section_meta("10", "FAQ / よくある質問")}
       <div class="prose">
         <h2 class="sub-h tight">クラフトサケの蔵は、全国に<span class="accent">いくつ</span>ありますか？</h2>
         <p>明確な統計はありません。協会加盟蔵のほか、加盟せずに醸す蔵、大手酒造の実験ブランド、準備中の蔵まで含めると、線の引き方で数が変わるためです。saketto では一次ソースで確認できた蔵を収録しており、現在25蔵を掲載しています。</p>
@@ -2257,7 +2384,7 @@ def build_new_breweries():
     </section>
 {divider()}
     <section class="section">
-{section_meta("10", "READ ON / もっと知る")}
+{section_meta("11", "READ ON / もっと知る")}
       <div class="prose">
         <p>新しい蔵が生まれる背景を知ると、一本の酒の後ろにある選択が見えてくる。ジャンルの成り立ちそのものも、あわせてどうぞ。</p>
         <div class="callout">
