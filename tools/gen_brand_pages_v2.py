@@ -366,7 +366,7 @@ def build_html(brand, detail, brewery, idx):
         purchase_inner = ('<div class="purchase-card__btns">' + "".join(_btns) + '</div>'
                           '<div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>')
     else:
-        purchase_inner = '<div class="purchase-card__pending">お取り扱い情報は準備中です</div>'
+        purchase_inner = '<div class="purchase-card__pending">通販モールでの取り扱いは確認できていません。少量生産のため、蔵の公式オンラインショップや醸造所併設の店舗での販売が中心です。<a href="/guide/doko-de-kaeru.html">探し方はこちら</a></div>'
 
     kura_section = f"""
   <section class="section" id="purchase">
