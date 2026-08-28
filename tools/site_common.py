@@ -28,7 +28,7 @@ def analytics_head():
 
 def age_gate_tag(prefix="../"):
     """年齢ゲート読み込み。prefix はリポジトリルートからの相対（サブディレクトリは "../"、ルートは ""）。"""
-    return f'<script src="{prefix}assets/age-gate.js" defer></script>'
+    return f'<script src="{prefix}assets/age-gate.v2.js" defer></script>'
 
 
 def favicon_head():
