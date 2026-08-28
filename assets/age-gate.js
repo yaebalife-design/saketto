@@ -81,8 +81,22 @@
     var wrap = document.createElement('div');
     wrap.innerHTML = html;
     var gate = wrap.firstChild;
+
+    // 背後の要素は inert で操作不能にする（Gin-DB と同じ方式）。
+    // html要素に overflow:hidden を掛けるとページ全体がスクロール不能になり、
+    // クローラーやスクリーンショットで本文を読めない＝「サイトの内容を確認できない」
+    // と判定されうるため使わない。
+    var inerted = [];
+    Array.prototype.forEach.call(document.body.children, function (el) {
+      if (!el.hasAttribute('inert')) { el.setAttribute('inert', ''); inerted.push(el); }
+    });
+
     document.body.appendChild(gate);
-    document.documentElement.style.overflow = 'hidden';
+
+    function restoreBackground() {
+      inerted.forEach(function (el) { el.removeAttribute('inert'); });
+      inerted = [];
+    }
 
     var yesBtn = document.getElementById('skAgeYes');
     var noBtn = document.getElementById('skAgeNo');
@@ -97,13 +111,15 @@
 
     yesBtn.addEventListener('click', function () {
       try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      restoreBackground();
       gate.classList.add('sk-age--hidden');
-      document.documentElement.style.overflow = '';
       setTimeout(function () { if (gate && gate.parentNode) gate.parentNode.removeChild(gate); }, 450);
     });
 
+    // 「いいえ」：未成年の退避先は政府広報オンライン（Gin-DB と同じ）
     noBtn.addEventListener('click', function () {
-      window.location.replace('https://www.google.com/');
+      restoreBackground();
+      window.location.href = 'https://www.gov-online.go.jp/';
     });
   }
 
