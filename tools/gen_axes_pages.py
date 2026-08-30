@@ -415,7 +415,7 @@ def page_head(title, description, path="/"):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<style>{CSS}</style>
+<style>{CSS}{JUMP_NAV_CSS}</style>
 {head_extra()}
 </head>
 <body>
@@ -441,13 +441,32 @@ def masthead(label, right_text=""):
 """
 
 
-def hero(eyebrow, title_html, lede, guide=""):
+def hero(eyebrow, title_html, lede, guide="", divider=True):
+    """divider=False にすると区切り線を出さない（目次を挟んでから区切る用）。"""
     guide_html = f'\n    <p class="hero__guide">{guide}</p>' if guide else ""
+    rule = """
+  <div class="divider">
+    <div class="rule"></div>
+    <div class="ornament outer"></div>
+    <div class="ornament"></div>
+    <div class="ornament outer"></div>
+    <div class="rule"></div>
+  </div>
+""" if divider else ""
     return f"""
   <section class="hero">
     <div class="hero__eyebrow">{eyebrow}</div>
     <h1 class="hero__title">{title_html}</h1>
     <p class="hero__lede">{lede}</p>{guide_html}
+  </section>
+{rule}"""
+
+
+def guide_block(text):
+    """軸ページの長い解説。目次の下に置いて、選択肢を先に見せる。"""
+    return f"""
+  <section class="hero" style="padding-top:0;padding-bottom:2.5rem">
+    <p class="hero__guide" style="margin-top:0">{text}</p>
   </section>
 
   <div class="divider">
@@ -510,6 +529,45 @@ def render_entry(brewery_slug, brand, idx=0):
         </a>"""
 
 
+def jump_nav(items, label="この中から探す"):
+    """カテゴリ間を飛べる目次。軸ページは1ページが数千〜数万pxになるため、
+    最初のスクリーンで全カテゴリを見せて目的地へ直行できるようにする。
+    items: [(anchor_id, 表示名, 件数), ...]"""
+    if not items:
+        return ""
+    links = "".join(
+        f'<a class="jump-nav__item" href="#{aid}">{name}'
+        f'<span class="jump-nav__num">{cnt}</span></a>'
+        for aid, name, cnt in items)
+    return f"""
+  <nav class="jump-nav" aria-label="{label}">
+    <div class="jump-nav__label">— {label}</div>
+    <div class="jump-nav__items">{links}</div>
+  </nav>"""
+
+
+JUMP_NAV_CSS = """
+.jump-nav { max-width:1100px; margin:0 auto 2.5rem; padding:0 2rem; }
+.jump-nav__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-mute); letter-spacing:.12em; margin-bottom:.7rem; }
+.jump-nav__items { display:flex; flex-wrap:wrap; gap:.55rem; }
+.jump-nav__item { display:inline-flex; align-items:baseline; gap:.45rem;
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.88rem;
+  letter-spacing:.04em; color:var(--ink); text-decoration:none;
+  border:1px solid var(--line); padding:.5rem .9rem;
+  transition:border-color .25s, color .25s, background .25s; }
+.jump-nav__item:hover { border-color:var(--accent); color:var(--accent); background:var(--paper); }
+.jump-nav__num { font-family:'Cormorant Garamond',serif; font-size:.8rem; color:var(--ink-mute); }
+.jump-nav__item:hover .jump-nav__num { color:var(--accent); }
+/* アンカー移動時に見出しがマストヘッドへ潜らないよう余白を確保 */
+.section[id] { scroll-margin-top: 1.5rem; }
+@media (max-width:640px) {
+  .jump-nav { padding:0 1.25rem; margin-bottom:2rem; }
+  .jump-nav__item { font-size:.82rem; padding:.45rem .75rem; }
+}
+"""
+
+
 def render_brewery_card(brewery, idx):
     return f"""
       <a class="brewery-card" href="../brewery/{brewery['slug']}.html">
@@ -548,8 +606,12 @@ def gen_subingredients():
         "— FIVE CATEGORIES",
         '副原料から、<span class="accent">探す</span>。',
         '何を入れた酒か。クラフトサケの自由さを最も雄弁に語るのが副原料。ホップから茶葉、ハーブ、果実、そして米と麹のみまで、5つのカテゴリで横断する。',
-        'クラフトサケの味の輪郭は、米と麹に「何を重ねるか」で大きく変わる。ホップを選べば柑橘やハーブを思わせる香りが立つビール好きに馴染む一本に、果実を選べばワインのような酸と甘みの方向へ、茶葉やハーブなら和の余韻に近づく。逆に副原料を使わない「米と麹のみ」は、どぶろくや全麹といった製法の個性がそのまま顔を出す。はじめてなら、ふだん好きな飲み物——ビール、白ワイン、日本酒——に近いカテゴリから入るのが早道だ。気になる素材をひとつ選んで、そこから蔵へ、銘柄へと辿ってほしい。製法の背景は<a href="../guide/craftsake-towa.html">「クラフトサケとは」</a>でも読める。'
+        divider=False
     )
+    # カテゴリ目次（このページは全カテゴリを縦に並べるため数千pxになる）
+    html += jump_nav([(f"cat-{k}", jp, len(by_cat.get(k, [])))
+                      for k, jp, _en, _d in INGREDIENT_CATEGORIES], "5つのカテゴリから")
+    html += guide_block('クラフトサケの味の輪郭は、米と麹に「何を重ねるか」で大きく変わる。ホップを選べば柑橘やハーブを思わせる香りが立つビール好きに馴染む一本に、果実を選べばワインのような酸と甘みの方向へ、茶葉やハーブなら和の余韻に近づく。逆に副原料を使わない「米と麹のみ」は、どぶろくや全麹といった製法の個性がそのまま顔を出す。はじめてなら、ふだん好きな飲み物——ビール、白ワイン、日本酒——に近いカテゴリから入るのが早道だ。気になる素材をひとつ選んで、そこから蔵へ、銘柄へと辿ってほしい。製法の背景は<a href="../guide/craftsake-towa.html">「クラフトサケとは」</a>でも読める。')
     html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
 
     SUB_IMG_MAP = {"hop":"sub_hop", "fruit":"sub_fruit", "tea-herb":"sub_tea_herb",
@@ -562,7 +624,7 @@ def gen_subingredients():
             f'</figure>'
         ) if img_name else ''
         html += f"""
-  <section class="section" style="padding-bottom:2rem">
+  <section class="section" id="cat-{cat_key}" style="padding-bottom:2rem">
     <div class="section-meta">
       <span class="section-meta__num">No. {INGREDIENT_CATEGORIES.index((cat_key, cat_jp, cat_en, cat_desc))+1:02d}</span>
       <span class="section-meta__label">{cat_en}</span>
@@ -677,8 +739,12 @@ def gen_genres():
         "— SAKETTO ORIGINAL AXIS",
         'ジャンルから、<span class="accent">探す</span>。',
         '副原料の選び方、製法の系譜、麹の素材。クラフトサケの中にも明確な"系"がある。これはsaketto独自の分類軸。',
-        'ジャンルは、sakettoが銘柄を読み解くために置いた独自のものさしだ。ホップを効かせた「ホップサケ」、果実を醸し込む「果実サケ」、伝統の製法に立ち返る「古典どぶろく」、麹の力だけで設計する「全麹酒」、木の香りをまとう「木桶仕込み」、麹の素材そのものを変える「異素材麹」——どの"系"に連なる一本かが分かると、初めての銘柄でも味の見当がつくようになる。蔵の数だけ解釈があるので、同じジャンルの中で蔵ごとの違いを飲み比べるのも、この軸ならではの楽しみ方だ。'
+        divider=False
     )
+    # ジャンル目次（銘柄が無いジャンルは出さない）
+    html += jump_nav([(f"g-{k}", jp, len(by_genre.get(k, [])))
+                      for k, jp, _en, _d in GENRES if by_genre.get(k)], "ジャンルから")
+    html += guide_block('ジャンルは、sakettoが銘柄を読み解くために置いた独自のものさしだ。ホップを効かせた「ホップサケ」、果実を醸し込む「果実サケ」、伝統の製法に立ち返る「古典どぶろく」、麹の力だけで設計する「全麹酒」、木の香りをまとう「木桶仕込み」、麹の素材そのものを変える「異素材麹」——どの"系"に連なる一本かが分かると、初めての銘柄でも味の見当がつくようになる。蔵の数だけ解釈があるので、同じジャンルの中で蔵ごとの違いを飲み比べるのも、この軸ならではの楽しみ方だ。')
     html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
 
     for idx, (g_key, g_jp, g_en, g_desc) in enumerate(GENRES, 1):
@@ -686,7 +752,7 @@ def gen_genres():
         if not breweries:
             continue
         html += f"""
-  <section class="section">
+  <section class="section" id="g-{g_key}">
     <div class="section-meta">
       <span class="section-meta__num">No. {idx:02d}</span>
       <span class="section-meta__label">{g_en}</span>

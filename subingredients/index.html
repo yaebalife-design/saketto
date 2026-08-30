@@ -263,6 +263,25 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   background: rgba(26,23,23,0.45);
   padding: .15rem .5rem;
 }
+
+.jump-nav { max-width:1100px; margin:0 auto 2.5rem; padding:0 2rem; }
+.jump-nav__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-mute); letter-spacing:.12em; margin-bottom:.7rem; }
+.jump-nav__items { display:flex; flex-wrap:wrap; gap:.55rem; }
+.jump-nav__item { display:inline-flex; align-items:baseline; gap:.45rem;
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.88rem;
+  letter-spacing:.04em; color:var(--ink); text-decoration:none;
+  border:1px solid var(--line); padding:.5rem .9rem;
+  transition:border-color .25s, color .25s, background .25s; }
+.jump-nav__item:hover { border-color:var(--accent); color:var(--accent); background:var(--paper); }
+.jump-nav__num { font-family:'Cormorant Garamond',serif; font-size:.8rem; color:var(--ink-mute); }
+.jump-nav__item:hover .jump-nav__num { color:var(--accent); }
+/* アンカー移動時に見出しがマストヘッドへ潜らないよう余白を確保 */
+.section[id] { scroll-margin-top: 1.5rem; }
+@media (max-width:640px) {
+  .jump-nav { padding:0 1.25rem; margin-bottom:2rem; }
+  .jump-nav__item { font-size:.82rem; padding:.45rem .75rem; }
+}
 </style>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="any">
@@ -298,7 +317,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="hero__eyebrow">— FIVE CATEGORIES</div>
     <h1 class="hero__title">副原料から、<span class="accent">探す</span>。</h1>
     <p class="hero__lede">何を入れた酒か。クラフトサケの自由さを最も雄弁に語るのが副原料。ホップから茶葉、ハーブ、果実、そして米と麹のみまで、5つのカテゴリで横断する。</p>
-    <p class="hero__guide">クラフトサケの味の輪郭は、米と麹に「何を重ねるか」で大きく変わる。ホップを選べば柑橘やハーブを思わせる香りが立つビール好きに馴染む一本に、果実を選べばワインのような酸と甘みの方向へ、茶葉やハーブなら和の余韻に近づく。逆に副原料を使わない「米と麹のみ」は、どぶろくや全麹といった製法の個性がそのまま顔を出す。はじめてなら、ふだん好きな飲み物——ビール、白ワイン、日本酒——に近いカテゴリから入るのが早道だ。気になる素材をひとつ選んで、そこから蔵へ、銘柄へと辿ってほしい。製法の背景は<a href="../guide/craftsake-towa.html">「クラフトサケとは」</a>でも読める。</p>
+  </section>
+
+  <nav class="jump-nav" aria-label="5つのカテゴリから">
+    <div class="jump-nav__label">— 5つのカテゴリから</div>
+    <div class="jump-nav__items"><a class="jump-nav__item" href="#cat-hop">ホップ<span class="jump-nav__num">19</span></a><a class="jump-nav__item" href="#cat-fruit">果実<span class="jump-nav__num">29</span></a><a class="jump-nav__item" href="#cat-tea-herb">茶葉・ハーブ・スパイス<span class="jump-nav__num">15</span></a><a class="jump-nav__item" href="#cat-rice-koji">米のみ・特殊麹<span class="jump-nav__num">58</span></a><a class="jump-nav__item" href="#cat-special">特殊副原料<span class="jump-nav__num">21</span></a></div>
+  </nav>
+  <section class="hero" style="padding-top:0;padding-bottom:2.5rem">
+    <p class="hero__guide" style="margin-top:0">クラフトサケの味の輪郭は、米と麹に「何を重ねるか」で大きく変わる。ホップを選べば柑橘やハーブを思わせる香りが立つビール好きに馴染む一本に、果実を選べばワインのような酸と甘みの方向へ、茶葉やハーブなら和の余韻に近づく。逆に副原料を使わない「米と麹のみ」は、どぶろくや全麹といった製法の個性がそのまま顔を出す。はじめてなら、ふだん好きな飲み物——ビール、白ワイン、日本酒——に近いカテゴリから入るのが早道だ。気になる素材をひとつ選んで、そこから蔵へ、銘柄へと辿ってほしい。製法の背景は<a href="../guide/craftsake-towa.html">「クラフトサケとは」</a>でも読める。</p>
   </section>
 
   <div class="divider">
@@ -309,7 +335,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 <div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">
-  <section class="section" style="padding-bottom:2rem">
+  <section class="section" id="cat-hop" style="padding-bottom:2rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
       <span class="section-meta__label">HOP</span>
@@ -474,7 +500,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         </a>
     </div>
   </section>
-  <section class="section" style="padding-bottom:2rem">
+  <section class="section" id="cat-fruit" style="padding-bottom:2rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
       <span class="section-meta__label">FRUITS</span>
@@ -719,7 +745,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         </a>
     </div>
   </section>
-  <section class="section" style="padding-bottom:2rem">
+  <section class="section" id="cat-tea-herb" style="padding-bottom:2rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
       <span class="section-meta__label">TEA & HERBS</span>
@@ -852,7 +878,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         </a>
     </div>
   </section>
-  <section class="section" style="padding-bottom:2rem">
+  <section class="section" id="cat-rice-koji" style="padding-bottom:2rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 04</span>
       <span class="section-meta__label">RICE / SPECIAL KOJI</span>
@@ -1329,7 +1355,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         </a>
     </div>
   </section>
-  <section class="section" style="padding-bottom:2rem">
+  <section class="section" id="cat-special" style="padding-bottom:2rem">
     <div class="section-meta">
       <span class="section-meta__num">No. 05</span>
       <span class="section-meta__label">SPECIAL</span>

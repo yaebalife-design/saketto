@@ -105,6 +105,7 @@ main { position: relative; z-index: 1; }
 .masthead-nav a:hover { color: var(--accent); }
 @media (max-width: 640px) { .masthead-nav { gap: 1rem; font-size: .74rem; } }
 
+
 /* ─────────── HERO ─────────── */
 .hero {
   padding: 5rem 2rem 4.5rem;
@@ -755,6 +756,17 @@ footer {
 }
 
 /* HERO BANNER (Vertex AI生成画像) */
+
+/* スマホ：ロゴと朱印を横並びにすると幅が足りず「saketto」と「.」が改行で分断され、
+   朱印も画面外にはみ出す。1カラムに畳んで朱印は右寄せに置く。 */
+@media (max-width: 700px) {
+  .hero { padding: 3rem 1.5rem 3.5rem; }
+  .hero__grid { grid-template-columns: 1fr; gap: 1rem; }
+  .brand { font-size: clamp(3.4rem, 17vw, 5.5rem); white-space: nowrap; }
+  .seal { width: 84px; height: 84px; margin: 0 0 0 auto; }
+  .hero__body { margin-top: 2rem; gap: 1.4rem; }
+  .hero__cap { right: 1.5rem; }
+}
 </style>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="any">

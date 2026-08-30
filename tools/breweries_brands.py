@@ -262,7 +262,7 @@ BRANDS = {
     "fermenteria": [
         {"name": "サケベイビー オリジナル", "abv": 5.5, "volume_ml": 500,
          "sub_ingredients": ["米のみ"], "price": 3650,
-         "note": "毎日仕込む駅ナカ生クラフトサケ。瓶90ml/600円も"},
+         "note": "仙台駅構内の小さな醸造所で醸す生クラフトサケ。90ml瓶(600円)の販売もあり"},
         {"name": "サケベイビー シーズナル", "abv": 5, "volume_ml": 500,
          "sub_ingredients": ["季節素材"], "price": None,
          "note": "季節副原料入りバリエーション"},
