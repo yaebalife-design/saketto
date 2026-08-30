@@ -366,7 +366,17 @@ def build_html(brand, detail, brewery, idx):
         purchase_inner = ('<div class="purchase-card__btns">' + "".join(_btns) + '</div>'
                           '<div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>')
     else:
-        purchase_inner = '<div class="purchase-card__pending">通販モールでの取り扱いは確認できていません。少量生産のため、蔵の公式オンラインショップや醸造所併設の店舗での販売が中心です。<a href="/guide/doko-de-kaeru.html">探し方はこちら</a></div>'
+        # 通販に無い銘柄（143中85）。ここが唯一の出口なので、テキストリンクではなく
+        # ボタンとして公式サイトへ送る（未使用だった --official クラスを使用）。
+        _ofs = brewery.get("official_url", "")
+        _alt = []
+        if _ofs:
+            _alt.append(f'<a class="purchase-card__btn purchase-card__btn--official" href="{_ofs}" target="_blank" rel="noopener">蔵の公式サイトで探す →</a>')
+        _alt.append('<a class="purchase-card__btn purchase-card__btn--official" href="/guide/doko-de-kaeru.html">買える場所の探し方 →</a>')
+        purchase_inner = (
+            '<div class="purchase-card__pending">通販モールでの取り扱いは確認できていません。'
+            '少量生産のため、蔵の公式オンラインショップや醸造所併設の店舗での販売が中心です。</div>'
+            '<div class="purchase-card__btns">' + "".join(_alt) + '</div>')
 
     kura_section = f"""
   <section class="section" id="purchase">

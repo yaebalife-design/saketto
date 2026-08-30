@@ -2009,7 +2009,7 @@ def build_doko_de_kaeru():
       <div class="prose">
         <h2 class="sub-h">運ばない、という<span class="accent">選択</span>。</h2>
         <p>クラフトサケには、<strong>意図的に流通させない酒</strong>がある。搾ったばかりの生、瓶内で発酵が進む活性タイプ——輸送や保管で品質が変わってしまうものは、醸造所併設の店やタップルームでしか出さない蔵がある。</p>
-        <p>たとえば東京駅のエキナカで醸す<a href="../brewery/tokyo-station.html">東京駅酒造場</a>、大阪タカシマヤ地下の<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>と日本橋兜町の<a href="../brewery/heiwa-kabutocho.html">兜町醸造所</a>、仙台駅構内の約3.4坪で醸す<a href="../brewery/fermenteria.html">Fermenteria</a>。神戸の<a href="../brewery/hakutsuru-sakecraft.html">HAKUTSURU SAKE CRAFT</a>は、ナンバリングされたシリーズの多くが資料館限定で、一部の特別銘柄だけが公式オンラインに出る。<strong>「買えない」のではなく、「その場所へ行って出会う酒」として設計されている</strong>。旅の目的地にする価値がある。</p>
+        <p>たとえば東京駅のエキナカで醸す<a href="../brewery/tokyo-station.html">東京駅酒造場</a>、大阪タカシマヤ地下の<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>と日本橋兜町の<a href="../brewery/heiwa-kabutocho.html">兜町醸造所</a>、仙台駅構内の約3.4坪で、8Lタンクの超小仕込みを毎日重ねる<a href="../brewery/fermenteria.html">Fermenteria</a>。神戸の<a href="../brewery/hakutsuru-sakecraft.html">HAKUTSURU SAKE CRAFT</a>は、ナンバリングされたシリーズの多くが資料館限定で、一部の特別銘柄だけが公式オンラインに出る。<strong>「買えない」のではなく、「その場所へ行って出会う酒」として設計されている</strong>。旅の目的地にする価値がある。</p>
       </div>
     </section>
 {divider()}

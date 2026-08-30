@@ -7,7 +7,10 @@
   if (verified) return;
 
   var STYLE = ''
+    // overflow-y:auto が無いと、横向き表示や文字サイズ拡大時に「はい/いいえ」が
+    // 画面外へ出て押せなくなり、サイトに入れなくなる。中央寄せは safe center で退避。
     + '.sk-age{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;'
+    + 'align-items:safe center;overflow-y:auto;overscroll-behavior:contain;'
     + 'justify-content:center;padding:24px;background:#F5F0E7;'
     + 'background-image:radial-gradient(ellipse 1.5px 2.2px at 18% 22%,rgba(184,73,58,.05) 60%,transparent 70%),'
     + 'radial-gradient(ellipse 1.2px 1.8px at 67% 38%,rgba(139,115,85,.05) 60%,transparent 70%),'
@@ -16,7 +19,7 @@
     + 'font-family:"Noto Sans JP",sans-serif;color:#16100E;'
     + 'opacity:1;transition:opacity .4s ease;}'
     + '.sk-age.sk-age--hidden{opacity:0;pointer-events:none;}'
-    + '.sk-age__box{max-width:460px;width:100%;background:#FAF6ED;'
+    + '.sk-age__box{max-width:460px;width:100%;flex:0 0 auto;margin:auto;background:#FAF6ED;'
     + 'border:1px solid #C0B69E;padding:48px 36px 36px;text-align:center;'
     + 'box-shadow:0 18px 50px rgba(26,23,23,.12);}'
     + '.sk-age__mark{display:block;margin:0 auto 22px;}'

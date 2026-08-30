@@ -767,6 +767,24 @@ footer {
   .hero__body { margin-top: 2rem; gap: 1.4rem; }
   .hero__cap { right: 1.5rem; }
 }
+
+/* スマホ：25蔵ブロックが auto 1fr のままだと巨大数字に幅を取られ、
+   説明文が8文字/行の短冊になる。1カラムに畳んで数字も縮める。 */
+@media (max-width: 700px) {
+  .bignum-block { grid-template-columns: 1fr; gap: 1rem; }
+  .bignum { font-size: clamp(4rem, 18vw, 7rem); }
+  .bignum-desc h3 { font-size: 1.15rem; }
+}
+/* スマホ：左右32pxは日本語で14〜17文字/行になり読みにくい。20pxに詰めて
+   ヒーロー(1.5rem)と本文の左端も揃える。 */
+@media (max-width: 640px) {
+  .section { padding: 0 1.25rem 3rem; }
+  .divider { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .colophon { padding: 2rem 1.25rem; }
+  .hero { padding: 3rem 1.25rem 3.5rem; }
+  .hero__cap { right: 1.25rem; }
+  .kura-grid { grid-template-columns: 1fr; }
+}
 </style>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="any">

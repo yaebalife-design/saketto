@@ -525,6 +525,39 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
   gtag('config', 'G-REYY10PEK2');
 </script>
 <script src="../assets/age-gate.v2.js" defer></script>
+<style>
+/* ── スマホ共通調整（各テンプレのCSSより後に読ませて後勝ちさせる） ──
+   左右32pxのままだと日本語が14〜17文字/行になり読みづらいため20pxへ詰める。
+   4軸スケールSVGは viewBox 480 に対し表示幅が261pxしかなく、
+   font-size=11/13 が実効6〜7pxまで潰れて漢字が判読できないので拡大する。 */
+@media (max-width: 640px) {
+  .section { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .divider { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .colophon { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .article { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .spec-board { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .official-foot { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .masthead { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .hero { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .story-block { padding: 1.5rem 1.25rem; }
+  .purchase-card, .kura-card, .enjoy-cell, .tasting-row { padding: 1.25rem 1.15rem; }
+  /* 見出しの装飾罫が2行目に取り残されるのを防ぐ（線の見え方を全ページで揃える） */
+  .section-meta { flex-wrap: wrap; }
+  .section-meta__rule { min-width: 2.5rem; }
+}
+@media (max-width: 860px) {
+  .flavor-box svg[viewBox^="0 0 480"] text { font-size: 21px; }
+}
+/* アフィリエイト/主要導線のタップ領域を44px以上に（iOS HIG） */
+.brand-card__shoplink, .spec-cell__gobuy, .kura-card__link,
+.section-morelink a, .pick__detail { display: inline-flex; align-items: center; min-height: 44px; }
+.masthead-nav a { min-height: 44px; display: inline-flex; align-items: center; }
+/* PR表記は景品表示法の観点で小さすぎないこと */
+.pick__pr, .purchase-card__note { font-size: .8rem; }
+/* 買えない銘柄の唯一の出口。暗色カード上で既定リンク色だとコントラスト2.0:1で読めない */
+.purchase-card__pending a { color: #F0C9BC; border-bottom: 1px solid #A8351F; text-decoration: none; }
+.purchase-card__pending a:hover { color: #FAF6ED; }
+</style>
 </head>
 <body>
 <main>
@@ -663,7 +696,7 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
       </div>
       <div class="purchase-card">
         <div><div class="purchase-card__label">— PURCHASE</div><div class="purchase-card__title">「アマーロどぶろく feat.伊勢屋酒造」を探す</div></div>
-        <div><div class="purchase-card__pending">通販モールでの取り扱いは確認できていません。少量生産のため、蔵の公式オンラインショップや醸造所併設の店舗での販売が中心です。<a href="/guide/doko-de-kaeru.html">探し方はこちら</a></div></div>
+        <div><div class="purchase-card__pending">通販モールでの取り扱いは確認できていません。少量生産のため、蔵の公式オンラインショップや醸造所併設の店舗での販売が中心です。</div><div class="purchase-card__btns"><a class="purchase-card__btn purchase-card__btn--official" href="https://note.com/pukupukubrewing/" target="_blank" rel="noopener">蔵の公式サイトで探す →</a><a class="purchase-card__btn purchase-card__btn--official" href="/guide/doko-de-kaeru.html">買える場所の探し方 →</a></div></div>
       </div>
     </div>
   </section>
