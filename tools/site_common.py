@@ -182,6 +182,33 @@ def canonical_path(path):
     return path
 
 
+_HTML_URL_RE = None
+
+
+def _normalize_jsonld_urls(node):
+    """JSON-LD の中の自サイトURLから .html を落とす。
+
+    canonical と OG は canonical_path() を通していたが、JSON-LD の dict は
+    各 gen_*.py が seo_head を呼ぶ前に組み立てており、素のパス（.html付き）が
+    そのまま url / @id / BreadcrumbList の item に入っていた。
+    canonical は拡張子なし、構造化データは .html という食い違いが
+    216ページ中207ページで起きていたため、ここで一括して揃える。
+    呼び出し側の書き方に依存しないよう、値を再帰的に走査する。
+    """
+    import re as _re
+    global _HTML_URL_RE
+    if _HTML_URL_RE is None:
+        _HTML_URL_RE = _re.compile(_re.escape(SITE_URL) + r"(/[^\"\s]*?\.html)")
+
+    if isinstance(node, dict):
+        return {k: _normalize_jsonld_urls(v) for k, v in node.items()}
+    if isinstance(node, list):
+        return [_normalize_jsonld_urls(v) for v in node]
+    if isinstance(node, str) and SITE_URL in node and ".html" in node:
+        return _HTML_URL_RE.sub(lambda m: SITE_URL + canonical_path(m.group(1)), node)
+    return node
+
+
 def seo_head(path, og_title, description, og_type="website", image=None, jsonld=None):
     """canonical + OGP + Twitterカード + JSON-LD をまとめて返す。
     path: サイト内絶対パス（例 "/", "/brand/haccoba-0.html", "/genre/"）。
@@ -209,5 +236,6 @@ def seo_head(path, og_title, description, og_type="website", image=None, jsonld=
         nodes = jsonld if isinstance(jsonld, list) else [jsonld]
         for n in nodes:
             lines.append('<script type="application/ld+json">'
-                         + _json.dumps(n, ensure_ascii=False) + '</script>')
+                         + _json.dumps(_normalize_jsonld_urls(n),
+                                       ensure_ascii=False) + '</script>')
     return "\n".join(lines)

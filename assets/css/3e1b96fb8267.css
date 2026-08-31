@@ -268,6 +268,8 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 
 .static { max-width: 760px; margin: 0 auto; padding: 56px 28px 96px; position: relative; z-index: 1; }
+/* 「現在利用中／準備中」のような補足。本文と同じ強さで並ぶと読み違えるので落とす */
+.note-inline { color: var(--ink-mute); font-size: .88em; }
 .breadcrumb { font-size: 12px; letter-spacing: .08em; color: var(--ink-mute); margin-bottom: 28px; }
 .breadcrumb a { color: var(--ink-mute); text-decoration: none; }
 .breadcrumb a:hover { color: var(--accent); }
