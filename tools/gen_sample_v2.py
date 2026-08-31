@@ -207,7 +207,8 @@ def gen_scale4_svg(scale):
           font-weight="500" fill="#3D3633">{right}</text>
     <text x="{dot_x:.1f}" y="{y-12}" font-family="Cormorant Garamond" font-style="italic"
           font-size="13" font-weight="500" text-anchor="middle" fill="#A8351F">{score:.1f}</text>""")
-    return f"""<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" aria-label="4軸構造スケール">
+    _desc = "・".join(f"{lo}〜{hi}は{round(v*4+1,1)}（5段階）" for lo, hi, v in axes)
+    return f"""<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="4軸構造スケール。{_desc}">
 {''.join(rows)}
 </svg>"""
 
@@ -268,7 +269,8 @@ def gen_radar6_svg(values):
         x, y = point(i*60, r + 12)
         value_labels += f'<text x="{x:.1f}" y="{y:.1f}" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#A8351F" text-anchor="middle">{v}</text>\n    '
 
-    return f"""<svg viewBox="0 0 260 280" xmlns="http://www.w3.org/2000/svg" aria-label="6軸フレーバープロファイル">
+    _desc = "・".join(f"{k}{v}" for k, v in values.items())
+    return f"""<svg viewBox="0 0 260 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="6軸フレーバープロファイル（5段階）。{_desc}">
     {rings_svg}{axis_svg}
     <polygon points="{data_poly}" fill="#A8351F" fill-opacity="0.18" stroke="#A8351F" stroke-width="1.5"/>
     {dots_svg}{labels_svg}{value_labels}

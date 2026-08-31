@@ -27,8 +27,9 @@ def url_and_priority(rel_parts, fname):
     if fname == "index.html":
         # サブディレクトリのハブ → 末尾スラッシュ
         return "/" + "/".join(rel_parts) + "/", "0.9"
-    # 通常ページ
-    path = "/" + "/".join(list(rel_parts) + [fname])
+    # 通常ページ。Cloudflare Pages は /x.html を /x へ308でリダイレクトするため、
+    # sitemap には最終URL（拡張子なし）を載せる。
+    path = "/" + "/".join(list(rel_parts) + [fname[:-len(".html")] if fname.endswith(".html") else fname])
     top = rel_parts[0] if rel_parts else ""
     if top == "guide":
         prio = "0.85"

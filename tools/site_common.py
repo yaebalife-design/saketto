@@ -112,11 +112,27 @@ def website_node():
     return {"@type": "WebSite", "name": SITE_NAME, "url": SITE_URL + "/"}
 
 
+def canonical_path(path):
+    """Cloudflare Pages は `/x.html` を `/x` へ308でリダイレクトする。
+    canonical や sitemap に .html 付きを載せると、200を返すURLが
+    「リダイレクトされる別URL」を正規と名乗ることになり、クロール予算を捨てる。
+    そのため公開URLは常に拡張子なしへ正規化する（index.html はディレクトリに）。
+    """
+    if path.endswith("/index.html"):
+        return path[: -len("index.html")]
+    if path == "/index.html":
+        return "/"
+    if path.endswith(".html"):
+        return path[: -len(".html")]
+    return path
+
+
 def seo_head(path, og_title, description, og_type="website", image=None, jsonld=None):
     """canonical + OGP + Twitterカード + JSON-LD をまとめて返す。
     path: サイト内絶対パス（例 "/", "/brand/haccoba-0.html", "/genre/"）。
     jsonld: dict または dict のリスト（各々 <script type=ld+json> 1個に）。
     """
+    path = canonical_path(path)
     url = SITE_URL + path
     img = image or OG_IMAGE
     t, dsc = _attr(og_title), _attr(description)

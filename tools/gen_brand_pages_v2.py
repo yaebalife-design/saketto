@@ -441,9 +441,16 @@ def build_html(brand, detail, brewery, idx):
                 "image": _img,
                 "url": SITE_URL + _path}
     if price not in (None, ""):
-        # ページ本文に表示している確認済み価格をそのまま構造化データへ（嘘ゼロ準拠）
-        _product["offers"] = {"@type": "Offer", "price": str(int(price)),
-                              "priceCurrency": "JPY", "url": SITE_URL + _path}
+        # ページ本文に表示している確認済み価格をそのまま構造化データへ（嘘ゼロ準拠）。
+        # availability を省くと「在庫あり」と解釈されうるため、実際に購入導線がある
+        # 銘柄だけ InStock とし、通販で取扱いを確認できないものは OutOfStock を明示する。
+        # url も、購入できるなら購入先を指す（自ページを指すと購入導線と誤解される）。
+        _buyable = bool((RAKUTEN_ENABLED and rakuten_url) or (AMAZON_ENABLED and amazon_url))
+        _offer = {"@type": "Offer", "price": str(int(price)), "priceCurrency": "JPY",
+                  "availability": "https://schema.org/InStock" if _buyable
+                                  else "https://schema.org/OutOfStock",
+                  "url": (rakuten_url if (RAKUTEN_ENABLED and rakuten_url) else SITE_URL + _path)}
+        _product["offers"] = _offer
     _seo = seo_head(_path, _title_core, meta_desc, og_type="product", image=_img, jsonld=[
         _product,
         breadcrumb([("トップ", "/"), (brewery["name"], f"/brewery/{slug}.html"), (name, _path)]),
