@@ -445,6 +445,26 @@ def build_html(brand, detail, brewery, idx):
         host = official_url.split("//")[-1].split("/")[0]
         official_foot = f'<div class="official-foot"><a href="{official_url}" target="_blank" rel="noopener">{brewery["name"]} 公式サイト（{host}）→</a></div>'
 
+    # ── HERO タグライン ──
+    # note が空の銘柄が7件、「第二弾」等の極端に短いものが44件あり、
+    # 空の場合は margin だけ残った空段落になっていた。空なら要素ごと出さず、
+    # 短い場合は確認済みの事実（副原料・製法）で補う。
+    _tagline = clean_note(b.get("note", "")) or ""
+    if len(_tagline) < 12:
+        _facts = []
+        _nr = [x for x in subs if x and "米のみ" not in x]
+        if _nr:
+            _facts.append("副原料に" + "・".join(_nr[:2]))
+        elif subs:
+            _facts.append("米と米麹のみで醸す")
+        for _k, _lbl in (("shubo", ""), ("vessel", ""), ("koji", "")):
+            _v = clean_note(d.get(_k))
+            if _v and len(_facts) < 3:
+                _facts.append(_v)
+        if _facts:
+            _extra = "。".join(_facts)
+            _tagline = f"{_tagline}／{_extra}" if _tagline else _extra
+
     # ── HERO 役割チップ ──
     hero = f"""
   <section class="hero">
@@ -454,7 +474,7 @@ def build_html(brand, detail, brewery, idx):
     <div class="hero__brandrow"><span class="role-chip role-chip--brand">銘柄</span></div>
     <h1 class="hero__name">{name}</h1>
     {f'<div class="hero__kana">{kana}</div>' if kana else ''}
-    <p class="hero__tagline">{esc(b.get('note',''))}</p>{flavor_tags_html}
+    {f'<p class="hero__tagline">{esc(_tagline)}</p>' if _tagline else ''}{flavor_tags_html}
   </section>"""
 
     # ── meta description（蔵・銘柄・note・副原料を常に合成。noteだけだと10字前後になりCTRを落とすため）──
