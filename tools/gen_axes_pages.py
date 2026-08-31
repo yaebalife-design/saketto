@@ -222,7 +222,7 @@ a.spec-pill.portal-link:hover { background:var(--accent); color:var(--paper); bo
 }
 
 .empty-region {
-  background:var(--bg-alt); padding:2rem; border-left:2px solid var(--warm);
+  background:var(--bg-alt); padding:2rem; border-left:3px solid var(--warm);
   font-family:'Shippori Mincho', serif;
   color:var(--ink-soft); font-size:.95rem;
 }
@@ -720,7 +720,7 @@ def gen_subingredients():
   <section class="section" id="cat-{cat_key}" style="padding-bottom:2rem">
     <div class="section-meta">
       <span class="section-meta__num">No. {INGREDIENT_CATEGORIES.index((cat_key, cat_jp, cat_en, cat_desc))+1:02d}</span>
-      <span class="section-meta__label">{cat_en}</span>
+      <h2 class="section-meta__label" style="margin:0">{cat_en}</h2>
       <span class="section-meta__count">/ {len(entries)} 銘柄</span>
       <span class="section-meta__rule"></span>
     </div>
@@ -848,7 +848,7 @@ def gen_genres():
   <section class="section" id="g-{g_key}">
     <div class="section-meta">
       <span class="section-meta__num">No. {idx:02d}</span>
-      <span class="section-meta__label">{g_en}</span>
+      <h2 class="section-meta__label" style="margin:0">{g_en}</h2>
       <span class="section-meta__count">/ {len(breweries)} 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
@@ -1001,7 +1001,7 @@ AWARDS_CSS = """
 .dest-head__rule { flex:1; height:1px; background:var(--line); }
 .dest-head__count { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.76rem; letter-spacing:.12em; color:var(--ink-mute); white-space:nowrap; }
 .dest-item { display:block; text-decoration:none; color:inherit; padding:.7rem 0 .7rem 1.3rem;
-  border-left:2px solid var(--line-soft); margin-bottom:.7rem; transition:border-color .25s, padding-left .25s; }
+  border-left:3px solid var(--line-soft); margin-bottom:.7rem; transition:border-color .25s, padding-left .25s; }
 .dest-item:last-child { margin-bottom:0; }
 .dest-item:hover { border-left-color:var(--accent); padding-left:1.7rem; }
 .dest-item__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.12rem; color:var(--ink); line-height:1.5; }

@@ -509,7 +509,7 @@ main { position:relative; z-index:1; }
 /* ===== TASTING 3段 ===== */
 .tasting-3 {
   display:grid; grid-template-columns:1fr; gap:0;
-  border:1px solid var(--line); border-left:4px solid var(--accent);
+  border:1px solid var(--line); border-left:3px solid var(--accent);
   background:var(--paper); margin-bottom:1rem;
 }
 .tasting-row {
@@ -534,7 +534,7 @@ main { position:relative; z-index:1; }
   font-size:.88rem; color:var(--ink-soft); padding-top:.75rem;
   border-top:1px dotted var(--line); margin-top:1rem;
 }
-.tasting-source a { color:var(--ink); border-bottom:1px dotted var(--line); text-decoration:none; }
+.tasting-source a { color:var(--ink); border-bottom:1px solid var(--line); text-decoration:none; }
 .tasting-source a:hover { color:var(--accent); border-bottom-color:var(--accent); }
 
 /* ===== Flavor Profile (4軸 + 6軸) ===== */
@@ -582,7 +582,7 @@ main { position:relative; z-index:1; }
   font-family:'Cormorant Garamond', serif; font-style:italic;
   font-size:.85rem; color:var(--ink-soft);
 }
-.story-source a { color:var(--ink); border-bottom:1px dotted var(--line); text-decoration:none; }
+.story-source a { color:var(--ink); border-bottom:1px solid var(--line); text-decoration:none; }
 
 /* ===== AWARDS ===== */
 .awards-list {
@@ -690,7 +690,7 @@ main { position:relative; z-index:1; }
 .sources__note { font-size:.8rem; color:var(--ink-mute); line-height:1.9; margin-top:1rem; }
 .sources a {
   font-size:.92rem; color:var(--ink); text-decoration:none; font-weight:500;
-  border-bottom:1px dotted var(--line); padding-bottom:.15rem;
+  border-bottom:1px solid var(--line); padding-bottom:.15rem;
   word-break:break-all; transition:color .25s;
 }
 .sources a:hover { color:var(--accent); border-bottom-color:var(--accent); }
@@ -704,7 +704,7 @@ main { position:relative; z-index:1; }
 .glossary {
   border:1px solid var(--line); padding:1.5rem 1.75rem; background:var(--paper);
 }
-.glossary-item { padding:.9rem 0; border-bottom:1px dotted var(--line); }
+.glossary-item { padding:.9rem 0; border-bottom:1px solid var(--line); }
 .glossary-item:last-child { border-bottom:none; padding-bottom:0; }
 .glossary-item dt {
   font-family:'Shippori Mincho', serif; font-weight:700;
@@ -730,7 +730,7 @@ main { position:relative; z-index:1; }
 .official-foot a {
   font-family:'Noto Sans JP', sans-serif; font-weight:400;
   font-size:.85rem; color:var(--ink-mute); letter-spacing:.04em;
-  text-decoration:none; border-bottom:1px dotted var(--line); padding-bottom:.2rem;
+  text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:.2rem;
   transition:color .25s;
 }
 .official-foot a:hover { color:var(--ink-soft); }

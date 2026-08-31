@@ -319,7 +319,7 @@ main { position:relative; z-index:1; }
 .sources ul { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
 .sources a {
   font-size:.95rem; color:var(--ink); text-decoration:none; font-weight:500;
-  border-bottom:1px dotted var(--line); padding-bottom:.2rem; transition:color .25s;
+  border-bottom:1px solid var(--line); padding-bottom:.2rem; transition:color .25s;
   word-break:break-all;
 }
 .sources a:hover { color:var(--accent); border-bottom-color:var(--accent); }
@@ -474,7 +474,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 .tasting-source a {
   color:var(--ink-soft); text-decoration:none;
-  border-bottom:1px dotted var(--line);
+  border-bottom:1px solid var(--line);
 }
 .tasting-source a:hover { color:var(--accent); border-bottom-color:var(--accent); }
 """
@@ -537,9 +537,9 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
     rk = resolve_rakuten(brewery_slug, idx, name) if RAKUTEN_ENABLED else None
     az = resolve_amazon(brewery_slug, idx, name) if AMAZON_ENABLED else None
     if rk:
-        _shop.append(("楽天市場で見る", rk))
+        _shop.append(("楽天市場で探す →", rk))
     if az:
-        _shop.append(("Amazonで見る", az))
+        _shop.append(("Amazonで探す →", az))
     shop_html = ''
     for _i, (_label, _url) in enumerate(_shop):
         _cls = "brand-card__shoplink--buy" if _i == 0 else "brand-card__shoplink--amazon"
@@ -553,7 +553,7 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
         {note_html}
         {price_html}
         <div class="brand-card__links">
-          <a class="brand-card__shoplink" href="{href}">詳細を見る</a>
+          <a class="brand-card__shoplink" href="{href}">銘柄の詳細を見る →</a>
           {shop_html}
         </div>
       </div>"""

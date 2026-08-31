@@ -451,7 +451,7 @@ def build_index():
     <section class="section">
       <div class="section-meta">
         <span class="section-meta__num">{cat['en']}</span>
-        <span class="section-meta__label">{cat['ja']}</span>
+        <h2 class="section-meta__label" style="margin:0">{cat['ja']}</h2>
         <span class="section-meta__rule"></span>
       </div>
       <p class="cat-lead">{cat['desc']}</p>
