@@ -6,7 +6,9 @@
 # HTML用の指定は拡張子なしのパスに対して書く。
 
 # 全ページ共通：セキュリティヘッダ
-# ・インラインCSS/JS構成のため style/script に 'unsafe-inline' が必要
+# ・CSSの大半は /assets/css/ へ切り出したが（externalize_css.py）、
+#   1ページでしか使わないブロックと gtag のインラインJSが残るため
+#   style/script の 'unsafe-inline' は引き続き必要
 # ・GA(gtag) と Google Fonts のみ外部許可
 /*
   X-Content-Type-Options: nosniff
@@ -25,6 +27,12 @@
 # /assets/* より後に置かないと上書きされてしまう
 /assets/images/*
   Cache-Control: public, max-age=604800
+
+# 切り出したCSSはファイル名が内容のハッシュ（externalize_css.py）。
+# 中身を変えれば必ず別URLになるので、古いものを掴み続ける事故が起きない。
+# ＝ここだけは immutable で1年キャッシュしてよい
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
 
 /favicon.svg
   Cache-Control: public, max-age=604800

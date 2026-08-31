@@ -1,0 +1,287 @@
+:root {
+  --bg: #F5F0E7; --bg-alt: #EDE5D2; --paper: #FAF6ED;
+  --ink: #16100E; --ink-soft: #3D3633; --ink-mute: #635C57;
+  --accent: #A8351F; --accent-deep: #862719;
+  --warm: #7A6447; --line: #C0B69E; --line-soft: #D6CCB3;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+body {
+  background:var(--bg); color:var(--ink);
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  line-height:1.8; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden; font-size:16px;
+}
+body::before {
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    radial-gradient(ellipse 1.5px 2.2px at 18% 22%, rgba(184,73,58,0.035) 60%, transparent 70%),
+    radial-gradient(ellipse 1.2px 1.8px at 67% 38%, rgba(139,115,85,0.04) 60%, transparent 70%),
+    radial-gradient(ellipse 1.5px 2.3px at 42% 71%, rgba(26,23,23,0.025) 60%, transparent 70%);
+  background-size: 64px 64px, 96px 96px, 80px 80px;
+}
+main { position:relative; z-index:1; }
+
+.masthead {
+  border-bottom:1px solid var(--line); padding:1rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.8rem; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;
+}
+.masthead a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead a:hover { color:var(--accent); }
+.masthead .accent-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; margin-right:.5rem; }
+.masthead { flex-wrap:wrap; gap:.7rem 1.2rem; }
+.masthead .left { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
+.masthead .brand-link { color:var(--ink); font-weight:700; }
+.masthead-nav { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
+.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; padding:.45rem .25rem; margin:-.45rem -.25rem; }
+.masthead-nav a:hover { color:var(--accent); }
+@media (max-width:640px){ .masthead-nav{ gap:.9rem; font-size:.72rem; } }
+
+.hero {
+  max-width:1100px; margin:0 auto; padding:5rem 2rem 3rem;
+}
+.hero__eyebrow {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.95rem; color:var(--accent); letter-spacing:.15em;
+  margin-bottom:1rem;
+}
+.hero__title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:clamp(2.5rem, 6vw, 4rem);
+  letter-spacing:.02em; line-height:1.2; color:var(--ink);
+  margin-bottom:1rem;
+}
+.hero__title .accent { color:var(--accent); }
+.hero__lede {
+  font-size:1.05rem; color:var(--ink-soft); max-width:680px;
+  border-left:3px solid var(--accent); padding-left:1.5rem; line-height:1.9;
+  font-weight:400;
+}
+.hero__guide {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.92rem; color:var(--ink-mute); max-width:680px;
+  margin-top:1.6rem; line-height:2.1; letter-spacing:.02em; font-weight:400;
+}
+.hero__guide a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:1px; }
+.hero__guide a:hover { color:var(--accent-deep); border-color:var(--accent-deep); }
+
+.section { max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
+.section-meta {
+  display:flex; align-items:baseline; gap:1.25rem; margin-bottom:1.5rem;
+}
+.section-meta__num {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.15rem; color:var(--accent); letter-spacing:.05em;
+}
+.section-meta__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.88rem; font-weight:700; letter-spacing:.18em; color:var(--ink);
+  text-transform:uppercase;
+}
+.section-meta__count {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1rem; color:var(--ink-soft); letter-spacing:.05em;
+}
+.section-meta__rule { flex:1; height:1px; background:var(--line); }
+
+.cat-title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.65rem; letter-spacing:.02em; color:var(--ink);
+  margin-bottom:.6rem;
+}
+.cat-title .accent { color:var(--accent); }
+.cat-desc {
+  font-size:.98rem; color:var(--ink-soft); margin-bottom:1.5rem; line-height:1.8;
+  font-weight:400;
+}
+
+.entries {
+  display:flex; flex-direction:column;
+  border:1px solid var(--line);
+  margin-bottom:3rem;
+}
+.entry {
+  background:var(--bg); padding:1.1rem 1.5rem;
+  display:grid; grid-template-columns:1fr; gap:.4rem;
+  transition:background .3s;
+  text-decoration:none; color:var(--ink);
+  border-bottom:1px solid var(--line);
+}
+.entry:last-child { border-bottom:none; }
+@media (min-width:760px) {
+  .entry { grid-template-columns:1.5fr 1fr 1fr; align-items:center; gap:1rem; }
+}
+.entry:hover { background:var(--paper); }
+.entry__brand {
+  font-family:'Shippori Mincho', serif; font-weight: 700;
+  font-size:1.08rem; color:var(--ink); line-height:1.5;
+}
+.entry__brewery {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.88rem; color:var(--ink-soft); letter-spacing:.02em;
+  margin-top:.15rem;
+}
+.entry__brewery::before { content:"— "; color:var(--accent); }
+.entry__specs { display:flex; gap:.4rem; flex-wrap:wrap; }
+.spec-pill {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.78rem; letter-spacing:.02em; color:var(--ink-soft);
+  background:var(--bg-alt); padding:.25rem .65rem;
+}
+.spec-pill.accent { color:var(--accent); background:transparent; border:1px solid var(--accent); }
+.spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
+
+
+
+/* ふるさと納税の行（行全体リンクをやめ、蔵名とポータルを個別リンクに） */
+.entry--furusato { cursor:default; }
+.entry--furusato:hover { background:var(--bg); }
+.entry__brand a { color:var(--ink); text-decoration:none; border-bottom:1px solid transparent; }
+.entry__brand a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+a.spec-pill.portal-link { text-decoration:none; display:inline-flex; align-items:center;
+  min-height:36px; transition:background .2s,color .2s; }
+a.spec-pill.portal-link:hover { background:var(--accent); color:var(--paper); border-color:var(--accent); }
+
+.brewery-cell { display:flex; flex-direction:column; border-bottom:1px solid var(--line); }
+@media (min-width:600px) {
+  .brewery-cell { border-right:1px solid var(--line); }
+  .brewery-cell:nth-child(2n) { border-right:none; }
+}
+.brewery-cell .brewery-card { border-bottom:none; border-right:none; flex:1; }
+.card-picks { display:flex; flex-wrap:wrap; align-items:baseline; gap:.4rem .55rem;
+  padding:0 1.5rem 1.1rem; }
+.card-picks__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.72rem; color:var(--ink-mute); letter-spacing:.08em; }
+.card-picks__item { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.82rem;
+  color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);
+  padding-bottom:1px; }
+.card-picks__item:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.card-picks__more { font-size:.78rem; color:var(--ink-mute); }
+@media (max-width:640px){ .card-picks { padding:0 1.25rem 1rem; } }
+
+.brewery-grid {
+  display:grid; grid-template-columns:1fr; gap:0;
+  border-top:1px solid var(--line);
+}
+@media (min-width:600px) { .brewery-grid { grid-template-columns:repeat(2, 1fr); } }
+.brewery-card {
+  padding:1.5rem; border-bottom:1px solid var(--line);
+  background:var(--bg); text-decoration:none; color:var(--ink);
+  display:flex; flex-direction:column; gap:.4rem;
+  transition:background .3s, padding-left .3s;
+}
+@media (min-width:600px) {
+  .brewery-card { border-right:1px solid var(--line); }
+  .brewery-card:nth-child(2n) { border-right:none; }
+}
+.brewery-card:hover { background:var(--paper); padding-left:1.75rem; }
+.brewery-card__num {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.85rem; color:var(--accent); letter-spacing:.05em;
+}
+.brewery-card__name {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.25rem; color:var(--ink); letter-spacing:.02em;
+}
+.brewery-card__meta {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-soft); letter-spacing:.02em;
+}
+.brewery-card__features {
+  font-size:.9rem; color:var(--ink-soft); line-height:1.7; margin-top:.35rem;
+  font-weight:400;
+}
+
+.empty-region {
+  background:var(--bg-alt); padding:2rem; border-left:3px solid var(--warm);
+  font-family:'Shippori Mincho', serif;
+  color:var(--ink-soft); font-size:.95rem;
+}
+.empty-region em {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  color:var(--accent); letter-spacing:.05em;
+}
+
+.divider {
+  max-width:1100px; margin:3rem auto; padding:0 2rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.divider .rule { flex:1; height:1px; background:var(--line); }
+.divider .ornament { width:8px; height:8px; background:var(--accent); transform:rotate(45deg); }
+.divider .ornament.outer { width:4px; height:4px; background:var(--warm); }
+
+footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-index:1; }
+.colophon {
+  max-width:1100px; margin:0 auto; padding:2rem;
+  display:grid; grid-template-columns:1fr; gap:1.5rem;
+}
+@media (min-width:700px) { .colophon { grid-template-columns:2fr 3fr; } }
+.colophon__brand {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.5rem; letter-spacing:.02em;
+}
+.colophon__brand .dot { color:var(--accent); }
+.colophon__brand a { color:var(--ink); text-decoration:none; }
+.colophon__brand small {
+  display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-soft); margin-top:.25rem;
+  font-weight:400; letter-spacing:.08em;
+}
+.colophon__notes {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.88rem; color:var(--ink-soft); line-height:1.9; letter-spacing:.02em;
+}
+.colophon__notes strong { color:var(--accent); font-weight:500; }
+.colophon__notes a { color:var(--warm); text-decoration:none; }
+.colophon__notes a:hover { color:var(--accent); }
+.colophon__sep { color:var(--line); margin:0 .5rem; }
+
+/* セクションヘッダー画像 (Vertex AI) */
+.cat-image {
+  margin: 0 0 2rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  position: relative;
+}
+.cat-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: cover;
+  filter: contrast(0.98) saturate(0.95);
+}
+.cat-image__cap {
+  position: absolute;
+  bottom: .5rem;
+  right: .75rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .65rem;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: .12em;
+  background: rgba(26,23,23,0.45);
+  padding: .15rem .5rem;
+}
+
+.jump-nav { max-width:1100px; margin:0 auto 2.5rem; padding:0 2rem; }
+.jump-nav__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-mute); letter-spacing:.12em; margin-bottom:.7rem; }
+.jump-nav__items { display:flex; flex-wrap:wrap; gap:.55rem; }
+.jump-nav__item { display:inline-flex; align-items:baseline; gap:.45rem;
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.88rem;
+  letter-spacing:.04em; color:var(--ink); text-decoration:none;
+  border:1px solid var(--line); padding:.5rem .9rem;
+  transition:border-color .25s, color .25s, background .25s; }
+.jump-nav__item:hover { border-color:var(--accent); color:var(--accent); background:var(--paper); }
+.jump-nav__num { font-family:'Cormorant Garamond',serif; font-size:.8rem; color:var(--ink-mute); }
+.jump-nav__item:hover .jump-nav__num { color:var(--accent); }
+/* アンカー移動時に見出しがマストヘッドへ潜らないよう余白を確保 */
+.section[id] { scroll-margin-top: 1.5rem; }
+@media (max-width:640px) {
+  .jump-nav { padding:0 1.25rem; margin-bottom:2rem; }
+  .jump-nav__item { font-size:.82rem; padding:.45rem .75rem; }
+}

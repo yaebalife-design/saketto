@@ -1,0 +1,508 @@
+:root {
+  --bg: #F5F0E7; --bg-alt: #EDE5D2; --paper: #FAF6ED;
+  --ink: #16100E; --ink-soft: #3D3633; --ink-mute: #635C57;
+  --accent: #A8351F; --accent-deep: #862719;
+  --warm: #7A6447; --line: #C0B69E; --line-soft: #D6CCB3;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+body {
+  background:var(--bg); color:var(--ink);
+  font-family:'Noto Sans JP', sans-serif; font-weight:400; line-height:1.8;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden; font-size:16px;
+}
+main { position:relative; z-index:1; }
+
+/* ===== マストヘッド ===== */
+.masthead {
+  border-bottom:1px solid var(--line); padding:1rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.8rem; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;
+}
+.masthead a { color:var(--ink-mute); text-decoration:none; transition:color .25s; }
+.masthead a:hover { color:var(--accent); }
+.masthead .accent-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; margin-right:.5rem; }
+.masthead { flex-wrap:wrap; gap:.7rem 1.2rem; }
+.masthead .left { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
+.masthead .brand-link { color:var(--ink); font-weight:700; }
+.masthead-nav { display:flex; gap:1.2rem; align-items:center; flex-wrap:wrap; }
+.masthead-nav a { color:var(--ink-mute); text-decoration:none; transition:color .25s; padding:.45rem .25rem; margin:-.45rem -.25rem; }
+.masthead-nav a:hover { color:var(--accent); }
+@media (max-width:640px){ .masthead-nav{ gap:.9rem; font-size:.72rem; } }
+.masthead .right { font-family:'Cormorant Garamond', serif; font-style:italic; letter-spacing:.1em; }
+
+/* ===== HERO ===== */
+.hero {
+  max-width:1100px; margin:0 auto; padding:4rem 2rem 2.5rem;
+}
+/* ===== 役割ラベルチップ（蔵／銘柄の区別） ===== */
+.role-chip {
+  display:inline-block; font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-weight:700; font-size:.7rem; letter-spacing:.18em;
+  padding:.16rem .55rem; margin-right:.65rem; vertical-align:middle;
+  line-height:1;
+}
+.role-chip--kura { border:1px solid var(--warm); color:var(--warm); }
+.role-chip--brand { background:var(--accent); color:#FAF6ED; border:1px solid var(--accent); }
+
+.hero__brewery {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.1rem; color:var(--warm); letter-spacing:.04em; margin-bottom:1.1rem;
+  display:flex; align-items:center; flex-wrap:wrap;
+}
+.hero__brewery a { color:var(--warm); text-decoration:none; border-bottom:1px solid var(--warm); }
+.hero__brewery a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.hero__brewery-loc {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.82rem; color:var(--ink-mute); letter-spacing:.02em; margin-left:.5rem;
+}
+.hero__brandrow { margin-bottom:.5rem; }
+.hero__name {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:clamp(2.2rem, 6vw, 4rem);
+  letter-spacing:.01em; line-height:1.15; color:var(--ink); margin-bottom:1rem;
+}
+.hero__kana {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.88rem; letter-spacing:.2em; color:var(--ink-soft); margin-bottom:1.5rem;
+}
+.hero__tagline {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.15rem; color:var(--ink); line-height:1.75;
+  max-width:780px; margin-bottom:2rem;
+}
+.hero__flavor {
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:1.1rem 0; margin-bottom:1.75rem; max-width:780px;
+}
+.hero__flavor-label {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.92rem; color:var(--accent); letter-spacing:.08em; margin-bottom:.7rem;
+}
+.hero__badges { display:flex; flex-wrap:wrap; gap:.55rem; margin-bottom:.5rem; }
+.badge {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.75rem; letter-spacing:.12em; padding:.4rem .85rem;
+  border:1px solid currentColor;
+}
+.badge--cat { color:var(--accent); }
+.badge--avail { color:var(--warm); }
+.badge--filled { color:#fff; background:var(--accent); border-color:var(--accent); }
+
+/* ===== Spec Board (大判) ===== */
+
+/* ── 銘柄のイメージ画像（副原料カテゴリ単位） ──
+   銘柄固有の写真は無断使用NGのため、既存の副原料イメージを流用する。
+   実物と誤認させないよう「画像はイメージです」を必ず添える。 */
+.brand-image { max-width:1100px; margin:0 auto 2.5rem; padding:0 2rem; position:relative; }
+.brand-image img { display:block; width:100%; height:auto; max-height:260px;
+  object-fit:cover; border:1px solid var(--line);
+  filter:contrast(0.98) saturate(0.92) brightness(1.02); }
+.brand-image__cap { position:absolute; bottom:.55rem; right:2.75rem;
+  font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.7rem;
+  color:rgba(255,255,255,.94); letter-spacing:.1em;
+  background:rgba(26,23,23,.5); padding:.2rem .6rem; }
+@media (max-width:640px){
+  .brand-image { padding:0 1.25rem; margin-bottom:2rem; }
+  .brand-image img { max-height:180px; }
+  .brand-image__cap { right:2rem; font-size:.66rem; }
+}
+
+.spec-board {
+  max-width:1100px; margin:0 auto; padding:0 2rem 2rem;
+  display:grid; grid-template-columns:1fr; gap:0;
+  border:1px solid var(--line); background:var(--paper);
+}
+@media (min-width:640px) { .spec-board { grid-template-columns:repeat(3, 1fr); } }
+.spec-cell { padding:1.5rem 1.75rem; border-bottom:1px solid var(--line); display:flex; flex-direction:column; justify-content:center; }
+@media (min-width:640px) {
+  .spec-cell { border-bottom:none; border-right:1px solid var(--line); }
+  .spec-cell:last-child { border-right:none; }
+}
+.spec-cell:last-child { border-bottom:none; }
+.spec-cell__label {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.88rem; color:var(--accent); letter-spacing:.1em; margin-bottom:.5rem;
+}
+.spec-cell__value {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:2rem; color:var(--ink); letter-spacing:.02em; line-height:1.15;
+}
+.spec-cell__value small {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.55em; color:var(--ink-soft); font-weight:400; margin-left:.3rem;
+}
+.spec-cell__sub {
+  font-family:'Noto Sans JP', sans-serif;
+  font-size:.78rem; color:var(--ink-soft); margin-top:.5rem; line-height:1.5;
+}
+.spec-cell__gobuy {
+  display:inline-block; align-self:flex-start; margin-top:.55rem;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.78rem; letter-spacing:.12em; color:var(--accent);
+  text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:.1rem;
+  text-transform:uppercase;
+}
+.spec-cell__gobuy:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
+
+/* ===== Section common ===== */
+.section { max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
+.section-meta {
+  display:flex; align-items:baseline; gap:1.25rem; margin-bottom:1.5rem;
+}
+.section-meta__num {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.15rem; color:var(--accent); letter-spacing:.05em;
+}
+.section-meta__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-size:.88rem; font-weight:700; letter-spacing:.18em; color:var(--ink);
+  text-transform:uppercase;
+}
+.section-meta__rule { flex:1; height:1px; background:var(--line); }
+
+/* ===== Recipe Table ===== */
+.recipe {
+  border:1px solid var(--line);
+}
+.recipe-row {
+  display:grid; grid-template-columns:170px 1fr;
+  border-bottom:1px solid var(--line); padding:1rem 1.5rem;
+  background:var(--bg);
+}
+.recipe-row:last-child { border-bottom:none; }
+.recipe-row:nth-child(even) { background:var(--paper); }
+.recipe-row__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.82rem; letter-spacing:.12em; color:var(--accent);
+  text-transform:uppercase; line-height:1.6;
+}
+.recipe-row__value {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1rem; color:var(--ink); line-height:1.65;
+}
+.recipe-row__value small {
+  display:block; font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.82rem; color:var(--ink-soft); margin-top:.3rem; line-height:1.6;
+}
+.recipe-row__value.unknown { color:var(--ink-mute); font-style:italic; font-weight:400; }
+@media (max-width:640px) {
+  .recipe-row { grid-template-columns:1fr; gap:.4rem; }
+}
+
+/* ===== How To Enjoy ===== */
+.enjoy {
+  display:grid; grid-template-columns:1fr; gap:1px; background:var(--line);
+  border:1px solid var(--line);
+}
+@media (min-width:760px) { .enjoy { grid-template-columns:repeat(2, 1fr); } }
+.enjoy-cell { background:var(--bg); padding:1.5rem 1.75rem; }
+.enjoy-cell__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.78rem; letter-spacing:.18em; color:var(--accent);
+  text-transform:uppercase; margin-bottom:.5rem;
+}
+.enjoy-cell__value {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.1rem; color:var(--ink); line-height:1.7;
+}
+.enjoy-cell__value small {
+  display:block; font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.82rem; color:var(--ink-soft); margin-top:.4rem; line-height:1.65;
+}
+
+.pairing-list {
+  display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.65rem;
+}
+.pairing-chip {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:.95rem; padding:.4rem .85rem;
+  background:var(--paper); border:1px solid var(--line);
+  color:var(--ink); letter-spacing:.02em;
+}
+
+/* ===== TASTING 3段 ===== */
+.tasting-3 {
+  display:grid; grid-template-columns:1fr; gap:0;
+  border:1px solid var(--line); border-left:3px solid var(--accent);
+  background:var(--paper); margin-bottom:1rem;
+}
+.tasting-row {
+  padding:1.4rem 1.75rem;
+  border-bottom:1px solid var(--line);
+}
+.tasting-row:last-child { border-bottom:none; }
+.tasting-row__label {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.95rem; color:var(--accent); letter-spacing:.1em; margin-bottom:.45rem;
+}
+.tasting-row__label strong {
+  display:block; font-family:'Shippori Mincho', serif; font-style:normal;
+  font-weight:700; font-size:1.05rem; color:var(--ink); letter-spacing:.05em;
+}
+.tasting-row__text {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.05rem; color:var(--ink); line-height:1.95;
+}
+.tasting-source {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.88rem; color:var(--ink-soft); padding-top:.75rem;
+  border-top:1px dotted var(--line); margin-top:1rem;
+}
+.tasting-source a { color:var(--ink); border-bottom:1px solid var(--line); text-decoration:none; }
+.tasting-source a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+
+/* ===== Flavor Profile (4軸 + 6軸) ===== */
+.flavor-wrap {
+  display:grid; grid-template-columns:1fr; gap:2rem;
+  margin-bottom:2rem;
+}
+@media (min-width:860px) { .flavor-wrap { grid-template-columns:1.3fr 1fr; } }
+.flavor-box {
+  background:var(--paper); border:1px solid var(--line);
+  padding:1.5rem 1.5rem;
+}
+.flavor-box__title {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1rem; color:var(--accent); letter-spacing:.1em; margin-bottom:1rem;
+  display:flex; align-items:center; gap:.5rem;
+}
+.flavor-box__title strong {
+  font-family:'Shippori Mincho', serif; font-weight: 700;
+  color:var(--ink); font-size:1.1rem; letter-spacing:.04em; font-style:normal;
+}
+.flavor-box svg { display:block; width:100%; height:auto; }
+.flavor-box__cap {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.78rem; color:var(--ink-soft); margin-top:.75rem; line-height:1.6;
+  border-top:1px dotted var(--line); padding-top:.75rem;
+}
+.flavor-tags { display:flex; flex-wrap:wrap; gap:.45rem; }
+.flavor-tag {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.85rem; padding:.32rem .75rem; background:var(--bg);
+  border:1px solid var(--line); color:var(--ink); letter-spacing:.02em;
+}
+
+/* ===== STORY ===== */
+.story-block {
+  background:var(--bg-alt); padding:2rem 2.25rem;
+  border-left:3px solid var(--warm);
+}
+.story-text {
+  font-family:'Shippori Mincho', serif; font-weight:500;
+  font-size:1.05rem; color:var(--ink); line-height:1.95; margin-bottom:1rem;
+}
+.story-source {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.85rem; color:var(--ink-soft);
+}
+.story-source a { color:var(--ink); border-bottom:1px solid var(--line); text-decoration:none; }
+
+/* ===== AWARDS ===== */
+.awards-list {
+  display:flex; flex-direction:column; border:1px solid var(--line);
+}
+.award-card {
+  display:grid; grid-template-columns:auto 1fr; gap:1.2rem;
+  padding:1.25rem 1.5rem; border-bottom:1px solid var(--line);
+  background:var(--bg); border-left:3px solid var(--accent);
+}
+.award-card:last-child { border-bottom:none; }
+.award-year {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:1.4rem; color:var(--accent); letter-spacing:.05em; min-width:3.5em;
+}
+.award-title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.05rem; color:var(--ink); line-height:1.5;
+}
+.award-where {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-soft); margin-top:.2rem;
+}
+
+/* ===== KURA + PURCHASE ===== */
+.kura-purchase {
+  display:grid; grid-template-columns:1fr; gap:1.5rem;
+}
+@media (min-width:760px) { .kura-purchase { grid-template-columns:2fr 1fr; } }
+.kura-card {
+  background:var(--bg-alt); padding:1.75rem 2rem; border:1px solid var(--line);
+}
+.kura-card__name {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.35rem; color:var(--ink); margin-bottom:.3rem;
+}
+.kura-card__meta {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.85rem; color:var(--ink-soft); letter-spacing:.05em; margin-bottom:1rem;
+}
+.kura-card__philo {
+  font-size:.95rem; color:var(--ink); line-height:1.85; margin-bottom:1rem;
+}
+.kura-card__link {
+  display:inline-block; font-family:'Zen Kaku Gothic Antique', sans-serif;
+  font-weight:700; font-size:.85rem; color:var(--accent); letter-spacing:.1em;
+  text-transform:uppercase; text-decoration:none;
+  border-bottom:1px solid var(--accent); padding-bottom:.15rem;
+}
+.purchase-card {
+  background:var(--ink); color:#F5F0E7; padding:1.75rem 2rem;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.purchase-card__label {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.78rem; letter-spacing:.18em; color:#D9694F; margin-bottom:.6rem;
+  text-transform:uppercase;
+}
+.purchase-card__title {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.15rem; line-height:1.5; margin-bottom:1.25rem; color:#F5F0E7;
+}
+.purchase-card__btns {
+  display:flex; flex-direction:column; gap:.6rem;
+}
+.purchase-card__btn {
+  display:block; text-align:center; padding:.95rem 1.25rem;
+  color:#F5F0E7; text-decoration:none;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.95rem; letter-spacing:.1em;
+  transition:filter .25s, transform .15s;
+  position:relative;
+}
+.purchase-card__btn:hover { filter:brightness(1.1); transform:translateY(-1px); }
+.purchase-card__btn--rakuten {
+  background:linear-gradient(135deg, #BF0000 0%, #C9242E 100%);
+}
+.purchase-card__btn--amazon {
+  background:linear-gradient(135deg, #232F3E 0%, #FF9900 100%);
+}
+.purchase-card__btn--official {
+  background:#16100E; border:1px solid #635C57;
+}
+.purchase-card__note {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.72rem; color:#C0B69E; margin-top:.85rem; letter-spacing:.05em;
+  text-align:center;
+}
+.purchase-card__pending {
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
+  font-size:.92rem; color:#C0B69E; letter-spacing:.08em;
+  text-align:center; padding:1.1rem 0; border:1px dashed #635C57;
+}
+
+/* ===== SOURCES ===== */
+.sources {
+  background:var(--bg-alt); padding:1.75rem 2rem;
+  font-family:'Zen Kaku Gothic Antique', sans-serif;
+}
+.sources h4 {
+  font-size:.85rem; letter-spacing:.18em; color:var(--ink); font-weight:700;
+  margin-bottom:1rem; text-transform:uppercase;
+}
+.sources ul { list-style:none; display:flex; flex-direction:column; gap:.55rem; }
+.sources__note { font-size:.8rem; color:var(--ink-mute); line-height:1.9; margin-top:1rem; }
+.sources a {
+  font-size:.92rem; color:var(--ink); text-decoration:none; font-weight:500;
+  border-bottom:1px solid var(--line); padding-bottom:.15rem;
+  word-break:break-all; transition:color .25s;
+}
+.sources a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.sources__meta {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.82rem; color:var(--ink-soft); margin-top:1.25rem;
+  padding-top:1rem; border-top:1px solid var(--line);
+}
+
+/* ===== Glossary ===== */
+.glossary {
+  border:1px solid var(--line); padding:1.5rem 1.75rem; background:var(--paper);
+}
+.glossary-item { padding:.9rem 0; border-bottom:1px solid var(--line); }
+.glossary-item:last-child { border-bottom:none; padding-bottom:0; }
+.glossary-item dt {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1rem; color:var(--accent); margin-bottom:.35rem;
+}
+.glossary-item dd {
+  font-size:.92rem; color:var(--ink); line-height:1.75; font-weight:400;
+}
+
+/* ===== Divider ===== */
+.divider {
+  max-width:1100px; margin:3rem auto; padding:0 2rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.divider .rule { flex:1; height:1px; background:var(--line); }
+.divider .ornament { width:8px; height:8px; background:var(--accent); transform:rotate(45deg); }
+.divider .ornament.outer { width:4px; height:4px; background:var(--warm); }
+
+/* ===== 公式サイト（最下部・控えめ） ===== */
+.official-foot {
+  max-width:1100px; margin:0 auto; padding:0 2rem 3rem; text-align:center;
+}
+.official-foot a {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-mute); letter-spacing:.04em;
+  text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:.2rem;
+  transition:color .25s;
+}
+.official-foot a:hover { color:var(--ink-soft); }
+
+/* ===== Footer ===== */
+footer { margin-top:4rem; border-top:1px solid var(--ink); }
+.colophon {
+  max-width:1100px; margin:0 auto; padding:2rem;
+  display:grid; grid-template-columns:1fr; gap:1.5rem;
+}
+@media (min-width:700px) { .colophon { grid-template-columns:2fr 3fr; } }
+.colophon__brand {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.5rem; letter-spacing:.02em;
+}
+.colophon__brand .dot { color:var(--accent); }
+.colophon__brand a { color:var(--ink); text-decoration:none; }
+.colophon__brand small {
+  display:block; font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-soft); margin-top:.25rem;
+  font-weight:400; letter-spacing:.08em;
+}
+.colophon__notes {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.88rem; color:var(--ink-soft); line-height:1.9; letter-spacing:.02em;
+}
+.colophon__notes strong { color:var(--accent); font-weight:500; }
+.colophon__notes a { color:var(--warm); text-decoration:none; }
+.colophon__notes a:hover { color:var(--accent); }
+.colophon__sep { color:var(--line); margin:0 .5rem; }
+
+/* ===== NEXT / 次に出会う ===== */
+.next-note {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.85rem; color:var(--ink-mute); margin:-.5rem 0 1.25rem;
+}
+.next-grid { display:grid; grid-template-columns:1fr; gap:1rem; }
+@media (min-width:760px) { .next-grid { grid-template-columns:repeat(3, 1fr); } }
+.next-card {
+  background:var(--paper); border:1px solid var(--line); padding:1.25rem 1.4rem;
+  text-decoration:none; color:var(--ink);
+  display:flex; flex-direction:column; gap:.45rem;
+  transition:border-color .3s, transform .3s, box-shadow .3s;
+}
+.next-card:hover { border-color:var(--warm); transform:translateY(-2px); box-shadow:0 10px 28px rgba(26,23,23,.07); }
+.next-card__kicker {
+  font-family:'Cormorant Garamond', serif; font-style:italic;
+  font-size:.82rem; color:var(--accent); letter-spacing:.08em;
+}
+.next-card__name {
+  font-family:'Shippori Mincho', serif; font-weight:700;
+  font-size:1.12rem; line-height:1.5;
+}
+.next-card__meta {
+  font-family:'Noto Sans JP', sans-serif; font-weight:400;
+  font-size:.8rem; color:var(--ink-soft); line-height:1.6;
+}
