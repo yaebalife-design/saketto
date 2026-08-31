@@ -34,6 +34,21 @@ def rakuten_search(query):
     )
 
 
+def rakuten_url(target):
+    """楽天の任意ページ（商品ページ等）にもしも経由で誘導。
+
+    pl_id=616 は &url= で任意のリンク先を指定できる型なので、検索結果だけでなく
+    商品ページにもそのまま使える。ふるさと納税の返礼品は商品URLが分かっているため、
+    検索に落とさず直接その返礼品へ送る（GIN-DBは検索URLしか持っておらず
+    検索結果着地になっているが、saketto は実URLを持っているのでその必要がない）。
+    """
+    return (
+        f"https://af.moshimo.com/af/c/click?"
+        f"a_id={RAKUTEN_AID}&p_id={RAKUTEN_PID}&pc_id={RAKUTEN_PC_ID}&pl_id={RAKUTEN_PL_ID}"
+        f"&url={urllib.parse.quote(target, safe='')}"
+    )
+
+
 def amazon_search(query):
     """Amazon検索結果ページにもしも経由で誘導"""
     target = f"https://www.amazon.co.jp/s?k={urllib.parse.quote(query)}"

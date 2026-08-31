@@ -14,7 +14,10 @@ sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import BREWERIES, REGIONS, by_slug
 from breweries_brands import BRANDS
 from awards import AWARDS
+from urllib.parse import quote
+
 from furusato_data import FURUSATO, PORTAL_NAMES
+from moshimo_link import rakuten_url, rakuten_search
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
 
 
@@ -885,6 +888,76 @@ def gen_genres():
     print(f"  genre/index.html  ({len([g for g in GENRES if by_genre.get(g[0])])}ジャンル)")
 
 
+# ⚠️ このJSを f-string の中に直接書かないこと。
+# JSの { } が置換フィールドとして解釈されて壊れる（GIN-DBで実際に事故った箇所）。
+# 必ず定数のまま連結する。
+FURUSATO_FILTER_JS = """<script>
+(function () {
+  var chips = document.querySelectorAll('.fchip');
+  var cards = document.querySelectorAll('[data-portals]');
+  var result = document.getElementById('fresult');
+  if (!chips.length || !cards.length) return;
+
+  function apply(key) {
+    var shown = 0;
+    cards.forEach(function (c) {
+      var ok = !key || (' ' + c.getAttribute('data-portals') + ' ').indexOf(' ' + key + ' ') >= 0;
+      c.hidden = !ok;
+      if (ok) shown++;
+    });
+    chips.forEach(function (ch) {
+      var on = (ch.dataset.portal || '') === key;
+      ch.setAttribute('aria-current', on ? 'true' : 'false');
+    });
+    if (result) {
+      var name = '';
+      chips.forEach(function (ch) { if ((ch.dataset.portal || '') === key) name = ch.dataset.label || ''; });
+      result.textContent = key ? (name + 'で寄附できる ' + shown + ' 蔵') : ('すべて表示中 ' + shown + ' 蔵');
+    }
+  }
+
+  chips.forEach(function (ch) {
+    ch.addEventListener('click', function (e) {
+      e.preventDefault();
+      var key = ch.dataset.portal || '';
+      apply(key);
+      history.replaceState(null, '', key ? ('#portal=' + key) : location.pathname);
+    });
+  });
+
+  var m = /portal=([\\w-]+)/.exec(location.hash);
+  apply(m ? m[1] : '');
+})();
+</script>"""
+
+
+FURUSATO_FILTER_CSS = """<style>
+.fchips { display:flex; flex-wrap:wrap; gap:.5rem; margin:0 0 .6rem; }
+.fchip {
+  display:inline-flex; align-items:center; gap:.4rem; min-height:44px;
+  padding:.45rem .9rem; border:1px solid var(--line); background:var(--paper);
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.85rem;
+  color:var(--ink-soft); text-decoration:none; cursor:pointer;
+  transition:background .25s, border-color .25s, color .25s;
+}
+.fchip:hover { border-color:var(--accent); color:var(--accent); }
+.fchip[aria-current="true"] { background:var(--accent); border-color:var(--accent); color:var(--paper); }
+.fchip__n { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.82rem; opacity:.85; }
+.fchips-note { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.82rem;
+  color:var(--ink-mute); margin:0 0 .4rem; }
+#fresult { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.9rem; color:var(--accent); margin:0 0 1.6rem; display:block; }
+.fallback-portals { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1rem; }
+.fallback-portals a {
+  display:inline-flex; align-items:center; min-height:44px; padding:.5rem 1rem;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none;
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.88rem; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.fallback-portals a:hover { background:var(--bg-alt); border-color:var(--accent); color:var(--accent); }
+</style>"""
+
+
 def gen_furusato():
     """ふるさと納税逆引きハブ"""
     OUT = REPO_ROOT / "furusato"
@@ -903,6 +976,22 @@ def gen_furusato():
     )
     html += '<div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem">'
 
+    # ── 使うポータルで絞る ──
+    # 「どのポータルでも良いから寄附したい」人はまずいない。普段使っている1つで
+    # 扱いがあるかを知りたいので、そこだけ残せるようにする。
+    _portal_count = {}
+    for _b in confirmed:
+        _d = FURUSATO[_b["slug"]]
+        for _p in set(list(_d["portals"]) + list((_d.get("urls") or {}).keys())):
+            _portal_count[_p] = _portal_count.get(_p, 0) + 1
+    _chips = [f'<a class="fchip" href="#" data-portal="" data-label="" aria-current="true">'
+              f'すべて<span class="fchip__n">{len(confirmed)}</span></a>']
+    for _p, _n in sorted(_portal_count.items(), key=lambda x: -x[1]):
+        _nm = PORTAL_NAMES.get(_p, _p)
+        _chips.append(f'<a class="fchip" href="#portal={_p}" data-portal="{_p}" '
+                      f'data-label="{_nm}" aria-current="false">{_nm}'
+                      f'<span class="fchip__n">{_n}</span></a>')
+
     html += f"""
   <section class="section">
     <div class="section-meta">
@@ -911,6 +1000,10 @@ def gen_furusato():
       <span class="section-meta__count">/ {len(confirmed)} 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
+    <p class="fchips-note">いつも使っているポータルを選ぶと、そこで扱いのある蔵だけになります。<br>
+      ※「楽天ふるさと納税」のリンクはアフィリエイト広告（PR）です。寄附額に影響はありません。</p>
+    <nav class="fchips" aria-label="ポータルで絞る">{''.join(_chips)}</nav>
+    <span id="fresult">すべて表示中 {len(confirmed)} 蔵</span>
     <div class="entries">"""
 
     for b in confirmed:
@@ -918,25 +1011,38 @@ def gen_furusato():
         # ポータル名は「押せる」ことが期待される要素。URLがあるものは実リンクにする
         # （収益モデルにふるさと納税を掲げているのに、従来は span で出口が無かった）。
         _urls = data.get("urls") or {}
-        _pills = []
-        for p in data["portals"]:
-            _label = PORTAL_NAMES.get(p, p)
-            _u = _urls.get(p)
-            if _u:
-                _pills.append(f'<a class="spec-pill accent portal-link" href="{_u}" '
-                              f'target="_blank" rel="noopener sponsored">{_label} →</a>')
-            else:
-                _pills.append(f'<span class="spec-pill accent">{_label}</span>')
-        # portals に無いが URL だけあるポータル（ANA等）も拾う
-        for p, _u in _urls.items():
-            if p not in data["portals"] and _u:
-                _pills.append(f'<a class="spec-pill accent portal-link" href="{_u}" '
-                              f'target="_blank" rel="noopener sponsored">{PORTAL_NAMES.get(p, p)} →</a>')
-        portals_html = " ".join(_pills)
+
+        def _portal_pill(code):
+            """ポータル1つぶんのリンク。楽天は必ずもしも経由（社長ルール）。
+
+            従来は楽天の商品URLを生で貼っており、ふるさと納税を収益の柱に
+            掲げているのに楽天ぶんが1円も計上されない状態だった。
+            pl_id=616 は任意URLを渡せる型なので、検索ではなく返礼品ページへ直接送る。
+            """
+            label = PORTAL_NAMES.get(code, code)
+            u = _urls.get(code)
+            if not u:
+                return f'<span class="spec-pill accent">{label}</span>'
+            # sponsored は「広告リンク」の意味。実際にアフィリを通しているのは
+            # もしも経由の楽天だけなので、他ポータルに付けると表示が実態と食い違う。
+            # （チョイス・ふるなび・さとふる等を収益化するにはA8の提携が要る）
+            if code == "r":
+                return (f'<a class="spec-pill accent portal-link" href="{rakuten_url(u)}" '
+                        f'target="_blank" rel="nofollow sponsored noopener">{label} →</a>')
+            return (f'<a class="spec-pill accent portal-link" href="{u}" target="_blank" '
+                    f'rel="noopener">{label} →</a>')
+
+        # portals に無いが URL だけあるポータル（ANA等）も拾う。順序は portals 優先
+        _seen = []
+        for p in list(data["portals"]) + [p for p in _urls if p not in data["portals"]]:
+            if p not in _seen:
+                _seen.append(p)
+        portals_html = " ".join(_portal_pill(p) for p in _seen)
+        _portal_key = " ".join(_seen)  # 絞り込み用（data-portals）
         yen = f'¥{data["donation_yen"]:,}〜' if data.get("donation_yen") else '寄附額確認中'
         rep = data.get("rep_brand", "")
         html += f"""
-      <div class="entry entry--furusato">
+      <div class="entry entry--furusato" data-portals="{_portal_key}">
         <div>
           <div class="entry__brand"><a href="../brewery/{b['slug']}.html">{b['name']}</a></div>
           <div class="entry__brewery">{data['city']}　/　{rep}</div>
@@ -949,10 +1055,39 @@ def gen_furusato():
     </div>
   </section>"""
 
+    # ── 見つからなかったときの出口 ──
+    # 返礼品は時期で入れ替わる。掲載が無い＝手に入らない、ではないので
+    # 各ポータルの検索へ逃がす。楽天だけは必ずもしも経由にする。
+    _fallback = [
+        ("ふるさとチョイス", "https://www.furusato-tax.jp/search?header_search=1&q=" + quote("クラフトサケ"), False),
+        ("楽天ふるさと納税", rakuten_search("クラフトサケ ふるさと納税"), True),
+        ("ふるなび", "https://furunavi.jp/search?keyword=" + quote("どぶろく"), False),
+        ("さとふる", "https://www.satofull.jp/search.php?q=" + quote("どぶろく"), False),
+    ]
+    _fb = "".join(
+        f'<a href="{u}" target="_blank" '
+        f'rel="{"nofollow sponsored noopener" if aff else "noopener"}">{n} で探す →</a>'
+        for n, u, aff in _fallback)
     html += f"""
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
+      <h2 class="section-meta__label">NOT FOUND ／ 見つからないとき</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="cat-desc">
+      返礼品の取扱いは時期によって入れ替わります。ここに載っていない蔵でも、
+      ポータルで「クラフトサケ」「どぶろく」や銘柄名を直接検索すると
+      新しい出品が見つかることがあります。上の一覧は
+      各ポータルの商品ページで実際に確認できたものだけです。
+    </p>
+    <div class="fallback-portals">{_fb}</div>
+  </section>"""
+
+    html += f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
       <h2 class="section-meta__label">PENDING / NOT YET LISTED</h2>
       <span class="section-meta__count">/ {len(not_confirmed)} 蔵</span>
       <span class="section-meta__rule"></span>
@@ -969,6 +1104,9 @@ def gen_furusato():
   </section>"""
 
     html += '</div>'
+    # CSSとJSは f-string の外で連結する（JSの { } が置換フィールドと解釈されるため）
+    html += FURUSATO_FILTER_CSS
+    html += FURUSATO_FILTER_JS
     html += footer()
 
     out = OUT / "index.html"
