@@ -42,22 +42,41 @@ _METHOD_TAGS = [
 ]
 
 
+# 製法タグの解説先。読者が「花酛って何？」で止まらないよう記事へ送る
+_METHOD_LINK = {
+    "花酛": "../guide/hanamoto",
+    "木桶仕込み": "../guide/kioke",
+    "全麹仕込み": "../guide/zenkoji",
+}
+
+
 def method_tags_for(slug):
-    """その蔵のbrand_dataから製法・特徴タグを集約（出現順・重複なし）"""
+    """その蔵のbrand_dataから製法・特徴タグを集約し、該当銘柄数を添えて返す。
+
+    以前は全銘柄の記述を1つの文字列に連結してキーワードの有無だけを見ていたため、
+    「16銘柄のうち1銘柄だけが木桶」でも「16銘柄すべて木桶」でも同じ表示だった。
+    銘柄単位で数えて、その蔵での比重が分かるようにする。
+    戻り値は [(ラベル, 該当銘柄数), ...] を出現順で。
+    """
     details = _DETAILS.get(slug, [])
     if not details:
         return []
-    blob = ""
+    counts = {}
+    order = []
     for d in details:
-        for k in ("shubo", "koji", "vessel", "flavor_basis", "sub_ingredients_detail", "story"):
-            v = d.get(k)
-            if v:
-                blob += str(v) + " "
-    tags = []
-    for kw, label in _METHOD_TAGS:
-        if kw in blob and label not in tags:
-            tags.append(label)
-    return tags
+        blob = " ".join(
+            str(d.get(k)) for k in
+            ("shubo", "koji", "vessel", "flavor_basis", "sub_ingredients_detail", "story")
+            if d.get(k))
+        seen = set()
+        for kw, label in _METHOD_TAGS:
+            if kw in blob and label not in seen:
+                seen.add(label)
+                if label not in counts:
+                    counts[label] = 0
+                    order.append(label)
+                counts[label] += 1
+    return [(label, counts[label]) for label in order]
 
 REGION_IMG = {
     "東北": "region_tohoku", "関東": "region_kanto", "中部": "region_chubu",
@@ -222,7 +241,16 @@ main { position:relative; z-index:1; }
 .fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
 .fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
 .fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
-.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; display:inline-flex; align-items:center; gap:.35rem; }
+/* 解説記事のある製法はリンクにする。チップの中で下線を引くと箱の中に線が増えて
+   うるさいので、サイト共通の「朱色＝押せる」で示す（リンクのチップは全て同じ扱い） */
+.fact-row__value a.fact-tag--link {
+  color:var(--accent); border:1px solid var(--accent); text-decoration:none;
+  transition:background .25s, color .25s;
+}
+.fact-row__value a.fact-tag--link:hover { background:var(--accent); color:var(--paper); }
+.fact-row__value a.fact-tag--link:hover .fact-tag__n { color:var(--paper); }
+.fact-tag__n { font-family:'Cormorant Garamond', serif; font-style:italic; font-size:.78rem; color:var(--accent); }
 @media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード（縦型カード） */
@@ -629,8 +657,15 @@ def render(brewery, index, prev_brewery, next_brewery):
 
     mtags = method_tags_for(slug)
     if mtags:
-        tags_html = '<div class="fact-tags">' + "".join(f'<span class="fact-tag">{t}</span>' for t in mtags) + '</div>'
-        fact("製法・特徴", tags_html)
+        chips = []
+        for label, cnt in mtags:
+            badge = f'<span class="fact-tag__n">{cnt}</span>' if cnt > 1 else ''
+            href = _METHOD_LINK.get(label)
+            if href:
+                chips.append(f'<a class="fact-tag fact-tag--link" href="{href}">{label}{badge}</a>')
+            else:
+                chips.append(f'<span class="fact-tag">{label}{badge}</span>')
+        fact("製法・特徴", '<div class="fact-tags">' + "".join(chips) + '</div>')
 
     if brewery.get("official_url"):
         host = brewery["official_url"].split("//")[-1].split("/")[0]

@@ -174,7 +174,16 @@ main { position:relative; z-index:1; }
 .fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
 .fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
 .fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
-.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; display:inline-flex; align-items:center; gap:.35rem; }
+/* 解説記事のある製法はリンクにする。チップの中で下線を引くと箱の中に線が増えて
+   うるさいので、サイト共通の「朱色＝押せる」で示す（リンクのチップは全て同じ扱い） */
+.fact-row__value a.fact-tag--link {
+  color:var(--accent); border:1px solid var(--accent); text-decoration:none;
+  transition:background .25s, color .25s;
+}
+.fact-row__value a.fact-tag--link:hover { background:var(--accent); color:var(--paper); }
+.fact-row__value a.fact-tag--link:hover .fact-tag__n { color:var(--paper); }
+.fact-tag__n { font-family:'Cormorant Garamond', serif; font-style:italic; font-size:.78rem; color:var(--accent); }
 @media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード（縦型カード） */
@@ -592,7 +601,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">遠野の風土と自然栽培「遠野1号」米から、無添加の米飲料・どぶろく・甘酒・米酢を醸す。</p>
     <p class="about-body">岩手県遠野市。四代目・佐々木要太郎が、自然栽培米「遠野1号」と室町〜江戸の古典製法(水もと・生酛)で醸す。協会酵母も醸造用乳酸も使わず、木桶で150日を超える完全発酵。米糠まで活かした「権化」シリーズが代名詞。世界ベストレストラン1位「Disfrutar」や旧3つ星「Mugaritz」が求めた、遠野のどぶろく。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">岩手県・遠野市</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2022年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">佐々木 要太郎（四代目）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">9 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-rice-koji">米のみ（副原料を使わない純米仕込み）</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">水酛</span><span class="fact-tag">生酛</span><span class="fact-tag">木桶仕込み</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://nondo-tono.life/" target="_blank" rel="noopener">nondo-tono.life</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">岩手県・遠野市</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2022年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">佐々木 要太郎（四代目）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">9 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-rice-koji">米のみ（副原料を使わない純米仕込み）</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">水酛<span class="fact-tag__n">5</span></span><a class="fact-tag fact-tag--link" href="../guide/kioke">木桶仕込み<span class="fact-tag__n">5</span></a><span class="fact-tag">生酛<span class="fact-tag__n">2</span></span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://nondo-tono.life/" target="_blank" rel="noopener">nondo-tono.life</a></div></div></div>
     <p class="features">自然栽培「遠野1号」米。四代目佐々木要太郎が長年取り組む遠野のクラフトサケ。</p>
   </section>
 

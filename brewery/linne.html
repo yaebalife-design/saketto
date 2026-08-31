@@ -174,7 +174,16 @@ main { position:relative; z-index:1; }
 .fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
 .fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
 .fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
-.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; display:inline-flex; align-items:center; gap:.35rem; }
+/* 解説記事のある製法はリンクにする。チップの中で下線を引くと箱の中に線が増えて
+   うるさいので、サイト共通の「朱色＝押せる」で示す（リンクのチップは全て同じ扱い） */
+.fact-row__value a.fact-tag--link {
+  color:var(--accent); border:1px solid var(--accent); text-decoration:none;
+  transition:background .25s, color .25s;
+}
+.fact-row__value a.fact-tag--link:hover { background:var(--accent); color:var(--paper); }
+.fact-row__value a.fact-tag--link:hover .fact-tag__n { color:var(--paper); }
+.fact-tag__n { font-family:'Cormorant Garamond', serif; font-style:italic; font-size:.78rem; color:var(--accent); }
 @media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード（縦型カード） */
@@ -592,7 +601,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">元WAKAZE杜氏・今井翔也創業。米以外の麹（大麦麹・蕎麦・芋麹）でつくる「800（ヤオ）」シリーズ。</p>
     <p class="about-body">京都の今井翔也(新政・WAKAZE出身)が2024年に創業したファントムブリュワリー。2026年には京都・五条坂に自社蔵を構える予定。「異を醸す」をコンセプトに、米以外の麹——大麦麹・蕎麦麹・白麹——で醸す「800(ヤオ)」シリーズが看板。世界初を謳う大麦100%醸造酒など、麹そのものから常識を問い直す。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">京都府・京都市（活動拠点）／群馬県渋川市（法人登記）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2024年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">今井 翔也（新政・WAKAZE出身）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">3 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-rice-koji">大麦麹</a>・<a href="../subingredients/#cat-rice-koji">蕎麦麹</a>・<a href="../subingredients/#cat-rice-koji">米麹のみ</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://sakeworld.jp/sakebrewery/kyoto-linne/" target="_blank" rel="noopener">sakeworld.jp</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">京都府・京都市（活動拠点）／群馬県渋川市（法人登記）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2024年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">今井 翔也（新政・WAKAZE出身）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">3 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-rice-koji">大麦麹</a>・<a href="../subingredients/#cat-rice-koji">蕎麦麹</a>・<a href="../subingredients/#cat-rice-koji">米麹のみ</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹<span class="fact-tag__n">2</span></span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://sakeworld.jp/sakebrewery/kyoto-linne/" target="_blank" rel="noopener">sakeworld.jp</a></div></div></div>
     <p class="features">haccoba・阿部酒造・LIBROMで委託醸造のファントムブリュワリー。2026年京都自社醸造所開設予定。</p>
   </section>
 

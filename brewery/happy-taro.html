@@ -174,7 +174,16 @@ main { position:relative; z-index:1; }
 .fact-row__value a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
 .fact-row__value small { display:block; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.82rem; color:var(--ink-soft); margin-top:.2rem; }
 .fact-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
-.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; }
+.fact-tag { font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500; font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); background:var(--paper); padding:.22rem .65rem; letter-spacing:.02em; display:inline-flex; align-items:center; gap:.35rem; }
+/* 解説記事のある製法はリンクにする。チップの中で下線を引くと箱の中に線が増えて
+   うるさいので、サイト共通の「朱色＝押せる」で示す（リンクのチップは全て同じ扱い） */
+.fact-row__value a.fact-tag--link {
+  color:var(--accent); border:1px solid var(--accent); text-decoration:none;
+  transition:background .25s, color .25s;
+}
+.fact-row__value a.fact-tag--link:hover { background:var(--accent); color:var(--paper); }
+.fact-row__value a.fact-tag--link:hover .fact-tag__n { color:var(--paper); }
+.fact-tag__n { font-family:'Cormorant Garamond', serif; font-style:italic; font-size:.78rem; color:var(--accent); }
 @media (max-width:600px) { .fact-row { grid-template-columns:1fr; gap:.35rem; } }
 
 /* 銘柄カード（縦型カード） */
@@ -592,7 +601,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">「醗酵でつなぐ、しあわせ」。糀屋ならではの完熟糀を使い、顔の見える生産者の原材料と伊吹山伏流水で醸す。</p>
     <p class="about-body">滋賀県長浜市の蔵。糀(こうじ)づくりの技術を土台に、米の旨味をふくよかに引き出すどぶろくを醸す。琵琶湖北部・菅浦の八朔、政所(まんどころ)の茶、音羽の森のクロモジなど、地元の自然素材を副原料に用いるのが特徴。生酛・酵母無添加の限定醸造や、ビール醸造家とのコラボ「something happy」シリーズも手がける。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">滋賀県・長浜市元浜町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2017年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">クラフトサケ協会 加盟</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">14 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-hop">ホップ</a>・<a href="../subingredients/#cat-fruit">八朔</a>・<a href="../subingredients/#cat-tea-herb">茶葉</a>・<a href="../subingredients/#cat-tea-herb">黒文字</a>・<a href="../subingredients/#cat-special">ホエー</a>・<a href="../subingredients/#cat-special">ローズペタル</a>・<a href="../subingredients/#cat-special">グリーンカルダモン</a>・<a href="../subingredients/#cat-special">ブラックペッパー</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">生酛</span><span class="fact-tag">ドライホッピング</span><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://happytaro.jp/" target="_blank" rel="noopener">happytaro.jp</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">滋賀県・長浜市元浜町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2017年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">クラフトサケ協会 加盟</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">14 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-hop">ホップ</a>・<a href="../subingredients/#cat-fruit">八朔</a>・<a href="../subingredients/#cat-tea-herb">茶葉</a>・<a href="../subingredients/#cat-tea-herb">黒文字</a>・<a href="../subingredients/#cat-special">ホエー</a>・<a href="../subingredients/#cat-special">ローズペタル</a>・<a href="../subingredients/#cat-special">グリーンカルダモン</a>・<a href="../subingredients/#cat-special">ブラックペッパー</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">生酛</span><span class="fact-tag">ドライホッピング</span><span class="fact-tag">白麹<span class="fact-tag__n">2</span></span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://happytaro.jp/" target="_blank" rel="noopener">happytaro.jp</a></div></div></div>
     <p class="features">糀屋（発酵食品店）×どぶろくのハイブリッド。「something happy」シリーズで茶葉・八朔・黒文字など多彩な副原料を展開。</p>
   </section>
 
@@ -765,7 +774,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="brand-card__price">参考価格 <b>¥2,970</b><small>記載時点</small></div>
         <div class="brand-card__links">
           <a class="brand-card__shoplink" href="../brand/happy-taro-12">銘柄の詳細を見る →</a>
-          
+          <a class="brand-card__shoplink brand-card__shoplink--buy" href="https://af.moshimo.com/af/c/click?a_id=5637367&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2583%258F%25E3%2583%2583%25E3%2583%2594%25E3%2583%25BC%25E5%25A4%25AA%25E9%2583%258E%2520%25E3%2582%2584%25E3%2581%25BE%25E3%2581%25AE%25E3%2581%258B%25E3%2581%25BF%25E3%2581%2595%25E3%2582%2593%2520%25E8%25B5%25A4%25E7%25B4%25AB%25E8%2598%2587%2F" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>
         </div>
       </div>
       <div class="brand-card" id="b13">
