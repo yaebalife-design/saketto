@@ -261,6 +261,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -573,7 +592,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">平和酒造のどぶろくブルワリーパブ第2号店。自社栽培山田錦＋季節副原料。</p>
     <p class="about-body">和歌山・平和酒造(紀土)が大阪・難波に展開するどぶろく醸造所。和歌山県産にこまるを主に、できたてを店頭で味わえる。瓶詰の定番「壱ノ濁(プレーン)・弐ノ濁(白麹)・参ノ濁(ホップ)」のほか、桜・抹茶・柚子など関西らしい季節フレーバーも手がける。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">大阪府・大阪市中央区難波（大阪タカシマヤB1）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2025年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">7 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">小豆・黒豆・ホップ・白麹・塩漬け桜葉・抹茶</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://www.heiwashuzou.co.jp/" target="_blank" rel="noopener">www.heiwashuzou.co.jp</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">大阪府・大阪市中央区難波（大阪タカシマヤB1）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2025年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">7 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-special">小豆</a>・<a href="../subingredients/#cat-special">黒豆</a>・<a href="../subingredients/#cat-hop">ホップ</a>・<a href="../subingredients/#cat-rice-koji">白麹</a>・<a href="../subingredients/#cat-special">塩漬け桜葉</a>・<a href="../subingredients/#cat-tea-herb">抹茶</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://www.heiwashuzou.co.jp/" target="_blank" rel="noopener">www.heiwashuzou.co.jp</a></div></div></div>
     <p class="features">桜・抹茶・柚子など季節の副原料を駆使したどぶろくを提供。</p>
   </section>
 
@@ -681,6 +700,30 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   </section>
 
   
+
+  
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / 関西の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="nearby"><a class="nearby-card" href="happy-taro"><span class="nearby-card__pref">滋賀県・長浜市元浜町</span><span class="nearby-card__name">ハッピー太郎醸造所</span><span class="nearby-card__n">10 銘柄</span></a><a class="nearby-card" href="adachi-noujo"><span class="nearby-card__pref">大阪府・高槻市牧田町（富田団地内）</span><span class="nearby-card__name">足立農醸</span><span class="nearby-card__n">4 銘柄</span></a><a class="nearby-card" href="linne"><span class="nearby-card__pref">京都府・京都市（活動拠点）／群馬県渋川市（法人登記）</span><span class="nearby-card__name">LINNÉ</span><span class="nearby-card__n">3 銘柄</span></a><a class="nearby-card" href="hakutsuru-sakecraft"><span class="nearby-card__pref">兵庫県・神戸市東灘区（白鶴酒造資料館内）</span><span class="nearby-card__name">HAKUTSURU SAKE CRAFT</span><span class="nearby-card__n">9 銘柄</span></a></div>
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul><li><a href="https://www.heiwashuzou.co.jp/" target="_blank" rel="noopener">https://www.heiwashuzou.co.jp/</a></li></ul></div>
+  </section>
 
   <nav class="nav-prev-next">
     <a href="heiwa-kabutocho"><small>← Prev. No. 13</small>平和どぶろく兜町醸造所</a>

@@ -261,6 +261,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -573,7 +592,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">かつての民俗的なドブロクづくりを現代的に表現し、クラフトビールの自由なカルチャーで日本酒を再編集。</p>
     <p class="about-body">東日本大震災で一度ゴーストタウン化した福島県南相馬市小高区に、元IT職の佐藤太亮が2021年に立ち上げた。「金はないけど、熱はある」を合言葉に、清酒の制約を離れた「その他の醸造酒」で表現の自由を確保。東北に伝わる幻のどぶろく製法「花酛」を復刻し、クラフトビールのドライホッピングと融合させた——クラフトサケの先駆けとして知られる。2023年には隣の浪江町に第2拠点「浪江醸造所」を開設し、小高と浪江の2拠点体制で醸している。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">福島県・南相馬市小高区</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2021年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">佐藤 太亮（元IT職）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">クラフトサケ協会 加盟</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">5 銘柄</div></div><div class="fact-row"><div class="fact-row__label">ふるさと納税</div><div class="fact-row__value">返礼品を確認済み（<a href="../furusato/">ふるさと納税から探す</a>）</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">ホップ・花酛・ベルギービール製法・地元在来植物・山椒・レモネード</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">花酛</span><span class="fact-tag">ドライホッピング</span><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://haccoba.com/" target="_blank" rel="noopener">haccoba.com</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">福島県・南相馬市小高区</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2021年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">佐藤 太亮（元IT職）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">クラフトサケ協会 加盟</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">5 銘柄</div></div><div class="fact-row"><div class="fact-row__label">ふるさと納税</div><div class="fact-row__value">返礼品を確認済み（<a href="../furusato/">ふるさと納税から探す</a>）</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-hop">ホップ</a>・<a href="../guide/hanamoto">花酛</a>・ベルギービール製法・<a href="../subingredients/#cat-tea-herb">地元在来植物</a>・<a href="../subingredients/#cat-tea-herb">山椒</a>・<a href="../subingredients/#cat-tea-herb">レモネード</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">花酛</span><span class="fact-tag">ドライホッピング</span><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://haccoba.com/" target="_blank" rel="noopener">haccoba.com</a></div></div></div>
     <p class="features">クラフトサケジャンルの先駆者。「花酛」復刻＋ホップ・ハーブ・ベルギービール製法・バーボンバレル熟成も実験。</p>
   </section>
 
@@ -660,6 +679,29 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
+      <h2 class="section-meta__label" style="margin:0">TASTING NOTES / 2 銘柄</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">造り手・メディアが公開している記述を出典付きで引用しています。当サイトの感想ではありません。</p>
+    <div class="tasting-list">
+      <div class="tasting-card">
+        <div class="tasting-brand">はなうたホップス</div>
+        <div class="tasting-notes">柑橘やマスカットなどの香りが広がるアロマホップ、グレープフルーツのようなシトラス。口いっぱいの味わい、お米とホップのセッション。熟成していくとライチなど熟したフルーツのような印象に変化。</div>
+        <div class="tasting-meta"><span class="tasting-meta__row"><strong>ペアリング</strong>お食事と合わせやすい味わい</span></div>
+        <div class="tasting-source">出典：<a href="https://imadeya.co.jp/products/8180977172645" target="_blank" rel="noopener">IMADEYA ONLINE STORE</a></div>
+      </div>
+      <div class="tasting-card">
+        <div class="tasting-brand">水を編む -アグリロード-</div>
+        <div class="tasting-notes">フレッシュでクリーンな味わい、心地よい酸。日本固有のホップ「唐花草」のみを副原料に、米と麹で醸す地酒シリーズ。</div>
+        
+        <div class="tasting-source">出典：<a href="https://haccoba.com/products/agriroad" target="_blank" rel="noopener">haccoba 公式</a></div>
+      </div></div>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
       <h2 class="section-meta__label">ACCOLADES & GLOBAL</h2>
       <span class="section-meta__rule"></span>
     </div>
@@ -690,6 +732,28 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="acc-year">—</div>
       </div></div>
     <p class="section-morelink"><a href="../awards/">全蔵の受賞・海外進出を見る →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 05</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / 東北の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="nearby"><a class="nearby-card" href="ine-to-agave"><span class="nearby-card__pref">秋田県・男鹿市船川港船川新浜町</span><span class="nearby-card__name">稲とアガベ醸造所</span><span class="nearby-card__n">16 銘柄</span></a><a class="nearby-card" href="heiroku"><span class="nearby-card__pref">岩手県・紫波郡紫波町日詰</span><span class="nearby-card__name">平六醸造</span><span class="nearby-card__n">6 銘柄</span></a><a class="nearby-card" href="pukupuku"><span class="nearby-card__pref">福島県・南相馬市小高区仲町</span><span class="nearby-card__name">ぷくぷく醸造</span><span class="nearby-card__n">7 銘柄</span></a><a class="nearby-card" href="nondo"><span class="nearby-card__pref">岩手県・遠野市</span><span class="nearby-card__name">nondo（non°）</span><span class="nearby-card__n">9 銘柄</span></a><a class="nearby-card" href="fermenteria"><span class="nearby-card__pref">宮城県・仙台市青葉区中央（仙台駅構内）</span><span class="nearby-card__name">Fermenteria</span><span class="nearby-card__n">4 銘柄</span></a></div>
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 06</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul><li><a href="https://haccoba.com/" target="_blank" rel="noopener">https://haccoba.com/</a></li><li><a href="https://designcolon.com/haccoba-packageaward2025/" target="_blank" rel="noopener">https://designcolon.com/haccoba-packageaward2025/</a></li><li><a href="https://prtimes.jp/main/html/rd/p/000000076.000061904.html" target="_blank" rel="noopener">https://prtimes.jp/main/html/rd/p/000000076.000061904.html</a></li><li><a href="https://industry-co-creation.com/news/93891" target="_blank" rel="noopener">https://industry-co-creation.com/news/93891</a></li><li><a href="https://prtimes.jp/main/html/rd/p/000000065.000061904.html" target="_blank" rel="noopener">https://prtimes.jp/main/html/rd/p/000000065.000061904.html</a></li><li><a href="https://imadeya.co.jp/products/8180977172645" target="_blank" rel="noopener">https://imadeya.co.jp/products/8180977172645</a></li><li><a href="https://haccoba.com/products/agriroad" target="_blank" rel="noopener">https://haccoba.com/products/agriroad</a></li></ul></div>
   </section>
 
   <nav class="nav-prev-next">

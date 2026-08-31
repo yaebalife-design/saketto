@@ -261,6 +261,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -573,7 +592,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">駅ナカ約3.4坪のマイクロ醸造所から、米と麹でつくる生クラフトサケを発信。</p>
     <p class="about-body">仙台駅ナカ(tekute dining内)の都市型小型醸造所。毎日できたてを仕込む生クラフトサケ「サケベイビー」が看板。宮城県産ひとめぼれを8リットルの小型タンクで、もろみ10日ほどの活性どぶろくに。微発泡のつぶつぶ感が身上。季節のフルーツや蔵人の実験仕込みなど、タンクごとに表情が替わる。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">宮城県・仙台市青葉区中央（仙台駅構内）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2024年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">4 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">季節素材・カボス・ココアパウダー・蜂蜜</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://fermenteria.co/" target="_blank" rel="noopener">fermenteria.co</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">宮城県・仙台市青葉区中央（仙台駅構内）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2024年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">4 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-special">季節素材</a>・<a href="../subingredients/#cat-fruit">カボス</a>・<a href="../subingredients/#cat-special">ココアパウダー</a>・<a href="../subingredients/#cat-special">蜂蜜</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://fermenteria.co/" target="_blank" rel="noopener">fermenteria.co</a></div></div></div>
     <p class="features">「その他の醸造酒製造免許」取得（2024年7月）。果実等副原料も小ロット製造可能。運営は勝花藏株式会社。</p>
   </section>
 
@@ -645,6 +664,30 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   </section>
 
   
+
+  
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / 東北の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="nearby"><a class="nearby-card" href="ine-to-agave"><span class="nearby-card__pref">秋田県・男鹿市船川港船川新浜町</span><span class="nearby-card__name">稲とアガベ醸造所</span><span class="nearby-card__n">16 銘柄</span></a><a class="nearby-card" href="haccoba"><span class="nearby-card__pref">福島県・南相馬市小高区</span><span class="nearby-card__name">haccoba</span><span class="nearby-card__n">5 銘柄</span></a><a class="nearby-card" href="heiroku"><span class="nearby-card__pref">岩手県・紫波郡紫波町日詰</span><span class="nearby-card__name">平六醸造</span><span class="nearby-card__n">6 銘柄</span></a><a class="nearby-card" href="pukupuku"><span class="nearby-card__pref">福島県・南相馬市小高区仲町</span><span class="nearby-card__name">ぷくぷく醸造</span><span class="nearby-card__n">7 銘柄</span></a><a class="nearby-card" href="nondo"><span class="nearby-card__pref">岩手県・遠野市</span><span class="nearby-card__name">nondo（non°）</span><span class="nearby-card__n">9 銘柄</span></a></div>
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul><li><a href="https://fermenteria.co/" target="_blank" rel="noopener">https://fermenteria.co/</a></li></ul></div>
+  </section>
 
   <nav class="nav-prev-next">
     <a href="nondo"><small>← Prev. No. 10</small>nondo（non°）</a>

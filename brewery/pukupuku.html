@@ -261,6 +261,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -573,7 +592,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">自然発酵（全量酵母無添加）とビール技法を掛け合わせ、「異文化との境界線を溶かした日本酒」を目指す。</p>
     <p class="about-body">福島県南相馬市小高区。代表・立川哲之が営む、日本酒とクラフトビールの設備を同じ場所に併設する稀有な蔵。水酛・花酛・差酛といった古典的な酒母や、白麹を通常の3倍以上使う仕込み、木桶・全麹など製法の探究で知られる。ICC SAKE AWARD 優勝、立川は京都芸術大学で「クラフトサケ学」の講師も務める。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">福島県・南相馬市小高区仲町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2022年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">立川 哲之</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">クラフトサケ協会 加盟</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">7 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">ホップ・ハーブ</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">花酛</span><span class="fact-tag">水酛</span><span class="fact-tag">差酛</span><span class="fact-tag">全麹仕込み</span><span class="fact-tag">木桶仕込み</span><span class="fact-tag">ドライホッピング</span><span class="fact-tag">酵母無添加</span><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://note.com/pukupukubrewing/" target="_blank" rel="noopener">note.com</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">福島県・南相馬市小高区仲町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2022年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">立川 哲之</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">クラフトサケ協会 加盟</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">7 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-hop">ホップ</a>・<a href="../subingredients/#cat-tea-herb">ハーブ</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">花酛</span><span class="fact-tag">水酛</span><span class="fact-tag">差酛</span><span class="fact-tag">全麹仕込み</span><span class="fact-tag">木桶仕込み</span><span class="fact-tag">ドライホッピング</span><span class="fact-tag">酵母無添加</span><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://note.com/pukupukubrewing/" target="_blank" rel="noopener">note.com</a></div></div></div>
     <p class="features">全量酵母無添加×ビール技法のハイブリッド。元haccoba醸造責任者の立川氏が独立。木桶仕込みの全麹酒も展開。</p>
   </section>
 
@@ -684,6 +703,29 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
+      <h2 class="section-meta__label" style="margin:0">TASTING NOTES / 2 銘柄</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">造り手・メディアが公開している記述を出典付きで引用しています。当サイトの感想ではありません。</p>
+    <div class="tasting-list">
+      <div class="tasting-card">
+        <div class="tasting-brand">#ODAKA 蔵付酵母 木桶どぶろく ★ICC SAKE AWARD 2025優勝</div>
+        <div class="tasting-notes">甘酸っぱくパイナップルのようなアロマが特徴。小高の有機栽培米「愛国」使用、野生酵母・木桶・常温発酵という江戸時代さながらのどぶろく。南相馬市限定。</div>
+        
+        <div class="tasting-source">出典：<a href="https://industry-co-creation.com/news/115481" target="_blank" rel="noopener">ICC SAKE AWARD 2025結果</a></div>
+      </div>
+      <div class="tasting-card">
+        <div class="tasting-brand">#plot 酵母無添加 ホップサケ</div>
+        <div class="tasting-notes">綺麗なホップの香り、Nelson Sauvinによるシトラス＆マスカット様。爽やかでライトな米の味が長く続く清らかな味わい。最後はふわりと緑茶の風味、すっきりとした辛口。</div>
+        <div class="tasting-meta"><span class="tasting-meta__row"><strong>ペアリング</strong>和食にも合う辛口仕上げ</span></div>
+        <div class="tasting-source">出典：<a href="https://www.syusendo-horiichi.co.jp/SHOP/21300.html" target="_blank" rel="noopener">酒泉洞堀一 商品説明</a></div>
+      </div></div>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
       <h2 class="section-meta__label">ACCOLADES & GLOBAL</h2>
       <span class="section-meta__rule"></span>
     </div>
@@ -699,6 +741,28 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="acc-year">2024</div>
       </div></div>
     <p class="section-morelink"><a href="../awards/">全蔵の受賞・海外進出を見る →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 05</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / 東北の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="nearby"><a class="nearby-card" href="ine-to-agave"><span class="nearby-card__pref">秋田県・男鹿市船川港船川新浜町</span><span class="nearby-card__name">稲とアガベ醸造所</span><span class="nearby-card__n">16 銘柄</span></a><a class="nearby-card" href="haccoba"><span class="nearby-card__pref">福島県・南相馬市小高区</span><span class="nearby-card__name">haccoba</span><span class="nearby-card__n">5 銘柄</span></a><a class="nearby-card" href="heiroku"><span class="nearby-card__pref">岩手県・紫波郡紫波町日詰</span><span class="nearby-card__name">平六醸造</span><span class="nearby-card__n">6 銘柄</span></a><a class="nearby-card" href="nondo"><span class="nearby-card__pref">岩手県・遠野市</span><span class="nearby-card__name">nondo（non°）</span><span class="nearby-card__n">9 銘柄</span></a><a class="nearby-card" href="fermenteria"><span class="nearby-card__pref">宮城県・仙台市青葉区中央（仙台駅構内）</span><span class="nearby-card__name">Fermenteria</span><span class="nearby-card__n">4 銘柄</span></a></div>
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 06</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul><li><a href="https://note.com/pukupukubrewing/" target="_blank" rel="noopener">https://note.com/pukupukubrewing/</a></li><li><a href="https://industry-co-creation.com/news/115481" target="_blank" rel="noopener">https://industry-co-creation.com/news/115481</a></li><li><a href="https://industry-co-creation.com/news/99025" target="_blank" rel="noopener">https://industry-co-creation.com/news/99025</a></li><li><a href="https://www.syusendo-horiichi.co.jp/SHOP/21300.html" target="_blank" rel="noopener">https://www.syusendo-horiichi.co.jp/SHOP/21300.html</a></li></ul></div>
   </section>
 
   <nav class="nav-prev-next">

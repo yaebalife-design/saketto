@@ -261,6 +261,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -573,7 +592,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">和歌山「紀土」蔵元の平和酒造が、東京・兜町で都市型どぶろく醸造所を展開。</p>
     <p class="about-body">和歌山の清酒「紀土」で知られる平和酒造(1928年創業)が、東京・兜町に開いたどぶろく醸造所。ブルワリーパブ形式で、造り手がカウンター越しにできたてを提供する。和歌山の仕込み水を東京へ運び、小型容器で少量仕込み。プレーン・小豆・黒豆・ホップ・白麹に加え、週替わりの季節どぶろくも。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">東京都・中央区日本橋兜町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2022年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">5 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">小豆・黒豆・ホップ・季節副原料</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://www.heiwashuzou.co.jp/heiwa-doburoku-kabutocho" target="_blank" rel="noopener">www.heiwashuzou.co.jp</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">東京都・中央区日本橋兜町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2022年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">5 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-special">小豆</a>・<a href="../subingredients/#cat-special">黒豆</a>・<a href="../subingredients/#cat-hop">ホップ</a>・<a href="../subingredients/#cat-special">季節副原料</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://www.heiwashuzou.co.jp/heiwa-doburoku-kabutocho" target="_blank" rel="noopener">www.heiwashuzou.co.jp</a></div></div></div>
     <p class="features">小豆・黒豆・ホップなど多彩な副原料と、日替わりの『本日のどぶろく』。和歌山「紀土」の平和酒造による都市型どぶろく醸造所。</p>
   </section>
 
@@ -657,6 +676,30 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   </section>
 
   
+
+  
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / 関東の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="nearby"><a class="nearby-card" href="konohanano"><span class="nearby-card__pref">東京都・台東区駒形</span><span class="nearby-card__name">木花之醸造所</span><span class="nearby-card__n">4 銘柄</span></a><a class="nearby-card" href="yamane"><span class="nearby-card__pref">埼玉県・飯能市</span><span class="nearby-card__name">やまね酒造</span><span class="nearby-card__n">3 銘柄</span></a><a class="nearby-card" href="tokyo-station"><span class="nearby-card__pref">東京都・千代田区丸の内（東京駅エキナカ）</span><span class="nearby-card__name">東京駅酒造場</span><span class="nearby-card__n">8 銘柄</span></a><a class="nearby-card" href="salmon-brewery"><span class="nearby-card__pref">千葉県・香取郡多古町</span><span class="nearby-card__name">鮭酒造</span><span class="nearby-card__n">1 銘柄</span></a><a class="nearby-card" href="tsuchiura"><span class="nearby-card__pref">茨城県・土浦市</span><span class="nearby-card__name">土浦醸造</span><span class="nearby-card__n">0 銘柄</span></a></div>
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul><li><a href="https://www.heiwashuzou.co.jp/heiwa-doburoku-kabutocho" target="_blank" rel="noopener">https://www.heiwashuzou.co.jp/heiwa-doburoku-kabutocho</a></li></ul></div>
+  </section>
 
   <nav class="nav-prev-next">
     <a href="yamane"><small>← Prev. No. 12</small>やまね酒造</a>

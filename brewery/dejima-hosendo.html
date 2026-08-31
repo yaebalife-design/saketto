@@ -261,6 +261,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -573,7 +592,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">九州初の都市型どぶろく醸造所。Brewery＋さけBar＋うつわGalleryの複合型。</p>
     <p class="about-body">長崎の蔵で、醸造家・日向勇人が全量手仕事の手造り麹・三段仕込み・低温長期発酵で醸すどぶろく。米粒をすり潰したムース状の「雲」、辛口でキレる「波」、甘旨・吟醸型の「友」と、同じ蔵でも方向性を描き分ける。各地のシングルオリジン米(雲仙の黒米、阿蘇の美山錦、倉敷の雄町など)を品種ごとに醸し、菩提酛など古典製法も用いる。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">長崎県・長崎市出島町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2023年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">日向 勇人（醸造家）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">13 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">雲仙市産黒米</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">菩提酛</span><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://djm-hosendo.co.jp/" target="_blank" rel="noopener">djm-hosendo.co.jp</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">長崎県・長崎市出島町</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2023年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">日向 勇人（醸造家）</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">13 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-rice-koji">雲仙市産黒米</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">菩提酛</span><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://djm-hosendo.co.jp/" target="_blank" rel="noopener">djm-hosendo.co.jp</a></div></div></div>
     <p class="features">出島町で季節のどぶろくを醸造。</p>
   </section>
 
@@ -756,6 +775,29 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
+      <h2 class="section-meta__label" style="margin:0">TASTING NOTES / 2 銘柄</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">造り手・メディアが公開している記述を出典付きで引用しています。当サイトの感想ではありません。</p>
+    <div class="tasting-list">
+      <div class="tasting-card">
+        <div class="tasting-brand">芳扇 紫雲</div>
+        <div class="tasting-notes">上質で洗練された味わい。原料米本来の旨味や黒米特有の深い余韻。古代米「黒米」由来の紫色が印象的。長崎県雲仙市産の自然栽培米100%。</div>
+        <div class="tasting-meta"><span class="tasting-meta__row"><strong>ペアリング</strong>おめでたい門出の一席の、特別な一杯</span></div>
+        <div class="tasting-source">出典：<a href="https://jp.sake-times.com/special/press/p_dejima-housendo_shiun" target="_blank" rel="noopener">SAKETIMES「でじま芳扇堂が新商品『芳扇 紫雲』を250本限定で発売」</a></div>
+      </div>
+      <div class="tasting-card">
+        <div class="tasting-brand">芳扇 雲 ★Tokyo酒チャレンジ2025金賞（吟雲）</div>
+        <div class="tasting-notes">ウリっぽい香りと、米麴の香り。粒感は控えめでかなりトロっとしたテクスチャ。芳扇シリーズ3種（波・友・雲）の中で一番甘口。低温型・精米歩合92%・ABV 13度。</div>
+        
+        <div class="tasting-source">出典：<a href="https://note.com/meshucore/n/nb6633683d82d" target="_blank" rel="noopener">メ酒'23所感 #9（でじま芳扇堂）</a></div>
+      </div></div>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
       <h2 class="section-meta__label">ACCOLADES & GLOBAL</h2>
       <span class="section-meta__rule"></span>
     </div>
@@ -766,6 +808,28 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
         <div class="acc-year">2025</div>
       </div></div>
     <p class="section-morelink"><a href="../awards/">全蔵の受賞・海外進出を見る →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 05</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / 九州の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="nearby"><a class="nearby-card" href="librom"><span class="nearby-card__pref">福岡県・福岡市中央区高砂</span><span class="nearby-card__name">LIBROM</span><span class="nearby-card__n">6 銘柄</span></a><a class="nearby-card" href="amanosato"><span class="nearby-card__pref">福岡県・田川郡福智町</span><span class="nearby-card__name">天郷醸造所</span><span class="nearby-card__n">4 銘柄</span></a><a class="nearby-card" href="cultiva"><span class="nearby-card__pref">福岡県・糸島市加布里</span><span class="nearby-card__name">Cultiva糸島醸造所</span><span class="nearby-card__n">3 銘柄</span></a></div>
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 06</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul><li><a href="https://djm-hosendo.co.jp/" target="_blank" rel="noopener">https://djm-hosendo.co.jp/</a></li><li><a href="https://www.atpress.ne.jp/news/433545" target="_blank" rel="noopener">https://www.atpress.ne.jp/news/433545</a></li><li><a href="https://jp.sake-times.com/special/press/p_dejima-housendo_shiun" target="_blank" rel="noopener">https://jp.sake-times.com/special/press/p_dejima-housendo_shiun</a></li><li><a href="https://note.com/meshucore/n/nb6633683d82d" target="_blank" rel="noopener">https://note.com/meshucore/n/nb6633683d82d</a></li></ul></div>
   </section>
 
   <nav class="nav-prev-next">

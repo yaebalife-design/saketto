@@ -261,6 +261,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -573,7 +592,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">佐渡から世界へ。輸出用清酒とクラフトサケのデュアル免許戦略。</p>
     <p class="about-body">新潟・佐渡島で2年以上の準備を経て立ち上がった蔵(サケアイ運営)。醸造の歩みを記録する「Brew Note(Crafted Series)」が核。佐渡産のりんご・みかん・いちご「越後姫」や希少な生ハチミツなど、島の恵みを副原料に。おりがらみの生酒に仕上げ、第49回日本アカデミー賞の公式アフターパーティーでも提供された。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">新潟県・佐渡市加茂歌代</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2025年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">3 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">蜂蜜・佐渡産りんご果汁・佐渡産みかん果汁・佐渡産いちご「越後姫」</div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://sakenovabrewery.jp/" target="_blank" rel="noopener">sakenovabrewery.jp</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">新潟県・佐渡市加茂歌代</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2025年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">3 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-special">蜂蜜</a>・<a href="../subingredients/#cat-fruit">佐渡産りんご果汁</a>・<a href="../subingredients/#cat-fruit">佐渡産みかん果汁</a>・<a href="../subingredients/#cat-fruit">佐渡産いちご「越後姫」</a></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://sakenovabrewery.jp/" target="_blank" rel="noopener">sakenovabrewery.jp</a></div></div></div>
     <p class="features">佐渡産米とル レクチエ・黒イチジク・リンゴ・ミカン等を副原料に。</p>
   </section>
 
@@ -633,6 +652,30 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   </section>
 
   
+
+  
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / 中部の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="nearby"><a class="nearby-card" href="lagoon"><span class="nearby-card__pref">新潟県・新潟市北区前新田乙</span><span class="nearby-card__name">LAGOON BREWERY</span><span class="nearby-card__n">8 銘柄</span></a><a class="nearby-card" href="iyasaka"><span class="nearby-card__pref">新潟県・柏崎市宮之下集落</span><span class="nearby-card__name">弥栄醸造</span><span class="nearby-card__n">1 銘柄</span></a></div>
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul><li><a href="https://sakenovabrewery.jp/" target="_blank" rel="noopener">https://sakenovabrewery.jp/</a></li></ul></div>
+  </section>
 
   <nav class="nav-prev-next">
     <a href="iyasaka"><small>← Prev. No. 16</small>弥栄醸造</a>

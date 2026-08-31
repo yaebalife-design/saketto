@@ -261,6 +261,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -573,7 +592,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">浅草の代表的観光地で国内外に誇れる名物の酒造りを。若い蔵人が活躍できる「新しい修行の場」として独立を支援。</p>
     <p class="about-body">東京・浅草、台東区駒形で2020年に創業（代表・細井洋佑）。バー「ALL WRIGHT」を併設し、できたてのどぶろくをその場で提供する都市型の蔵。看板の「ハナグモリ」は米と米麹だけのシンプルな造り。焼酎用の白麹を使いクエン酸の酸を効かせた「THE酸」も。若い醸造家が独立を目指せる「新しい修行の場」としての役割も担う。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">東京都・台東区駒形</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2020年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">細井 洋佑</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">クラフトサケ協会 加盟</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">4 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">焼酎用白麹・黒米・ホップ・エルダーフラワー</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://konohanano-brewery.com/" target="_blank" rel="noopener">konohanano-brewery.com</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">東京都・台東区駒形</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2020年</div></div><div class="fact-row"><div class="fact-row__label">代表者</div><div class="fact-row__value">細井 洋佑</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">クラフトサケ協会 加盟</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">4 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-rice-koji">焼酎用白麹</a>・<a href="../subingredients/#cat-rice-koji">黒米</a>・<a href="../subingredients/#cat-hop">ホップ</a>・<a href="../subingredients/#cat-special">エルダーフラワー</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://konohanano-brewery.com/" target="_blank" rel="noopener">konohanano-brewery.com</a></div></div></div>
     <p class="features">浅草・駒形のどぶろく醸造所。ALL (W)RIGHT sake placeを併設しバーで提供。若手醸造家の修行拠点的役割。</p>
   </section>
 
@@ -645,6 +664,51 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   </section>
 
   
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <h2 class="section-meta__label" style="margin:0">TASTING NOTES / 2 銘柄</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">造り手・メディアが公開している記述を出典付きで引用しています。当サイトの感想ではありません。</p>
+    <div class="tasting-list">
+      <div class="tasting-card">
+        <div class="tasting-brand">ハナグモリ（定番）</div>
+        <div class="tasting-notes">穏やかな甘さと優しい酸、ソフトな口当たり。爽やかな酸、滑らかな口当たりに、酸と微弱な炭酸でキレのよい甘旨味のあるどぶろく。三段仕込み、玄米を活かして栄養価高く。</div>
+        
+        <div class="tasting-source">出典：<a href="https://www.sakeai.com/brand/3785" target="_blank" rel="noopener">Sakeai ハナグモリ解説</a></div>
+      </div>
+      <div class="tasting-card">
+        <div class="tasting-brand">ハナグモリ THE酸</div>
+        <div class="tasting-notes">焼酎用の白麹使用することで、白麹由来のクエン酸の酸味を活かしたドライでシャープな味わいのどぶろく。鮮烈な酸と切れ味。</div>
+        <div class="tasting-meta"><span class="tasting-meta__row"><strong>ペアリング</strong>定番のハナグモリとブレンドしながら好みの味わいを見つけるのも楽しい</span></div>
+        <div class="tasting-source">出典：<a href="https://www.syusendo-horiichi.co.jp/SHOP/15673.html" target="_blank" rel="noopener">酒泉洞堀一 商品説明</a></div>
+      </div></div>
+  </section>
+
+  
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / 関東の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="nearby"><a class="nearby-card" href="yamane"><span class="nearby-card__pref">埼玉県・飯能市</span><span class="nearby-card__name">やまね酒造</span><span class="nearby-card__n">3 銘柄</span></a><a class="nearby-card" href="heiwa-kabutocho"><span class="nearby-card__pref">東京都・中央区日本橋兜町</span><span class="nearby-card__name">平和どぶろく兜町醸造所</span><span class="nearby-card__n">5 銘柄</span></a><a class="nearby-card" href="tokyo-station"><span class="nearby-card__pref">東京都・千代田区丸の内（東京駅エキナカ）</span><span class="nearby-card__name">東京駅酒造場</span><span class="nearby-card__n">8 銘柄</span></a><a class="nearby-card" href="salmon-brewery"><span class="nearby-card__pref">千葉県・香取郡多古町</span><span class="nearby-card__name">鮭酒造</span><span class="nearby-card__n">1 銘柄</span></a><a class="nearby-card" href="tsuchiura"><span class="nearby-card__pref">茨城県・土浦市</span><span class="nearby-card__name">土浦醸造</span><span class="nearby-card__n">0 銘柄</span></a></div>
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 05</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul><li><a href="https://konohanano-brewery.com/" target="_blank" rel="noopener">https://konohanano-brewery.com/</a></li><li><a href="https://www.sakeai.com/brand/3785" target="_blank" rel="noopener">https://www.sakeai.com/brand/3785</a></li><li><a href="https://www.syusendo-horiichi.co.jp/SHOP/15673.html" target="_blank" rel="noopener">https://www.syusendo-horiichi.co.jp/SHOP/15673.html</a></li></ul></div>
+  </section>
 
   <nav class="nav-prev-next">
     <a href="librom"><small>← Prev. No. 04</small>LIBROM</a>

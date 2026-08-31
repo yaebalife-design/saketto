@@ -70,7 +70,22 @@ class PagesHandler(SimpleHTTPRequestHandler):
         sys.stderr.write("%s %s\n" % (self.address_string(), fmt % args))
 
 
+class Server(ThreadingHTTPServer):
+    # Windows の SO_REUSEADDR は「使用中のポートへの相乗り」を許してしまう。
+    # 既存の python -m http.server が残っていると、bind は成功したように見えるのに
+    # リクエストは古いサーバが処理し、拡張子なしURLが404になる
+    # （＝このツールが防ぐはずの本番差異を、このツール自身が再現してしまう）。
+    # 黙って乗っ取られるより、はっきり失敗させる。
+    allow_reuse_address = False
+
+
 if __name__ == "__main__":
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8765
+    try:
+        srv = Server(("127.0.0.1", port), PagesHandler)
+    except OSError as e:
+        sys.exit(f"ポート {port} は既に使用中です（{e}）。\n"
+                 f"別のポートを指定するか、先に既存のサーバを止めてください。\n"
+                 f"  例: python tools/serve_local.py {port + 1}")
     print(f"saketto local server (Cloudflare Pages 互換) → http://127.0.0.1:{port}/")
-    ThreadingHTTPServer(("127.0.0.1", port), PagesHandler).serve_forever()
+    srv.serve_forever()

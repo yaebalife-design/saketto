@@ -21,6 +21,7 @@ from awards import AWARDS
 from furusato_data import FURUSATO
 from tasting import TASTING
 from brewery_about import about_of, founder_of
+from gen_axes_pages import categorize_ingredient
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL
 from moshimo_link import resolve_rakuten, resolve_amazon
 from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
@@ -308,6 +309,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -591,7 +611,21 @@ def render(brewery, index, prev_brewery, next_brewery):
                 subs.append(base)
     if not subs and brands:
         subs = ["米のみ（副原料を使わない純米仕込み）"]
-    fact("主な副原料", "・".join(subs[:8]) if subs else None)
+    # 副原料は「副原料から探す」ハブの該当カテゴリへ送る（ここが唯一の横移動導線だった）。
+    # ただし sub_ingredients には「花酛」「ベルギービール製法」のような
+    # 副原料でない製法・酒母の語も混ざっている。これらを副原料ハブへ送ると
+    # 「花酛＝茶葉・ハーブ」と読ませてしまうので、解説記事側へ振り分ける。
+    _METHOD_GUIDE = {"花酛": "hanamoto", "木桶": "kioke", "全麹": "zenkoji"}
+
+    def _sub_link(name):
+        for term, slug in _METHOD_GUIDE.items():
+            if term in name:
+                return f'<a href="../guide/{slug}">{name}</a>'
+        cat = categorize_ingredient(name)
+        if not cat:
+            return name  # 「◯◯製法」等は副原料ではないのでリンクしない
+        return f'<a href="../subingredients/#cat-{cat}">{name}</a>'
+    fact("主な副原料", "・".join(_sub_link(s) for s in subs[:8]) if subs else None)
 
     mtags = method_tags_for(slug)
     if mtags:
@@ -672,15 +706,18 @@ def render(brewery, index, prev_brewery, next_brewery):
     tasting_html_block = '<div class="tasting-list">' + ''.join(tasting_cards) + '</div>' if tasting_cards else ''
 
     # セクション番号の動的計算
+    # セクション番号の動的計算（読む順＝銘柄→味→受賞→近隣→出典）
     section_n = 3
     awards_section_num = None
     tasting_section_num = None
-    if awards_html_block:
-        awards_section_num = section_n
-        section_n += 1
     if tasting_html_block:
         tasting_section_num = section_n
         section_n += 1
+    if awards_html_block:
+        awards_section_num = section_n
+        section_n += 1
+    nearby_section_num = section_n
+    section_n += 1
     sources_section_num = section_n
 
     # 蔵バナー（蔵専用イメージ優先・無ければ地域イメージ）。AI生成のため「画像はイメージ」を併記
@@ -724,11 +761,47 @@ def render(brewery, index, prev_brewery, next_brewery):
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. {tasting_section_num:02d}</span>
-      <span class="section-meta__label">TASTING NOTES / {len(brewery_tasting)} 銘柄</span>
+      <h2 class="section-meta__label" style="margin:0">TASTING NOTES / {len(brewery_tasting)} 銘柄</h2>
       <span class="section-meta__rule"></span>
     </div>
+    <p class="brands-note">造り手・メディアが公開している記述を出典付きで引用しています。当サイトの感想ではありません。</p>
     {tasting_html_block}
   </section>""" if tasting_section_num else ''
+
+    # ── 同じ地域の蔵（各ページが prev/next しか出口を持たず行き止まりだったため） ──
+    same_region = [b for b in BREWERIES
+                   if b["region"] == brewery["region"] and b["slug"] != slug]
+    if not same_region:  # 沖縄のように地域内が1蔵だけの場合は全蔵一覧へ逃がす
+        nearby_cards = ''
+    else:
+        nearby_cards = ''.join(
+            f'<a class="nearby-card" href="{b["slug"]}.html">'
+            f'<span class="nearby-card__pref">{b["prefecture"]}・{b["city"]}</span>'
+            f'<span class="nearby-card__name">{b["name"]}</span>'
+            f'<span class="nearby-card__n">{len(BRANDS.get(b["slug"], []))} 銘柄</span>'
+            f'</a>' for b in same_region)
+    nearby_section = f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. {nearby_section_num:02d}</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / {brewery["region"]}の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    {('<div class="nearby">' + nearby_cards + '</div>') if nearby_cards
+     else f'<p class="brands-note">{brewery["region"]}に収録している蔵は現在この1蔵のみです。</p>'}
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>"""
+
+    sources_section = f"""
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. {sources_section_num:02d}</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul>{sources_html}</ul></div>
+  </section>"""
 
     _path = f"/brewery/{brewery['slug']}.html"
     _bdesc = f"{brewery['name']}（{brewery['prefecture']}・{brewery['city']}）のクラフトサケ醸造所情報。{philosophy_short}"
@@ -821,7 +894,13 @@ def render(brewery, index, prev_brewery, next_brewery):
     </div>
   </section>
 
+  {tasting_section}
+
   {awards_section}
+
+  {nearby_section}
+
+  {sources_section}
 
   <nav class="nav-prev-next">
     {prev_html}

@@ -261,6 +261,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -573,7 +592,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">沖縄県内初の「その他の醸造酒製造免許」取得。西表島・恩納村産米と県産フルーツで醸す。</p>
     <p class="about-body">沖縄市コザ一番街で2025年に免許を取得した、沖縄県初のクラフトサケ醸造所(運営・TABELU)。木花之醸造所の技術協力で立ち上がった。自家製造の白麹と沖縄県産米を使い、シークヮーサーなど南国の果実を活かす計画。「食べる酒」TABERUや、できたての「シシカム」、ノンアル甘酒OFFZAKEなど、沖縄の食文化に寄り添う。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">沖縄県・沖縄市（コザ一番街）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2025年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">4 銘柄</div></div><div class="fact-row"><div class="fact-row__label">ふるさと納税</div><div class="fact-row__value">返礼品を確認済み（<a href="../furusato/">ふるさと納税から探す</a>）</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">白麹・沖縄県産米・シークヮーサー</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">発芽玄米</span><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://www.instagram.com/nomu_okinawa/" target="_blank" rel="noopener">www.instagram.com</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">沖縄県・沖縄市（コザ一番街）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2025年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">4 銘柄</div></div><div class="fact-row"><div class="fact-row__label">ふるさと納税</div><div class="fact-row__value">返礼品を確認済み（<a href="../furusato/">ふるさと納税から探す</a>）</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-rice-koji">白麹</a>・<a href="../subingredients/#cat-rice-koji">沖縄県産米</a>・<a href="../subingredients/#cat-fruit">シークヮーサー</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">発芽玄米</span><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://www.instagram.com/nomu_okinawa/" target="_blank" rel="noopener">www.instagram.com</a></div></div></div>
     <p class="features">シークヮーサーなど沖縄の素材を使うクラフトサケ。木花之醸造所が技術協力。</p>
   </section>
 
@@ -645,6 +664,30 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   </section>
 
   
+
+  
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / 沖縄の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">沖縄に収録している蔵は現在この1蔵のみです。</p>
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul><li><a href="https://www.instagram.com/nomu_okinawa/" target="_blank" rel="noopener">https://www.instagram.com/nomu_okinawa/</a></li></ul></div>
+  </section>
 
   <nav class="nav-prev-next">
     <a href="amanosato"><small>← Prev. No. 19</small>天郷醸造所</a>

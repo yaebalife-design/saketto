@@ -261,6 +261,25 @@ main { position:relative; z-index:1; }
 }
 .section-morelink a:hover { color:var(--accent-deep); border-bottom-color:var(--accent-deep); }
 
+/* 同じ地域の蔵（横移動の導線） */
+.nearby { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.75rem; }
+.nearby-card {
+  display:flex; flex-direction:column; gap:.2rem; padding:1.1rem 1.2rem; min-height:44px;
+  border:1px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink);
+  transition:background .25s, border-color .25s;
+}
+.nearby-card:hover { background:var(--bg-alt); border-color:var(--accent); }
+.nearby-card__pref {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.75rem;
+  color:var(--ink-mute); letter-spacing:.06em;
+}
+.nearby-card__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.05rem; }
+.nearby-card__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--accent);
+}
+@media (max-width:640px){ .nearby { grid-template-columns:1fr; } }
+
 /* 出典 */
 .sources {
   background:var(--bg-alt); padding:2rem; font-family:'Zen Kaku Gothic Antique', sans-serif;
@@ -573,7 +592,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </div>
     <p class="story">白鶴酒造のマイクロブルワリー。「その他の醸造酒として米以外の原料を使うSAKE」に初挑戦。</p>
     <p class="about-body">兵庫・神戸の大手・白鶴酒造が2024年9月、酒造資料館内に開設したマイクロブルワリー。自社開発の酒米「白鶴錦」と、保有する470種を超える酵母から選んだ未使用株を使い、型にはまらない造りに挑む。純米大吟醸の高精白から、ホップ・いちご・バジルを使う「その他の醸造酒」まで、ナンバリングで実験を重ねる。</p>
-    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">兵庫県・神戸市東灘区（白鶴酒造資料館内）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2024年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">9 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value">ホップ・神戸産いちご「あきひめ」・ハーブ</div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://www.hakutsuru.co.jp/sakecraft/" target="_blank" rel="noopener">www.hakutsuru.co.jp</a></div></div></div>
+    <div class="factsheet"><div class="fact-row"><div class="fact-row__label">所在地</div><div class="fact-row__value">兵庫県・神戸市東灘区（白鶴酒造資料館内）</div></div><div class="fact-row"><div class="fact-row__label">創業</div><div class="fact-row__value">2024年</div></div><div class="fact-row"><div class="fact-row__label">協会</div><div class="fact-row__value">非加盟（独立系）</div></div><div class="fact-row"><div class="fact-row__label">収録銘柄</div><div class="fact-row__value">9 銘柄</div></div><div class="fact-row"><div class="fact-row__label">主な副原料</div><div class="fact-row__value"><a href="../subingredients/#cat-hop">ホップ</a>・<a href="../subingredients/#cat-special">神戸産いちご「あきひめ」</a>・<a href="../subingredients/#cat-tea-herb">ハーブ</a></div></div><div class="fact-row"><div class="fact-row__label">製法・特徴</div><div class="fact-row__value"><div class="fact-tags"><span class="fact-tag">白麹</span></div></div></div><div class="fact-row"><div class="fact-row__label">公式サイト</div><div class="fact-row__value"><a href="https://www.hakutsuru.co.jp/sakecraft/" target="_blank" rel="noopener">www.hakutsuru.co.jp</a></div></div></div>
     <p class="features">No.4はホップ使用（米以外）、ロゼ色。各回非再現の一期一会型。</p>
   </section>
 
@@ -705,6 +724,57 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   </section>
 
   
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 03</span>
+      <h2 class="section-meta__label" style="margin:0">TASTING NOTES / 3 銘柄</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">造り手・メディアが公開している記述を出典付きで引用しています。当サイトの感想ではありません。</p>
+    <div class="tasting-list">
+      <div class="tasting-card">
+        <div class="tasting-brand">HAKUTSURU SAKE CRAFT No.1</div>
+        <div class="tasting-notes">パイナップル様の熟れた甘い香り、とろみのある甘味、すっきりとした後味。純米大吟醸・白鶴錦・精米歩合50%・ABV 15%。</div>
+        
+        <div class="tasting-source">出典：<a href="https://www.hakutsuru.co.jp/corporate/news/detail/20240927120955.html" target="_blank" rel="noopener">白鶴酒造 公式ニュースリリース</a></div>
+      </div>
+      <div class="tasting-card">
+        <div class="tasting-brand">HAKUTSURU SAKE CRAFT No.4 ホップ</div>
+        <div class="tasting-notes">シトラス系ホップの香り、ロゼ色。メロンのような甘味、ホップアロマ、ほのかな苦味。ホップポリフェノール由来のロゼ色が特徴。208本限定。</div>
+        
+        <div class="tasting-source">出典：<a href="https://www.hakutsuru.co.jp/corporate/news/detail/20250114160850.html" target="_blank" rel="noopener">白鶴酒造 公式ニュースリリース</a></div>
+      </div>
+      <div class="tasting-card">
+        <div class="tasting-brand">HAKUTSURU SAKE CRAFT THE PREMIUM 2026</div>
+        <div class="tasting-notes">トロピカルフルーツのような香りが圧倒的に立ち上がり、続いて天然の搾りたてジュースを思わせる豊潤な甘味と酸味。すっきりとしたリンゴのような綺麗な酸味が喉に流れる。純米大吟醸・白鶴錦100%自社栽培・精米歩合38%・ABV 14%・64本限定。¥111,100。</div>
+        
+        <div class="tasting-source">出典：<a href="https://www.e-hakutsuru.com/products/19445" target="_blank" rel="noopener">白鶴酒造 公式EC</a></div>
+      </div></div>
+  </section>
+
+  
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 04</span>
+      <h2 class="section-meta__label" style="margin:0">NEARBY / 関西の蔵</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="nearby"><a class="nearby-card" href="happy-taro"><span class="nearby-card__pref">滋賀県・長浜市元浜町</span><span class="nearby-card__name">ハッピー太郎醸造所</span><span class="nearby-card__n">10 銘柄</span></a><a class="nearby-card" href="adachi-noujo"><span class="nearby-card__pref">大阪府・高槻市牧田町（富田団地内）</span><span class="nearby-card__name">足立農醸</span><span class="nearby-card__n">4 銘柄</span></a><a class="nearby-card" href="heiwa-namba"><span class="nearby-card__pref">大阪府・大阪市中央区難波（大阪タカシマヤB1）</span><span class="nearby-card__name">平和どぶろく難波醸造所</span><span class="nearby-card__n">7 銘柄</span></a><a class="nearby-card" href="linne"><span class="nearby-card__pref">京都府・京都市（活動拠点）／群馬県渋川市（法人登記）</span><span class="nearby-card__name">LINNÉ</span><span class="nearby-card__n">3 銘柄</span></a></div>
+    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+  </section>
+
+  
+  <section class="section">
+    <div class="section-meta">
+      <span class="section-meta__num">No. 05</span>
+      <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <div class="sources"><ul><li><a href="https://www.hakutsuru.co.jp/sakecraft/" target="_blank" rel="noopener">https://www.hakutsuru.co.jp/sakecraft/</a></li><li><a href="https://www.hakutsuru.co.jp/corporate/news/detail/20240927120955.html" target="_blank" rel="noopener">https://www.hakutsuru.co.jp/corporate/news/detail/20240927120955.html</a></li><li><a href="https://www.hakutsuru.co.jp/corporate/news/detail/20250114160850.html" target="_blank" rel="noopener">https://www.hakutsuru.co.jp/corporate/news/detail/20250114160850.html</a></li><li><a href="https://www.e-hakutsuru.com/products/19445" target="_blank" rel="noopener">https://www.e-hakutsuru.com/products/19445</a></li></ul></div>
+  </section>
 
   <nav class="nav-prev-next">
     <a href="tsuchiura"><small>← Prev. No. 22</small>土浦醸造</a>
