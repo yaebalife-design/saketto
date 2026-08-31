@@ -8,9 +8,11 @@
     python tools/site_stats.py   # 現在値を一覧表示（検算用）
 """
 import collections
+import re
 import sys
 
 from breweries_brands import BRANDS
+from breweries_master import BREWERIES
 from gen_axes_pages import categorize_ingredient
 
 # 副原料の主分類の優先順（1銘柄が複数の副原料を持つとき、どれに寄せるか）
@@ -60,9 +62,35 @@ def compute():
     hop_brands = [(s, b) for s, b in brands
                   if any("ホップ" in (i or "") for i in (b.get("sub_ingredients") or []))]
 
+    # ── 蔵の統計（記事に「25蔵」「東北6…」と直書きされていて古くなっていた） ──
+    region_n = collections.Counter(b["region"] for b in BREWERIES)
+    years = collections.Counter()
+    for b in BREWERIES:
+        m = re.match(r"(\d{4})", str(b.get("founded", "")))
+        if m:
+            years[int(m.group(1))] += 1
+    pending = [b for b in BREWERIES if "予定" in str(b.get("founded", ""))]
+    region_text = "、".join(f"{r}{n}" for r, n in region_n.most_common())
+
+    pref_n = collections.Counter(b["prefecture"] for b in BREWERIES)
+    multi = [(p, n) for p, n in pref_n.most_common() if n >= 2]
+    # 「新潟・福岡・東京が各3蔵、福島・岩手・大阪が各2蔵」のような並びを作る
+    by_count = collections.defaultdict(list)
+    for p, n in multi:
+        by_count[n].append(p)
+    multi_text = "、".join(
+        f"{'・'.join(ps)}が各{n}蔵" for n, ps in sorted(by_count.items(), reverse=True))
+
     return {
         "brands": total,
-        "breweries": len(BRANDS),
+        "breweries": len(BREWERIES),
+        "assoc_breweries": sum(1 for b in BREWERIES if b.get("association")),
+        "pending_breweries": len(pending),
+        "since2024": sum(n for y, n in years.items() if y >= 2024),
+        "region_breakdown": region_text,
+        "multi_prefectures": len(multi),
+        "multi_pref_breakdown": multi_text,
+        "prefectures": len(pref_n),
         "ingredient_variants": len(variants),
         "rice_only": rice_only,
         "rice_only_breweries": len(rice_breweries),
@@ -112,10 +140,14 @@ def buy_stats():
             buyable += 1
             with_shop.add(slug_of.get(os.path.basename(f)[:-5], "?"))
     total = len(files)
+    # 銘柄をまだ1件も収録していない蔵は「探したが無かった」のではないので、
+    # 取扱いなしの蔵として数えない（収録直後の蔵を混ぜると実態より多く見える）
+    with_brands = {s for s, bs in BRANDS.items() if bs}
     return {
         "buyable": buyable,
         "not_buyable": total - buyable,
-        "breweries_without_shop": len(BRANDS) - len(with_shop & set(BRANDS)),
+        "breweries_without_shop": len(with_brands - with_shop),
+        "breweries_with_brands": len(with_brands),
     }
 
 

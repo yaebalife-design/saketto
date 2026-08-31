@@ -416,7 +416,7 @@ ARTICLES = [
         "category": "deep",
         "eyebrow_en": "NEW BREWERIES",
         "title": "いま生まれている、新しい蔵",
-        "summary": "駅のホーム、商店街のアーケード、島、団地の一角。2024年以降に生まれたクラフトサケの蔵は、これまで酒蔵がなかった場所に立つ。saketto収録25蔵の開業年から、いま何が起きているのかを読む。",
+        "summary": "駅のホーム、商店街のアーケード、島、団地の一角。2024年以降に生まれたクラフトサケの蔵は、これまで酒蔵がなかった場所に立つ。saketto収録{S['breweries']}蔵の開業年から、いま何が起きているのかを読む。",
     },
 ]
 
@@ -1986,7 +1986,7 @@ def build_doko_de_kaeru():
       <div class="prose">
         <h2 class="sub-h">迷ったら、<span class="accent">蔵に直接</span>。</h2>
         <p>もっとも確実なのが、蔵が自分で運営するオンラインショップだ。<strong>新商品・限定ロットは真っ先にここへ出る</strong>。造り手が書いた原材料や仕込みの説明を読めるのも、公式ならではの価値だ。</p>
-        <p>saketto が収録25蔵の全銘柄を実際に検索して調べたところ、<strong>通販モールでの取扱いを確認できなかった蔵が11あった</strong>。福岡の<a href="../brewery/librom.html">LIBROM</a>、仙台駅構内の<a href="../brewery/fermenteria.html">Fermenteria</a>、佐渡の<a href="../brewery/sakenova.html">SAKENOVA BREWERY</a>、長崎の<a href="../brewery/dejima-hosendo.html">でじま芳扇堂</a>、埼玉の<a href="../brewery/yamane.html">やまね酒造</a>などがそうだ。<strong>「モールで見つからない＝手に入らない」ではない</strong>。蔵の名前で公式サイトを開くのが近道になる。</p>
+        <p>saketto が収録{S['breweries']}蔵の全銘柄を実際に検索して調べたところ、<strong>通販モールでの取扱いを確認できなかった蔵が{B['breweries_without_shop']}あった</strong>。福岡の<a href="../brewery/librom.html">LIBROM</a>、仙台駅構内の<a href="../brewery/fermenteria.html">Fermenteria</a>、佐渡の<a href="../brewery/sakenova.html">SAKENOVA BREWERY</a>、長崎の<a href="../brewery/dejima-hosendo.html">でじま芳扇堂</a>、埼玉の<a href="../brewery/yamane.html">やまね酒造</a>などがそうだ。<strong>「モールで見つからない＝手に入らない」ではない</strong>。蔵の名前で公式サイトを開くのが近道になる。</p>
       </div>
     </section>
 {divider()}
@@ -2285,7 +2285,7 @@ def build_new_breweries():
 {section_meta("01", "NOW / いま、何が起きているか")}
       <div class="prose">
         <p class="lead"><span class="accent">酒蔵が立つはずのなかった場所</span>に、いま次々と醸造所が生まれている。saketto が収録する蔵の開業年をならべると、その速さがはっきり見えてくる。</p>
-        <p>収録25蔵のうち、<strong>2024年以降に立ち上がった蔵が11、さらに開業準備中が1</strong>。ほぼ半数が、ここ2〜3年に集中している計算になる。2024年に5蔵、2025年に5蔵、そして2026年にもすでに新しい名前が加わった。<strong>これは一過性のブームというより、酒づくりの入口が構造的に変わったということだ</strong>。</p>
+        <p>収録{S['breweries']}蔵のうち、<strong>2024年以降に立ち上がった蔵が{S['since2024']}、うち開業準備中が{S['pending_breweries']}</strong>。半数以上が、ここ2〜3年に集中している計算になる。<strong>これは一過性のブームというより、酒づくりの入口が構造的に変わったということだ</strong>。</p>
       </div>
     </section>
 {divider()}
@@ -2317,7 +2317,7 @@ def build_new_breweries():
         <p><strong>2022〜2023年</strong>は、その背中を追う世代。<a href="../brewery/pukupuku.html">ぷくぷく醸造</a>、岩手・遠野の<a href="../brewery/nondo.html">nondo</a>、岩手・紫波の<a href="../brewery/heiroku.html">平六醸造</a>、長崎・出島の<a href="../brewery/dejima-hosendo.html">でじま芳扇堂</a>。そして<strong>2024年以降</strong>になると、大手の参入（神戸の<a href="../brewery/hakutsuru-sakecraft.html">HAKUTSURU SAKE CRAFT</a>）や、駅・商店街・離島といった新しい立地が一気に増える。</p>
         <p>この5年で、<strong>クラフトサケは「一部の先進的な蔵の試み」から「毎年新しい蔵が生まれる領域」へ変わった</strong>。saketto が横断検索のデータベースをつくっているのも、追いかけきれない速さで銘柄が増えているからにほかならない。</p>
         <div class="pill-links">
-          <a href="../brewery/">収録25蔵を一覧で見る<span class="arr">→</span></a>
+          <a href="../brewery/">収録{S['breweries']}蔵を一覧で見る<span class="arr">→</span></a>
           <a href="../region/">地域から探す<span class="arr">→</span></a>
         </div>
       </div>
@@ -2327,8 +2327,8 @@ def build_new_breweries():
 {section_meta("05", "MAP / 地図で見る")}
       <div class="prose">
         <h2 class="sub-h">16の都道府県に、<span class="accent">散らばっている</span>。</h2>
-        <p>saketto 収録の25蔵（開業準備中の1蔵を含む）を地域で数えると、分布に特徴が見えてくる。<strong>東北6、関東6、関西5、九州4、中部3、沖縄1</strong>。日本酒どころに偏るでもなく、都市に集まるでもなく、<strong>全国に薄く広がっている</strong>のがクラフトサケの特徴だ。</p>
-        <p>複数の蔵がある都道府県は6つ。<strong>新潟・福岡・東京が各3蔵、福島・岩手・大阪が各2蔵</strong>で、残りは1県1蔵。全体で16の都道府県にまたがっている計算になる。<strong>まだ空白の県のほうが多い</strong>ということでもあり、この地図はこれから埋まっていく余地が大きい。</p>
+        <p>saketto 収録の{S['breweries']}蔵（開業準備中の{S['pending_breweries']}蔵を含む）を地域で数えると、分布に特徴が見えてくる。<strong>{S['region_breakdown']}</strong>。日本酒どころに偏るでもなく、都市に集まるでもなく、<strong>全国に薄く広がっている</strong>のがクラフトサケの特徴だ。</p>
+        <p>複数の蔵がある都道府県は{S['multi_prefectures']}つ。<strong>{S['multi_pref_breakdown']}</strong>で、残りは1県1蔵。全体で{S['prefectures']}の都道府県にまたがっている計算になる。<strong>まだ空白の県のほうが多い</strong>ということでもあり、この地図はこれから埋まっていく余地が大きい。</p>
         <p>興味深いのは、既存の日本酒の勢力図とずれていることだ。酒どころとして知られる新潟に3蔵あるのは順当だが、<strong>東京に3蔵</strong>というのは従来の酒蔵の分布では考えにくい。駅ナカや商店街に置ける小さな設備だからこそ、都心にも蔵が立つ。<strong>沖縄にクラフトサケの蔵がある</strong>のも、泡盛の島という前提を思えば新しい動きだ。</p>
         <p>そして福島に2蔵。どちらも震災の被害を受けた南相馬市小高区にある。<strong>地域の再生と酒づくりが結びついた例</strong>で、ここから始まった蔵がジャンル全体を牽引してきた。地図の上の点は、それぞれに理由を持って打たれている。</p>
         <div class="pill-links">
@@ -2342,7 +2342,7 @@ def build_new_breweries():
       <div class="prose">
         <h2 class="sub-h">ばらばらではなく、<span class="accent">ジャンルとして</span>。</h2>
         <p>個々の蔵が別々に試行錯誤していた段階から、ひとつのジャンルとして名乗る段階へ——その転換点になったのが<strong>クラフトサケブリュワリー協会</strong>の発足だ。「クラフトサケ」という呼び名そのものが、造り手たち自身の手で定義されたことに意味がある。</p>
-        <p>saketto が収録する25蔵のうち、協会に加盟しているのは9蔵。<strong>加盟していない蔵のほうが多い</strong>のは、この領域がまだ広がり続けている証拠でもある。大手酒造の実験的ブランドから、地域おこしとして始まった蔵、駅のエキナカに立つ小さな醸造所まで——出自も規模も動機もばらばらな造り手が、「米で自由に醸す」という一点でゆるやかにつながっている。</p>
+        <p>saketto が収録する{S['breweries']}蔵のうち、協会に加盟しているのは{S['assoc_breweries']}蔵。<strong>加盟していない蔵のほうが多い</strong>のは、この領域がまだ広がり続けている証拠でもある。大手酒造の実験的ブランドから、地域おこしとして始まった蔵、駅のエキナカに立つ小さな醸造所まで——出自も規模も動機もばらばらな造り手が、「米で自由に醸す」という一点でゆるやかにつながっている。</p>
       </div>
     </section>
 {divider()}
@@ -2386,7 +2386,7 @@ def build_new_breweries():
 {section_meta("10", "FAQ / よくある質問")}
       <div class="prose">
         <h2 class="sub-h tight">クラフトサケの蔵は、全国に<span class="accent">いくつ</span>ありますか？</h2>
-        <p>明確な統計はありません。協会加盟蔵のほか、加盟せずに醸す蔵、大手酒造の実験ブランド、準備中の蔵まで含めると、線の引き方で数が変わるためです。saketto では一次ソースで確認できた蔵を収録しており、現在25蔵を掲載しています。</p>
+        <p>明確な統計はありません。協会加盟蔵のほか、加盟せずに醸す蔵、大手酒造の実験ブランド、準備中の蔵まで含めると、線の引き方で数が変わるためです。saketto では一次ソースで確認できた蔵を収録しており、現在{S['breweries']}蔵を掲載しています。</p>
         <h2 class="sub-h tight">新しい蔵の酒は、<span class="accent">品質</span>が心配ではないですか？</h2>
         <p>多くの造り手は、既存の酒蔵での修業歴や醸造の専門教育を経て独立しています。また設備が小さいぶん一仕込みごとに細かく設計を変えられるため、むしろ攻めた造りに挑戦しやすいという利点があります。</p>
         <h2 class="sub-h tight">どの蔵から<span class="accent">飲めば</span>いいですか？</h2>
@@ -2418,7 +2418,7 @@ def build_new_breweries():
   </div>
 """
     html = page_head("いま生まれている、新しい蔵 — クラフトサケ醸造所が増えている理由",
-                     "駅構内、商店街、団地、離島。これまで酒蔵がなかった場所にクラフトサケの醸造所が次々と生まれている。saketto収録25蔵の開業年から、免許制度・立地・協会という3つの視点でいま何が起きているのかを読み解きます。",
+                     "駅構内、商店街、団地、離島。これまで酒蔵がなかった場所にクラフトサケの醸造所が次々と生まれている。saketto収録{S['breweries']}蔵の開業年から、免許制度・立地・協会という3つの視点でいま何が起きているのかを読み解きます。",
                      "/guide/new-breweries.html", "article")
     html += masthead(article_masthead_label("new-breweries"), "A Field Guide")
     html += hero(
