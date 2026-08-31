@@ -854,7 +854,7 @@ footer {
         </div>
         <div class="sk-search">
           <span class="hero__entries-label">— 銘柄・蔵・副原料をまとめて検索</span>
-          <input id="skSearch" type="search" placeholder="銘柄名・蔵名・副原料で探す（例: ホップ／どぶろく／haccoba）" autocomplete="off" aria-label="サイト内検索">
+          <input id="skSearch" type="search" placeholder="銘柄・蔵・副原料で探す（例: ホップ）" autocomplete="off" aria-label="サイト内検索">
           <div class="sk-search__results" id="skSearchResults" hidden></div>
         </div>
         <div class="hero__entries">
@@ -1200,44 +1200,6 @@ footer {
   </footer>
 
 </main>
-<script>
-(function () {
-  var input = document.getElementById('skSearch');
-  var box = document.getElementById('skSearchResults');
-  if (!input || !box) return;
-  var data = null, requested = false;
-  function load() {
-    if (requested) return;
-    requested = true;
-    fetch('assets/search-index.json')
-      .then(function (r) { return r.json(); })
-      .then(function (j) { data = j; render(); })
-      .catch(function () { requested = false; });
-  }
-  function render() {
-    var q = input.value.trim().toLowerCase();
-    if (!q) { box.hidden = true; box.innerHTML = ''; return; }
-    if (!data) { load(); return; }
-    var hits = [];
-    for (var i = 0; i < data.length && hits.length < 8; i++) {
-      if (data[i].t.indexOf(q) !== -1) hits.push(data[i]);
-    }
-    if (!hits.length) {
-      box.innerHTML = '<div class="search-hit--none">該当が見つかりませんでした — 別の表記でお試しください</div>';
-    } else {
-      box.innerHTML = hits.map(function (h) {
-        return '<a class="search-hit" href="' + h.u + '"><span class="search-hit__name">' + h.n +
-               '</span><span class="search-hit__meta">' + h.m + '</span></a>';
-      }).join('');
-    }
-    box.hidden = false;
-  }
-  input.addEventListener('focus', load);
-  input.addEventListener('input', render);
-  document.addEventListener('click', function (e) {
-    if (!input.contains(e.target) && !box.contains(e.target)) box.hidden = true;
-  });
-})();
-</script>
+<script src="/assets/search.v1.js" defer></script>
 </body>
 </html>

@@ -75,10 +75,52 @@ MOBILE_FIX_CSS = """<style>
 </style>"""
 
 
+SEARCH_CSS = """<style>
+/* ── 全ページ共通のマストヘッド検索 ── */
+.sk-navsearch { position:relative; margin-left:auto; }
+.sk-navsearch__label { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+.sk-navsearch input {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:16px; /* iOSの自動ズーム回避 */
+  padding:.5rem .8rem; min-height:44px; width:min(260px,52vw);
+  border:1px solid var(--line); background:var(--paper); color:var(--ink);
+  letter-spacing:.03em; -webkit-appearance:none; border-radius:0;
+}
+.sk-navsearch input::placeholder { color:var(--ink-mute); }
+.sk-navsearch input:focus { outline:2px solid var(--accent); outline-offset:2px; }
+.sk-navsearch__results {
+  position:absolute; top:calc(100% + .4rem); right:0; z-index:80;
+  width:min(360px,86vw); max-height:60vh; overflow-y:auto;
+  background:var(--paper); border:1px solid var(--line);
+  box-shadow:0 14px 40px rgba(26,23,23,.14); text-align:left;
+}
+.sk-navsearch__results .search-hit { display:block; padding:.75rem .9rem; text-decoration:none;
+  border-bottom:1px solid var(--line-soft); color:var(--ink); text-transform:none; letter-spacing:normal; }
+.sk-navsearch__results .search-hit:last-child { border-bottom:none; }
+.sk-navsearch__results .search-hit:hover,
+.sk-navsearch__results .search-hit.is-active { background:var(--bg-alt); }
+.sk-navsearch__results .search-hit__name { display:block; font-family:'Shippori Mincho',serif;
+  font-weight:700; font-size:1rem; color:var(--ink); }
+.sk-navsearch__results .search-hit__meta { display:block; font-size:.78rem; color:var(--ink-mute); margin-top:.15rem; }
+.sk-navsearch__results .search-hit--none { padding:.85rem .9rem; font-size:.85rem;
+  color:var(--ink-mute); text-transform:none; letter-spacing:normal; }
+@media (max-width:640px) {
+  .sk-navsearch { width:100%; margin-left:0; }
+  .sk-navsearch input { width:100%; }
+  .sk-navsearch__results { width:100%; }
+}
+</style>"""
+
+
+def search_tag():
+    """サイト内検索（全ページ共通）。インデックスはルート絶対パスで引くため階層非依存。"""
+    return '<script src="/assets/search.v1.js" defer></script>'
+
+
 def head_extra(prefix="../"):
     """head 末尾（</head> 直前）に入れる共通ブロック。"""
     return (favicon_head() + "\n" + analytics_head() + "\n"
-            + age_gate_tag(prefix) + "\n" + MOBILE_FIX_CSS)
+            + age_gate_tag(prefix) + "\n" + MOBILE_FIX_CSS + "\n"
+            + SEARCH_CSS + "\n" + search_tag())
 
 
 # ────────────── OGP / canonical / 構造化データ(JSON-LD) ──────────────
