@@ -742,6 +742,18 @@ def gen_subingredients():
     print(f"  subingredients/index.html  ({total_brands}件の副原料エントリ)")
 
 
+REGION_SLUG = {
+    "東北": "tohoku", "関東": "kanto", "中部": "chubu",
+    "関西": "kansai", "九州": "kyushu", "沖縄": "okinawa",
+    "北海道": "hokkaido", "中国": "chugoku", "四国": "shikoku",
+}
+
+
+def region_anchor(region):
+    """地域ハブ内のアンカーID。蔵ページからここへ直接リンクする。"""
+    return "r-" + REGION_SLUG.get(region, region)
+
+
 def gen_regions():
     """地域逆引きハブ"""
     OUT = REPO_ROOT / "region"
@@ -769,6 +781,10 @@ def gen_regions():
         "東北": "region_tohoku", "関東": "region_kanto", "中部": "region_chubu",
         "関西": "region_kansai", "九州": "region_kyushu", "沖縄": "region_okinawa",
     }
+    # 他ハブと同じくアンカーを振る。蔵ページから「◯◯の蔵」へ直接送れるようにするため
+    # （これが無いあいだ、蔵ページの導線は地域トップに落とすしかなかった）
+    html += jump_nav([(region_anchor(r), r, len(by_region[r])) for r in populated],
+                     label="地域から探す")
     for idx, region in enumerate(populated, 1):
         breweries = by_region[region]
         img_name = REGION_IMG_MAP.get(region, "")
@@ -777,7 +793,7 @@ def gen_regions():
             f'</figure>'
         ) if img_name else ''
         html += f"""
-  <section class="section">
+  <section class="section" id="{region_anchor(region)}">
     <div class="section-meta">
       <span class="section-meta__num">No. {idx:02d}</span>
       <h2 class="section-meta__label">{region}</h2>

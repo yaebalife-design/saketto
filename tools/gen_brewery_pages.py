@@ -21,7 +21,7 @@ from awards import AWARDS
 from furusato_data import FURUSATO
 from tasting import TASTING
 from brewery_about import about_of, founder_of
-from gen_axes_pages import categorize_ingredient
+from gen_axes_pages import categorize_ingredient, region_anchor
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL
 from moshimo_link import resolve_rakuten, resolve_amazon
 from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
@@ -789,7 +789,7 @@ def render(brewery, index, prev_brewery, next_brewery):
     </div>
     {('<div class="nearby">' + nearby_cards + '</div>') if nearby_cards
      else f'<p class="brands-note">{brewery["region"]}に収録している蔵は現在この1蔵のみです。</p>'}
-    <p class="section-morelink"><a href="../region/">地域から蔵を探す →</a></p>
+    <p class="section-morelink"><a href="../region/#{region_anchor(brewery["region"])}">{brewery["region"]}の蔵をすべて見る →</a></p>
   </section>"""
 
     sources_section = f"""
