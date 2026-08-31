@@ -948,6 +948,12 @@ FURUSATO_FILTER_CSS = """<style>
 #fresult { font-family:'Cormorant Garamond',serif; font-style:italic;
   font-size:.9rem; color:var(--accent); margin:0 0 1.6rem; display:block; }
 .yen-note { font-size:.78rem; color:var(--ink-mute); margin-left:.3rem; }
+/* 品切れ等の状態。押せるリンクと同じ見た目にすると誤解するので枠線だけにする */
+.furusato-status {
+  display:inline-flex; align-items:center; margin-left:.4rem; padding:.2rem .6rem;
+  border:1px dashed var(--line); font-family:'Zen Kaku Gothic Antique',sans-serif;
+  font-size:.78rem; color:var(--ink-mute);
+}
 .fallback-portals { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1rem; }
 .fallback-portals a {
   display:inline-flex; align-items:center; min-height:44px; padding:.5rem 1rem;
@@ -1033,13 +1039,20 @@ def gen_furusato():
             return (f'<a class="spec-pill accent portal-link" href="{u}" target="_blank" '
                     f'rel="noopener">{label} →</a>')
 
-        # portals に無いが URL だけあるポータル（ANA等）も拾う。順序は portals 優先
-        _seen = []
-        for p in list(data["portals"]) + [p for p in _urls if p not in data["portals"]]:
-            if p not in _seen:
-                _seen.append(p)
+        # **URLで裏の取れたポータルだけを出す。**
+        # 以前は portals に書いてあるだけの（URLの無い）ポータルも
+        # 押せないラベルとして並べていたが、それは「そこで寄附できる」という
+        # 主張でありながら確認手段が無く、読者も何もできない。
+        # ふるなび・さとふるは検索結果がJSレンダリングで機械確認ができず、
+        # 実際に稲とアガベのふるなびは200を返しながら中身が空だった。
+        # 確認できないものは並べず、下の「見つからないとき」から各ポータルへ逃がす。
+        _seen = [p for p in list(data["portals"]) + list(_urls) if p in _urls]
+        _seen = list(dict.fromkeys(_seen))
         portals_html = " ".join(_portal_pill(p) for p in _seen)
         _portal_key = " ".join(_seen)  # 絞り込み用（data-portals）
+        _status = data.get("status")
+        if _status:
+            portals_html += f'<span class="furusato-status">{_status}</span>'
         # 寄附額はポータルごと・セット内容ごとに違う。単一の数字に「〜」を付けると
         # 「ここから始まる」と読めてしまい、実際の申込画面と食い違う（12,000円と
         # 表示して19,000円だった例がある）。確認した額であることを明示する。
