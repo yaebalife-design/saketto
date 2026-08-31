@@ -947,6 +947,7 @@ FURUSATO_FILTER_CSS = """<style>
   color:var(--ink-mute); margin:0 0 .4rem; }
 #fresult { font-family:'Cormorant Garamond',serif; font-style:italic;
   font-size:.9rem; color:var(--accent); margin:0 0 1.6rem; display:block; }
+.yen-note { font-size:.78rem; color:var(--ink-mute); margin-left:.3rem; }
 .fallback-portals { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1rem; }
 .fallback-portals a {
   display:inline-flex; align-items:center; min-height:44px; padding:.5rem 1rem;
@@ -1039,7 +1040,11 @@ def gen_furusato():
                 _seen.append(p)
         portals_html = " ".join(_portal_pill(p) for p in _seen)
         _portal_key = " ".join(_seen)  # 絞り込み用（data-portals）
-        yen = f'¥{data["donation_yen"]:,}〜' if data.get("donation_yen") else '寄附額確認中'
+        # 寄附額はポータルごと・セット内容ごとに違う。単一の数字に「〜」を付けると
+        # 「ここから始まる」と読めてしまい、実際の申込画面と食い違う（12,000円と
+        # 表示して19,000円だった例がある）。確認した額であることを明示する。
+        yen = (f'{data["donation_yen"]:,}円<span class="yen-note">（確認時点）</span>'
+               if data.get("donation_yen") else '寄附額はポータルで確認')
         rep = data.get("rep_brand", "")
         html += f"""
       <div class="entry entry--furusato" data-portals="{_portal_key}">
