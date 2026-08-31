@@ -9,13 +9,16 @@
 # ・CSSの大半は /assets/css/ へ切り出したが（externalize_css.py）、
 #   1ページでしか使わないブロックと gtag のインラインJSが残るため
 #   style/script の 'unsafe-inline' は引き続き必要
-# ・GA(gtag) と Google Fonts のみ外部許可
+# ・外部許可は GA(gtag) / Google Fonts / Cloudflare Web Analytics のみ
+# ・cloudflareinsights は Cloudflare Pages が自動で注入するビーコン。
+#   許可していなかったため全ページで CSP に弾かれ、毎回失敗リクエストと
+#   コンソールエラーが出ていた（2026/08/31 修正）
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.googletagmanager.com https://*.analytics.google.com; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.googletagmanager.com https://*.analytics.google.com https://cloudflareinsights.com; frame-ancestors 'none'
   Cache-Control: public, max-age=3600, must-revalidate
 
 # JS・検索インデックス等（不具合修正が翌日には反映される長さに留める）
