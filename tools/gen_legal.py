@@ -28,7 +28,7 @@ STATIC_CSS = """
 .breadcrumb a { color: var(--ink-mute); text-decoration: none; }
 .breadcrumb a:hover { color: var(--accent); }
 .breadcrumb span { margin: 0 .5em; color: var(--line); }
-.static h1 { font-family: 'Shippori Mincho', serif; font-size: 30px; font-weight: 600; letter-spacing: .04em; color: var(--ink); margin-bottom: 10px; }
+.static h1 { font-family: 'Shippori Mincho', serif; font-size: 30px; font-weight: 700; letter-spacing: .04em; color: var(--ink); margin-bottom: 10px; }
 .static .updated { font-size: 12px; color: var(--ink-mute); letter-spacing: .06em; margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--line-soft); }
 .static h2 { font-family: 'Zen Kaku Gothic Antique', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin: 40px 0 14px; padding-left: 14px; border-left: 3px solid var(--accent); }
 .static h3 { font-family: 'Zen Kaku Gothic Antique', sans-serif; font-size: 15px; font-weight: 700; color: var(--ink-soft); margin: 26px 0 10px; }
@@ -102,7 +102,9 @@ def page(title, label, description, body, path="/"):
 {seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" media="print" onload="this.media=&#39;all&#39;">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap"></noscript>
 <style>{CSS}{STATIC_CSS}</style>
 {head_extra(prefix="")}
 </head>
