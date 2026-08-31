@@ -174,6 +174,30 @@ def clean_note(s):
     return s
 
 
+
+# 副原料カテゴリ → イメージ画像。銘柄固有の写真は無断使用NGのため、
+# 既存の副原料イメージ（Vertex AI生成）をカテゴリ単位で流用する。
+# 「画像はイメージ」表記を必ず添える（CLAUDE.md の画像方針）。
+CAT_IMAGE = {
+    "hop": ("sub_hop", "ホップ"),
+    "fruit": ("sub_fruit", "果実"),
+    "tea-herb": ("sub_tea_herb", "茶葉・ハーブ"),
+    "rice-koji": ("sub_rice", "米と麹"),
+    "special": ("sub_special", "副原料"),
+}
+
+
+def brand_image(brand):
+    """銘柄の副原料からイメージ画像を選ぶ。(ファイル名, カテゴリ表示名) を返す。"""
+    subs = [x for x in (brand.get("sub_ingredients") or []) if x]
+    for x in subs:
+        cat = categorize_ingredient(x)
+        if cat:
+            return CAT_IMAGE.get(cat, CAT_IMAGE["special"])
+    # 「米のみ」系、および副原料が公式非開示のものは米と麹のイメージ
+    return CAT_IMAGE["rice-koji"]
+
+
 def build_html(brand, detail, brewery, idx):
     b = brand
     d = detail or {}
@@ -477,6 +501,15 @@ def build_html(brand, detail, brewery, idx):
     {f'<p class="hero__tagline">{esc(_tagline)}</p>' if _tagline else ''}{flavor_tags_html}
   </section>"""
 
+    # ── イメージ画像（副原料カテゴリ単位。銘柄固有の写真ではない）──
+    _img_name, _img_label = brand_image(b)
+    brand_image_html = (
+        f'<figure class="brand-image">'
+        f'<img src="../assets/images/{_img_name}.webp" alt="{_img_label}のイメージ" '
+        f'loading="lazy" decoding="async" width="1024" height="1024">'
+        f'<figcaption class="brand-image__cap">{_img_label}のイメージ ／ 画像はイメージです</figcaption>'
+        f'</figure>')
+
     # ── meta description（蔵・銘柄・note・副原料を常に合成。noteだけだと10字前後になりCTRを落とすため）──
     _subs = [s for s in (b.get('sub_ingredients') or []) if s and s != "米のみ"]
     _sub_txt = ("副原料に" + "・".join(_subs) + "を使った") if _subs else "米と米麹で醸す"
@@ -567,6 +600,7 @@ def build_html(brand, detail, brewery, idx):
     <span aria-current="page">{name}</span>
   </nav>
 {hero}
+{brand_image_html}
 {spec_board}
 {body_sections}
 {sources_section}
