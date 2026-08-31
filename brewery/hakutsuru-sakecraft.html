@@ -477,6 +477,16 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 .purchase-card__pending a:hover { color: #FAF6ED; }
 </style>
 <style>
+/* ── 現在地パンくず（JSON-LDと同じ階層を画面にも出す） ── */
+.crumbs { max-width:1100px; margin:0 auto; padding:.9rem 2rem 0;
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.8rem;
+  color:var(--ink-mute); letter-spacing:.04em; }
+.crumbs a { color:var(--ink-mute); text-decoration:none; border-bottom:1px solid transparent; }
+.crumbs a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.crumbs__sep { margin:0 .5rem; color:var(--line); }
+.crumbs [aria-current="page"] { color:var(--ink); }
+@media (max-width:640px){ .crumbs { padding:.8rem 1.25rem 0; font-size:.75rem; } }
+
 /* ── 全ページ共通のマストヘッド検索 ── */
 .sk-navsearch { position:relative; margin-left:auto; }
 .sk-navsearch__label { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
@@ -528,6 +538,11 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <a href="../guide/">読みもの</a>
     </nav>
   </div>
+  <nav class="crumbs" aria-label="現在地">
+    <a href="../">トップ</a><span class="crumbs__sep">／</span>
+    <a href="../brewery/">蔵</a><span class="crumbs__sep">／</span>
+    <span aria-current="page">HAKUTSURU SAKE CRAFT</span>
+  </nav>
 
   <figure class="region-banner"><div class="region-banner__wrap"><img src="../assets/images/brewery/hakutsuru-sakecraft.webp" alt="" fetchpriority="high" width="1376" height="768"><span class="region-banner__cap">画像はイメージ</span></div></figure>
 

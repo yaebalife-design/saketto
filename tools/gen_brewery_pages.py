@@ -766,6 +766,11 @@ def render(brewery, index, prev_brewery, next_brewery):
       <a href="../guide/">読みもの</a>
     </nav>
   </div>
+  <nav class="crumbs" aria-label="現在地">
+    <a href="../index.html">トップ</a><span class="crumbs__sep">／</span>
+    <a href="../brewery/">蔵</a><span class="crumbs__sep">／</span>
+    <span aria-current="page">{brewery['name']}</span>
+  </nav>
 
   {region_banner}
 

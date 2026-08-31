@@ -901,6 +901,12 @@ def main():
       <a href="../guide/">読みもの</a>
     </nav>
   </div>
+  <nav class="crumbs" aria-label="現在地">
+    <a href="../index.html">トップ</a><span class="crumbs__sep">／</span>
+    <a href="../brewery/">蔵</a><span class="crumbs__sep">／</span>
+    <a href="../brewery/{b['brewery_slug']}.html">{brewery['name']}</a><span class="crumbs__sep">／</span>
+    <span aria-current="page">{b['name']}</span>
+  </nav>
 
   <!-- HERO -->
   <section class="hero">

@@ -561,6 +561,16 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
 .purchase-card__pending a:hover { color: #FAF6ED; }
 </style>
 <style>
+/* ── 現在地パンくず（JSON-LDと同じ階層を画面にも出す） ── */
+.crumbs { max-width:1100px; margin:0 auto; padding:.9rem 2rem 0;
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.8rem;
+  color:var(--ink-mute); letter-spacing:.04em; }
+.crumbs a { color:var(--ink-mute); text-decoration:none; border-bottom:1px solid transparent; }
+.crumbs a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.crumbs__sep { margin:0 .5rem; color:var(--line); }
+.crumbs [aria-current="page"] { color:var(--ink); }
+@media (max-width:640px){ .crumbs { padding:.8rem 1.25rem 0; font-size:.75rem; } }
+
 /* ── 全ページ共通のマストヘッド検索 ── */
 .sk-navsearch { position:relative; margin-left:auto; }
 .sk-navsearch__label { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
@@ -608,6 +618,12 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
       <a href="../guide/">読みもの</a>
     </nav>
   </div>
+  <nav class="crumbs" aria-label="現在地">
+    <a href="../">トップ</a><span class="crumbs__sep">／</span>
+    <a href="../brewery/">蔵</a><span class="crumbs__sep">／</span>
+    <a href="../brewery/dejima-hosendo">でじま芳扇堂</a><span class="crumbs__sep">／</span>
+    <span aria-current="page">芳扇 友 目黒米雄町</span>
+  </nav>
 
   <section class="hero">
     <div class="hero__brewery">
@@ -622,7 +638,7 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
 
   <section class="section" style="padding-top:3rem">
     <div class="section-meta"><span class="section-meta__num">No. 01</span><h2 class="section-meta__label">RECIPE / 仕込み</h2><span class="section-meta__rule"></span></div>
-    <div class="recipe"><div class="recipe-row"><div class="recipe-row__label">品目（酒税法）</div><div class="recipe-row__value">その他の醸造酒</div></div><div class="recipe-row"><div class="recipe-row__label">原料</div><div class="recipe-row__value">米・米麹のみ</div></div><div class="recipe-row"><div class="recipe-row__label">米品種</div><div class="recipe-row__value">雄町(特別栽培・一等米・球形80%精米。岡山倉敷・まめ農園)</div></div><div class="recipe-row"><div class="recipe-row__label">精米歩合</div><div class="recipe-row__value">80%</div></div><div class="recipe-row"><div class="recipe-row__label">酒母</div><div class="recipe-row__value">菩提酛仕込み</div></div><div class="recipe-row"><div class="recipe-row__label">麹</div><div class="recipe-row__value">米麹(岡山県産)</div></div></div>
+    <div class="recipe"><div class="recipe-row"><div class="recipe-row__label">品目（酒税法）</div><div class="recipe-row__value">その他の醸造酒</div></div><div class="recipe-row"><div class="recipe-row__label">原料</div><div class="recipe-row__value">米・米麹のみ<small><a href="../subingredients/#cat-rice-koji">同じ「米と麹だけ」の酒を見る →</a></small></div></div><div class="recipe-row"><div class="recipe-row__label">米品種</div><div class="recipe-row__value">雄町(特別栽培・一等米・球形80%精米。岡山倉敷・まめ農園)</div></div><div class="recipe-row"><div class="recipe-row__label">精米歩合</div><div class="recipe-row__value">80%</div></div><div class="recipe-row"><div class="recipe-row__label">酒母</div><div class="recipe-row__value">菩提酛仕込み</div></div><div class="recipe-row"><div class="recipe-row__label">麹</div><div class="recipe-row__value">米麹(岡山県産)</div></div></div>
   </section>
   <section class="section">
     <div class="section-meta"><span class="section-meta__num">No. 02</span><h2 class="section-meta__label">HOW TO ENJOY / 楽しみ方</h2><span class="section-meta__rule"></span></div>

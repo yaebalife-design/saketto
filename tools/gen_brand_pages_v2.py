@@ -28,6 +28,8 @@ from gen_sample_v2 import CSS, gen_scale4_svg, gen_radar6_svg, RAKUTEN_ENABLED, 
 from story_overrides import story_override
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL
 from related import next_section_html
+# 副原料のカテゴリ判定はハブと同じロジックを使う（分類がズレると導線が壊れるため）
+from gen_axes_pages import categorize_ingredient
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "brand"
@@ -239,9 +241,19 @@ def build_html(brand, detail, brewery, idx):
         _sd = sub_detail
         if _sd and ("・".join(non_rice) in _sd or _sd in "・".join(non_rice)):
             _sd = None  # 副原料名と重複する詳細は省く
-        row("副原料", "・".join(non_rice), sub=_sd)
+        # 副原料はハブの該当カテゴリへ直接飛ばす（ここが同系統の酒への入口になる）
+        _linked = []
+        for _s in non_rice:
+            _cat = categorize_ingredient(_s)
+            _linked.append(f'<a href="../subingredients/#cat-{_cat}">{esc(_s)}</a>' if _cat else esc(_s))
+        _sub_html = f"<small>{esc(_sd)}</small>" if _sd else ""
+        rows.append('<div class="recipe-row"><div class="recipe-row__label">副原料</div>'
+                    f'<div class="recipe-row__value">{"・".join(_linked)}{_sub_html}</div></div>')
     elif subs:  # 米のみ系のみ
-        row("原料", "米・米麹のみ")
+        rows.append('<div class="recipe-row"><div class="recipe-row__label">原料</div>'
+                    '<div class="recipe-row__value">米・米麹のみ'
+                    '<small><a href="../subingredients/#cat-rice-koji">同じ「米と麹だけ」の酒を見る →</a></small>'
+                    '</div></div>')
     elif sub_detail:
         row("副原料", sub_detail)
     row("米品種", d.get("rice_variety"))
@@ -497,6 +509,12 @@ def build_html(brand, detail, brewery, idx):
       <a href="../guide/">読みもの</a>
     </nav>
   </div>
+  <nav class="crumbs" aria-label="現在地">
+    <a href="../index.html">トップ</a><span class="crumbs__sep">／</span>
+    <a href="../brewery/">蔵</a><span class="crumbs__sep">／</span>
+    <a href="../brewery/{slug}.html">{brewery['name']}</a><span class="crumbs__sep">／</span>
+    <span aria-current="page">{name}</span>
+  </nav>
 {hero}
 {spec_board}
 {body_sections}
