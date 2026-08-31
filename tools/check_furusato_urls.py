@@ -49,13 +49,16 @@ def main():
     ng = 0
     total = 0
     for slug, data in FURUSATO.items():
-        for portal, url in (data.get("urls") or {}).items():
+        for item in data.get("items", []):
             total += 1
+            url = item["url"]
             code, soft, title = check(url)
             bad = code != 200 or soft
             ng += bool(bad)
             mark = "×" if bad else "○"
-            print(f"{mark} {slug:16} {PORTAL_NAMES.get(portal, portal):14} {str(code):>5}  {title}")
+            stock = "" if item.get("accepting", True) else " [品切れ]"
+            print(f"{mark} {slug:14} {PORTAL_NAMES.get(item['portal'], item['portal']):12} "
+                  f"{str(code):>5} {str(item.get('yen') or '—'):>7}円{stock}  {title[:40]}")
             if soft:
                 print(f"     ソフト404の疑い（本文に {soft[:2]}）: {url}")
             elif code != 200:

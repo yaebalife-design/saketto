@@ -16,7 +16,10 @@ from breweries_brands import BRANDS
 from awards import AWARDS
 from urllib.parse import quote
 
-from furusato_data import FURUSATO, PORTAL_NAMES
+from furusato_data import (
+    FURUSATO, PORTAL_NAMES, portals_of, best_url, price_range,
+    is_accepting, item_count, items_of,
+)
 from moshimo_link import rakuten_url, rakuten_search
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
 
@@ -988,9 +991,9 @@ def gen_furusato():
     # 扱いがあるかを知りたいので、そこだけ残せるようにする。
     _portal_count = {}
     for _b in confirmed:
-        _d = FURUSATO[_b["slug"]]
-        for _p in set(list(_d["portals"]) + list((_d.get("urls") or {}).keys())):
-            _portal_count[_p] = _portal_count.get(_p, 0) + 1
+        for _p in portals_of(_b["slug"], accepting_only=False):
+            if best_url(_b["slug"], _p):
+                _portal_count[_p] = _portal_count.get(_p, 0) + 1
     _chips = [f'<a class="fchip" href="#" data-portal="" data-label="" aria-current="true">'
               f'すべて<span class="fchip__n">{len(confirmed)}</span></a>']
     for _p, _n in sorted(_portal_count.items(), key=lambda x: -x[1]):
@@ -1017,7 +1020,7 @@ def gen_furusato():
         data = FURUSATO[b["slug"]]
         # ポータル名は「押せる」ことが期待される要素。URLがあるものは実リンクにする
         # （収益モデルにふるさと納税を掲げているのに、従来は span で出口が無かった）。
-        _urls = data.get("urls") or {}
+        _urls = {p: best_url(b["slug"], p) for p in portals_of(b["slug"], accepting_only=False)}
 
         def _portal_pill(code):
             """ポータル1つぶんのリンク。楽天は必ずもしも経由（社長ルール）。
@@ -1040,25 +1043,32 @@ def gen_furusato():
                     f'rel="noopener">{label} →</a>')
 
         # **URLで裏の取れたポータルだけを出す。**
-        # 以前は portals に書いてあるだけの（URLの無い）ポータルも
-        # 押せないラベルとして並べていたが、それは「そこで寄附できる」という
-        # 主張でありながら確認手段が無く、読者も何もできない。
+        # 「そこで寄附できる」と書くなら、読者がそこへ行ける状態であるべき。
         # ふるなび・さとふるは検索結果がJSレンダリングで機械確認ができず、
         # 実際に稲とアガベのふるなびは200を返しながら中身が空だった。
         # 確認できないものは並べず、下の「見つからないとき」から各ポータルへ逃がす。
-        _seen = [p for p in list(data["portals"]) + list(_urls) if p in _urls]
-        _seen = list(dict.fromkeys(_seen))
+        _seen = [p for p in _urls if _urls[p]]
         portals_html = " ".join(_portal_pill(p) for p in _seen)
         _portal_key = " ".join(_seen)  # 絞り込み用（data-portals）
-        _status = data.get("status")
-        if _status:
-            portals_html += f'<span class="furusato-status">{_status}</span>'
+        if not is_accepting(b["slug"]):
+            portals_html += '<span class="furusato-status">現在すべて品切れ</span>'
         # 寄附額はポータルごと・セット内容ごとに違う。単一の数字に「〜」を付けると
         # 「ここから始まる」と読めてしまい、実際の申込画面と食い違う（12,000円と
-        # 表示して19,000円だった例がある）。確認した額であることを明示する。
-        yen = (f'{data["donation_yen"]:,}円<span class="yen-note">（確認時点）</span>'
-               if data.get("donation_yen") else '寄附額はポータルで確認')
-        rep = data.get("rep_brand", "")
+        # 表示して19,000円だった例がある）。幅があるなら幅のまま出す。
+        _pr = price_range(b["slug"])
+        if not _pr:
+            yen = '寄附額はポータルで確認'
+        elif _pr[0] == _pr[1]:
+            yen = f'{_pr[0]:,}円'
+        else:
+            yen = f'{_pr[0]:,}〜{_pr[1]:,}円'
+        _n = item_count(b["slug"])
+        if _n > 1:
+            yen += f'<span class="yen-note">／{_n}品</span>'
+        # 代表銘柄は「最も少額で申し込めるもの」。最初に目に入る額と対応させる
+        _live = [i for i in items_of(b["slug"]) if i.get("accepting", True)]
+        _pool = _live or items_of(b["slug"])
+        rep = sorted(_pool, key=lambda i: i.get("yen") or 10**9)[0]["brand"] if _pool else ""
         html += f"""
       <div class="entry entry--furusato" data-portals="{_portal_key}">
         <div>

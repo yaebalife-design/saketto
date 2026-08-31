@@ -1,121 +1,216 @@
 # -*- coding: utf-8 -*-
-"""saketto / ふるさと納税取扱データ
+"""saketto / ふるさと納税取扱データ（2026-08-31 全面再調査）
 
-portals: ["c"=チョイス, "r"=楽天, "f"=ふるなび, "s"=さとふる, "ANA"=ANAのみ確認]
+## データの形
 
-⚠️ **返礼品のURLは腐る。** 2026/08/31 の再確認で、稲とアガベの3URLが全て
-死んでいた（楽天404・チョイス404・ふるなびは200だが本文が「見つかりませんでした」）。
-返礼品は時期で入れ替わるので、**定期的にURLの生存確認をすること**。
-死んだURLを残すと、読者を404へ送りつつ「返礼品あり」と嘘をつくことになる。
-生存確認: python tools/check_furusato_urls.py
+蔵ごとに `items`（返礼品1件＝1エントリ）を持つ。
+以前は蔵に「ポータルのコード一覧」と「寄附額ひとつ」しか持てず、
+同じ蔵でもポータルごと・セット内容ごとに額が違う実態を表せなかった
+（12,000円と表示して実際は19,000円だった例がある）。
+
+各 item:
+  portal    … "c"=ふるさとチョイス / "r"=楽天 / "f"=ふるなび / "s"=さとふる / "ANA"
+  url       … 返礼品ページの正規URL（クエリパラメータは付けない）
+  yen       … 寄附額（確認できないときは None）
+  brand     … 対応する銘柄
+  accepting … 申込可能なら True。品切れ・受付終了は False
+  city      … 蔵の所在自治体と違う自治体からの出品のときだけ書く
+
+## 運用上の注意（実際に踏んだもの）
+
+- **返礼品URLは黙って死ぬ。** 2026/08/31 の点検で稲とアガベの3URLが全滅していた。
+  `python tools/check_furusato_urls.py` を定期実行すること。
+- **ふるなびは200を返しながら中身が空のことがある**（ソフト404）。
+  ステータスコードだけでは分からない。
+- **ふるなび・さとふるは検索結果がJSレンダリング**で機械確認しにくい。
+  さとふるはこの環境から接続自体ができず、全蔵で未検証。
+  検索結果に存在を示唆する記述はあっても、商品URLで裏が取れないものは載せない。
+- 食品セットでも、クラフトサケが中身に含まれるものは掲載する
+  （逆に、商品名にSEO目的で「クラフトサケ」と入っているだけで酒を含まないものは除外）。
+- ノンアルコール（甘酒等）は対象外。
 """
 
 FURUSATO = {
 
-    # 2026/08/31 再確認：楽天404・チョイス404・ふるなびはソフト404。
-    # 男鹿市のふるさとチョイスを検索しても、出てくるのは「発酵マヨ」と
-    # 「SANABURI SPIRITS」(ジン)のみで、クラフトサケの返礼品は確認できず。
-    # 出品が戻ったら復活させる。それまでは未確認扱いにする。
+    # 2026/08/31 再調査：以前記録していた3URL（チョイス・楽天・ANA）がすべて404。
+    # 男鹿市に残るのは発酵マヨと SANABURI SPIRITS（蒸留酒）だけで、
+    # クラフトサケの返礼品は5ポータルのいずれにも無い。出品が戻ったら復活させる。
     # "ine-to-agave": {...},
 
     "haccoba": {
         "city": "福島県南相馬市",
-        # ふるなび・さとふるにも出品ありと2026/05に記録していたが、いずれも
-        # 検索結果がJSレンダリングで機械確認できず、URLも取れていない。
-        # 確認できたポータルだけを載せる（URLの無いものは表示しない）。
-        "portals": ["c", "r"],
-        # 2026/08/31 訂正：12,000円としていたが、チョイス・ANAとも実際は19,000円だった
-        "donation_yen": 19000,
-        "rep_brand": "はなうたホップス 720ml×2本",
-        "urls": {
-            "c": "https://www.furusato-tax.jp/product/detail/07212/5278190",
-            "r": "https://item.rakuten.co.jp/f072125-minamisoma/41001/",
-            "ANA": "https://furusato.ana.co.jp/donation/g/g07212-41001/",
-        },
-        "note": "チョイス・楽天・ANAで確認。チョイス／ANAとも19,000円（720ml×2本）。ふるなび・さとふるは2026/05に出品ありと記録したが今回は確認できず",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/07212/5278190",
+             "yen": 19000, "brand": "はなうたホップス 720ml×2本", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f072125-minamisoma/41001/",
+             "yen": 19000, "brand": "はなうたホップス 720ml×2本", "accepting": True},
+            {"portal": "f", "url": "https://furunavi.jp/product_detail.aspx?pid=470819",
+             "yen": 19000, "brand": "はなうたホップス 720ml×2本", "accepting": True},
+            {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g07212-41001/",
+             "yen": 19000, "brand": "はなうたホップス 720ml×2本", "accepting": True},
+            # 蔵の地元とは別の自治体からの出品。現在は品切れ
+            {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g43505-024-0701/",
+             "yen": 12000, "brand": "I'm home! -TARAGI- 500ml", "accepting": False,
+             "city": "熊本県多良木町"},
+            {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g43505-024-0702/",
+             "yen": 22000, "brand": "I'm home! -TARAGI- 500ml×2本", "accepting": False,
+             "city": "熊本県多良木町"},
+        ],
+        "note": "多良木町との共同醸造「I'm home! -TARAGI-」はANA限定で、熊本県多良木町からの出品。現在は品切れ。さとふるは接続できず未確認",
     },
 
     "heiroku": {
         "city": "岩手県紫波町",
-        "portals": ["c"],
-        # 2026/08/31 訂正：チョイスの実額は41,000円だった
-        "donation_yen": 41000,
-        "rep_brand": "Re:vive Origin アカツキ 720ml",
-        "urls": {
-            "c": "https://www.furusato-tax.jp/product/detail/03321/6335322",
-        },
-        "note": "ふるさとチョイス限定。ハイエンドRe:viveを返礼品化",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/03321/6335322",
+             "yen": 41000, "brand": "Re:vive Origin アカツキ 720ml", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f033219-shiwa/ea001/",
+             "yen": 41000, "brand": "Re:vive Origin アカツキ 720ml", "accepting": True},
+            {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g03321-EA001/",
+             "yen": 41000, "brand": "Re:vive Origin アカツキ 720ml", "accepting": True},
+        ],
+        "note": "収録中で最も高額な返礼品。3ポータルとも同じ EA001 で41,000円",
     },
 
     "adachi-noujo": {
         "city": "大阪府高槻市",
-        "portals": ["c", "r"],
-        "donation_yen": 12000,
-        # 2026/08/31 訂正：楽天の返礼品は「MIYOI Origin」で、KOYOI ではなかった。
-        # 最低額はチョイスの MIYOI Craft KIWI が12,000円（2種飲み比べは24,000円）。
-        # KOYOI と MIYOI は同じ蔵の別シリーズなので、返礼品名を実物に合わせる。
-        "rep_brand": "MIYOI Origin 720ml",
-        "urls": {
-            "r": "https://item.rakuten.co.jp/f272078-takatsuki/em001/",
-            # 表示している最低額と一致する返礼品へ送る（飲み比べセット
-            # /6496132 は24,000円で、12,000円と表示しながらそこへ飛ばすと食い違う）
-            "c": "https://www.furusato-tax.jp/product/detail/27207/6496131",
-        },
-        "note": "チョイスは MIYOI Craft KIWI（さぬきゴールド）12,000円、2種飲み比べ24,000円。楽天は MIYOI Origin 15,000円",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/27207/6496131",
+             "yen": 12000, "brand": "MIYOI Craft KIWI-さぬきゴールド-", "accepting": True},
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/27207/6496132",
+             "yen": 24000, "brand": "MIYOI Craft 2種飲み比べ", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f272078-takatsuki/aocu002/",
+             "yen": 12000, "brand": "MIYOI Craft KIWI-さぬきゴールド-", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f272078-takatsuki/em001/",
+             "yen": 14000, "brand": "MIYOI Origin 720ml", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f272078-takatsuki/aocu003/",
+             "yen": 24000, "brand": "MIYOI Craft 2種飲み比べ", "accepting": True},
+        ],
+        "note": "返礼品は KOYOI ではなく MIYOI シリーズ（同じ蔵の別シリーズ）。MIYOI Origin は楽天のみ",
     },
 
     "amanosato": {
         "city": "福岡県福智町",
-        # ふるなび・さとふるは確認できていないため載せない（上の haccoba と同じ理由）
-        "portals": ["c", "r"],
-        # 2026/08/31 訂正：チョイスの実額は12,500円だった（寒夜レモン500mlは13,000円）
-        "donation_yen": 12500,
-        "rep_brand": "在る宵 緒奏（しょそう）720ml",
-        "urls": {
-            "c": "https://www.furusato-tax.jp/product/detail/40610/6968022",
-            "r": "https://item.rakuten.co.jp/f406104-fukuchi/w37-02/",
-        },
-        "note": "チョイス・楽天で確認。チョイスには「在る宵 寒夜（レモン）500ml」13,000円もあり（/40610/6968024）。ふるなび・さとふるは今回確認できず",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/40610/6968022",
+             "yen": 12500, "brand": "在る宵 緒奏（しょそう）720ml", "accepting": True},
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/40610/6968024",
+             "yen": 13000, "brand": "在る宵 寒夜（レモン）500ml", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f406104-fukuchi/w37-02/",
+             "yen": 12500, "brand": "在る宵 緒奏（しょそう）720ml", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f406104-fukuchi/w37-06/",
+             "yen": 13000, "brand": "在る宵 寒夜（レモン）500ml", "accepting": True},
+            {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g40610-W37-02/",
+             "yen": 12500, "brand": "在る宵 緒奏（しょそう）720ml", "accepting": True},
+            {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g40610-W37-06/",
+             "yen": 13000, "brand": "在る宵 寒夜（レモン）500ml", "accepting": True},
+            # 食品セットだが、中身に緒奏180mlが含まれるもの
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f406104-fukuchi/w61-176/",
+             "yen": 8500, "brand": "漬け魚詰合せ＋緒奏 180ml", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f406104-fukuchi/w61-178/",
+             "yen": 8500, "brand": "干物詰合せ＋緒奏 180ml", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f406104-fukuchi/w61-14/",
+             "yen": 10500, "brand": "牛もつ鍋＋緒奏 180ml", "accepting": True},
+        ],
+        "note": "収録中で最も選択肢が多い。食品とのセット（緒奏180ml入り）は8,500円からで、最も少額から寄附できる",
+    },
+
+    "happy-taro": {
+        "city": "滋賀県長浜市",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/25203/6338700",
+             "yen": 17000, "brand": "ハッピーどぶろく 480ml×2本", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f252034-nagahama/11551-30047299/",
+             "yen": 17000, "brand": "ハッピーどぶろく 480ml×2本", "accepting": True},
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/25203/6593072",
+             "yen": 20000, "brand": "ハッピーどぶろく＋something happy オリエンタルホエー", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f252034-nagahama/aqar004/",
+             "yen": 20000, "brand": "ハッピーどぶろく＋something happy オリエンタルホエー", "accepting": True},
+            {"portal": "f", "url": "https://furunavi.jp/product_detail.aspx?pid=1583248",
+             "yen": 20000, "brand": "ハッピーどぶろく＋something happy オリエンタルホエー", "accepting": True},
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/25203/7136707",
+             "yen": 20000, "brand": "ハッピーどぶろく＋お楽しみどぶろく 2本セット", "accepting": True},
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/25203/6593073",
+             "yen": 82000, "brand": "お楽しみどぶろく 全4回定期便", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f252034-nagahama/aqar005/",
+             "yen": 82000, "brand": "お楽しみどぶろく 全4回定期便", "accepting": True},
+            {"portal": "f", "url": "https://furunavi.jp/product_detail.aspx?pid=1583249",
+             "yen": 82000, "brand": "お楽しみどぶろく 全4回定期便", "accepting": True},
+        ],
+        "note": "提供事業者は醸造所が入る「湖のスコーレ株式会社」。同じ事業者の米糀チーズケーキは酒を含まないため掲載していない",
+    },
+
+    "librom": {
+        "city": "福岡県福岡市",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/40130/6968026",
+             "yen": 20000, "brand": "熟成酒 まるごとジューシー博多あまおう 2本セット", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f401307-fukuoka/54110212/",
+             "yen": 20000, "brand": "熟成酒 まるごとジューシー博多あまおう 2本セット", "accepting": True},
+            {"portal": "f", "url": "https://furunavi.jp/product_detail.aspx?pid=1912006",
+             "yen": 20000, "brand": "熟成酒 まるごとジューシー博多あまおう 2本セット", "accepting": True},
+            # 太宰府市からの出品。梅は太宰府市産。現在は品切れ
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/40221/5918981",
+             "yen": 13000, "brand": "LIBROM UME 500ml", "accepting": False,
+             "city": "福岡県太宰府市"},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f402214-dazaifu/166-1195/",
+             "yen": 13000, "brand": "LIBROM UME 500ml", "accepting": False,
+             "city": "福岡県太宰府市"},
+        ],
+        "note": "あまおうの熟成酒はLIBROM醸造だが提供事業者名は別（Babi920）。太宰府市産の梅を使う「UME」は太宰府市からの出品で、現在は品切れ",
+    },
+
+    "lagoon": {
+        # 蔵は新潟市北区だが、返礼品は米の産地である燕市からの出品
+        "city": "新潟県燕市",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/15213/6875232",
+             "yen": 17000, "brand": "燕市産こしいぶき＋どぶろく セット", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f152137-tsubame/10003039/",
+             "yen": 17000, "brand": "燕市産こしいぶき＋どぶろく セット", "accepting": True},
+            {"portal": "f", "url": "https://furunavi.jp/product_detail.aspx?pid=1815901",
+             "yen": 17000, "brand": "燕市産こしいぶき＋どぶろく セット", "accepting": True},
+        ],
+        "note": "蔵の所在は新潟市北区だが、返礼品は米の産地である燕市から出ている。減農薬米こしいぶきをLAGOON BREWERYが醸したどぶろくと米2kgのセット。新潟市からの出品は確認できず",
     },
 
     "mingura": {
         "city": "岩手県大船渡市",
-        "portals": ["c", "r"],
-        "donation_yen": 10000,
-        "rep_brand": "どぶろく つぶつぶ／とろとろ 500ml",
-        "urls": {
-            "c": "https://www.furusato-tax.jp/product/detail/03203/7071273",
-            "r": "https://item.rakuten.co.jp/f032034-ofunato/cen001/",
-        },
-        "note": "2026/08/31 確認。事業者名は運営元の株式会社セントラル伸光。原料米はぎんおとめ。ふるなび・さとふる・ANAでは確認できず",
-    },
-
-    "hajimari": {
-        "city": "岩手県紫波郡紫波町",
-        "portals": ["c", "r", "f", "ANA"],
-        "donation_yen": 9000,
-        "rep_brand": "はじまりのお酒 720ml",
-        # 4ポータルとも同じ商品(DK002)で、2026/08/31時点はすべて在庫なし。
-        # 出品自体は生きているので隠さず、品切れと明示して出す。
-        "status": "現在4ポータルとも品切れ",
-        "urls": {
-            "c": "https://www.furusato-tax.jp/product/detail/03321/5893437",
-            "r": "https://item.rakuten.co.jp/f033219-shiwa/dk001/",
-            "f": "https://furunavi.jp/product_detail.aspx?pid=986919",
-            "ANA": "https://furusato.ana.co.jp/donation/g/g03321-DK002/",
-        },
-        "note": "返礼品の中身は紫波町の月の輪酒造店が醸した樽酒で、はじまりの学校の自社醸造施設（2026年5月完成）で醸したものではないと商品説明にある",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/03203/7071273",
+             "yen": 10000, "brand": "どぶろく つぶつぶ／とろとろ 500ml", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f032034-ofunato/cen001/",
+             "yen": 10000, "brand": "どぶろく つぶつぶ／とろとろ 500ml", "accepting": True},
+        ],
+        "note": "事業者名は運営元の株式会社セントラル伸光。原料米はぎんおとめ",
     },
 
     "nomu": {
         "city": "沖縄県沖縄市",
-        "portals": ["ANA"],
-        "donation_yen": 56000,
-        "rep_brand": "SHISHIKAMU 720ml×6本",
-        "urls": {
-            "ANA": "https://furusato.ana.co.jp/donation/g/g47211-BCES007/",
-        },
-        "note": "ANAのふるさと納税で確認。沖縄市にはノンアルの「OFFZAKE プレミアムパック」もあるが、酒ではないため掲載しない",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/47211/6999637",
+             "yen": 56000, "brand": "SHISHIKAMU 720ml×6本", "accepting": True},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f472115-okinawa/bces007/",
+             "yen": 56000, "brand": "SHISHIKAMU 720ml×6本", "accepting": True},
+            {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g47211-BCES007/",
+             "yen": 56000, "brand": "SHISHIKAMU 720ml×6本", "accepting": True},
+        ],
+        "note": "沖縄市にはノンアルの「OFFZAKE」シリーズ7種もあるが、酒ではないため掲載していない",
+    },
+
+    "hajimari": {
+        "city": "岩手県紫波郡紫波町",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/03321/5893437",
+             "yen": 9000, "brand": "はじまりのお酒 720ml", "accepting": False},
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f033219-shiwa/dk001/",
+             "yen": 9000, "brand": "はじまりのお酒 720ml", "accepting": False},
+            {"portal": "f", "url": "https://furunavi.jp/product_detail.aspx?pid=986919",
+             "yen": 9000, "brand": "はじまりのお酒 720ml", "accepting": False},
+            {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g03321-DK002/",
+             "yen": 9000, "brand": "はじまりのお酒 720ml", "accepting": False},
+        ],
+        "note": "4ポータルとも同じ商品(DK002)で、2026/08/31時点はすべて品切れ。中身は紫波町の月の輪酒造店が醸した樽酒で、はじまりの学校の自社醸造施設（2026年5月完成）で醸したものではないと商品説明にある",
     },
 }
 
@@ -127,6 +222,50 @@ PORTAL_NAMES = {
     "s": "さとふる",
     "ANA": "ANAのふるさと納税",
 }
+
+# 表示順
+PORTAL_ORDER = ["c", "r", "f", "s", "ANA"]
+
+
+def items_of(slug):
+    return (FURUSATO.get(slug) or {}).get("items", [])
+
+
+def portals_of(slug, accepting_only=True):
+    """その蔵で寄附できるポータルのコード一覧（表示順）。"""
+    codes = {i["portal"] for i in items_of(slug)
+             if i.get("accepting", True) or not accepting_only}
+    return [p for p in PORTAL_ORDER if p in codes]
+
+
+def best_url(slug, portal):
+    """そのポータルで最も少額の、申込可能な返礼品URL。無ければ品切れ品でも返す。"""
+    live = [i for i in items_of(slug)
+            if i["portal"] == portal and i.get("accepting", True)]
+    pool = live or [i for i in items_of(slug) if i["portal"] == portal]
+    if not pool:
+        return None
+    return sorted(pool, key=lambda i: i.get("yen") or 10 ** 9)[0]["url"]
+
+
+def price_range(slug):
+    """寄附額の下限・上限。申込可能なものを優先し、全て品切れなら品切れ品の額を返す
+    （額が分からないと「戻ってきたら申し込むか」の判断ができないため）。"""
+    live = sorted({i["yen"] for i in items_of(slug)
+                   if i.get("accepting", True) and i.get("yen")})
+    if live:
+        return (live[0], live[-1])
+    allv = sorted({i["yen"] for i in items_of(slug) if i.get("yen")})
+    return (allv[0], allv[-1]) if allv else None
+
+
+def is_accepting(slug):
+    return any(i.get("accepting", True) for i in items_of(slug))
+
+
+def item_count(slug, accepting_only=True):
+    return len([i for i in items_of(slug)
+                if i.get("accepting", True) or not accepting_only])
 
 
 def for_brewery(slug):
