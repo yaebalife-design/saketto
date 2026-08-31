@@ -19,7 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 from gen_axes_pages import CSS as BASE_CSS  # 世界観CSSを流用
-from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL
+from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
 from breweries_brands import BRANDS          # おすすめ記事：スペックを一次ソースDBから直接引く
 from breweries_master import by_slug
 from moshimo_link import resolve_rakuten, resolve_amazon
@@ -284,7 +284,7 @@ def divider():
 
 
 def footer():
-    return """
+    return f"""
   <footer>
     <div class="colophon">
       <div class="colophon__brand">
@@ -296,7 +296,7 @@ def footer():
         <a href="/privacy.html">プライバシーポリシー</a><span class="colophon__sep">／</span>
         <a href="/disclaimer.html">免責事項・広告表記</a><span class="colophon__sep">／</span>
         20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
-        PR ／ 当サイトはアフィリエイト広告（Amazonアソシエイト含む）を掲載しています<span class="colophon__sep">／</span>
+        {pr_notice()}<span class="colophon__sep">／</span>
         © 2026 saketto.
       </div>
     </div>

@@ -12,7 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 from gen_axes_pages import CSS
-from site_common import head_extra, seo_head, breadcrumb, SITE_URL
+from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -82,12 +82,16 @@ FOOTER = """
         <a href="/privacy.html">プライバシーポリシー</a><span class="colophon__sep">／</span>
         <a href="/disclaimer.html">免責事項・広告表記</a><span class="colophon__sep">／</span>
         20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
-        PR ／ 当サイトはアフィリエイト広告（Amazonアソシエイト含む）を掲載しています<span class="colophon__sep">／</span>
+        {pr_notice()}<span class="colophon__sep">／</span>
         © 2026 saketto.
       </div>
     </div>
   </footer>
 """
+
+# FOOTER は素の文字列定数なので、埋め込みを明示的に評価する
+# （f-string にすると他の {} と衝突しうるため置換で行う）
+FOOTER = FOOTER.replace("{pr_notice()}", pr_notice())
 
 
 def page(title, label, description, body, path="/"):

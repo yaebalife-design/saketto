@@ -95,3 +95,11 @@ def resolve_amazon(slug, idx, name):
     if a.get("product_url"):
         return amazon_product(a["product_url"])
     return amazon_search(a.get("query") or name)
+
+
+# ── アフィリエイトの有効/無効 ─────────────────────────────
+# ここが唯一の定義。gen_sample_v2 が再エクスポートし、site_common の
+# 広告表記もここを見る（表記だけ実態とズレるのを防ぐため）。
+RAKUTEN_ENABLED = True    # 2026/05/31 楽天 saketto提携済 → ON
+AMAZON_ENABLED = False    # 2026/06/14 もしも媒体作り直しで旧Amazon ID無効 → 新ID受領まで一時OFF
+AFFILIATE_ENABLED = RAKUTEN_ENABLED or AMAZON_ENABLED

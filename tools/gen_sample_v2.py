@@ -25,18 +25,17 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug
 from moshimo_link import rakuten_search, amazon_search
-from site_common import head_extra, seo_head, breadcrumb, SITE_URL
+from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
 from related import next_section_html
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT = REPO_ROOT / "brand" / "haccoba-0.html"
 
-# アフィリエイト（もしも経由）の表示制御＝楽天/Amazon個別。
-# saketto媒体で提携が取れたものを True にする（moshimo_link.py のIDもsaketto専用に揃える）。
-RAKUTEN_ENABLED = True    # 2026/05/31 楽天 saketto提携済 → ON
-AMAZON_ENABLED = False    # 2026/06/14 もしも媒体作り直しで旧Amazon ID無効 → 新ID受領まで一時OFF
-# 後方互換（どちらか有効ならアフィリ表示扱い）
-AFFILIATE_ENABLED = RAKUTEN_ENABLED or AMAZON_ENABLED
+# アフィリエイト（もしも経由）の表示制御。定義は moshimo_link.py に一本化し、
+# ここは後方互換のための再エクスポート（多くの gen_*.py がここから import している）。
+from moshimo_link import (  # noqa: E402
+    RAKUTEN_ENABLED, AMAZON_ENABLED, AFFILIATE_ENABLED,
+)
 
 
 # ────────────── サンプル銘柄データ (はなうたホップス) ──────────────
@@ -1136,7 +1135,7 @@ def main():
         <a href="/disclaimer.html">免責事項・広告表記</a><span class="colophon__sep">／</span>
         価格・度数は公式サイトでご確認ください<span class="colophon__sep">／</span>
         20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
-        PR ／ 当サイトはアフィリエイト広告（Amazonアソシエイト含む）を掲載しています<span class="colophon__sep">／</span>
+        {pr_notice()}<span class="colophon__sep">／</span>
         © 2026 saketto.
       </div>
     </div>

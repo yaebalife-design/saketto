@@ -124,6 +124,25 @@ SEARCH_CSS = """<style>
 </style>"""
 
 
+def pr_notice():
+    """フッターの広告表記。実際に貼っているリンクから文言を決める。
+
+    全ページのフッターが「アフィリエイト広告（Amazonアソシエイト含む）を
+    掲載しています」と書いていたが、Amazonリンクは1本も無かった
+    （旧IDが無効になって AMAZON_ENABLED=False のまま）。
+    表記を手で書くと実態と必ずズレるので、フラグから組み立てる。
+    Amazonの提携が戻って AMAZON_ENABLED=True にすれば、
+    Amazonアソシエイトの必須表記も自動で復活する。
+    """
+    from moshimo_link import RAKUTEN_ENABLED, AMAZON_ENABLED
+    if AMAZON_ENABLED:
+        return ("PR ／ 当サイトはアフィリエイト広告（Amazonアソシエイト含む）"
+                "を掲載しています")
+    if RAKUTEN_ENABLED:
+        return "PR ／ 当サイトはアフィリエイト広告を掲載しています"
+    return "PR ／ 当サイトは広告を掲載することがあります"
+
+
 def search_tag():
     """サイト内検索（全ページ共通）。インデックスはルート絶対パスで引くため階層非依存。"""
     return '<script src="/assets/search.v2.js" defer></script>'

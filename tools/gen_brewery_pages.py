@@ -22,7 +22,7 @@ from furusato_data import FURUSATO
 from tasting import TASTING
 from brewery_about import about_of, founder_of
 from gen_axes_pages import categorize_ingredient, region_anchor
-from site_common import head_extra, seo_head, breadcrumb, SITE_URL
+from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
 from moshimo_link import resolve_rakuten, resolve_amazon
 from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
 
@@ -954,7 +954,7 @@ def render(brewery, index, prev_brewery, next_brewery):
         <a href="/disclaimer.html">免責事項・広告表記</a><span class="colophon__sep">／</span>
         価格・度数は公式サイトでご確認ください<span class="colophon__sep">／</span>
         20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
-        PR ／ 当サイトはアフィリエイト広告（Amazonアソシエイト含む）を掲載しています<span class="colophon__sep">／</span>
+        {pr_notice()}<span class="colophon__sep">／</span>
         © 2026 saketto.
       </div>
     </div>

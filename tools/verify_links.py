@@ -65,15 +65,34 @@ def main():
                 broken += 1
                 problems.append((os.path.relpath(path, ROOT), raw))
 
+    # index.html は手書きで生成対象外のため、共通文言の変更から取り残されやすい。
+    # フッターの広告表記がページ間でバラつくと景表法の観点でも良くないので検知する。
+    notices = set()
+    unresolved = []
+    for path in html_files:
+        html = open(path, encoding="utf-8").read()
+        for m in re.findall(r"PR ／ 当サイトは[^<]*", html):
+            notices.add(m)
+        if "{pr_notice()}" in html:
+            unresolved.append(os.path.relpath(path, ROOT))
+
     print(f"HTMLファイル       : {len(html_files)}")
     print(f"内部リンク         : {total}")
     print(f"リンク切れ         : {broken}")
     print(f".html付きの内部リンク: {dot_html}  ← 308リダイレクトになるので0が正")
+    print(f"広告表記の種類      : {len(notices)}  ← 全ページ同一なので1が正")
+    if len(notices) > 1:
+        for n in sorted(notices):
+            print(f"   ・{n}")
+    if unresolved:
+        print(f"未評価の埋め込み    : {len(unresolved)} ← f-string化されていないテンプレートがある")
+        for f in unresolved[:5]:
+            print(f"   × {f}")
     for f, r in problems[:40]:
         print(f"   × {f} → {r}")
     if len(problems) > 40:
         print(f"   … ほか {len(problems)-40} 件")
-    return 1 if (broken or dot_html) else 0
+    return 1 if (broken or dot_html or unresolved or len(notices) > 1) else 0
 
 
 if __name__ == "__main__":

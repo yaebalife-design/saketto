@@ -15,7 +15,7 @@ from breweries_master import BREWERIES, REGIONS, by_slug
 from breweries_brands import BRANDS
 from awards import AWARDS
 from furusato_data import FURUSATO, PORTAL_NAMES
-from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL
+from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
@@ -510,7 +510,7 @@ def guide_block(text):
 
 
 def footer():
-    return """
+    return f"""
   <footer>
     <div class="colophon">
       <div class="colophon__brand">
@@ -522,7 +522,7 @@ def footer():
         <a href="/privacy.html">プライバシーポリシー</a><span class="colophon__sep">／</span>
         <a href="/disclaimer.html">免責事項・広告表記</a><span class="colophon__sep">／</span>
         20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
-        PR ／ 当サイトはアフィリエイト広告（Amazonアソシエイト含む）を掲載しています<span class="colophon__sep">／</span>
+        {pr_notice()}<span class="colophon__sep">／</span>
         © 2026 saketto.
       </div>
     </div>
