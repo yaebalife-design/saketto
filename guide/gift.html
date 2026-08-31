@@ -480,6 +480,33 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 </style>
 <script src="/assets/search.v1.js" defer></script>
+<style>
+.toc { max-width:760px; margin:0 auto 2.5rem; padding:1.4rem 1.6rem;
+  border:1px solid var(--line); background:var(--paper); }
+.toc__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-mute); letter-spacing:.12em; margin-bottom:.7rem; }
+.toc ol { list-style:none; counter-reset:toc; display:grid; gap:.35rem; }
+@media (min-width:700px){ .toc ol { grid-template-columns:1fr 1fr; column-gap:1.6rem; } }
+.toc li { counter-increment:toc; }
+.toc a { display:block; padding:.3rem 0; text-decoration:none; color:var(--ink);
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.9rem; line-height:1.7; }
+.toc a::before { content:counter(toc,decimal-leading-zero); margin-right:.6rem;
+  font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); font-size:.85rem; }
+.toc a:hover { color:var(--accent); }
+.article .section[id] { scroll-margin-top:1.5rem; }
+.readnext { max-width:760px; margin:0 auto; padding:0 0 3rem; }
+.readnext__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-mute); letter-spacing:.12em; margin-bottom:.8rem; }
+.readnext__grid { display:grid; gap:.75rem; }
+@media (min-width:700px){ .readnext__grid { grid-template-columns:repeat(3,1fr); } }
+.readnext__card { display:block; padding:1rem 1.1rem; border:1px solid var(--line);
+  background:var(--bg); text-decoration:none; color:var(--ink); transition:background .25s,border-color .25s; }
+.readnext__card:hover { background:var(--paper); border-color:var(--accent); }
+.readnext__k { display:block; font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.72rem; color:var(--accent); letter-spacing:.1em; }
+.readnext__t { display:block; font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.02rem; margin-top:.2rem; }
+@media (max-width:640px){ .toc, .readnext { padding-left:1.25rem; padding-right:1.25rem; } }
+</style>
 </head>
 <body>
 <main>
@@ -512,9 +539,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
+  <nav class="toc" aria-label="目次">
+    <div class="toc__label">— 目次</div>
+    <ol><li><a href="#s01">贈りものに</a></li><li><a href="#s02">シーンで選ぶ</a></li><li><a href="#s03">予算で選ぶ</a></li><li><a href="#s04">贈るときに</a></li><li><a href="#s05">渡し方と、添えることば</a></li><li><a href="#s06">避けたほうがいいこと</a></li><li><a href="#s07">見た目という贈りもの</a></li><li><a href="#s08">ふるさと納税という選択肢</a></li><li><a href="#s09">よくある質問</a></li></ol>
+  </nav>
+
   <div class="article">
 
-    <section class="section">
+    <section class="section" id="s01">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
       <span class="section-meta__label">GIFT GUIDE / 贈りものに</span>
@@ -538,7 +570,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s02">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
       <span class="section-meta__label">BY SCENE / シーンで選ぶ</span>
@@ -757,7 +789,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s03">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
       <span class="section-meta__label">BY BUDGET / 予算で選ぶ</span>
@@ -796,7 +828,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s04">
     <div class="section-meta">
       <span class="section-meta__num">No. 04</span>
       <span class="section-meta__label">BEFORE YOU SEND / 贈るときに</span>
@@ -826,7 +858,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s05">
     <div class="section-meta">
       <span class="section-meta__num">No. 05</span>
       <span class="section-meta__label">HOW TO PRESENT / 渡し方と、添えることば</span>
@@ -849,7 +881,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s06">
     <div class="section-meta">
       <span class="section-meta__num">No. 06</span>
       <span class="section-meta__label">CAUTION / 避けたほうがいいこと</span>
@@ -873,7 +905,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s07">
     <div class="section-meta">
       <span class="section-meta__num">No. 07</span>
       <span class="section-meta__label">PACKAGING / 見た目という贈りもの</span>
@@ -902,7 +934,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s08">
     <div class="section-meta">
       <span class="section-meta__num">No. 08</span>
       <span class="section-meta__label">FURUSATO / ふるさと納税という選択肢</span>
@@ -927,7 +959,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s09">
     <div class="section-meta">
       <span class="section-meta__num">No. 09</span>
       <span class="section-meta__label">FAQ / よくある質問</span>
@@ -958,6 +990,12 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </section>
 
   </div>
+
+
+  <section class="readnext" aria-label="次に読む">
+    <div class="readnext__label">— 次に読む</div>
+    <div class="readnext__grid"><a class="readnext__card" href="osusume"><span class="readnext__k">READ NEXT</span><span class="readnext__t">おすすめ12選</span></a><a class="readnext__card" href="doko-de-kaeru"><span class="readnext__k">READ NEXT</span><span class="readnext__t">どこで買える？</span></a><a class="readnext__card" href="nomikata"><span class="readnext__k">READ NEXT</span><span class="readnext__t">飲み方・楽しみ方</span></a></div>
+  </section>
 
   <footer>
     <div class="colophon">

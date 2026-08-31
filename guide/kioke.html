@@ -480,6 +480,33 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 </style>
 <script src="/assets/search.v1.js" defer></script>
+<style>
+.toc { max-width:760px; margin:0 auto 2.5rem; padding:1.4rem 1.6rem;
+  border:1px solid var(--line); background:var(--paper); }
+.toc__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-mute); letter-spacing:.12em; margin-bottom:.7rem; }
+.toc ol { list-style:none; counter-reset:toc; display:grid; gap:.35rem; }
+@media (min-width:700px){ .toc ol { grid-template-columns:1fr 1fr; column-gap:1.6rem; } }
+.toc li { counter-increment:toc; }
+.toc a { display:block; padding:.3rem 0; text-decoration:none; color:var(--ink);
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.9rem; line-height:1.7; }
+.toc a::before { content:counter(toc,decimal-leading-zero); margin-right:.6rem;
+  font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); font-size:.85rem; }
+.toc a:hover { color:var(--accent); }
+.article .section[id] { scroll-margin-top:1.5rem; }
+.readnext { max-width:760px; margin:0 auto; padding:0 0 3rem; }
+.readnext__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-mute); letter-spacing:.12em; margin-bottom:.8rem; }
+.readnext__grid { display:grid; gap:.75rem; }
+@media (min-width:700px){ .readnext__grid { grid-template-columns:repeat(3,1fr); } }
+.readnext__card { display:block; padding:1rem 1.1rem; border:1px solid var(--line);
+  background:var(--bg); text-decoration:none; color:var(--ink); transition:background .25s,border-color .25s; }
+.readnext__card:hover { background:var(--paper); border-color:var(--accent); }
+.readnext__k { display:block; font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.72rem; color:var(--accent); letter-spacing:.1em; }
+.readnext__t { display:block; font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.02rem; margin-top:.2rem; }
+@media (max-width:640px){ .toc, .readnext { padding-left:1.25rem; padding-right:1.25rem; } }
+</style>
 </head>
 <body>
 <main>
@@ -512,9 +539,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
+  <nav class="toc" aria-label="目次">
+    <div class="toc__label">— 目次</div>
+    <ol><li><a href="#s01">木桶仕込みとは</a></li><li><a href="#s02">なぜ木桶は消えたか</a></li><li><a href="#s03">木桶のつくり</a></li><li><a href="#s04">木桶が宿す力</a></li><li><a href="#s05">木桶を、未来へ</a></li><li><a href="#s06">百年の器</a></li><li><a href="#s07">木という素材</a></li><li><a href="#s08">醤油と味噌の木桶</a></li><li><a href="#s09">木桶を選んだ蔵</a></li><li><a href="#s10">木桶の酒を味わう</a></li><li><a href="#s11">桶を守る仕事</a></li><li><a href="#s12">桶だけではない、器の話</a></li><li><a href="#s13">よくある質問</a></li><li><a href="#s14">もっと味わう</a></li></ol>
+  </nav>
+
   <div class="article">
 
-    <section class="section">
+    <section class="section" id="s01">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
       <span class="section-meta__label">WHAT IS / 木桶仕込みとは</span>
@@ -535,7 +567,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s02">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
       <span class="section-meta__label">HISTORY / なぜ木桶は消えたか</span>
@@ -558,7 +590,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s03">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
       <span class="section-meta__label">HOW MADE / 木桶のつくり</span>
@@ -580,7 +612,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s04">
     <div class="section-meta">
       <span class="section-meta__num">No. 04</span>
       <span class="section-meta__label">WHY / 木桶が宿す力</span>
@@ -612,7 +644,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s05">
     <div class="section-meta">
       <span class="section-meta__num">No. 05</span>
       <span class="section-meta__label">REVIVAL / 木桶を、未来へ</span>
@@ -634,7 +666,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s06">
     <div class="section-meta">
       <span class="section-meta__num">No. 06</span>
       <span class="section-meta__label">SUSTAINABILITY / 百年の器</span>
@@ -655,7 +687,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s07">
     <div class="section-meta">
       <span class="section-meta__num">No. 07</span>
       <span class="section-meta__label">MATERIAL / 木という素材</span>
@@ -678,7 +710,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s08">
     <div class="section-meta">
       <span class="section-meta__num">No. 08</span>
       <span class="section-meta__label">BEYOND SAKE / 醤油と味噌の木桶</span>
@@ -701,7 +733,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s09">
     <div class="section-meta">
       <span class="section-meta__num">No. 09</span>
       <span class="section-meta__label">IN CRAFT SAKE / 木桶を選んだ蔵</span>
@@ -729,7 +761,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s10">
     <div class="section-meta">
       <span class="section-meta__num">No. 10</span>
       <span class="section-meta__label">HOW TO TASTE / 木桶の酒を味わう</span>
@@ -752,7 +784,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s11">
     <div class="section-meta">
       <span class="section-meta__num">No. 11</span>
       <span class="section-meta__label">CARE / 桶を守る仕事</span>
@@ -778,7 +810,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s12">
     <div class="section-meta">
       <span class="section-meta__num">No. 12</span>
       <span class="section-meta__label">VESSELS / 桶だけではない、器の話</span>
@@ -801,7 +833,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s13">
     <div class="section-meta">
       <span class="section-meta__num">No. 13</span>
       <span class="section-meta__label">FAQ / よくある質問</span>
@@ -825,7 +857,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s14">
     <div class="section-meta">
       <span class="section-meta__num">No. 14</span>
       <span class="section-meta__label">READ ON / もっと味わう</span>
@@ -851,6 +883,12 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </section>
 
   </div>
+
+
+  <section class="readnext" aria-label="次に読む">
+    <div class="readnext__label">— 次に読む</div>
+    <div class="readnext__grid"><a class="readnext__card" href="zenkoji"><span class="readnext__k">READ NEXT</span><span class="readnext__t">全麹酒とは</span></a><a class="readnext__card" href="hanamoto"><span class="readnext__k">READ NEXT</span><span class="readnext__t">花酛とは</span></a><a class="readnext__card" href="doburoku"><span class="readnext__k">READ NEXT</span><span class="readnext__t">どぶろくとは</span></a></div>
+  </section>
 
   <footer>
     <div class="colophon">

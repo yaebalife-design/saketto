@@ -480,6 +480,33 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 }
 </style>
 <script src="/assets/search.v1.js" defer></script>
+<style>
+.toc { max-width:760px; margin:0 auto 2.5rem; padding:1.4rem 1.6rem;
+  border:1px solid var(--line); background:var(--paper); }
+.toc__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-mute); letter-spacing:.12em; margin-bottom:.7rem; }
+.toc ol { list-style:none; counter-reset:toc; display:grid; gap:.35rem; }
+@media (min-width:700px){ .toc ol { grid-template-columns:1fr 1fr; column-gap:1.6rem; } }
+.toc li { counter-increment:toc; }
+.toc a { display:block; padding:.3rem 0; text-decoration:none; color:var(--ink);
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.9rem; line-height:1.7; }
+.toc a::before { content:counter(toc,decimal-leading-zero); margin-right:.6rem;
+  font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); font-size:.85rem; }
+.toc a:hover { color:var(--accent); }
+.article .section[id] { scroll-margin-top:1.5rem; }
+.readnext { max-width:760px; margin:0 auto; padding:0 0 3rem; }
+.readnext__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.8rem; color:var(--ink-mute); letter-spacing:.12em; margin-bottom:.8rem; }
+.readnext__grid { display:grid; gap:.75rem; }
+@media (min-width:700px){ .readnext__grid { grid-template-columns:repeat(3,1fr); } }
+.readnext__card { display:block; padding:1rem 1.1rem; border:1px solid var(--line);
+  background:var(--bg); text-decoration:none; color:var(--ink); transition:background .25s,border-color .25s; }
+.readnext__card:hover { background:var(--paper); border-color:var(--accent); }
+.readnext__k { display:block; font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.72rem; color:var(--accent); letter-spacing:.1em; }
+.readnext__t { display:block; font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.02rem; margin-top:.2rem; }
+@media (max-width:640px){ .toc, .readnext { padding-left:1.25rem; padding-right:1.25rem; } }
+</style>
 </head>
 <body>
 <main>
@@ -512,9 +539,14 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
+  <nav class="toc" aria-label="目次">
+    <div class="toc__label">— 目次</div>
+    <ol><li><a href="#s01">選び方の地図</a></li><li><a href="#s02">12本</a></li><li><a href="#s03">スペック比較</a></li><li><a href="#s04">選び方</a></li><li><a href="#s05">はじめの一本の選び方</a></li><li><a href="#s06">12本の、その先へ</a></li><li><a href="#s07">外から評価された一本</a></li><li><a href="#s08">場面で使い分ける</a></li><li><a href="#s09">届いてからのこと</a></li><li><a href="#s10">よくある質問</a></li></ol>
+  </nav>
+
   <div class="article">
 
-    <section class="section">
+    <section class="section" id="s01">
     <div class="section-meta">
       <span class="section-meta__num">No. 01</span>
       <span class="section-meta__label">EDITORS' PICKS / 選び方の地図</span>
@@ -538,7 +570,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s02">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
       <span class="section-meta__label">THE 12 / 12本</span>
@@ -759,7 +791,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s03">
     <div class="section-meta">
       <span class="section-meta__num">No. 03</span>
       <span class="section-meta__label">COMPARISON / スペック比較</span>
@@ -798,7 +830,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s04">
     <div class="section-meta">
       <span class="section-meta__num">No. 04</span>
       <span class="section-meta__label">HOW TO CHOOSE / 選び方</span>
@@ -829,7 +861,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s05">
     <div class="section-meta">
       <span class="section-meta__num">No. 05</span>
       <span class="section-meta__label">FIRST BOTTLE / はじめの一本の選び方</span>
@@ -856,7 +888,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s06">
     <div class="section-meta">
       <span class="section-meta__num">No. 06</span>
       <span class="section-meta__label">BEYOND THE 12 / 12本の、その先へ</span>
@@ -883,7 +915,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s07">
     <div class="section-meta">
       <span class="section-meta__num">No. 07</span>
       <span class="section-meta__label">AWARDED / 外から評価された一本</span>
@@ -913,7 +945,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s08">
     <div class="section-meta">
       <span class="section-meta__num">No. 08</span>
       <span class="section-meta__label">BY SCENE / 場面で使い分ける</span>
@@ -937,7 +969,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s09">
     <div class="section-meta">
       <span class="section-meta__num">No. 09</span>
       <span class="section-meta__label">KEEP / 届いてからのこと</span>
@@ -965,7 +997,7 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     <div class="rule"></div>
   </div>
 
-    <section class="section">
+    <section class="section" id="s10">
     <div class="section-meta">
       <span class="section-meta__num">No. 10</span>
       <span class="section-meta__label">FAQ / よくある質問</span>
@@ -996,6 +1028,12 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
     </section>
 
   </div>
+
+
+  <section class="readnext" aria-label="次に読む">
+    <div class="readnext__label">— 次に読む</div>
+    <div class="readnext__grid"><a class="readnext__card" href="doko-de-kaeru"><span class="readnext__k">READ NEXT</span><span class="readnext__t">どこで買える？</span></a><a class="readnext__card" href="gift"><span class="readnext__k">READ NEXT</span><span class="readnext__t">ギフトに贈る</span></a><a class="readnext__card" href="nomikata"><span class="readnext__k">READ NEXT</span><span class="readnext__t">飲み方・楽しみ方</span></a></div>
+  </section>
 
   <footer>
     <div class="colophon">
