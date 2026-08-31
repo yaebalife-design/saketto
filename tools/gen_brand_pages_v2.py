@@ -407,6 +407,37 @@ def build_html(brand, detail, brewery, idx):
     </div>
   </section>"""
 
+    # ── 出典（一次ソース主義を画面上でも検証できるようにする）──
+    # about.html で「一次ソース主義」を掲げ、テイスティング欄も「公式記述に基づく」と
+    # 書いているのに、読者はその出典を1件も確認できない状態だった。
+    _src = []
+    _seen_url = set()
+
+    def _add_src(url, label):
+        if url and url not in _seen_url:
+            _seen_url.add(url)
+            host = url.split("//")[-1].split("/")[0]
+            _src.append(f'<li><a href="{url}" target="_blank" rel="noopener">{label}（{host}）→</a></li>')
+
+    if official_url_ := brewery.get("official_url", ""):
+        _add_src(official_url_, f'{brewery["name"]} 公式サイト')
+    _add_src(d.get("story_source_url"), "この銘柄の背景（記事・公式リリース）")
+    _add_src(d.get("tasting_source_url"), clean_note(d.get("tasting_source_name")) or "テイスティング記述の出典")
+    for _aw in (d.get("awards") or []):
+        if isinstance(_aw, dict):
+            _add_src(_aw.get("source"), _aw.get("title") or "受賞の公式発表")
+
+    sources_section = ""
+    if _src:
+        sources_section = f"""
+  <section class="section">
+    <div class="sources">
+      <h4>SOURCES ／ 出典</h4>
+      <ul>{"".join(_src)}</ul>
+      <p class="sources__note">掲載内容は上記の一次ソースで確認しています。価格・在庫・度数はロットや時期で変わるため、購入時は各販売ページで最新の情報をご確認ください。</p>
+    </div>
+  </section>"""
+
     # ── 公式サイト（最下部・控えめ）──
     official_url = brewery.get("official_url", "")
     official_foot = ""
@@ -518,6 +549,7 @@ def build_html(brand, detail, brewery, idx):
 {hero}
 {spec_board}
 {body_sections}
+{sources_section}
 {official_foot}
   <footer>
     <div class="colophon">

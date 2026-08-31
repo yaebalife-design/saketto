@@ -669,6 +669,7 @@ main { position:relative; z-index:1; }
   margin-bottom:1rem; text-transform:uppercase;
 }
 .sources ul { list-style:none; display:flex; flex-direction:column; gap:.55rem; }
+.sources__note { font-size:.8rem; color:var(--ink-mute); line-height:1.9; margin-top:1rem; }
 .sources a {
   font-size:.92rem; color:var(--ink); text-decoration:none; font-weight:500;
   border-bottom:1px dotted var(--line); padding-bottom:.15rem;
