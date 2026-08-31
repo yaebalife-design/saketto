@@ -590,6 +590,9 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
 .crumbs [aria-current="page"] { color:var(--ink); }
 @media (max-width:640px){ .crumbs { padding:.8rem 1.25rem 0; font-size:.75rem; } }
 
+/* 現在いる軸をナビで示す */
+.masthead-nav a[aria-current="page"] { color:var(--accent); border-bottom:1px solid var(--accent); }
+
 /* ── 全ページ共通のマストヘッド検索 ── */
 .sk-navsearch { position:relative; margin-left:auto; }
 .sk-navsearch__label { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
@@ -623,7 +626,7 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
   .sk-navsearch__results { width:100%; }
 }
 </style>
-<script src="/assets/search.v1.js" defer></script>
+<script src="/assets/search.v2.js" defer></script>
 </head>
 <body>
 <main>

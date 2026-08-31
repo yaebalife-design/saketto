@@ -86,6 +86,9 @@ SEARCH_CSS = """<style>
 .crumbs [aria-current="page"] { color:var(--ink); }
 @media (max-width:640px){ .crumbs { padding:.8rem 1.25rem 0; font-size:.75rem; } }
 
+/* 現在いる軸をナビで示す */
+.masthead-nav a[aria-current="page"] { color:var(--accent); border-bottom:1px solid var(--accent); }
+
 /* ── 全ページ共通のマストヘッド検索 ── */
 .sk-navsearch { position:relative; margin-left:auto; }
 .sk-navsearch__label { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
@@ -123,7 +126,7 @@ SEARCH_CSS = """<style>
 
 def search_tag():
     """サイト内検索（全ページ共通）。インデックスはルート絶対パスで引くため階層非依存。"""
-    return '<script src="/assets/search.v1.js" defer></script>'
+    return '<script src="/assets/search.v2.js" defer></script>'
 
 
 def head_extra(prefix="../"):

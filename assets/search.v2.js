@@ -88,7 +88,34 @@
     });
   }
 
+  function markCurrentNav() {
+    // 現在いる軸をナビ上で示す（aria-current はサイト全体で未使用だった）。
+    // 例: /brand/... と /brewery/... は「蔵」、/guide/... は「読みもの」。
+    var path = location.pathname;
+    var map = [
+      ['/subingredients', '../subingredients/'],
+      ['/genre', '../genre/'],
+      ['/region', '../region/'],
+      ['/guide', '../guide/'],
+      ['/brewery', '../brewery/'],
+      ['/brand', '../brewery/'],
+    ];
+    var hit = null;
+    for (var i = 0; i < map.length; i++) {
+      if (path.indexOf(map[i][0]) === 0) { hit = map[i][1]; break; }
+    }
+    if (!hit) return;
+    var links = document.querySelectorAll('.masthead-nav a');
+    for (var j = 0; j < links.length; j++) {
+      var href = links[j].getAttribute('href') || '';
+      if (href === hit || href === hit.replace('../', '/')) {
+        links[j].setAttribute('aria-current', 'page');
+      }
+    }
+  }
+
   function init() {
+    markCurrentNav();
     // トップページの大きい検索窓
     wire(document.getElementById('skSearch'), document.getElementById('skSearchResults'));
 
