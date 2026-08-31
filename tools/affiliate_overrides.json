@@ -1922,5 +1922,96 @@
       "query": null
     },
     "_note": "2026/08/31追加。楽天出品の実在確認まで非表示"
+  },
+  "konohanano:9": {
+    "name": "Daiginjo Method",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示"
+  },
+  "konohanano:10": {
+    "name": "ジャスミン 濁酒ver.",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示"
+  },
+  "konohanano:11": {
+    "name": "ジャスミン 澄酒ver.",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示"
+  },
+  "konohanano:12": {
+    "name": "LAB02「出汁パンチ」",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示"
+  },
+  "konohanano:13": {
+    "name": "栗熟成酒「ヘーゼルナッツショコラ」〜bitter taste〜",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示"
+  },
+  "konohanano:14": {
+    "name": "ミードブロク",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示"
+  },
+  "konohanano:15": {
+    "name": "passionfruit sake [bartender waka collaboration]",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示"
   }
 }
