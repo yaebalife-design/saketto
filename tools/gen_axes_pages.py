@@ -160,6 +160,24 @@ main { position:relative; z-index:1; }
 .spec-pill.accent { color:var(--accent); background:transparent; border:1px solid var(--accent); }
 .spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
 
+
+.brewery-cell { display:flex; flex-direction:column; border-bottom:1px solid var(--line); }
+@media (min-width:600px) {
+  .brewery-cell { border-right:1px solid var(--line); }
+  .brewery-cell:nth-child(2n) { border-right:none; }
+}
+.brewery-cell .brewery-card { border-bottom:none; border-right:none; flex:1; }
+.card-picks { display:flex; flex-wrap:wrap; align-items:baseline; gap:.4rem .55rem;
+  padding:0 1.5rem 1.1rem; }
+.card-picks__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.72rem; color:var(--ink-mute); letter-spacing:.08em; }
+.card-picks__item { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.82rem;
+  color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);
+  padding-bottom:1px; }
+.card-picks__item:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.card-picks__more { font-size:.78rem; color:var(--ink-mute); }
+@media (max-width:640px){ .card-picks { padding:0 1.25rem 1rem; } }
+
 .brewery-grid {
   display:grid; grid-template-columns:1fr; gap:0;
   border-top:1px solid var(--line);
@@ -570,17 +588,80 @@ JUMP_NAV_CSS = """
 """
 
 
-def render_brewery_card(brewery, idx):
+def render_brewery_card(brewery, idx, picks=None):
+    """蔵カード。picks=[(銘柄名, パス), ...] を渡すと該当銘柄へのリンクを併記する。
+
+    ジャンル軸・地域軸は蔵カードだけを並べていたため、銘柄ページへ一切
+    到達できなかった（副原料軸のみ142件リンク）。「なぜこの蔵がこの分類なのか」
+    も分からないので、該当する銘柄名を実リンクで見せる。
+    カード全体が <a> なので、銘柄リンクはカードの外側に別ブロックで置く。
+    """
+    picks_html = ""
+    if picks:
+        links = "".join(
+            f'<a class="card-picks__item" href="{path}">{name}</a>' for name, path in picks[:4])
+        more = ('<span class="card-picks__more">ほか</span>' if len(picks) > 4 else "")
+        picks_html = f'<div class="card-picks"><span class="card-picks__label">該当銘柄</span>{links}{more}</div>'
     return f"""
+      <div class="brewery-cell">
       <a class="brewery-card" href="../brewery/{brewery['slug']}.html">
         <div class="brewery-card__num">No. {idx:02d}</div>
         <div class="brewery-card__name">{brewery['name']}</div>
         <div class="brewery-card__meta">{brewery['prefecture']}・{brewery['city']}　/　創業 {brewery['founded']}</div>
         <div class="brewery-card__features">{brewery['features']}</div>
-      </a>"""
+      </a>{picks_html}
+      </div>"""
 
 
 # ────────────── 各ハブ生成 ──────────────
+
+
+
+def brand_picks(brewery, limit=3):
+    """蔵の代表銘柄を [(名前, パス), ...] で返す。購入導線のあるものを優先。"""
+    from moshimo_link import resolve_rakuten
+    slug = brewery["slug"]
+    buyable, others = [], []
+    for i, b in enumerate(BRANDS.get(slug, [])):
+        item = (b["name"], f"../brand/{slug}-{i}.html")
+        (buyable if resolve_rakuten(slug, i, b["name"]) else others).append(item)
+    return (buyable + others)[:limit]
+
+
+def brands_in_genre(brewery, genre_key):
+    """その蔵の銘柄のうち、指定ジャンルに該当するものを [(名前, パス), ...] で返す。
+    判定は get_brewery_genres と同じ材料（副原料・銘柄名・note・brand_dataの製法）を使う。"""
+    slug = brewery["slug"]
+    dets = BRAND_DETAILS.get(slug, [])
+    out = []
+    for i, b in enumerate(BRANDS.get(slug, [])):
+        ings = b.get("sub_ingredients") or []
+        d = dets[i] if i < len(dets) else {}
+        method = " ".join(str(d.get(k) or "") for k in ("vessel", "shubo", "koji"))
+        t = " ".join(ings) + " " + b.get("name", "") + " " + (b.get("note") or "") + " " + method
+        hit = False
+        if genre_key == "hop-sake":
+            hit = "ホップ" in t or "唐花草" in t
+        elif genre_key == "fruit-sake":
+            hit = any(k in t for k in ["リンゴ", "りんご", "ブドウ", "ぶどう", "洋梨", "洋ナシ", "メロン",
+                                       "イチゴ", "いちご", "あまおう", "越後姫", "桃", "マンゴー",
+                                       "パイナップル", "八朔", "レモン", "カボス", "ライチ", "果汁",
+                                       "ブルーベリー", "ミカン", "みかん", "トマト"])
+        elif genre_key == "doburoku":
+            hit = ("どぶろく" in t or "ドブロク" in t) and not [x for x in ings if x and "米" not in x]
+        elif genre_key == "full-koji":
+            hit = "全麹" in t or "十割麹" in t or "米麹100%" in t
+        elif genre_key == "kioke":
+            hit = "木桶" in t
+        elif genre_key == "foreign-koji":
+            hit = any(k in t for k in ["大麦", "蕎麦", "そば", "芋麹", "黒米"])
+        elif genre_key == "tea-herb-sake":
+            hit = any(k in t for k in ["茶", "山椒", "黒文字", "在来", "バジル", "ハーブ",
+                                       "ミント", "ハッカ", "薄荷", "紫蘇", "エルダーフラワー"])
+        if hit:
+            out.append((b["name"], f"../brand/{slug}-{i}.html"))
+    return out
+
 
 def gen_subingredients():
     """副原料逆引きハブ"""
@@ -696,7 +777,7 @@ def gen_regions():
     {img_html}
     <div class="brewery-grid">"""
         for i, b in enumerate(breweries, 1):
-            html += render_brewery_card(b, i)
+            html += render_brewery_card(b, i, picks=brand_picks(b))
         html += """
     </div>
   </section>"""
@@ -765,7 +846,7 @@ def gen_genres():
     <p class="cat-desc">{g_desc}</p>
     <div class="brewery-grid">"""
         for i, b in enumerate(breweries, 1):
-            html += render_brewery_card(b, i)
+            html += render_brewery_card(b, i, picks=brands_in_genre(b, g_key))
         html += """
     </div>
   </section>"""
@@ -917,6 +998,27 @@ AWARDS_CSS = """
 """
 
 
+
+# 受賞データの brand 名から銘柄ページを特定する。
+# 部分一致だと「花風」が3銘柄に当たるなど誤リンクするため、確実なものだけ明示する。
+AWARD_BRAND_INDEX = {
+    ("ine-to-agave", "稲とアガベ OGAラベル"): 0,      # 通常版「稲とアガベ」
+    ("haccoba", "水を編む シリーズ"): 4,
+    ("linne", "800 大麦 樽熟成"): 0,
+    ("dejima-hosendo", "芳扇 吟雲（九州初作付・初収穫の美山錦100%どぶろく）"): 2,
+}
+
+
+def award_brand_href(slug, brand_name):
+    """受賞銘柄の個別ページがあればそのパスを返す。特定できなければ None。"""
+    if not brand_name:
+        return None
+    i = AWARD_BRAND_INDEX.get((slug, brand_name))
+    if i is None:
+        return None
+    return f"../brand/{slug}-{i}.html"
+
+
 def gen_awards():
     """受賞・メディア・海外進出ハブ（殿堂デザイン）"""
     OUT = REPO_ROOT / "awards"
@@ -982,8 +1084,10 @@ def gen_awards():
                 continue
             _, label, variant = rank_meta(it["title"])
             brand_html = f'<div class="icc-row__brand">{it["brand"]}</div>' if it.get("brand") else ''
+            _bh = award_brand_href(slug, it.get("brand"))
+            _href = _bh or f"../brewery/{slug}.html"
             icc_rows += f"""
-        <a class="icc-row" href="../brewery/{slug}.html">
+        <a class="icc-row" href="{_href}">
           <span class="rank-chip rank-chip--{variant}">{label}</span>
           <div><div class="icc-row__brewery">{b['name']}</div>{brand_html}</div>
         </a>"""
@@ -1120,7 +1224,7 @@ def gen_breweries_hub():
     </div>
     <div class="brewery-grid">"""
     for i, b in enumerate(BREWERIES, 1):
-        html += render_brewery_card(b, i)
+        html += render_brewery_card(b, i, picks=brand_picks(b))
     html += """
     </div>
   </section>"""

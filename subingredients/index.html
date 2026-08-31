@@ -161,6 +161,24 @@ main { position:relative; z-index:1; }
 .spec-pill.accent { color:var(--accent); background:transparent; border:1px solid var(--accent); }
 .spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
 
+
+.brewery-cell { display:flex; flex-direction:column; border-bottom:1px solid var(--line); }
+@media (min-width:600px) {
+  .brewery-cell { border-right:1px solid var(--line); }
+  .brewery-cell:nth-child(2n) { border-right:none; }
+}
+.brewery-cell .brewery-card { border-bottom:none; border-right:none; flex:1; }
+.card-picks { display:flex; flex-wrap:wrap; align-items:baseline; gap:.4rem .55rem;
+  padding:0 1.5rem 1.1rem; }
+.card-picks__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.72rem; color:var(--ink-mute); letter-spacing:.08em; }
+.card-picks__item { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.82rem;
+  color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);
+  padding-bottom:1px; }
+.card-picks__item:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.card-picks__more { font-size:.78rem; color:var(--ink-mute); }
+@media (max-width:640px){ .card-picks { padding:0 1.25rem 1rem; } }
+
 .brewery-grid {
   display:grid; grid-template-columns:1fr; gap:0;
   border-top:1px solid var(--line);
