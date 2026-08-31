@@ -2013,5 +2013,83 @@
       "query": null
     },
     "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示"
+  },
+  "tsuchiura:0": {
+    "name": "ツチブルめろん どぶろくタイプ",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+  },
+  "tsuchiura:1": {
+    "name": "ツチブルほっぷ タイプA 爽やかな酸 どぶろくタイプ",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+  },
+  "tsuchiura:2": {
+    "name": "ツチブルほっぷ タイプB 香るホップ どぶろくタイプ",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+  },
+  "tsuchiura:3": {
+    "name": "ツチブルほっぷ タイプA 爽やかな酸 澄み酒タイプ",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+  },
+  "tsuchiura:4": {
+    "name": "ツチブルほっぷ タイプB 香るホップ 澄み酒タイプ",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+  },
+  "tsuchiura:5": {
+    "name": "ツチブルいちご",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
   }
 }

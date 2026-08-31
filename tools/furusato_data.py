@@ -174,6 +174,40 @@ FURUSATO = {
         "note": "蔵の所在は新潟市北区だが、返礼品は米の産地である燕市から出ている。減農薬米こしいぶきをLAGOON BREWERYが醸したどぶろくと米2kgのセット。新潟市からの出品は確認できず",
     },
 
+    "nondo": {
+        "city": "岩手県遠野市",
+        "items": [
+            {"portal": "r", "url": "https://item.rakuten.co.jp/f032085-tono/1579727/",
+             "yen": 21000, "brand": "とおの どぶろく 速醸 生 500ml×2本", "accepting": True},
+        ],
+        "note": "商品ページに「製造元:株式会社nondo」「とおの屋『要』が自家醸造」と明記。発送は地元の松田酒店。ふるさとチョイスにあった「権化 MARO」は掲載終了（404）",
+    },
+
+    # 平和どぶろくは兜町・難波とも、返礼品は親会社の平和酒造（和歌山県海南市）名義。
+    # 商品ページに「どちらの醸造所で仕込んだか」の記載がないため、
+    # 同じ商品を両方の蔵に紐づけたうえで、その旨を注記する。
+    "heiwa-kabutocho": {
+        "city": "和歌山県海南市",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/30202/6984105",
+             "yen": 23000, "brand": "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本", "accepting": True},
+            {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g30202-W032/",
+             "yen": 23000, "brand": "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本", "accepting": True},
+        ],
+        "note": "返礼品は東京都中央区ではなく、親会社である平和酒造の地元・和歌山県海南市から出ている。壱ノ濁は米と米こうじ、弐ノ濁は白麹、参ノ濁はホップ入り。兜町・難波どちらの醸造所で仕込んだかは商品ページに記載がない",
+    },
+
+    "heiwa-namba": {
+        "city": "和歌山県海南市",
+        "items": [
+            {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/30202/6984105",
+             "yen": 23000, "brand": "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本", "accepting": True},
+            {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g30202-W032/",
+             "yen": 23000, "brand": "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本", "accepting": True},
+        ],
+        "note": "返礼品は大阪市ではなく、親会社である平和酒造の地元・和歌山県海南市から出ている。兜町醸造所と同じ商品で、どちらの醸造所で仕込んだかは商品ページに記載がない",
+    },
+
     "mingura": {
         "city": "岩手県大船渡市",
         "items": [

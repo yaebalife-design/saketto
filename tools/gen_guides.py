@@ -2285,7 +2285,7 @@ def build_new_breweries():
 {section_meta("01", "NOW / いま、何が起きているか")}
       <div class="prose">
         <p class="lead"><span class="accent">酒蔵が立つはずのなかった場所</span>に、いま次々と醸造所が生まれている。saketto が収録する蔵の開業年をならべると、その速さがはっきり見えてくる。</p>
-        <p>収録{S['breweries']}蔵のうち、<strong>2024年以降に立ち上がった蔵が{S['since2024']}、うち開業準備中が{S['pending_breweries']}</strong>。半数以上が、ここ2〜3年に集中している計算になる。<strong>これは一過性のブームというより、酒づくりの入口が構造的に変わったということだ</strong>。</p>
+        <p>収録{S['breweries']}蔵のうち、<strong>2024年以降に立ち上がった蔵が{S['since2024']}</strong>{('（うち開業準備中が' + str(S['pending_breweries']) + '）') if S['pending_breweries'] else ''}。半数以上が、ここ2〜3年に集中している計算になる。<strong>これは一過性のブームというより、酒づくりの入口が構造的に変わったということだ</strong>。</p>
       </div>
     </section>
 {divider()}
@@ -2327,7 +2327,7 @@ def build_new_breweries():
 {section_meta("05", "MAP / 地図で見る")}
       <div class="prose">
         <h2 class="sub-h">16の都道府県に、<span class="accent">散らばっている</span>。</h2>
-        <p>saketto 収録の{S['breweries']}蔵（開業準備中の{S['pending_breweries']}蔵を含む）を地域で数えると、分布に特徴が見えてくる。<strong>{S['region_breakdown']}</strong>。日本酒どころに偏るでもなく、都市に集まるでもなく、<strong>全国に薄く広がっている</strong>のがクラフトサケの特徴だ。</p>
+        <p>saketto 収録の{S['breweries']}蔵{('（開業準備中の' + str(S['pending_breweries']) + '蔵を含む）') if S['pending_breweries'] else ''}を地域で数えると、分布に特徴が見えてくる。<strong>{S['region_breakdown']}</strong>。日本酒どころに偏るでもなく、都市に集まるでもなく、<strong>全国に薄く広がっている</strong>のがクラフトサケの特徴だ。</p>
         <p>複数の蔵がある都道府県は{S['multi_prefectures']}つ。<strong>{S['multi_pref_breakdown']}</strong>で、残りは1県1蔵。全体で{S['prefectures']}の都道府県にまたがっている計算になる。<strong>まだ空白の県のほうが多い</strong>ということでもあり、この地図はこれから埋まっていく余地が大きい。</p>
         <p>興味深いのは、既存の日本酒の勢力図とずれていることだ。酒どころとして知られる新潟に3蔵あるのは順当だが、<strong>東京に3蔵</strong>というのは従来の酒蔵の分布では考えにくい。駅ナカや商店街に置ける小さな設備だからこそ、都心にも蔵が立つ。<strong>沖縄にクラフトサケの蔵がある</strong>のも、泡盛の島という前提を思えば新しい動きだ。</p>
         <p>そして福島に2蔵。どちらも震災の被害を受けた南相馬市小高区にある。<strong>地域の再生と酒づくりが結びついた例</strong>で、ここから始まった蔵がジャンル全体を牽引してきた。地図の上の点は、それぞれに理由を持って打たれている。</p>
