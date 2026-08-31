@@ -161,6 +161,16 @@ main { position:relative; z-index:1; }
 .spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
 
 
+
+/* ふるさと納税の行（行全体リンクをやめ、蔵名とポータルを個別リンクに） */
+.entry--furusato { cursor:default; }
+.entry--furusato:hover { background:var(--bg); }
+.entry__brand a { color:var(--ink); text-decoration:none; border-bottom:1px solid transparent; }
+.entry__brand a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+a.spec-pill.portal-link { text-decoration:none; display:inline-flex; align-items:center;
+  min-height:36px; transition:background .2s,color .2s; }
+a.spec-pill.portal-link:hover { background:var(--accent); color:var(--paper); border-color:var(--accent); }
+
 .brewery-cell { display:flex; flex-direction:column; border-bottom:1px solid var(--line); }
 @media (min-width:600px) {
   .brewery-cell { border-right:1px solid var(--line); }
@@ -889,21 +899,35 @@ def gen_furusato():
 
     for b in confirmed:
         data = FURUSATO[b["slug"]]
-        portals_html = ' '.join(
-            f'<span class="spec-pill accent">{PORTAL_NAMES.get(p, p)}</span>'
-            for p in data["portals"]
-        )
+        # ポータル名は「押せる」ことが期待される要素。URLがあるものは実リンクにする
+        # （収益モデルにふるさと納税を掲げているのに、従来は span で出口が無かった）。
+        _urls = data.get("urls") or {}
+        _pills = []
+        for p in data["portals"]:
+            _label = PORTAL_NAMES.get(p, p)
+            _u = _urls.get(p)
+            if _u:
+                _pills.append(f'<a class="spec-pill accent portal-link" href="{_u}" '
+                              f'target="_blank" rel="noopener sponsored">{_label} →</a>')
+            else:
+                _pills.append(f'<span class="spec-pill accent">{_label}</span>')
+        # portals に無いが URL だけあるポータル（ANA等）も拾う
+        for p, _u in _urls.items():
+            if p not in data["portals"] and _u:
+                _pills.append(f'<a class="spec-pill accent portal-link" href="{_u}" '
+                              f'target="_blank" rel="noopener sponsored">{PORTAL_NAMES.get(p, p)} →</a>')
+        portals_html = " ".join(_pills)
         yen = f'¥{data["donation_yen"]:,}〜' if data.get("donation_yen") else '寄附額確認中'
         rep = data.get("rep_brand", "")
         html += f"""
-      <a class="entry" href="../brewery/{b['slug']}.html">
+      <div class="entry entry--furusato">
         <div>
-          <div class="entry__brand">{b['name']}</div>
+          <div class="entry__brand"><a href="../brewery/{b['slug']}.html">{b['name']}</a></div>
           <div class="entry__brewery">{data['city']}　/　{rep}</div>
         </div>
         <div class="entry__specs">{portals_html}</div>
         <div class="entry__brewery" style="text-align:right">{yen}</div>
-      </a>"""
+      </div>"""
 
     html += """
     </div>

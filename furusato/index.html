@@ -162,6 +162,16 @@ main { position:relative; z-index:1; }
 .spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
 
 
+
+/* ふるさと納税の行（行全体リンクをやめ、蔵名とポータルを個別リンクに） */
+.entry--furusato { cursor:default; }
+.entry--furusato:hover { background:var(--bg); }
+.entry__brand a { color:var(--ink); text-decoration:none; border-bottom:1px solid transparent; }
+.entry__brand a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+a.spec-pill.portal-link { text-decoration:none; display:inline-flex; align-items:center;
+  min-height:36px; transition:background .2s,color .2s; }
+a.spec-pill.portal-link:hover { background:var(--accent); color:var(--paper); border-color:var(--accent); }
+
 .brewery-cell { display:flex; flex-direction:column; border-bottom:1px solid var(--line); }
 @media (min-width:600px) {
   .brewery-cell { border-right:1px solid var(--line); }
@@ -434,54 +444,54 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
       <span class="section-meta__rule"></span>
     </div>
     <div class="entries">
-      <a class="entry" href="../brewery/ine-to-agave">
+      <div class="entry entry--furusato">
         <div>
-          <div class="entry__brand">稲とアガベ醸造所</div>
+          <div class="entry__brand"><a href="../brewery/ine-to-agave">稲とアガベ醸造所</a></div>
           <div class="entry__brewery">秋田県男鹿市　/　CRAFT 稲とアガベ OGAラベル 500ml / 発酵マヨ6種セット</div>
         </div>
-        <div class="entry__specs"><span class="spec-pill accent">ふるさとチョイス</span> <span class="spec-pill accent">楽天ふるさと納税</span> <span class="spec-pill accent">ふるなび</span></div>
+        <div class="entry__specs"><a class="spec-pill accent portal-link" href="https://www.furusato-tax.jp/product/detail/05206/5885075" target="_blank" rel="noopener sponsored">ふるさとチョイス →</a> <a class="spec-pill accent portal-link" href="https://item.rakuten.co.jp/f052060-oga/56050822/" target="_blank" rel="noopener sponsored">楽天ふるさと納税 →</a> <a class="spec-pill accent portal-link" href="https://furunavi.jp/product_detail.aspx?pid=1245441" target="_blank" rel="noopener sponsored">ふるなび →</a></div>
         <div class="entry__brewery" style="text-align:right">¥10,500〜</div>
-      </a>
-      <a class="entry" href="../brewery/haccoba">
+      </div>
+      <div class="entry entry--furusato">
         <div>
-          <div class="entry__brand">haccoba</div>
+          <div class="entry__brand"><a href="../brewery/haccoba">haccoba</a></div>
           <div class="entry__brewery">福島県南相馬市　/　はなうたホップス 720ml×2本</div>
         </div>
-        <div class="entry__specs"><span class="spec-pill accent">ふるさとチョイス</span> <span class="spec-pill accent">楽天ふるさと納税</span> <span class="spec-pill accent">ふるなび</span> <span class="spec-pill accent">さとふる</span></div>
+        <div class="entry__specs"><span class="spec-pill accent">ふるさとチョイス</span> <a class="spec-pill accent portal-link" href="https://item.rakuten.co.jp/f072125-minamisoma/41001/" target="_blank" rel="noopener sponsored">楽天ふるさと納税 →</a> <span class="spec-pill accent">ふるなび</span> <span class="spec-pill accent">さとふる</span> <a class="spec-pill accent portal-link" href="https://furusato.ana.co.jp/donation/g/g07212-41001/" target="_blank" rel="noopener sponsored">ANAのふるさと納税 →</a></div>
         <div class="entry__brewery" style="text-align:right">¥12,000〜</div>
-      </a>
-      <a class="entry" href="../brewery/heiroku">
+      </div>
+      <div class="entry entry--furusato">
         <div>
-          <div class="entry__brand">平六醸造</div>
+          <div class="entry__brand"><a href="../brewery/heiroku">平六醸造</a></div>
           <div class="entry__brewery">岩手県紫波町　/　Re:vive Origin アカツキ 720ml</div>
         </div>
-        <div class="entry__specs"><span class="spec-pill accent">ふるさとチョイス</span></div>
+        <div class="entry__specs"><a class="spec-pill accent portal-link" href="https://www.furusato-tax.jp/product/detail/03321/6335322" target="_blank" rel="noopener sponsored">ふるさとチョイス →</a></div>
         <div class="entry__brewery" style="text-align:right">¥40,000〜</div>
-      </a>
-      <a class="entry" href="../brewery/adachi-noujo">
+      </div>
+      <div class="entry entry--furusato">
         <div>
-          <div class="entry__brand">足立農醸</div>
+          <div class="entry__brand"><a href="../brewery/adachi-noujo">足立農醸</a></div>
           <div class="entry__brewery">大阪府高槻市　/　KOYOI 720ml</div>
         </div>
-        <div class="entry__specs"><span class="spec-pill accent">ふるさとチョイス</span> <span class="spec-pill accent">楽天ふるさと納税</span></div>
+        <div class="entry__specs"><span class="spec-pill accent">ふるさとチョイス</span> <a class="spec-pill accent portal-link" href="https://item.rakuten.co.jp/f272078-takatsuki/em001/" target="_blank" rel="noopener sponsored">楽天ふるさと納税 →</a></div>
         <div class="entry__brewery" style="text-align:right">¥15,000〜</div>
-      </a>
-      <a class="entry" href="../brewery/amanosato">
+      </div>
+      <div class="entry entry--furusato">
         <div>
-          <div class="entry__brand">天郷醸造所</div>
+          <div class="entry__brand"><a href="../brewery/amanosato">天郷醸造所</a></div>
           <div class="entry__brewery">福岡県福智町　/　在る 緒奏（しょそう）720ml</div>
         </div>
-        <div class="entry__specs"><span class="spec-pill accent">ふるさとチョイス</span> <span class="spec-pill accent">楽天ふるさと納税</span> <span class="spec-pill accent">ふるなび</span> <span class="spec-pill accent">さとふる</span></div>
+        <div class="entry__specs"><span class="spec-pill accent">ふるさとチョイス</span> <a class="spec-pill accent portal-link" href="https://item.rakuten.co.jp/f406104-fukuchi/w37-02/" target="_blank" rel="noopener sponsored">楽天ふるさと納税 →</a> <span class="spec-pill accent">ふるなび</span> <span class="spec-pill accent">さとふる</span></div>
         <div class="entry__brewery" style="text-align:right">¥13,000〜</div>
-      </a>
-      <a class="entry" href="../brewery/nomu">
+      </div>
+      <div class="entry entry--furusato">
         <div>
-          <div class="entry__brand">NOMU醸造所</div>
+          <div class="entry__brand"><a href="../brewery/nomu">NOMU醸造所</a></div>
           <div class="entry__brewery">沖縄県沖縄市　/　SHISHIKAMU 720ml×6本</div>
         </div>
-        <div class="entry__specs"><span class="spec-pill accent">ANAのふるさと納税</span></div>
+        <div class="entry__specs"><a class="spec-pill accent portal-link" href="https://furusato.ana.co.jp/donation/g/g47211-BCES007/" target="_blank" rel="noopener sponsored">ANAのふるさと納税 →</a></div>
         <div class="entry__brewery" style="text-align:right">¥56,000〜</div>
-      </a>
+      </div>
     </div>
   </section>
   <section class="section">

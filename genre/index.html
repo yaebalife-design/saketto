@@ -162,6 +162,16 @@ main { position:relative; z-index:1; }
 .spec-pill.warm { color:var(--warm); background:transparent; border:1px solid var(--warm); }
 
 
+
+/* ふるさと納税の行（行全体リンクをやめ、蔵名とポータルを個別リンクに） */
+.entry--furusato { cursor:default; }
+.entry--furusato:hover { background:var(--bg); }
+.entry__brand a { color:var(--ink); text-decoration:none; border-bottom:1px solid transparent; }
+.entry__brand a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+a.spec-pill.portal-link { text-decoration:none; display:inline-flex; align-items:center;
+  min-height:36px; transition:background .2s,color .2s; }
+a.spec-pill.portal-link:hover { background:var(--accent); color:var(--paper); border-color:var(--accent); }
+
 .brewery-cell { display:flex; flex-direction:column; border-bottom:1px solid var(--line); }
 @media (min-width:600px) {
   .brewery-cell { border-right:1px solid var(--line); }
