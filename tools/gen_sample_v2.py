@@ -2,7 +2,13 @@
 """saketto / 銘柄詳細ページ V2 サンプル
 
 社長指示: いったん1本作って判断 → 横展開
-対象: haccoba「はなうたホップス」(haccoba-0.html を上書き)
+
+**このファイルはデザインの見本であって、公開ページは作らない。**
+以前は brand/haccoba-0.html を上書きしていたが、量産側(gen_brand_pages_v2.py)が
+全172銘柄を生成するようになった今それをやると、haccoba「はなうたホップス」だけが
+ここに書かれた固定値のページに戻ってしまう（味わいの調査結果も出典表記も反映されない）。
+そのため出力先を tools/_preview/ に変えた。CSS と SVG 生成関数は
+gen_brand_pages_v2.py が import して使い続けている。
 
 V2の新セクション:
 - 酒税法分類バッジ
@@ -29,7 +35,7 @@ from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
 from related import next_section_html
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-OUT = REPO_ROOT / "brand" / "haccoba-0.html"
+OUT = Path(__file__).resolve().parent / "_preview" / "haccoba-0.html"  # 公開しないプレビュー
 
 # アフィリエイト（もしも経由）の表示制御。定義は moshimo_link.py に一本化し、
 # ここは後方互換のための再エクスポート（多くの gen_*.py がここから import している）。
@@ -709,6 +715,14 @@ main { position:relative; z-index:1; }
 }
 .glossary-item { padding:.9rem 0; border-bottom:1px solid var(--line); }
 .glossary-item:last-child { border-bottom:none; padding-bottom:0; }
+/* 読みもの記事への導線。ブラウザ既定の青リンクのままだとサイトの色から浮くため、
+   本文中の他のリンクと同じ扱い（発酵朱・下線なし）に揃える。 */
+.glossary-item dd a {
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px solid rgba(168,53,31,.35); white-space:nowrap;
+  transition:border-color .25s;
+}
+.glossary-item dd a:hover { border-bottom-color:var(--accent); }
 .glossary-item dt {
   font-family:'Shippori Mincho', serif; font-weight:700;
   font-size:1rem; color:var(--accent); margin-bottom:.35rem;
@@ -1150,6 +1164,7 @@ def main():
 </html>
 """
 
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(html, encoding="utf-8")
     print(f"✓ サンプル生成: {OUT}")
 

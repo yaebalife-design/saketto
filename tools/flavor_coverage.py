@@ -31,9 +31,10 @@ def scan():
         details = G.DETAILS.get(slug, [])
         for i, brand in enumerate(brands):
             d = details[i] if i < len(details) else {}
-            s4, r6, tags = G.derive_flavor(d, brand)
-            missing = [jp for key, jp, base in AXES
-                       if abs(s4[key] - base) < 0.02]
+            s4, r6, tags, decided = G.derive_flavor(d, brand)
+            # 値ではなく「根拠が取れたか」で数える。中庸と判定した酒を
+            # 未調査と同じ扱いにしてしまうため（甘辛で実際に起きていた）。
+            missing = [jp for key, jp, base in AXES if key not in decided]
             has_tasting = bool(d.get("tasting_nose") or d.get("tasting_palate")
                                or d.get("tasting_finish"))
             rows.append({

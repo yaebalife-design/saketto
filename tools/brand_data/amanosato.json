@@ -33,7 +33,8 @@
       "story": "代表・中山雄介が生まれ故郷の福岡県福智町でゼロから酒蔵を新設。コカ・コーラ/Amazon/楽天を経て、故郷のクラフトサケ醸造者募集記事を見て起業。『在る宵』は夜＝酒の時間と『酔い』の二重の意味",
       "story_source_url": "https://sakestreet.com/ja/media/pr-amanosato-brewery-fukuoka",
       "awards": [],
-      "flavor_basis": "清澄(火入れ)・ライトボディ寄り・甘味抑制。和梨/白桃/ミントの清涼感/アーシー/キレ。おりがらみ生原酒版はにごり・ジューシー"
+      "flavor_basis": "清澄(火入れ)・ライトボディ寄り・甘味抑制。和梨/白桃/ミントの清涼感/アーシー/キレ。おりがらみ生原酒版はにごり・ジューシー",
+      "tasting_source_type": "公式"
     },
     "在る 小暖（こはる）500ml": {
       "abv": null,
@@ -54,15 +55,16 @@
       "glass": null,
       "preservation": "要冷蔵",
       "pairing": [],
-      "tasting_nose": "あまおう苺の華やかな香り",
-      "tasting_palate": "あまおう苺本来の甘み・酸味・香りをバランスよく引き出した、春の訪れを感じる味わい",
-      "tasting_finish": null,
-      "tasting_source_name": "天郷醸造所 公式(在る小暖)",
-      "tasting_source_url": "https://shop.amanosato-sake.com/",
+      "tasting_nose": "苺由来の淡く美しいピンク色",
+      "tasting_palate": "非常にシルキーでとろっとした舌触り。上品な甘味と米由来のふくよかな旨味が調和し、中盤からは一転してシャープな酸が味わいの骨格を鮮明にする",
+      "tasting_finish": "最後はドライに潔くキレ上がる",
+      "tasting_source_name": "後藤商店",
+      "tasting_source_url": "https://www.gotoshoten.com/product/1454",
       "story": "在る宵ブランド共通",
       "story_source_url": "https://sakestreet.com/ja/media/pr-amanosato-brewery-fukuoka",
       "awards": [],
-      "flavor_basis": "果実感・甘酸バランス・あまおう苺のフルーツ酒。春限定"
+      "flavor_basis": "おりがらみ。苺由来の淡いピンク色。シルキーでとろっとした濃醇な口当たりからシャープな酸で締まり、ドライにキレる",
+      "tasting_source_type": "販売店"
     },
     "在る 寒夜（かんや）500ml": {
       "abv": 16,
@@ -84,14 +86,15 @@
       "preservation": "要冷蔵",
       "pairing": [],
       "tasting_nose": "レモンの爽やかな風味と酸味",
-      "tasting_palate": "米の甘みを控えめに引き締めた味わい。生酒=瑞々しさ/おりがらみ生原酒=濃厚パンチ",
+      "tasting_palate": "レモンの爽やかな風味と酸味が広がり、米由来の甘みが控えめに引き締める",
       "tasting_finish": null,
-      "tasting_source_name": "天郷醸造所 公式/伴蔵本店",
-      "tasting_source_url": "https://shop.amanosato-sake.com/products/%E5%9C%A8%E3%82%8B%E5%AF%92%E5%A4%9C",
+      "tasting_source_name": "天郷醸造所 公式",
+      "tasting_source_url": "https://shop.amanosato-sake.com/products/kanya",
       "story": "在る宵ブランド共通",
       "story_source_url": "https://sakestreet.com/ja/media/pr-amanosato-brewery-fukuoka",
       "awards": [],
-      "flavor_basis": "その他の醸造酒・レモン果実感+米の旨味・おりがらみ版はにごりフルボディ寄り"
+      "flavor_basis": "日本酒度+3（おりがらみ生ロット）。レモンの酸が主役で甘みは控えめ。精米歩合70%。火入れ／おりがらみ生／無濾過生原酒の複数版があり、濁りと濃さは版による",
+      "tasting_source_type": "公式"
     },
     "在る 陽香（ひのか）500ml": {
       "abv": 15,
@@ -113,14 +116,15 @@
       "preservation": "要冷蔵（生酒）",
       "pairing": [],
       "tasting_nose": null,
-      "tasting_palate": null,
-      "tasting_finish": null,
-      "tasting_source_name": null,
-      "tasting_source_url": null,
+      "tasting_palate": "米の旨味に八女産ほうじ茶の心地よい苦味が重なる。酸味と上品な甘みのバランスで軽やかに",
+      "tasting_finish": "発酵茶のようなコクと、軽やかな飲み口。心地よい余韻だけが残るキレ",
+      "tasting_source_name": "天郷醸造所 公式",
+      "tasting_source_url": "https://shop.amanosato-sake.com/products/hinoka_500",
       "story": "「在る 宵」ブランドのラインナップ。公式は「クラフト醸造酒」と表現。精米歩合は公式非公開",
       "story_source_url": "https://shop.amanosato-sake.com/products/hinoka_500",
       "awards": [],
-      "flavor_basis": "八女産ほうじ茶使用。芳ばしさと米の旨味が調和。生酒。度数15%"
+      "flavor_basis": "ほうじ茶の苦味とコク。酸味と甘みのバランスで軽やか、キレのある後口",
+      "tasting_source_type": "公式"
     },
     "天郷 Flagship 1st [序]": {
       "abv": 18,
@@ -149,7 +153,8 @@
       "story": "天郷醸造所のフラッグシップ第1作で、カンヌ国際映画祭の公認社交界「CANNES GALA」公式提供酒。コンセプトは「静寂を味わう、至高の一滴」。福智町の農家・立花智幸さんが合鴨農法・農薬不使用で育てたヒノヒカリを使い、醪を押し潰さない槽搾りで、あえて搾り切らずに仕上げている。",
       "story_source_url": "https://shop.amanosato-sake.com/products/flagship-jyo",
       "awards": [],
-      "flavor_basis": "槽搾り・搾り切らない設計。ハーブの清涼感と米の甘み、絹のような質感"
+      "flavor_basis": "槽搾り・搾り切らない設計。ハーブの清涼感と米の甘み、絹のような質感",
+      "tasting_source_type": "公式"
     },
     "天郷 Flagship 2nd": {
       "abv": 16,
@@ -178,7 +183,8 @@
       "story": "カンヌ国際映画祭の公認社交界「CANNES GALA」（テーマは Honest and Noble）の公式提供酒に選ばれたフラッグシップ第2作。合鴨農法の農薬不使用山田錦に加え、エミューに除草を任せて農薬・化学肥料を使わず育てた「あがのレモン」を副原料に使う、環境再生を掲げた造り。発酵中の酵母に雅楽の調べを特定周波数の加振として与える音響技術を用いていると公式に記載がある。箱絵は日本画家・立木美江氏による。",
       "story_source_url": "https://shop.amanosato-sake.com/products/flagship_2nd",
       "awards": [],
-      "flavor_basis": "1stの重厚な余韻とは対極の透明感。レモンの酸で締めるドライな方向"
+      "flavor_basis": "1stの重厚な余韻とは対極の透明感。レモンの酸で締めるドライな方向",
+      "tasting_source_type": "公式"
     },
     "在る 小暖（こはる）Premium 苺フレーバー酒 500ml": {
       "abv": 13,
@@ -207,7 +213,8 @@
       "story": "「在る」シリーズの苺フレーバー酒「在る 小暖（こはる）」のプレミアム版。福智町産の無農薬米「夢一献」と、福岡県のみで限定生産される高級ブランド苺「あまおう」を使用している。",
       "story_source_url": "https://shop.amanosato-sake.com/products/koharu_premium-500ml",
       "awards": [],
-      "flavor_basis": "微発泡・とろみのある質感。あまおうの甘い香りに対して酸でドライに締める"
+      "flavor_basis": "微発泡・とろみのある質感。あまおうの甘い香りに対して酸でドライに締める",
+      "tasting_source_type": "公式"
     }
   },
   "confidence_notes": "2026-05-31公式オンラインショップで再確認し確定。3商品(緒奏=ミント/小暖=あまおう苺/寒夜=レモン)。いずれも『その他の醸造酒』で副原料あり(旧『米のみ』は誤りと確定)。精米歩合・酒母・麹・酵母・水は非公開null。受賞なし。フラッグシップ(天郷1st序/2nd 720ml)はABV・原材料・テイスティング未確認のため非掲載"

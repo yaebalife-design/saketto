@@ -31,7 +31,8 @@
       "story": "冬季湛水田の米を使い最高峰への挑戦。三段仕込+糀甘酒4段方式",
       "story_source_url": "https://www.syusendo-horiichi.co.jp/SHOP/21242.html",
       "awards": [],
-      "flavor_basis": "その他の醸造酒・にごり。粒を残す。清々しい/味噌糀のコク/切れ。微発泡傾向"
+      "flavor_basis": "その他の醸造酒・にごり。粒を残す。清々しい/味噌糀のコク/切れ。微発泡傾向",
+      "tasting_source_type": "販売店"
     },
     "ハッピーどぶろく 生もと 酵母無添加": {
       "abv": 12,
@@ -60,7 +61,8 @@
       "story": "希少な無肥料無農薬の雄町を使い年一度の特別醸造。日本酒の原点を感じさせる",
       "story_source_url": "https://www.syusendo-horiichi.co.jp/SHOP/20212.html",
       "awards": [],
-      "flavor_basis": "にごり微発泡生・生原酒・生酛。生酛の酸/繊細な甘み/味噌麹の香ばしさ"
+      "flavor_basis": "にごり微発泡生・生原酒・生酛。生酛の酸/繊細な甘み/味噌麹の香ばしさ",
+      "tasting_source_type": "販売店"
     },
     "ハッピーどぶろく ホップ Huell Melon": {
       "abv": 13,
@@ -89,7 +91,8 @@
       "story": "発酵中の醪にホップを漬け込むドライホッピング製法、IPAより多め",
       "story_source_url": "https://imadeya.co.jp/products/8211157581989",
       "awards": [],
-      "flavor_basis": "どぶろく(にごり)。Huell Melonホップ/八朔様/華やか/ドライな苦み"
+      "flavor_basis": "どぶろく(にごり)。Huell Melonホップ/八朔様/華やか/ドライな苦み",
+      "tasting_source_type": "販売店"
     },
     "something happy うきうきホップ": {
       "abv": null,
@@ -112,15 +115,16 @@
       "pairing": [
         "柑橘の合う料理"
       ],
-      "tasting_nose": "柑橘系ホップの香り",
-      "tasting_palate": "白糀のクエン酸と柑橘ホップでグレープフルーツ様。苦味弱くハーブ的役割",
-      "tasting_finish": null,
-      "tasting_source_name": "ハッピー太郎醸造所 公式",
-      "tasting_source_url": "https://happytaro.jp/doburoku/lineup/ukiuki/",
+      "tasting_nose": "シトラシーなホップの香り",
+      "tasting_palate": "糀由来のコクのある甘みとクエン酸糀の軽やかな酸味に、ホップのシトラシーな香りが調和。まるでグレープフルーツのような味わい",
+      "tasting_finish": "後味をすっと引き締めるほんのりとした苦み",
+      "tasting_source_name": "ハッピー太郎醸造所 公式ショップ（裏ラベル）／浜田屋酒店",
+      "tasting_source_url": "https://happytaro.thebase.in/items/85440425",
       "story": "FLORA FERMENTATION大西康平とのコラボの定番、フラッグシップ",
       "story_source_url": "https://happytaro.jp/doburoku/lineup/ukiuki/",
       "awards": [],
-      "flavor_basis": "どぶろく。白糀のクエン酸/柑橘ホップ/グレフル様/低苦味。ABV6〜8%"
+      "flavor_basis": "焼酎用の白麹菌が出すクエン酸に合うシトラシーなホップを合わせた全麹どぶろく。甘酸っぱくグレープフルーツのような味わいで、苦味が後味を締める",
+      "tasting_source_type": "公式＋販売店"
     },
     "something happy 菅浦の八朔": {
       "abv": null,
@@ -154,7 +158,8 @@
       "story": "琵琶湖北部の隔絶集落・菅浦で伝統栽培の八朔を手摘み使用",
       "story_source_url": "https://happytaro.jp/doburoku/seasonal/hassaku/",
       "awards": [],
-      "flavor_basis": "季節品/どぶろく。八朔のほろ苦さ/糀の旨味/爽やか。ABV6〜9%"
+      "flavor_basis": "季節品/どぶろく。八朔のほろ苦さ/糀の旨味/爽やか。ABV6〜9%",
+      "tasting_source_type": "公式"
     },
     "something happy 政所の茶縁": {
       "abv": null,
@@ -179,14 +184,15 @@
         "和菓子"
       ],
       "tasting_nose": "政所茶の香り",
-      "tasting_palate": "政所茶の香りと糀の旨味・酸が調和、平番茶由来の渋みのないスムーズな飲み口",
+      "tasting_palate": "香りのお茶「政所茶」を前面に出しながら、糀の旨味と酸味を調和させる。飲み手からは「甘口だけれど最後にお茶の風味をしっかり感じる」との声",
       "tasting_finish": null,
-      "tasting_source_name": "ハッピー太郎醸造所 公式",
+      "tasting_source_name": "ハッピー太郎醸造所 公式／Sake World 口コミ",
       "tasting_source_url": "https://happytaro.jp/doburoku/lineup/mandokoro/",
       "story": "茶縁むすび・滋茶園とのコラボ。政所茶は約600年の無農薬栽培。ラベルは早川鉄兵",
       "story_source_url": "https://happytaro.jp/doburoku/lineup/mandokoro/",
       "awards": [],
-      "flavor_basis": "どぶろく。政所茶/平番茶の渋みのなさ/糀の旨味と酸。ABV6〜8%"
+      "flavor_basis": "政所茶を仕込水にして茶葉も漬け込み、瓶詰め前に煎茶パウダーで香りと色をまとめる。緑色のどぶろく。糀の旨味と酸味を調和させる",
+      "tasting_source_type": "公式＋ユーザー口コミ"
     },
     "something happy 音羽の黒文字": {
       "abv": 7,
@@ -209,15 +215,16 @@
       "pairing": [
         "和食"
       ],
-      "tasting_nose": "黒文字の上品な香り。山椒のニュアンスにも近い。葉を煎じると爽やかで甘い香りの茶になる木",
-      "tasting_palate": null,
+      "tasting_nose": "山椒のような、すっと上品な香り",
+      "tasting_palate": "お米の旨味を感じる癒しのどぶろく。爽やかで甘く、飲み疲れしない。上澄みは軽快、混ぜるとクリーミーに変わる",
       "tasting_finish": null,
-      "tasting_source_name": "ハッピー太郎醸造所 公式",
-      "tasting_source_url": "https://happytaro.jp/doburoku/seasonal/kuromoji/",
+      "tasting_source_name": "ハッピー太郎醸造所 公式ショップ（裏ラベル）／浜田屋酒店",
+      "tasting_source_url": "https://happytaro.thebase.in/items/107044248",
       "story": "琵琶湖源流域『音羽の森』に自生するクロモジ(和菓子楊枝の木)を使用。MORITOWAと協働",
       "story_source_url": "https://happytaro.jp/doburoku/seasonal/kuromoji/",
       "awards": [],
-      "flavor_basis": "その他醸造酒・どぶろく。黒文字の上品な香りで和食に寄せる。アルコール7度と低め。蔵は味噌用麹菌を使い、一部に白麹を併用してクエン酸で乳酸無添加とし、四段仕込みで発酵終盤に甘酒を掛ける。伊吹山伏流水の硬水仕込み"
+      "flavor_basis": "お茶としても親しまれるクロモジの葉や枝を使う。爽やかで甘く、軽快で飲み疲れしない",
+      "tasting_source_type": "公式＋販売店"
     },
     "something happy オリエンタルホエイ": {
       "abv": 8,
@@ -246,7 +253,8 @@
       "story": "シタール奏者・石濱匡雄がスパイスを監修。チャイとラッシーを合わせたようなミルキーかつスパイシーな味わいに仕立てられている",
       "story_source_url": "https://happytaro.thebase.in/items/124517442",
       "awards": [],
-      "flavor_basis": "ホエイ＋8種スパイス。ミルキーでスパイシー、チャイとラッシーを合わせたような味わい。どぶろく(にごり)。度数8%"
+      "flavor_basis": "ホエイ＋8種スパイス。ミルキーでスパイシー、チャイとラッシーを合わせたような味わい。どぶろく(にごり)。度数8%",
+      "tasting_source_type": "公式"
     },
     "something happy フレッシュハーブティー": {
       "abv": 7,
@@ -275,7 +283,8 @@
       "story": "2022年夏の誕生以来のフラッグシップ商品",
       "story_source_url": "https://happytaro.thebase.in/items/75563807",
       "awards": [],
-      "flavor_basis": "ハーブティー仕込み。甘やかで透明感のある香り、黄麹・白麹の爽快な調和。どぶろく(にごり)。度数7%"
+      "flavor_basis": "ハーブティー仕込み。甘やかで透明感のある香り、黄麹・白麹の爽快な調和。どぶろく(にごり)。度数7%",
+      "tasting_source_type": "公式"
     },
     "something happy 八朔 BITTER 2026": {
       "abv": 9,
@@ -304,7 +313,8 @@
       "story": "既収録『菅浦の八朔』の今期初登場BITTERバージョン。3か月熟成させ、冬限定商品を夏向けに仕立てた",
       "story_source_url": "https://happytaro.thebase.in/items/71577253",
       "awards": [],
-      "flavor_basis": "菅浦産八朔の苦味を多めに抽出し3か月熟成。ビター。柑橘の酸味。どぶろく(にごり)。度数9%"
+      "flavor_basis": "菅浦産八朔の苦味を多めに抽出し3か月熟成。ビター。柑橘の酸味。どぶろく(にごり)。度数9%",
+      "tasting_source_type": "公式"
     },
     "something happy 苺屋はな": {
       "abv": null,
@@ -333,7 +343,8 @@
       "story": "滋賀県野洲市の苺農家「苺屋はな」の苺を使う季節限定のクラフトどぶろく。生産者・土川徳明氏から、色褪せや色がくすんで生食出荷が難しい苺も含めて買い取り、全量を有効活用している。切り絵ラベルは早川鉄兵。",
       "story_source_url": "https://happytaro.jp/doburoku/seasonal/ichigo/",
       "awards": [],
-      "flavor_basis": "その他醸造酒・どぶろく。苺を原料の約1/3使う果汁爆弾型で、シリーズ中もっとも糖度と酸味があり余韻が長い。度数はロットにより5〜7度"
+      "flavor_basis": "その他醸造酒・どぶろく。苺を原料の約1/3使う果汁爆弾型で、シリーズ中もっとも糖度と酸味があり余韻が長い。度数はロットにより5〜7度",
+      "tasting_source_type": "販売店"
     },
     "something happy MAROUのカカオ": {
       "abv": 9,
@@ -358,14 +369,15 @@
         "鰻の蒲焼"
       ],
       "tasting_nose": null,
-      "tasting_palate": "カカオのソースと捉えると肉料理に、意外なところで鰻の蒲焼にも合う。甘さを抑えた仕立て",
+      "tasting_palate": "カカオ多めのダークチョコのような深い苦みと、米・糀のふくよかな甘みが拮抗する",
       "tasting_finish": null,
-      "tasting_source_name": "ハッピー太郎醸造所 公式",
+      "tasting_source_name": "ハッピー太郎醸造所 公式／酒泉洞堀一／零下-REIKA-",
       "tasting_source_url": "https://happytaro.jp/doburoku/seasonal/marou/",
       "story": "ベトナムのビーンtoバー・チョコレートメーカー「MAROU（マルゥ）」のカカオニブとカカオパウダーを使用した季節限定品。公式は「カカオは発酵食品」であり、MAROUがその土地ならではの個性をそのまま活かすシングルオリジンの姿勢を持つ点に、自蔵の生産者スタンスとの共通点を見出したと説明する。切り絵ラベルは早川鉄兵。",
       "story_source_url": "https://happytaro.jp/doburoku/seasonal/marou/",
       "awards": [],
-      "flavor_basis": "カカオを甘味でなく旨味・苦味の要素として扱う。焦げやメイラード反応との相性"
+      "flavor_basis": "アルカリ処理をしていないベトナム産カカオを使う全麹どぶろく。蔵は「カカオの表情を活かすため甘さをあまり感じない仕立て」と説明する一方、取扱店や飲み手は「濃厚な甘み」と書いており、評価が分かれる。カカオの苦みと甘みが拮抗するタイプ",
+      "tasting_source_type": "公式＋販売店"
     },
     "やまのかみさん 大原の赤紫蘇": {
       "abv": 7,
@@ -394,7 +406,8 @@
       "story": "「やまのかみさん」名義の夏季どぶろく。京都・大原で代々受け継がれてきた赤紫蘇を使う。公式説明に「全糀仕込み」と明記があり、原材料も米麹と赤紫蘇のみで掛米の記載がない。品目は「その他の醸造酒」。",
       "story_source_url": "https://happytaro.thebase.in/items/149636742",
       "awards": [],
-      "flavor_basis": "その他の醸造酒・全糀仕込み。赤紫蘇由来の色と香り、糀のふわりとした口当たり"
+      "flavor_basis": "その他の醸造酒・全糀仕込み。赤紫蘇由来の色と香り、糀のふわりとした口当たり",
+      "tasting_source_type": "公式"
     },
     "ハッピーどぶろく 湖北はみ出し米": {
       "abv": 13,
@@ -416,14 +429,15 @@
       "preservation": "要冷蔵",
       "pairing": [],
       "tasting_nose": "清々しい綺麗な香り",
-      "tasting_palate": "蔵のどぶろくの中で唯一日本酒らしい味わい。豊かなお米の旨味",
-      "tasting_finish": null,
-      "tasting_source_name": "ハッピー太郎醸造所 公式ショップ",
+      "tasting_palate": "豊かなお米の旨味。まろやかでとろみのある口当たりからピチピチとフレッシュな舌ざわり。程よい甘さから、すっきりとした強めの酸味",
+      "tasting_finish": "苦味は軽く後口はすっきり",
+      "tasting_source_name": "ハッピー太郎醸造所 公式ショップ（裏ラベル）／SAKETIME 口コミ",
       "tasting_source_url": "https://happytaro.thebase.in/items/65530586",
       "story": "無農薬の田んぼにできる、虫がついて黒くなったり割れていたりする小さな「はみ出した」お米＝湖北はみ出し米を主原料にしたどぶろく。公式は「大粒のお米は銀シャリで。はみだし米はどぶろくで。世の『はみ出し者達』へ 乾杯！！」と説明する。ラベルは早川鉄兵の切り絵「田の守り神たる狐」。",
       "story_source_url": "https://happytaro.thebase.in/items/65530586",
       "awards": [],
-      "flavor_basis": "米のみ・乳酸無添加の甘酒酛。清々しい香りと米の旨味、切れのある日本酒寄りの味筋"
+      "flavor_basis": "蔵のどぶろくの中で唯一、日本酒らしい味わいという位置づけ。クエン酸糀甘酒酛（乳酸不使用）で仕込み、米の旨味と強めの酸がある",
+      "tasting_source_type": "公式＋ユーザー口コミ"
     }
   },
   "confidence_notes": "蔵元公式happytaro.jp中心、個別ページなき3銘柄は酒泉洞堀一/IMADEYA/伊勢五本店で補完。精米歩合・酵母・容器は非公開null。一部ABVはレンジ表記でnull。受賞なし。",

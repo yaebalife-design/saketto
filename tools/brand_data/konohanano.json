@@ -29,7 +29,8 @@
       "story": "木花之醸造所の看板銘柄。品目は「濁酒」。磨かないそのままの米を使うため栄養価も高いと公式が説明する、東京発の新しいどぶろく。",
       "story_source_url": "https://konohanano-brewery.shop/items/5eacd2845157621bdc5f4601",
       "awards": [],
-      "flavor_basis": "濁酒。磨かない米（精米歩合90%）を使い、日本酒の三段仕込みと自家製麹で造る。優しい甘さとほのかな酸味。協会9号・火入れ"
+      "flavor_basis": "濁酒。磨かない米（精米歩合90%）を使い、日本酒の三段仕込みと自家製麹で造る。優しい甘さとほのかな酸味。協会9号・火入れ",
+      "tasting_source_type": "販売店"
     },
     "ハナグモリ THE酸": {
       "abv": 12,
@@ -61,7 +62,8 @@
       "story": "焼酎用白麹を採用しクエン酸由来の酸味をアクセントにした新定番。定番ハナグモリとのブレンドも楽しめる",
       "story_source_url": "https://www.syusendo-horiichi.co.jp/SHOP/15673.html",
       "awards": [],
-      "flavor_basis": "にごり(どぶろく)、微発泡、高酸(クエン酸)、ドライ/シャープ、ボディ軽め、ソーダ割り対応"
+      "flavor_basis": "にごり(どぶろく)、微発泡、高酸(クエン酸)、ドライ/シャープ、ボディ軽め、ソーダ割り対応",
+      "tasting_source_type": "ユーザー口コミ＋販売店"
     },
     "ハナグモリ 焼酎用白麹仕様": {
       "abv": 12,
@@ -93,7 +95,8 @@
       "story": "焼酎用白麹を使用した仕様＝THE酸。詳細はTHE酸を参照",
       "story_source_url": "https://ja.wikipedia.org/wiki/%E6%9C%A8%E8%8A%B1%E4%B9%8B%E9%86%B8%E9%80%A0%E6%89%80",
       "awards": [],
-      "flavor_basis": "にごり(どぶろく)、高酸(クエン酸)、ドライ/シャープ"
+      "flavor_basis": "にごり(どぶろく)、高酸(クエン酸)、ドライ/シャープ",
+      "tasting_source_type": "販売店＋メディア"
     },
     "EVAN-GARDE 「木花之醸造所×初号機」": {
       "abv": 13,
@@ -105,7 +108,7 @@
       "rice_polish": 90,
       "shubo": null,
       "koji": null,
-      "yeast": "701号酵母",
+      "yeast": "きょうかい701号",
       "water": null,
       "vessel": null,
       "pasteurized": null,
@@ -115,14 +118,15 @@
       "preservation": null,
       "pairing": [],
       "tasting_nose": null,
-      "tasting_palate": "黒米の香ばしさとホップ・エルダーフラワーの爽やかで複雑な味わいの融合",
+      "tasting_palate": "黒米の香ばしさと、ホップ、エルダーフラワーの爽やかながら複雑な味わいが融合",
       "tasting_finish": null,
       "tasting_source_name": "木花之醸造所 公式オンラインストア",
       "tasting_source_url": "https://konohanano-brewery.shop/items/668691d988afc105e45c3fed",
       "story": "エヴァンゲリオン初号機をイメージしたコラボ品。品目は「その他醸造酒」",
       "story_source_url": "https://konohanano-brewery.shop/items/668691d988afc105e45c3fed",
       "awards": [],
-      "flavor_basis": "黒米・ホップ・エルダーフラワー使用。香ばしさと爽やかさが複雑に融合。精米歩合90%・701号酵母。度数13%"
+      "flavor_basis": "黒米とホップ、エルダーフラワーを使う。品目は「その他醸造酒」。日本酒度・酸度は公式非開示。精米歩合90%",
+      "tasting_source_type": "公式"
     },
     "HAZY SAKE": {
       "abv": 14,
@@ -144,14 +148,15 @@
       "preservation": null,
       "pairing": [],
       "tasting_nose": "白麹とホップのはっきりとした上立ち香",
-      "tasting_palate": "エール酵母を使い、米をしっかり溶かしたことによるなめらかなテクスチャ",
+      "tasting_palate": "エール酵母を使用し、米をしっかり溶かしたことによるなめらかなテクスチャ。飲みごたえがありつつもスッキリとしたドリンカブルなテイスト",
       "tasting_finish": "仕上げにハーブを加えることで、ホップサケのしっかりした味わいの後味を爽やかにまとめ、飲みごたえがありつつスッキリとした飲み口に",
       "tasting_source_name": "木花之醸造所 公式オンラインストア",
       "tasting_source_url": "https://konohanano-brewery.shop/items/665efaa89b0fd505fc121180",
       "story": "木花之醸造所の定番ホップどぶろく。ホップに加えてハイビスカスとレモングラスを重ねた新しいスタイルへと進化した一本。使用ホップは Sabro。",
       "story_source_url": "https://konohanano-brewery.shop/items/665efaa89b0fd505fc121180",
       "awards": [],
-      "flavor_basis": "どぶろく。白麹（クエン酸の酸）×エール酵母×ホップSabro。ハーブで後味を締める"
+      "flavor_basis": "定番のホップどぶろく。白麹とホップの香り、なめらかなテクスチャでドリンカブル。ホップはSabro",
+      "tasting_source_type": "公式"
     },
     "ストロベリーショコラ 濁酒": {
       "abv": 8,
@@ -168,19 +173,20 @@
       "vessel": null,
       "pasteurized": null,
       "draft": null,
-      "serving_temp": "冷やでも美味しいが、蔵は熱燗を強く勧める",
+      "serving_temp": "冷酒／熱燗",
       "glass": null,
       "preservation": null,
       "pairing": [],
       "tasting_nose": "一口飲むといちごがあらわれ、次に鼻からカカオが抜ける",
-      "tasting_palate": "カカオといちごをふんだんに使い、どぶろくと融合させた甘すぎない大人のデザートどぶろく",
+      "tasting_palate": "一口飲むといちごがあらわれ、次に鼻からカカオが抜ける。甘すぎない大人のデザートどぶろく",
       "tasting_finish": null,
       "tasting_source_name": "木花之醸造所 公式オンラインストア",
       "tasting_source_url": "https://konohanano-brewery.shop/items/69e9f9719391c4d06f295bc2",
       "story": "カカオニブといちごピューレを使った木花之醸造所のデザート系どぶろく。冷やだけでなく熱燗でも楽しめる飲み方が公式に提案されている。",
       "story_source_url": "https://konohanano-brewery.shop/items/69e9f9719391c4d06f295bc2",
       "awards": [],
-      "flavor_basis": "濁酒。アルコール8度と低く、いちごとカカオのデザート方向。蔵は熱燗を勧める"
+      "flavor_basis": "いちごピューレとカカオニブを使うどぶろく。公式が「甘すぎず」と明記する。蔵は熱燗も勧める",
+      "tasting_source_type": "公式"
     },
     "YEAH「アサイーSAKE」〜立正大学×木花之醸造所〜": {
       "abv": 5,
@@ -209,7 +215,8 @@
       "story": "立正大学経営学部・藤井ゼミナールが「乾杯を日本酒(SAKE)に!」をコンセプトに2024年度から進めるプロジェクト。浅草初のクラフトSAKE醸造所である木花之醸造所と共同で、Z世代向けクラフトSAKE「YEAH（Young Eat Acai Health）」を開発した。",
       "story_source_url": "https://konohanano-brewery.shop/items/67c2aaa2e02e4311e1123b5e",
       "awards": [],
-      "flavor_basis": "アサイーボウルを飲み物にする発想。乳酸由来の酸味とベリーの食感"
+      "flavor_basis": "アサイーボウルを飲み物にする発想。乳酸由来の酸味とベリーの食感",
+      "tasting_source_type": "公式"
     },
     "Snow Dome【スノードーム】": {
       "abv": 12,
@@ -238,7 +245,8 @@
       "story": "赤髪がトレードマークの醸造スタッフ「ねね」が醸す赤いお酒で、自身の名前とロック、どぶろくを掛けた「ねねRock」シリーズの第2弾。米は「和」を感じさせる古代米（赤米・黒米）、副原料は「洋」のイメージでベリー系を多用する。優しく振ると滓とラメが雪のように舞うことから「スノードーム」と名付けられた。",
       "story_source_url": "https://konohanano-brewery.shop/items/67653f5de3848e166f45ecc8",
       "awards": [],
-      "flavor_basis": "どぶろく。古代米（赤米・黒米）にベリー系のピューレとシロップを重ねる。香りと味のギャップが設計意図"
+      "flavor_basis": "どぶろく。古代米（赤米・黒米）にベリー系のピューレとシロップを重ねる。香りと味のギャップが設計意図",
+      "tasting_source_type": "公式"
     },
     "大人のネクター03「ネクタリン」": {
       "abv": 9,
@@ -260,14 +268,15 @@
       "preservation": null,
       "pairing": [],
       "tasting_nose": null,
-      "tasting_palate": "キュッとした酸味が感じられる、飲みごたえのある味わい",
+      "tasting_palate": "桃より強い酸味。いままでの大人のネクターより少しアルコール度数を上げ、キュッとした酸味が感じられる飲みごたえのある味わい",
       "tasting_finish": null,
-      "tasting_source_name": "木花之醸造所 公式ストア",
+      "tasting_source_name": "木花之醸造所 公式オンラインストア／購入者レビュー",
       "tasting_source_url": "https://konohanano-brewery.shop/items/655082d959c11210bc7b8574",
       "story": "「大人のネクター」シリーズ第3弾で、福島県福島市のABE果樹園から届いたネクタリンを使用したフルーツどぶろく。前作の桃との違いは産毛の有無だが、味わいは桃より強い酸味を持つ。銘柄名は、美と青春の女神“へべ”が宴で振る舞い不老不死になるという伝説を持つ酒“ネクタル”を由来とするネクタリンにちなむ。",
       "story_source_url": "https://konohanano-brewery.shop/items/655082d959c11210bc7b8574",
       "awards": [],
-      "flavor_basis": "白麹を多めにして酸を立てる。ネクタリンの酸味に合わせた設計"
+      "flavor_basis": "ネクタリンを皮ごとミキサーにかけて使うフルーツどぶろく。強い酸味を引き立てるため通常より多めの白麹でもろみを造る。飲み手からは「濃厚で果肉感が強い」との声。精米歩合90%",
+      "tasting_source_type": "公式＋ユーザー口コミ"
     },
     "Daiginjo Method": {
       "abv": 14,
@@ -279,7 +288,7 @@
       "rice_polish": 50,
       "shubo": null,
       "koji": null,
-      "yeast": "きょうかい701号（70%）・きょうかい901号（30%）",
+      "yeast": "きょうかい701号70%＋901号30%",
       "water": null,
       "vessel": null,
       "pasteurized": null,
@@ -289,14 +298,15 @@
       "preservation": null,
       "pairing": [],
       "tasting_nose": null,
-      "tasting_palate": "キレはよく口当たりは柔らかい。口に含んだ後のバランス変化が面白く、軽い甘さの中でフローラルな香りとキレがゆっくり進む",
+      "tasting_palate": "キレはよく、口当たりは柔らかい。軽い甘さが漂う中で、フローラルな香りとキレがゆっくりと歩みを進める",
       "tasting_finish": null,
-      "tasting_source_name": "木花之醸造所 公式ストア",
+      "tasting_source_name": "木花之醸造所 公式オンラインストア",
       "tasting_source_url": "https://konohanano-brewery.shop/items/658f62e32ead37155a83efc6",
       "story": "東京の10坪に満たない醸造所で、純米大吟醸の製造法に沿って丁寧に造った酒。台東区の区花である桜のウッドチップを使うため、品目は「その他の醸造酒」にあたると公式が明記している。ラベルは浅草寺・雷門の大ちょうちんの底に鎮座する木彫りの龍をデザイン。醸造年度R7BY。",
       "story_source_url": "https://konohanano-brewery.shop/items/658f62e32ead37155a83efc6",
       "awards": [],
-      "flavor_basis": "その他醸造酒。大吟醸の造りに桜のウッドチップ。柔らかい口当たりとフローラルな香り"
+      "flavor_basis": "純米大吟醸の造りに沿いつつ桜のウッドチップを使うため品目は「その他醸造酒」と公式が明記。軽い甘さと柔らかい口当たり、フローラルな香りとキレ。精米歩合50%",
+      "tasting_source_type": "公式"
     },
     "ジャスミン 濁酒ver.": {
       "abv": 14,
@@ -328,7 +338,8 @@
       "story": "糖化中の甘酒や熟成中の醪に浮かぶ米粒がジャスミンの花に見えて愛らしかったことから、酒にしてみようと思い立って造られた。米の心地よい甘味と派手すぎないジャスミンの柔和な香りで、寝酒にできるリラックスできる酒を目指している。",
       "story_source_url": "https://konohanano-brewery.shop/items/64a769441308d500324df01a",
       "awards": [],
-      "flavor_basis": "濁酒。米とジャスミンだけ。ミルキーで甘く優しい方向"
+      "flavor_basis": "濁酒。米とジャスミンだけ。ミルキーで甘く優しい方向",
+      "tasting_source_type": "公式"
     },
     "ジャスミン 澄酒ver.": {
       "abv": 14,
@@ -360,7 +371,8 @@
       "story": "濁酒ver.と同じ仕込みを搾った澄酒バージョン。公式ストアでは別商品として販売されている。米の心地よい甘味と派手すぎないジャスミンの香りという狙いは共通で、搾ることで香りの立ち方と甘さの出方が変わる。",
       "story_source_url": "https://konohanano-brewery.shop/items/64a76a5ae0c48f002bb7d267",
       "awards": [],
-      "flavor_basis": "同じ仕込みの搾り分け。濁酒より香りが明瞭で甘さ控えめ"
+      "flavor_basis": "同じ仕込みの搾り分け。濁酒より香りが明瞭で甘さ控えめ",
+      "tasting_source_type": "公式"
     },
     "LAB02「出汁パンチ」": {
       "abv": 13,
@@ -382,14 +394,15 @@
       "preservation": null,
       "pairing": [],
       "tasting_nose": null,
-      "tasting_palate": "テーマは「ぼくのかんがえたさいきょうのあつかん」。前回までの全麹仕込みから掛け米も使う造りに変え、米粒感を減らして飲みやすいテクスチャを狙っている",
+      "tasting_palate": "濁酒の濃厚さが口いっぱいに広がる。かつお節の旨味に、発酵後期に投入した梅干し由来の塩味と酸味がアクセント",
       "tasting_finish": null,
-      "tasting_source_name": "木花之醸造所 公式ストア",
+      "tasting_source_name": "木花之醸造所 公式オンラインストア／日本酒を10倍楽しむ方法",
       "tasting_source_url": "https://konohanano-brewery.shop/items/65a3d03a91f26e1dfa25d7fc",
       "story": "3代目醸造長・木村によるLABシリーズ。酒に直接鰹節を入れて熱燗にする飲み方の美味しさから「そもそも出汁で酒を造ればよいのでは」と発想して生まれた。江戸時代に日常的に使われた調味料「煎り酒」の製法がヒントになっている。今回で3回目の製造。",
       "story_source_url": "https://konohanano-brewery.shop/items/65a3d03a91f26e1dfa25d7fc",
       "awards": [],
-      "flavor_basis": "出汁を仕込み水にする発想。燗前提の設計で、梅干しの塩味と酸味がアクセント"
+      "flavor_basis": "かつお節と梅干しを使うどぶろく。白濁にほんのり茶色味。濃厚で旨味と塩味・酸味が重なる。前回までの全麹から掛け米も使う造りに変え、米粒感を減らした",
+      "tasting_source_type": "公式＋メディア"
     },
     "栗熟成酒「ヘーゼルナッツショコラ」〜bitter taste〜": {
       "abv": 12,
@@ -418,7 +431,8 @@
       "story": "もち米シリーズ第2弾で、冬向けのどぶろくスタイル。栗の木で出来た樽でどぶろくを半年間熟成させ、さらにヘーゼルナッツとカカオ、バニラ少々を加え、もち米で造った濃厚な醪を合わせている。品目は公式に「その他醸造酒」と明記。",
       "story_source_url": "https://konohanano-brewery.shop/items/65a3cfff0e0729066f61731b",
       "awards": [],
-      "flavor_basis": "その他醸造酒。栗樽熟成＋ナッツとカカオ。燗で開く濃厚な熟成方向"
+      "flavor_basis": "その他醸造酒。栗樽熟成＋ナッツとカカオ。燗で開く濃厚な熟成方向",
+      "tasting_source_type": "公式"
     },
     "ミードブロク": {
       "abv": 11,
@@ -451,7 +465,8 @@
       "story": "ミード（蜂蜜酒）と日本酒の製造技術を融合させたフュージョンSAKE。上野エリアで養蜂されたハチミツをふんだんに使い、荒漉しで仕上げている。公式に品目の記載はない。",
       "story_source_url": "https://konohanano-brewery.shop/items/69e9f9299391c4d06f295ba1",
       "awards": [],
-      "flavor_basis": "蜂蜜と米の甘さを熟成でまとめる。塩味の強い料理に向く濃い味筋"
+      "flavor_basis": "蜂蜜と米の甘さを熟成でまとめる。塩味の強い料理に向く濃い味筋",
+      "tasting_source_type": "公式"
     },
     "passionfruit sake [bartender waka collaboration]": {
       "abv": 7,
@@ -480,7 +495,8 @@
       "story": "麻布十番のバーテンダーWAKA氏から提案されたレシピによるコラボ商品。シンプルな濁酒をベースに、パッションフルーツと白ワイン用ぶどう（ソーヴィニヨンブラン）のジュース、ラフランス茶などを加えて造られている。阪急メンズ館の周年イベントやPRADA MODE大阪などで供された。",
       "story_source_url": "https://konohanano-brewery.shop/items/686a673a029af1af13db27cc",
       "awards": [],
-      "flavor_basis": "濁酒ベースのカクテル的設計。度数7度と低く、酸味主体で飲みやすい方向"
+      "flavor_basis": "濁酒ベースのカクテル的設計。度数7度と低く、酸味主体で飲みやすい方向",
+      "tasting_source_type": "公式"
     }
   },
   "confidence_notes": "公式サイトJSレンダリングで本文取得不可・公式STORE 403のため、信頼できる取扱EC(酒泉洞堀一・登り酒店・マツザキ)とSakenomy/SAKETIME/Wikipediaから複数一致値のみ採用。所在地は東京都台東区駒形(宮崎ではない)。精米歩合・酒母・酵母・仕込水・発酵容器は非公開でnull。火入れは生(微発泡)からfalse。焼酎用白麹仕様＝THE酸の別称。",

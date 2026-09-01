@@ -6,7 +6,7 @@ brand_data/*.json（一次ソース調査済み）を breweries_brands.py の銘
 フレーバー4軸/6軸は調査済み flavor_basis・テイスティング・成分値から編集部評価として導出。
 
 - gen_sample_v2.py の CSS / SVG関数 / AFFILIATE_ENABLED を再利用
-- haccoba は showcase の haccoba-0.html を維持するため対象外（brand_data無し）
+- haccoba も含めて全銘柄を生成する（gen_sample_v2.py はデザイン見本で、公開ページは作らない）
 - アフィリ購入ボタンは AFFILIATE_ENABLED に従う（現在False=準備中表示）
 
 実行: cd ツール/saketto_repo/tools && python gen_brand_pages_v2.py
@@ -126,22 +126,121 @@ def structural_signals(detail, brand):
     return (dbody, dsweet, dacid, dclar), why
 
 
+# ────────────── 品目（酒税法上の区分） ──────────────
+# 全銘柄を「その他の醸造酒」と決め打ちしていたが、実際は違う酒がある。
+# 副原料を使わず搾った酒は「清酒」、発泡性を付けたものは「発泡酒」など。
+# 推測はせず、**公式・蔵の記述で品目が確認できた銘柄だけ**をここに置く。
+# 未確認の銘柄はクラフトサケの大半が該当する「その他の醸造酒」を既定値にする。
+CATEGORY_OVERRIDE = {
+    # 公式が品目を明記
+    ("lagoon", 7): "発泡酒",            # 「蔵初の品目【発泡酒】製品」
+    ("konohanano", 0): "濁酒",          # 「品目は『濁酒』」
+    # 副原料を使わず搾った純米酒＝清酒（公式が純米大吟醸／純米と表記）
+    ("hakutsuru-sakecraft", 0): "清酒",
+    ("hakutsuru-sakecraft", 1): "清酒",
+    ("hakutsuru-sakecraft", 2): "清酒",
+    ("hakutsuru-sakecraft", 8): "清酒",
+    ("ine-to-agave", 14): "清酒",        # 土田酒造での生酛・純米。副原料なし
+    ("adachi-noujo", 0): "清酒",         # 公式表記「清酒(純米)」
+    ("adachi-noujo", 1): "清酒",         # 公式表記「清酒・生原酒(直汲み)」
+}
+
+
+# ────────────── GLOSSARY（そのページに出てくる用語だけ出す） ──────────────
+# クラフトサケは造りの用語が多く、初見の読者はそこで止まる。
+# ただし全用語を並べると本文より長くなるため、**そのページの本文に実際に
+# 現れた語だけ**を拾って出す。読みもの記事があるものはそこへ繋ぐ。
+GLOSSARY_TERMS = [
+    # (見出し語, 本文でこれが出たら拾う語, 解説, 読みもの記事)
+    ("その他の醸造酒", ("その他の醸造酒",),
+     "酒税法上の区分。米に副原料を加えて醸すと「清酒」を名乗れず、この区分になる。クラフトサケの多くがここに入る。",
+     "../guide/craftsake-towa"),
+    ("どぶろく（濁酒）", ("どぶろく", "ドブロク", "濁酒", "DOBUROKU", "Doburoku"),
+     "もろみを搾らずにそのまま瓶詰めした酒。米の粒や澱が残り、とろりとした口当たりになる。",
+     "../guide/doburoku"),
+    ("にごり・おりがらみ", ("おりがらみ", "にごり", "ニゴリ", "うすにごり", "薄にごり", "澱", "オリ"),
+     "搾った酒に澱（おり）をあえて残したもの。うっすら濁り、米の旨みが乗る。", None),
+    ("花酛", ("花酛", "花もと", "はなもと"),
+     "東北に伝わるどぶろくの古典製法。「東洋のホップ」と呼ばれる唐花草（カラハナソウ）で発酵させる。明治の自家醸造禁止で途絶えていたものを haccoba が復刻した。",
+     "../guide/hanamoto"),
+    ("木桶仕込み", ("木桶",),
+     "ステンレスやホーローではなく木の桶で仕込む方法。桶に棲む微生物が発酵に関わり、蔵ごとの個性が出やすいとされる。",
+     "../guide/kioke"),
+    ("全麹仕込み", ("全麹", "全糀"),
+     "仕込みに使う米を全量、麹にする造り。糖とアミノ酸が多くなり、濃厚で甘酸っぱい酒になりやすい。",
+     "../guide/zenkoji"),
+    ("生酛", ("生酛", "生もと", "きもと"),
+     "乳酸菌を人為的に添加せず、蔵付きの乳酸菌に酸を作らせて酒母を育てる伝統製法。手間がかかるが、酸に厚みが出る。", None),
+    ("水酛・菩提酛", ("水酛", "水もと", "菩提酛", "菩提もと", "ぼだいもと"),
+     "室町期に寺で確立した酒母の造り方。生米を水に漬けて乳酸を得るため、独特の酸が出る。奈良・正暦寺由来のものを菩提酛と呼ぶ。", None),
+    ("白麹", ("白麹", "白糀"),
+     "焼酎造りに使われる麹。クエン酸を多く出すため、もろみが腐りにくく、酒に柑橘のような酸が乗る。", None),
+    ("黄麹", ("黄麹", "黄糀"),
+     "日本酒に古くから使われる麹。白麹ほど酸を出さず、穏やかな旨みと香りになる。", None),
+    ("高温糖化酛", ("高温糖化",),
+     "仕込み前に高温で米を糖化させてから酒母を立てる方法。短期間で安全に酒母ができ、糖が残りやすい。", None),
+    ("速醸酛", ("速醸",),
+     "醸造用乳酸を添加して酒母を立てる、明治期に確立した現代の標準的な方法。", None),
+    ("ドライホッピング", ("ドライホッピング", "ドライホップ"),
+     "発酵の後にホップを漬け込んで香りだけを移すクラフトビールの技法。クラフトサケでも香りづけに使われる。", None),
+    ("上槽・袋吊り", ("上槽", "槽搾り", "槽絞り", "袋吊り", "雫取り"),
+     "もろみを搾って酒と酒粕に分ける工程。圧をかけずに落ちる雫だけを集める袋吊りは、量は取れないが澄んだ味になる。", None),
+    ("貴醸酒", ("貴醸酒",),
+     "仕込み水の一部を酒に置き換えて仕込む方法。糖が残りやすく、とろりと甘い酒になる。", None),
+    ("精米歩合", ("精米歩合",),
+     "米を磨いて残った割合。90%なら1割だけ削った状態で、米の成分が多く残る。", None),
+    ("日本酒度", ("日本酒度",),
+     "酒の比重を示す数値。マイナスほど糖が多く甘口、プラスほど辛口の目安になる。", None),
+    ("酸度", ("酸度",),
+     "酒に含まれる有機酸の量の目安。数値が大きいほど酸を強く感じやすい。", None),
+]
+
+
+def glossary_section_html(page_text, num_str="§NUM§"):
+    """本文に出てきた用語だけを拾って解説を付ける。最大6件。"""
+    hits = [(term, desc, link) for term, trig, desc, link in GLOSSARY_TERMS
+            if any(t in page_text for t in trig)]
+    if not hits:
+        return ""
+    hits = hits[:6]
+    items = "".join(
+        f'<div class="glossary-item"><dt>{esc(t)}</dt>'
+        f'<dd>{esc(d)}{f" <a href=\"{l}\">くわしく →</a>" if l else ""}</dd></div>'
+        for t, d, l in hits)
+    return f"""
+  <section class="section">
+    <div class="section-meta"><span class="section-meta__num">{num_str}</span><h2 class="section-meta__label">GLOSSARY / 専門用語ミニ解説</h2><span class="section-meta__rule"></span></div>
+    <dl class="glossary">{items}</dl>
+  </section>
+"""
+
+
 def derive_flavor(detail, brand):
     """flavor_basis・テイスティング・成分値・造りのスペックから4軸/6軸/タグを導出。
     値は『公式の記述と造りの情報に基づくsaketto編集部評価』。"""
     parts = [detail.get("flavor_basis"), detail.get("tasting_nose"),
              detail.get("tasting_palate"), detail.get("tasting_finish"),
-             detail.get("sub_ingredients_detail"), detail.get("story")]
+             detail.get("sub_ingredients_detail"), detail.get("story"),
+             # brand の note は一次ソース確認済みの短文。ここを読んでいなかったため、
+             # 「うすにごり」「搾った」と明記されている酒まで判定不能になっていた。
+             brand.get("note")]
     text = " ".join(p for p in parts if p)
 
     abv = detail.get("abv") if isinstance(detail.get("abv"), (int, float)) else brand.get("abv")
+
+    # どの軸が「記述から決まったか」を値と別に持つ。
+    # 0.5 は『根拠が無い初期値』でもあり『根拠があって中庸』でもあるため、
+    # 値だけを見ると両者を区別できない（甘・辛が両方書かれた酒で実際に混同していた）。
+    decided = set()
 
     # ── 4軸（0=左, 1=右）──
     # body: 軽快(0) ↔ 濃醇(1)
     if _has(text, "濃醇", "濃厚", "リッチ", "フルボディ", "とろみ", "とろとろ", "ムース", "コク", "膨らみ", "ボリューム", "旨味が強", "旨みを強", "完全発酵", "食い切", "長期発酵", "全麹", "濃密", "凝縮"):
         body = 0.72
+        decided.add("body")
     elif _has(text, "淡麗", "軽快", "さらり", "ライト", "すっきり", "クリア", "クリーン", "スイスイ", "ドリンカブル"):
         body = 0.32
+        decided.add("body")
     else:
         body = 0.5
     if isinstance(abv, (int, float)):
@@ -151,10 +250,10 @@ def derive_flavor(detail, brand):
             body = max(0.0, body - 0.1)
 
     # sweet: 甘口(0) ↔ 辛口(1)
-    nihonshudo = detail.get("flavor_basis", "")
     sweet = 0.5
     if _has(text, "ドライ", "辛口", "キレ", "シャープ", "完全発酵", "食い切", "切れ味"):
         sweet = 0.68
+        decided.add("sweet")
     # 「甘みはほとんど感じない」「甘ったるくない」のような否定表現を先に処理する。
     # これを見ないと、否定文の中の「甘み」に反応して辛口判定と相殺され、
     # 実際は甘みの無い酒が中央に落ちてしまう（nondo 水もとで実際に起きていた）。
@@ -164,8 +263,11 @@ def derive_flavor(detail, brand):
         "甘みが少な", "残糖感がな")
     if _dry_negation:
         sweet = 0.72
+        decided.add("sweet")
     elif _has(text, "甘口", "甘味", "甘み", "甘さ", "甘酸", "甘旨", "やさしい甘", "優しい甘", "濃厚な甘", "しっかりした甘", "甘やか"):
-        sweet = 0.35 if sweet == 0.5 else 0.5
+        # 甘辛どちらの語もあるなら、それは「情報が無い」のではなく「中庸」。
+        sweet = 0.5 if "sweet" in decided else 0.35
+        decided.add("sweet")
     # 日本酒度の数値があれば優先（-で甘、+で辛）
     import re
     m = re.search(r"日本酒度[-−]?\s*([+\-]?\d+(?:\.\d+)?)", text)
@@ -174,16 +276,23 @@ def derive_flavor(detail, brand):
             v = float(m.group(1).replace("−", "-"))
             # -15..+10 を 0.15..0.8 に（負=甘=低）
             sweet = max(0.12, min(0.85, 0.5 - v / 30.0))
+            decided.add("sweet")
         except ValueError:
             pass
 
     # acid: 酸控(0) ↔ 酸強(1)
     if _has(text, "高酸", "鋭い酸", "鋭角な酸", "サワー", "クエン酸", "しっかりした酸", "強い酸", "強めの酸", "酸でキレ", "爽快感MAX"):
         acid = 0.78
-    elif _has(text, "酸味", "酸が", "爽やかな酸", "心地よい酸", "柔らかな酸", "乳酸"):
+        decided.add("acid")
+    # 「甘酸っぱい」「酸っぱい」は酸の記述として一般的だが、
+    # 「酸味」という語を含まないため以前は拾えていなかった。
+    elif _has(text, "酸味", "酸が", "爽やかな酸", "心地よい酸", "柔らかな酸", "乳酸",
+              "甘酸っぱ", "酸っぱ", "酸を", "酸の立"):
         acid = 0.6
+        decided.add("acid")
     elif _has(text, "酸控", "酸は穏やか", "まろやか"):
         acid = 0.35
+        decided.add("acid")
     else:
         acid = 0.45
     ms = re.search(r"酸度\s*([0-9]+(?:\.\d+)?)", text)
@@ -191,6 +300,7 @@ def derive_flavor(detail, brand):
         try:
             a = float(ms.group(1))
             acid = max(0.2, min(0.95, (a - 1.0) / 5.0 + 0.3))
+            decided.add("acid")
         except ValueError:
             pass
 
@@ -198,15 +308,20 @@ def derive_flavor(detail, brand):
     # **銘柄名と flavor_basis を最優先**。story には「どぶろくタイプを搾った澄み酒版」
     # のように、その酒自身とは逆の語が入ることがあり、そこを根拠にすると
     # 搾った酒を濁り判定してしまう（実際に「槽絞り生」「澄み酒タイプ」で誤判定していた）。
-    _own = brand.get("name", "") + " " + str(detail.get("flavor_basis") or "")
+    _own = " ".join((brand.get("name", ""), str(detail.get("flavor_basis") or ""),
+                     str(brand.get("note") or "")))
     if _has(_own, "澄み酒", "槽搾り", "槽絞り", "袋吊り", "上槽", "清澄"):
         clarity = 0.25
+        decided.add("clarity")
     elif _has(_own, "どぶろく", "ドブロク", "にごり", "ニゴリ", "濁酒", "おりがらみ", "うす濁", "薄にごり", "白濁"):
         clarity = 0.82
+        decided.add("clarity")
     elif _has(text, "どぶろく", "ドブロク", "にごり", "ニゴリ", "濁酒", "おりがらみ", "うす濁", "薄にごり", "白濁", "霞色"):
         clarity = 0.82
+        decided.add("clarity")
     elif _has(text, "清澄", "クリア", "透明", "澄んだ", "クリーン"):
         clarity = 0.25
+        decided.add("clarity")
     else:
         clarity = 0.5
 
@@ -219,10 +334,13 @@ def derive_flavor(detail, brand):
             return cur
         w = 0.45 if decided else 1.0   # 記述で決まっている軸は控えめに動かす
         return max(0.05, min(0.95, cur + delta * w))
-    body = _apply(body, db, abs(body - 0.5) >= 0.02)
-    sweet = _apply(sweet, ds, abs(sweet - 0.5) >= 0.02)
-    acid = _apply(acid, da, abs(acid - 0.45) >= 0.02)
-    clarity = _apply(clarity, dc, abs(clarity - 0.5) >= 0.02)
+    body = _apply(body, db, "body" in decided)
+    sweet = _apply(sweet, ds, "sweet" in decided)
+    acid = _apply(acid, da, "acid" in decided)
+    clarity = _apply(clarity, dc, "clarity" in decided)
+    for _ax, _dl in (("body", db), ("sweet", ds), ("acid", da), ("clarity", dc)):
+        if _dl:
+            decided.add(_ax)   # 造りのスペックも根拠のうち
 
     scale4 = {"body": round(body, 2), "sweet": round(sweet, 2),
               "acid": round(acid, 2), "clarity": round(clarity, 2)}
@@ -257,7 +375,7 @@ def derive_flavor(detail, brand):
         if len(seen) >= 6:
             break
     tags = seen
-    return scale4, radar6, tags
+    return scale4, radar6, tags, decided
 
 
 # ────────────── HTML 構築（伸縮） ──────────────
@@ -321,9 +439,9 @@ def build_html(brand, detail, brewery, idx):
     price_note = clean_note(d.get("price_note")) or ("参考価格・確認日 2026/05/31" if price else "")
     subs = b.get("sub_ingredients") or []
     sub_detail = clean_note(d.get("sub_ingredients_detail"))
-    category = "その他の醸造酒"
+    category = CATEGORY_OVERRIDE.get((slug, idx), "その他の醸造酒")
 
-    scale4, radar6, tags = derive_flavor(d, b)
+    scale4, radar6, tags, _decided = derive_flavor(d, b)
 
     rakuten_url = resolve_rakuten(slug, idx, name)  # 実購入できない銘柄はNone（非表示）
     amazon_url = resolve_amazon(slug, idx, name)
@@ -471,13 +589,25 @@ def build_html(brand, detail, brewery, idx):
         # 造りからの推定（白麹＝酸、全麹＝濃醇 等）や、飲んだ人の記述（口コミ）を
         # 使っている場合は、その旨を明示する。出典の性質が違うため。
         _, _why = structural_signals(d, b)
+        # 出典種別は「公式＋販売店」のように複合で入ることがある。
+        # 完全一致で見ると複合分を全部「公式」と書いてしまい、
+        # 蔵が書いていない記述まで公式扱いになるため、含有で判定する。
         _st = (d.get("tasting_source_type") or "").strip()
-        if _st in ("ユーザー口コミ", "SNS", "イベントレポ", "ブログ"):
-            _base = "公表情報に加え、飲んだ人の記述（口コミ・レビュー）"
+        _who = []
+        if "公式" in _st or "プレスリリース" in _st:
+            _who.append("蔵の公表情報")
+        if "販売店" in _st:
+            _who.append("取扱店の商品説明")
+        if "メディア" in _st:
+            _who.append("媒体記事")
+        if any(w in _st for w in ("口コミ", "SNS", "ブログ", "イベントレポ")):
+            _who.append("飲んだ人の記述")
+        if _who:
+            _base = "・".join(_who) + ("と成分値" if has_tasting else "")
         elif has_tasting:
-            _base = "公式テイスティング記述・成分値"
+            _base = "公表されたテイスティング記述・成分値"
         else:
-            _base = "公式の製法・原料・成分の情報"
+            _base = "公表された製法・原料・成分の情報"
         _cap = f"{_base}に基づく saketto 編集部評価。"
         if _why:
             _cap += "造りからの読み取り（" + "／".join(w.split("（")[0] for w in _why[:3]) + "）を含みます。"
@@ -684,11 +814,25 @@ def build_html(brand, detail, brewery, idx):
     # NEXT / 次に出会う（機械選出の関連銘柄・回遊導線）
     next_section = next_section_html(slug, idx, num_str="§NUM§")
 
+    # GLOSSARY は**データ側の文字列**から拾う。組み上がったHTMLを見ると、
+    # 4軸グラフの軸ラベル「にごり」や表の見出し「精米歩合」に反応してしまい、
+    # その酒と関係のない用語まで解説してしまう（実際に全172ページで起きた）。
+    glossary_section = glossary_section_html(" ".join(str(x) for x in (
+        name, category, b.get("note") or "", " ".join(map(str, subs)),
+        d.get("flavor_basis") or "", d.get("tasting_nose") or "",
+        d.get("tasting_palate") or "", d.get("tasting_finish") or "",
+        d.get("sub_ingredients_detail") or "", story_txt,
+        d.get("shubo") or "", d.get("koji") or "", d.get("vessel") or "",
+        # 数値スペックは、実際に値がある時だけ用語解説の対象にする
+        "精米歩合" if d.get("rice_polish") else "",
+    )))
+
     # セクション採番：存在するセクションだけを表示順に No.01.. と連番にする（欠番を出さない）
     _n = 0
     _numbered = []
     for _s in (recipe_section, enjoy_section, tasting_section, flavor_section,
-               story_section, awards_section, kura_section, next_section):
+               story_section, awards_section, kura_section, glossary_section,
+               next_section):
         if _s:
             _n += 1
             _numbered.append(_s.replace("§NUM§", f"No. {_n:02d}"))

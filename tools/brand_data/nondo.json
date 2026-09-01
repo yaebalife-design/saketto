@@ -22,14 +22,15 @@
       "preservation": null,
       "pairing": null,
       "tasting_nose": null,
-      "tasting_palate": null,
-      "tasting_finish": null,
-      "tasting_source_name": "nondo公式EC",
-      "tasting_source_url": "https://nondo-tono.life/products/新商品-権化-土の密",
+      "tasting_palate": "濃密でありながら滑らかで、爽やかな林檎のような甘味と、微かに感じる穏やかな酸味",
+      "tasting_finish": "燗につけると酸味が際立ち、低温〜常温とは異なった印象になる",
+      "tasting_source_name": "IMADEYA／新潟 長谷川屋",
+      "tasting_source_url": "https://imadeya.co.jp/products/8494814363813",
       "story": "『土が変われば、きれいな味になる』健全な土が健全な米を生み、米糠まで完全発酵。醪150日超",
       "story_source_url": "https://nondo-tono.life/products/新商品-権化-土の密",
       "awards": [],
-      "flavor_basis": "その他の醸造酒・無濾過生原酒。米糠活用で独特の香味。完全発酵150日超"
+      "flavor_basis": "『権化 Rafters』の姉妹品で、違いは水もとの酸度のみ。こちらは酸が穏やかで、米本来の甘味からくる密度の濃さが名前の由来。男柱・跳ね木・槽で搾る",
+      "tasting_source_type": "販売店"
     },
     "権化 Rafters": {
       "abv": 14,
@@ -51,14 +52,15 @@
       "preservation": null,
       "pairing": null,
       "tasting_nose": "グレープフルーツや柑橘系の香り",
-      "tasting_palate": "シャープな酸と軽い甘味、柑橘系",
+      "tasting_palate": "シャープな酸と軽い甘味。柑橘系の味わい",
       "tasting_finish": null,
-      "tasting_source_name": "nondo公式EC",
+      "tasting_source_name": "non°（nondo）公式EC",
       "tasting_source_url": "https://nondo-tono.life/products/権化シリーズ-rafters",
       "story": "200年前の男柱・はね木、江戸期の槽を再生した伝統圧搾。noma Kyotoで採用とされる(要二次確認)",
       "story_source_url": "https://nondo-tono.life/products/権化シリーズ-rafters",
       "awards": [],
-      "flavor_basis": "無添加無濾過生原酒。シャープな酸+軽い甘味・柑橘系"
+      "flavor_basis": "古くからの搾り方法、男柱・跳ね木・槽を使って搾った酒。シャープな酸と軽い甘味で、姉妹品『土の密℃』より酸が高い",
+      "tasting_source_type": "公式"
     },
     "権化 MARO 無濾過生原酒": {
       "abv": 12,
@@ -79,15 +81,16 @@
       "glass": null,
       "preservation": null,
       "pairing": null,
-      "tasting_nose": "シェリーやバニラ香",
-      "tasting_palate": "少しトロッとした舌触り、柔らかな甘味、蜂蜜やきな粉・杏・松葉。『米だけで醸したベルモット』",
-      "tasting_finish": null,
-      "tasting_source_name": "nondo公式EC",
-      "tasting_source_url": "https://nondo-tono.life/products/権化シリーズ-4",
+      "tasting_nose": "杏のような甘みのある果実の香りの奥に、煎った米糠の心地よい香ばしさ",
+      "tasting_palate": "蜜のような甘みと、飲みごたえのあるボディ",
+      "tasting_finish": "余韻には酸もしっかりと感じられる",
+      "tasting_source_name": "IMADEYA／川越角屋酒店",
+      "tasting_source_url": "https://imadeya.co.jp/products/8181948678309",
       "story": "2年ぶり復活の第2ロット。煎った米糠で米だけのベルモット様を表現",
       "story_source_url": "https://nondo-tono.life/products/権化シリーズ-4",
       "awards": [],
-      "flavor_basis": "無濾過生原酒。シェリー/バニラ香・蜂蜜きな粉杏松葉・スパイス感・トロッと"
+      "flavor_basis": "水もと・木桶で150日超（酛を含め180日超）の完全発酵。糠の香ばしさと蜜のような甘み、水もとならではの酸が調和する",
+      "tasting_source_type": "販売店"
     },
     "権化 MO CHUISLE": {
       "abv": 12,
@@ -109,14 +112,15 @@
       "preservation": null,
       "pairing": null,
       "tasting_nose": "穀物由来の甘さを感じる香り",
-      "tasting_palate": "最初に甘味、その後すっと引き心地よい酸でキレる。アルザス白ワイン様",
-      "tasting_finish": "心地よい酸でキレる",
-      "tasting_source_name": "nondo公式EC",
-      "tasting_source_url": "https://nondo-tono.life/products/権化シリーズ-2",
+      "tasting_palate": "アタックから甘みを感じつつ、すぐにキュッと引き締まった酸味。香りにある米糠の印象は味わいに一切なく、ピュアでクリアな味わい",
+      "tasting_finish": "余韻に栗やさつまいものようなコクある甘さ",
+      "tasting_source_name": "IMADEYA／川越角屋酒店",
+      "tasting_source_url": "https://imadeya.co.jp/products/8181873803429",
       "story": "2022年以来の第2ロット。米糠増量の水もと、ソムリエ評『稀有な飲み物』。自然圧搾",
       "story_source_url": "https://nondo-tono.life/products/権化シリーズ-2",
       "awards": [],
-      "flavor_basis": "無添加無濾過生原酒。穀物の甘さ→酸のキレ・アルザス白ワイン様"
+      "flavor_basis": "完全発酵によって甘さを抑えた味わいに、はっきりとした酸味が閃く鮮烈な飲み口",
+      "tasting_source_type": "販売店"
     },
     "権化生酛": {
       "abv": 13,
@@ -138,14 +142,15 @@
       "preservation": null,
       "pairing": null,
       "tasting_nose": null,
-      "tasting_palate": "深い味わい、柔らかな甘味、キレ",
-      "tasting_finish": "キレがある",
-      "tasting_source_name": "nondo公式EC",
+      "tasting_palate": "味わいに奥深さがあり、柔らかな甘味が心地良い。切れがあり全体的にバランスが取れている",
+      "tasting_finish": "熱燗では米・米糠由来のふくよかな表情を見せ、キリッとしたアルコール感も出る",
+      "tasting_source_name": "non°（nondo）公式EC",
       "tasting_source_url": "https://nondo-tono.life/products/権化-生酛",
       "story": "江戸期の生酛で、協会酵母・醸造用乳酸・添加物一切不使用、木桶で醸す無添加無濾過生原酒。150日超",
       "story_source_url": "https://nondo-tono.life/products/権化-生酛",
       "awards": [],
-      "flavor_basis": "無添加無濾過生原酒。深い味わい・柔らかな甘味・キレ。温度で大きく変化"
+      "flavor_basis": "生酛・無添加・無濾過・生原酒で150日超の完全発酵。柔らかな甘味と切れのバランス。品目はその他の醸造酒",
+      "tasting_source_type": "公式"
     },
     "とおの どぶろく 水もと無添加 生": {
       "abv": 9,
@@ -174,7 +179,8 @@
       "story": "室町時代の水もと仕込み。天然乳酸菌が雑菌駆除し蔵付酵母が発酵。米・米麹・水",
       "story_source_url": "https://nondo-tono.life/products/どぶろく-水酛",
       "awards": [],
-      "flavor_basis": "どぶろく。水酛（菩提酛）・酵母無添加・乳酸無添加・無濾過・火入れなし。3種の中で最も酸が主役で甘みはほぼ残らない。度数はロットにより9〜14度と幅がある"
+      "flavor_basis": "どぶろく。水酛（菩提酛）・酵母無添加・乳酸無添加・無濾過・火入れなし。3種の中で最も酸が主役で甘みはほぼ残らない。度数はロットにより9〜14度と幅がある",
+      "tasting_source_type": "公式"
     },
     "とおの どぶろく 生酛無添加 生": {
       "abv": "10〜12",
@@ -203,7 +209,8 @@
       "story": "江戸期の生酛仕込み。自然の乳酸菌が雑菌駆除し蔵付酵母が発酵。無添加・生。米・米麹・水",
       "story_source_url": "https://nondo-tono.life/products/どぶろく-生酛",
       "awards": [],
-      "flavor_basis": "どぶろく。生酛・酵母無添加・無濾過・火入れなし。3種の中で最も複雑さと野性味・濃厚さを担い、酸はやわらかい。発泡感はしっかり。度数は10〜14度と幅がある"
+      "flavor_basis": "どぶろく。生酛・酵母無添加・無濾過・火入れなし。3種の中で最も複雑さと野性味・濃厚さを担い、酸はやわらかい。発泡感はしっかり。度数は10〜14度と幅がある",
+      "tasting_source_type": "公式＋販売店"
     },
     "とおの どぶろく 速醸 生": {
       "abv": "10〜12",
@@ -227,14 +234,15 @@
         "ビスコッティなどの焼き菓子"
       ],
       "tasting_nose": "バナナやトチの花蜜を思わせる香り",
-      "tasting_palate": "醸造用酵母と醸造用乳酸で醸す現代の造り。微発泡でクリーミー、飲み口がよい。蔵が「洗練されてエレガント」と位置づける、要のどぶろくの基準となる味わい",
+      "tasting_palate": "微発泡でクリーミー、飲み口の良いタイプ。飲み手からは「もろみたっぷりで刺激的」「酸が強い」との声もある",
       "tasting_finish": "キレのあるアルコール感",
-      "tasting_source_name": "nondo 公式／金二商事",
-      "tasting_source_url": "https://tonoya-yo.com/ja/doburoku.html",
+      "tasting_source_name": "non°（nondo）公式EC／SAKETIME 口コミ",
+      "tasting_source_url": "https://nondo-tono.life/products/どぶろく速醸生",
       "story": "速醸の現代技術で醸造用酵母・乳酸を使用。微発泡クリーミー。米・米麹・水",
       "story_source_url": "https://nondo-tono.life/products/どぶろく速醸生",
       "awards": [],
-      "flavor_basis": "どぶろく。3種で唯一の酵母添加・乳酸添加。培養酵母由来のバナナや蜂蜜様の香りが立ち、酸は控えめで甘みと微発泡のクリーミーさが残る。度数は10〜12度"
+      "flavor_basis": "速醸酛という現代の酒造技術で醸したどぶろく。微発泡でクリーミー。品目は濁酒",
+      "tasting_source_type": "公式＋ユーザー口コミ"
     },
     "とおの どぶろく 速醸火入れ": {
       "abv": 13,
@@ -268,7 +276,8 @@
       "story": "速醸どぶろくを火入れして長く楽しめるタイプ。自然栽培ひとめぼれ",
       "story_source_url": "https://reika-sake.com/products/03ndd13906331",
       "awards": [],
-      "flavor_basis": "濁酒・にごり・火入れ。優しい旨み・自然な甘み・柔らかな酸でゴクゴク軽快"
+      "flavor_basis": "濁酒・にごり・火入れ。優しい旨み・自然な甘み・柔らかな酸でゴクゴク軽快",
+      "tasting_source_type": "販売店"
     }
   },
   "confidence_notes": "公式EC(nondo-tono.life)中心。権化共通=遠野1号/水もと生酛/木桶/酵母無添加/150日超/無濾過生原酒/525ml4950円。精米歩合は権化各種は具体%なしnull。速醸火入れはSOLD OUTでREIKA(二次)補完。koji菌種・酵母名・仕込水は非公開null。受賞なし。"

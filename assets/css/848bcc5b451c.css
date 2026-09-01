@@ -428,6 +428,14 @@ main { position:relative; z-index:1; }
 }
 .glossary-item { padding:.9rem 0; border-bottom:1px solid var(--line); }
 .glossary-item:last-child { border-bottom:none; padding-bottom:0; }
+/* 読みもの記事への導線。ブラウザ既定の青リンクのままだとサイトの色から浮くため、
+   本文中の他のリンクと同じ扱い（発酵朱・下線なし）に揃える。 */
+.glossary-item dd a {
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px solid rgba(168,53,31,.35); white-space:nowrap;
+  transition:border-color .25s;
+}
+.glossary-item dd a:hover { border-bottom-color:var(--accent); }
 .glossary-item dt {
   font-family:'Shippori Mincho', serif; font-weight:700;
   font-size:1rem; color:var(--accent); margin-bottom:.35rem;

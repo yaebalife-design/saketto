@@ -28,7 +28,8 @@
       "story": "秋田県男鹿市で2021年秋創業、稲とアガベ醸造所のスタンダード。日本酒技術にアガベシロップを加えた新ジャンル",
       "story_source_url": "https://inetoagave.com/craft/",
       "awards": [],
-      "flavor_basis": "精米90%(食用米低精白)、アガベ由来のやわらかい甘み・酸味・フルーティー。にごり/成分値非公開"
+      "flavor_basis": "精米90%(食用米低精白)、アガベ由来のやわらかい甘み・酸味・フルーティー。にごり/成分値非公開",
+      "tasting_source_type": "販売店"
     },
     "花風（ぐるりこ®）": {
       "abv": 14,
@@ -49,15 +50,16 @@
       "glass": null,
       "preservation": "夏場クール便推奨、開封後冷蔵",
       "pairing": null,
-      "tasting_nose": "パインや白葡萄、ハーバルなホップ、お米のミルキーな香り",
-      "tasting_palate": "ほのかな発泡感と柔らかい甘味アタック、凝縮感あるミルキーな甘旨味",
-      "tasting_finish": "ジューシーな酸味にグレープフルーツ様の柑橘苦渋味",
+      "tasting_nose": "注ぐとほんのり黄色く薄く濁る。ホップ成分が澱に含まれるため、よく振って混ぜてから",
+      "tasting_palate": "ほのかな発泡感と共に広がる柔く滑らかな甘味のアタック。中間に膨らむ凝縮感のあるミルキーな甘旨味",
+      "tasting_finish": "ジューシーな酸味にグレープフルーツのような柑橘系の苦渋味が寄り添い、後味を引き締める",
       "tasting_source_name": "SAKE Street",
       "tasting_source_url": "https://store.sakestreet.com/products/craft-inetohop-hanakaze-gururiko-2024by",
       "story": "ビール醸造後ホップをアップサイクルした『ぐるりこ®』を再利用、サステナブルがテーマ",
       "story_source_url": "https://store.sakestreet.com/products/craft-inetohop-hanakaze-gururiko-2024by",
       "awards": [],
-      "flavor_basis": "精米90%・速醸・黄麹。パイン/白葡萄/ホップの華やかな香り、ミルキーな甘旨味、グレフル様の苦渋。発泡感あり"
+      "flavor_basis": "うすにごり。クラフトビールのアップサイクル素材ぐるりこ®を使う。ミルキーで凝縮感のある甘旨味に、ジューシーな酸と柑橘の苦渋味。花風シリーズの中でも濃い味わい。速醸・精米歩合90%",
+      "tasting_source_type": "販売店"
     },
     "稲とジャスミン": {
       "abv": null,
@@ -86,7 +88,8 @@
       "story": "試し桶シリーズの実験酒。後にレギュラー版へ発展(マリカ等)とされる",
       "story_source_url": "https://shop.inetoagave.com/",
       "awards": [],
-      "flavor_basis": "ジャスミン茶を副原料に使う。吟醸香のような甘さから花の香りへ移る構成。精米歩合90%。日本酒度・酸度は非公開"
+      "flavor_basis": "ジャスミン茶を副原料に使う。吟醸酒らしい甘さが広がってから一気にジャスミンが主張する。精米歩合90%。濁りの有無は公表されておらず未確認",
+      "tasting_source_type": "販売店"
     },
     "稲とハチミツ": {
       "abv": 15,
@@ -108,14 +111,15 @@
       "preservation": null,
       "pairing": null,
       "tasting_nose": null,
-      "tasting_palate": null,
+      "tasting_palate": "麹による糖分の供給と白麹による酸の供給で、はちみつ単体のミードでは表現できない味わいを狙ったチャレンジ商品と蔵が説明する",
       "tasting_finish": null,
-      "tasting_source_name": null,
-      "tasting_source_url": null,
+      "tasting_source_name": "新潟 長谷川屋（蔵元コメント転載）",
+      "tasting_source_url": "https://niigata-hasegawaya.com/products/%E7%A8%B2%E3%81%A8%E3%83%8F%E3%83%81%E3%83%9F%E3%83%84-%E3%82%AA%E3%82%AB%E3%82%BA%E3%83%9F%E3%83%BC%E3%83%89%E3%83%AA%E3%83%99%E3%83%B3%E3%82%B8",
       "story": "麹の糖供給・白麹の酸供給とミード(蜂蜜酒)を融合させたチャレンジ商品",
       "story_source_url": "https://jizake-mie.jp/SHOP/ineto-hachimitsu-500.html",
       "awards": [],
-      "flavor_basis": "精米90%・白麹。蜂蜜×米×白麹の酸。単一蜂蜜ミードにない複雑味狙い"
+      "flavor_basis": "白麹による酸とはちみつ。試し桶シリーズ発。精米歩合90%。濁りの有無は未確認",
+      "tasting_source_type": "販売店"
     },
     "稲とリンゴ": {
       "abv": null,
@@ -136,15 +140,16 @@
       "glass": null,
       "preservation": "要冷蔵表示品は冷蔵、開封後冷蔵",
       "pairing": null,
-      "tasting_nose": "リンゴの華やかな香り",
-      "tasting_palate": "甘味と酸味が心地よく",
-      "tasting_finish": null,
-      "tasting_source_name": "稲とアガベ公式ショップ",
-      "tasting_source_url": "https://shop.inetoagave.com/products/稲とリンゴ",
+      "tasting_nose": "注ぐと薄く濁る。シードルを思わせるフレッシュなりんごの香りに、そっと酸い香り",
+      "tasting_palate": "ほんのりしゅわりとしたガス感と共に広がるミネラリーな果実感。適度な甘さとフレッシュな酸味のバランス",
+      "tasting_finish": "後半にかけて柑橘を思わせるほろ苦渋さが寄り添い、心地よいキレでフィニッシュ",
+      "tasting_source_name": "SAKE Street",
+      "tasting_source_url": "https://store.sakestreet.com/products/craft-inetoringo-01-2023by",
       "story": "米・米麹・リンゴを発酵、シードルとも日本酒とも異なる新しい飲み物",
       "story_source_url": "https://shop.inetoagave.com/products/稲とリンゴ",
       "awards": [],
-      "flavor_basis": "精米90%。紅の夢リンゴの華やかな香り・甘味・酸味"
+      "flavor_basis": "うすにごり・微発泡。適度な甘さとフレッシュな酸のバランスで軽快。精米歩合90%",
+      "tasting_source_type": "販売店"
     },
     "稲とブドウ": {
       "abv": null,
@@ -173,7 +178,8 @@
       "story": "甲州ブドウと米・麹を一緒に発酵。日本酒とワインの味わいが共存",
       "story_source_url": "https://shop.inetoagave.com/products/稲とブドウ",
       "awards": [],
-      "flavor_basis": "甲州ブドウと米・麹を一緒に発酵。パッションフルーツ様の香りにとろみのある葡萄の甘さ。精米歩合90%"
+      "flavor_basis": "搾った酒（かすかに黄色みを帯びる）。ややとろみのある葡萄の甘さで甘酸っぱい方向。微発泡・瓶内二次発酵。精米歩合90%",
+      "tasting_source_type": "販売店"
     },
     "稲とリンゴ SPECIAL EDITION": {
       "abv": null,
@@ -194,15 +200,16 @@
       "glass": null,
       "preservation": null,
       "pairing": [],
-      "tasting_nose": null,
-      "tasting_palate": null,
+      "tasting_nose": "ココナッツのような甘い香りや、アーモンド、キャラメルのような風味（オーク樽貯蔵）",
+      "tasting_palate": "リンゴの甘みと日本酒の米の甘み、麹の苦味とリンゴの酸っぱさが調和し、どちらかが際立つことなく密接に絡み合う。甘酸っぱくリンゴの果実感がしっかり",
       "tasting_finish": null,
-      "tasting_source_name": null,
-      "tasting_source_url": null,
+      "tasting_source_name": "酒泉洞堀一",
+      "tasting_source_url": "https://www.syusendo-horiichi.co.jp/SHOP/21094.html",
       "story": "公式が「稲とアガベ最高峰のクラフトサケ」と位置づける720ml版",
       "story_source_url": "https://shop.inetoagave.com/products/%E7%A8%B2%E3%81%A8%E3%83%AA%E3%83%B3%E3%82%B4-special-edition-2024",
       "awards": [],
-      "flavor_basis": "紅の夢(赤果肉・酸味の強いリンゴ)を米・麹と共に発酵・熟成。精米歩合90%。最高峰グレード"
+      "flavor_basis": "オーク樽貯蔵。果肉が赤く酸味が特徴の「紅の夢」を使う。ココナッツやキャラメルの風味が加わり複雑で濃醇。甘酸っぱい。精米歩合90%",
+      "tasting_source_type": "販売店"
     },
     "稲とブドウ SPECIAL EDITION 2024": {
       "abv": null,
@@ -231,7 +238,7 @@
       "story": "通常版(500ml)とは別SKUの720ml最高峰シリーズ",
       "story_source_url": "https://shop.inetoagave.com/products/%E7%A8%B2%E3%81%A8%E3%83%96%E3%83%89%E3%82%A6-special-edition-2024",
       "awards": [],
-      "flavor_basis": "甲州ブドウを米・麹と共に発酵・熟成。精米歩合90%。最高峰グレード"
+      "flavor_basis": "樽熟成による芳醇な香りとまろやかさ、奥深い複雑さ。限定250本。精米歩合90%。実飲の記述は流通量が少なく見つかっていない"
     },
     "交酒 花風": {
       "abv": null,
@@ -252,15 +259,16 @@
       "glass": null,
       "preservation": null,
       "pairing": [],
-      "tasting_nose": null,
-      "tasting_palate": null,
-      "tasting_finish": null,
-      "tasting_source_name": null,
-      "tasting_source_url": null,
+      "tasting_nose": "アロエや白ぶどうを思わせるホップの香り。グレープフルーツのような柑橘感",
+      "tasting_palate": "かすかな発泡感と、甘酸っぱく爽やかな味わい。口当たりはライチのようにまろやかで甘いが、甘みがべたつかない。にごりのクリーミーさが柑橘の皮のようなほろ苦さを包む",
+      "tasting_finish": "最後はグレープフルーツのような苦みと酸味で爽やかにキレる",
+      "tasting_source_name": "稲とアガベ 公式note／SAKE Street",
+      "tasting_source_url": "https://note.com/inetoagave/n/ncbca8525ea34",
       "story": "CRAFT series の定番。既収録『花風（ぐるりこ®）』はホップを粉末化したアップサイクル版で別商品",
       "story_source_url": "https://shop.inetoagave.com/products/%E4%BA%A4%E9%85%92-%E8%8A%B1%E9%A2%A8",
       "awards": [],
-      "flavor_basis": "ホップ使用。ライチやマスカットを思わせる華やかな風味。精米歩合90%"
+      "flavor_basis": "うすにごり。ホップ由来の柑橘香。甘みはあるがべたつかず、苦味と酸でキレる。速醸・精米歩合90%",
+      "tasting_source_type": "公式"
     },
     "交酒花風（6号酵母）": {
       "abv": null,
@@ -289,7 +297,8 @@
       "story": "秋田の地で生まれた協会6号酵母を使用した花風（公式説明）",
       "story_source_url": "https://shop.inetoagave.com/products/%E4%BA%A4%E9%85%92%E8%8A%B1%E9%A2%A8-6%E5%8F%B7%E9%85%B5%E6%AF%8D",
       "awards": [],
-      "flavor_basis": "秋田生まれの協会6号酵母で仕込む花風。通常版より酸が控えめで柔らかい。速醸・精米歩合90%"
+      "flavor_basis": "秋田生まれの協会6号酵母で仕込む花風。通常版より酸が控えめで柔らかい。速醸・精米歩合90%",
+      "tasting_source_type": "販売店"
     },
     "火折": {
       "abv": null,
@@ -310,15 +319,16 @@
       "glass": null,
       "preservation": null,
       "pairing": [],
-      "tasting_nose": "柑橘やハーブのように爽やかで、ほんのり大地を思わせるニュアンス。",
-      "tasting_palate": "微かに舌をくすぐる発泡感。柑橘調の爽やかな酸味のアタックと清涼感のある甘味。",
-      "tasting_finish": "後半にかけ重なり合う旨みと草花木の香り。重層的なハーモニー。",
-      "tasting_source_name": "SAKE Street",
-      "tasting_source_url": "https://store.sakestreet.com/products/inetoagave-hoori-2025by",
+      "tasting_nose": "少しにごりがかった淡いイエローグリーン。柑橘やハーブのように爽やかで、ほんのり大地を思わせるニュアンス",
+      "tasting_palate": "微かに舌をくすぐる発泡感。グレープフルーツのようなフレッシュな酸味が飲み始めから感じられ、シャープな苦味も感じられるビターな味わい。温めると生クリームのような甘い香りが引き出され、酸味が穏やかになる分より甘味が出る",
+      "tasting_finish": "後半は米の旨味がじんわりと広がり、爽やかな余韻が残る",
+      "tasting_source_name": "稲とアガベ 公式note",
+      "tasting_source_url": "https://note.com/inetoagave/n/nb39d090f75df",
       "story": "日本草木研究所とのコラボによるクラフトサケ",
       "story_source_url": "https://shop.inetoagave.com/products/%E7%81%AB%E6%8A%98",
       "awards": [],
-      "flavor_basis": "日本草木研究所とのコラボ第2弾。4種のボタニカルによる爽やかな香りと発泡感。速醸・精米歩合90%"
+      "flavor_basis": "うすにごり。少しにごりがかった淡いイエローグリーン。4種のボタニカルによる爽やかな香りと発泡感、グレープフルーツ様の酸とシャープな苦味。速醸・精米歩合90%",
+      "tasting_source_type": "公式"
     },
     "廻": {
       "abv": null,
@@ -339,7 +349,7 @@
       "glass": "ワイングラス",
       "preservation": null,
       "pairing": [],
-      "tasting_nose": "色合いはシャンパンゴールド。ハーバルなホップの香り、ジュニパーベリーの爽やかでウッディな香りに、上品な甘さを感じる香り。",
+      "tasting_nose": "注ぐとシャンパンゴールドのような綺麗な色合い。ハーバルなホップの香り、ジュニパーベリーの爽やかでウッディな香りに、上品な甘さを感じる香り",
       "tasting_palate": "爽やかな酸味のアタック。黒葡萄やライチのような果実味にホップの香りが寄り添い、甘味・酸味・苦味・渋みが調和する。",
       "tasting_finish": "余韻にジンの複雑な清涼感。",
       "tasting_source_name": "SAKE Street",
@@ -347,7 +357,8 @@
       "story": "原料と副産物が廻り続けることから「廻（めぐる）」と命名。蒸留所との循環をテーマにした新定番",
       "story_source_url": "https://shop.inetoagave.com/products/%E5%BB%BB",
       "awards": [],
-      "flavor_basis": "純米酒をベースに葡萄とジンの搾りかすを発酵させ、仕上げにドライホッピング。速醸・精米歩合90%"
+      "flavor_basis": "搾った酒。シャンパンゴールドの色合い。純米酒をベースに葡萄とジンの搾りかすを発酵させ、仕上げにドライホッピング。甘味・酸味・苦味・渋みが調和する。速醸・精米歩合90%",
+      "tasting_source_type": "販売店"
     },
     "DOBUROKU ホップ": {
       "abv": null,
@@ -376,7 +387,8 @@
       "story": "年1回のみの仕込み。酸味を高めた設計",
       "story_source_url": "https://shop.inetoagave.com/products/doburoku-%E3%83%9B%E3%83%83%E3%83%97",
       "awards": [],
-      "flavor_basis": "どぶろく。ホップ由来のライチ・マスカット様の香りとミルキーな口当たり。精米歩合90%"
+      "flavor_basis": "どぶろく。ホップ由来のライチ・マスカット様の香りとミルキーな口当たり。精米歩合90%",
+      "tasting_source_type": "販売店"
     },
     "稲とブドウとホップ": {
       "abv": null,
@@ -398,14 +410,15 @@
       "preservation": null,
       "pairing": [],
       "tasting_nose": null,
-      "tasting_palate": null,
+      "tasting_palate": "米の旨味と葡萄由来のキュートな酸を感じる果実味、ホップ由来の柑橘系の香りが合わさり、濃醇でジューシーな味わい",
       "tasting_finish": null,
-      "tasting_source_name": null,
-      "tasting_source_url": null,
+      "tasting_source_name": "三重の地酒専門酒屋べんのや",
+      "tasting_source_url": "https://jizake-mie.jp/SHOP/inetobudotohop-500.html",
       "story": "その年のホップ成分のポリフェノールが多くピンク色に仕上がり、ロゼワインのような味わいになるとされる（公式説明）",
       "story_source_url": "https://shop.inetoagave.com/products/%E7%A8%B2%E3%81%A8%E3%83%96%E3%83%89%E3%82%A6%E3%81%A8%E3%83%9B%E3%83%83%E3%83%97",
       "awards": [],
-      "flavor_basis": "ブドウ＋ホップ。ロゼワインのような色合いと味わい。華やかな香り。精米歩合90%"
+      "flavor_basis": "濃醇でジューシー。葡萄の酸とホップの柑橘香が重なる。精米歩合90%",
+      "tasting_source_type": "販売店"
     },
     "SAKE 稲とアガベ×土田酒造": {
       "abv": null,
@@ -426,7 +439,7 @@
       "glass": null,
       "preservation": "常温保管",
       "pairing": [],
-      "tasting_nose": "非常にふくよかで、バニラを思わせる甘い香りや黄桃のような果実香。田んぼのあぜ道が思い浮かぶような青く香ばしい香りを伴う。",
+      "tasting_nose": "かすかに黄色みを帯びた色合い。非常にふくよかで、バニラを思わせる甘い香りや黄桃のような果実香。田んぼのあぜ道が思い浮かぶような青く香ばしい香りを伴う",
       "tasting_palate": "とろみを感じるまろやかなテクスチャー。完熟したバナナのような果実味に、生酛由来の乳酸感が余韻長く続く。",
       "tasting_finish": "シロップを思わせるふくよかな余韻に香ばしさが寄り添う。",
       "tasting_source_name": "SAKE Street",
@@ -434,7 +447,8 @@
       "story": "群馬・土田酒造で醸造したコラボレーション。SAKE series",
       "story_source_url": "https://shop.inetoagave.com/products/sake-%E7%A8%B2%E3%81%A8%E3%82%A2%E3%82%AC%E3%83%99-%E5%9C%9F%E7%94%B0%E9%85%92%E9%80%A0",
       "awards": [],
-      "flavor_basis": "群馬・土田酒造での委託醸造。生酛・純米で副原料なし。とろみのある甘さと生酛由来の乳酸感。精米歩合90%"
+      "flavor_basis": "搾った酒。かすかに黄色みを帯びた色合い。群馬・土田酒造での委託醸造で、生酛・純米で副原料なし。とろみのあるリッチな甘さと生酛由来の乳酸感。精米歩合90%",
+      "tasting_source_type": "販売店"
     },
     "稲とアガベと谷泉": {
       "abv": null,
@@ -455,7 +469,7 @@
       "glass": null,
       "preservation": null,
       "pairing": [],
-      "tasting_nose": "紫蘇ジュースを思わせる色鮮やかさ。メロン系の青くふくよかな香りに、かすかに酸を思わせる香り。",
+      "tasting_nose": "注ぐと紫蘇ジュースを思わせるような見事な色鮮やかさ。メロン系の青くふくよかな香りに、かすかに酸を思わせる香り",
       "tasting_palate": "ほのかなガス感となめらかな旨味。スマートでライトな口当たりだが、後半にかけ米感とブルーベリーの果実味がふくらむ。",
       "tasting_finish": "程よい酸とブルーベリーの心地よい渋さが味を引き締める。",
       "tasting_source_name": "SAKE Street",
@@ -463,7 +477,8 @@
       "story": "令和6年能登半島地震で全壊被害を受けた鶴野酒造店（谷泉）との共同醸造。「能登の酒を止めるな！」プロジェクトの一環",
       "story_source_url": "https://inetoagave.com/pages/collaboration",
       "awards": [],
-      "flavor_basis": "能登の鶴野酒造店（谷泉）との共同醸造。ブルーベリーの果実味と渋みで締まる。精米歩合90%"
+      "flavor_basis": "搾った酒。ブルーベリー由来の紫蘇ジュースのような色鮮やかさ。スマートでライトな口当たりから後半に米感と果実味がふくらむ。程よい酸と渋さで締まる。精米歩合90%",
+      "tasting_source_type": "販売店"
     }
   },
   "confidence_notes": "公式site/公式shop/SAKE Street/べんのやで確認。共通null=酒母(花風/ハチミツ除く)・酵母・仕込水・容器・原酒加水・グラス・ペアリング。精米90%は全銘柄一貫。火入れ/生はロット混在でnull。稲とジャスミンは実験酒でデータ乏。受賞なし。",

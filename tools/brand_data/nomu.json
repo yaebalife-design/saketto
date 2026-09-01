@@ -31,7 +31,8 @@
       "story": "沖縄方言で『シシ』は肉『カム』は食べる。肉料理を最高に楽しむため設計。記念すべき1本目",
       "story_source_url": "https://furusato.ana.co.jp/donation/g/g47211-BCES007/",
       "awards": [],
-      "flavor_basis": "その他の醸造酒・うす濁り。乳酸にフォーカスした甘酸っぱい設計で、アルコール8度と低め。精米歩合92%、発芽玄米を使用"
+      "flavor_basis": "その他の醸造酒・うす濁り。乳酸にフォーカスした甘酸っぱい設計で、アルコール8度と低め。精米歩合92%、発芽玄米を使用",
+      "tasting_source_type": "公式"
     },
     "OFFZAKE（ノンアル甘酒）": {
       "abv": 0,
@@ -60,7 +61,8 @@
       "story": "アルコールをOFFにしたからだ想いの甘酒。完全自社製造の白麹で仕込んだノンアル甘酒",
       "story_source_url": "https://nomu.okinawa/products/offzake-plain-set",
       "awards": [],
-      "flavor_basis": "ノンアルコール甘酒・白麹仕込み・要冷凍・4フレーバー"
+      "flavor_basis": "ノンアルコール甘酒・白麹仕込み・要冷凍・4フレーバー",
+      "tasting_source_type": "公式"
     },
     "NOMU（クラフトサケ）": {
       "abv": null,
@@ -68,10 +70,10 @@
       "price": null,
       "price_note": "発売前・予定(プレスで初回醸造予定告知)。免許2025-10-28、技術協力木花之醸造所",
       "sub_ingredients_detail": "シークヮーサー(沖縄県産柑橘)を副原料に使用予定。他にアセロラ・パイナップル等も使用と公表",
-      "rice_variety": "沖縄県産米(西表島・恩納村産)",
-      "rice_polish": null,
+      "rice_variety": "沖縄県西表島産ひとめぼれ100%",
+      "rice_polish": 92,
       "shubo": null,
-      "koji": "自家製造の白麹",
+      "koji": "白麹（自家製造）",
       "yeast": null,
       "water": null,
       "vessel": null,
@@ -82,14 +84,15 @@
       "preservation": null,
       "pairing": [],
       "tasting_nose": null,
-      "tasting_palate": "白麹の酸味を活かした沖縄の気候と食文化に合う爽やかな味わい(蔵コンセプト)",
+      "tasting_palate": "副原料のフレーバーを最大限に楽しめるよう濾して造った澄んだタイプ。米と副原料に、酸味と炭酸のふたつの酸が重なり、キレのある軽やかな飲み口",
       "tasting_finish": null,
-      "tasting_source_name": "TABELUプレスリリース/SAKETIMES",
-      "tasting_source_url": "https://jp.sake-times.com/special/press/p_202512_tabelu-nomu-brewery",
+      "tasting_source_name": "NOMU BREWERY 公式",
+      "tasting_source_url": "https://nomu.okinawa/products/nomu_okinawan-citrus",
       "story": "NOMU醸造所のクラフト酒NOMU、シークヮーサー版が初回醸造ラインに。CAMPFIRE 2025/12/31まで",
       "story_source_url": "https://prtimes.jp/main/html/rd/p/000000002.000140762.html",
       "awards": [],
-      "flavor_basis": "白麹の酸味・シークヮーサー副原料・爽やか系。発売前・予定"
+      "flavor_basis": "搾った澄んだ酒。白麹由来のすっきりした酸と炭酸で軽快。精米歩合92%",
+      "tasting_source_type": "公式"
     },
     "TABERU（食べる酒）": {
       "abv": 14,
@@ -118,7 +121,8 @@
       "story": "『酔える食べ物、食べるお酒』の濃厚などぶろく",
       "story_source_url": "https://nomu.okinawa/products/タベル",
       "awards": [],
-      "flavor_basis": "濃厚な濁り(どぶろく)・米のみ・白黒麹併用・ABV14"
+      "flavor_basis": "濃厚な濁り(どぶろく)・米のみ・白黒麹併用・ABV14",
+      "tasting_source_type": "公式"
     }
   },
   "confidence_notes": "公式EC nomu.okinawa中心。シシカム/TABERU/OFFZAKEは公式確認。NOMUシークヮーサーは発売前でabv/容量/価格null。酒母・酵母・水・容器・受賞は非公開null。"

@@ -323,9 +323,12 @@ BRANDS = {
 
     # Fermenteria（宮城・仙台駅）
     "fermenteria": [
-        {"name": "サケベイビー オリジナル", "abv": 5.5, "volume_ml": 500,
-         "sub_ingredients": ["米のみ"], "price": 3650,
-         "note": "仙台駅ナカの8Lタンクで毎日仕込むスタイルの生クラフトサケ。もろみ10日。90ml瓶(600円)もあり"},
+        {"name": "サケベイビー オリジナル", "abv": 5.5, "volume_ml": None,
+         "sub_ingredients": ["米のみ"], "price": None,
+         # 2026/09/02 公式ショップを確認したところ、500ml ¥3,650 のボトルは無くなっていた。
+         # 一方 Fermenteria Original の説明に「店頭の'生'とはまたひと味違う」とあり、
+         # 店頭の生は健在。終売ではなく「オンラインのボトルが別ラインに入れ替わった」。
+         "note": "仙台駅ナカの8Lタンクで毎日仕込む生クラフトサケ。もろみ10日。店頭でグラス提供（90ml〜）。2026/09/02時点でオンラインのボトル販売はなし"},
         {"name": "サケベイビー シーズナル", "abv": 5, "volume_ml": 500,
          "sub_ingredients": ["季節素材"], "price": None,
          "note": "季節副原料入りバリエーション"},
@@ -335,6 +338,21 @@ BRANDS = {
         {"name": "カボセットショコラ", "abv": 4, "volume_ml": 375,
          "sub_ingredients": ["カボス", "ココアパウダー", "蜂蜜"], "price": 2700,
          "note": "フランス菓子オランジェットを思わせる季節限定デザート酒。火入れ"},
+        {"name": "Fermenteria Original", "abv": 5, "volume_ml": 375,
+         "sub_ingredients": ["米のみ"], "price": 2700,
+         "note": "瓶内二次発酵スパークリング。純米吟醸の若いもろみの味をイメージ。精米歩合60%・宮城県産ひとめぼれ。2026/09/02 公式ショップで確認"},
+        {"name": "Yeastology 01 NOVALAGER", "abv": 5, "volume_ml": 375,
+         "sub_ingredients": ["ホップ（シムコー）"], "price": 2800,
+         "note": "清酒以外の酵母を起点にするシリーズ第1作。ハイブリッドラガー酵母NOVALAGERを使用。精米歩合60%。2026/09/02 公式ショップで確認"},
+        {"name": "Yeastology 02 PHILLY SOUR", "abv": 5, "volume_ml": 375,
+         "sub_ingredients": ["ホップ"], "price": 2800,
+         "note": "シリーズ第2作。乳酸を添加せず、PHILLY SOUR酵母の発酵そのものから酸味を立ち上げる。精米歩合60%。2026/09/02 公式ショップで確認"},
+        {"name": "CITRÈNE JAPAN 柚子×山椒", "abv": 9, "volume_ml": 375,
+         "sub_ingredients": ["柚子", "山椒"], "price": 2970,
+         "note": "白麹の酵素で柑橘とスパイスの香りを解放するシリーズ。乳酸無添加、白麹と柑橘のクエン酸だけで酸を設計。精米歩合60%・宮城県産ササニシキ。2026/09/02 公式ショップで確認"},
+        {"name": "CITRÈNE TAIWAN ライム×馬告", "abv": 9, "volume_ml": 375,
+         "sub_ingredients": ["ライム", "馬告（マーガオ）"], "price": 2970,
+         "note": "台湾の山椒に似たスパイス・馬告を使う。乳酸無添加、白麹と柑橘のクエン酸だけで酸を設計。精米歩合60%・宮城県産ササニシキ。2026/09/02 公式ショップで確認"},
     ],
 
     # やまね酒造（埼玉県飯能市）/ 副原料は「飯能産」が正（狭山茶は誤り）
@@ -382,7 +400,7 @@ BRANDS = {
          "sub_ingredients": ["ホップ"], "price": 1936, "note": "兜町と共通の看板副原料"},
         {"name": "どぶろく 白麹", "abv": 9, "volume_ml": 720,
          "sub_ingredients": ["白麹（焼酎用）"], "price": 1936,
-         "note": "焼酎用白麹仕込みで酸味強め"},
+         "note": "焼酎用白麹仕込み。ただし難波店で飲んだ人の記録では「酸が穏やかでまろやか」とあり、瓶詰の弐ノ濁（白麹）の「クエン酸が攻撃してくる」評とは方向が違う。店舗ロットで差がある可能性"},
         {"name": "どぶろく 桜（季節限定）", "abv": None, "volume_ml": None,
          "sub_ingredients": ["塩漬け桜葉"], "price": None,
          "note": "塩漬け桜葉を副原料に。春限定"},
@@ -475,13 +493,14 @@ BRANDS = {
     # NOMU醸造所（沖縄・コザ）
     "nomu": [
         {"name": "シシカム", "abv": 8, "volume_ml": 500,
-         "sub_ingredients": ["米のみ"], "price": 1800,
+         # 2026/09/02 訂正：公式の原材料は「米・米麹・発芽玄米」で「米のみ」ではなかった
+         "sub_ingredients": ["発芽玄米"], "price": 1800,
          "note": "肉に合う甘酸ニゴリ。500ml/720ml/1800ml展開"},
         {"name": "OFFZAKE（ノンアル甘酒）", "abv": 0, "volume_ml": None,
          "sub_ingredients": ["白麹", "沖縄県産米"], "price": 3150,
          "note": "ノンアル甘酒。プレーン/パイン/島ソルト/黒糖の4種"},
         {"name": "NOMU（クラフトサケ）", "abv": None, "volume_ml": None,
-         "sub_ingredients": ["シークヮーサー（予定）"], "price": None,
+         "sub_ingredients": ["シークヮーサー果汁"], "price": None,
          "note": "コアライン。シークヮーサー副原料の予定"},
         {"name": "TABERU（食べる酒）", "abv": 14, "volume_ml": 500,
          "sub_ingredients": ["米のみ"], "price": 1980,

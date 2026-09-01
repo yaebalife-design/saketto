@@ -10,7 +10,7 @@
       "rice_variety": "五百万石・こしいぶき(新潟市北区産)",
       "rice_polish": 70,
       "shubo": "高温糖化",
-      "koji": "黄麹(吟醸用氷上)×白麹(爽明)のハイブリッド",
+      "koji": "黄麹（吟醸用氷上）×白麹（爽明）",
       "yeast": "新潟G9NFarg",
       "water": null,
       "vessel": null,
@@ -20,15 +20,16 @@
       "glass": null,
       "preservation": "要冷蔵(クール便)",
       "pairing": null,
-      "tasting_nose": "柑橘類を想起させる香り(シトラホップ由来)",
-      "tasting_palate": "骨格は日本酒ながら瑞々しさ、ほろ苦さと甘さ。白麹で酸味、柑橘感増しジューシー",
-      "tasting_finish": "ほろ苦さと爽快さ",
-      "tasting_source_name": "LAGOON公式EC/田中洋介note",
+      "tasting_nose": "ホップのポリフェノールによる淡いピンク（パープル）色。柑橘類を想起させる香りと瑞々しさ",
+      "tasting_palate": "骨格は日本酒ながら、白麹をハイブリッドで用いることで酸味を加え、柑橘感が増したジューシーな味わい",
+      "tasting_finish": "ホップ由来のほろ苦さ",
+      "tasting_source_name": "LAGOON BREWERY 公式ストア",
       "tasting_source_url": "https://lagoonbrew.official.ec/items/88023337",
       "story": "LAGOON初開発のホップ副原料クラフトSAKE。にいがた酒の陣で先行販売2日分が1日完売の好評",
       "story_source_url": "https://note.com/sho_ku_tanaka/n/n9f3087008d25",
       "awards": [],
-      "flavor_basis": "精米70%・高温糖化・黄白麹ハイブリッド。柑橘ホップ香、瑞々しい、ほろ苦+甘、白麹の酸でジューシー"
+      "flavor_basis": "うすにごり（濾過しないためオリが絡む）。日本酒度-10・酸度3.0・アミノ酸度1.0。甘酸っぱくジューシーな方向。精米歩合70%・高温糖化。※ロットで数値が振れる（-8〜-17／酸度1.4〜3.0）",
+      "tasting_source_type": "公式"
     },
     "翔空 ニゴリのHOP SAKE ほっぺ": {
       "abv": 15.5,
@@ -57,7 +58,8 @@
       "story": "HOP SAKEほっぺのニゴリを絡めた特別仕様の生。ロットごと100本前後の限定",
       "story_source_url": "https://lagoonbrew.official.ec/items/95950333",
       "awards": [],
-      "flavor_basis": "にごり・生。精米70%・黄白麹。柑橘ホップ・ジューシー・飲みごたえ"
+      "flavor_basis": "にごり・生。精米70%・黄白麹。柑橘ホップ・ジューシー・飲みごたえ",
+      "tasting_source_type": "公式"
     },
     "翔空 酔いどれ洋梨2025-2026 槽搾り生": {
       "abv": 13,
@@ -86,7 +88,8 @@
       "story": "冬の味覚洋梨ル・レクチェを米とともに醸した果実SAKE。黄白麹ハイブリッド採用、3年目",
       "story_source_url": "https://imadeya.co.jp/blogs/brewery/lagoon-brewery",
       "awards": [],
-      "flavor_basis": "生・高温糖化。日本酒度-24(甘)・酸度2.6。洋梨の濃厚な甘み・とろける果肉"
+      "flavor_basis": "生・高温糖化。日本酒度-24(甘)・酸度2.6。洋梨の濃厚な甘み・とろける果肉",
+      "tasting_source_type": "公式＋販売店"
     },
     "翔空 酔いどれメロン2025 ドブロク": {
       "abv": 12,
@@ -115,7 +118,8 @@
       "story": null,
       "story_source_url": "https://lagoonbrew.official.ec/items/90429657",
       "awards": [],
-      "flavor_basis": "ドブロク(にごり)・精米70%。マスクメロンの甘み。成分テイスティング詳細は非公開"
+      "flavor_basis": "ドブロク(にごり)・精米70%。マスクメロンの甘み。成分テイスティング詳細は非公開",
+      "tasting_source_type": "公式"
     },
     "翔空 酔いどれイチゴ2026 槽絞り生": {
       "abv": 14,
@@ -144,7 +148,8 @@
       "story": "新潟が誇るブランドイチゴ「越後姫」を副原料に贅沢に使った酒。越後姫は日本で最も果肉が柔らかい品種で市場で売りづらく、新潟県外では幻のイチゴとされる。蔵の近くのエコファーマー「タカギ農場」から仕入れ、使用量は米の量に比して約60%。香料・甘味料は不使用。日本酒度-9／酸度3.5／アミノ酸度1.1。",
       "story_source_url": "https://lagoonbrew.official.ec/items/89152947",
       "awards": [],
-      "flavor_basis": "生・精米70%。日本酒度-7・酸度3.4(高酸)。イチゴジャム様の華やかな香り・淡麗でキレ"
+      "flavor_basis": "生・精米70%。日本酒度-7・酸度3.4(高酸)。イチゴジャム様の華やかな香り・淡麗でキレ",
+      "tasting_source_type": "公式"
     },
     "翔空 SAKEマルゲリータ Unpressed": {
       "abv": 14,
@@ -173,7 +178,8 @@
       "story": "トマトとバジルを副原料にしたSAKEマルゲリータの圧搾なし(Unpressed)版",
       "story_source_url": "https://lagoonbrew.official.ec/items/69755182",
       "awards": [],
-      "flavor_basis": "ドブロク(にごり)・精米70%。日本酒度-3・酸度5.7(高酸)。トマト・バジル"
+      "flavor_basis": "ドブロク(にごり)・精米70%。日本酒度-3・酸度5.7(高酸)。トマト・バジル",
+      "tasting_source_type": "公式"
     },
     "翔空 自然栽培亀の尾どぶろく": {
       "abv": 17,
@@ -202,7 +208,8 @@
       "story": "米と米麹のみのシンプルどぶろく。自然栽培亀の尾使用、192本限定",
       "story_source_url": "https://lagoonbrew.official.ec/items/126203987",
       "awards": [],
-      "flavor_basis": "にごり・精米70%・ABV17(原酒級)。ジューシードライ。亀の尾"
+      "flavor_basis": "にごり・精米70%・ABV17(原酒級)。ジューシードライ。亀の尾",
+      "tasting_source_type": "公式"
     },
     "翔空 微発泡の HOP SAKE ほっぺ": {
       "abv": 15,
@@ -211,10 +218,10 @@
       "price_note": "公式オンラインショップ(BASE)税込2,530円(2026-08確認・SOLD OUT)。度数はロットで変動（公式現行R616は15度、過去ロットR510は14.5度）",
       "sub_ingredients_detail": "ホップ（シトラ／柑橘系アロマ）",
       "rice_variety": "五百万石（新潟市北区産）100%",
-      "rice_polish": null,
-      "shubo": null,
-      "koji": "黄麹＋白麹のハイブリッド",
-      "yeast": null,
+      "rice_polish": 70,
+      "shubo": "高温糖化",
+      "koji": "黄麹（吟醸用氷上）×白麹（爽明）",
+      "yeast": "新潟G9NFarg",
       "water": null,
       "vessel": null,
       "pasteurized": null,
@@ -231,7 +238,8 @@
       "story": "搾ったあとにオリを絡め、ビン内二次発酵で発泡性をもたせたうすにごりタイプ。ラグーンブリュワリー初の品目【発泡酒】製品。既収録『ニゴリのHOP SAKE ほっぺ』とは公式商品説明で別物と明記されている",
       "story_source_url": "https://lagoonbrew.official.ec/items/90929808",
       "awards": [],
-      "flavor_basis": "クラフトSAKE・槽搾り後にビン内二次発酵させたうすにごり微発泡。黄麹＋白麹で酸を付与。ホップはシトラ。日本酒度・酸度は微発泡版としては非公開（通常版はロットで-8〜-17と大きく振れる）"
+      "flavor_basis": "微発泡のうすにごり。日本酒度-8・酸度2.6・アミノ酸度1.3。白麹の使用で酸味を加え、柑橘感のあるジューシーな味わい。精米歩合70%・高温糖化",
+      "tasting_source_type": "公式＋販売店"
     },
     "翔空 森のSAKE クロモジ": {
       "abv": 15,
@@ -252,15 +260,16 @@
       "glass": null,
       "preservation": null,
       "pairing": [],
-      "tasting_nose": null,
+      "tasting_nose": "クロモジの爽やかな香り。吟醸香と合わさってラムネのような印象も",
       "tasting_palate": "トータルなイメージは「飲む和菓子」。上品な甘さがありながら甘ったるくはなく、爽やかでキレも感じられる",
-      "tasting_finish": null,
+      "tasting_finish": "アフターテイストに少しスパイシーさ",
       "tasting_source_name": "LAGOON BREWERY 公式ショップ",
       "tasting_source_url": "https://lagoonbrew.official.ec/items/74756117",
       "story": "手つかずの自然が残る新潟・栃尾地区の森で採取した香木「クロモジ」を、米とともにモロミの中で醸した槽搾りのクラフトSAKE。公式によればクロモジの爽やかでフローラルな香りは主成分がリナロールで、ラベンダーやベルガモットと同じくリラクゼーション効果があるとされる。日本酒度-7／酸度1.8／アミノ酸度1.4。",
       "story_source_url": "https://lagoonbrew.official.ec/items/74756117",
       "awards": [],
-      "flavor_basis": "その他の醸造酒・槽搾り。クロモジ由来のフローラルな香りと上品な甘み、キレ"
+      "flavor_basis": "搾った澄み酒（槽搾り）。日本酒度-7（甘口）・酸度1.8・アミノ酸度1.4。「飲む和菓子」を狙った上品な甘さだが、甘ったるくなく爽やかでキレも感じられる。同蔵のホップ系（酸度2.3〜3.0）より酸は控えめ。精米歩合70%・高温糖化",
+      "tasting_source_type": "公式"
     },
     "翔空 Hopped酔いどれメロン": {
       "abv": 14,
@@ -289,7 +298,8 @@
       "story": "「メロンの香りとホップ、ぜったい合うに違いない！」という閃きから生まれた実験酒。代表タナカの出身地である千葉県大網白里産のマスクメロンとコシヒカリを使った『酔いどれメロン』に、ホップを絡めて搾った薄にごり酒。",
       "story_source_url": "https://lagoonbrew.official.ec/items/110049726",
       "awards": [],
-      "flavor_basis": "その他の醸造酒・薄にごり。メロンの香りとホップの苦味を重ねる甘苦い方向"
+      "flavor_basis": "その他の醸造酒・薄にごり。メロンの香りとホップの苦味を重ねる甘苦い方向",
+      "tasting_source_type": "公式"
     },
     "レゾネコ 梅と茶 〜プロトタイプ〜": {
       "abv": 14,
@@ -311,14 +321,15 @@
       "preservation": null,
       "pairing": [],
       "tasting_nose": null,
-      "tasting_palate": null,
+      "tasting_palate": "梅の実由来のやわらかな甘酸っぱさがじんわり広がり、茶由来の旨味とほのかな渋みがアクセントとなって全体を引き締める",
       "tasting_finish": null,
       "tasting_source_name": "LAGOON BREWERY 公式ショップ",
       "tasting_source_url": "https://lagoonbrew.official.ec/items/120200638",
       "story": "麒麟山酒造（新潟県阿賀町）の梅酒製造後の梅の実と、冨士美園（新潟県村上市）のお茶抽出後の茶殻を、米とともに発酵させてアップサイクルしたコラボ酒。公式によれば、再利用の梅を副原料とするだけでは梅酒の下位互換になると考え、梅に合うボタニカルとして茶殻にたどりついたという。ブランド名『レゾネコ（ResonEcho）』は Resonance と Echo を合わせた造語。日本酒度-7／酸度2.5／アミノ酸度1.0。",
       "story_source_url": "https://lagoonbrew.official.ec/items/120200638",
       "awards": [],
-      "flavor_basis": "その他の醸造酒。白麹由来の酸に梅と茶殻を重ねるアップサイクル設計"
+      "flavor_basis": "日本酒度-7・酸度2.5・アミノ酸度1.0。梅の甘酸っぱさと茶の旨味・渋み。蔵は2026年版で「昨年のプロトタイプでは梅の印象がやや強かったため、茶とのバランスを見直しより辛口寄りに仕上げた」としている。精米歩合80%・高温糖化",
+      "tasting_source_type": "公式"
     },
     "翔空 酔いどれイチゴ2026 ドブロク": {
       "abv": 14,
@@ -347,7 +358,8 @@
       "story": "『酔いどれイチゴ』の未搾り版で、槽絞り生とは別商品として公式が併売している。日本酒度-16.5／酸度3.1。",
       "story_source_url": "https://lagoonbrew.official.ec/items/78443967",
       "awards": [],
-      "flavor_basis": "その他の醸造酒・ドブロク。搾らないぶん甘みが濃く、日本酒度-16.5の甘口"
+      "flavor_basis": "その他の醸造酒・ドブロク。搾らないぶん甘みが濃く、日本酒度-16.5の甘口",
+      "tasting_source_type": "公式"
     }
   },
   "confidence_notes": "公式EC(lagoonbrew.official.ec)中心。製法フル(米品種/精米70/高温糖化/黄白麹/酵母)取得。共通null=仕込水・発酵容器・温度・グラス・ペアリング。火入れは生表記のみfalse判定。受賞なし。",
