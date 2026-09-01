@@ -477,7 +477,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tokyo-station:1": {
     "name": "季節のフルーツどぶろく マンゴー",
@@ -489,7 +495,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tokyo-station:2": {
     "name": "季節のフルーツどぶろく リンゴ",
@@ -501,7 +513,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tokyo-station:3": {
     "name": "季節のフルーツどぶろく ぶどう",
@@ -513,7 +531,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tokyo-station:4": {
     "name": "季節のフルーツどぶろく 桃",
@@ -525,7 +549,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tokyo-station:5": {
     "name": "季節のフルーツどぶろく パイナップル",
@@ -537,7 +567,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tokyo-station:6": {
     "name": "季節のフルーツどぶろく みかん",
@@ -549,7 +585,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tokyo-station:7": {
     "name": "季節のフルーツどぶろく ハニーレモン",
@@ -561,7 +603,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "iyasaka:0": {
     "name": "ITTEKI（一擲）十割麹酒 Vol.0-1",
@@ -585,7 +633,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "sakenova:1": {
     "name": "Brew Note 002 APPLE & MIKAN",
@@ -597,7 +651,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "sakenova:2": {
     "name": "Brew Note 006 Strawberry",
@@ -609,7 +669,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "linne:0": {
     "name": "800 大麦",
@@ -621,7 +687,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "linne:1": {
     "name": "800 蕎麦",
@@ -633,7 +705,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "linne:2": {
     "name": "800 米",
@@ -645,7 +723,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "amanosato:0": {
     "name": "在る 緒奏（しょそう）720ml",
@@ -657,7 +741,13 @@
     "rakuten": {
       "show": true,
       "query": "天郷醸造所 在る宵 緒奏"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "amanosato:1": {
     "name": "在る 小暖（こはる）500ml",
@@ -669,7 +759,13 @@
     "rakuten": {
       "show": true,
       "query": "天郷醸造所 在る 小暖"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "amanosato:2": {
     "name": "在る 寒夜（かんや）500ml",
@@ -681,7 +777,13 @@
     "rakuten": {
       "show": true,
       "query": "天郷醸造所 在る 寒夜"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "nomu:0": {
     "name": "シシカム",
@@ -693,7 +795,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "nomu:1": {
     "name": "OFFZAKE（ノンアル甘酒）",
@@ -705,7 +813,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "nomu:2": {
     "name": "NOMU（クラフトサケ）",
@@ -717,7 +831,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "nomu:3": {
     "name": "TABERU（食べる酒）",
@@ -729,7 +849,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "salmon-brewery:0": {
     "name": "生酛純米酒 鮭（第1弾）",
@@ -741,7 +867,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "dejima-hosendo:0": {
     "name": "芳扇 雲 1st",
@@ -753,7 +885,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "dejima-hosendo:1": {
     "name": "芳扇 紫雲",
@@ -765,7 +903,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "dejima-hosendo:2": {
     "name": "芳扇 吟雲",
@@ -777,7 +921,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "dejima-hosendo:3": {
     "name": "芳扇 桜雲",
@@ -789,7 +939,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/hirogaru-saketen/hosendo25.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ひろがる酒店「でじま芳扇堂 どぶろく 芳扇 桜雲」¥3,950・在庫あり。商品ページのスペック（愛山・精米80%・12%）がDBと一致"
   },
   "dejima-hosendo:4": {
     "name": "芳扇 雷雲",
@@ -801,7 +957,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/hirogaru-saketen/hosendo19.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ひろがる酒店に出品はあるが在庫切れ。在庫が戻ったら show:true にする → https://store.shopping.yahoo.co.jp/hirogaru-saketen/hosendo19.html"
   },
   "dejima-hosendo:5": {
     "name": "芳扇 波 1st",
@@ -813,7 +975,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/hirogaru-saketen/hosendo01.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ひろがる酒店に出品はあるが在庫切れ。在庫が戻ったら show:true にする → https://store.shopping.yahoo.co.jp/hirogaru-saketen/hosendo01.html"
   },
   "dejima-hosendo:6": {
     "name": "芳扇 友 内田米レイホウ 菩提酛仕込",
@@ -825,7 +993,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/hirogaru-saketen/hosendo18.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ひろがる酒店に出品はあるが在庫切れ。在庫が戻ったら show:true にする → https://store.shopping.yahoo.co.jp/hirogaru-saketen/hosendo18.html"
   },
   "dejima-hosendo:7": {
     "name": "芳扇 友 内田米美山錦",
@@ -837,7 +1011,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "dejima-hosendo:8": {
     "name": "芳扇 友 目黒米雄町",
@@ -849,7 +1029,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "dejima-hosendo:9": {
     "name": "芳扇 波 内田米レイホウ 菩提酛仕込",
@@ -861,7 +1047,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "dejima-hosendo:10": {
     "name": "芳扇 波 内田米美山錦",
@@ -873,7 +1065,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "dejima-hosendo:11": {
     "name": "芳扇 波 目黒米雄町",
@@ -885,7 +1083,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/hirogaru-saketen/hosendo08.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ひろがる酒店「芳扇 波 目黒米雄町 菩提もと 720ml」¥3,564・在庫あり。度数17%・雄町・菩提酛がDBと一致"
   },
   "dejima-hosendo:12": {
     "name": "芳扇 波 ピンクラベル",
@@ -897,7 +1101,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "cultiva:0": {
     "name": "Sankeinishiki NAGANO 2025BY",
@@ -909,7 +1119,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "cultiva:1": {
     "name": "Hinohikari FUKUOKA 2025BY",
@@ -921,7 +1137,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "cultiva:2": {
     "name": "Yamadanishiki FUKUOKA 2025BY",
@@ -933,7 +1155,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "ine-to-agave:0": {
     "name": "稲とアガベ CRAFT series",
@@ -1743,7 +1971,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "hakutsuru-sakecraft:1": {
     "name": "HAKUTSURU SAKE CRAFT No.2",
@@ -1755,7 +1989,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "hakutsuru-sakecraft:2": {
     "name": "HAKUTSURU SAKE CRAFT No.3",
@@ -1767,7 +2007,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "hakutsuru-sakecraft:3": {
     "name": "HAKUTSURU SAKE CRAFT No.4",
@@ -1779,7 +2025,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "hakutsuru-sakecraft:4": {
     "name": "HAKUTSURU SAKE CRAFT No.5",
@@ -1791,7 +2043,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "hakutsuru-sakecraft:5": {
     "name": "HAKUTSURU SAKE CRAFT No.6",
@@ -1803,7 +2061,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "hakutsuru-sakecraft:6": {
     "name": "HAKUTSURU SAKE CRAFT No.7",
@@ -1815,7 +2079,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "hakutsuru-sakecraft:7": {
     "name": "HAKUTSURU SAKE CRAFT No.15",
@@ -1827,7 +2097,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "hakutsuru-sakecraft:8": {
     "name": "HAKUTSURU SAKE CRAFT THE PREMIUM 2026",
@@ -1839,7 +2115,13 @@
     "rakuten": {
       "show": true,
       "query": "白鶴 SAKE CRAFT THE PREMIUM"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "ine-to-agave:8": {
     "name": "交酒 花風",
@@ -2067,7 +2349,13 @@
     "rakuten": {
       "show": true,
       "query": "天郷醸造所 在る 陽香"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "adachi-noujo:2": {
     "name": "MIYOI(美酔) -ライチ- 生 720ml",
@@ -2417,7 +2705,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "amanosato:5": {
     "name": "天郷 Flagship 2nd",
@@ -2430,7 +2724,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "amanosato:6": {
     "name": "在る 小暖（こはる）Premium 苺フレーバー酒 500ml",
@@ -2443,7 +2743,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
   },
   "konohanano:9": {
     "name": "Daiginjo Method",
@@ -2589,7 +2895,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tsuchiura:1": {
     "name": "ツチブルほっぷ タイプA 爽やかな酸 どぶろくタイプ",
@@ -2602,7 +2914,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tsuchiura:2": {
     "name": "ツチブルほっぷ タイプB 香るホップ どぶろくタイプ",
@@ -2615,7 +2933,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tsuchiura:3": {
     "name": "ツチブルほっぷ タイプA 爽やかな酸 澄み酒タイプ",
@@ -2628,7 +2952,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tsuchiura:4": {
     "name": "ツチブルほっぷ タイプB 香るホップ 澄み酒タイプ",
@@ -2641,7 +2971,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   },
   "tsuchiura:5": {
     "name": "ツチブルいちご",
@@ -2654,6 +2990,12 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）"
+    "_note": "2026/08/31追加。楽天出品の実在確認まで非表示（土浦醸造は直売・自社ECが中心）",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
   }
 }

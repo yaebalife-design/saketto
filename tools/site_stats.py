@@ -136,7 +136,8 @@ def buy_stats():
     with_shop = set()
     for f in files:
         html = open(f, encoding="utf-8").read()
-        if "楽天市場で探す" in html or "Amazonで探す" in html:
+        if ("楽天市場で探す" in html or "Yahoo!ショッピングで探す" in html
+                or "Amazonで探す" in html):
             buyable += 1
             with_shop.add(slug_of.get(os.path.basename(f)[:-5], "?"))
     total = len(files)
