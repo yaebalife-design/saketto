@@ -468,9 +468,16 @@ def build_html(brand, detail, brewery, idx):
     flavor_section = ""
     if has_basis and (informative_scale or not flat_radar):
         # 何を根拠にした図なのかを読者が判断できるようにする。
-        # 造りからの推定（白麹＝酸、全麹＝濃醇 等）を含む場合はその旨も書く。
+        # 造りからの推定（白麹＝酸、全麹＝濃醇 等）や、飲んだ人の記述（口コミ）を
+        # 使っている場合は、その旨を明示する。出典の性質が違うため。
         _, _why = structural_signals(d, b)
-        _base = ("公式テイスティング記述・成分値" if has_tasting else "公式の製法・原料・成分の情報")
+        _st = (d.get("tasting_source_type") or "").strip()
+        if _st in ("ユーザー口コミ", "SNS", "イベントレポ", "ブログ"):
+            _base = "公表情報に加え、飲んだ人の記述（口コミ・レビュー）"
+        elif has_tasting:
+            _base = "公式テイスティング記述・成分値"
+        else:
+            _base = "公式の製法・原料・成分の情報"
         _cap = f"{_base}に基づく saketto 編集部評価。"
         if _why:
             _cap += "造りからの読み取り（" + "／".join(w.split("（")[0] for w in _why[:3]) + "）を含みます。"
