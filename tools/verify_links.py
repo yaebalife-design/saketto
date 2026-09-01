@@ -9,6 +9,7 @@ Cloudflare Pages は `/x.html` を `/x` へ 308 で飛ばすので、公開URL�
 
     cd ツール/saketto_repo && python tools/verify_links.py
 """
+import json
 import os
 import re
 import sys
@@ -76,11 +77,30 @@ def main():
         if "{pr_notice()}" in html:
             unresolved.append(os.path.relpath(path, ROOT))
 
+    # 銘柄を足したとき affiliate_overrides.json への登録を忘れると、
+    # **実在を確認していない銘柄に自動で楽天の検索リンクが出る**。
+    # 買えない酒にボタンを出さない方針が黙って破れるので、ここで検知する。
+    unregistered = []
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "tools"))
+        from breweries_brands import BRANDS
+        ov = json.load(open(os.path.join(ROOT, "tools", "affiliate_overrides.json"),
+                            encoding="utf-8"))
+        for slug, brands in BRANDS.items():
+            for i, b in enumerate(brands):
+                if f"{slug}:{i}" not in ov:
+                    unregistered.append(f"{slug}:{i}  {b['name']}")
+    except Exception as e:      # 点検ツールなので、ここで落ちて全体を止めない
+        unregistered = [f"（確認できず: {e}）"]
+
     print(f"HTMLファイル       : {len(html_files)}")
     print(f"内部リンク         : {total}")
     print(f"リンク切れ         : {broken}")
     print(f".html付きの内部リンク: {dot_html}  ← 308リダイレクトになるので0が正")
     print(f"広告表記の種類      : {len(notices)}  ← 全ページ同一なので1が正")
+    print(f"アフィリ未登録の銘柄  : {len(unregistered)}  ← 未登録だと未確認のまま楽天検索リンクが出る")
+    for u in unregistered[:10]:
+        print(f"   × {u}")
     if len(notices) > 1:
         for n in sorted(notices):
             print(f"   ・{n}")
@@ -92,7 +112,8 @@ def main():
         print(f"   × {f} → {r}")
     if len(problems) > 40:
         print(f"   … ほか {len(problems)-40} 件")
-    return 1 if (broken or dot_html or unresolved or len(notices) > 1) else 0
+    return 1 if (broken or dot_html or unresolved or unregistered
+                 or len(notices) > 1) else 0
 
 
 if __name__ == "__main__":

@@ -3123,5 +3123,95 @@
       "product_url": null
     },
     "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・地域の各系統で検索したが出品なし"
+  },
+  "fermenteria:4": {
+    "name": "Fermenteria Original",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note": "2026/09/02 楽天・Yahoo!ともに確認。ブランド名（Fermenteria／Yeastology／CITRÈNE）とカタカナ表記の両方で検索したが、商品名に該当語を含む出品は0件。蔵の公式ショップ（fermenteria.co）のみで販売"
+  },
+  "fermenteria:5": {
+    "name": "Yeastology 01 NOVALAGER",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note": "2026/09/02 楽天・Yahoo!ともに確認。ブランド名（Fermenteria／Yeastology／CITRÈNE）とカタカナ表記の両方で検索したが、商品名に該当語を含む出品は0件。蔵の公式ショップ（fermenteria.co）のみで販売"
+  },
+  "fermenteria:6": {
+    "name": "Yeastology 02 PHILLY SOUR",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note": "2026/09/02 楽天・Yahoo!ともに確認。ブランド名（Fermenteria／Yeastology／CITRÈNE）とカタカナ表記の両方で検索したが、商品名に該当語を含む出品は0件。蔵の公式ショップ（fermenteria.co）のみで販売"
+  },
+  "fermenteria:7": {
+    "name": "CITRÈNE JAPAN 柚子×山椒",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note": "2026/09/02 楽天・Yahoo!ともに確認。ブランド名（Fermenteria／Yeastology／CITRÈNE）とカタカナ表記の両方で検索したが、商品名に該当語を含む出品は0件。蔵の公式ショップ（fermenteria.co）のみで販売"
+  },
+  "fermenteria:8": {
+    "name": "CITRÈNE TAIWAN ライム×馬告",
+    "amazon": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "rakuten": {
+      "show": false,
+      "query": null
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note": "2026/09/02 楽天・Yahoo!ともに確認。ブランド名（Fermenteria／Yeastology／CITRÈNE）とカタカナ表記の両方で検索したが、商品名に該当語を含む出品は0件。蔵の公式ショップ（fermenteria.co）のみで販売"
   }
 }
