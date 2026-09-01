@@ -53,9 +53,82 @@ def _has(text, *kws):
     return any(k in text for k in kws)
 
 
+def structural_signals(detail, brand):
+    """味の記述が無くても、**造りのスペックから味の方向は読める**。
+
+    従来は公式のテイスティング記述に強く依存していたため、記述の無い銘柄は
+    4軸が初期値(0.5)のまま張り付いていた（濃淡で52%、甘辛で45%が該当）。
+    「特徴が無い」のではなく「情報が無い」だけなのに、平坦な図はそう見える。
+
+    そこで、酒母・麹・精米歩合・火入れ・推奨温度といった**公表されている造りの事実**から
+    味の方向を推定する。ここは機械的な転記ではなく編集判断なので、
+    根拠にできる関係が明確なものだけに絞る（下のコメントが各推定の根拠）。
+
+    戻り値は各軸への増減 (body, sweet, acid, clarity) と、根拠の説明リスト。
+    """
+    d = detail
+    why = []
+    dbody = dsweet = dacid = dclar = 0.0
+
+    shubo = str(d.get("shubo") or "")
+    koji = str(d.get("koji") or "")
+    temp = str(d.get("serving_temp") or "")
+    polish = d.get("rice_polish")
+
+    # 白麹はクエン酸を出す。焼酎用の麹を清酒系の造りに使う狙いは基本的に「酸」
+    if "白麹" in koji or "白麹" in shubo:
+        dacid += 0.18
+        why.append("白麹（クエン酸由来の酸）")
+    # 生酛・水酛・菩提酛は乳酸を自前で作る造り。速醸より酸が乗りやすい
+    if any(k in shubo for k in ("生酛", "生もと", "水酛", "水もと", "菩提酛", "菩提もと", "花酛")):
+        dacid += 0.12
+        dbody += 0.08
+        why.append("乳酸を自前で育てる酒母（生酛・水酛・菩提酛系）")
+    # 高温糖化は短期間で糖を出す造り。甘みが残りやすい
+    if "高温糖化" in shubo:
+        dsweet -= 0.10
+        why.append("高温糖化酛（糖が残りやすい）")
+    # 全麹＝掛米を使わず米麹だけ。糖度も旨味も濃くなる
+    blob = " ".join(str(d.get(k) or "") for k in
+                    ("flavor_basis", "story", "sub_ingredients_detail", "koji"))
+    if "全麹" in blob or "全糀" in blob:
+        dbody += 0.18
+        dsweet -= 0.12
+        why.append("全麹仕込み（米麹のみ。糖と旨味が濃い）")
+    # 精米歩合が高い＝あまり磨かない＝米の成分が多く残る
+    if isinstance(polish, (int, float)) and polish >= 88:
+        dbody += 0.10
+        why.append(f"精米歩合{polish:.0f}%（磨かず米の成分を残す）")
+    elif isinstance(polish, (int, float)) and polish <= 55:
+        dbody -= 0.08
+        why.append(f"精米歩合{polish:.0f}%（よく磨いた淡麗方向）")
+    # 燗を勧める酒は、冷やして飲む酒より厚みのある設計であることが多い
+    if any(k in temp for k in ("燗", "熱燗", "ぬる燗")):
+        dbody += 0.10
+        why.append("燗を勧める設計")
+    # 果実の副原料は甘さと華やかさに寄る
+    subs = " ".join(str(x) for x in (brand.get("sub_ingredients") or []))
+    if categorize_ingredient(subs) == "fruit" or _has(subs, "ピューレ", "果汁"):
+        dsweet -= 0.08
+        why.append("果実を副原料に使う")
+    # 搾るか搾らないかは、**その銘柄自身**の情報だけで判断する。
+    # story には「どぶろくの製法をヒントに」のような蔵の説明が入るため、
+    # ここを根拠にすると搾った酒まで濁りと判定してしまう（実際、
+    # story を含めていたときは172銘柄の中央値が最大値0.93に張り付いた）。
+    own = brand.get("name", "") + " " + str(d.get("flavor_basis") or "")
+    if _has(own, "どぶろく", "ドブロク", "濁酒", "にごり", "ニゴリ", "おりがらみ", "薄にごり"):
+        dclar += 0.22
+        dbody += 0.08
+        why.append("搾らない造り（どぶろく・濁酒）")
+    elif _has(own, "澄み酒", "槽搾り", "槽絞り", "袋吊り", "清澄", "上槽"):
+        dclar -= 0.18
+        why.append("搾った酒（槽搾り・袋吊り等）")
+    return (dbody, dsweet, dacid, dclar), why
+
+
 def derive_flavor(detail, brand):
-    """flavor_basis・テイスティング・成分値から4軸/6軸/タグを導出。
-    根拠は調査済みテキスト。値は『公式テイスティング・成分値に基づくsaketto編集部評価』。"""
+    """flavor_basis・テイスティング・成分値・造りのスペックから4軸/6軸/タグを導出。
+    値は『公式の記述と造りの情報に基づくsaketto編集部評価』。"""
     parts = [detail.get("flavor_basis"), detail.get("tasting_nose"),
              detail.get("tasting_palate"), detail.get("tasting_finish"),
              detail.get("sub_ingredients_detail"), detail.get("story")]
@@ -113,12 +186,34 @@ def derive_flavor(detail, brand):
             pass
 
     # clarity: 清澄(0) ↔ にごり(1)
-    if _has(text, "どぶろく", "ドブロク", "にごり", "ニゴリ", "濁酒", "おりがらみ", "うす濁", "薄にごり", "白濁", "霞色"):
+    # **銘柄名と flavor_basis を最優先**。story には「どぶろくタイプを搾った澄み酒版」
+    # のように、その酒自身とは逆の語が入ることがあり、そこを根拠にすると
+    # 搾った酒を濁り判定してしまう（実際に「槽絞り生」「澄み酒タイプ」で誤判定していた）。
+    _own = brand.get("name", "") + " " + str(detail.get("flavor_basis") or "")
+    if _has(_own, "澄み酒", "槽搾り", "槽絞り", "袋吊り", "上槽", "清澄"):
+        clarity = 0.25
+    elif _has(_own, "どぶろく", "ドブロク", "にごり", "ニゴリ", "濁酒", "おりがらみ", "うす濁", "薄にごり", "白濁"):
+        clarity = 0.82
+    elif _has(text, "どぶろく", "ドブロク", "にごり", "ニゴリ", "濁酒", "おりがらみ", "うす濁", "薄にごり", "白濁", "霞色"):
         clarity = 0.82
     elif _has(text, "清澄", "クリア", "透明", "澄んだ", "クリーン"):
         clarity = 0.25
     else:
         clarity = 0.5
+
+    # ── 造りのスペックからの補正 ──
+    # 味の記述で決まった軸はそのまま尊重し、**記述で決まらなかった軸ほど強く効かせる**。
+    # （記述があるならそれが一次情報。造りからの推定はあくまで補助）
+    (db, ds, da, dc), why = structural_signals(detail, brand)
+    def _apply(cur, delta, decided):
+        if delta == 0:
+            return cur
+        w = 0.45 if decided else 1.0   # 記述で決まっている軸は控えめに動かす
+        return max(0.05, min(0.95, cur + delta * w))
+    body = _apply(body, db, abs(body - 0.5) >= 0.02)
+    sweet = _apply(sweet, ds, abs(sweet - 0.5) >= 0.02)
+    acid = _apply(acid, da, abs(acid - 0.45) >= 0.02)
+    clarity = _apply(clarity, dc, abs(clarity - 0.5) >= 0.02)
 
     scale4 = {"body": round(body, 2), "sweet": round(sweet, 2),
               "acid": round(acid, 2), "clarity": round(clarity, 2)}
@@ -363,8 +458,13 @@ def build_html(brand, detail, brewery, idx):
     informative_scale = any(abs(v - 0.5) >= 0.12 for v in scale4.values())
     flavor_section = ""
     if has_basis and (informative_scale or not flat_radar):
-        _cap = ("公式テイスティング記述・成分値に基づく saketto 編集部評価。" if has_tasting
-                else "公式の製法・原料・成分の情報に基づく saketto 編集部評価。")
+        # 何を根拠にした図なのかを読者が判断できるようにする。
+        # 造りからの推定（白麹＝酸、全麹＝濃醇 等）を含む場合はその旨も書く。
+        _, _why = structural_signals(d, b)
+        _base = ("公式テイスティング記述・成分値" if has_tasting else "公式の製法・原料・成分の情報")
+        _cap = f"{_base}に基づく saketto 編集部評価。"
+        if _why:
+            _cap += "造りからの読み取り（" + "／".join(w.split("（")[0] for w in _why[:3]) + "）を含みます。"
         boxes = f'<div class="flavor-box"><div class="flavor-box__title">— STRUCTURE　<strong>4軸構造スケール</strong></div>{gen_scale4_svg(scale4)}<div class="flavor-box__cap">{_cap}</div></div>'
         if not flat_radar:   # 平坦な6軸レーダーは「特徴の無い酒」に見えるため出さない
             boxes += f'<div class="flavor-box"><div class="flavor-box__title">— PROFILE　<strong>6軸レーダー</strong></div>{gen_radar6_svg(radar6)}<div class="flavor-box__cap">同上。飲み手の印象を6軸で。</div></div>'
