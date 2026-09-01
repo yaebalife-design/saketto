@@ -9,7 +9,13 @@
     "rakuten": {
       "show": true,
       "query": "翔空 HOP SAKE ほっぺ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:1": {
     "name": "翔空 ニゴリのHOP SAKE ほっぺ",
@@ -21,7 +27,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:2": {
     "name": "翔空 酔いどれ洋梨2025-2026 槽搾り生",
@@ -33,7 +45,13 @@
     "rakuten": {
       "show": true,
       "query": "翔空 酔いどれ洋梨"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:3": {
     "name": "翔空 酔いどれメロン2025 ドブロク",
@@ -45,7 +63,13 @@
     "rakuten": {
       "show": true,
       "query": "翔空 酔いどれメロン"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:4": {
     "name": "翔空 酔いどれイチゴ2026 槽絞り生",
@@ -57,7 +81,13 @@
     "rakuten": {
       "show": true,
       "query": "翔空 酔いどれイチゴ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:5": {
     "name": "翔空 SAKEマルゲリータ Unpressed",
@@ -69,7 +99,13 @@
     "rakuten": {
       "show": true,
       "query": "翔空 SAKEマルゲリータ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:6": {
     "name": "翔空 自然栽培亀の尾どぶろく",
@@ -81,7 +117,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "librom:0": {
     "name": "LIBROMモスコミュール",
@@ -93,7 +135,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/102015.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「クラフトサケ 福岡県 LIBROM モスコミュール 500ml」¥2,860（容量・価格ともDB一致）"
   },
   "librom:1": {
     "name": "博多美人",
@@ -105,7 +153,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "librom:2": {
     "name": "TOMATO",
@@ -117,7 +171,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "librom:3": {
     "name": "あまおうのおさけ",
@@ -129,7 +189,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/102014.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「クラフトサケ 福岡県 LIBROM あまおうのおさけ 500ml」¥2,750（容量・価格ともDB一致）"
   },
   "librom:4": {
     "name": "FREROM Hallertau Blanc",
@@ -141,7 +207,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/102012.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「クラフトサケ 福岡県 LIBROM FREROM Hallertau Blanc 500ml」¥2,860（容量・価格ともDB一致）"
   },
   "librom:5": {
     "name": "サワーコーラ",
@@ -153,7 +225,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "adachi-noujo:0": {
     "name": "KOYOI ～la première année～",
@@ -165,7 +243,13 @@
     "rakuten": {
       "show": true,
       "query": "KOYOI ラ・プレミア・アネー"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "adachi-noujo:1": {
     "name": "KOYOI La deuxième",
@@ -177,7 +261,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "fermenteria:0": {
     "name": "サケベイビー オリジナル",
@@ -189,7 +279,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "fermenteria:1": {
     "name": "サケベイビー シーズナル",
@@ -201,7 +297,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "fermenteria:2": {
     "name": "サケベイビー エクスペリメンタル",
@@ -213,7 +315,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "fermenteria:3": {
     "name": "カボセット ショコラ",
@@ -225,7 +333,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-namba:0": {
     "name": "どぶろく プレーン",
@@ -237,7 +351,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-namba:1": {
     "name": "どぶろく 小豆",
@@ -249,7 +369,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-namba:2": {
     "name": "どぶろく 黒豆",
@@ -261,7 +387,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-namba:3": {
     "name": "どぶろく ホップ",
@@ -273,7 +405,13 @@
     "rakuten": {
       "show": true,
       "query": "平和どぶろく 参ノ濁"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-namba:4": {
     "name": "どぶろく 白麹",
@@ -285,7 +423,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-namba:5": {
     "name": "どぶろく 桜（季節限定）",
@@ -297,7 +441,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-namba:6": {
     "name": "どぶろく 抹茶（季節限定）",
@@ -309,7 +459,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "tokyo-station:0": {
     "name": "東京駅 どぶろく",
@@ -789,7 +945,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ CRAFT series"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:1": {
     "name": "花風（ぐるりこ®）",
@@ -801,7 +963,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ 花風"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:2": {
     "name": "稲とジャスミン",
@@ -813,7 +981,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:3": {
     "name": "稲とハチミツ",
@@ -825,7 +999,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とハチミツ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:4": {
     "name": "稲とリンゴ",
@@ -837,7 +1017,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ 稲とリンゴ 紅の夢"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:5": {
     "name": "稲とブドウ",
@@ -849,7 +1035,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ 稲とブドウ 甲州"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "haccoba:0": {
     "name": "はなうたホップス",
@@ -921,7 +1113,13 @@
     "rakuten": {
       "show": true,
       "query": "ハナグモリ 濁酒"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:1": {
     "name": "ハナグモリ THE酸",
@@ -933,7 +1131,13 @@
     "rakuten": {
       "show": true,
       "query": "ハナグモリ THE酸"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:2": {
     "name": "ハナグモリ 焼酎用白麹仕様",
@@ -945,7 +1149,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "happy-taro:0": {
     "name": "ハッピーどぶろく 穂の恵み",
@@ -957,7 +1167,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/tokuriya/1849.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。とくりや「要冷蔵 ハッピーどぶろく 生詰 480ml」。商品名に銘柄名が無いが、商品ページの裏ラベル引用に「ハッピーどぶろく 穂の恵み」と明記されているのを確認。※商品名で判別できないため、店舗が中身を差し替えた場合に気づけない。定期確認の対象"
   },
   "happy-taro:1": {
     "name": "ハッピーどぶろく 生もと 酵母無添加",
@@ -969,7 +1185,13 @@
     "rakuten": {
       "show": true,
       "query": "ハッピーどぶろく 生もと"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:2": {
     "name": "ハッピーどぶろく ホップ Huell Melon",
@@ -981,7 +1203,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:3": {
     "name": "something happy うきうきホップ",
@@ -993,7 +1221,13 @@
     "rakuten": {
       "show": true,
       "query": "something happy うきうきホップ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:4": {
     "name": "something happy 菅浦の八朔",
@@ -1005,7 +1239,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/bishukan/sale0017.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。美酒館「クラフトどぶろく 菅浦の八朔 6度 480ml×2本」¥8,400。※2本セットのため単品価格2,970円とは異なる"
   },
   "happy-taro:5": {
     "name": "something happy 政所の茶縁",
@@ -1017,7 +1257,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:6": {
     "name": "something happy 音羽の黒文字",
@@ -1029,7 +1275,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "heiroku:0": {
     "name": "Re:vive 久遠 misty おりがらみ",
@@ -1113,7 +1365,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "pukupuku:1": {
     "name": "VaVaVa Spring 2026 DDH Doburoku",
@@ -1125,7 +1383,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "pukupuku:2": {
     "name": "KiKiKi Spring 2026 Hopped Sour",
@@ -1137,7 +1401,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "pukupuku:3": {
     "name": "#wildpath 水もとホップどぶろく",
@@ -1149,7 +1419,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "pukupuku:4": {
     "name": "#ODAKA 蔵付酵母 木桶どぶろく",
@@ -1161,7 +1437,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "pukupuku:5": {
     "name": "木桶発酵 全麹酒 雫取り",
@@ -1173,7 +1455,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "pukupuku:6": {
     "name": "アマーロどぶろく feat.伊勢屋酒造",
@@ -1185,7 +1473,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "nondo:0": {
     "name": "権化 土の密℃",
@@ -1305,7 +1599,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "yamane:1": {
     "name": "やまねのみのり（蜂蜜Ver.）",
@@ -1317,7 +1617,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "yamane:2": {
     "name": "やまねのみのり（発芽玄米Ver.）",
@@ -1329,7 +1635,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-kabutocho:0": {
     "name": "平和どぶろく プレーン",
@@ -1341,7 +1653,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-kabutocho:1": {
     "name": "平和どぶろく 小豆",
@@ -1353,7 +1671,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-kabutocho:2": {
     "name": "平和どぶろく 黒豆",
@@ -1365,7 +1689,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-kabutocho:3": {
     "name": "平和どぶろく ホップ",
@@ -1377,7 +1707,13 @@
     "rakuten": {
       "show": true,
       "query": "平和どぶろく 参ノ濁"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "heiwa-kabutocho:4": {
     "name": "本日のどぶろく（生姜など）",
@@ -1389,7 +1725,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "hakutsuru-sakecraft:0": {
     "name": "HAKUTSURU SAKE CRAFT No.1",
@@ -1509,7 +1851,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ 交酒 花風"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:9": {
     "name": "交酒花風（6号酵母）",
@@ -1521,7 +1869,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ 交酒花風 6号酵母"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:10": {
     "name": "火折",
@@ -1533,7 +1887,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ 火折"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:11": {
     "name": "廻",
@@ -1545,7 +1905,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ 廻"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:12": {
     "name": "DOBUROKU ホップ",
@@ -1557,7 +1923,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ DOBUROKU ホップ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:13": {
     "name": "稲とブドウとホップ",
@@ -1569,7 +1941,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ 稲とブドウとホップ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:14": {
     "name": "SAKE 稲とアガベ×土田酒造",
@@ -1581,7 +1959,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ 土田酒造"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:15": {
     "name": "稲とアガベと谷泉",
@@ -1593,7 +1977,13 @@
     "rakuten": {
       "show": true,
       "query": "稲とアガベ 谷泉"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:7": {
     "name": "something happy オリエンタルホエイ",
@@ -1605,7 +1995,13 @@
     "rakuten": {
       "show": true,
       "query": "ハッピー太郎醸造所 オリエンタルホエイ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:8": {
     "name": "something happy フレッシュハーブティー",
@@ -1617,7 +2013,13 @@
     "rakuten": {
       "show": true,
       "query": "ハッピー太郎醸造所 フレッシュハーブティ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:9": {
     "name": "something happy 八朔 BITTER 2026",
@@ -1629,7 +2031,13 @@
     "rakuten": {
       "show": true,
       "query": "ハッピー太郎醸造所 八朔BITTER"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:7": {
     "name": "翔空 微発泡の HOP SAKE ほっぺ",
@@ -1641,7 +2049,13 @@
     "rakuten": {
       "show": true,
       "query": "翔空 微発泡 HOP SAKE ほっぺ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "amanosato:3": {
     "name": "在る 陽香（ひのか）500ml",
@@ -1665,7 +2079,13 @@
     "rakuten": {
       "show": true,
       "query": "足立農醸 MIYOI 生"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "adachi-noujo:3": {
     "name": "MIYOI -旨すぎて御燗弁。- 燗酒専用酒 720ml",
@@ -1677,7 +2097,13 @@
     "rakuten": {
       "show": true,
       "query": "足立農醸 MIYOI 御燗弁"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "konohanano:3": {
     "name": "EVAN-GARDE 「木花之醸造所×初号機」",
@@ -1689,7 +2115,13 @@
     "rakuten": {
       "show": true,
       "query": "木花之醸造所 EVAN-GARDE"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "ine-to-agave:6": {
     "name": "稲とリンゴ SPECIAL EDITION",
@@ -1701,7 +2133,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "ine-to-agave:7": {
     "name": "稲とブドウ SPECIAL EDITION 2024",
@@ -1713,7 +2151,13 @@
     "rakuten": {
       "show": false,
       "query": null
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:10": {
     "name": "something happy 苺屋はな",
@@ -1726,7 +2170,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:11": {
     "name": "something happy MAROUのカカオ",
@@ -1739,7 +2189,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:12": {
     "name": "やまのかみさん 大原の赤紫蘇",
@@ -1752,7 +2208,13 @@
       "show": true,
       "query": "ハッピー太郎 やまのかみさん 赤紫蘇"
     },
-    "_note": "2026/08/31 楽天確認。べんのや「ハッピー太郎醸造所 どぶろく やまのかみさん 大原の赤紫蘇 480ml」¥2,970（容量・価格ともDB一致）"
+    "_note": "2026/08/31 楽天確認。べんのや「ハッピー太郎醸造所 どぶろく やまのかみさん 大原の赤紫蘇 480ml」¥2,970（容量・価格ともDB一致）",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "happy-taro:13": {
     "name": "ハッピーどぶろく 湖北はみ出し米",
@@ -1765,7 +2227,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:8": {
     "name": "翔空 森のSAKE クロモジ",
@@ -1778,7 +2246,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:9": {
     "name": "翔空 Hopped酔いどれメロン",
@@ -1791,7 +2265,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:10": {
     "name": "レゾネコ 梅と茶 〜プロトタイプ〜",
@@ -1804,7 +2284,13 @@
       "show": true,
       "query": "レゾネコ 梅と茶"
     },
-    "_note": "2026/08/31 楽天確認。新潟地酒 岸本商店「ResonEcho（レゾネコ）梅と茶 500ml」¥2,530（容量・価格ともDB一致）。販売店表記に「〜プロトタイプ〜」は無いが麒麟山酒造×冨士美園×LAGOONのコラボで中身が一致"
+    "_note": "2026/08/31 楽天確認。新潟地酒 岸本商店「ResonEcho（レゾネコ）梅と茶 500ml」¥2,530（容量・価格ともDB一致）。販売店表記に「〜プロトタイプ〜」は無いが麒麟山酒造×冨士美園×LAGOONのコラボで中身が一致",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "lagoon:11": {
     "name": "翔空 酔いどれイチゴ2026 ドブロク",
@@ -1817,7 +2303,13 @@
       "show": true,
       "query": "翔空 酔いどれイチゴ ドブロク"
     },
-    "_note": "2026/08/31 楽天確認。岸本商店が槽搾り生(syoukuu-030)とどぶろく(syoukuu-020)を別SKUで併売しており、DBの2エントリと1対1で対応。旧ロットは店側が【年月瓶詰め】の接頭辞付き別SKUにしている"
+    "_note": "2026/08/31 楽天確認。岸本商店が槽搾り生(syoukuu-030)とどぶろく(syoukuu-020)を別SKUで併売しており、DBの2エントリと1対1で対応。旧ロットは店側が【年月瓶詰め】の接頭辞付き別SKUにしている",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
   },
   "konohanano:4": {
     "name": "HAZY SAKE",
@@ -1830,7 +2322,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:5": {
     "name": "ストロベリーショコラ 濁酒",
@@ -1843,7 +2341,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:6": {
     "name": "YEAH「アサイーSAKE」〜立正大学×木花之醸造所〜",
@@ -1856,7 +2360,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:7": {
     "name": "Snow Dome【スノードーム】",
@@ -1869,7 +2379,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:8": {
     "name": "大人のネクター03「ネクタリン」",
@@ -1882,7 +2398,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示"
+    "_note": "2026/08/31 楽天を蔵名クエリ含め複数条件で検索したが出品を確認できず。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "amanosato:4": {
     "name": "天郷 Flagship 1st [序]",
@@ -1934,7 +2456,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示"
+    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:10": {
     "name": "ジャスミン 濁酒ver.",
@@ -1947,7 +2475,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示"
+    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:11": {
     "name": "ジャスミン 澄酒ver.",
@@ -1960,7 +2494,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示"
+    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:12": {
     "name": "LAB02「出汁パンチ」",
@@ -1973,7 +2513,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示"
+    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:13": {
     "name": "栗熟成酒「ヘーゼルナッツショコラ」〜bitter taste〜",
@@ -1986,7 +2532,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示"
+    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:14": {
     "name": "ミードブロク",
@@ -1999,7 +2551,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示"
+    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "konohanano:15": {
     "name": "passionfruit sake [bartender waka collaboration]",
@@ -2012,7 +2570,13 @@
       "show": false,
       "query": null
     },
-    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示"
+    "_note": "2026/08/31 楽天確認。蔵名クエリ（木花之醸造所／木花之 どぶろく／木花之 500ml／KONOHANANO 日本酒 等）で全ラインナップを列挙したが、楽天にある木花之醸造所の商品はEVAN-GARDE 3件のみで本銘柄の出品なし。非表示",
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
   },
   "tsuchiura:0": {
     "name": "ツチブルめろん どぶろくタイプ",
