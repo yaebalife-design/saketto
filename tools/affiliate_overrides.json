@@ -13,9 +13,9 @@
     "yahoo": {
       "show": false,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/sake101sakaya/15lb001.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。SAKEKAMIYA「翔空 HOP SAKE ほっぺ 720ml」¥2,420・在庫なし。在庫が戻ったら show:true にする"
   },
   "lagoon:1": {
     "name": "翔空 ニゴリのHOP SAKE ほっぺ",
@@ -33,7 +33,7 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。全体検索・店舗内検索とも該当なし"
   },
   "lagoon:2": {
     "name": "翔空 酔いどれ洋梨2025-2026 槽搾り生",
@@ -51,7 +51,7 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。全体検索・店舗内検索とも該当なし"
   },
   "lagoon:3": {
     "name": "翔空 酔いどれメロン2025 ドブロク",
@@ -65,11 +65,11 @@
       "query": "翔空 酔いどれメロン"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/sake101sakaya/15lb011.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。SAKEKAMIYA「翔空 酔いどれメロン 500ml」¥2,310。商品ページでアルコール12度・米/米こうじ/メロン・500mlを確認しDB一致"
   },
   "lagoon:4": {
     "name": "翔空 酔いどれイチゴ2026 槽絞り生",
@@ -83,11 +83,11 @@
       "query": "翔空 酔いどれイチゴ"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/sake101sakaya/15lb010.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。SAKEKAMIYA「翔空 酔いどれイチゴ 槽絞り生 500ml」¥2,420。DB（2026年版・2,420円）と一致"
   },
   "lagoon:5": {
     "name": "翔空 SAKEマルゲリータ Unpressed",
@@ -101,11 +101,11 @@
       "query": "翔空 SAKEマルゲリータ"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/kojimaya-jizake/shouku-sakemarugerita.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。地酒の小島屋「翔空 SAKEマルゲリータ 500ml」¥1,980。商品ページでトマト/バジル・13.9度を確認しDB一致"
   },
   "lagoon:6": {
     "name": "翔空 自然栽培亀の尾どぶろく",
@@ -123,7 +123,7 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。全体検索・店舗内検索とも該当なし"
   },
   "librom:0": {
     "name": "LIBROMモスコミュール",
@@ -249,7 +249,7 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。全体検索・店舗内検索とも該当なし"
   },
   "adachi-noujo:1": {
     "name": "KOYOI La deuxième",
@@ -621,7 +621,13 @@
     "rakuten": {
       "show": true,
       "query": "弥栄醸造 一擲ITTEKI"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒラセ酒店がITTEKIを5SKU扱うが、vol.0-2／vol.0-3白夜／月下氷吟／銀嶺／穂芳はいずれも使用米か種麹が異なる別プロダクトで、Vol.0-1ではない"
   },
   "sakenova:0": {
     "name": "Brew Note 001 HONEY",
@@ -1175,11 +1181,11 @@
       "query": "稲とアガベ CRAFT series"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/horie-saketen/inetoagave69.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ほりえ酒店「稲とアガベ 01 火入 2025 500ml」¥2,500。容量・価格ともDB一致"
   },
   "ine-to-agave:1": {
     "name": "花風（ぐるりこ®）",
@@ -1193,11 +1199,11 @@
       "query": "稲とアガベ 花風"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/hanakaze-yonayona-720.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「花風 ぐるりこ よなよなエールver. 交酒 720ml」¥2,900"
   },
   "ine-to-agave:2": {
     "name": "稲とジャスミン",
@@ -1231,9 +1237,9 @@
     "yahoo": {
       "show": false,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/ineto-hachimitsu-500.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「試し桶シリーズ 稲とハチミツ」在庫なし。在庫が戻ったら show:true にする"
   },
   "ine-to-agave:4": {
     "name": "稲とリンゴ",
@@ -1247,11 +1253,11 @@
       "query": "稲とアガベ 稲とリンゴ 紅の夢"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/kojimaya-jizake/inetoringo.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。地酒の小島屋「稲とリンゴ 500ml」¥2,950"
   },
   "ine-to-agave:5": {
     "name": "稲とブドウ",
@@ -1267,9 +1273,9 @@
     "yahoo": {
       "show": false,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/86042.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「稲とブドウ(甲州2025) 500ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "haccoba:0": {
     "name": "はなうたホップス",
@@ -1281,7 +1287,13 @@
     "rakuten": {
       "show": true,
       "query": "haccoba はなうたホップス"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/s-wine/523.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。長左ヱ門商店「はなうたホップス さわやか ver. 2025BY No.5 720ml」¥2,420・在庫なし。在庫が戻ったら show:true にする"
   },
   "haccoba:1": {
     "name": "hanamoto bretta [kriek]",
@@ -1293,7 +1305,13 @@
     "rakuten": {
       "show": true,
       "query": "haccoba hanamoto bretta"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。全体検索・店舗内検索とも該当なし"
   },
   "haccoba:2": {
     "name": "zairai [森 forest]",
@@ -1305,7 +1323,13 @@
     "rakuten": {
       "show": true,
       "query": "haccoba zairai forest"
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/s-wine/8174-f.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。長左ヱ門商店「zairai (forest/秋) 500ml」¥2,420。DB容量・価格と一致"
   },
   "haccoba:3": {
     "name": "kasu [sansho lemonade]",
@@ -1317,7 +1341,13 @@
     "rakuten": {
       "show": true,
       "query": "haccoba kasu sansho lemonade"
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/seishuya/kasusansholemonade2026.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。勢州屋「haccoba カス山椒レモネード 500ml」¥2,680。商品ページで原材料・アルコール10%を確認しDB一致"
   },
   "haccoba:4": {
     "name": "水を編む",
@@ -1329,7 +1359,13 @@
     "rakuten": {
       "show": true,
       "query": "haccoba 水を編む"
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/s-wine/538-n.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。長左ヱ門商店「水を編む -根本有機農園- 500ml」¥2,860。DB価格と一致"
   },
   "konohanano:0": {
     "name": "ハナグモリ",
@@ -1417,9 +1453,9 @@
     "yahoo": {
       "show": false,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/103005.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「ハッピーどぶろく 生もと 酵母無添加 480ml」¥2,310・在庫なし。在庫が戻ったら show:true にする"
   },
   "happy-taro:2": {
     "name": "ハッピーどぶろく ホップ Huell Melon",
@@ -1451,11 +1487,11 @@
       "query": "something happy うきうきホップ"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/umeshu/1272-19-0480.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。梅酒屋「somethinghappy うきうきホップ 480ml」¥2,530。DB価格と一致"
   },
   "happy-taro:4": {
     "name": "something happy 菅浦の八朔",
@@ -1521,7 +1557,13 @@
     "rakuten": {
       "show": true,
       "query": "平六醸造 Re:vive 久遠 misty"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/hiraroku-kuon-ori-720.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「Re:vive 久遠 misty おりがらみ 720ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "heiroku:1": {
     "name": "Re:vive 刹那",
@@ -1533,7 +1575,13 @@
     "rakuten": {
       "show": true,
       "query": "平六醸造 Re:vive 刹那"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/hiraroku-setsuna-720.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「Re:vive 刹那 おりがらみ 720ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "heiroku:2": {
     "name": "Re:vive Origin アカツキ",
@@ -1545,7 +1593,13 @@
     "rakuten": {
       "show": true,
       "query": "平六醸造 Re:vive Origin アカツキ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/hiraroku-origin-720.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「Re:vive Origin アカツキ 720ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "heiroku:3": {
     "name": "layer 洋ナシ",
@@ -1557,7 +1611,13 @@
     "rakuten": {
       "show": true,
       "query": "平六醸造 layer 洋ナシ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/hiraroku-pear-720.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「layer 洋梨 720ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "heiroku:4": {
     "name": "layer ぶどう",
@@ -1569,7 +1629,13 @@
     "rakuten": {
       "show": true,
       "query": "平六醸造 layer ぶどう"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/hiraroku-grape-720.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「layer 葡萄 720ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "heiroku:5": {
     "name": "layer りんご",
@@ -1581,7 +1647,13 @@
     "rakuten": {
       "show": true,
       "query": "平六醸造 layer リンゴ"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/hiraroku-apple-720.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「layer 林檎 720ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "pukupuku:0": {
     "name": "#plot 酵母無添加 ホップサケ",
@@ -1719,7 +1791,13 @@
     "rakuten": {
       "show": true,
       "query": "権化 土の密"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事に「権化 どぶろく完全発酵 木桶無添加水もと仕込 500ml」¥3,630（在庫なし）が1点あるが、DBの権化は525ml・4,950円で容量も価格も合わず、商品名にも各銘柄の識別子が無いため充当しない"
   },
   "nondo:1": {
     "name": "権化 Rafters",
@@ -1731,7 +1809,13 @@
     "rakuten": {
       "show": true,
       "query": "権化 Rafters"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事に「権化 どぶろく完全発酵 木桶無添加水もと仕込 500ml」¥3,630（在庫なし）が1点あるが、DBの権化は525ml・4,950円で容量も価格も合わず、商品名にも各銘柄の識別子が無いため充当しない"
   },
   "nondo:2": {
     "name": "権化 MARO 無濾過生原酒",
@@ -1743,7 +1827,13 @@
     "rakuten": {
       "show": true,
       "query": "権化 MARO"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事に「権化 どぶろく完全発酵 木桶無添加水もと仕込 500ml」¥3,630（在庫なし）が1点あるが、DBの権化は525ml・4,950円で容量も価格も合わず、商品名にも各銘柄の識別子が無いため充当しない"
   },
   "nondo:3": {
     "name": "権化 MO CHUISLE",
@@ -1755,7 +1845,13 @@
     "rakuten": {
       "show": true,
       "query": "権化 MO CHUISLE"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事に「権化 どぶろく完全発酵 木桶無添加水もと仕込 500ml」¥3,630（在庫なし）が1点あるが、DBの権化は525ml・4,950円で容量も価格も合わず、商品名にも各銘柄の識別子が無いため充当しない"
   },
   "nondo:4": {
     "name": "権化生酛",
@@ -1767,7 +1863,13 @@
     "rakuten": {
       "show": true,
       "query": "どぶろく生酛"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事に「権化 どぶろく完全発酵 木桶無添加水もと仕込 500ml」¥3,630（在庫なし）が1点あるが、DBの権化は525ml・4,950円で容量も価格も合わず、商品名にも各銘柄の識別子が無いため充当しない"
   },
   "nondo:5": {
     "name": "とおの どぶろく 水もと無添加 生",
@@ -1779,7 +1881,13 @@
     "rakuten": {
       "show": true,
       "query": "とおの どぶろく 水もと"
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/85001.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「とおのどぶろく 水もと無添加生 500ml」¥2,750。商品ページの蔵元欄に「岩手県遠野市 株式会社nondo」と明記。DB価格と一致"
   },
   "nondo:6": {
     "name": "とおの どぶろく 生酛無添加 生",
@@ -1791,7 +1899,13 @@
     "rakuten": {
       "show": true,
       "query": "とおの どぶろく 生酛"
-    }
+    },
+    "yahoo": {
+      "show": false,
+      "query": null,
+      "product_url": null
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「とおのどぶろく 生もと 500ml」¥2,530（14度・在庫なし）が該当しそうだが、DBは10〜12%・2,970円で度数と価格が食い違う。確度が低いため充当しない"
   },
   "nondo:7": {
     "name": "とおの どぶろく 速醸 生",
@@ -1803,7 +1917,13 @@
     "rakuten": {
       "show": true,
       "query": "とおの どぶろく 速醸"
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/85005.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「とおのどぶろく 速醸生 500ml」¥2,750。DB価格と一致"
   },
   "nondo:8": {
     "name": "とおの どぶろく 速醸火入れ",
@@ -1815,7 +1935,13 @@
     "rakuten": {
       "show": true,
       "query": "とおの どぶろく 速醸火入れ"
-    }
+    },
+    "yahoo": {
+      "show": true,
+      "query": null,
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/85002.html"
+    },
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「とおのどぶろく 速醸火入れ 500ml」¥2,420。DB価格と一致"
   },
   "yamane:0": {
     "name": "やまねのみのり（茶Ver.）",
@@ -2135,11 +2261,11 @@
       "query": "稲とアガベ 交酒 花風"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/sake101sakaya/05itagb005.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。SAKEKAMIYA「交酒 花風 忽布 720ml」¥2,420。商品ページで原材料・精米90%・720mlを確認しDB一致（忽布は肩ラベルのホップ表記で別銘柄ではない旨も同ページに記載）"
   },
   "ine-to-agave:9": {
     "name": "交酒花風（6号酵母）",
@@ -2155,9 +2281,9 @@
     "yahoo": {
       "show": false,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/86049.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「交酒 花風 6号酵母 720ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "ine-to-agave:10": {
     "name": "火折",
@@ -2173,9 +2299,9 @@
     "yahoo": {
       "show": false,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/86047.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「稲とアガベ 火折(ほおり) 720ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "ine-to-agave:11": {
     "name": "廻",
@@ -2189,11 +2315,11 @@
       "query": "稲とアガベ 廻"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/kojimaya-jizake/meguru.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。地酒の小島屋「廻-めぐる- 720ml」¥3,850。DB価格と一致"
   },
   "ine-to-agave:12": {
     "name": "DOBUROKU ホップ",
@@ -2207,11 +2333,11 @@
       "query": "稲とアガベ DOBUROKU ホップ"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/kojimaya-jizake/doburokuhop.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。地酒の小島屋「DOBUROKU ホップ 500ml 2026」¥2,695。DB価格と一致"
   },
   "ine-to-agave:13": {
     "name": "稲とブドウとホップ",
@@ -2227,9 +2353,9 @@
     "yahoo": {
       "show": false,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/inetobudotohop-500.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「稲とぶどうとホップ 甲州 生酒 500ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "ine-to-agave:14": {
     "name": "SAKE 稲とアガベ×土田酒造",
@@ -2243,11 +2369,11 @@
       "query": "稲とアガベ 土田酒造"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/86040.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「稲とアガベ×土田酒造×協会4号酵母 720ml」¥3,300。DB価格と一致"
   },
   "ine-to-agave:15": {
     "name": "稲とアガベと谷泉",
@@ -2263,9 +2389,9 @@
     "yahoo": {
       "show": false,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/inetoizumitani-500.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「稲とアガベと谷泉 ブルーベリー 500ml」在庫なし。在庫が戻ったら show:true にする"
   },
   "happy-taro:7": {
     "name": "something happy オリエンタルホエイ",
@@ -2279,11 +2405,11 @@
       "query": "ハッピー太郎醸造所 オリエンタルホエイ"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/happy-hoe-480.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「something happy オリエンタルホエイ 480ml」¥2,750。DB価格と一致"
   },
   "happy-taro:8": {
     "name": "something happy フレッシュハーブティー",
@@ -2297,11 +2423,11 @@
       "query": "ハッピー太郎醸造所 フレッシュハーブティ"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/tokuriya/1944.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。とくりや「something happy フレッシュハーブティ 生詰 480ml」¥2,860。DB2,970円との差は仕込号違い（ロット差）"
   },
   "happy-taro:9": {
     "name": "something happy 八朔 BITTER 2026",
@@ -2315,11 +2441,11 @@
       "query": "ハッピー太郎醸造所 八朔BITTER"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/umeshu/1272-18-0480.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。梅酒屋「somethinghappy 八朔 BITTER 2026 480ml」¥2,970。DB価格と一致"
   },
   "lagoon:7": {
     "name": "翔空 微発泡の HOP SAKE ほっぺ",
@@ -2337,7 +2463,7 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。全体検索・店舗内検索とも該当なし"
   },
   "amanosato:3": {
     "name": "在る 陽香（ひのか）500ml",
@@ -2369,11 +2495,11 @@
       "query": "足立農醸 MIYOI 生"
     },
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/morimoto/80155.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。お酒のデパート もりもと「MIYOI(美酔) ライチ 12% 720ml 高槻市 足立農醸」¥2,500。度数・容量がDB一致"
   },
   "adachi-noujo:3": {
     "name": "MIYOI -旨すぎて御燗弁。- 燗酒専用酒 720ml",
@@ -2391,7 +2517,7 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。全体検索・店舗内検索とも該当なし"
   },
   "konohanano:3": {
     "name": "EVAN-GARDE 「木花之醸造所×初号機」",
@@ -2498,11 +2624,11 @@
     },
     "_note": "2026/08/31 楽天確認。べんのや「ハッピー太郎醸造所 どぶろく やまのかみさん 大原の赤紫蘇 480ml」¥2,970（容量・価格ともDB一致）",
     "yahoo": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://store.shopping.yahoo.co.jp/jizake-mie/happy-akajiso-480.html"
     },
-    "_note_yahoo": "未調査。2026/09/01のYahoo!調査は「購入導線が無い銘柄」に絞ったため、この銘柄（楽天で購入可）は対象外だった。蔵自体はYahoo!に出品があるので要調査"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。べんのや「やまのかみさん 大原の赤紫蘇 480ml」¥2,970。DB価格と一致"
   },
   "happy-taro:13": {
     "name": "ハッピーどぶろく 湖北はみ出し米",
