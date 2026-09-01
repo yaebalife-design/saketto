@@ -23,8 +23,13 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug, BREWERIES
 from breweries_brands import BRANDS
-from moshimo_link import resolve_rakuten, resolve_amazon
-from gen_sample_v2 import CSS, gen_scale4_svg, gen_radar6_svg, RAKUTEN_ENABLED, AMAZON_ENABLED
+from moshimo_link import (
+    resolve_rakuten, resolve_amazon, resolve_yahoo, yahoo_impression_tag,
+)
+from gen_sample_v2 import (
+    CSS, gen_scale4_svg, gen_radar6_svg,
+    RAKUTEN_ENABLED, AMAZON_ENABLED, YAHOO_ENABLED,
+)
 from story_overrides import story_override
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
 from related import next_section_html
@@ -218,6 +223,9 @@ def build_html(brand, detail, brewery, idx):
 
     rakuten_url = resolve_rakuten(slug, idx, name)  # 実購入できない銘柄はNone（非表示）
     amazon_url = resolve_amazon(slug, idx, name)
+    # Yahoo!は未調査なら None（検索へのフォールバックをしない）。
+    # 「全銘柄を実際に検索して確認している」と記事に書いているため。
+    yahoo_href = resolve_yahoo(slug, idx, name)
     has_buy = bool((RAKUTEN_ENABLED and rakuten_url) or (AMAZON_ENABLED and amazon_url))
 
     # ── HERO タグ（香り・味の印象）──
@@ -396,11 +404,16 @@ def build_html(brand, detail, brewery, idx):
     _btns = []
     if RAKUTEN_ENABLED and rakuten_url:
         _btns.append(f'<a class="purchase-card__btn purchase-card__btn--rakuten" href="{rakuten_url}" target="_blank" rel="noopener sponsored">楽天市場で探す →</a>')
+    if YAHOO_ENABLED and yahoo_href:
+        _btns.append(f'<a class="purchase-card__btn purchase-card__btn--yahoo" href="{yahoo_href}" target="_blank" rel="nofollow sponsored noopener">Yahoo!ショッピングで探す →</a>')
     if AMAZON_ENABLED and amazon_url:
         _btns.append(f'<a class="purchase-card__btn purchase-card__btn--amazon" href="{amazon_url}" target="_blank" rel="noopener sponsored">Amazonで探す →</a>')
     if _btns:
+        # Yahoo!のインプレッションタグは1ページ1回だけ（カードごとに出すと水増しになる）
+        _imp = yahoo_impression_tag() if (YAHOO_ENABLED and yahoo_href) else ''
         purchase_inner = ('<div class="purchase-card__btns">' + "".join(_btns) + '</div>'
-                          '<div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>')
+                          '<div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>'
+                          + _imp)
     else:
         # 通販に無い銘柄（143中85）。ここが唯一の出口なので、テキストリンクではなく
         # ボタンとして公式サイトへ送る（未使用だった --official クラスを使用）。

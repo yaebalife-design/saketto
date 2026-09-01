@@ -34,7 +34,7 @@ OUT = REPO_ROOT / "brand" / "haccoba-0.html"
 # アフィリエイト（もしも経由）の表示制御。定義は moshimo_link.py に一本化し、
 # ここは後方互換のための再エクスポート（多くの gen_*.py がここから import している）。
 from moshimo_link import (  # noqa: E402
-    RAKUTEN_ENABLED, AMAZON_ENABLED, AFFILIATE_ENABLED,
+    RAKUTEN_ENABLED, AMAZON_ENABLED, YAHOO_ENABLED, AFFILIATE_ENABLED,
 )
 
 
@@ -661,6 +661,10 @@ main { position:relative; z-index:1; }
 }
 .purchase-card__btn--amazon {
   background:linear-gradient(135deg, #232F3E 0%, #FF9900 100%);
+}
+/* Yahoo!ショッピングの赤。楽天(#BF0000)より明るく取り、並んだときに見分けられるようにする */
+.purchase-card__btn--yahoo {
+  background:linear-gradient(135deg, #FF0033 0%, #D6001C 100%);
 }
 .purchase-card__btn--official {
   background:#16100E; border:1px solid #635C57;

@@ -23,6 +23,16 @@ AMAZON_PID = "170"
 AMAZON_PC_ID = "185"
 AMAZON_PL_ID = "4062"
 
+# Yahoo!ショッピング（saketto専用 / 2026-09-01 社長提供リンクで確認）
+# pl_id=18502 は &url= でリンク先を指定できる型。
+# Yahoo! は「インプレッション計測用の1x1画像」を併記する仕様なので、
+# リンクを出したページには yahoo_impression_tag() を1回だけ入れること
+# （カードごとに出すとインプレッションの水増しになる）。
+YAHOO_AID = "5783006"
+YAHOO_PID = "1225"
+YAHOO_PC_ID = "1925"
+YAHOO_PL_ID = "18502"
+
 
 def rakuten_search(query):
     """楽天市場の検索結果ページにもしも経由で誘導"""
@@ -46,6 +56,39 @@ def rakuten_url(target):
         f"https://af.moshimo.com/af/c/click?"
         f"a_id={RAKUTEN_AID}&p_id={RAKUTEN_PID}&pc_id={RAKUTEN_PC_ID}&pl_id={RAKUTEN_PL_ID}"
         f"&url={urllib.parse.quote(target, safe='')}"
+    )
+
+
+def yahoo_search(query):
+    """Yahoo!ショッピングの検索結果ページにもしも経由で誘導"""
+    target = ("https://shopping.yahoo.co.jp/search?p="
+              + urllib.parse.quote(query))
+    return _yahoo_wrap(target)
+
+
+def yahoo_url(target):
+    """Yahoo!ショッピングの任意ページ（商品ページ等）にもしも経由で誘導"""
+    return _yahoo_wrap(target)
+
+
+def _yahoo_wrap(target):
+    return (
+        f"https://af.moshimo.com/af/c/click?"
+        f"a_id={YAHOO_AID}&p_id={YAHOO_PID}&pc_id={YAHOO_PC_ID}&pl_id={YAHOO_PL_ID}"
+        f"&url={urllib.parse.quote(target, safe='')}"
+    )
+
+
+def yahoo_impression_tag():
+    """Yahoo!ショッピングのインプレッション計測タグ。
+
+    **1ページに1回だけ**出すこと。もしもの管理画面のコードはリンクとセットで
+    配布されるが、商品カードごとに貼るとインプレッションを水増しすることになる。
+    """
+    return (
+        f'<img src="https://i.moshimo.com/af/i/impression?'
+        f'a_id={YAHOO_AID}&p_id={YAHOO_PID}&pc_id={YAHOO_PC_ID}&pl_id={YAHOO_PL_ID}"'
+        f' width="1" height="1" style="border:none" alt="" loading="lazy">'
     )
 
 
@@ -99,6 +142,24 @@ def resolve_rakuten(slug, idx, name):
     return rakuten_search(r.get("query") or name)
 
 
+def resolve_yahoo(slug, idx, name):
+    """Yahoo!ショッピングのリンクを返す。買えない判定・未調査ならNone（ボタン非表示）。
+
+    楽天・Amazonと違い、**未登録は None**（検索へのフォールバックをしない）。
+    記事に「収録銘柄すべてを実際に検索して確認している」と書いている以上、
+    未調査の銘柄に自動でリンクを出すとその記述が嘘になるため。
+    """
+    ov = _load_overrides().get(f"{slug}:{idx}")
+    if not ov:
+        return None
+    y = ov.get("yahoo") or {}
+    if not y.get("show"):
+        return None
+    if y.get("product_url"):
+        return yahoo_url(y["product_url"])
+    return yahoo_search(y.get("query") or name)
+
+
 def resolve_amazon(slug, idx, name):
     """AmazonリンクURLを返す。買えない判定ならNone（ボタン非表示）。未登録は名前検索にフォールバック。"""
     ov = _load_overrides().get(f"{slug}:{idx}")
@@ -117,4 +178,5 @@ def resolve_amazon(slug, idx, name):
 # 広告表記もここを見る（表記だけ実態とズレるのを防ぐため）。
 RAKUTEN_ENABLED = True    # 2026/05/31 楽天 saketto提携済 → ON
 AMAZON_ENABLED = False    # 2026/06/14 もしも媒体作り直しで旧Amazon ID無効 → 新ID受領まで一時OFF
-AFFILIATE_ENABLED = RAKUTEN_ENABLED or AMAZON_ENABLED
+YAHOO_ENABLED = True      # 2026/09/01 Yahoo!ショッピング saketto提携済（社長提供リンクで確認）
+AFFILIATE_ENABLED = RAKUTEN_ENABLED or AMAZON_ENABLED or YAHOO_ENABLED
