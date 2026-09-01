@@ -193,7 +193,7 @@
       "volume_ml": 480,
       "price": 2970,
       "price_note": "蔵元BASE・IMADEYA¥2,970",
-      "sub_ingredients_detail": "クロモジ(黒文字/国産)。米麹(国産米)・クロモジ",
+      "sub_ingredients_detail": "クロモジ（琵琶湖源流域「音羽の森」産の和ハーブ・薬木）",
       "rice_variety": "ありがとう米(滋賀県長浜市)、朝日(滋賀県産)",
       "rice_polish": null,
       "shubo": null,
@@ -209,7 +209,7 @@
       "pairing": [
         "和食"
       ],
-      "tasting_nose": "上品な香り、山椒のニュアンスにも近い",
+      "tasting_nose": "黒文字の上品な香り。山椒のニュアンスにも近い。葉を煎じると爽やかで甘い香りの茶になる木",
       "tasting_palate": null,
       "tasting_finish": null,
       "tasting_source_name": "ハッピー太郎醸造所 公式",
@@ -217,7 +217,7 @@
       "story": "琵琶湖源流域『音羽の森』に自生するクロモジ(和菓子楊枝の木)を使用。MORITOWAと協働",
       "story_source_url": "https://happytaro.jp/doburoku/seasonal/kuromoji/",
       "awards": [],
-      "flavor_basis": "季節品/どぶろく。クロモジの上品な香り/山椒様/和食向き"
+      "flavor_basis": "その他醸造酒・どぶろく。黒文字の上品な香りで和食に寄せる。アルコール7度と低め。蔵は味噌用麹菌を使い、一部に白麹を併用してクエン酸で乳酸無添加とし、四段仕込みで発酵終盤に甘酒を掛ける。伊吹山伏流水の硬水仕込み"
     },
     "something happy オリエンタルホエイ": {
       "abv": 8,
@@ -311,7 +311,7 @@
       "volume_ml": 480,
       "price": null,
       "price_note": "公式サイトに価格記載なし。公式ショップ(BASE)にも2026/08/31時点で出品なし（季節限定）",
-      "sub_ingredients_detail": "苺（スターナイト、おいCベリー、弥生姫、あまえくぼ、さつまおとめ／品種は変更の場合あり）",
+      "sub_ingredients_detail": "苺（滋賀県野洲市・苺屋はな。あまえくぼ／スターナイト／おいCベリー／弥生姫／恋みのり／さつまおとめ等。品種は変更の場合あり）。使用量は原料全体の重量の約1/3",
       "rice_variety": "ありがとう米（滋賀県長浜市）など",
       "rice_polish": null,
       "shubo": null,
@@ -325,15 +325,15 @@
       "glass": null,
       "preservation": "要冷蔵",
       "pairing": [],
-      "tasting_nose": null,
-      "tasting_palate": "いちごミルクのイメージではなく、苺そのものの味わいと爽快さがダイレクトに伝わる",
-      "tasting_finish": null,
-      "tasting_source_name": "ハッピー太郎醸造所 公式",
-      "tasting_source_url": "https://happytaro.jp/doburoku/seasonal/ichigo/",
+      "tasting_nose": "香りも味も甘さも、苺が主役で押し寄せる",
+      "tasting_palate": "一口飲んだ瞬間に口の中が苺畑になる。クラフトビールで流行の「果汁爆弾」ジューシー系のどぶろく版。シリーズ中で最も糖度と酸味がある",
+      "tasting_finish": "余韻ではベースのどぶろくらしい米の優しい風味が顔を出す。余韻は長い",
+      "tasting_source_name": "酒泉洞堀一",
+      "tasting_source_url": "https://www.syusendo-horiichi.co.jp/SHOP/20262.html",
       "story": "滋賀県野洲市の苺農家「苺屋はな」の苺を使う季節限定のクラフトどぶろく。生産者・土川徳明氏から、色褪せや色がくすんで生食出荷が難しい苺も含めて買い取り、全量を有効活用している。切り絵ラベルは早川鉄兵。",
       "story_source_url": "https://happytaro.jp/doburoku/seasonal/ichigo/",
       "awards": [],
-      "flavor_basis": "苺を主役にした季節どぶろく。甘くしすぎず苺の輪郭と爽快さを出す方向"
+      "flavor_basis": "その他醸造酒・どぶろく。苺を原料の約1/3使う果汁爆弾型で、シリーズ中もっとも糖度と酸味があり余韻が長い。度数はロットにより5〜7度"
     },
     "something happy MAROUのカカオ": {
       "abv": 9,
