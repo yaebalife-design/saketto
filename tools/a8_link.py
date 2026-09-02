@@ -159,18 +159,25 @@ def portal_search_href(portal, keyword):
     return a8_href(A8_PROGRAMS[portal]["a8mat"], portal_search_url(portal, keyword))
 
 
-def render_impression_pixels(portals_used):
-    """ページ末尾に置くA8計測ピクセル（プログラムごとに1個だけ）。
+def render_pixel(portal):
+    """1本のA8リンクに付随する計測ピクセル。**A8が出力するimgタグそのまま。**
 
-    1ページに同じピクセルを何十個も置くとインプレッション水増しに見えるため、
-    カードごとではなくページ末尾でまとめて1個ずつ出す。
+    以前はページ末尾にプログラムごと1個だけ置いていた（同じピクセルが何十個も
+    並ぶのを避けるため）。だがA8の禁止事項に
+
+        「広告コードからリンク部分のみを使用すること」
+
+    とあり、リンクとimgを切り離した状態は解釈で揉める余地が残る。
+    A8の商品リンクは <a>＋<img> で1組なので、その通り1組ずつ出す。
+    18本貼れば18個並ぶが、それはA8の素材を18本貼ったときの正しい姿。
+
+    imgタグ自体は属性ひとつ変えない。レイアウト調整は外側のspanで行う
+    （flexコンテナ内に1x1のimgを直接置くとgapぶんの隙間が空くため）。
     """
-    out = []
-    for p in dict.fromkeys(portals_used):
-        if is_available(p):
-            out.append(f'<img border="0" width="1" height="1" '
-                       f'src="{a8_impression_src(p)}" alt="">')
-    return "".join(out)
+    if not is_available(portal):
+        return ""
+    return (f'<span class="a8-px"><img border="0" width="1" height="1" '
+            f'src="{a8_impression_src(portal)}" alt=""></span>')
 
 
 if __name__ == "__main__":

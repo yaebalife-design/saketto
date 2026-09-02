@@ -23,8 +23,8 @@ from furusato_data import (
 )
 from moshimo_link import rakuten_url, rakuten_search
 from a8_link import (
-    A8_PROGRAMS, portal_href as a8_portal_href, portal_search_href as a8_search_href,
-    is_available as a8_available, render_impression_pixels,
+    portal_href as a8_portal_href, portal_search_href as a8_search_href,
+    is_available as a8_available, render_pixel as a8_pixel,
 )
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
 
@@ -958,8 +958,11 @@ def _furusato_portal_pill(slug, code, urls):
     href = a8_portal_href(code, u)
     if not href:
         return f'<span class="spec-pill accent is-plain">{label}</span>'
+    # A8の商品リンクは <a>＋<img> で1組。切り離すと「リンク部分のみを使用」に
+    # あたる恐れがあるので、A8の出力どおり組で出す。
     return (f'<a class="spec-pill accent portal-link" href="{href}" '
-            f'target="_blank" rel="nofollow sponsored noopener">{label} →</a>')
+            f'target="_blank" rel="nofollow sponsored noopener">{label} →</a>'
+            f'{a8_pixel(code)}')
 
 
 def _render_furusato_entries(breweries):
@@ -1066,6 +1069,12 @@ FURUSATO_FILTER_CSS = """<style>
    JSが hidden を付けてもブラウザ標準の [hidden]{display:none} に勝ってしまい、
    件数だけ「12蔵」に変わってカードは1枚も消えない状態になる。 */
 [hidden] { display:none !important; }
+
+/* A8の計測ピクセル(1x1)を包むだけの器。imgタグ自体は1文字も変えないので、
+   レイアウトの都合はここで吸収する。flexコンテナに1x1のimgを直接置くと
+   gapのぶん隙間が空いてピルの間隔が崩れるため、フローから外す。 */
+.entry__specs, .fallback-portals { position:relative; }
+.a8-px { position:absolute; width:1px; height:1px; overflow:hidden; }
 
 /* リンクにできないポータル（ASP未提携）は、押せそうに見せない。
    矢印を出さず、枠線と文字を弱めて「情報」であることを示す。 */
@@ -1204,16 +1213,16 @@ def gen_furusato():
     # 🔴 社長指示（2026/09/02）：未提携ポータルへ生URLを出さない。
     # ここは以前ふるなび・さとふるの検索URLを生で貼っていた。
     # ASPを通せるものだけを並べる（楽天=もしも / それ以外=A8）。
-    _fallback = [("楽天ふるさと納税", rakuten_search("クラフトサケ ふるさと納税"))]
+    _fallback = [("楽天ふるさと納税", rakuten_search("クラフトサケ ふるさと納税"), "")]
     for _p in PORTAL_ORDER:
         if _p == "r" or not a8_available(_p):
             continue
         _u = a8_search_href(_p, "クラフトサケ")
         if _u:
-            _fallback.append((PORTAL_NAMES.get(_p, _p), _u))
+            _fallback.append((PORTAL_NAMES.get(_p, _p), _u, a8_pixel(_p)))
     _fb = "".join(
-        f'<a href="{u}" target="_blank" rel="nofollow sponsored noopener">{n} で探す →</a>'
-        for n, u in _fallback)
+        f'<a href="{u}" target="_blank" rel="nofollow sponsored noopener">{n} で探す →</a>{px}'
+        for n, u, px in _fallback)
     html += f"""
   <section class="section">
     <div class="section-meta">
@@ -1253,18 +1262,8 @@ def gen_furusato():
     # CSSとJSは f-string の外で連結する（JSの { } が置換フィールドと解釈されるため）
     html += FURUSATO_FILTER_CSS
     html += FURUSATO_FILTER_JS
-    # A8のインプレッション計測ピクセル。プログラムごとに1個だけ、ページ末尾に置く。
-    # カードごとに置くと同じピクセルが何十個も並び、水増しに見える。
-    #
-    # 対象は「このページにA8リンクが1本でもあるプログラム」。返礼品の有無だけで
-    # 判定すると、返礼品ゼロでも下の出口に検索リンクを出しているふるさと本舗の
-    # ぶんが漏れる（リンクはあるのに計測されない状態になる）。
-    _pixel_portals = [p for p in PORTAL_ORDER
-                      if a8_available(p) and (
-                          p in {i["portal"] for b in confirmed for i in items_of(b["slug"])}
-                          or any(u.startswith("https://px.a8.net") and
-                                 A8_PROGRAMS[p]["a8mat"] in u for _, u in _fallback))]
-    html += render_impression_pixels(_pixel_portals)
+    # 計測ピクセルはここではまとめない。A8の商品リンクは <a>＋<img> で1組なので、
+    # 各リンクの直後に1組ずつ出している（_furusato_portal_pill / _fallback）。
     html += footer()
 
     out = OUT / "index.html"
