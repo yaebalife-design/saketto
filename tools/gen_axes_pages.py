@@ -23,7 +23,7 @@ from furusato_data import (
 )
 from moshimo_link import rakuten_url, rakuten_search
 from a8_link import (
-    portal_href as a8_portal_href, portal_rel as a8_portal_rel,
+    portal_href as a8_portal_href, portal_search_href as a8_search_href,
     is_available as a8_available, render_impression_pixels,
 )
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
@@ -937,25 +937,29 @@ def _group_by_pref(breweries):
 
 
 def _furusato_portal_pill(slug, code, urls):
-    """ポータル1つぶんのリンク。提携済みのものは必ずASP経由にする。
+    """ポータル1つぶんの表示。**ASPを通せるものだけをリンクにする。**
 
     楽天 … もしも経由（社長ルール）。pl_id=616 は任意URLを渡せる型なので、
            検索ではなく返礼品ページへ直接送る。
-    その他 … A8経由（a8_link.py）。a8mat 未取得のポータルは a8_link 側が
-           自動で生URLに落ちるので、ここで分岐を増やさない。
+    その他 … A8経由。a8mat 未取得なら portal_href が None を返す。
 
-    sponsored は「広告リンク」の意味なので、実際にアフィリを通している
-    ポータルにだけ付ける。未提携のポータルに付けると表示が実態と食い違う。
+    🔴 社長指示（2026/09/02）：未提携ポータルへ生URLを出さない。
+    その場合はリンクにせず、扱いがある事実だけを非リンクで示す
+    （消してしまうと「そこには無い」という別の意味になり、事実と食い違う）。
+    提携できたら a8_link.py に a8mat を入れるだけで自動でリンクに変わる。
     """
     label = PORTAL_NAMES.get(code, code)
     u = urls.get(code)
     if not u:
-        return f'<span class="spec-pill accent">{label}</span>'
+        return f'<span class="spec-pill accent is-plain">{label}</span>'
     if code == "r":
         return (f'<a class="spec-pill accent portal-link" href="{rakuten_url(u)}" '
                 f'target="_blank" rel="nofollow sponsored noopener">{label} →</a>')
-    return (f'<a class="spec-pill accent portal-link" href="{a8_portal_href(code, u)}" '
-            f'target="_blank" rel="{a8_portal_rel(code, u)}">{label} →</a>')
+    href = a8_portal_href(code, u)
+    if not href:
+        return f'<span class="spec-pill accent is-plain">{label}</span>'
+    return (f'<a class="spec-pill accent portal-link" href="{href}" '
+            f'target="_blank" rel="nofollow sponsored noopener">{label} →</a>')
 
 
 def _render_furusato_entries(breweries):
@@ -1062,6 +1066,13 @@ FURUSATO_FILTER_CSS = """<style>
    JSが hidden を付けてもブラウザ標準の [hidden]{display:none} に勝ってしまい、
    件数だけ「12蔵」に変わってカードは1枚も消えない状態になる。 */
 [hidden] { display:none !important; }
+
+/* リンクにできないポータル（ASP未提携）は、押せそうに見せない。
+   矢印を出さず、枠線と文字を弱めて「情報」であることを示す。 */
+.spec-pill.is-plain {
+  border-style:dashed; color:var(--ink-mute); border-color:var(--line-soft);
+  cursor:default;
+}
 
 /* ── 県ごとのグループ ── */
 .fgroups { margin-top:.4rem; }
@@ -1188,17 +1199,21 @@ def gen_furusato():
 
     # ── 見つからなかったときの出口 ──
     # 返礼品は時期で入れ替わる。掲載が無い＝手に入らない、ではないので
-    # 各ポータルの検索へ逃がす。楽天だけは必ずもしも経由にする。
-    _fallback = [
-        ("ふるさとチョイス", "https://www.furusato-tax.jp/search?header_search=1&q=" + quote("クラフトサケ"), False),
-        ("楽天ふるさと納税", rakuten_search("クラフトサケ ふるさと納税"), True),
-        ("ふるなび", "https://furunavi.jp/search?keyword=" + quote("どぶろく"), False),
-        ("さとふる", "https://www.satofull.jp/search.php?q=" + quote("どぶろく"), False),
-    ]
+    # 各ポータルの検索へ逃がす。
+    #
+    # 🔴 社長指示（2026/09/02）：未提携ポータルへ生URLを出さない。
+    # ここは以前ふるなび・さとふるの検索URLを生で貼っていた。
+    # ASPを通せるものだけを並べる（楽天=もしも / それ以外=A8）。
+    _fallback = [("楽天ふるさと納税", rakuten_search("クラフトサケ ふるさと納税"))]
+    for _p in PORTAL_ORDER:
+        if _p == "r" or not a8_available(_p):
+            continue
+        _u = a8_search_href(_p, "クラフトサケ")
+        if _u:
+            _fallback.append((PORTAL_NAMES.get(_p, _p), _u))
     _fb = "".join(
-        f'<a href="{u}" target="_blank" '
-        f'rel="{"nofollow sponsored noopener" if aff else "noopener"}">{n} で探す →</a>'
-        for n, u, aff in _fallback)
+        f'<a href="{u}" target="_blank" rel="nofollow sponsored noopener">{n} で探す →</a>'
+        for n, u in _fallback)
     html += f"""
   <section class="section">
     <div class="section-meta">

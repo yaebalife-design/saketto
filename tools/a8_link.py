@@ -133,23 +133,28 @@ def is_available(portal):
 
 
 def portal_href(portal, target_url):
-    """返礼品ページへのリンク。提携済みならA8経由、未提携なら生URLをそのまま返す。
+    """返礼品ページへのA8リンク。**未提携なら None を返す（生URLは返さない）。**
 
-    未提携でも読者にとっては有用な情報なのでリンク自体は出す。
-    収益が立たないだけで、隠す理由はない。
+    🔴 社長指示（2026/09/02）：未提携ポータルへの生URLを出さないこと。
+    以前はここで target_url をそのまま返していたため、ANA・ふるなびへ
+    1円にもならない発リンクが15本出ていた。呼び出し側が None を受けて
+    「リンクにしない」を選べるように、生URLへのフォールバックは持たせない。
+
+    リンク先が広告主ドメイン外のときも None。A8は広告主URL外への遷移を
+    禁じており、出すと提携解除のリスクがある。
     """
-    if is_available(portal) and target_url.startswith(
-            "https://" + A8_PROGRAMS[portal]["domain"]):
-        return a8_href(A8_PROGRAMS[portal]["a8mat"], target_url)
-    return target_url
+    if not is_available(portal):
+        return None
+    if not target_url.startswith("https://" + A8_PROGRAMS[portal]["domain"]):
+        return None
+    return a8_href(A8_PROGRAMS[portal]["a8mat"], target_url)
 
 
-def portal_rel(portal, target_url):
-    """A8経由のときだけ sponsored を付ける（生URLは単なる情報リンク）。"""
-    if is_available(portal) and target_url.startswith(
-            "https://" + A8_PROGRAMS[portal]["domain"]):
-        return "nofollow sponsored noopener"
-    return "noopener"
+def portal_search_href(portal, keyword):
+    """ポータル内の検索結果へのA8リンク。未提携なら None。"""
+    if not is_available(portal):
+        return None
+    return a8_href(A8_PROGRAMS[portal]["a8mat"], portal_search_url(portal, keyword))
 
 
 def render_impression_pixels(portals_used):
