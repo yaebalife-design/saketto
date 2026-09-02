@@ -19,6 +19,12 @@ REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
 # 走査から除外するファイル名
 EXCLUDE_NAMES = {"404.html", "google", "ads.txt"}
 
+# 走査から除外するディレクトリ。公開対象はリポジトリ直下の各ハブだけで、
+# ここは生成スクリプトとその作業用出力が入る場所なので sitemap に載せない。
+# （gen_brand_pages_v2.py が書く tools/_preview/*.html が
+#   https://saketto.com/tools/_preview/... として sitemap に載っていた）
+EXCLUDE_DIRS = {".git", "tools", "node_modules"}
+
 
 def url_and_priority(rel_parts, fname):
     """相対パス要素とファイル名から (パス, priority) を返す。"""
@@ -45,7 +51,7 @@ def url_and_priority(rel_parts, fname):
 def collect():
     entries = []  # (path, priority, lastmod)
     for html in sorted(REPO_ROOT.rglob("*.html")):
-        if ".git" in html.parts:
+        if EXCLUDE_DIRS.intersection(html.parts):
             continue
         if html.name in EXCLUDE_NAMES:
             continue

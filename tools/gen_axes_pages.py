@@ -17,10 +17,14 @@ from awards import AWARDS
 from urllib.parse import quote
 
 from furusato_data import (
-    FURUSATO, PORTAL_NAMES, portals_of, best_url, price_range,
+    FURUSATO, PORTAL_NAMES, PORTAL_ORDER, portals_of, best_url, price_range,
     is_accepting, item_count, items_of,
 )
 from moshimo_link import rakuten_url, rakuten_search
+from a8_link import (
+    portal_href as a8_portal_href, portal_rel as a8_portal_rel,
+    is_available as a8_available, render_impression_pixels,
+)
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
 
 
@@ -994,6 +998,12 @@ def gen_furusato():
         for _p in portals_of(_b["slug"], accepting_only=False):
             if best_url(_b["slug"], _p):
                 _portal_count[_p] = _portal_count.get(_p, 0) + 1
+    # PR表記は実際にアフィリを通しているポータルだけを名指しする。
+    # 提携が増減したらここも自動で追従させる（手書きだと実態とずれる）。
+    _pr_names = ['「楽天ふるさと納税」'] + [
+        f'「{PORTAL_NAMES[p]}」' for p in PORTAL_ORDER if p != "r" and a8_available(p)]
+    _pr_portals = "と".join(_pr_names)
+
     _chips = [f'<a class="fchip" href="#" data-portal="" data-label="" aria-current="true">'
               f'すべて<span class="fchip__n">{len(confirmed)}</span></a>']
     for _p, _n in sorted(_portal_count.items(), key=lambda x: -x[1]):
@@ -1011,7 +1021,7 @@ def gen_furusato():
       <span class="section-meta__rule"></span>
     </div>
     <p class="fchips-note">いつも使っているポータルを選ぶと、そこで扱いのある蔵だけになります。<br>
-      ※「楽天ふるさと納税」のリンクはアフィリエイト広告（PR）です。寄附額に影響はありません。</p>
+      ※{_pr_portals}のリンクはアフィリエイト広告（PR）です。寄附額に影響はありません。</p>
     <nav class="fchips" aria-label="ポータルで絞る">{''.join(_chips)}</nav>
     <span id="fresult">すべて表示中 {len(confirmed)} 蔵</span>
     <div class="entries">"""
@@ -1023,24 +1033,26 @@ def gen_furusato():
         _urls = {p: best_url(b["slug"], p) for p in portals_of(b["slug"], accepting_only=False)}
 
         def _portal_pill(code):
-            """ポータル1つぶんのリンク。楽天は必ずもしも経由（社長ルール）。
+            """ポータル1つぶんのリンク。提携済みのものは必ずASP経由にする。
 
-            従来は楽天の商品URLを生で貼っており、ふるさと納税を収益の柱に
-            掲げているのに楽天ぶんが1円も計上されない状態だった。
-            pl_id=616 は任意URLを渡せる型なので、検索ではなく返礼品ページへ直接送る。
+            楽天 … もしも経由（社長ルール）。pl_id=616 は任意URLを渡せる型なので、
+                   検索ではなく返礼品ページへ直接送る。
+            au PAY … A8経由（a8_link.py）。a8mat 未取得のポータルは
+                   a8_link 側が自動で生URLに落ちるので、ここで分岐を増やさない。
+
+            sponsored は「広告リンク」の意味なので、実際にアフィリを通している
+            ポータルにだけ付ける。未提携のチョイス・ふるなび・ANAに付けると
+            表示が実態と食い違う（収益化にはA8の提携が要る）。
             """
             label = PORTAL_NAMES.get(code, code)
             u = _urls.get(code)
             if not u:
                 return f'<span class="spec-pill accent">{label}</span>'
-            # sponsored は「広告リンク」の意味。実際にアフィリを通しているのは
-            # もしも経由の楽天だけなので、他ポータルに付けると表示が実態と食い違う。
-            # （チョイス・ふるなび・さとふる等を収益化するにはA8の提携が要る）
             if code == "r":
                 return (f'<a class="spec-pill accent portal-link" href="{rakuten_url(u)}" '
                         f'target="_blank" rel="nofollow sponsored noopener">{label} →</a>')
-            return (f'<a class="spec-pill accent portal-link" href="{u}" target="_blank" '
-                    f'rel="noopener">{label} →</a>')
+            return (f'<a class="spec-pill accent portal-link" href="{a8_portal_href(code, u)}" '
+                    f'target="_blank" rel="{a8_portal_rel(code, u)}">{label} →</a>')
 
         # **URLで裏の取れたポータルだけを出す。**
         # 「そこで寄附できる」と書くなら、読者がそこへ行ける状態であるべき。
@@ -1121,7 +1133,7 @@ def gen_furusato():
       <span class="section-meta__rule"></span>
     </div>
     <p class="cat-desc">
-      ふるさと納税ポータル(チョイス/楽天/ふるなび/さとふる)での出品を現時点では確認できていない蔵。
+      ふるさと納税ポータル(チョイス/楽天/au PAY/ふるなび/さとふる/ANA)での出品を現時点では確認できていない蔵。
       新興・小規模・委託醸造の蔵が多く、今後の出品が期待される。各蔵の公式ECで購入可能。
     </p>
     <div class="brewery-grid">"""
@@ -1135,6 +1147,11 @@ def gen_furusato():
     # CSSとJSは f-string の外で連結する（JSの { } が置換フィールドと解釈されるため）
     html += FURUSATO_FILTER_CSS
     html += FURUSATO_FILTER_JS
+    # A8のインプレッション計測ピクセル。プログラムごとに1個だけ、ページ末尾に置く。
+    # カードごとに置くと同じピクセルが何十個も並び、水増しに見える。
+    html += render_impression_pixels(
+        [p for p in PORTAL_ORDER if p in {i["portal"] for b in confirmed
+                                          for i in items_of(b["slug"])}])
     html += footer()
 
     out = OUT / "index.html"
