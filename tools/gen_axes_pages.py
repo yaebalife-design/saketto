@@ -23,7 +23,7 @@ from furusato_data import (
 )
 from moshimo_link import rakuten_url, rakuten_search
 from a8_link import (
-    portal_href as a8_portal_href, portal_search_href as a8_search_href,
+    A8_PROGRAMS, portal_href as a8_portal_href, portal_search_href as a8_search_href,
     is_available as a8_available, render_impression_pixels,
 )
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
@@ -1255,9 +1255,16 @@ def gen_furusato():
     html += FURUSATO_FILTER_JS
     # A8のインプレッション計測ピクセル。プログラムごとに1個だけ、ページ末尾に置く。
     # カードごとに置くと同じピクセルが何十個も並び、水増しに見える。
-    html += render_impression_pixels(
-        [p for p in PORTAL_ORDER if p in {i["portal"] for b in confirmed
-                                          for i in items_of(b["slug"])}])
+    #
+    # 対象は「このページにA8リンクが1本でもあるプログラム」。返礼品の有無だけで
+    # 判定すると、返礼品ゼロでも下の出口に検索リンクを出しているふるさと本舗の
+    # ぶんが漏れる（リンクはあるのに計測されない状態になる）。
+    _pixel_portals = [p for p in PORTAL_ORDER
+                      if a8_available(p) and (
+                          p in {i["portal"] for b in confirmed for i in items_of(b["slug"])}
+                          or any(u.startswith("https://px.a8.net") and
+                                 A8_PROGRAMS[p]["a8mat"] in u for _, u in _fallback))]
+    html += render_impression_pixels(_pixel_portals)
     html += footer()
 
     out = OUT / "index.html"

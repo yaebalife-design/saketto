@@ -54,10 +54,12 @@ A8_PROGRAMS = {
         "search": "https://www.furusato-tax.jp/search?header_search=1&q={q}",
         "domain": "www.furusato-tax.jp",
     },
-    # ふるさと本舗（a8mat 取得待ち・saketto用）
+    # ふるさと本舗（2026-09-02 社長取得・saketto用）
+    #   Nuxt製のSPAで、検索フォームのactionもリンクもHTMLに出てこない。
+    #   0件のときは「おすすめ」が数件出る仕様なので、取扱の判定に数えないこと。
     "h": {
-        "a8mat": None,
-        "gif": "www13",
+        "a8mat": "4BAITR+C37Z2Q+5IMU+BW8O2",
+        "gif": "www10",
         "label": "ふるさと本舗で見る",
         "css": "honpo",
         "search": "https://furusatohonpo.jp/donate/s/?keyword={q}",
@@ -209,6 +211,24 @@ if __name__ == "__main__":
     c_pix_got = a8_impression_src("c")
     print(f"[c] 計測ピクセル : {'一致' if c_pix_got == c_pix_expected else '不一致'}")
     ok &= c_pix_got == c_pix_expected
+
+    # ふるさと本舗（2026-09-02 社長取得の実物）
+    h_expected = ("https://px.a8.net/svt/ejp?a8mat=4BAITR+C37Z2Q+5IMU+BW8O2&a8ejpredirect="
+                  "https%3A%2F%2Ffurusatohonpo.jp%2Fproduct%2Fdetail%2F"
+                  "0717de63-4d1b-43b0-b807-faca401ccc1c%2F")
+    h_got = a8_href(A8_PROGRAMS["h"]["a8mat"],
+                    "https://furusatohonpo.jp/product/detail/"
+                    "0717de63-4d1b-43b0-b807-faca401ccc1c/")
+    print(f"[h] クリックURL  : {'一致' if h_got == h_expected else '不一致'}")
+    if h_got != h_expected:
+        print("   期待:", h_expected)
+        print("   生成:", h_got)
+    ok &= h_got == h_expected
+
+    h_pix_expected = "https://www10.a8.net/0.gif?a8mat=4BAITR+C37Z2Q+5IMU+BW8O2"
+    h_pix_got = a8_impression_src("h")
+    print(f"[h] 計測ピクセル : {'一致' if h_pix_got == h_pix_expected else '不一致'}")
+    ok &= h_pix_got == h_pix_expected
 
     print("\n" + ("すべて実物と一致" if ok else "🔴 実物と食い違う。貼る前に直すこと"))
     print("\n提携済み:", [p for p in A8_PROGRAMS if is_available(p)] or "なし")
