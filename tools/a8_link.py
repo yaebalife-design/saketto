@@ -45,10 +45,10 @@ A8_PROGRAMS = {
         "search": "https://furusato.wowma.jp/products/list.php?search_word={q}",
         "domain": "furusato.wowma.jp",
     },
-    # ふるさとチョイス（a8mat 取得待ち・saketto用）
+    # ふるさとチョイス（2026-09-02 社長取得・saketto用）
     "c": {
-        "a8mat": None,
-        "gif": "www14",
+        "a8mat": "4B3Y3C+3H14WI+4560+BW8O2",
+        "gif": "www18",
         "label": "ふるさとチョイスで見る",
         "css": "choice",
         "search": "https://www.furusato-tax.jp/search?header_search=1&q={q}",
@@ -188,6 +188,22 @@ if __name__ == "__main__":
     pix_got = a8_impression_src("a")
     print(f"[a] 計測ピクセル : {'一致' if pix_got == pix_expected else '不一致'}")
     ok &= pix_got == pix_expected
+
+    # ふるさとチョイス（2026-09-02 社長取得の実物）
+    c_expected = ("https://px.a8.net/svt/ejp?a8mat=4B3Y3C+3H14WI+4560+BW8O2&a8ejpredirect="
+                  "https%3A%2F%2Fwww.furusato-tax.jp%2Fproduct%2Fdetail%2F01215%2F7014505")
+    c_got = a8_href(A8_PROGRAMS["c"]["a8mat"],
+                    "https://www.furusato-tax.jp/product/detail/01215/7014505")
+    print(f"[c] クリックURL  : {'一致' if c_got == c_expected else '不一致'}")
+    if c_got != c_expected:
+        print("   期待:", c_expected)
+        print("   生成:", c_got)
+    ok &= c_got == c_expected
+
+    c_pix_expected = "https://www18.a8.net/0.gif?a8mat=4B3Y3C+3H14WI+4560+BW8O2"
+    c_pix_got = a8_impression_src("c")
+    print(f"[c] 計測ピクセル : {'一致' if c_pix_got == c_pix_expected else '不一致'}")
+    ok &= c_pix_got == c_pix_expected
 
     print("\n" + ("すべて実物と一致" if ok else "🔴 実物と食い違う。貼る前に直すこと"))
     print("\n提携済み:", [p for p in A8_PROGRAMS if is_available(p)] or "なし")

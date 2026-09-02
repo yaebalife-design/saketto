@@ -6,6 +6,7 @@
 """
 
 import os
+import re
 import sys
 from pathlib import Path
 from collections import defaultdict
@@ -898,12 +899,119 @@ def gen_genres():
 # ⚠️ このJSを f-string の中に直接書かないこと。
 # JSの { } が置換フィールドとして解釈されて壊れる（GIN-DBで実際に事故った箇所）。
 # 必ず定数のまま連結する。
+# 都道府県コード順（北から南）。ふるさと納税の一覧は「自分の応援したい土地」から
+# 見るものなので、名前順や件数順よりこの並びが探しやすい。
+_PREF_ORDER = [
+    "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県",
+    "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県",
+    "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県",
+    "岐阜県", "静岡県", "愛知県", "三重県",
+    "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県",
+    "鳥取県", "島根県", "岡山県", "広島県", "山口県",
+    "徳島県", "香川県", "愛媛県", "高知県",
+    "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県",
+]
+_PREF_RE = re.compile(r"^(北海道|東京都|(?:大阪|京都)府|.{2,3}県)")
+
+
+def _pref_of(slug):
+    """寄附先の都道府県。
+
+    **蔵の所在地ではなく、返礼品を出している自治体の県**で分ける。
+    ふるさと納税では両者がずれることがあり（LAGOONの蔵は新潟市だが返礼品は
+    燕市から、平和どぶろくの蔵は東京・大阪だが返礼品は和歌山県海南市から）、
+    寄附する側にとって意味があるのは寄附先のほうなので、そちらを採る。
+    """
+    city = (FURUSATO.get(slug) or {}).get("city", "")
+    m = _PREF_RE.match(city)
+    return m.group(1) if m else "その他"
+
+
+def _group_by_pref(breweries):
+    """[(都道府県, [蔵...])] を都道府県コード順で返す。"""
+    buckets = {}
+    for b in breweries:
+        buckets.setdefault(_pref_of(b["slug"]), []).append(b)
+    order = {p: i for i, p in enumerate(_PREF_ORDER)}
+    return sorted(buckets.items(), key=lambda kv: order.get(kv[0], 99))
+
+
+def _furusato_portal_pill(slug, code, urls):
+    """ポータル1つぶんのリンク。提携済みのものは必ずASP経由にする。
+
+    楽天 … もしも経由（社長ルール）。pl_id=616 は任意URLを渡せる型なので、
+           検索ではなく返礼品ページへ直接送る。
+    その他 … A8経由（a8_link.py）。a8mat 未取得のポータルは a8_link 側が
+           自動で生URLに落ちるので、ここで分岐を増やさない。
+
+    sponsored は「広告リンク」の意味なので、実際にアフィリを通している
+    ポータルにだけ付ける。未提携のポータルに付けると表示が実態と食い違う。
+    """
+    label = PORTAL_NAMES.get(code, code)
+    u = urls.get(code)
+    if not u:
+        return f'<span class="spec-pill accent">{label}</span>'
+    if code == "r":
+        return (f'<a class="spec-pill accent portal-link" href="{rakuten_url(u)}" '
+                f'target="_blank" rel="nofollow sponsored noopener">{label} →</a>')
+    return (f'<a class="spec-pill accent portal-link" href="{a8_portal_href(code, u)}" '
+            f'target="_blank" rel="{a8_portal_rel(code, u)}">{label} →</a>')
+
+
+def _render_furusato_entries(breweries):
+    """ふるさと納税ハブの蔵カードを組み立てる（県グループの中身）。"""
+    out = []
+    for b in breweries:
+        slug = b["slug"]
+        data = FURUSATO[slug]
+        # ポータル名は「押せる」ことが期待される要素。URLがあるものは実リンクにする。
+        urls = {p: best_url(slug, p) for p in portals_of(slug, accepting_only=False)}
+        # **URLで裏の取れたポータルだけを出す。**
+        # 「そこで寄附できる」と書くなら、読者がそこへ行ける状態であるべき。
+        # ふるなび・さとふるは検索結果がJSレンダリングで機械確認ができず、
+        # 実際に稲とアガベのふるなびは200を返しながら中身が空だった。
+        # 確認できないものは並べず、下の「見つからないとき」から各ポータルへ逃がす。
+        seen = [p for p in urls if urls[p]]
+        portals_html = " ".join(_furusato_portal_pill(slug, p, urls) for p in seen)
+        if not is_accepting(slug):
+            portals_html += '<span class="furusato-status">現在すべて品切れ</span>'
+        # 寄附額はポータルごと・セット内容ごとに違う。単一の数字に「〜」を付けると
+        # 「ここから始まる」と読めてしまい、実際の申込画面と食い違う（12,000円と
+        # 表示して19,000円だった例がある）。幅があるなら幅のまま出す。
+        pr = price_range(slug)
+        if not pr:
+            yen = '寄附額はポータルで確認'
+        elif pr[0] == pr[1]:
+            yen = f'{pr[0]:,}円'
+        else:
+            yen = f'{pr[0]:,}〜{pr[1]:,}円'
+        n = item_count(slug)
+        if n > 1:
+            yen += f'<span class="yen-note">／{n}品</span>'
+        # 代表銘柄は「最も少額で申し込めるもの」。最初に目に入る額と対応させる
+        live = [i for i in items_of(slug) if i.get("accepting", True)]
+        pool = live or items_of(slug)
+        rep = sorted(pool, key=lambda i: i.get("yen") or 10 ** 9)[0]["brand"] if pool else ""
+        out.append(f"""
+          <div class="entry entry--furusato" data-portals="{' '.join(seen)}">
+            <div>
+              <div class="entry__brand"><a href="../brewery/{slug}.html">{b['name']}</a></div>
+              <div class="entry__brewery">{data['city']}　/　{rep}</div>
+            </div>
+            <div class="entry__specs">{portals_html}</div>
+            <div class="entry__brewery" style="text-align:right">{yen}</div>
+          </div>""")
+    return "".join(out)
+
+
 FURUSATO_FILTER_JS = """<script>
 (function () {
   var chips = document.querySelectorAll('.fchip');
   var cards = document.querySelectorAll('[data-portals]');
   var result = document.getElementById('fresult');
   if (!chips.length || !cards.length) return;
+
+  var groups = document.querySelectorAll('.fgroup');
 
   function apply(key) {
     var shown = 0;
@@ -912,6 +1020,14 @@ FURUSATO_FILTER_JS = """<script>
       c.hidden = !ok;
       if (ok) shown++;
     });
+    // 中身が全部消えた県は、見出しごと畳む（空の県名だけが残ると
+    // 「この県には無い」ではなく「壊れている」ように見える）。
+    var prefs = 0;
+    groups.forEach(function (g) {
+      var live = g.querySelectorAll('.entry--furusato:not([hidden])').length;
+      g.hidden = live === 0;
+      if (live) prefs++;
+    });
     chips.forEach(function (ch) {
       var on = (ch.dataset.portal || '') === key;
       ch.setAttribute('aria-current', on ? 'true' : 'false');
@@ -919,7 +1035,9 @@ FURUSATO_FILTER_JS = """<script>
     if (result) {
       var name = '';
       chips.forEach(function (ch) { if ((ch.dataset.portal || '') === key) name = ch.dataset.label || ''; });
-      result.textContent = key ? (name + 'で寄附できる ' + shown + ' 蔵') : ('すべて表示中 ' + shown + ' 蔵');
+      result.textContent = key
+        ? (name + 'で寄附できる ' + shown + ' 蔵 / ' + prefs + ' 県')
+        : ('すべて表示中 ' + shown + ' 蔵 / ' + prefs + ' 県');
     }
   }
 
@@ -939,6 +1057,26 @@ FURUSATO_FILTER_JS = """<script>
 
 
 FURUSATO_FILTER_CSS = """<style>
+/* 🔴 これが無いと絞り込みが「効かない」。
+   .entry は display:grid、.fgroup は display:block を持つので、
+   JSが hidden を付けてもブラウザ標準の [hidden]{display:none} に勝ってしまい、
+   件数だけ「12蔵」に変わってカードは1枚も消えない状態になる。 */
+[hidden] { display:none !important; }
+
+/* ── 県ごとのグループ ── */
+.fgroups { margin-top:.4rem; }
+.fgroup { margin-bottom:2.2rem; }
+.fgroup__head { display:flex; align-items:baseline; gap:.7rem; margin:0 0 .5rem; }
+.fgroup__pref {
+  font-family:'Shippori Mincho',serif; font-size:1.05rem; font-weight:500;
+  color:var(--ink); letter-spacing:.04em; margin:0;
+}
+.fgroup__n {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.85rem; color:var(--ink-mute); white-space:nowrap;
+}
+.fgroup__rule { flex:1; height:1px; background:var(--line-soft); }
+
 .fchips { display:flex; flex-wrap:wrap; gap:.5rem; margin:0 0 .6rem; }
 .fchip {
   display:inline-flex; align-items:center; gap:.4rem; min-height:44px;
@@ -1002,7 +1140,10 @@ def gen_furusato():
     # 提携が増減したらここも自動で追従させる（手書きだと実態とずれる）。
     _pr_names = ['「楽天ふるさと納税」'] + [
         f'「{PORTAL_NAMES[p]}」' for p in PORTAL_ORDER if p != "r" and a8_available(p)]
-    _pr_portals = "と".join(_pr_names)
+    # 鉤括弧が区切りとして働くので、間に読点や「と」を挟まないほうが読みやすい
+    _pr_portals = "".join(_pr_names)
+
+    _by_pref = _group_by_pref(confirmed)
 
     _chips = [f'<a class="fchip" href="#" data-portal="" data-label="" aria-current="true">'
               f'すべて<span class="fchip__n">{len(confirmed)}</span></a>']
@@ -1021,74 +1162,24 @@ def gen_furusato():
       <span class="section-meta__rule"></span>
     </div>
     <p class="fchips-note">いつも使っているポータルを選ぶと、そこで扱いのある蔵だけになります。<br>
+      並びは<strong>寄附先の自治体</strong>の県です。蔵の所在地とは違うことがあります（返礼品が米の産地や親会社の地元から出ている場合）。<br>
       ※{_pr_portals}のリンクはアフィリエイト広告（PR）です。寄附額に影響はありません。</p>
     <nav class="fchips" aria-label="ポータルで絞る">{''.join(_chips)}</nav>
     <span id="fresult">すべて表示中 {len(confirmed)} 蔵</span>
-    <div class="entries">"""
+    <div class="fgroups">"""
 
-    for b in confirmed:
-        data = FURUSATO[b["slug"]]
-        # ポータル名は「押せる」ことが期待される要素。URLがあるものは実リンクにする
-        # （収益モデルにふるさと納税を掲げているのに、従来は span で出口が無かった）。
-        _urls = {p: best_url(b["slug"], p) for p in portals_of(b["slug"], accepting_only=False)}
-
-        def _portal_pill(code):
-            """ポータル1つぶんのリンク。提携済みのものは必ずASP経由にする。
-
-            楽天 … もしも経由（社長ルール）。pl_id=616 は任意URLを渡せる型なので、
-                   検索ではなく返礼品ページへ直接送る。
-            au PAY … A8経由（a8_link.py）。a8mat 未取得のポータルは
-                   a8_link 側が自動で生URLに落ちるので、ここで分岐を増やさない。
-
-            sponsored は「広告リンク」の意味なので、実際にアフィリを通している
-            ポータルにだけ付ける。未提携のチョイス・ふるなび・ANAに付けると
-            表示が実態と食い違う（収益化にはA8の提携が要る）。
-            """
-            label = PORTAL_NAMES.get(code, code)
-            u = _urls.get(code)
-            if not u:
-                return f'<span class="spec-pill accent">{label}</span>'
-            if code == "r":
-                return (f'<a class="spec-pill accent portal-link" href="{rakuten_url(u)}" '
-                        f'target="_blank" rel="nofollow sponsored noopener">{label} →</a>')
-            return (f'<a class="spec-pill accent portal-link" href="{a8_portal_href(code, u)}" '
-                    f'target="_blank" rel="{a8_portal_rel(code, u)}">{label} →</a>')
-
-        # **URLで裏の取れたポータルだけを出す。**
-        # 「そこで寄附できる」と書くなら、読者がそこへ行ける状態であるべき。
-        # ふるなび・さとふるは検索結果がJSレンダリングで機械確認ができず、
-        # 実際に稲とアガベのふるなびは200を返しながら中身が空だった。
-        # 確認できないものは並べず、下の「見つからないとき」から各ポータルへ逃がす。
-        _seen = [p for p in _urls if _urls[p]]
-        portals_html = " ".join(_portal_pill(p) for p in _seen)
-        _portal_key = " ".join(_seen)  # 絞り込み用（data-portals）
-        if not is_accepting(b["slug"]):
-            portals_html += '<span class="furusato-status">現在すべて品切れ</span>'
-        # 寄附額はポータルごと・セット内容ごとに違う。単一の数字に「〜」を付けると
-        # 「ここから始まる」と読めてしまい、実際の申込画面と食い違う（12,000円と
-        # 表示して19,000円だった例がある）。幅があるなら幅のまま出す。
-        _pr = price_range(b["slug"])
-        if not _pr:
-            yen = '寄附額はポータルで確認'
-        elif _pr[0] == _pr[1]:
-            yen = f'{_pr[0]:,}円'
-        else:
-            yen = f'{_pr[0]:,}〜{_pr[1]:,}円'
-        _n = item_count(b["slug"])
-        if _n > 1:
-            yen += f'<span class="yen-note">／{_n}品</span>'
-        # 代表銘柄は「最も少額で申し込めるもの」。最初に目に入る額と対応させる
-        _live = [i for i in items_of(b["slug"]) if i.get("accepting", True)]
-        _pool = _live or items_of(b["slug"])
-        rep = sorted(_pool, key=lambda i: i.get("yen") or 10**9)[0]["brand"] if _pool else ""
+    for _pref, _members in _by_pref:
         html += f"""
-      <div class="entry entry--furusato" data-portals="{_portal_key}">
-        <div>
-          <div class="entry__brand"><a href="../brewery/{b['slug']}.html">{b['name']}</a></div>
-          <div class="entry__brewery">{data['city']}　/　{rep}</div>
+      <div class="fgroup" data-pref="{_pref}">
+        <div class="fgroup__head">
+          <h3 class="fgroup__pref">{_pref}</h3>
+          <span class="fgroup__n">{len(_members)} 蔵</span>
+          <span class="fgroup__rule"></span>
         </div>
-        <div class="entry__specs">{portals_html}</div>
-        <div class="entry__brewery" style="text-align:right">{yen}</div>
+        <div class="entries">"""
+        html += _render_furusato_entries(_members)
+        html += """
+        </div>
       </div>"""
 
     html += """
