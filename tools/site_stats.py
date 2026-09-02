@@ -91,6 +91,7 @@ def compute():
         "multi_prefectures": len(multi),
         "multi_pref_breakdown": multi_text,
         "prefectures": len(pref_n),
+        "pref_counts": dict(pref_n),
         "ingredient_variants": len(variants),
         "rice_only": rice_only,
         "rice_only_breweries": len(rice_breweries),

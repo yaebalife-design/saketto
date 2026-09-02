@@ -795,9 +795,16 @@ def build_html(brand, detail, brewery, idx):
     _note = esc(b.get('note', '')).strip()
     if _note and not _note.endswith("。"):
         _note += "。"
-    meta_desc = (f"{brewery['name']}（{brewery['prefecture']}）のクラフトサケ「{name}」。"
-                 f"{_note}{_sub_txt}一本。味わい・参考価格・購入リンクをsaketto（クラフトサケの図鑑）で。")
-    meta_desc = meta_desc[:155]
+    _head = f"{brewery['name']}（{brewery['prefecture']}）のクラフトサケ「{name}」。"
+    _tail = f"{_sub_txt}一本。味わい・参考価格・購入リンクをsaketto（クラフトサケの図鑑）で。"
+    meta_desc = _head + _note + _tail
+    # 155字を超えるときは note を文単位で後ろから削る。
+    # [:155] の機械的な切断は文の途中でぶつ切りになり、SERPでの見え方が悪かった
+    while len(meta_desc) > 155 and _note:
+        _note = "。".join(_note.rstrip("。").split("。")[:-1])
+        if _note:
+            _note += "。"
+        meta_desc = _head + _note + _tail
 
     _path = f"/brand/{slug}-{idx}.html"
     # title：主要KW「クラフトサケ」を全銘柄ページに。銘柄名が蔵名を含む場合は蔵名を省略（二重表記防止）

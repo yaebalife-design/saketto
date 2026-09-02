@@ -315,18 +315,10 @@ def term_grid(items):
         f'<div class="term__desc">{d}</div></div>' for n, en, d in items) + "</div>"
 
 
-# 協会加盟蔵（saketto収録分・確認日2026-05-31）
-KURA = {
-    "konohanano": "木花之醸造所",
-    "haccoba": "haccoba",
-    "librom": "LIBROM",
-    "ine-to-agave": "稲とアガベ",
-    "lagoon": "LAGOON BREWERY",
-    "happy-taro": "ハッピー太郎醸造所",
-    "heiroku": "平六醸造",
-    "pukupuku": "ぷくぷく醸造",
-    "adachi-noujo": "足立農醸",
-}
+# 協会加盟蔵（saketto収録分）。直書きすると加盟蔵の追加時に記事が古いまま残るので
+# breweries_master の association フラグ（一次ソース確認済み）から導出する
+from breweries_master import BREWERIES as _BREWERIES
+KURA = {b["slug"]: b["name"] for b in _BREWERIES if b.get("association")}
 
 
 def kura_link(slug):
@@ -416,7 +408,7 @@ ARTICLES = [
         "category": "deep",
         "eyebrow_en": "NEW BREWERIES",
         "title": "いま生まれている、新しい蔵",
-        "summary": "駅のホーム、商店街のアーケード、島、団地の一角。2024年以降に生まれたクラフトサケの蔵は、これまで酒蔵がなかった場所に立つ。saketto収録{S['breweries']}蔵の開業年から、いま何が起きているのかを読む。",
+        "summary": f"駅のホーム、商店街のアーケード、島、団地の一角。2024年以降に生まれたクラフトサケの蔵は、これまで酒蔵がなかった場所に立つ。saketto収録{S['breweries']}蔵の開業年から、いま何が起きているのかを読む。",
     },
 ]
 
@@ -557,7 +549,7 @@ def build_towa():
         <h2 class="sub-h">合言葉は、<span class="accent">「自由を、醸そう。」</span></h2>
         <p>2022年6月27日、6つの醸造所が手を組み<strong>「クラフトサケブリュワリー協会」（JAPAN CRAFT SAKE BREWERIES ASSOCIATION）</strong>が発足した。掲げるコピーは<strong>「自由を、醸そう。」</strong>。</p>
         <p>設立の目的は、<strong>①クラフトサケの醸造所を増やす ②知名度を高める ③日本酒とクラフトサケが共存できる未来をつくる</strong>——の3つ。協会は、10年以内に全47都道府県へクラフトサケの醸造所をつくることも目標に掲げている。設立メンバーは {members6} の6蔵だった。</p>
-        <p>その後、加盟は少しずつ広がっている。本記事の確認時点（2026年5月31日）で協会公式サイトに名を連ねる蔵のうち、saketto に収録しているのは次の蔵。日本酒の伝統と新しい自由が同居する、それぞれの物語は各蔵のページから辿れる。</p>
+        <p>その後、加盟は少しずつ広がっている。saketto の収録蔵のうち、協会への加盟を一次ソースで確認できているのは次の{len(KURA)}蔵。日本酒の伝統と新しい自由が同居する、それぞれの物語は各蔵のページから辿れる。</p>
         {kura_row}
       </div>
     </section>
@@ -631,7 +623,7 @@ def build_towa():
         <h2 class="sub-h tight">「クラフトサケ」は<span class="accent">誰が決めた</span>呼び名ですか？</h2>
         <p>造り手たち自身です。2022年に発足したクラフトサケブリュワリー協会が、この呼称を掲げました。法律上の用語ではないため、蔵によっては別の言い方をすることもあります。<a href="new-breweries.html">新しい蔵</a>の記事では、この呼び名が生まれた背景にも触れています。</p>
         <h2 class="sub-h tight">度数は<span class="accent">どのくらい</span>ですか？</h2>
-        <p>銘柄によって幅が大きく、saketto に収録している範囲では4度前後から17度程度まであります。低アルコールを狙って設計されたものから、原酒に近い濃厚なタイプまでさまざまです。ラベルの表示を確認してください。</p>
+        <p>銘柄によって幅が大きく、saketto に収録している範囲では{S['abv_min']:g}度前後から{S['abv_max']:g}度程度まであります。低アルコールを狙って設計されたものから、原酒に近い濃厚なタイプまでさまざまです。ラベルの表示を確認してください。</p>
         <h2 class="sub-h tight">クラフトサケは<span class="accent">どこで買える</span>のですか？</h2>
         <p>蔵の公式オンラインショップ、通販モール、ふるさと納税、醸造所併設の店舗——大きく4つの入口があります。少量生産のため、スーパーや一般的な酒販店では見かけないことが多いです。詳しくは<a href="doko-de-kaeru.html">どこで買える？</a>にまとめました。</p>
       </div>
@@ -641,7 +633,7 @@ def build_towa():
 {section_meta("11", "HOW TO EXPLORE / 探し方")}
       <div class="prose">
         <h2 class="sub-h">4つの軸から、<span class="accent">次の一本</span>へ。</h2>
-        <p>クラフトサケの面白さは、その多様さにある。saketto では、25の蔵と140を超える銘柄を、4つの軸から横断的に探せる。気になる入り口から、次に出会う一本を見つけてほしい。</p>
+        <p>クラフトサケの面白さは、その多様さにある。saketto では、{S['breweries']}の蔵と{S['brands']}の銘柄を、4つの軸から横断的に探せる。気になる入り口から、次に出会う一本を見つけてほしい。</p>
         <div class="pill-links">
           <a href="../subingredients/">副原料から<span class="arr">→</span></a>
           <a href="../region/">地域から<span class="arr">→</span></a>
@@ -1005,7 +997,7 @@ def build_osusume():
     <section class="section">
 {section_meta("01", "EDITORS' PICKS / 選び方の地図")}
       <div class="prose">
-        <p class="lead">クラフトサケは、<span class="accent">自由</span>な酒。ホップ、果実、ハーブ、米だけの濃いどぶろく——幅が広いぶん、最初の一本に迷う。そこで saketto 編集部が、収録する25の蔵・140を超える銘柄から、<span class="accent">タイプ別に12本</span>を選びました。</p>
+        <p class="lead">クラフトサケは、<span class="accent">自由</span>な酒。ホップ、果実、ハーブ、米だけの濃いどぶろく——幅が広いぶん、最初の一本に迷う。そこで saketto 編集部が、収録する{S['breweries']}の蔵・{S['brands']}の銘柄から、<span class="accent">タイプ別に12本</span>を選びました。</p>
         <p>「日本酒は知っているけれど、クラフトサケは初めて」という人も、「もう何本か飲んだから、次の一本を」という人も。下のグループを入り口に、自分に合いそうな一本を見つけてください。各銘柄のスペックは、saketto が一次ソース（各蔵の公式情報）で確認したものです。</p>
         <div class="callout">
           <div class="callout__label">この12選について</div>
@@ -1073,14 +1065,14 @@ def build_osusume():
     <section class="section">
 {section_meta("06", "BEYOND THE 12 / 12本の、その先へ")}
       <div class="prose">
-        <h2 class="sub-h">選ばれなかった<span class="accent">130本あまり</span>のほうへ。</h2>
-        <p>ここで挙げた12本は、あくまで入り口です。saketto が収録している銘柄は<strong>140を超えます</strong>。編集部が12本に絞った時点で、その大半は選から漏れているわけですが、それは「劣る」という意味ではまったくありません。<strong>入手しやすさや、はじめての人にとっての分かりやすさを優先した結果</strong>にすぎません。</p>
+        <h2 class="sub-h">選ばれなかった<span class="accent">{S['brands'] - 12}本</span>のほうへ。</h2>
+        <p>ここで挙げた12本は、あくまで入り口です。saketto が収録している銘柄は<strong>{S['brands']}にのぼります</strong>。編集部が12本に絞った時点で、その大半は選から漏れているわけですが、それは「劣る」という意味ではまったくありません。<strong>入手しやすさや、はじめての人にとっての分かりやすさを優先した結果</strong>にすぎません。</p>
         <p>むしろ面白いのは、選ばれなかったほうにあります。年に一度しか仕込まれない酒、蔵の店舗でしか出さない酒、地震で被災した蔵と共同で醸した酒、地元の農家や農園と組んで生まれた酒——<strong>数字に表れない背景を持つ銘柄が、まだいくつも眠っています</strong>。</p>
         <p>そうした一本にたどり着くには、リストを追うより<strong>軸で掘る</strong>ほうが早い。ホップが好きだと分かったなら副原料の軸から、造りの物語に惹かれるならジャンルの軸から、旅の予定に合わせるなら地域の軸から。<strong>12本はあくまで地図の入り口で、その先の道はご自身で選んでほしい</strong>——それが saketto の考える楽しみ方です。</p>
         <div class="pill-links">
           <a href="../subingredients/">副原料から掘る<span class="arr">→</span></a>
           <a href="../genre/">ジャンルから掘る<span class="arr">→</span></a>
-          <a href="../brewery/">25の蔵を見る<span class="arr">→</span></a>
+          <a href="../brewery/">{S['breweries']}の蔵を見る<span class="arr">→</span></a>
         </div>
       </div>
     </section>
@@ -1951,6 +1943,14 @@ def build_doburoku():
 
 
 def build_doko_de_kaeru():
+    # ふるさと納税の確認済み蔵。直書きすると furusato_data の更新から取り残されるので導出する
+    import furusato_data
+    _fur_slugs = furusato_data.all_confirmed_slugs()
+    _fur_links = "、".join(
+        f'{by_slug(s)["prefecture"]}{by_slug(s)["city"]}の<a href="../brewery/{s}.html">{by_slug(s)["name"]}</a>'
+        for s in _fur_slugs[:5])
+    _fur_n = len(_fur_slugs)
+
     ch_terms = term_grid([
         ("蔵の公式オンラインショップ", "OFFICIAL EC", "いちばん確実で、品揃えも最新。Shopify・BASE・STORES などで蔵が直接運営する。限定品はここにしか出ないことが多い。"),
         ("通販モール", "ONLINE MALL", "楽天市場やYahoo!ショッピングに出店する酒販店経由。ポイントが使え、まとめ買いしやすい。ただし取扱いは蔵によって大きく差があり、同じ銘柄でもモールによって扱いが違う。"),
@@ -2008,7 +2008,7 @@ def build_doko_de_kaeru():
       <div class="prose">
         <h2 class="sub-h">寄附という、<span class="accent">もうひとつの買い方</span>。</h2>
         <p>意外と知られていないのが、ふるさと納税の返礼品にクラフトサケが並んでいることだ。蔵のある自治体に寄附すると、返礼品として届く。<strong>新しい蔵ほど地域と結びついて立ち上がっているため、この経路と相性がいい</strong>。</p>
-        <p>saketto が公式に確認できた範囲では、秋田県男鹿市の<a href="../brewery/ine-to-agave.html">稲とアガベ</a>、福島県南相馬市の<a href="../brewery/haccoba.html">haccoba</a>、岩手県紫波町の<a href="../brewery/heiroku.html">平六醸造</a>、大阪府高槻市の<a href="../brewery/adachi-noujo.html">足立農醸</a>、福岡県福智町の<a href="../brewery/amanosato.html">天郷醸造所</a>、沖縄県沖縄市の<a href="../brewery/nomu.html">NOMU醸造所</a>が出品を確認できている。<strong>通販モールには出ていないのに、ふるさと納税でだけ買える銘柄もある</strong>ので、見落とさないでほしい。</p>
+        <p>saketto が公式に確認できた範囲では、{_fur_links}をはじめ、<strong>計{_fur_n}蔵</strong>の返礼品の出品を確認できている。<strong>通販モールには出ていないのに、ふるさと納税でだけ買える銘柄もある</strong>ので、見落とさないでほしい。</p>
         <div class="pill-links">
           <a href="../furusato/">ふるさと納税で探す<span class="arr">→</span></a>
         </div>
@@ -2326,10 +2326,10 @@ def build_new_breweries():
     <section class="section">
 {section_meta("05", "MAP / 地図で見る")}
       <div class="prose">
-        <h2 class="sub-h">16の都道府県に、<span class="accent">散らばっている</span>。</h2>
+        <h2 class="sub-h">{S['prefectures']}の都道府県に、<span class="accent">散らばっている</span>。</h2>
         <p>saketto 収録の{S['breweries']}蔵{('（開業準備中の' + str(S['pending_breweries']) + '蔵を含む）') if S['pending_breweries'] else ''}を地域で数えると、分布に特徴が見えてくる。<strong>{S['region_breakdown']}</strong>。日本酒どころに偏るでもなく、都市に集まるでもなく、<strong>全国に薄く広がっている</strong>のがクラフトサケの特徴だ。</p>
         <p>複数の蔵がある都道府県は{S['multi_prefectures']}つ。<strong>{S['multi_pref_breakdown']}</strong>で、残りは1県1蔵。全体で{S['prefectures']}の都道府県にまたがっている計算になる。<strong>まだ空白の県のほうが多い</strong>ということでもあり、この地図はこれから埋まっていく余地が大きい。</p>
-        <p>興味深いのは、既存の日本酒の勢力図とずれていることだ。酒どころとして知られる新潟に3蔵あるのは順当だが、<strong>東京に3蔵</strong>というのは従来の酒蔵の分布では考えにくい。駅ナカや商店街に置ける小さな設備だからこそ、都心にも蔵が立つ。<strong>沖縄にクラフトサケの蔵がある</strong>のも、泡盛の島という前提を思えば新しい動きだ。</p>
+        <p>興味深いのは、既存の日本酒の勢力図とずれていることだ。酒どころとして知られる新潟に{S['pref_counts'].get('新潟県', 0)}蔵あるのは順当だが、<strong>東京に{S['pref_counts'].get('東京都', 0)}蔵</strong>というのは従来の酒蔵の分布では考えにくい。駅ナカや商店街に置ける小さな設備だからこそ、都心にも蔵が立つ。<strong>沖縄にクラフトサケの蔵がある</strong>のも、泡盛の島という前提を思えば新しい動きだ。</p>
         <p>そして福島に2蔵。どちらも震災の被害を受けた南相馬市小高区にある。<strong>地域の再生と酒づくりが結びついた例</strong>で、ここから始まった蔵がジャンル全体を牽引してきた。地図の上の点は、それぞれに理由を持って打たれている。</p>
         <div class="pill-links">
           <a href="../region/">地域から蔵を探す<span class="arr">→</span></a>
@@ -2418,7 +2418,7 @@ def build_new_breweries():
   </div>
 """
     html = page_head("いま生まれている、新しい蔵 — クラフトサケ醸造所が増えている理由",
-                     "駅構内、商店街、団地、離島。これまで酒蔵がなかった場所にクラフトサケの醸造所が次々と生まれている。saketto収録{S['breweries']}蔵の開業年から、免許制度・立地・協会という3つの視点でいま何が起きているのかを読み解きます。",
+                     f"駅構内、商店街、団地、離島。これまで酒蔵がなかった場所にクラフトサケの醸造所が次々と生まれている。saketto収録{S['breweries']}蔵の開業年から、免許制度・立地・協会という3つの視点でいま何が起きているのかを読み解きます。",
                      "/guide/new-breweries.html", "article")
     html += masthead(article_masthead_label("new-breweries"), "A Field Guide")
     html += hero(

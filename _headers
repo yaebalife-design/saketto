@@ -1,6 +1,8 @@
 # Cloudflare Pages カスタムヘッダ
 #
-# ルールは「後に書いたものが勝つ」。より限定的なパスを後ろに置くこと。
+# ⚠ 複数のパスルールにマッチすると、同名ヘッダは「上書き」ではなく「連結」される
+#   （本番実測 2026/09/02: /assets/search-index.json に max-age=3600 と 86400 が両方付いていた）。
+#   限定パス側では必ず `! Cache-Control` で一度打ち消してから設定し直すこと。
 # また Cloudflare Pages は /x.html を /x へ308で正規化するため、
 # `/*.html` は実際に配信されるURLにマッチしない（＝HTMLが max-age=0 のままになる）。
 # HTML用の指定は拡張子なしのパスに対して書く。
@@ -9,39 +11,49 @@
 # ・CSSの大半は /assets/css/ へ切り出したが（externalize_css.py）、
 #   1ページでしか使わないブロックと gtag のインラインJSが残るため
 #   style/script の 'unsafe-inline' は引き続き必要
-# ・外部許可は GA(gtag) / Google Fonts / Cloudflare Web Analytics のみ
+# ・外部許可は GA(gtag) / Google Fonts / Cloudflare Web Analytics ＋アフィリ計測のみ
 # ・cloudflareinsights は Cloudflare Pages が自動で注入するビーコン。
 #   許可していなかったため全ページで CSP に弾かれ、毎回失敗リクエストと
 #   コンソールエラーが出ていた（2026/08/31 修正）
+# ・img-src の *.a8.net / i.moshimo.com はアフィリエイトのインプレッション計測ピクセル。
+#   許可していなかったため全ページでブロックされ、A8・もしもの表示回数計測が
+#   機能していなかった（2026/09/02 修正。cloudflareinsights と同型の事故）
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.googletagmanager.com https://*.analytics.google.com https://cloudflareinsights.com; frame-ancestors 'none'
+  Strict-Transport-Security: max-age=31536000
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.a8.net https://i.moshimo.com; connect-src 'self' https://*.google-analytics.com https://*.googletagmanager.com https://*.analytics.google.com https://cloudflareinsights.com; frame-ancestors 'none'
   Cache-Control: public, max-age=3600, must-revalidate
 
 # JS・検索インデックス等（不具合修正が翌日には反映される長さに留める）
 # ※JSを差し替えるときはファイル名の版を上げること（age-gate.v2.js 参照）
 /assets/*
+  ! Cache-Control
   Cache-Control: public, max-age=86400
 
 # 画像は同名上書きで再生成する運用のため immutable にしない（1週間）
-# /assets/* より後に置かないと上書きされてしまう
+# /assets/* より後に置かないと打ち消されてしまう
 /assets/images/*
+  ! Cache-Control
   Cache-Control: public, max-age=604800
 
 # 切り出したCSSはファイル名が内容のハッシュ（externalize_css.py）。
 # 中身を変えれば必ず別URLになるので、古いものを掴み続ける事故が起きない。
 # ＝ここだけは immutable で1年キャッシュしてよい
 /assets/css/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 /favicon.svg
+  ! Cache-Control
   Cache-Control: public, max-age=604800
 
 /favicon.ico
+  ! Cache-Control
   Cache-Control: public, max-age=604800
 
 /apple-touch-icon.png
+  ! Cache-Control
   Cache-Control: public, max-age=604800

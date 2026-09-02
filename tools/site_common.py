@@ -145,7 +145,7 @@ def pr_notice():
 
 def search_tag():
     """サイト内検索（全ページ共通）。インデックスはルート絶対パスで引くため階層非依存。"""
-    return '<script src="/assets/search.v2.js" defer></script>'
+    return '<script src="/assets/search.v3.js" defer></script>'
 
 
 def head_extra(prefix="../"):

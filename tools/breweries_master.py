@@ -305,7 +305,9 @@ BREWERIES = [
         "city": "神戸市東灘区（白鶴酒造資料館内）",
         "region": "関西",
         "founded": "2024",
-        "official_url": "https://www.hakutsuru.co.jp/sakecraft/",
+        # 旧特設ページ https://www.hakutsuru.co.jp/sakecraft/ は404化（2026/09/02確認）。
+        # 移転先の特設ページは見つからず、公式の現存情報は開設ニュースリリースのみ
+        "official_url": "https://www.hakutsuru.co.jp/corporate/news/detail/20240904105912.html",
         "philosophy": "白鶴酒造のマイクロブルワリー。「その他の醸造酒として米以外の原料を使うSAKE」に初挑戦。",
         "features": "No.4はホップ使用（米以外）、ロゼ色。各回非再現の一期一会型。",
         "association": False,
