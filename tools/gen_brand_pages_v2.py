@@ -696,11 +696,22 @@ def build_html(brand, detail, brewery, idx):
     _src = []
     _seen_url = set()
 
+    # 🔴 社長指示（2026/09/02）：未提携ポータルへの生リンクを出さない。
+    # 出典がふるさと納税ポータルを指すことがある（NOMU醸造所の銘柄背景がANAの
+    # 返礼品ページだった）。出典は残さないと一次ソース主義が成り立たないので、
+    # **リンクにせずテキストで示す**。アフィリ経由にはしない——出典は広告ではなく
+    # 根拠であり、成果リンクに変えると役割が混ざるため。
+    _PORTAL_HOSTS = ("furusato-tax.jp", "furunavi.jp", "satofull.jp",
+                     "furusato.ana.co.jp", "furusato.wowma.jp")
+
     def _add_src(url, label):
         if url and url not in _seen_url:
             _seen_url.add(url)
             host = url.split("//")[-1].split("/")[0]
-            _src.append(f'<li><a href="{url}" target="_blank" rel="noopener">{label}（{host}）→</a></li>')
+            if any(h in host for h in _PORTAL_HOSTS):
+                _src.append(f'<li><span class="src-plain">{label}（{host}）</span></li>')
+            else:
+                _src.append(f'<li><a href="{url}" target="_blank" rel="noopener">{label}（{host}）→</a></li>')
 
     if official_url_ := brewery.get("official_url", ""):
         _add_src(official_url_, f'{brewery["name"]} 公式サイト')
