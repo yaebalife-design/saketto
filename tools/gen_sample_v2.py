@@ -668,9 +668,10 @@ main { position:relative; z-index:1; }
 .purchase-card__btn--amazon {
   background:linear-gradient(135deg, #232F3E 0%, #FF9900 100%);
 }
-/* Yahoo!ショッピングの赤。楽天(#BF0000)より明るく取り、並んだときに見分けられるようにする */
+/* Yahoo!ショッピングの赤。楽天(#BF0000)より明るく取り、並んだときに見分けられるようにする。
+   #FF0033 は白文字と3.49:1でAA未達だったため、AA(4.5:1)を満たす明度まで抑えた（2026/09/02） */
 .purchase-card__btn--yahoo {
-  background:linear-gradient(135deg, #FF0033 0%, #D6001C 100%);
+  background:linear-gradient(135deg, #E1001E 0%, #C40019 100%);
 }
 .purchase-card__btn--official {
   background:#16100E; border:1px solid #635C57;
@@ -941,6 +942,8 @@ def main():
       <a href="../brewery/">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
+      <a href="../furusato/">ふるさと納税</a>
+      <a href="../awards/">受賞</a>
       <a href="../guide/">読みもの</a>
     </nav>
   </div>

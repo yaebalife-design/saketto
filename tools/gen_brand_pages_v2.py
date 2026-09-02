@@ -890,6 +890,8 @@ def build_html(brand, detail, brewery, idx):
       <a href="../brewery/">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
+      <a href="../furusato/">ふるさと納税</a>
+      <a href="../awards/">受賞</a>
       <a href="../guide/">読みもの</a>
     </nav>
   </div>

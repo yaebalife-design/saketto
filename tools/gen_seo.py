@@ -11,10 +11,19 @@
 """
 
 import datetime
+import hashlib
+import json
 from pathlib import Path
 
 BASE_URL = "https://saketto.com"
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
+
+# lastmod の状態ファイル。以前は st_mtime を使っていたため、全ページ再生成のたびに
+# 226件が同一日付になり、Googleがlastmodを無視する典型パターンだった。
+# 内容ハッシュが変わったページだけ日付を更新する。
+# ※本スクリプトは normalize_links / externalize_css より前に走るため、
+#   ハッシュは「後処理前の内容」で毎回一貫して比較される（データが同じなら同じ値になる）
+LASTMOD_STATE = Path(__file__).resolve().parent / "lastmod_state.json"
 
 # 走査から除外するファイル名
 EXCLUDE_NAMES = {"404.html", "google", "ads.txt"}
@@ -49,7 +58,14 @@ def url_and_priority(rel_parts, fname):
 
 
 def collect():
+    try:
+        state = json.loads(LASTMOD_STATE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        state = {}
+    today = datetime.date.today().isoformat()
+
     entries = []  # (path, priority, lastmod)
+    new_state = {}
     for html in sorted(REPO_ROOT.rglob("*.html")):
         if EXCLUDE_DIRS.intersection(html.parts):
             continue
@@ -58,8 +74,17 @@ def collect():
         rel = html.relative_to(REPO_ROOT)
         rel_parts = rel.parts[:-1]  # ディレクトリ部分
         path, prio = url_and_priority(rel_parts, html.name)
-        lastmod = datetime.date.fromtimestamp(html.stat().st_mtime).isoformat()
+        digest = hashlib.md5(html.read_bytes()).hexdigest()
+        prev = state.get(path)
+        if prev and prev.get("hash") == digest:
+            lastmod = prev["date"]      # 内容が同じなら日付を据え置く
+        else:
+            lastmod = today             # 内容が変わったページだけ今日にする
+        new_state[path] = {"hash": digest, "date": lastmod}
         entries.append((path, prio, lastmod))
+    LASTMOD_STATE.write_text(
+        json.dumps(new_state, ensure_ascii=False, indent=1, sort_keys=True),
+        encoding="utf-8")
     # priority 降順 → パス昇順で安定ソート
     entries.sort(key=lambda e: (-float(e[1]), e[0]))
     return entries

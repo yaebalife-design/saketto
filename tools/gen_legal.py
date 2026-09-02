@@ -28,10 +28,7 @@ STATIC_CSS = """
 .static { max-width: 760px; margin: 0 auto; padding: 56px 28px 96px; position: relative; z-index: 1; }
 /* 「現在利用中／準備中」のような補足。本文と同じ強さで並ぶと読み違えるので落とす */
 .note-inline { color: var(--ink-mute); font-size: .88em; }
-.breadcrumb { font-size: 12px; letter-spacing: .08em; color: var(--ink-mute); margin-bottom: 28px; }
-.breadcrumb a { color: var(--ink-mute); text-decoration: none; }
-.breadcrumb a:hover { color: var(--accent); }
-.breadcrumb span { margin: 0 .5em; color: var(--line); }
+/* パンくずは全ページ共通の .crumbs（site_common）に統一。旧 .breadcrumb は廃止（2026/09/02） */
 .static h1 { font-family: 'Shippori Mincho', serif; font-size: 30px; font-weight: 700; letter-spacing: .04em; color: var(--ink); margin-bottom: 10px; }
 .static .updated { font-size: 12px; color: var(--ink-mute); letter-spacing: .06em; margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--line-soft); }
 .static h2 { font-family: 'Zen Kaku Gothic Antique', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin: 40px 0 14px; padding-left: 14px; border-left: 3px solid var(--accent); }
@@ -65,6 +62,8 @@ MASTHEAD = """
       <a href="/brewery/">蔵</a>
       <a href="/region/">地域</a>
       <a href="/genre/">ジャンル</a>
+      <a href="/furusato/">ふるさと納税</a>
+      <a href="/awards/">受賞</a>
       <a href="/guide/">読みもの</a>
     </nav>
   </div>
@@ -119,8 +118,11 @@ def page(title, label, description, body, path="/"):
 <body>
 <main>
 {MASTHEAD.format(label=label)}
+  <nav class="crumbs" aria-label="現在地">
+    <a href="/index.html">トップ</a><span class="crumbs__sep">／</span>
+    <span aria-current="page">{title}</span>
+  </nav>
   <article class="static">
-    <div class="breadcrumb"><a href="/index.html">トップ</a><span>›</span>{title}</div>
 {body}
   </article>
 {FOOTER}

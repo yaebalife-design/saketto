@@ -222,10 +222,22 @@ main { position:relative; z-index:1; }
   color:var(--ink-mute); text-decoration:none; transition:color .25s;
 }
 .brand-card__shoplink:hover { color:var(--accent); }
-.brand-card__shoplink--buy { color:var(--accent); font-weight:500; margin-left:auto; }
-.brand-card__shoplink--buy:hover { color:var(--accent-deep); }
-.brand-card__shoplink--amazon { color:var(--accent); font-weight:500; }
-.brand-card__shoplink--amazon:hover { color:var(--accent-deep); }
+/* 購入リンクは銘柄ページの purchase-card__btn と同じ「ブランド色の面ボタン」に揃える。
+   蔵ページは複数銘柄の購入起点が並ぶCVR一等地なのに、テキストリンクでは弱かった。
+   （アフィリ購入ボタンのみフルブランド色OKのルール） */
+.brand-card__buybtn {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px; padding:.4rem 1.05rem; color:#F5F0E7; text-decoration:none;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.8rem; letter-spacing:.06em;
+  transition:filter .25s, transform .15s;
+}
+.brand-card__buybtn:hover { filter:brightness(1.1); transform:translateY(-1px); }
+.brand-card__shoplink + .brand-card__buybtn { margin-left:auto; }
+.brand-card__buybtn--rakuten { background:linear-gradient(135deg, #BF0000 0%, #C9242E 100%); }
+/* Yahoo!の赤は楽天よりやや明るく取りつつ、白文字がAA(4.5:1)を満たす明度に抑える */
+.brand-card__buybtn--yahoo { background:linear-gradient(135deg, #E1001E 0%, #C40019 100%); }
+.brand-card__buybtn--amazon { background:linear-gradient(135deg, #232F3E 0%, #FF9900 100%); }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;

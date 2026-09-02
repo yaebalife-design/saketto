@@ -27,8 +27,9 @@ from tasting import TASTING
 from brewery_about import about_of, founder_of
 from gen_axes_pages import categorize_ingredient, region_anchor
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
-from moshimo_link import resolve_rakuten, resolve_amazon
+from moshimo_link import resolve_rakuten, resolve_yahoo, resolve_amazon
 from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
+from moshimo_link import YAHOO_ENABLED
 
 # brand_data（一次ソース調査済み）を読み込み、製法特徴の抽出に使う
 _DETAILS = {}
@@ -320,10 +321,22 @@ main { position:relative; z-index:1; }
   color:var(--ink-mute); text-decoration:none; transition:color .25s;
 }
 .brand-card__shoplink:hover { color:var(--accent); }
-.brand-card__shoplink--buy { color:var(--accent); font-weight:500; margin-left:auto; }
-.brand-card__shoplink--buy:hover { color:var(--accent-deep); }
-.brand-card__shoplink--amazon { color:var(--accent); font-weight:500; }
-.brand-card__shoplink--amazon:hover { color:var(--accent-deep); }
+/* 購入リンクは銘柄ページの purchase-card__btn と同じ「ブランド色の面ボタン」に揃える。
+   蔵ページは複数銘柄の購入起点が並ぶCVR一等地なのに、テキストリンクでは弱かった。
+   （アフィリ購入ボタンのみフルブランド色OKのルール） */
+.brand-card__buybtn {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px; padding:.4rem 1.05rem; color:#F5F0E7; text-decoration:none;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
+  font-size:.8rem; letter-spacing:.06em;
+  transition:filter .25s, transform .15s;
+}
+.brand-card__buybtn:hover { filter:brightness(1.1); transform:translateY(-1px); }
+.brand-card__shoplink + .brand-card__buybtn { margin-left:auto; }
+.brand-card__buybtn--rakuten { background:linear-gradient(135deg, #BF0000 0%, #C9242E 100%); }
+/* Yahoo!の赤は楽天よりやや明るく取りつつ、白文字がAA(4.5:1)を満たす明度に抑える */
+.brand-card__buybtn--yahoo { background:linear-gradient(135deg, #E1001E 0%, #C40019 100%); }
+.brand-card__buybtn--amazon { background:linear-gradient(135deg, #232F3E 0%, #FF9900 100%); }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -588,15 +601,18 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
     # 実購入できる銘柄だけボタンを出す（買えない酒は非表示）。先頭リンクを右寄せ(--buy)にする。
     _shop = []
     rk = resolve_rakuten(brewery_slug, idx, name) if RAKUTEN_ENABLED else None
+    yh = resolve_yahoo(brewery_slug, idx, name) if YAHOO_ENABLED else None
     az = resolve_amazon(brewery_slug, idx, name) if AMAZON_ENABLED else None
     if rk:
-        _shop.append(("楽天市場で探す →", rk))
+        _shop.append(("楽天市場で探す →", rk, "rakuten"))
+    if yh:
+        _shop.append(("Yahoo!で探す →", yh, "yahoo"))
     if az:
-        _shop.append(("Amazonで探す →", az))
+        _shop.append(("Amazonで探す →", az, "amazon"))
     shop_html = ''
-    for _i, (_label, _url) in enumerate(_shop):
-        _cls = "brand-card__shoplink--buy" if _i == 0 else "brand-card__shoplink--amazon"
-        shop_html += f'<a class="brand-card__shoplink {_cls}" href="{_url}" target="_blank" rel="noopener sponsored">{_label}</a>'
+    for _label, _url, _kind in _shop:
+        shop_html += (f'<a class="brand-card__buybtn brand-card__buybtn--{_kind}" '
+                      f'href="{_url}" target="_blank" rel="nofollow sponsored noopener">{_label}</a>')
     return f"""
       <div class="brand-card" id="b{idx}">
         <div class="brand-card__no">{idx + 1:02d}</div>
@@ -828,8 +844,10 @@ def render(brewery, index, prev_brewery, next_brewery):
             f'<a class="nearby-card" href="{b["slug"]}.html">'
             f'<span class="nearby-card__pref">{b["prefecture"]}・{b["city"]}</span>'
             f'<span class="nearby-card__name">{b["name"]}</span>'
-            f'<span class="nearby-card__n">{len(BRANDS.get(b["slug"], []))} 銘柄</span>'
-            f'</a>' for b in same_region)
+            + (f'<span class="nearby-card__n">{len(BRANDS.get(b["slug"], []))} 銘柄</span>'
+               if BRANDS.get(b["slug"]) else
+               '<span class="nearby-card__n">銘柄情報は準備中</span>')
+            + '</a>' for b in same_region)
     nearby_section = f"""
   <section class="section">
     <div class="section-meta">
@@ -886,6 +904,8 @@ def render(brewery, index, prev_brewery, next_brewery):
       <a href="../brewery/">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
+      <a href="../furusato/">ふるさと納税</a>
+      <a href="../awards/">受賞</a>
       <a href="../guide/">読みもの</a>
     </nav>
   </div>

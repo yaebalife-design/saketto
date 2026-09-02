@@ -31,6 +31,7 @@ OUT_DIR = REPO_ROOT / "guide"
 # 読みものの構造化データ用 日付（ISO8601）。内容を大きく更新したら dateModified を更新する。
 # 記事中の統計値。直書きすると銘柄追加のたびに実データとズレるので必ずここから引く
 from site_stats import STATS as S, buy_stats
+import furusato_data as FD
 
 B = buy_stats() or {"buyable": 0, "not_buyable": 0, "breweries_without_shop": 0}
 if not B["buyable"]:
@@ -44,6 +45,7 @@ ARTICLE_MODIFIED = "2026-06-03"
 # 記事ごとの公開日の上書き（あとから追加した記事はここに入れる）。
 # 全記事で同じ日付を配信すると、新しい記事も旧日付で公開されたとGoogleに伝わるため。
 ARTICLE_DATES = {
+    "/guide/furusato.html": ("2026-09-02", "2026-09-02"),
     "/guide/doburoku.html": ("2026-08-10", "2026-08-10"),
     "/guide/doko-de-kaeru.html": ("2026-08-10", "2026-08-10"),
     "/guide/zenkoji.html": ("2026-08-10", "2026-08-10"),
@@ -227,6 +229,17 @@ def page_head(title, description, path="/guide/", og_type="website"):
 """
 
 
+def article_crumbs(slug):
+    """現在地パンくず。brand/breweryページの .crumbs と同じ見た目・区切り（／）で統一。"""
+    a, _ = article_meta(slug)
+    return f"""
+  <nav class="crumbs" aria-label="現在地">
+    <a href="../index.html">トップ</a><span class="crumbs__sep">／</span>
+    <a href="../guide/">読みもの</a><span class="crumbs__sep">／</span>
+    <span aria-current="page">{a["title"]}</span>
+  </nav>"""
+
+
 def masthead(label, right_text=""):
     return f"""
   <div class="masthead">
@@ -239,6 +252,8 @@ def masthead(label, right_text=""):
       <a href="../brewery/">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
+      <a href="../furusato/">ふるさと納税</a>
+      <a href="../awards/">受賞</a>
       <a href="../guide/">読みもの</a>
     </nav>
   </div>
@@ -397,6 +412,13 @@ ARTICLES = [
         "summary": "少量生産のクラフトサケは、探し方にコツがいる。蔵の公式オンラインショップ、通販モール、ふるさと納税、店頭限定——4つの入口の違いと、要冷蔵・季節限定という壁の越え方を、収録蔵の公式情報をもとに。",
     },
     {
+        "slug": "furusato",
+        "category": "choose",
+        "eyebrow_en": "FURUSATO TAX",
+        "title": "ふるさと納税でクラフトサケを手に入れる",
+        "summary": f"寄附で蔵の地元を応援しながら、返礼品としてクラフトサケを受け取る。制度のきほんと申し込みの流れ、saketto が一次ソースで確認した{len(FD.all_confirmed_slugs())}蔵の返礼品、品切れ・要冷蔵の注意点まで。",
+    },
+    {
         "slug": "zenkoji",
         "category": "deep",
         "eyebrow_en": "FULL KOJI",
@@ -462,12 +484,17 @@ def build_index():
 """
     body = f"""
   <div class="article">
-{blocks}    <p class="guide-foot">クラフトサケの世界を、知って・選んで・深く味わうための読みもの。基礎から製法まで10本を揃えています。まず一本に出会いたい方は、<a href="../index.html">トップ</a>の4つの軸からどうぞ。</p>
+{blocks}    <p class="guide-foot">クラフトサケの世界を、知って・選んで・深く味わうための読みもの。基礎から製法まで{len(ARTICLES)}本を揃えています。まず一本に出会いたい方は、<a href="../index.html">トップ</a>の4つの軸からどうぞ。</p>
   </div>
 """
     html = page_head("読みもの — クラフトサケのガイド",
                      "クラフトサケを知り、選び、楽しむためのガイド記事の一覧。基礎を知る・選ぶ・深く味わうの分類で、米から生まれた自由な酒を味わうための読みものをまとめています。")
     html += masthead("READING — 読みもの", "A Field Guide")
+    html += """
+  <nav class="crumbs" aria-label="現在地">
+    <a href="../index.html">トップ</a><span class="crumbs__sep">／</span>
+    <span aria-current="page">読みもの</span>
+  </nav>"""
     html += hero(
         "READING — 読みもの",
         'クラフトサケを、<span class="accent">もっと知る</span>。',
@@ -659,6 +686,7 @@ def build_towa():
                      "クラフトサケとは何か。酒税法上の「その他の醸造酒」という位置づけ、日本酒・どぶろくとの区分の違い、新規参入の仕組み、クラフトサケブリュワリー協会、花酛・白麹・全麹などの醸造用語まで、その全体像をやさしく解説します。",
                      "/guide/craftsake-towa.html", "article")
     html += masthead(article_masthead_label("craftsake-towa"), "A Field Guide")
+    html += article_crumbs("craftsake-towa")
     html += hero(
         article_eyebrow("craftsake-towa"),
         'クラフトサケとは。<br>米から生まれた、<span class="accent">自由な酒</span>。',
@@ -717,6 +745,7 @@ def build_nomikata():
       <p class="temp-note">※ 温度帯の呼称は日本酒造組合中央会による。温度はおおよその目安です。最適な温度は銘柄ごとに異なるため、各蔵のおすすめがあればそれを優先してください。</p>
       <div class="prose">
         <p>ただし、温めすぎるとせっかくの香りが飛んでしまうことも。まずは冷やで個性を確かめ、そこから少しずつ温度を上げて、自分の好みの表情を探してみてほしい。</p>
+        <p>収録銘柄にも、蔵自身が燗を勧める酒がある。足立農醸の<a href="../brand/adachi-noujo-3.html">MIYOI 燗酒専用酒</a>は、その名のとおり50〜60度の燗のために設計された一本。天郷醸造所の<a href="../brand/amanosato-2.html">在る 寒夜</a>や、でじま芳扇堂の<a href="../brand/dejima-hosendo-7.html">芳扇 友</a>も、冷酒から燗まで幅広い温度で楽しむことを蔵が勧めている。</p>
       </div>
     </section>
 {divider()}
@@ -765,7 +794,7 @@ def build_nomikata():
         <h2 class="sub-h">ロックも、<span class="accent">ソーダ割り</span>も。</h2>
         <p>クラフトサケは、自由な酒。味のしっかりした銘柄なら、ストレートだけでなくアレンジも楽しい。<strong>ソーダ割り</strong>は、まず<strong>酒1：炭酸1</strong>を基準に、好みで炭酸を増やして軽やかに。よく冷やして、冷えたグラスでつくるのがコツだ。</p>
         <p>度数の高い原酒は<strong>ロック</strong>で、冷やしながらゆっくりと。寒い日には<strong>お湯割り</strong>で、米の甘みをふっくらと。柑橘やミント、ジンジャーを添えれば、カクテルのようにも遊べる。低アルコールのタイプは、お酒に飲み慣れていない人の入り口にもなる。</p>
-        <p>もっとも、どんな飲み方が合うかは、銘柄ごとに蔵がおすすめを示していることも多い。割って楽しんでほしい酒、そのまま味わってほしい酒——迷ったら、<strong>蔵の推奨に従う</strong>のがいちばんだ。</p>
+        <p>もっとも、どんな飲み方が合うかは、銘柄ごとに蔵がおすすめを示していることも多い。収録銘柄では、<a href="../brand/heiwa-kabutocho-3.html">平和どぶろく ホップ</a>が「しっかり冷やしてそのまま、またはロック」、ハッピー太郎醸造所の<a href="../brand/happy-taro-12.html">やまのかみさん 大原の赤紫蘇</a>が「ロック・ソーダ割りも可」、ぷくぷく醸造の<a href="../brand/pukupuku-2.html">KiKiKi Hopped Sour</a>が「キンキンに冷やして。ロックも可」と、蔵自身がアレンジを勧めている。割って楽しんでほしい酒、そのまま味わってほしい酒——迷ったら、<strong>蔵の推奨に従う</strong>のがいちばんだ。</p>
       </div>
     </section>
 {divider()}
@@ -859,6 +888,7 @@ def build_nomikata():
                      "クラフトサケをもっとおいしく。温度帯による味の変化、生酒・にごりの保存、活性タイプの開け方、ワイングラスやソーダ割りといったスタイル、料理とのペアリング、和らぎ水まで、自由な酒の楽しみ方を解説します。",
                      "/guide/nomikata.html", "article")
     html += masthead(article_masthead_label("nomikata"), "A Field Guide")
+    html += article_crumbs("nomikata")
     html += hero(
         article_eyebrow("nomikata"),
         'クラフトサケの<span class="accent">飲み方</span>。<br>自由だから、おいしい。',
@@ -1155,6 +1185,7 @@ def build_osusume():
                      "クラフトサケのおすすめを、saketto編集部がタイプ別に12本厳選。稲とアガベ・haccoba・LAGOON・ぷくぷく醸造など、収録DBの確認済みスペック（度数・容量・参考価格）とともに、はじめての一本から通好みの受賞銘柄までを紹介します。",
                      "/guide/osusume.html", "article")
     html += masthead(article_masthead_label("osusume"), "A Field Guide")
+    html += article_crumbs("osusume")
     html += hero(
         article_eyebrow("osusume"),
         'クラフトサケ、<br><span class="accent">最初の12本</span>。',
@@ -1366,6 +1397,7 @@ def build_kioke():
                      "木桶仕込みとは何か。江戸期に主流だった木桶がホーロー・ステンレスタンクに置き換わった歴史、木桶に棲む蔵付き微生物の働き、木桶職人復活プロジェクト、そしてクラフトサケが木桶へ回帰する理由を、一次情報をもとに深掘りします。",
                      "/guide/kioke.html", "article")
     html += masthead(article_masthead_label("kioke"), "A Field Guide")
+    html += article_crumbs("kioke")
     html += hero(
         article_eyebrow("kioke"),
         '木桶仕込みとは。<br>木が醸す、<span class="accent">時間の酒</span>。',
@@ -1568,7 +1600,7 @@ def build_gift():
         <h2 class="sub-h">自分への<span class="accent">贈りもの</span>なら。</h2>
         <p>人に贈る話を続けてきましたが、<strong>自分へのご褒美</strong>という用途なら、ふるさと納税という手があります。蔵のある自治体に寄附すると、返礼品としてクラフトサケが届く仕組みです。</p>
         <p>saketto が公式に確認できた範囲では、<strong>6つの蔵</strong>が出品しています。秋田県男鹿市の<a href="../brewery/ine-to-agave.html">稲とアガベ</a>（寄附額10,500円・CRAFT 稲とアガベ OGAラベル 500mlと発酵マヨのセット）、福島県南相馬市の<a href="../brewery/haccoba.html">haccoba</a>（12,000円・はなうたホップス 720ml×2本）、福岡県福智町の<a href="../brewery/amanosato.html">天郷醸造所</a>（13,000円・在る 緒奏 720ml）、大阪府高槻市の<a href="../brewery/adachi-noujo.html">足立農醸</a>（15,000円・KOYOI 720ml）、岩手県紫波町の<a href="../brewery/heiroku.html">平六醸造</a>（40,000円・Re:vive Origin アカツキ 720ml）、沖縄県沖縄市の<a href="../brewery/nomu.html">NOMU醸造所</a>（56,000円・SHISHIKAMU 720ml×6本）です。</p>
-        <p>注意したいのは、<strong>ふるさと納税は「割引」ではない</strong>ということ。寄附に対する税の控除であり、手続きも必要です。ただ<strong>通販モールには出ていない銘柄が、ここでだけ手に入る</strong>ことがあります。返礼品の内容は変わることがあるので、寄附の前に各ポータルで最新の情報を確認してください。</p>
+        <p>注意したいのは、<strong>ふるさと納税は「割引」ではない</strong>ということ。寄附に対する税の控除であり、手続きも必要です。ただ<strong>通販モールには出ていない銘柄が、ここでだけ手に入る</strong>ことがあります。返礼品の内容は変わることがあるので、寄附の前に各ポータルで最新の情報を確認してください。仕組みと流れは<a href="furusato.html">ふるさと納税の解説記事</a>で詳しく読めます。</p>
         <div class="pill-links">
           <a href="../furusato/">ふるさと納税で探す<span class="arr">→</span></a>
         </div>
@@ -1607,6 +1639,7 @@ def build_gift():
                      "クラフトサケのギフト・贈り物を、saketto編集部がシーンと予算別に厳選。手土産・誕生日・お祝い・自分へのご褒美まで、稲とアガベ・haccoba・権化ほか話題の銘柄を、確認済みスペックと贈るときの注意点（年齢確認・要冷蔵・熨斗対応）とともに紹介します。",
                      "/guide/gift.html", "article")
     html += masthead(article_masthead_label("gift"), "A Field Guide")
+    html += article_crumbs("gift")
     html += hero(
         article_eyebrow("gift"),
         'クラフトサケを、<br><span class="accent">贈る</span>。',
@@ -1771,6 +1804,7 @@ def build_hanamoto():
                      "花酛（はなもと）とは何か。東北に伝わる幻のどぶろく製法で、「東洋のホップ」唐花草を使いビールのように醸す。なぜ幻になり、haccobaがどう甦らせ、それがなぜクラフトサケの原点なのかを、一次情報をもとに深掘りします。",
                      "/guide/hanamoto.html", "article")
     html += masthead(article_masthead_label("hanamoto"), "A Field Guide")
+    html += article_crumbs("hanamoto")
     html += hero(
         article_eyebrow("hanamoto"),
         '花酛とは。<br>米とホップの、<span class="accent">古い約束</span>。',
@@ -1933,6 +1967,7 @@ def build_doburoku():
                      "どぶろくとは何か。もろみを「こさない」米の酒で、酒税法上は清酒ではなく「その他の醸造酒」。にごり酒との違い、家庭の酒だった歴史、そしていまクラフトサケの主役になった理由を、収録蔵の実例とともに解説します。",
                      "/guide/doburoku.html", "article")
     html += masthead(article_masthead_label("doburoku"), "A Field Guide")
+    html += article_crumbs("doburoku")
     html += hero(
         article_eyebrow("doburoku"),
         'どぶろくとは。<br><span class="accent">こさない</span>という選択。',
@@ -2008,7 +2043,7 @@ def build_doko_de_kaeru():
       <div class="prose">
         <h2 class="sub-h">寄附という、<span class="accent">もうひとつの買い方</span>。</h2>
         <p>意外と知られていないのが、ふるさと納税の返礼品にクラフトサケが並んでいることだ。蔵のある自治体に寄附すると、返礼品として届く。<strong>新しい蔵ほど地域と結びついて立ち上がっているため、この経路と相性がいい</strong>。</p>
-        <p>saketto が公式に確認できた範囲では、{_fur_links}をはじめ、<strong>計{_fur_n}蔵</strong>の返礼品の出品を確認できている。<strong>通販モールには出ていないのに、ふるさと納税でだけ買える銘柄もある</strong>ので、見落とさないでほしい。</p>
+        <p>saketto が公式に確認できた範囲では、{_fur_links}をはじめ、<strong>計{_fur_n}蔵</strong>の返礼品の出品を確認できている。<strong>通販モールには出ていないのに、ふるさと納税でだけ買える銘柄もある</strong>ので、見落とさないでほしい。制度のきほんや申し込みの流れは<a href="furusato.html">ふるさと納税の解説記事</a>にまとめた。</p>
         <div class="pill-links">
           <a href="../furusato/">ふるさと納税で探す<span class="arr">→</span></a>
         </div>
@@ -2103,10 +2138,177 @@ def build_doko_de_kaeru():
                      "少量生産のクラフトサケを確実に手に入れるには。蔵の公式オンラインショップ、通販モール、ふるさと納税、店頭限定という4つの入口の違いと、要冷蔵・表記ゆれ・季節限定という壁の越え方を、収録蔵の公式情報をもとに解説します。",
                      "/guide/doko-de-kaeru.html", "article")
     html += masthead(article_masthead_label("doko-de-kaeru"), "A Field Guide")
+    html += article_crumbs("doko-de-kaeru")
     html += hero(
         article_eyebrow("doko-de-kaeru"),
         'どこで買える？<br><span class="accent">4つの入口</span>を知る。',
         "近所の酒屋で見かけないのは、人気がないからではない。流通の量と経路が、そもそも違うからだ。")
+    html += body
+    html += footer()
+    return html
+
+
+def build_furusato_guide():
+    """ふるさと納税×クラフトサケの解説記事。
+    蔵の一覧・件数・寄附額はすべて furusato_data から導出する（直書きしない）。
+    制度の説明は総務省の公表基準に基づく一般的な内容に留め、詳細は公的情報の確認を促す。"""
+    slugs = FD.all_confirmed_slugs()
+    n_kura = len(slugs)
+    items_all = [i for s in slugs for i in FD.items_of(s)]
+    live = [i for i in items_all if i.get("accepting", True)]
+    yens = sorted(y for i in live if (y := i.get("yen")))
+    yen_min, yen_max = (yens[0], yens[-1]) if yens else (0, 0)
+    n_under20k = sum(1 for y in yens if y < 20000)
+
+    # ポータル別の取扱蔵数（受付中のみ）
+    portal_rows = ""
+    for p in FD.PORTAL_ORDER:
+        cnt = sum(1 for s in slugs if p in FD.portals_of(s))
+        if cnt:
+            portal_rows += (f'<tr><td class="nm">{FD.PORTAL_NAMES[p]}</td>'
+                            f'<td class="p">{cnt}蔵</td></tr>\n')
+
+    # 蔵ごとの一覧（受付中の額帯・ポータル数・状況）
+    kura_rows = ""
+    for s in slugs:
+        b = by_slug(s)
+        band = FD.price_range(s)
+        band_txt = (f"{band[0]:,}円" if band and band[0] == band[1]
+                    else f"{band[0]:,}〜{band[1]:,}円" if band else "—")
+        n_portal = len(FD.portals_of(s))
+        status = "受付中" if FD.is_accepting(s) else "品切れ中"
+        kura_rows += (
+            f'<tr><td class="nm"><a href="../brewery/{s}.html">{b["name"]}</a></td>'
+            f'<td>{FD.FURUSATO[s].get("city") or b["prefecture"]}</td>'
+            f'<td class="p">{band_txt}</td>'
+            f'<td>{n_portal}ポータル</td><td>{status}</td></tr>\n')
+
+    ch_terms = term_grid([
+        ("控除の仕組み", "TAX CREDIT", "寄附額のうち2,000円を超える部分が、収入や家族構成に応じた上限の範囲内で所得税・住民税から控除される制度。上限は総務省や各ポータルの目安表・シミュレーションで確認できる。"),
+        ("ワンストップ特例", "ONE-STOP", "もともと確定申告が不要な給与所得者などで、1年の寄附先が5自治体以内なら、申請書の提出だけで確定申告なしに控除を受けられる仕組み。"),
+        ("返礼品の基準", "STANDARD", "返礼品は「調達費が寄附額の3割以下」「地場産品」という総務省の基準の下で提供される。蔵の地元自治体だからこそ、その蔵の酒が返礼品に並ぶ。"),
+        ("受付の変動", "AVAILABILITY", "クラフトサケは少量生産のため、返礼品も数量限定・季節限定が多い。品切れと再開がひんぱんに入れ替わる。"),
+    ])
+
+    body = f"""
+  <div class="article">
+
+    <section class="section">
+{section_meta("01", "WHY / 寄附という買い方")}
+      <div class="prose">
+        <p class="lead">通販モールに出ていない酒が、<span class="accent">ふるさと納税</span>でだけ手に入ることがある。クラフトサケの蔵の多くは地域と結びついて立ち上がっており、蔵の地元自治体の返礼品にその酒が並ぶからだ。</p>
+        <p>saketto が収録{S['breweries']}蔵の返礼品を一次ソースで確認したところ、<strong>{n_kura}蔵</strong>で返礼品の出品を確認できた。寄附額の目安は<strong>{yen_min:,}円から{yen_max:,}円</strong>。寄附は蔵の地元への直接の応援にもなる——飲み手にとっても造り手にとっても、うれしい買い方だ。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("02", "SYSTEM / 制度のきほん")}
+      <div class="prose">
+        <h2 class="sub-h">2,000円の自己負担で、<span class="accent">地元の酒</span>が届く。</h2>
+        <p>ふるさと納税は、応援したい自治体に寄附をすると、<strong>寄附額のうち2,000円を超える部分が所得税・住民税から控除される</strong>制度だ（収入・家族構成に応じた上限あり）。返礼品として地場産品を受け取れるため、上限の範囲内なら実質2,000円の負担で蔵の酒が手に入る計算になる。</p>
+        <p>大切なのは<strong>自分の控除上限を先に知っておく</strong>こと。上限を超えた分は純粋な寄附（自己負担）になる。上限額は総務省のふるさと納税ポータルサイトや、各ポータルのシミュレーションで確認できる。</p>
+      </div>
+      {ch_terms}
+      <div class="prose">
+        <div class="callout">
+          <div class="callout__label">制度の詳細は公的情報で</div>
+          <p>ここに書いた仕組みは2026年9月時点の一般的な説明です。控除の条件・手続き・期限の詳細は、総務省のふるさと納税ポータルサイトと各自治体の案内を必ずご確認ください。</p>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("03", "HOW / 申し込みの流れ")}
+      <div class="prose">
+        <h2 class="sub-h">流れは、<span class="accent">4ステップ</span>。</h2>
+        <p><strong>① 控除上限を確認する</strong>——シミュレーションで自分の目安額を知る。<strong>② ポータルで申し込む</strong>——蔵のページから辿るか、ポータルで蔵名・銘柄名を検索して寄附する。<strong>③ 控除の手続き</strong>——ワンストップ特例の申請書を出すか、確定申告で寄附金控除を申告する。<strong>④ 返礼品を受け取る</strong>——クラフトサケは要冷蔵の生酒が多いので、受け取れる時期に申し込むのがコツだ。</p>
+        <p>なお、<strong>酒類の返礼品は20歳以上のみ</strong>申し込める。ポータルの申込画面でも確認される。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("04", "DATA / 確認できている蔵")}
+      <div class="prose">
+        <h2 class="sub-h">一次ソース確認済み、<span class="accent">{n_kura}蔵</span>。</h2>
+        <p>saketto では、返礼品ページのURLまで実際に開いて確認できたものだけを掲載している。現在確認できているのは次の{n_kura}蔵。寄附額{yen_min:,}円台からの返礼品もあり、{n_under20k}件は2万円未満で申し込める（額・受付状況は確認時点のもの。変動が早いので、最新はリンク先で確認してほしい）。</p>
+      </div>
+      <div style="overflow-x:auto">
+      <table class="cmp">
+        <thead><tr><th>蔵</th><th>出品自治体</th><th>寄附額の目安</th><th>取扱</th><th>状況</th></tr></thead>
+        <tbody>
+{kura_rows}        </tbody>
+      </table>
+      </div>
+      <div class="prose">
+        <div class="pill-links">
+          <a href="../furusato/">ふるさと納税の返礼品を一覧で見る<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("05", "PORTAL / どのポータルで探すか")}
+      <div class="prose">
+        <h2 class="sub-h">同じ返礼品でも、<span class="accent">入口</span>はいくつもある。</h2>
+        <p>ふるさと納税のポータルは複数あり、<strong>同じ蔵の返礼品が複数のポータルに並んでいる</strong>ことも多い。普段使うポイント経済圏や、使い慣れた画面で選べばいい。saketto が確認できた取扱は次のとおり。</p>
+      </div>
+      <div style="overflow-x:auto">
+      <table class="cmp">
+        <thead><tr><th>ポータル</th><th>取扱を確認できた蔵</th></tr></thead>
+        <tbody>
+{portal_rows}        </tbody>
+      </table>
+      </div>
+      <div class="prose">
+        <p>どのポータルにどの返礼品があるかは、<a href="../furusato/">ふるさと納税ハブ</a>で蔵ごとにまとめている。ポータルを横断して見比べてから申し込むのが確実だ。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("06", "CAUTION / つまずきやすいところ")}
+      <div class="prose">
+        <h2 class="sub-h">品切れは、<span class="accent">ひんぱんに動く</span>。</h2>
+        <p>クラフトサケの返礼品でいちばん多いつまずきは<strong>品切れ</strong>だ。少量生産ゆえに数量限定が基本で、受付と品切れが短いサイクルで入れ替わる。品切れでも受付が戻ることは珍しくないので、気になる蔵はときどき見に行ってほしい。</p>
+        <p>もうひとつは<strong>受け取りのタイミング</strong>。多くが要冷蔵の生酒で、長期の不在にはあわせにくい。発送時期の記載を確認し、受け取れる時期に申し込むこと。年末は控除の締切（その年の12月31日まで）に向けて申し込みが集中し、品切れも起きやすい。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("07", "FAQ / よくある質問")}
+      <div class="prose">
+        <h2 class="sub-h tight">実質2,000円って、<span class="accent">本当</span>ですか？</h2>
+        <p>控除上限の範囲内で寄附した場合、自己負担は2,000円になります。ただし上限は収入や家族構成で大きく変わるため、先にシミュレーションで確認するのが前提です。上限を超えた分は控除されません。</p>
+        <h2 class="sub-h tight">返礼品はどれくらいで<span class="accent">届き</span>ますか？</h2>
+        <p>自治体・返礼品によってさまざまです。数量限定の酒は仕込みや瓶詰めのタイミングに合わせた発送になることもあります。各返礼品ページの発送時期の記載を確認してください。</p>
+        <h2 class="sub-h tight">品切れの返礼品は、<span class="accent">もう買えない</span>のですか？</h2>
+        <p>受付が再開されることは珍しくありません。saketto では品切れ中の返礼品も「品切れ中」と明記して掲載を続けています。再開を待つ間に、<a href="doko-de-kaeru.html">ほかの入手経路</a>を当たるのも手です。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta("08", "NEXT / 次に読む")}
+      <div class="prose">
+        <h2 class="sub-h">寄附の先に、<span class="accent">蔵の物語</span>がある。</h2>
+        <p>ふるさと納税は、蔵の地元とのつながりをいちばん感じられる買い方だ。寄附した蔵のページで、その土地でなぜ酒を醸すのかを読んでから開栓すると、一杯の味わいが変わってくる。</p>
+        <div class="pill-links">
+          <a href="../furusato/">返礼品の一覧を見る<span class="arr">→</span></a>
+          <a href="../brewery/">蔵の物語を読む<span class="arr">→</span></a>
+          <a href="doko-de-kaeru.html">ほかの買い方を知る<span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+"""
+    html = page_head("ふるさと納税でクラフトサケを手に入れる — 確認済みの蔵と申し込みの流れ",
+                     f"ふるさと納税の返礼品としてクラフトサケを受け取る方法。制度のきほん・申し込みの流れから、saketto が一次ソースで確認した{n_kura}蔵の返礼品、ポータル別の取扱、品切れ・要冷蔵の注意点まで。",
+                     "/guide/furusato.html", "article")
+    html += masthead(article_masthead_label("furusato"), "A Field Guide")
+    html += article_crumbs("furusato")
+    html += hero(
+        article_eyebrow("furusato"),
+        '寄附して、<br><span class="accent">蔵の地元</span>から届く。',
+        f"通販モールに出ていない酒が、ふるさと納税でだけ手に入ることがある。saketto が一次ソースで確認できた{n_kura}蔵の返礼品と、制度のきほんをまとめた。")
     html += body
     html += footer()
     return html
@@ -2261,6 +2463,7 @@ def build_zenkoji():
                      "全麹（ぜんこうじ）とは何か。仕込む米をすべて麹にし、掛米を使わない造り。なぜ濃密な甘みと酸が生まれるのか、なぜ清酒の枠を外れるのか、そして手間をかけてまで造る理由を、収録銘柄の実例とともに解説します。",
                      "/guide/zenkoji.html", "article")
     html += masthead(article_masthead_label("zenkoji"), "A Field Guide")
+    html += article_crumbs("zenkoji")
     html += hero(
         article_eyebrow("zenkoji"),
         '全麹酒とは。<br>米を、<span class="accent">すべて麹に</span>。',
@@ -2421,6 +2624,7 @@ def build_new_breweries():
                      f"駅構内、商店街、団地、離島。これまで酒蔵がなかった場所にクラフトサケの醸造所が次々と生まれている。saketto収録{S['breweries']}蔵の開業年から、免許制度・立地・協会という3つの視点でいま何が起きているのかを読み解きます。",
                      "/guide/new-breweries.html", "article")
     html += masthead(article_masthead_label("new-breweries"), "A Field Guide")
+    html += article_crumbs("new-breweries")
     html += hero(
         article_eyebrow("new-breweries"),
         '新しい蔵が、<br><span class="accent">街の中</span>に立つ。',
@@ -2443,6 +2647,7 @@ def main():
     (OUT_DIR / "hanamoto.html").write_text(build_hanamoto(), encoding="utf-8")
     (OUT_DIR / "doburoku.html").write_text(build_doburoku(), encoding="utf-8")
     (OUT_DIR / "doko-de-kaeru.html").write_text(build_doko_de_kaeru(), encoding="utf-8")
+    (OUT_DIR / "furusato.html").write_text(build_furusato_guide(), encoding="utf-8")
     (OUT_DIR / "zenkoji.html").write_text(build_zenkoji(), encoding="utf-8")
     (OUT_DIR / "new-breweries.html").write_text(build_new_breweries(), encoding="utf-8")
     print(f"OK ガイド生成: guide/index.html（一覧）＋ 記事{len(ARTICLES)}本")

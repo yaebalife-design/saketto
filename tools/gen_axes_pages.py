@@ -464,6 +464,16 @@ def page_head(title, description, path="/"):
 """
 
 
+def crumbs(title):
+    """現在地パンくず。brand/breweryページの .crumbs と同じ見た目・区切り（／）で統一する。
+    JSON-LDのBreadcrumbListは全ページにあるのに、画面表示はbrand/breweryだけだった。"""
+    return f"""
+  <nav class="crumbs" aria-label="現在地">
+    <a href="../index.html">トップ</a><span class="crumbs__sep">／</span>
+    <span aria-current="page">{title}</span>
+  </nav>"""
+
+
 def masthead(label, right_text=""):
     return f"""
   <div class="masthead">
@@ -476,6 +486,8 @@ def masthead(label, right_text=""):
       <a href="../brewery/">蔵</a>
       <a href="../region/">地域</a>
       <a href="../genre/">ジャンル</a>
+      <a href="../furusato/">ふるさと納税</a>
+      <a href="../awards/">受賞</a>
       <a href="../guide/">読みもの</a>
     </nav>
   </div>
@@ -706,6 +718,7 @@ def gen_subingredients():
 
     html = page_head("クラフトサケを副原料から探す", "クラフトサケを副原料（ホップ・果実・茶葉・ハーブ・米のみ・特殊副原料）から横断的に検索する逆引きデータベース。", "/subingredients/")
     html += masthead("AXIS 01 — SUB-INGREDIENTS", f"5 categories")
+    html += crumbs("副原料から探す")
     html += hero(
         "— FIVE CATEGORIES",
         '副原料から、<span class="accent">探す</span>。',
@@ -779,6 +792,7 @@ def gen_regions():
 
     html = page_head("クラフトサケを地域から探す", f"全国のクラフトサケ醸造所{len(BREWERIES)}蔵を東北・関東・中部・関西・九州・沖縄の地域別に横断検索。震災復興の東北、駅ナカの都市型、南国素材の九州・沖縄まで、土地の物語から次の一本へ。", "/region/")
     html += masthead("AXIS 03 — REGION", f"{len(populated)} regions populated")
+    html += crumbs("地域から探す")
     html += hero(
         "— BY REGION",
         '地域から、<span class="accent">探す</span>。',
@@ -855,6 +869,7 @@ def gen_genres():
 
     html = page_head("クラフトサケをジャンルから探す", "クラフトサケのジャンル（ホップサケ・果実サケ・古典どぶろく・全麹酒・木桶仕込み・異素材麹・茶葉ハーブサケ）から横断検索。saketto独自軸。", "/genre/")
     html += masthead("AXIS 04 — GENRE / SAKETTO独自", "7 genres")
+    html += crumbs("ジャンルから探す")
     html += hero(
         "— SAKETTO ORIGINAL AXIS",
         'ジャンルから、<span class="accent">探す</span>。',
@@ -1140,6 +1155,7 @@ def gen_furusato():
 
     html = page_head("クラフトサケをふるさと納税から探す", f"クラフトサケのふるさと納税返礼品を一次ソース確認の上で横断検索。返礼品を確認できた{len(confirmed)}蔵を寄附額・ポータル別に掲載。寄附で蔵の地元を支えながら、限定流通の一本に出会う。", "/furusato/")
     html += masthead("EXTRA — FURUSATO TAX", f"{len(confirmed)} confirmed")
+    html += crumbs("ふるさと納税から探す")
     html += hero(
         "— TAX-DEDUCTIBLE DISCOVERY",
         'ふるさと納税から、<span class="accent">支援する</span>。',
@@ -1396,6 +1412,7 @@ def gen_awards():
     html = page_head("クラフトサケの受賞と海外進出", "ICC SAKE AWARD歴代の頂点、Disfrutar・Mugaritzでの提供、欧米アジア輸出 — クラフトサケと世界のつながり。", "/awards/")
     html += f"<style>{AWARDS_CSS}</style>"
     html += masthead("EXTRA — ACCOLADES & GLOBAL", f"{award_brewery_count} breweries awarded")
+    html += crumbs("受賞・海外進出")
     html += hero(
         "— 実績で選ぶ ／ ACCOLADES & GLOBAL",
         '頂点と、<span class="accent">世界</span>から。',
@@ -1542,6 +1559,7 @@ def gen_breweries_hub():
         f"全国のクラフトサケ醸造所{total}蔵（協会加盟{assoc}＋独立系{indep}）を一覧で横断。所在地・創業・特徴・収録銘柄まで、公式サイトで一次確認した情報だけを収録した蔵の索引。",
         "/brewery/")
     html += masthead("AXIS 02 — BREWERIES", f"{total} breweries")
+    html += crumbs("蔵から探す")
     html += hero(
         "— ALL BREWERIES",
         '蔵から、<span class="accent">探す</span>。',
