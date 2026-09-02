@@ -19,6 +19,10 @@ from breweries_master import BREWERIES
 from breweries_brands import BRANDS
 from awards import AWARDS
 from furusato_data import FURUSATO
+from furusato_block import (
+    render as furusato_render, has_furusato as furusato_has,
+    CSS as FURUSATO_BLOCK_CSS,
+)
 from tasting import TASTING
 from brewery_about import about_of, founder_of
 from gen_axes_pages import categorize_ingredient, region_anchor
@@ -371,6 +375,7 @@ main { position:relative; z-index:1; }
   word-break:break-all;
 }
 .sources a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+""" + FURUSATO_BLOCK_CSS + """
 
 /* 区切り */
 .divider {
@@ -751,9 +756,19 @@ def render(brewery, index, prev_brewery, next_brewery):
     if awards_html_block:
         awards_section_num = section_n
         section_n += 1
+    # ふるさと納税の返礼品があれば、蔵ページから直接寄附できるようにする。
+    # 以前は「ふるさと納税から探す」の内部リンク1本だけで、37本のアフィリリンクが
+    # /furusato/ の1ページにしか無かった。
+    furusato_section_num = section_n if furusato_has(brewery["slug"]) else None
+    if furusato_section_num:
+        section_n += 1
     nearby_section_num = section_n
     section_n += 1
     sources_section_num = section_n
+
+    furusato_section = furusato_render(
+        brewery["slug"], brewery["name"], rel="../",
+        section_num=furusato_section_num) if furusato_section_num else ""
 
     # 蔵バナー（蔵専用イメージ優先・無ければ地域イメージ）。AI生成のため「画像はイメージ」を併記
     _kura_img = REPO_ROOT / "assets" / "images" / "brewery" / f'{brewery["slug"]}.webp'
@@ -932,6 +947,8 @@ def render(brewery, index, prev_brewery, next_brewery):
   {tasting_section}
 
   {awards_section}
+
+  {furusato_section}
 
   {nearby_section}
 

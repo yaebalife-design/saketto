@@ -27,9 +27,12 @@ from moshimo_link import (
     resolve_rakuten, resolve_amazon, resolve_yahoo, yahoo_impression_tag,
 )
 from gen_sample_v2 import (
-    CSS, gen_scale4_svg, gen_radar6_svg,
+    CSS as _BASE_CSS, gen_scale4_svg, gen_radar6_svg,
     RAKUTEN_ENABLED, AMAZON_ENABLED, YAHOO_ENABLED,
 )
+from furusato_block import render as furusato_render, CSS as _FURUSATO_CSS
+
+CSS = _BASE_CSS + _FURUSATO_CSS
 from story_overrides import story_override
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
 from related import next_section_html
@@ -721,6 +724,12 @@ def build_html(brand, detail, brewery, idx):
         if isinstance(_aw, dict):
             _add_src(_aw.get("source"), _aw.get("title") or "受賞の公式発表")
 
+    # 蔵に返礼品があれば、銘柄ページからも寄附できるようにする。
+    # 銘柄と返礼品は1対1に対応しないので（furusato_block.py の冒頭を参照）、
+    # 「この銘柄が返礼品」とは書かず、実際の返礼品名を3件まで挙げる。
+    furusato_section = furusato_render(slug, brewery["name"], rel="../",
+                                       limit=3, compact=True)
+
     sources_section = ""
     if _src:
         sources_section = f"""
@@ -887,6 +896,7 @@ def build_html(brand, detail, brewery, idx):
 {brand_image_html}
 {spec_board}
 {body_sections}
+{furusato_section}
 {sources_section}
 {official_foot}
   <footer>

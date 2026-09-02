@@ -278,6 +278,52 @@ main { position:relative; z-index:1; }
 }
 .sources a:hover { color:var(--accent); border-bottom-color:var(--accent); }
 
+.fz-block { background:var(--bg-alt); padding:1.6rem 1.8rem; }
+.fz-title {
+  font-family:'Shippori Mincho',serif; font-size:1rem; font-weight:500;
+  color:var(--ink); letter-spacing:.05em; margin:0 0 .7rem;
+}
+.fz-lead, .fz-note {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; color:var(--ink-mute);
+  font-size:.82rem; line-height:1.9;
+}
+.fz-lead { margin:0 0 1rem; }
+.fz-note { margin:.9rem 0 0; }
+.fz-list { list-style:none; display:flex; flex-direction:column; gap:.9rem; margin:0; }
+.fz-item { border-top:1px solid var(--line-soft); padding-top:.75rem; }
+.fz-item:first-child { border-top:none; padding-top:0; }
+.fz-item__head { display:flex; align-items:baseline; flex-wrap:wrap; gap:.5rem .8rem; }
+.fz-brand {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.9rem;
+  font-weight:500; color:var(--ink);
+}
+.fz-yen {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.9rem; color:var(--accent); white-space:nowrap;
+}
+.fz-sold {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem;
+  color:var(--ink-mute); border:1px solid var(--line-soft); padding:.05rem .4rem;
+}
+/* A8の計測ピクセル(1x1)を包む器。imgタグ自体は無改変で、
+   flexのgapで隙間が空かないようフローから外す。 */
+.fz-portals { position:relative; display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.45rem; }
+.a8-px { position:absolute; width:1px; height:1px; overflow:hidden; }
+.fz-portal {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.76rem;
+  padding:.28rem .7rem; border:1px solid var(--line); background:var(--paper);
+  color:var(--ink-soft); text-decoration:none; transition:border-color .25s, color .25s;
+}
+a.fz-portal:hover { border-color:var(--accent); color:var(--accent); }
+/* ASP未提携のポータルは押せそうに見せない */
+.fz-portal.is-plain { border-style:dashed; border-color:var(--line-soft); color:var(--ink-mute); }
+.fz-more {
+  display:inline-block; margin-top:.9rem;
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.82rem;
+  color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line);
+}
+
+
 /* 区切り */
 .divider {
   max-width:1100px; margin:4rem auto;
