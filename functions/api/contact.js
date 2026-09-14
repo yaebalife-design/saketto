@@ -329,8 +329,13 @@ export async function onRequestPost({ request, env }) {
   }
 
   // --- スプレッドシートへ追記（社長が見る場所）
+  // 「受信日時」は**日本時間**で入れる。at は UTC の ISO8601 なので、そのまま入れると
+  // 9時間ずれて「いつ来たか」を読み違える（JST 0:30 の問い合わせが前日 15:30 に見えた）。
+  // D1 の控えは機械可読用なので UTC の ISO8601 のままにしてある。
+  const atJst = new Date(Date.parse(at) + 9 * 3600 * 1000)
+    .toISOString().replace("T", " ").slice(0, 19);
   const sheetRow = [
-    at.replace("T", " ").slice(0, 19),
+    atJst,
     kind,
     name,
     email,
