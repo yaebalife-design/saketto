@@ -16,12 +16,14 @@ from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
-# お問い合わせフォームURL（odanngochアカウントのGoogleフォーム等）。空なら「準備中」表示。
-CONTACT_FORM_URL = ""
+# お問い合わせフォームのURL。空なら「準備中」表示。
+# 自前フォーム（contact.html ＋ functions/api/contact.js）を使うので内部パス。
+# 外部URL（Googleフォーム等）を入れた場合は自動で別タブ表示に切り替わる。
+CONTACT_FORM_URL = "/contact.html"
 
 # 各ページの内容を実際に見直した日。中身を変えたら必ず更新すること
 # （放置すると「最終更新 3か月前」の表示になり、更新の止まったサイトに見える）
-UPDATED = "2026年9月2日"
+UPDATED = "2026年9月15日"
 
 # 法的ページ用の追加CSS（読み物寄りの静的ページ）
 STATIC_CSS = """
@@ -80,6 +82,7 @@ FOOTER = """
         <a href="/about.html">運営者情報</a><span class="colophon__sep">／</span>
         <a href="/privacy.html">プライバシーポリシー</a><span class="colophon__sep">／</span>
         <a href="/disclaimer.html">免責事項・広告表記</a><span class="colophon__sep">／</span>
+        <a href="/contact.html">お問い合わせ</a><span class="colophon__sep">／</span>
         20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
         {pr_notice()}<span class="colophon__sep">／</span>
         © 2026 saketto.
@@ -133,9 +136,12 @@ def page(title, label, description, body, path="/"):
 
 
 def contact_block():
-    if CONTACT_FORM_URL:
-        return f'<p><a class="contact-btn" href="{CONTACT_FORM_URL}" target="_blank" rel="noopener">お問い合わせフォームへ →</a></p>'
-    return '<p><span class="contact-pending">お問い合わせフォームは準備中です</span></p>'
+    if not CONTACT_FORM_URL:
+        return '<p><span class="contact-pending">お問い合わせフォームは準備中です</span></p>'
+    # サイト内のフォームは同じタブで開く（別タブにするのは外部サービスのときだけ）
+    attrs = '' if CONTACT_FORM_URL.startswith("/") else ' target="_blank" rel="noopener"'
+    return (f'<p><a class="contact-btn" href="{CONTACT_FORM_URL}"{attrs}>'
+            f'お問い合わせフォームへ →</a></p>')
 
 
 # ────────────── プライバシーポリシー ──────────────
@@ -146,7 +152,8 @@ PRIVACY_BODY = f"""
   <p>saketto（さけっと／以下、「当サイト」）は、利用者の個人情報の保護を重要な責務と考え、以下の方針に基づき個人情報の適切な取り扱いに努めます。</p>
 
   <h2>1. 個人情報の取得について</h2>
-  <p>当サイトは、原則として個人情報を直接取得することはありません。お問い合わせ等を通じて任意でご提供いただいた個人情報は、お問い合わせへの対応以外の目的では使用いたしません。</p>
+  <p>当サイトは、原則として個人情報を直接取得することはありません。<a href="/contact.html">お問い合わせフォーム</a>を通じて任意でご提供いただいた個人情報（お名前・メールアドレス等）は、お問い合わせへの対応以外の目的では使用いたしません。お名前・メールアドレスの入力は任意で、空欄のままでも送信いただけます。</p>
+  <p>お問い合わせの内容は、当サイトの運営者のみが参照できる保管先（Google スプレッドシートおよび Cloudflare D1）に記録されます。第三者への提供は行いません。また、いたずら送信を防ぐ目的で、送信元IPアドレスを復元できない形（ハッシュ値）に変換して一時的に保持します。IPアドレスそのものを保存することはありません。</p>
 
   <h2>2. アクセス解析ツールについて</h2>
   <p>当サイトでは、サイトの利用状況を把握するために Google アナリティクス（Google Analytics）を使用しています。このツールはトラフィックデータの収集のために Cookie を使用しています。収集されるデータは匿名であり、個人を特定するものではありません。</p>
@@ -177,7 +184,7 @@ PRIVACY_BODY = f"""
   <p>当サイトは、必要に応じて本ポリシーの内容を変更することがあります。変更後のプライバシーポリシーは、当サイトに掲載した時点から効力を生じるものとします。</p>
 
   <h2>7. お問い合わせ</h2>
-  <p>本ポリシーに関するお問い合わせは、<a href="/about.html">運営者情報</a>ページに記載の窓口までお願いいたします。</p>
+  <p>本ポリシーに関するお問い合わせは、<a href="/contact.html">お問い合わせフォーム</a>よりお願いいたします。</p>
 """
 
 # ────────────── 免責事項・広告表記 ──────────────
@@ -287,6 +294,7 @@ ABOUT_BODY = f"""
 
   <h2>関連ページ</h2>
   <ul>
+    <li><a href="/contact.html">お問い合わせ</a></li>
     <li><a href="/privacy.html">プライバシーポリシー</a></li>
     <li><a href="/disclaimer.html">免責事項・広告表記</a></li>
   </ul>

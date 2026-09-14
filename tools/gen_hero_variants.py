@@ -27,7 +27,9 @@ if not project:
     print("ERROR: GOOGLE_CLOUD_PROJECT 環境変数が未設定")
     sys.exit(1)
 
-from google import genai
+import sys as _sys; _sys.path.insert(0, r"c:\Users\chiba\自由フォルダ\100_クロードコード経営\ツール共通")
+
+import codex_genai_compat as genai  # Codex(gpt-image-2)へ移行
 client = genai.Client(vertexai=True, project=project, location="global")
 
 STYLE = ("Editorial magazine still-life photography. Warm cream paper background "

@@ -120,6 +120,25 @@ def main():
     except Exception as e:
         index_mismatch = [f"（確認できず: {e}）"]
 
+    # お問い合わせフォームの選択肢は HTML と受け口(JS)の2箇所にある。
+    # 食い違うと 422 bad_kind で弾かれ、**問い合わせが黙って届かなくなる**ので突合する。
+    contact_mismatch = []
+    try:
+        ct = os.path.join(ROOT, "contact.html")
+        js = os.path.join(ROOT, "functions", "api", "contact.js")
+        if os.path.isfile(ct) and os.path.isfile(js):
+            form_kinds = re.findall(r'name="kind" value="([^"]+)"',
+                                    open(ct, encoding="utf-8").read())
+            m = re.search(r"const KINDS = \[(.*?)\]",
+                          open(js, encoding="utf-8").read(), re.S)
+            api_kinds = re.findall(r'"([^"]+)"', m.group(1)) if m else []
+            if form_kinds != api_kinds:
+                contact_mismatch.append(f"フォーム{form_kinds} ≠ 受け口{api_kinds}")
+        elif os.path.isfile(ct) != os.path.isfile(js):
+            contact_mismatch.append("contact.html と functions/api/contact.js の片方が無い")
+    except Exception as e:
+        contact_mismatch = [f"（確認できず: {e}）"]
+
     print(f"HTMLファイル       : {len(html_files)}")
     print(f"内部リンク         : {total}")
     print(f"リンク切れ         : {broken}")
@@ -138,12 +157,15 @@ def main():
     print(f"トップの数字のズレ   : {len(index_mismatch)}  ← 手書きindexとDB実数の突合")
     for m in index_mismatch:
         print(f"   × {m}")
+    print(f"問い合わせ選択肢のズレ: {len(contact_mismatch)}  ← ズレると送信が422で黙って落ちる")
+    for m in contact_mismatch:
+        print(f"   × {m}")
     for f, r in problems[:40]:
         print(f"   × {f} → {r}")
     if len(problems) > 40:
         print(f"   … ほか {len(problems)-40} 件")
     return 1 if (broken or dot_html or unresolved or unregistered
-                 or len(notices) > 1 or index_mismatch) else 0
+                 or len(notices) > 1 or index_mismatch or contact_mismatch) else 0
 
 
 if __name__ == "__main__":

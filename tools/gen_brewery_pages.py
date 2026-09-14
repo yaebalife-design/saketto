@@ -989,6 +989,7 @@ def render(brewery, index, prev_brewery, next_brewery):
         <a href="/about.html">運営者情報</a><span class="colophon__sep">／</span>
         <a href="/privacy.html">プライバシーポリシー</a><span class="colophon__sep">／</span>
         <a href="/disclaimer.html">免責事項・広告表記</a><span class="colophon__sep">／</span>
+        <a href="/contact.html">お問い合わせ</a><span class="colophon__sep">／</span>
         価格・度数は公式サイトでご確認ください<span class="colophon__sep">／</span>
         20歳未満の飲酒は法律で禁じられています<span class="colophon__sep">／</span>
         {pr_notice()}<span class="colophon__sep">／</span>
