@@ -381,4 +381,5 @@ export async function onRequestPost({ request, env }) {
 
 // onRequestPost だけを export する。
 // onRequest を併記すると、そちらが全メソッドを受けて onRequestPost が呼ばれなくなる。
-// POST以外は Cloudflare Pages が自動で 405 を返す。
+// POST以外は Cloudflare Pages が 404 を返す（本番実測 2026-09-15）。
+// エンドポイントの存在を教えないので、これでよい。

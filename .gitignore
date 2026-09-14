@@ -4,3 +4,6 @@ __pycache__/
 *.swp
 .env
 tools/_preview/
+# wrangler のローカル状態。**アカウント名（＝メールアドレス）を含む**ので絶対に入れない
+.wrangler/
+node_modules/
