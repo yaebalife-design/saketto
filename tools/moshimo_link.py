@@ -2,8 +2,7 @@
 """saketto / もしもアフィリエイト リンク生成
 
 - 楽天: **saketto専用ID**。2026/06/14 もしもの登録媒体を作り直したため a_id を 5607459→5637367 へ更新（社長提供リンクで確認）。検索URLのみ使用。
-- Amazon: ⚠️ 媒体作り直しで旧 a_id=5609637 は無効。新Amazon a_id 未受領のため AMAZON_ENABLED=False で一時停止中。
-  → 新IDを受領したら AMAZON_AID を差し替え、gen_sample_v2.py の AMAZON_ENABLED=True に戻して全ページ再生成。
+- Amazon: **saketto専用ID**。2026/09/21 社長提供リンクで a_id=5637371 を受領し再開（旧 5609637 は媒体作り直しで無効）。
 """
 import urllib.parse
 import json
@@ -17,8 +16,10 @@ RAKUTEN_PID = "54"
 RAKUTEN_PC_ID = "54"
 RAKUTEN_PL_ID = "616"
 
-# Amazonプロモ（⚠️旧 a_id=5609637 は媒体作り直しで無効。新ID受領後に差し替え）
-AMAZON_AID = "5609637"
+# Amazonプロモ（saketto専用 / a_id=5637371 ／ 2026/09/21 社長提供リンクで確認）
+# pl_id=4062 は &url= でリンク先を指定できる型。Yahoo!と同じく1x1のインプレッション画像が
+# 併記される仕様なので、リンクを出したページには amazon_impression_tag() を1回だけ入れる。
+AMAZON_AID = "5637371"
 AMAZON_PID = "170"
 AMAZON_PC_ID = "185"
 AMAZON_PL_ID = "4062"
@@ -111,6 +112,15 @@ def _amazon_wrap(target):
     )
 
 
+def amazon_impression_tag():
+    """Amazonのインプレッション計測タグ。**1ページに1回だけ**出すこと（yahoo_impression_tag と同じ理由）。"""
+    return (
+        f'<img src="https://i.moshimo.com/af/i/impression?'
+        f'a_id={AMAZON_AID}&p_id={AMAZON_PID}&pc_id={AMAZON_PC_ID}&pl_id={AMAZON_PL_ID}"'
+        f' width="1" height="1" style="border:none" alt="" loading="lazy">'
+    )
+
+
 # ── 実購入可否オーバーライド ─────────────────────────────────
 # affiliate_overrides.json：銘柄ごとにAmazon/楽天で本当に買えるかをWeb調査して判定した結果。
 # キー "slug:idx" → {"amazon":{"show":bool,"query":str|None,"product_url":str|None},
@@ -177,6 +187,6 @@ def resolve_amazon(slug, idx, name):
 # ここが唯一の定義。gen_sample_v2 が再エクスポートし、site_common の
 # 広告表記もここを見る（表記だけ実態とズレるのを防ぐため）。
 RAKUTEN_ENABLED = True    # 2026/05/31 楽天 saketto提携済 → ON
-AMAZON_ENABLED = False    # 2026/06/14 もしも媒体作り直しで旧Amazon ID無効 → 新ID受領まで一時OFF
+AMAZON_ENABLED = True     # 2026/09/21 新ID a_id=5637371 受領 → 再開（6/14〜9/21は旧ID無効で停止していた）
 YAHOO_ENABLED = True      # 2026/09/01 Yahoo!ショッピング saketto提携済（社長提供リンクで確認）
 AFFILIATE_ENABLED = RAKUTEN_ENABLED or AMAZON_ENABLED or YAHOO_ENABLED

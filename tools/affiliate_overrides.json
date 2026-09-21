@@ -2,8 +2,8 @@
   "lagoon:0": {
     "name": "翔空 HOP SAKE ほっぺ",
     "amazon": {
-      "show": true,
-      "query": "翔空 HOP SAKE ほっぺ",
+      "show": false,
+      "query": null,
       "product_url": "https://www.amazon.co.jp/dp/B0DNH5PBMK"
     },
     "rakuten": {
@@ -15,7 +15,8 @@
       "query": null,
       "product_url": "https://store.shopping.yahoo.co.jp/sake101sakaya/15lb001.html"
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。SAKEKAMIYA「翔空 HOP SAKE ほっぺ 720ml」¥2,420・在庫なし。在庫が戻ったら show:true にする"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。SAKEKAMIYA「翔空 HOP SAKE ほっぺ 720ml」¥2,420・在庫なし。在庫が戻ったら show:true にする",
+    "_note_amazon": "2026/09/21 Amazon確認。商品ページは残っているが「現在在庫切れです」。在庫が戻ったら show:true にする"
   },
   "lagoon:1": {
     "name": "翔空 ニゴリのHOP SAKE ほっぺ",
@@ -38,8 +39,8 @@
   "lagoon:2": {
     "name": "翔空 酔いどれ洋梨2025-2026 槽搾り生",
     "amazon": {
-      "show": true,
-      "query": "翔空 酔いどれ洋梨",
+      "show": false,
+      "query": null,
       "product_url": "https://www.amazon.co.jp/dp/B0CSJTDVHB"
     },
     "rakuten": {
@@ -51,13 +52,14 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。全体検索・店舗内検索とも該当なし"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。全体検索・店舗内検索とも該当なし",
+    "_note_amazon": "2026/09/21 Amazon確認。商品ページは残っているが「現在在庫切れです」。在庫が戻ったら show:true にする"
   },
   "lagoon:3": {
     "name": "翔空 酔いどれメロン2025 ドブロク",
     "amazon": {
-      "show": true,
-      "query": "翔空 酔いどれメロン",
+      "show": false,
+      "query": null,
       "product_url": "https://www.amazon.co.jp/dp/B0CGH1SMWD"
     },
     "rakuten": {
@@ -69,7 +71,8 @@
       "query": null,
       "product_url": "https://store.shopping.yahoo.co.jp/sake101sakaya/15lb011.html"
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。SAKEKAMIYA「翔空 酔いどれメロン 500ml」¥2,310。商品ページでアルコール12度・米/米こうじ/メロン・500mlを確認しDB一致"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。SAKEKAMIYA「翔空 酔いどれメロン 500ml」¥2,310。商品ページでアルコール12度・米/米こうじ/メロン・500mlを確認しDB一致",
+    "_note_amazon": "2026/09/21 Amazon確認。商品ページは残っているが「現在在庫切れです」。在庫が戻ったら show:true にする"
   },
   "lagoon:4": {
     "name": "翔空 酔いどれイチゴ2026 槽絞り生",
@@ -92,8 +95,8 @@
   "lagoon:5": {
     "name": "翔空 SAKEマルゲリータ Unpressed",
     "amazon": {
-      "show": true,
-      "query": "翔空 SAKEマルゲリータ",
+      "show": false,
+      "query": null,
       "product_url": "https://www.amazon.co.jp/dp/B0BQ22R13X"
     },
     "rakuten": {
@@ -105,7 +108,8 @@
       "query": null,
       "product_url": "https://store.shopping.yahoo.co.jp/kojimaya-jizake/shouku-sakemarugerita.html"
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。地酒の小島屋「翔空 SAKEマルゲリータ 500ml」¥1,980。商品ページでトマト/バジル・13.9度を確認しDB一致"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。地酒の小島屋「翔空 SAKEマルゲリータ 500ml」¥1,980。商品ページでトマト/バジル・13.9度を確認しDB一致",
+    "_note_amazon": "2026/09/21 Amazon確認。商品ページは残っているが「現在在庫切れです」。在庫が戻ったら show:true にする"
   },
   "lagoon:6": {
     "name": "翔空 自然栽培亀の尾どぶろく",
@@ -398,8 +402,8 @@
   "heiwa-namba:3": {
     "name": "どぶろく ホップ",
     "amazon": {
-      "show": true,
-      "query": "平和どぶろく 参ノ濁",
+      "show": false,
+      "query": null,
       "product_url": "https://www.amazon.co.jp/dp/B0C24147ZC"
     },
     "rakuten": {
@@ -411,7 +415,8 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし",
+    "_note_amazon": "2026/09/21 Amazon確認。商品ページは残っているが「現在在庫切れです」。在庫が戻ったら show:true にする"
   },
   "heiwa-namba:4": {
     "name": "どぶろく 白麹",
@@ -740,9 +745,9 @@
   "amanosato:0": {
     "name": "在る 緒奏（しょそう）720ml",
     "amazon": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://www.amazon.co.jp/dp/B0GJZPZN13"
     },
     "rakuten": {
       "show": true,
@@ -753,7 +758,8 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ヒットするのは「ふるさと納税」の寄附商品のみで通常の物販出品はゼロ。寄附はふるさと納税セクションで案内するため購入ボタンにはしない",
+    "_note_amazon": "2026/09/21 Amazon確認。「在る宵 緒奏 クラフト酒 720ml」¥2,600・在庫あり。商品情報に天郷醸造所・山田錦の記載あり"
   },
   "amanosato:1": {
     "name": "在る 小暖（こはる）500ml",
@@ -1173,7 +1179,7 @@
     "name": "稲とアガベ CRAFT series",
     "amazon": {
       "show": true,
-      "query": "稲とアガベ CRAFT series",
+      "query": "稲とアガベ",
       "product_url": null
     },
     "rakuten": {
@@ -1185,7 +1191,8 @@
       "query": null,
       "product_url": "https://store.shopping.yahoo.co.jp/horie-saketen/inetoagave69.html"
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。ほりえ酒店「稲とアガベ 01 火入 2025 500ml」¥2,500。容量・価格ともDB一致"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。ほりえ酒店「稲とアガベ 01 火入 2025 500ml」¥2,500。容量・価格ともDB一致",
+    "_note_amazon": "2026/09/21 Amazon確認。「稲とアガベ CRAFT series」では検索0件のため蔵名検索に変更。交酒 花風 KYOTO EDITION・土田酒造コラボが在庫あり"
   },
   "ine-to-agave:1": {
     "name": "花風（ぐるりこ®）",
@@ -2054,8 +2061,8 @@
   "heiwa-kabutocho:3": {
     "name": "平和どぶろく ホップ",
     "amazon": {
-      "show": true,
-      "query": "平和どぶろく 参ノ濁",
+      "show": false,
+      "query": null,
       "product_url": "https://www.amazon.co.jp/dp/B0C24147ZC"
     },
     "rakuten": {
@@ -2067,7 +2074,8 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵名・ブランド名・銘柄名・所在地の4系統で検索したが出品なし",
+    "_note_amazon": "2026/09/21 Amazon確認。商品ページは残っているが「現在在庫切れです」。在庫が戻ったら show:true にする"
   },
   "heiwa-kabutocho:4": {
     "name": "本日のどぶろく（生姜など）",
@@ -2265,7 +2273,8 @@
       "query": null,
       "product_url": "https://store.shopping.yahoo.co.jp/sake101sakaya/05itagb005.html"
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。SAKEKAMIYA「交酒 花風 忽布 720ml」¥2,420。商品ページで原材料・精米90%・720mlを確認しDB一致（忽布は肩ラベルのホップ表記で別銘柄ではない旨も同ページに記載）"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。SAKEKAMIYA「交酒 花風 忽布 720ml」¥2,420。商品ページで原材料・精米90%・720mlを確認しDB一致（忽布は肩ラベルのホップ表記で別銘柄ではない旨も同ページに記載）",
+    "_note_amazon": "2026/09/21 Amazonに「交酒 花風 KYOTO EDITION」(3社共創・14度・¥3,080)はあるが、DBの交酒 花風(¥2,420)とは別エディションのため紐付けない"
   },
   "ine-to-agave:9": {
     "name": "交酒花風（6号酵母）",
@@ -2360,9 +2369,9 @@
   "ine-to-agave:14": {
     "name": "SAKE 稲とアガベ×土田酒造",
     "amazon": {
-      "show": false,
+      "show": true,
       "query": null,
-      "product_url": null
+      "product_url": "https://www.amazon.co.jp/dp/B0HH6495CN"
     },
     "rakuten": {
       "show": true,
@@ -2373,7 +2382,8 @@
       "query": null,
       "product_url": "https://store.shopping.yahoo.co.jp/kaneni-shouji/86040.html"
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「稲とアガベ×土田酒造×協会4号酵母 720ml」¥3,300。DB価格と一致"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。金二商事「稲とアガベ×土田酒造×協会4号酵母 720ml」¥3,300。DB価格と一致",
+    "_note_amazon": "2026/09/21 Amazon確認。「稲とアガベ × 土田酒造 × 協会4号酵母 720ml」¥3,300・在庫あり（DBの公式価格・酵母と一致）"
   },
   "ine-to-agave:15": {
     "name": "稲とアガベと谷泉",
@@ -2427,7 +2437,8 @@
       "query": null,
       "product_url": "https://store.shopping.yahoo.co.jp/tokuriya/1944.html"
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。とくりや「something happy フレッシュハーブティ 生詰 480ml」¥2,860。DB2,970円との差は仕込号違い（ロット差）"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。とくりや「something happy フレッシュハーブティ 生詰 480ml」¥2,860。DB2,970円との差は仕込号違い（ロット差）",
+    "_note_amazon": "2026/09/21 Amazonに商品ページ(B0CLKQ3SVJ)はあるがカート無し＝購入不可"
   },
   "happy-taro:9": {
     "name": "something happy 八朔 BITTER 2026",
@@ -2647,7 +2658,8 @@
       "query": null,
       "product_url": null
     },
-    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず"
+    "_note_yahoo": "2026/09/01 Yahoo!確認。蔵の出品はあるが、この銘柄は見つからず",
+    "_note_amazon": "2026/09/21 Amazonの「ハッピーどぶろく生詰」(B0CLKRKJCF)は湖北はみ出し米と同一か確認できず、かつカート無し"
   },
   "lagoon:8": {
     "name": "翔空 森のSAKE クロモジ",

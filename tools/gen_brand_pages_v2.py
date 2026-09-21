@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug, BREWERIES
 from breweries_brands import BRANDS
 from moshimo_link import (
-    resolve_rakuten, resolve_amazon, resolve_yahoo, yahoo_impression_tag,
+    resolve_rakuten, resolve_amazon, resolve_yahoo, yahoo_impression_tag, amazon_impression_tag,
 )
 from gen_sample_v2 import (
     CSS as _BASE_CSS, gen_scale4_svg, gen_radar6_svg,
@@ -660,6 +660,8 @@ def build_html(brand, detail, brewery, idx):
     if _btns:
         # Yahoo!のインプレッションタグは1ページ1回だけ（カードごとに出すと水増しになる）
         _imp = yahoo_impression_tag() if (YAHOO_ENABLED and yahoo_href) else ''
+        if AMAZON_ENABLED and amazon_url:
+            _imp += amazon_impression_tag()
         purchase_inner = ('<div class="purchase-card__btns">' + "".join(_btns) + '</div>'
                           '<div class="purchase-card__note">PR ／ アフィリエイトリンクを含みます</div>'
                           + _imp)
