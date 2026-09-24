@@ -835,8 +835,11 @@ def build_html(brand, detail, brewery, idx):
                                   else "https://schema.org/OutOfStock",
                   "url": (rakuten_url if (RAKUTEN_ENABLED and rakuten_url) else SITE_URL + _path)}
         _product["offers"] = _offer
+    # 2026-09-24: 価格（offers）が無い銘柄では Product 自体を出さない。Google は Product に
+    #   offers／review／aggregateRating のどれかを必須にしており、無いと「商品スニペット」のエラーになる
+    #   （URL検査APIで23ページ。例 brand/fermenteria-1）。推定価格で埋めるのは嘘ゼロに反する（GIN-DB c94c32f と同じ対処）
     _seo = seo_head(_path, _title_core, meta_desc, og_type="product", image=_img, jsonld=[
-        _product,
+        *([_product] if "offers" in _product else []),
         breadcrumb([("トップ", "/"), (brewery["name"], f"/brewery/{slug}.html"), (name, _path)]),
     ])
 
