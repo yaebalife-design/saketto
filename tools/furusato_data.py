@@ -25,8 +25,10 @@
   `python tools/check_furusato_urls.py` を定期実行すること。
 - **ふるなびは200を返しながら中身が空のことがある**（ソフト404）。
   ステータスコードだけでは分からない。
-- **ふるなび・さとふるは検索結果がJSレンダリング**で機械確認しにくい。
-  さとふるはこの環境から接続自体ができず、全蔵で未検証。
+- **ふるなびは検索結果がJSレンダリング**で機械確認しにくい。
+- **さとふるは直接だとボット遮断でタイムアウトする**が、r.jina.ai 経由なら検索結果も返礼品ページも読める
+  （2026-10-11 全28蔵を確認。結果は tools の外の ツール/satofull_survey_20261011.json）。
+  申込可否はページのボタン表示（カートに入れる／品切れ中／受付期間外）で見る。
 - **ふるさと本舗（"h"）は2026/09/02時点で収録13蔵の取扱がゼロ。**
   画面はVue製で検索結果がHTMLに出ないが、`/api/v1/gifts?keyword=` がJSONを返すので
   そこで確認した（0件でも画面には「おすすめ」が出るため、画面を見て判断しないこと）。
@@ -55,6 +57,8 @@ FURUSATO = {
     "haccoba": {
         "city": "福島県南相馬市",
         "items": [
+            # 2026-10-11 さとふる（r.jina.ai 経由で返礼品ページを開いて確認）
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=1493903", "yen": 14000, "brand": "I'm home! -TARAGI- 500ml", "accepting": False, "city": "熊本県多良木町"},
             {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/07212/5278190",
              "yen": 19000, "brand": "はなうたホップス 720ml×2本", "accepting": True},
             {"portal": "r", "url": "https://item.rakuten.co.jp/f072125-minamisoma/41001/",
@@ -115,6 +119,16 @@ FURUSATO = {
     "amanosato": {
         "city": "福岡県福智町",
         "items": [
+            # 2026-10-11 さとふる（r.jina.ai 経由で返礼品ページを開いて確認）
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=3325348", "yen": 12500, "brand": "在る宵 緒奏（しょそう）720ml", "accepting": False},
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=3325349", "yen": 13500, "brand": "在る宵 寒夜（レモン）500ml", "accepting": False},
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=3329446", "yen": 8500, "brand": "牛もつ鍋（2人前×2）＋緒奏 180ml", "accepting": True},
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=3329447", "yen": 13000, "brand": "牛もつ鍋（2人前×5）＋緒奏 180ml", "accepting": True},
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=3329448", "yen": 22000, "brand": "牛もつ鍋（2人前×10）＋緒奏 180ml", "accepting": False},
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=3326709", "yen": 7000, "brand": "漬け魚詰合せ（5切）＋緒奏 180ml", "accepting": False},
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=3326717", "yen": 13500, "brand": "漬け魚詰合せ（15切）＋緒奏 180ml", "accepting": False},
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=3330474", "yen": 6500, "brand": "干物詰合せ（5切）＋緒奏 180ml", "accepting": False},
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=3330475", "yen": 12500, "brand": "干物詰合せ（15切）＋緒奏 180ml", "accepting": False},
             {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/40610/6968022",
              "yen": 12500, "brand": "在る宵 緒奏（しょそう）720ml", "accepting": True},
             {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/40610/6968024",
@@ -160,6 +174,9 @@ FURUSATO = {
     "happy-taro": {
         "city": "滋賀県長浜市",
         "items": [
+            # 2026-10-11 さとふる（r.jina.ai 経由で返礼品ページを開いて確認）
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=1425664", "yen": 17000, "brand": "ハッピーどぶろく 480ml×2本", "accepting": True},
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=1632614", "yen": 20000, "brand": "ハッピーどぶろく＋something happy オリエンタルホエー", "accepting": True},
             {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/25203/6338700",
              "yen": 17000, "brand": "ハッピーどぶろく 480ml×2本", "accepting": True},
             {"portal": "r", "url": "https://item.rakuten.co.jp/f252034-nagahama/11551-30047299/",
@@ -193,6 +210,8 @@ FURUSATO = {
     "librom": {
         "city": "福岡県福岡市",
         "items": [
+            # 2026-10-11 さとふる（r.jina.ai 経由で返礼品ページを開いて確認）
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=1438414", "yen": 13000, "brand": "LIBROM UME 500ml", "accepting": False, "city": "福岡県太宰府市"},
             {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/40130/6968026",
              "yen": 20000, "brand": "熟成酒 まるごとジューシー博多あまおう 2本セット", "accepting": True},
             {"portal": "r", "url": "https://item.rakuten.co.jp/f401307-fukuoka/54110212/",
@@ -231,6 +250,8 @@ FURUSATO = {
     "nondo": {
         "city": "岩手県遠野市",
         "items": [
+            # 2026-10-11 さとふる（r.jina.ai 経由で返礼品ページを開いて確認）
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=1579727", "yen": 21000, "brand": "とおの どぶろく 速醸 生 500ml×2本", "accepting": False},
             {"portal": "r", "url": "https://item.rakuten.co.jp/f032085-tono/1579727/",
              "yen": 21000, "brand": "とおの どぶろく 速醸 生 500ml×2本", "accepting": True},
         ],
@@ -243,6 +264,8 @@ FURUSATO = {
     "heiwa-kabutocho": {
         "city": "和歌山県海南市",
         "items": [
+            # 2026-10-11 さとふる（r.jina.ai 経由で返礼品ページを開いて確認）
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=1714609", "yen": 25500, "brand": "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本", "accepting": True, "city": "和歌山県海南市"},
             {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/30202/6984105",
              "yen": 23000, "brand": "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本", "accepting": True},
             {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g30202-W032/",
@@ -250,12 +273,14 @@ FURUSATO = {
             {"portal": "a", "url": "https://furusato.wowma.jp/products/detail.php?product_id=2546230",
              "yen": 23000, "brand": "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本", "accepting": True},
         ],
-        "note": "返礼品は東京都中央区ではなく、親会社である平和酒造の地元・和歌山県海南市から出ている。壱ノ濁は米と米こうじ、弐ノ濁は白麹、参ノ濁はホップ入り。兜町・難波どちらの醸造所で仕込んだかは商品ページに記載がない",
+        "note": "返礼品は東京都中央区ではなく、親会社である平和酒造の地元・和歌山県海南市から出ている。壱ノ濁は米と米こうじ、弐ノ濁は白麹、参ノ濁はホップ入り。兜町・難波どちらの醸造所で仕込んだかは商品ページに記載がない。さとふるの返礼品ページには「製造地：和歌山県海南市」とある（2026-10-11 確認）",
     },
 
     "heiwa-namba": {
         "city": "和歌山県海南市",
         "items": [
+            # 2026-10-11 さとふる（r.jina.ai 経由で返礼品ページを開いて確認）
+            {"portal": "s", "url": "https://www.satofull.jp/products/detail.php?product_id=1714609", "yen": 25500, "brand": "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本", "accepting": True, "city": "和歌山県海南市"},
             {"portal": "c", "url": "https://www.furusato-tax.jp/product/detail/30202/6984105",
              "yen": 23000, "brand": "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本", "accepting": True},
             {"portal": "ANA", "url": "https://furusato.ana.co.jp/donation/g/g30202-W032/",
@@ -263,7 +288,7 @@ FURUSATO = {
             {"portal": "a", "url": "https://furusato.wowma.jp/products/detail.php?product_id=2546230",
              "yen": 23000, "brand": "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本", "accepting": True},
         ],
-        "note": "返礼品は大阪市ではなく、親会社である平和酒造の地元・和歌山県海南市から出ている。兜町醸造所と同じ商品で、どちらの醸造所で仕込んだかは商品ページに記載がない",
+        "note": "返礼品は大阪市ではなく、親会社である平和酒造の地元・和歌山県海南市から出ている。兜町醸造所と同じ商品で、どちらの醸造所で仕込んだかは商品ページに記載がない。さとふるの返礼品ページには「製造地：和歌山県海南市」とある（2026-10-11 確認）",
     },
 
     "mingura": {

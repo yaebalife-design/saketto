@@ -31,6 +31,14 @@ SOFT_404 = [
 
 
 def check(url):
+    if "www.satofull.jp/" in url:
+        # さとふるはボット遮断で直接だとタイムアウトする。r.jina.ai 経由で読む（2026-10-11）
+        import subprocess
+        t = subprocess.run(["curl", "-s", "-m", "90", "https://r.jina.ai/" + url],
+                           capture_output=True).stdout.decode("utf-8", "replace")
+        m = re.search(r"^Title: (.*)$", t, re.M)
+        ok = "寄付金額" in t and "さとふる" in (m.group(1) if m else "")
+        return (200 if ok else 404), [w for w in SOFT_404 if w in t[:30000]], (m.group(1)[:56] if m else "")
     try:
         req = urllib.request.Request(url, headers={"User-Agent": UA})
         with urllib.request.urlopen(req, timeout=30) as r:

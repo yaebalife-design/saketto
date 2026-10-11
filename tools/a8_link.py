@@ -65,14 +65,19 @@ A8_PROGRAMS = {
         "search": "https://furusatohonpo.jp/donate/s/?keyword={q}",
         "domain": "furusatohonpo.jp",
     },
-    # さとふる（a8mat 取得待ち。GIN-DBでも未取得）
+    # さとふる（2026-09-30 A8提携。2026-10-11 掲載サイト＝saketto.(005) で商品リンクを作って取得）
+    #   🔴 a8mat の2段目がサイト。Gin-DB は AMTSAQ・泡盛DB は AMTUM2、本サイトは AMTTUA。流用しない
+    #   広告主の指定: 飛び先は www.satofull.jp 内、URL末尾に &utm_source=a8&utm_medium=affiliate（suffix）
+    #   検索パラメータは q=（旧設定の word= は検索が効かず全件が出る）
+    #   さとふるはボット遮断で直接は読めない。返礼品の確認は r.jina.ai 経由（satofull_survey_20261011.json）
     "s": {
-        "a8mat": None,
-        "gif": "www14",
+        "a8mat": "4BCMO2+AMTTUA+35Z2+BW8O2",
+        "gif": "www12",
         "label": "さとふるで見る",
         "css": "satofull",
-        "search": "https://www.satofull.jp/products/list.php?word={q}",
+        "search": "https://www.satofull.jp/products/list.php?q={q}&utm_source=a8&utm_medium=affiliate",
         "domain": "www.satofull.jp",
+        "suffix": "&utm_source=a8&utm_medium=affiliate",
     },
     # ふるなび（A8には無い。バリューコマース経由なので、ここでは常に未設定）
     "f": {
@@ -149,6 +154,9 @@ def portal_href(portal, target_url):
         return None
     if not target_url.startswith("https://" + A8_PROGRAMS[portal]["domain"]):
         return None
+    suffix = A8_PROGRAMS[portal].get("suffix")
+    if suffix and not target_url.endswith(suffix):
+        target_url += suffix  # さとふるは広告主指定のパラメータを末尾に付ける
     return a8_href(A8_PROGRAMS[portal]["a8mat"], target_url)
 
 
