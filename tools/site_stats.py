@@ -135,12 +135,15 @@ def buy_stats():
             slug_of[f"{s}-{i}"] = s
     buyable = 0
     with_shop = set()
+    per_brewery = {}
     for f in files:
         html = open(f, encoding="utf-8").read()
         if ("楽天市場で探す" in html or "Yahoo!ショッピングで探す" in html
                 or "Amazonで探す" in html):
             buyable += 1
-            with_shop.add(slug_of.get(os.path.basename(f)[:-5], "?"))
+            _s = slug_of.get(os.path.basename(f)[:-5], "?")
+            with_shop.add(_s)
+            per_brewery[_s] = per_brewery.get(_s, 0) + 1
     total = len(files)
     # 銘柄をまだ1件も収録していない蔵は「探したが無かった」のではないので、
     # 取扱いなしの蔵として数えない（収録直後の蔵を混ぜると実態より多く見える）
@@ -150,6 +153,9 @@ def buy_stats():
         "not_buyable": total - buyable,
         "breweries_without_shop": len(with_brands - with_shop),
         "breweries_with_brands": len(with_brands),
+        # 記事で蔵名を挙げるときに使う（蔵名を本文に直書きすると点検結果とズレる。2026-10-11）
+        "without_shop_slugs": sorted(with_brands - with_shop),
+        "buyable_by_brewery": per_brewery,
     }
 
 

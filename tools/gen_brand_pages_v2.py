@@ -451,7 +451,9 @@ def build_html(brand, detail, brewery, idx):
     # Yahoo!は未調査なら None（検索へのフォールバックをしない）。
     # 「全銘柄を実際に検索して確認している」と記事に書いているため。
     yahoo_href = resolve_yahoo(slug, idx, name)
-    has_buy = bool((RAKUTEN_ENABLED and rakuten_url) or (AMAZON_ENABLED and amazon_url))
+    # Yahoo!だけで買える銘柄も「購入導線あり」に数える（2026-10-11 まで抜けていた）
+    has_buy = bool((RAKUTEN_ENABLED and rakuten_url) or (AMAZON_ENABLED and amazon_url)
+                   or (YAHOO_ENABLED and yahoo_href))
 
     # ── HERO タグ（香り・味の印象）──
     flavor_tags_html = ""
@@ -829,11 +831,13 @@ def build_html(brand, detail, brewery, idx):
         # availability を省くと「在庫あり」と解釈されうるため、実際に購入導線がある
         # 銘柄だけ InStock とし、通販で取扱いを確認できないものは OutOfStock を明示する。
         # url も、購入できるなら購入先を指す（自ページを指すと購入導線と誤解される）。
-        _buyable = bool((RAKUTEN_ENABLED and rakuten_url) or (AMAZON_ENABLED and amazon_url))
+        _buyable = has_buy
+        _buy_url = ((RAKUTEN_ENABLED and rakuten_url) or (YAHOO_ENABLED and yahoo_href)
+                    or (AMAZON_ENABLED and amazon_url) or SITE_URL + _path)
         _offer = {"@type": "Offer", "price": str(int(price)), "priceCurrency": "JPY",
                   "availability": "https://schema.org/InStock" if _buyable
                                   else "https://schema.org/OutOfStock",
-                  "url": (rakuten_url if (RAKUTEN_ENABLED and rakuten_url) else SITE_URL + _path)}
+                  "url": _buy_url}
         _product["offers"] = _offer
     # 2026-09-24: 価格（offers）が無い銘柄では Product 自体を出さない。Google は Product に
     #   offers／review／aggregateRating のどれかを必須にしており、無いと「商品スニペット」のエラーになる

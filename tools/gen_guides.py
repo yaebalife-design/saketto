@@ -34,6 +34,52 @@ from site_stats import STATS as S, buy_stats
 import furusato_data as FD
 
 B = buy_stats() or {"buyable": 0, "not_buyable": 0, "breweries_without_shop": 0}
+
+
+def _brewery_link(slug, with_pref=False):
+    import breweries_master as _bm
+    import re as _re
+    b = _bm.by_slug(slug)
+    pref = _re.sub(r"[都府県]$", "", b["prefecture"]) + "の" if with_pref else ""
+    return f'{pref}<a href="../brewery/{slug}.html">{b["name"]}</a>'
+
+
+def _no_shop_examples(n=5):
+    """通販モールで取扱いを確認できなかった蔵（購入ボタンが1つも無い蔵）を生成済みページから挙げる"""
+    import breweries_master as _bm
+    order = [b["slug"] for b in _bm.BREWERIES]
+    slugs = sorted(B.get("without_shop_slugs") or [], key=order.index)[:n]
+    return "、".join(_brewery_link(s, True) for s in slugs)
+
+
+def _furusato_gift_summary():
+    """ギフト記事のふるさと納税の段落。furusato_data から、いま申し込める返礼品のある蔵と最少額を出す。
+    （以前は本文に直書きで、終了した返礼品や古い寄附額が残っていた。2026-10-11）"""
+    import breweries_master as _bm
+    from furusato_data import FURUSATO as _F
+    rows = []
+    for b in _bm.BREWERIES:
+        d = _F.get(b["slug"])
+        if not d:
+            continue
+        live = [i for i in d["items"] if i.get("accepting", True) and i.get("yen")]
+        if not live:
+            continue
+        lo = min(live, key=lambda i: i["yen"])
+        rows.append(f'<a href="../brewery/{b["slug"]}.html">{b["name"]}</a>'
+                    f'（{d.get("city", "")}・{lo["yen"]:,}円から・{lo["brand"]}）')
+    return (f"saketto が各ポータルの返礼品ページで確認した範囲では、いま申し込める返礼品があるのは"
+            f"<strong>{len(rows)}蔵</strong>です。" + "、".join(rows) + "。")
+
+
+def _many_shop_examples(n=3):
+    """購入ボタンのある銘柄が多い蔵の上位"""
+    cnt = B.get("buyable_by_brewery") or {}
+    top = sorted(cnt, key=lambda s: -cnt[s])[:n]
+    links = [_brewery_link(s) for s in top]
+    if len(links) < 2:
+        return "".join(links)
+    return links[0] + "や" + "、".join(links[1:])
 if not B["buyable"]:
     raise SystemExit(
         "銘柄ページが未生成のため購入導線の統計を計算できません。\n"
@@ -1600,7 +1646,7 @@ def build_gift():
       <div class="prose">
         <h2 class="sub-h">自分への<span class="accent">贈りもの</span>なら。</h2>
         <p>人に贈る話を続けてきましたが、<strong>自分へのご褒美</strong>という用途なら、ふるさと納税という手があります。蔵のある自治体に寄附すると、返礼品としてクラフトサケが届く仕組みです。</p>
-        <p>saketto が公式に確認できた範囲では、<strong>6つの蔵</strong>が出品しています。秋田県男鹿市の<a href="../brewery/ine-to-agave.html">稲とアガベ</a>（寄附額10,500円・CRAFT 稲とアガベ OGAラベル 500mlと発酵マヨのセット）、福島県南相馬市の<a href="../brewery/haccoba.html">haccoba</a>（12,000円・はなうたホップス 720ml×2本）、福岡県福智町の<a href="../brewery/amanosato.html">天郷醸造所</a>（13,000円・在る 緒奏 720ml）、大阪府高槻市の<a href="../brewery/adachi-noujo.html">足立農醸</a>（15,000円・KOYOI 720ml）、岩手県紫波町の<a href="../brewery/heiroku.html">平六醸造</a>（40,000円・Re:vive Origin アカツキ 720ml）、沖縄県沖縄市の<a href="../brewery/nomu.html">NOMU醸造所</a>（56,000円・SHISHIKAMU 720ml×6本）です。</p>
+        <p>{_furusato_gift_summary()}</p>
         <p>注意したいのは、<strong>ふるさと納税は「割引」ではない</strong>ということ。寄附に対する税の控除であり、手続きも必要です。ただ<strong>通販モールには出ていない銘柄が、ここでだけ手に入る</strong>ことがあります。返礼品の内容は変わることがあるので、寄附の前に各ポータルで最新の情報を確認してください。仕組みと流れは<a href="furusato.html">ふるさと納税の解説記事</a>で詳しく読めます。</p>
         <div class="pill-links">
           <a href="../furusato/">ふるさと納税で探す<span class="arr">→</span></a>
@@ -2022,7 +2068,7 @@ def build_doko_de_kaeru():
       <div class="prose">
         <h2 class="sub-h">迷ったら、<span class="accent">蔵に直接</span>。</h2>
         <p>もっとも確実なのが、蔵が自分で運営するオンラインショップだ。<strong>新商品・限定ロットは真っ先にここへ出る</strong>。造り手が書いた原材料や仕込みの説明を読めるのも、公式ならではの価値だ。</p>
-        <p>saketto が収録{S['breweries']}蔵の全銘柄を実際に検索して調べたところ、<strong>通販モールでの取扱いを確認できなかった蔵が{B['breweries_without_shop']}あった</strong>。福岡の<a href="../brewery/librom.html">LIBROM</a>、仙台駅構内の<a href="../brewery/fermenteria.html">Fermenteria</a>、佐渡の<a href="../brewery/sakenova.html">SAKENOVA BREWERY</a>、長崎の<a href="../brewery/dejima-hosendo.html">でじま芳扇堂</a>、埼玉の<a href="../brewery/yamane.html">やまね酒造</a>などがそうだ。<strong>「モールで見つからない＝手に入らない」ではない</strong>。蔵の名前で公式サイトを開くのが近道になる。</p>
+        <p>saketto が収録{S['breweries']}蔵の全銘柄を実際に検索して調べたところ、<strong>通販モールでの取扱いを確認できなかった蔵が{B['breweries_without_shop']}あった</strong>。{_no_shop_examples()}などがそうだ。<strong>「モールで見つからない＝手に入らない」ではない</strong>。蔵の名前で公式サイトを開くのが近道になる。</p>
       </div>
     </section>
 {divider()}
@@ -2030,7 +2076,7 @@ def build_doko_de_kaeru():
 {section_meta("04", "MALL / 通販モールという近道")}
       <div class="prose">
         <h2 class="sub-h">出ている蔵は、<span class="accent">かなり出ている</span>。</h2>
-        <p>楽天市場などのモールには、クラフトサケを積極的に扱う酒販店がいる。ポイントが使え、他の買いものとまとめられるのが利点だ。ただし<strong>取扱いの濃淡が激しい</strong>。<a href="../brewery/ine-to-agave.html">稲とアガベ</a>や<a href="../brewery/lagoon.html">LAGOON BREWERY</a>、<a href="../brewery/haccoba.html">haccoba</a>のように多数の銘柄が並ぶ蔵がある一方、1本も出ていない蔵も珍しくない。</p>
+        <p>楽天市場などのモールには、クラフトサケを積極的に扱う酒販店がいる。ポイントが使え、他の買いものとまとめられるのが利点だ。ただし<strong>取扱いの濃淡が激しい</strong>。{_many_shop_examples()}のように多数の銘柄が並ぶ蔵がある一方、1本も出ていない蔵も珍しくない。</p>
         <p>検索でつまずきやすいのが<strong>商品名の表記ゆれ</strong>だ。蔵の公式名と販売店のつけ方が違うことがよくある。語順や英字・かなが入れ替わっていたり、醸造年度やロット番号が足されていたりする。<strong>銘柄名だけで出てこないときは、蔵の名前と組み合わせて検索し直す</strong>——これだけで見つかることが多い。</p>
         <div class="callout">
           <div class="callout__label">saketto の使い方</div>
