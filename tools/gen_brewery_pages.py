@@ -27,7 +27,7 @@ from tasting import TASTING
 from brewery_about import about_of, founder_of
 from gen_axes_pages import categorize_ingredient, region_anchor
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
-from moshimo_link import resolve_rakuten, resolve_yahoo, resolve_amazon
+from moshimo_link import resolve_rakuten, resolve_yahoo, resolve_amazon, brewery_shop_links
 from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
 from moshimo_link import YAHOO_ENABLED
 
@@ -337,6 +337,13 @@ main { position:relative; z-index:1; }
 /* Yahoo!の赤は楽天よりやや明るく取りつつ、白文字がAA(4.5:1)を満たす明度に抑える */
 .brand-card__buybtn--yahoo { background:linear-gradient(135deg, #E1001E 0%, #C40019 100%); }
 .brand-card__buybtn--amazon { background:linear-gradient(135deg, #232F3E 0%, #FF9900 100%); }
+
+.brewery-shops { margin-top:2rem; }
+.brewery-shops__lead { font-family:'Shippori Mincho', serif; font-size:.95rem; margin:0 0 .75rem; }
+.brewery-shops__lead small { font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.75rem;
+  color:var(--ink-mute); margin-left:.5rem; }
+.brewery-shops__btns { display:flex; flex-wrap:wrap; gap:.6rem; }
+.brewery-shops__pr { font-size:.7rem; color:var(--ink-mute); margin:.6rem 0 0; }
 
 .no-brands {
   font-family:'Shippori Mincho', serif;
@@ -713,6 +720,16 @@ def render(brewery, index, prev_brewery, next_brewery):
     if not brands:
         brand_cards_html = '<div class="no-brands">銘柄情報は調査中です</div>'
 
+    # 1つの店がこの蔵の酒をまとめて扱っているときの「店でまとめて探す」（moshimo_link.BREWERY_SHOPS）
+    _bshops = brewery_shop_links(brewery["slug"])
+    brewery_shops_html = (
+        '<div class="brewery-shops"><p class="brewery-shops__lead">取扱店でまとめて探す'
+        '<small>（在庫は商品ごとに異なります）</small></p><div class="brewery-shops__btns">'
+        + ''.join(f'<a class="brand-card__buybtn brand-card__buybtn--{k}" href="{u}" target="_blank" '
+                  f'rel="nofollow sponsored noopener">{l}</a>' for l, u, k in _bshops)
+        + '</div><p class="brewery-shops__pr">PR ／ アフィリエイトリンクを含みます</p></div>'
+    ) if _bshops else ''
+
     # 受賞・メディア
     brewery_awards = AWARDS.get(brewery["slug"], [])
     awards_cards = []
@@ -962,6 +979,7 @@ def render(brewery, index, prev_brewery, next_brewery):
     <p class="brands-note">価格は記載時点の参考値です。最新の価格・在庫は各リンク先でご確認ください。少量生産・限定流通のため、店頭・店内提供のみの銘柄もあります。</p>
     <div class="brands">{brand_cards_html}
     </div>
+    {brewery_shops_html}
   </section>
 
   {tasting_section}

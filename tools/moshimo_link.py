@@ -183,6 +183,35 @@ def resolve_amazon(slug, idx, name):
     return amazon_search(a.get("query") or name)
 
 
+# ── 蔵単位の取扱店リンク ─────────────────────────────────
+# 銘柄ごとのボタンは「その銘柄が買える」と確かめた物だけに出す（resolve_*）。
+# それとは別に、1つの店がその蔵の酒をまとめて扱っている場合は、蔵ページの銘柄一覧の
+# 下に「店でまとめて探す」ボタンを1つ出す。行き先は店舗内検索（在庫切れの商品も並ぶので
+# 文言は「見る」にして、在庫は商品ごとに違うと添える）。
+# checked: 確認日と、その時に並んでいた物。月次点検で並びが消えていたら外す。
+BREWERY_SHOPS = {
+    "dejima-hosendo": [{
+        "kind": "yahoo",
+        "label": "Yahoo!ショッピング（ひろがる酒店）で芳扇堂の酒を見る →",
+        "url": "https://store.shopping.yahoo.co.jp/hirogaru-saketen/search.html?p="
+               + urllib.parse.quote("芳扇"),
+        "checked": "2026-10-23 店舗内検索で でじま芳扇堂の酒23品（芳扇 友・波・雲・桜雲・雷雲、たすき 等）。"
+                   "桜雲・波 目黒米雄町は在庫ありを銘柄ごとに確認済み",
+    }],
+}
+
+
+def brewery_shop_links(slug):
+    """蔵ページ用の取扱店リンク [(label, href, kind)]。提携が無効な店は出さない。"""
+    out = []
+    for s in BREWERY_SHOPS.get(slug, []):
+        if s["kind"] == "yahoo" and YAHOO_ENABLED:
+            out.append((s["label"], yahoo_url(s["url"]), "yahoo"))
+        elif s["kind"] == "rakuten" and RAKUTEN_ENABLED:
+            out.append((s["label"], rakuten_url(s["url"]), "rakuten"))
+    return out
+
+
 # ── アフィリエイトの有効/無効 ─────────────────────────────
 # ここが唯一の定義。gen_sample_v2 が再エクスポートし、site_common の
 # 広告表記もここを見る（表記だけ実態とズレるのを防ぐため）。
