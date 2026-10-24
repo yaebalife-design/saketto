@@ -192,6 +192,12 @@ BOTTLE_IMAGES = {
                "checked": "2026-10-24 私＋別Agentの照合で合格。年度表記（R05BY）の崩れをぼかし"},
     "ine-to-agave:7": {"file": "ine-to-agave-7.webp", "ref": "https://shop.inetoagave.com/products/%E7%A8%B2%E3%81%A8%E3%83%96%E3%83%89%E3%82%A6-special-edition-2024",
                "checked": "2026-10-24 私＋別Agentの照合で合格。年度表記・蔵名の細字をぼかし（見本は化粧箱を除いて切り出し）"},
+    "nondo:2": {"file": "nondo-2.webp", "ref": "https://nondo-tono.life/products/権化シリーズ-4",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。2回目で合格（1回目は瓶とラベルが別物になった）。見本は斜め置き"},
+    "ine-to-agave:11": {"file": "ine-to-agave-11.webp", "ref": "https://shop.inetoagave.com/products/%E5%BB%BB",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。2回目で合格（1回目はラベルが別物）。OGA City表記とキャップの細字をぼかし"},
+    "fermenteria:4": {"file": "fermenteria-4.webp", "ref": "https://fermenteria.co/products/sparkling",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。2回目で合格（1回目は見出しの漢字が崩れた）。下部の細字をぼかし"},
 }
 
 
