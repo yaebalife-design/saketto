@@ -36,6 +36,7 @@ CSS = _BASE_CSS + _FURUSATO_CSS
 from story_overrides import story_override
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
 from related import next_section_html
+from bottle_images import bottle_file
 # 副原料のカテゴリ判定はハブと同じロジックを使う（分類がズレると導線が壊れるため）
 from gen_axes_pages import categorize_ingredient
 
@@ -786,12 +787,22 @@ def build_html(brand, detail, brewery, idx):
 
     # ── イメージ画像（副原料カテゴリ単位。銘柄固有の写真ではない）──
     _img_name, _img_label = brand_image(b)
-    brand_image_html = (
-        f'<figure class="brand-image">'
-        f'<img src="../assets/images/{_img_name}.webp" alt="{_img_label}のイメージ" '
-        f'loading="lazy" decoding="async" width="1024" height="1024">'
-        f'<figcaption class="brand-image__cap">{_img_label}のイメージ ／ 画像はイメージです</figcaption>'
-        f'</figure>')
+    _bottle = bottle_file(slug, idx)
+    if _bottle:
+        # 実物の商品写真を見本に撮り直したボトル（tools/bottle_images.py の基準で照合済みの物だけ）
+        brand_image_html = (
+            f'<div class="brand-bottle"><figure class="brand-bottle__frame">'
+            f'<img src="../assets/images/bottles/{_bottle}" alt="{esc(name)}（{esc(brewery["name"])}）のボトル（イメージ）" '
+            f'decoding="async" width="640" height="640">'
+            f'<figcaption class="brand-bottle__cap">画像はイメージです</figcaption>'
+            f'</figure></div>')
+    else:
+        brand_image_html = (
+            f'<figure class="brand-image">'
+            f'<img src="../assets/images/{_img_name}.webp" alt="{_img_label}のイメージ" '
+            f'loading="lazy" decoding="async" width="1024" height="1024">'
+            f'<figcaption class="brand-image__cap">{_img_label}のイメージ ／ 画像はイメージです</figcaption>'
+            f'</figure>')
 
     # ── meta description（蔵・銘柄・note・副原料を常に合成。noteだけだと10字前後になりCTRを落とすため）──
     _subs = [s for s in (b.get('sub_ingredients') or []) if s and s != "米のみ"]
@@ -820,6 +831,8 @@ def build_html(brand, detail, brewery, idx):
     _img_file = REPO_ROOT / "assets" / "images" / "brewery" / f"{slug}.webp"
     _img = (SITE_URL + f"/assets/images/brewery/{slug}.webp") if _img_file.exists() \
         else (SITE_URL + "/assets/images/og.png")
+    if _bottle:  # ボトル画像がある銘柄は、OGP・Product もその瓶にする
+        _img = SITE_URL + f"/assets/images/bottles/{_bottle}"
     _product = {"@context": "https://schema.org/", "@type": "Product", "name": name,
                 "brand": {"@type": "Brand", "name": brewery["name"]},
                 "manufacturer": {"@id": SITE_URL + f"/brewery/{slug}.html#brewery"},

@@ -110,6 +110,17 @@ main { position:relative; z-index:1; }
   .brand-image img { max-height:180px; }
   .brand-image__cap { right:2rem; font-size:.66rem; }
 }
+/* ── 銘柄のボトル画像（実物の商品写真を見本に撮り直したイメージ。tools/bottle_images.py） ──
+   正方形で中央に置く。副原料バナーの代わりに出す。 */
+.brand-bottle { max-width:1100px; margin:0 auto 2.5rem; padding:0 2rem; display:flex; justify-content:center; }
+.brand-bottle__frame { position:relative; width:min(380px,100%); margin:0; }
+.brand-bottle__frame img { display:block; width:100%; height:auto; border:1px solid var(--line); }
+.brand-bottle__cap { position:absolute; bottom:.55rem; right:.6rem;
+  font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.68rem; letter-spacing:.08em;
+  color:rgba(255,255,255,.95); background:rgba(26,23,23,.5); padding:.15rem .5rem; }
+@media (max-width:640px){
+  .brand-bottle { padding:0 1.25rem; margin-bottom:2rem; }
+}
 
 .spec-board {
   max-width:1100px; margin:0 auto; padding:0 2rem 2rem;
