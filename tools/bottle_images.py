@@ -216,6 +216,14 @@ BOTTLE_IMAGES = {
                "checked": "2026-10-24 私＋別Agentの照合で合格（取扱店の写真＋公式写真のラベル部分が見本）。2回目で合格（1回目は翔空の空が崩れた）"},
     "ine-to-agave:14": {"file": "ine-to-agave-14.webp", "ref": "https://item.rakuten.co.jp/izumise/020412/",
                "checked": "2026-10-24 私＋別Agentの照合で合格（取扱店の写真が見本）。3回目で合格（ロゴINE to AGAVEが崩れた）。首とキャップの細字をぼかし"},
+    "ine-to-agave:13": {"file": "ine-to-agave-13.webp", "ref": "https://item.rakuten.co.jp/auc-horie/inetoagave52/",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（取扱店の写真が見本）。キャップと首テープの細字をぼかし"},
+    "librom:1": {"file": "librom-1.webp", "ref": "https://librom.jp/products/hakata-bijin",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（公式商品ページの写真が見本）。Craft Sake Breweryの細字をぼかし"},
+    "adachi-noujo:1": {"file": "adachi-noujo-1.webp", "ref": "https://sakefuruki.base.shop/items/73561290",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（取扱店の商品ページのメイン写真が見本）。2回目で合格（1回目は副題が崩れた）。キャップ・首・ラベル下の細字をぼかし"},
+    "dejima-hosendo:1": {"file": "dejima-hosendo-1.webp", "ref": "https://jp.sake-times.com/special/press/p_dejima-housendo_shiun",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（紫雲の発売記事の写真から瓶を切り出して見本に）。芳の右下の細字をぼかし"},
 }
 
 
