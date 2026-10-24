@@ -27,6 +27,7 @@ from a8_link import (
     is_available as a8_available, render_pixel as a8_pixel,
 )
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
+from bottle_images import thumb_tag, BOTTLE_IMAGES, FURUSATO_ALIASES
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
@@ -163,6 +164,12 @@ main { position:relative; z-index:1; }
 }
 .entry__brewery::before { content:"— "; color:var(--accent); }
 .entry__specs { display:flex; gap:.4rem; flex-wrap:wrap; }
+/* 行の先頭のボトル（縦長サムネイル）。画像の無い銘柄は同じ大きさの線画の枠で形をそろえる */
+.entry__head { display:flex; align-items:center; gap:.9rem; min-width:0; }
+.entry__thumb { flex:0 0 auto; display:block; width:40px; height:86px; background:var(--bg-alt); }
+.entry__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+.entry__thumb--none { background:var(--bg-alt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 90' fill='none' stroke='%23D9CDB8' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M16 4h8v5h-8z'/%3E%3Cpath d='M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9'/%3E%3C/svg%3E") center/18px auto no-repeat; }
+.thumb-note { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.78rem; color:var(--ink-mute); margin:-.4rem 0 .9rem; }
 .spec-pill {
   font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:500;
   font-size:.78rem; letter-spacing:.02em; color:var(--ink-soft);
@@ -574,10 +581,10 @@ def render_entry(brewery_slug, brand, idx=0):
     specs_html = ' '.join(specs)
     return f"""
         <a class="entry" href="../brand/{brewery_slug}-{idx}.html">
-          <div>
+          <div class="entry__head">{thumb_tag(brewery_slug, idx)}<div>
             <div class="entry__brand">{brand['name']}</div>
             <div class="entry__brewery">{b['name']}</div>
-          </div>
+          </div></div>
           <div class="entry__specs">{specs_html}</div>
           <div class="entry__brewery" style="text-align:right">{b['prefecture']}</div>
         </a>"""
@@ -752,6 +759,7 @@ def gen_subingredients():
     {img_html}
     <h2 class="cat-title">{cat_jp}</h2>
     <p class="cat-desc">{cat_desc}</p>
+    <p class="thumb-note">ボトルの画像は、商品写真をもとに作り直したイメージです（線画は画像の無い銘柄）。</p>
     <div class="entries">"""
         for slug, brand, idx in entries:
             html += render_entry(slug, brand, idx)
@@ -981,6 +989,27 @@ def _furusato_portal_pill(slug, code, urls):
             f'{a8_pixel(code)}')
 
 
+def _furusato_thumb(slug, rep):
+    """ふるさと納税の行のボトル。代表の返礼品が、ボトル画像のある1銘柄に特定できるときだけ出す。
+    別の酒の瓶を見せると嘘になるので、名前で一致しないもの・詰め合わせは線画の枠にする。"""
+    import re as _re
+    # 詰め合わせ（飲み比べ・セット・A＋B・A・B）は1本の瓶に特定できないので出さない
+    if not rep or any(w in rep for w in ("飲み比べ", "セット", "＋", "+", "・")):
+        return thumb_tag(slug, -1)
+    norm = lambda t: _re.sub(r"[\s　（）()【】「」]", "", _re.sub(r"\d+\s*ml.*$", "", t))
+    r = norm(rep)
+    hits = []
+    for key in BOTTLE_IMAGES:
+        s_, i_ = key.split(":")
+        if s_ != slug:
+            continue
+        name = norm(BRANDS[slug][int(i_)]["name"]) if slug in BRANDS and int(i_) < len(BRANDS[slug]) else ""
+        aliases = [norm(a) for a in FURUSATO_ALIASES.get(key, [])]
+        if name and (name == r or name in r and len(name) >= 4) or r in aliases:
+            hits.append(int(i_))
+    return thumb_tag(slug, hits[0] if len(hits) == 1 else -1)
+
+
 def _render_furusato_entries(breweries):
     """ふるさと納税ハブの蔵カードを組み立てる（県グループの中身）。"""
     out = []
@@ -1017,10 +1046,10 @@ def _render_furusato_entries(breweries):
         rep = sorted(pool, key=lambda i: i.get("yen") or 10 ** 9)[0]["brand"] if pool else ""
         out.append(f"""
           <div class="entry entry--furusato" data-portals="{' '.join(seen)}">
-            <div>
+            <div class="entry__head">{_furusato_thumb(slug, rep)}<div>
               <div class="entry__brand"><a href="../brewery/{slug}.html">{b['name']}</a></div>
               <div class="entry__brewery">{data['city']}　/　{rep}</div>
-            </div>
+            </div></div>
             <div class="entry__specs">{portals_html}</div>
             <div class="entry__brewery" style="text-align:right">{yen}</div>
           </div>""")
@@ -1203,6 +1232,7 @@ def gen_furusato():
       ※{_pr_portals}のリンクはアフィリエイト広告（PR）です。寄附額に影響はありません。</p>
     <nav class="fchips" aria-label="ポータルで絞る">{''.join(_chips)}</nav>
     <span id="fresult">すべて表示中 {len(confirmed)} 蔵</span>
+    <p class="thumb-note">ボトルの画像は、商品写真をもとに作り直したイメージです（代表の返礼品の銘柄が特定できるときだけ。線画は画像の無いもの）。</p>
     <div class="fgroups">"""
 
     for _pref, _members in _by_pref:

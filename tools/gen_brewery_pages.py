@@ -28,6 +28,7 @@ from brewery_about import about_of, founder_of
 from gen_axes_pages import categorize_ingredient, region_anchor
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
 from moshimo_link import resolve_rakuten, resolve_yahoo, resolve_amazon, brewery_shop_links
+from bottle_images import bottle_file
 from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
 from moshimo_link import YAHOO_ENABLED
 
@@ -313,9 +314,17 @@ main { position:relative; z-index:1; }
   color:var(--ink-mute); letter-spacing:.02em;
 }
 .brand-card__links {
-  display:flex; align-items:center; gap:1.2rem; margin-top:auto;
+  display:flex; flex-wrap:wrap; align-items:center; gap:.6rem 1.2rem; margin-top:auto;
   padding-top:.85rem; border-top:1px solid var(--line-soft);
 }
+/* ボトルのサムネイル（右）＋文字（左）。画像が無い銘柄も同じ枠に線画を置いて形をそろえる */
+.brand-card__main { display:grid; grid-template-columns:1fr 84px; column-gap:1rem; align-items:start; }
+.brand-card__text { display:flex; flex-direction:column; gap:.62rem; min-width:0; }
+.brand-card__thumb { display:block; width:84px; aspect-ratio:168/360; background:var(--bg-alt); }
+.brand-card__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+.brand-card__thumb--none { display:flex; align-items:center; justify-content:center; color:var(--line); }
+@media (max-width:420px) { .brand-card__main { grid-template-columns:1fr 64px; column-gap:.75rem; }
+  .brand-card__thumb { width:64px; } }
 .brand-card__shoplink {
   font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.88rem; letter-spacing:.02em;
   color:var(--ink-mute); text-decoration:none; transition:color .25s;
@@ -328,11 +337,14 @@ main { position:relative; z-index:1; }
   display:inline-flex; align-items:center; justify-content:center;
   min-height:44px; padding:.4rem 1.05rem; color:#F5F0E7; text-decoration:none;
   font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
-  font-size:.8rem; letter-spacing:.06em;
+  font-size:.8rem; letter-spacing:.06em; white-space:nowrap;
   transition:filter .25s, transform .15s;
 }
 .brand-card__buybtn:hover { filter:brightness(1.1); transform:translateY(-1px); }
-.brand-card__shoplink + .brand-card__buybtn { margin-left:auto; }
+/* 購入ボタンがあるカードは「詳細を見る」を1行目、ボタンを2行目に同じ幅で並べる
+   （横に詰めると半幅カードで折り返し、ボタンが左右ばらばらに落ちていた） */
+.brand-card__links:has(.brand-card__buybtn) .brand-card__shoplink { flex-basis:100%; }
+.brand-card__links .brand-card__buybtn { flex:1 1 0; }
 .brand-card__buybtn--rakuten { background:linear-gradient(135deg, #BF0000 0%, #C9242E 100%); }
 /* Yahoo!の赤は楽天よりやや明るく取りつつ、白文字がAA(4.5:1)を満たす明度に抑える */
 .brand-card__buybtn--yahoo { background:linear-gradient(135deg, #E1001E 0%, #C40019 100%); }
@@ -574,7 +586,13 @@ HEAD = """<!DOCTYPE html>
 """
 
 
-def render_brand_card(brand, idx=0, brewery_slug=""):
+# ボトル画像の無い銘柄のカードに置く線画（実物の写真ではないと分かる、ごく薄い瓶の輪郭）
+_BOTTLE_SVG = ('<svg viewBox="0 0 40 90" width="34" height="76" fill="none" stroke="currentColor" '
+               'stroke-width="1.4" stroke-linejoin="round"><path d="M16 4h8v5h-8z"/>'
+               '<path d="M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9"/></svg>')
+
+
+def render_brand_card(brand, idx=0, brewery_slug="", with_thumb=False):
     name = brand["name"]
     href = f"../brand/{brewery_slug}-{idx}.html" if brewery_slug else "#"
 
@@ -620,14 +638,23 @@ def render_brand_card(brand, idx=0, brewery_slug=""):
     for _label, _url, _kind in _shop:
         shop_html += (f'<a class="brand-card__buybtn brand-card__buybtn--{_kind}" '
                       f'href="{_url}" target="_blank" rel="nofollow sponsored noopener">{_label}</a>')
+    body_html = f"""{spec_html}
+        {sub_html}
+        {note_html}
+        {price_html}"""
+    if with_thumb:
+        # 同じ蔵のカードは形をそろえる：瓶の画像が無い銘柄も同じ枠に線画を置く（写真が無いことが分かる見せ方）
+        _bf = bottle_file(brewery_slug, idx)
+        thumb = (f'<a class="brand-card__thumb" href="{href}" tabindex="-1" aria-hidden="true">'
+                 f'<img src="../assets/images/bottles/t/{_bf}" alt="" width="168" height="360" '
+                 f'loading="lazy" decoding="async"></a>') if _bf else (
+                 '<div class="brand-card__thumb brand-card__thumb--none" aria-hidden="true">' + _BOTTLE_SVG + '</div>')
+        body_html = f'<div class="brand-card__main"><div class="brand-card__text">{body_html}</div>{thumb}</div>'
     return f"""
       <div class="brand-card" id="b{idx}">
         <div class="brand-card__no">{idx + 1:02d}</div>
         <h3 class="brand-card__title"><span class="role-chip role-chip--brand brand-card__chip">銘柄</span><a class="brand-card__name" href="{href}">{name}</a></h3>
-        {spec_html}
-        {sub_html}
-        {note_html}
-        {price_html}
+        {body_html}
         <div class="brand-card__links">
           <a class="brand-card__shoplink" href="{href}">銘柄の詳細を見る →</a>
           {shop_html}
@@ -716,7 +743,10 @@ def render(brewery, index, prev_brewery, next_brewery):
     else:
         next_html = '<span></span>'
 
-    brand_cards_html = ''.join(render_brand_card(b, i, brewery["slug"]) for i, b in enumerate(brands))
+    # 1銘柄でもボトル画像がある蔵は、全カードにサムネイル枠を付ける（カードの形をそろえる）
+    _with_thumb = any(bottle_file(brewery["slug"], i) for i in range(len(brands)))
+    brand_cards_html = ''.join(render_brand_card(b, i, brewery["slug"], _with_thumb) for i, b in enumerate(brands))
+    _thumb_note = ('ボトルの画像は、商品写真をもとに作り直したイメージです（線画は画像の無い銘柄）。' if _with_thumb else '')
     if not brands:
         brand_cards_html = '<div class="no-brands">銘柄情報は調査中です</div>'
 
@@ -976,7 +1006,7 @@ def render(brewery, index, prev_brewery, next_brewery):
       <h2 class="section-meta__label">BRANDS / {len(brands)} 銘柄</h2>
       <span class="section-meta__rule"></span>
     </div>
-    <p class="brands-note">価格は記載時点の参考値です。最新の価格・在庫は各リンク先でご確認ください。少量生産・限定流通のため、店頭・店内提供のみの銘柄もあります。</p>
+    <p class="brands-note">価格は記載時点の参考値です。最新の価格・在庫は各リンク先でご確認ください。少量生産・限定流通のため、店頭・店内提供のみの銘柄もあります。{_thumb_note}</p>
     <div class="brands">{brand_cards_html}
     </div>
     {brewery_shops_html}

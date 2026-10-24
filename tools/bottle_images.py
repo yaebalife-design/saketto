@@ -81,6 +81,22 @@ BOTTLE_IMAGES = {
 }
 
 
+# ふるさと納税の返礼品名と DB の銘柄名が表記違いのもの（同じ商品であることを見本の出典で確認済み）
+#   nomu:0 シシカム … 見本写真の出典が ANA のふるさと納税「SHISHIKAMU 720ml×6本」のページそのもの
+FURUSATO_ALIASES = {"nomu:0": ["SHISHIKAMU"]}
+
+
+def thumb_tag(slug, idx, rel="../", cls="entry__thumb"):
+    """一覧の行に置く縦長サムネイル。画像の無い銘柄は同じ大きさの線画の枠（CSS側で描く）。"""
+    f = bottle_file(slug, idx)
+    if f and not (_DIR / "t" / f).exists():
+        f = None  # サムネイルを作り忘れた銘柄で壊れた画像を出さない
+    if f:
+        return (f'<span class="{cls}"><img src="{rel}assets/images/bottles/t/{f}" alt="" '
+                f'width="168" height="360" loading="lazy" decoding="async"></span>')
+    return f'<span class="{cls} {cls}--none" aria-hidden="true"></span>'
+
+
 def bottle_file(slug, idx):
     """掲載してよいボトル画像のファイル名（無ければ None）。"""
     if not SHOW_BOTTLE_PHOTOS:

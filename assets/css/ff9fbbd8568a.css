@@ -214,9 +214,17 @@ main { position:relative; z-index:1; }
   color:var(--ink-mute); letter-spacing:.02em;
 }
 .brand-card__links {
-  display:flex; align-items:center; gap:1.2rem; margin-top:auto;
+  display:flex; flex-wrap:wrap; align-items:center; gap:.6rem 1.2rem; margin-top:auto;
   padding-top:.85rem; border-top:1px solid var(--line-soft);
 }
+/* ボトルのサムネイル（右）＋文字（左）。画像が無い銘柄も同じ枠に線画を置いて形をそろえる */
+.brand-card__main { display:grid; grid-template-columns:1fr 84px; column-gap:1rem; align-items:start; }
+.brand-card__text { display:flex; flex-direction:column; gap:.62rem; min-width:0; }
+.brand-card__thumb { display:block; width:84px; aspect-ratio:168/360; background:var(--bg-alt); }
+.brand-card__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+.brand-card__thumb--none { display:flex; align-items:center; justify-content:center; color:var(--line); }
+@media (max-width:420px) { .brand-card__main { grid-template-columns:1fr 64px; column-gap:.75rem; }
+  .brand-card__thumb { width:64px; } }
 .brand-card__shoplink {
   font-family:'Zen Kaku Gothic Antique', sans-serif; font-size:.88rem; letter-spacing:.02em;
   color:var(--ink-mute); text-decoration:none; transition:color .25s;
@@ -229,11 +237,14 @@ main { position:relative; z-index:1; }
   display:inline-flex; align-items:center; justify-content:center;
   min-height:44px; padding:.4rem 1.05rem; color:#F5F0E7; text-decoration:none;
   font-family:'Zen Kaku Gothic Antique', sans-serif; font-weight:700;
-  font-size:.8rem; letter-spacing:.06em;
+  font-size:.8rem; letter-spacing:.06em; white-space:nowrap;
   transition:filter .25s, transform .15s;
 }
 .brand-card__buybtn:hover { filter:brightness(1.1); transform:translateY(-1px); }
-.brand-card__shoplink + .brand-card__buybtn { margin-left:auto; }
+/* 購入ボタンがあるカードは「詳細を見る」を1行目、ボタンを2行目に同じ幅で並べる
+   （横に詰めると半幅カードで折り返し、ボタンが左右ばらばらに落ちていた） */
+.brand-card__links:has(.brand-card__buybtn) .brand-card__shoplink { flex-basis:100%; }
+.brand-card__links .brand-card__buybtn { flex:1 1 0; }
 .brand-card__buybtn--rakuten { background:linear-gradient(135deg, #BF0000 0%, #C9242E 100%); }
 /* Yahoo!の赤は楽天よりやや明るく取りつつ、白文字がAA(4.5:1)を満たす明度に抑える */
 .brand-card__buybtn--yahoo { background:linear-gradient(135deg, #E1001E 0%, #C40019 100%); }
