@@ -36,7 +36,7 @@ TASTING = {
 
     "pukupuku": [
         {
-            "brand": "#ODAKA 蔵付酵母 木桶どぶろく ★ICC SAKE AWARD 2025優勝",
+            "brand": "#ODAKA 蔵付酵母 木桶どぶろく ★ICC SAKE AWARD 2025 優勝蔵の決勝出品酒",
             "notes": "甘酸っぱくパイナップルのようなアロマが特徴。小高の有機栽培米「愛国」使用、野生酵母・木桶・常温発酵という江戸時代さながらのどぶろく。南相馬市限定。",
             "source_name": "ICC SAKE AWARD 2025結果",
             "source_url": "https://industry-co-creation.com/news/115481",
@@ -53,7 +53,7 @@ TASTING = {
 
     "linne": [
         {
-            "brand": "800 大麦〈天盃〉★ICC SAKE AWARD 2025準優勝",
+            "brand": "800 大麦〈天盃〉",
             "notes": "スミレやラズベリーを思わせる、エレガントで透明感のある甘さと清涼感をもつほのかな上立ち香。白麹がもたらすクリアな酸味と、繊細な甘味が美しく調和。中盤からは大麦の芳醇なうまみと穀物感が混ざり合い、深い満足感の余韻。",
             "temp": None,
             "pairing": "6皿×6酒のペアリングコース展開あり（京食材活用）",

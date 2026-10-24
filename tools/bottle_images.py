@@ -78,6 +78,22 @@ BOTTLE_IMAGES = {
                "checked": "2026-10-24 私＋別Agentの照合で合格。修正なし"},
     "haccoba:3": {"file": "haccoba-3.webp", "ref": "https://note.com/haccoba/n/na8cdb7d00ec6",
                "checked": "2026-10-24 私＋別Agentの照合で合格。丸の中の細字をぼかし"},
+    "ine-to-agave:10": {"file": "ine-to-agave-10.webp", "ref": "https://note.com/inetoagave/n/nb39d090f75df",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。見本にない英字・蔵名の細字をぼかし"},
+    "lagoon:7": {"file": "lagoon-7.webp", "ref": "https://lagoonbrew.official.ec/items/90929808",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。修正なし"},
+    "lagoon:9": {"file": "lagoon-9.webp", "ref": "https://lagoonbrew.official.ec/items/110049726",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。修正なし"},
+    "lagoon:11": {"file": "lagoon-11.webp", "ref": "https://lagoonbrew.official.ec/items/78443967",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。翔空横の読み仮名をぼかし"},
+    "happy-taro:10": {"file": "happy-taro-10.webp", "ref": "https://happytaro.jp/doburoku/seasonal/ichigo/",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。修正なし"},
+    "happy-taro:11": {"file": "happy-taro-11.webp", "ref": "https://happytaro.jp/doburoku/seasonal/marou/",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。修正なし"},
+    "nondo:8": {"file": "nondo-8.webp", "ref": "https://reika-sake.com/products/03ndd13906331",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。修正なし（PETボトル）"},
+    "dejima-hosendo:9": {"file": "dejima-hosendo-9.webp", "ref": "https://shop.djm-hosendo.co.jp/products/detail/111",
+               "checked": "2026-10-24 私＋別Agentの照合で合格。2回目で合格（1回目は首の封が違った）。縦書き・読み仮名をぼかし"},
 }
 
 

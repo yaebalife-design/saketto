@@ -40,7 +40,7 @@ AWARDS = {
         {"type": "award", "year": 2025, "title": "ICC SAKE AWARD 優勝",
          "brand": "#ODAKA – 蔵付酵母 木桶どぶろく –",
          "source": "https://industry-co-creation.com/news/115481"},
-        {"type": "award", "year": 2024, "title": "ICC SAKE AWARD 決勝進出",
+        {"type": "award", "year": 2024, "title": "ICC SAKE AWARD 決勝トーナメント進出",
          "brand": None, "source": "https://industry-co-creation.com/news/99025"},
         {"type": "media", "year": 2024, "title": "京都芸術大学「クラフトサケ学」非常勤講師開設",
          "brand": "代表・立川哲之氏",

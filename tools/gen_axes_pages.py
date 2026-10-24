@@ -1341,12 +1341,18 @@ AWARDS_CSS = """
 .icc__title { font-family:'Shippori Mincho',serif; font-weight:700; color:#F5F0E7; font-size:clamp(1.9rem,4.2vw,2.9rem); line-height:1.2; margin-bottom:.8rem; }
 .icc__desc { color:#C9BFAE; font-size:.95rem; line-height:1.9; max-width:660px; margin-bottom:2.4rem; }
 .icc-list { display:flex; flex-direction:column; border-top:1px solid #463c36; }
-.icc-row { display:grid; grid-template-columns:6.5em 1fr; gap:1.4rem; align-items:center;
+.icc-row { display:grid; grid-template-columns:6.5em 1fr 112px; gap:1.4rem; align-items:center;
   padding:1.3rem .25rem; border-bottom:1px solid #463c36; text-decoration:none; transition:padding-left .25s; }
 .icc-row:hover { padding-left:.6rem; }
 .icc-row__brewery { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.2rem; color:#F5F0E7; letter-spacing:.02em; transition:color .25s; }
 .icc-row:hover .icc-row__brewery { color:#fff; }
 .icc-row__brand { font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.85rem; color:#A99C8C; margin-top:.25rem; line-height:1.5; }
+.icc-row__match { color:#8a7d6e; margin-right:.35rem; }
+/* 受賞の行に添える蔵のイメージ（賞は蔵に贈られるため。蔵ページ上部と同じ風景イメージ） */
+.icc-row__thumb { display:block; width:112px; aspect-ratio:16/10; background:#221c19; overflow:hidden; }
+@media (max-width:520px) { .icc-row { grid-template-columns:5.2em 1fr 76px; gap:.9rem; } .icc-row__thumb { width:76px; } }
+.icc-row__thumb--none { background:#221c19 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 90' fill='none' stroke='%23463c36' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M16 4h8v5h-8z'/%3E%3Cpath d='M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9'/%3E%3C/svg%3E") center/20px auto no-repeat; }
+.icc__note { color:#8a7d6e; font-size:.8rem; line-height:1.8; max-width:660px; margin:-1.6rem 0 2rem; }
 .icc-row__year { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; color:#8a7d6e; }
 .rank-chip { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.8rem;
   letter-spacing:.08em; padding:.45rem .2rem; text-align:center; line-height:1; }
@@ -1373,10 +1379,14 @@ AWARDS_CSS = """
 .dest-item__note { font-size:.83rem; color:var(--ink-mute); line-height:1.75; margin-top:.3rem; }
 
 /* その他受賞・メディア 行 */
-.acc-row { display:grid; grid-template-columns:1fr auto; gap:1.1rem; align-items:start;
+.acc-row { display:grid; grid-template-columns:96px 1fr auto; gap:1.1rem; align-items:start;
   padding:1.15rem 0; border-bottom:1px solid var(--line); text-decoration:none; color:inherit; transition:padding-left .25s; }
 .acc-row:hover { padding-left:.5rem; }
 .acc-row:last-child { border-bottom:none; }
+.acc-row__thumb { display:block; width:96px; aspect-ratio:16/10; background:var(--bg-alt); overflow:hidden; }
+.acc-row__thumb img, .icc-row__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+.acc-row__thumb--none { background:var(--bg-alt); }
+@media (max-width:520px) { .acc-row { grid-template-columns:72px 1fr auto; gap:.8rem; } .acc-row__thumb { width:72px; } }
 .acc-row__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.02rem; color:var(--ink); line-height:1.55; }
 .acc-row__brewery { font-size:.85rem; color:var(--ink-soft); margin-top:.3rem; }
 .acc-row__right { text-align:right; white-space:nowrap; }
@@ -1389,11 +1399,23 @@ AWARDS_CSS = """
 # 受賞データの brand 名から銘柄ページを特定する。
 # 部分一致だと「花風」が3銘柄に当たるなど誤リンクするため、確実なものだけ明示する。
 AWARD_BRAND_INDEX = {
-    ("ine-to-agave", "稲とアガベ OGAラベル"): 0,      # 通常版「稲とアガベ」
+    # ICC SAKE AWARD は蔵に贈られる賞で、brand は「順位を決めた試合で出した酒」。
+    # その酒がDBの銘柄と同じ商品のときだけ結ぶ（2026-10-24 公式発表で確認）。
+    #   ✕ linne「800 大麦 樽熟成」… DBの800 大麦は2025年12月発売の天盃共同醸造版で別の酒
+    #   ✕ 稲とアガベ OGAラベル … DBのどの銘柄と同じ商品か確認できない
+    ("pukupuku", "#ODAKA – 蔵付酵母 木桶どぶろく –"): 4,
     ("haccoba", "水を編む シリーズ"): 4,
-    ("linne", "800 大麦 樽熟成"): 0,
     ("dejima-hosendo", "芳扇 吟雲（九州初作付・初収穫の美山錦100%どぶろく）"): 2,
 }
+
+
+def kura_thumb(slug, cls):
+    """受賞の行に置く「蔵のイメージ」（蔵ページ上部と同じ風景イメージ。建物ではない）。無ければ線画の枠。"""
+    f = REPO_ROOT / "assets" / "images" / "brewery" / f"{slug}.webp"
+    if f.exists():
+        return (f'<span class="{cls}"><img src="../assets/images/brewery/{slug}.webp" alt="" '
+                f'width="1376" height="768" loading="lazy" decoding="async"></span>')
+    return f'<span class="{cls} {cls}--none" aria-hidden="true"></span>'
 
 
 def award_brand_href(slug, brand_name):
@@ -1437,10 +1459,11 @@ def gen_awards():
             return (0, label, "win")
         if "第3位" in title:
             return (2, "第3位", "3rd")
-        if "決勝進出" in title and "準決勝" not in title:
-            return (3, "決勝進出", "fin")
         if "準決勝" in title:
-            return (4, "準決勝", "fin")
+            return (3, "準決勝進出", "fin")
+        if "決勝トーナメント" in title:
+            # 予選を抜けた6社の勝ち抜き戦への出場（決勝戦への進出ではない）
+            return (4, "決勝T進出", "fin")
         return (5, "出場", "fin")
 
     award_brewery_count = len(set(s for s, _ in icc_entries) | set(s for s, _ in other_awards))
@@ -1453,7 +1476,7 @@ def gen_awards():
         "— 実績で選ぶ ／ ACCOLADES & GLOBAL",
         '頂点と、<span class="accent">世界</span>から。',
         'まだ10年に満たない新ジャンルが、競技会で頂点を競い、世界のトップレストランに選ばれ、欧米アジアへ渡っていく。クラフトサケの"現在地"を、受賞と海外進出から見つける。',
-        '評価の物差しがまだ固まっていない新ジャンルだからこそ、第三者の評価は銘柄選びの確かな手がかりになる。ここに載せているのは、コンテストの受賞歴や海外進出の実績を、蔵やコンテストの公式発表で確認できたものだけ。賞は「その年・その場での評価」であって絶対の序列ではないが、初めての一本を外したくないとき、贈り物で間違いたくないときの指針には十分役立つ。受賞銘柄から蔵のページへ進めば、同じ蔵の別の表現にも出会える。贈答用途なら<a href="../guide/gift.html">ギフトガイド</a>も合わせてどうぞ。'
+        '評価の物差しがまだ固まっていない新ジャンルだからこそ、第三者の評価は銘柄選びの確かな手がかりになる。ここに載せているのは、コンテストの受賞歴や海外進出の実績を、蔵やコンテストの公式発表で確認できたものだけ。賞は「その年・その場での評価」であって絶対の序列ではないが、初めての一本を外したくないとき、贈り物で間違いたくないときの指針には十分役立つ。受賞した蔵のページへ進めば、同じ蔵の別の表現にも出会える。贈答用途なら<a href="../guide/gift.html">ギフトガイド</a>も合わせてどうぞ。'
     )
     html += '<div class="awards-wrap">'
 
@@ -1471,13 +1494,18 @@ def gen_awards():
             if not b:
                 continue
             _, label, variant = rank_meta(it["title"])
-            brand_html = f'<div class="icc-row__brand">{it["brand"]}</div>' if it.get("brand") else ''
-            _bh = award_brand_href(slug, it.get("brand"))
-            _href = _bh or f"../brewery/{slug}.html"
+            # 順位は蔵に贈られる。brand は「その順位を決めた試合で出した酒」なので、そう書く
+            _match = "3位決定戦で出した酒" if variant == "3rd" else "決勝で出した酒"
+            brand_html = (f'<div class="icc-row__brand"><span class="icc-row__match">{_match}</span>'
+                          f'「{it["brand"]}」</div>') if it.get("brand") else ''
+            # 行は蔵のページへ（賞は蔵のもの）。出品酒の写真は、DBの銘柄と同じ商品のときだけ
+            _href = f"../brewery/{slug}.html"
+            _thumb = kura_thumb(slug, "icc-row__thumb")  # 賞は蔵に贈られるので、蔵のイメージを添える
             icc_rows += f"""
         <a class="icc-row" href="{_href}">
           <span class="rank-chip rank-chip--{variant}">{label}</span>
           <div><div class="icc-row__brewery">{b['name']}</div>{brand_html}</div>
+          {_thumb}
         </a>"""
     html += f"""
   </div>
@@ -1494,6 +1522,7 @@ def gen_awards():
       <div class="icc__eyebrow">— No.01 ／ ICC SAKE AWARD</div>
       <h2 class="icc__title">クラフトサケ、<br>歴代の頂点。</h2>
       <p class="icc__desc">ICCサミットが主催するSAKEの品評会「ICC SAKE AWARD」。米×副原料の新ジャンルが、年に一度ここで頂点を競う。saketto収録の蔵が刻んだ戦績を、序列で並べた。</p>
+      <p class="icc__note">順位は蔵（酒造）に贈られる賞です。勝ち抜き戦では試合ごとに酒を替えて出すため、各蔵には順位を決めた試合で出した酒を添えています（ICC公式の結果発表より）。画像は蔵のイメージで、実際の醸造所の建物ではありません。</p>
       <div class="icc-list">{icc_rows}
       </div>
     </div>
@@ -1559,6 +1588,7 @@ def gen_awards():
         pref = f'<span class="acc-row__pref">{b["prefecture"]}</span>' if show_pref else ''
         return f"""
       <a class="acc-row" href="../brewery/{slug}.html">
+        {kura_thumb(slug, "acc-row__thumb")}
         <div><div class="acc-row__title">{it['title']}</div>{brand_html}</div>
         <div class="acc-row__right">{yr}{pref}</div>
       </a>"""
@@ -1569,6 +1599,7 @@ def gen_awards():
     <div class="section-meta"><span class="section-meta__num">No. 03</span><span class="section-meta__label">OTHER ACCOLADES</span><span class="section-meta__count">/ {len(other_awards)} 件</span><span class="section-meta__rule"></span></div>
     <h2 class="cat-title">その他の受賞。</h2>
     <p class="awards-sec__desc">日本パッケージデザイン大賞、東北アントレプレナー大賞、Tokyo酒チャレンジ金賞 — 味だけでなく、デザイン・起業・品質でも評価される。</p>
+    <p class="thumb-note">画像は蔵のイメージで、実際の醸造所の建物ではありません。</p>
     <div>{other_rows}
     </div>
   </section>"""

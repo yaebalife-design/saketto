@@ -773,6 +773,10 @@ def render(brewery, index, prev_brewery, next_brewery):
         type_cls = {"award": "", "global": " warm"}.get(typ, "")
         year_html = f'<div class="acc-year">{it["year"]}</div>' if it.get("year") else '<div class="acc-year">—</div>'
         brand_html = f'<div class="acc-brand">{it["brand"]}</div>' if it.get("brand") else ''
+        if it.get("brand") and "ICC SAKE AWARD" in it["title"]:
+            # ICC は蔵に贈られる賞。brand は「その順位を決めた試合で出した酒」
+            _match = "3位決定戦で出した酒" if "第3位" in it["title"] else "決勝で出した酒"
+            brand_html = f'<div class="acc-brand">{_match}「{it["brand"]}」</div>'
         awards_cards.append(f"""
       <div class="acc-card acc-card--{cls}">
         <div class="acc-type{type_cls}">— {label}</div>

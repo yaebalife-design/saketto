@@ -267,7 +267,7 @@ BRANDS = {
          "sub_ingredients": ["ホップ"], "price": 2163, "note": ""},
         {"name": "#ODAKA 蔵付酵母 木桶どぶろく", "abv": 7, "volume_ml": 500,
          "sub_ingredients": ["米のみ"], "price": 1760,
-         "note": "ICC SAKE AWARD 2025優勝銘柄"},
+         "note": "ICC SAKE AWARD 2025で優勝したぷくぷく醸造が、決勝で出した酒"},
         {"name": "木桶発酵 全麹酒 雫取り", "abv": None, "volume_ml": 500,
          "sub_ingredients": ["米のみ（全麹）"], "price": 11000,
          "note": "木桶仕込みの全麹酒、ハイエンド"},
@@ -454,7 +454,7 @@ BRANDS = {
     "linne": [
         {"name": "800 大麦", "abv": 14, "volume_ml": 500,
          "sub_ingredients": ["大麦麹"], "price": 4967,
-         "note": "haccoba委託醸造。COEDO BREWERY川越産大麦+福島米。ICC SAKE AWARD 2025準優勝"},
+         "note": "福岡の焼酎蔵・天盃との共同醸造。国産大麦と大麦麹だけで醸す、2025年12月発売の“純麦酒”"},
         {"name": "800 蕎麦", "abv": 15, "volume_ml": 500,
          "sub_ingredients": ["蕎麦麹"], "price": 4967,
          "note": "阿部酒造委託醸造（新潟）"},
