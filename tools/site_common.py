@@ -26,6 +26,19 @@ def analytics_head():
     )
 
 
+# Google AdSense（2026-10-26 社長判断で審査申請。南部鉄瓶-DB と同じタグ・自動広告のみ）
+#   ・手動の広告ユニット（<ins class="adsbygoogle">）は置かない
+#   ・ads.txt はリポジトリ直下。CSP（_headers）に AdSense のドメインを許可してある
+#   ・手書きの index.html にも同じタグを手で入れてある（404.html には入れない）
+ADSENSE_CLIENT = "ca-pub-4574282182317615"
+
+
+def adsense_head():
+    """AdSense 自動広告タグ。絶対URLなのでページ階層に依存しない。"""
+    return ('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+            f'?client={ADSENSE_CLIENT}" crossorigin="anonymous"></script>')
+
+
 def age_gate_tag(prefix="../"):
     """年齢ゲート読み込み。prefix はリポジトリルートからの相対（サブディレクトリは "../"、ルートは ""）。"""
     return f'<script src="{prefix}assets/age-gate.v2.js" defer></script>'
@@ -151,6 +164,7 @@ def search_tag():
 def head_extra(prefix="../"):
     """head 末尾（</head> 直前）に入れる共通ブロック。"""
     return (favicon_head() + "\n" + analytics_head() + "\n"
+            + adsense_head() + "\n"
             + age_gate_tag(prefix) + "\n" + MOBILE_FIX_CSS + "\n"
             + SEARCH_CSS + "\n" + search_tag())
 

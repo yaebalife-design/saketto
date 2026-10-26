@@ -23,7 +23,7 @@ CONTACT_FORM_URL = "/contact.html"
 
 # 各ページの内容を実際に見直した日。中身を変えたら必ず更新すること
 # （放置すると「最終更新 3か月前」の表示になり、更新の止まったサイトに見える）
-UPDATED = "2026年9月15日"
+UPDATED = "2026年10月26日"
 
 # 法的ページ用の追加CSS（読み物寄りの静的ページ）
 STATIC_CSS = """
@@ -164,9 +164,18 @@ PRIVACY_BODY = f"""
   </ul>
 
   <h2>3. 広告配信について</h2>
-  <p>当サイトでは、第三者配信の広告サービス（もしもアフィリエイト〔楽天市場・Yahoo!ショッピング・Amazon〕、A8.net〔ふるさと納税ポータル〕等）を利用しています。また、Google AdSense の利用を準備しています（現在は広告の配信を行っていません）。</p>
+  <p>当サイトでは、第三者配信の広告サービス（もしもアフィリエイト〔楽天市場・Yahoo!ショッピング・Amazon〕、A8.net〔ふるさと納税ポータル〕等）を利用しています。また、Google の広告配信サービス「Google AdSense（グーグルアドセンス）」も利用しています。</p>
   <p>これらの広告配信事業者は、利用者の興味に応じた広告を表示するため、当サイトや他のサイトへのアクセスに関する情報（氏名・住所・メールアドレス・電話番号は含まれません）を Cookie を使用して収集する場合があります。</p>
-  <p>Google AdSense（導入準備中）における Cookie の利用、パーソナライズ広告の無効化（オプトアウト）については以下をご参照ください。</p>
+
+  <h3>Google AdSense</h3>
+  <ul>
+    <li>Google などの第三者配信事業者は、Cookie（DoubleClick Cookie を含む）を使用して、利用者が当サイトや他のサイトに過去にアクセスした際の情報に基づいて広告を配信します。</li>
+    <li>Google が広告 Cookie を使用することにより、Google やそのパートナーは、当サイトや他のサイトへのアクセス情報に基づいて利用者に広告を表示できます。</li>
+    <li>利用者は、<a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google の広告設定</a>でパーソナライズ広告を無効にできます。</li>
+    <li>パーソナライズ広告に使用される第三者配信事業者の Cookie は、<a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">www.aboutads.info</a> で無効にできます。</li>
+    <li>Cookie はブラウザの設定でも無効にできます。</li>
+  </ul>
+  <p>Google の広告における Cookie の利用については以下をご参照ください。</p>
   <ul>
     <li><a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener">広告 — ポリシーと規約（Google）</a></li>
   </ul>
@@ -201,7 +210,7 @@ DISCLAIMER_BODY = f"""
     <li>もしもアフィリエイト（楽天市場・Yahoo!ショッピング・Amazon）<span class="note-inline">— 現在利用中</span></li>
     <li>ふるさと納税ポータルのアフィリエイト（楽天ふるさと納税〔もしもアフィリエイト経由〕、au PAY ふるさと納税〔A8.net経由〕等）<span class="note-inline">— 現在利用中</span></li>
     <li>Amazonアソシエイト・プログラム<span class="note-inline">— 現在利用中（もしもアフィリエイト経由）</span></li>
-    <li>Google AdSense<span class="note-inline">— 準備中（現在、当サイトに広告は配信されていません）</span></li>
+    <li>Google AdSense<span class="note-inline">— Googleの審査中（審査が通るまで広告は表示されません）</span></li>
   </ul>
   <p>銘柄ページ等の「楽天市場で探す」などのボタン・リンクは、上記プログラムの広告リンクです。リンクをクリックして遷移した先で商品・サービスを購入・寄附した場合、運営者に一定の紹介料が支払われる仕組みです。</p>
   <p>Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>

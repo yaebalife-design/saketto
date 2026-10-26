@@ -18,13 +18,16 @@
 # ・img-src の *.a8.net / i.moshimo.com はアフィリエイトのインプレッション計測ピクセル。
 #   許可していなかったため全ページでブロックされ、A8・もしもの表示回数計測が
 #   機能していなかった（2026/09/02 修正。cloudflareinsights と同型の事故）
+# ・Google AdSense（2026/10/26 審査申請）: 広告スクリプト・計測・広告枠の iframe に
+#   googlesyndication / doubleclick / google.com / google.co.jp / gstatic / adtrafficquality を許可。
+#   広告画像は配信元が広告ごとに違うため img-src は https: 全体を許可（画像のみ）
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=31536000
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.a8.net https://i.moshimo.com; connect-src 'self' https://*.google-analytics.com https://*.googletagmanager.com https://*.analytics.google.com https://cloudflareinsights.com; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.google.co.jp https://*.gstatic.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.a8.net https://i.moshimo.com https:; connect-src 'self' https://*.google-analytics.com https://*.googletagmanager.com https://*.analytics.google.com https://cloudflareinsights.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.google.co.jp https://*.adtrafficquality.google; frame-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.google.co.jp https://*.adtrafficquality.google; frame-ancestors 'none'
   Cache-Control: public, max-age=3600, must-revalidate
 
 # JS・検索インデックス等（不具合修正が翌日には反映される長さに留める）
