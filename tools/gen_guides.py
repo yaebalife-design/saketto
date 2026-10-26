@@ -22,6 +22,7 @@ from gen_axes_pages import CSS as BASE_CSS  # 世界観CSSを流用
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
 from breweries_brands import BRANDS          # おすすめ記事：スペックを一次ソースDBから直接引く
 from breweries_master import by_slug
+from bottle_images import thumb_tag
 from moshimo_link import resolve_rakuten, resolve_amazon
 from gen_sample_v2 import RAKUTEN_ENABLED, AMAZON_ENABLED
 
@@ -194,7 +195,7 @@ EXTRA_CSS = """
 .pick-group { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.18rem; color:var(--ink); max-width:820px; margin:2.6rem 0 1.1rem; padding-bottom:.5rem; border-bottom:1px solid var(--line); letter-spacing:.03em; }
 .pick-group:first-of-type { margin-top:.6rem; }
 .pick-group .en { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.8rem; color:var(--accent); margin-left:.6rem; letter-spacing:.06em; }
-.pick { display:grid; grid-template-columns:auto 1fr; gap:1.1rem 1.3rem; max-width:820px; padding:1.5rem 0; border-bottom:1px solid var(--line-soft); }
+.pick { display:grid; grid-template-columns:auto 1fr 96px; gap:1.1rem 1.3rem; max-width:820px; padding:1.5rem 0; border-bottom:1px solid var(--line-soft); }
 .pick__no { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2rem; line-height:1; color:var(--line); padding-top:.1rem; }
 .pick__head { display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem .9rem; margin-bottom:.5rem; }
 .pick__kura { font-size:.82rem; color:var(--ink-mute); letter-spacing:.04em; }
@@ -214,7 +215,14 @@ EXTRA_CSS = """
 .pick__btn--amazon { color:var(--accent); background:transparent; border:1px solid var(--accent); margin-left:.5rem; }
 .pick__btn--amazon:hover { color:var(--paper); background:var(--accent); }
 .pick__pr { font-size:.72rem; color:var(--ink-mute); letter-spacing:.04em; }
-@media (max-width:600px){ .pick { grid-template-columns:1fr; gap:.2rem; } .pick__no { font-size:1.4rem; } }
+/* 銘柄のボトル（画像の無い銘柄は同じ大きさの線画） */
+.pick__fig { display:block; align-self:start; }
+.pick__thumb { display:block; width:96px; height:206px; background:var(--bg-alt); }
+.pick__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+.pick__thumb--none { background:var(--bg-alt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 90' fill='none' stroke='%23D9CDB8' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M16 4h8v5h-8z'/%3E%3Cpath d='M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9'/%3E%3C/svg%3E") center/34px auto no-repeat; }
+.pick-imgnote { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.78rem; color:var(--ink-mute); max-width:820px; margin:.2rem 0 0; }
+@media (max-width:600px){ .pick { grid-template-columns:1fr 64px; gap:.2rem .9rem; } .pick__no { font-size:1.4rem; grid-column:1/-1; }
+  .pick__thumb { width:64px; height:137px; } .pick__thumb--none { background-size:24px auto; } }
 
 /* スペック比較表 */
 .cmp-wrap { max-width:820px; overflow-x:auto; margin:1rem 0 1rem; }
@@ -1007,8 +1015,13 @@ def _osusume_tags(b):
     return "".join(f'<span class="pick__tag">{s}</span>' for s in subs)
 
 
+# おすすめ・ギフトの銘柄カードに添えるボトル画像の注記（ページに1回）
+PICK_IMGNOTE = ('    <p class="pick-imgnote">ボトルの画像は、商品写真をもとに作り直したイメージです'
+                '（線画は画像の無い銘柄）。</p>\n')
+
+
 def build_osusume():
-    cards = ""
+    cards = PICK_IMGNOTE
     cur_group = None
     for i, (group, group_en, slug, idx, comment) in enumerate(OSUSUME_PICKS, start=1):
         if group != cur_group:
@@ -1041,6 +1054,7 @@ def build_osusume():
           {btn}
         </div>
       </div>
+      <a class="pick__fig" href="../brand/{slug}-{idx}.html" tabindex="-1" aria-hidden="true">{thumb_tag(slug, idx, cls="pick__thumb")}</a>
     </div>
 """
 
@@ -1498,7 +1512,7 @@ GIFT_PICKS = [
 
 
 def build_gift():
-    cards = ""
+    cards = PICK_IMGNOTE
     cur = None
     for i, (scene, scene_en, slug, idx, comment) in enumerate(GIFT_PICKS, start=1):
         if scene != cur:
@@ -1531,6 +1545,7 @@ def build_gift():
           {btn}
         </div>
       </div>
+      <a class="pick__fig" href="../brand/{slug}-{idx}.html" tabindex="-1" aria-hidden="true">{thumb_tag(slug, idx, cls="pick__thumb")}</a>
     </div>
 """
 

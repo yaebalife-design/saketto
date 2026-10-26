@@ -17,6 +17,7 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug
 from breweries_brands import BRANDS, is_alias
+from bottle_images import thumb_tag
 from gen_axes_pages import categorize_ingredient, INGREDIENT_CATEGORIES
 
 CAT_JP = {k: jp for k, jp, _en, _d in INGREDIENT_CATEGORIES}
@@ -101,14 +102,17 @@ def next_section_html(slug, idx, num_str="No. 08"):
         sub_txt = "・".join(subs[:2]) if subs else "米と米麹のみ"
         cards += f"""
       <a class="next-card" href="../brand/{bslug}-{i}.html">
-        <div class="next-card__kicker">{reason}</div>
-        <div class="next-card__name">{b['name']}</div>
-        <div class="next-card__meta">{brw['name']}（{brw['prefecture']}）　／　{sub_txt}</div>
+        {thumb_tag(bslug, i, cls="next-card__thumb")}
+        <div class="next-card__body">
+          <div class="next-card__kicker">{reason}</div>
+          <div class="next-card__name">{b['name']}</div>
+          <div class="next-card__meta">{brw['name']}（{brw['prefecture']}）　／　{sub_txt}</div>
+        </div>
       </a>"""
     return f"""
   <section class="section">
     <div class="section-meta"><span class="section-meta__num">{num_str}</span><h2 class="section-meta__label">NEXT / 次に出会う</h2><span class="section-meta__rule"></span></div>
-    <p class="next-note">副原料の系統と蔵のつながりから、データベースが機械的に選んだ「次の一本」。</p>
+    <p class="next-note">副原料の系統と蔵のつながりから、データベースが機械的に選んだ「次の一本」。ボトルの画像は、商品写真をもとに作り直したイメージです（線画は画像の無い銘柄）。</p>
     <div class="next-grid">{cards}
     </div>
   </section>"""

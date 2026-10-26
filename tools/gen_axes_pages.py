@@ -195,16 +195,23 @@ a.spec-pill.portal-link:hover { background:var(--accent); color:var(--paper); bo
   .brewery-cell:nth-child(2n) { border-right:none; }
 }
 .brewery-cell .brewery-card { border-bottom:none; border-right:none; flex:1; }
-.card-picks { display:flex; flex-wrap:wrap; align-items:baseline; gap:.4rem .55rem;
+.card-picks { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem .8rem;
   padding:0 1.5rem 1.1rem; }
-.card-picks__label { font-family:'Cormorant Garamond',serif; font-style:italic;
+.card-picks__label { flex-basis:100%; font-family:'Cormorant Garamond',serif; font-style:italic;
   font-size:.72rem; color:var(--ink-mute); letter-spacing:.08em; }
-.card-picks__item { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.82rem;
-  color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);
-  padding-bottom:1px; }
-.card-picks__item:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.card-picks__item { display:inline-flex; align-items:center; gap:.45rem;
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.82rem;
+  color:var(--ink); text-decoration:none; }
+/* 下線は文字に沿わせる（折り返したとき箱の幅に線が伸びないように） */
+.card-picks__name { text-decoration:underline; text-decoration-color:var(--line);
+  text-decoration-thickness:1px; text-underline-offset:4px; }
+.card-picks__item:hover { color:var(--accent); }
+.card-picks__item:hover .card-picks__name { text-decoration-color:var(--accent); }
+/* 該当銘柄のボトル（画像の無い銘柄は同じ大きさの線画） */
+.card-picks__thumb { flex:0 0 auto; display:block; width:22px; height:47px; background:var(--bg-alt); }
+.card-picks__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+.card-picks__thumb--none { background:var(--bg-alt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 90' fill='none' stroke='%23D9CDB8' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M16 4h8v5h-8z'/%3E%3Cpath d='M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9'/%3E%3C/svg%3E") center/11px auto no-repeat; }
 .card-picks__more { font-size:.78rem; color:var(--ink-mute); }
-@media (max-width:640px){ .card-picks { padding:0 1.25rem 1rem; } }
 
 .brewery-grid {
   display:grid; grid-template-columns:1fr; gap:0;
@@ -641,8 +648,11 @@ def render_brewery_card(brewery, idx, picks=None):
     """
     picks_html = ""
     if picks:
-        links = "".join(
-            f'<a class="card-picks__item" href="{path}">{name}</a>' for name, path in picks[:4])
+        def _pick(name, path):
+            m = re.search(r"brand/([a-z0-9-]+)-(\d+)\.html", path)
+            th = thumb_tag(m.group(1), int(m.group(2)), cls="card-picks__thumb") if m else ""
+            return f'<a class="card-picks__item" href="{path}">{th}<span class="card-picks__name">{name}</span></a>'
+        links = "".join(_pick(name, path) for name, path in picks[:4])
         more = ('<span class="card-picks__more">ほか</span>' if len(picks) > 4 else "")
         picks_html = f'<div class="card-picks"><span class="card-picks__label">該当銘柄</span>{links}{more}</div>'
     return f"""
@@ -843,6 +853,7 @@ def gen_regions():
       <span class="section-meta__rule"></span>
     </div>
     {img_html}
+    <p class="thumb-note">ボトルの画像は、商品写真をもとに作り直したイメージです（線画は画像の無い銘柄）。</p>
     <div class="brewery-grid">"""
         for i, b in enumerate(breweries, 1):
             html += render_brewery_card(b, i, picks=brand_picks(b))
@@ -913,6 +924,7 @@ def gen_genres():
     </div>
     <h2 class="cat-title">{g_jp}</h2>
     <p class="cat-desc">{g_desc}</p>
+    <p class="thumb-note">ボトルの画像は、商品写真をもとに作り直したイメージです（線画は画像の無い銘柄）。</p>
     <div class="brewery-grid">"""
         for i, b in enumerate(breweries, 1):
             html += render_brewery_card(b, i, picks=brands_in_genre(b, g_key))
@@ -1349,17 +1361,14 @@ AWARDS_CSS = """
 .icc__title { font-family:'Shippori Mincho',serif; font-weight:700; color:#F5F0E7; font-size:clamp(1.9rem,4.2vw,2.9rem); line-height:1.2; margin-bottom:.8rem; }
 .icc__desc { color:#C9BFAE; font-size:.95rem; line-height:1.9; max-width:660px; margin-bottom:2.4rem; }
 .icc-list { display:flex; flex-direction:column; border-top:1px solid #463c36; }
-.icc-row { display:grid; grid-template-columns:6.5em 1fr 112px; gap:1.4rem; align-items:center;
+.icc-row { display:grid; grid-template-columns:6.5em 1fr; gap:1.4rem; align-items:center;
   padding:1.3rem .25rem; border-bottom:1px solid #463c36; text-decoration:none; transition:padding-left .25s; }
 .icc-row:hover { padding-left:.6rem; }
 .icc-row__brewery { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.2rem; color:#F5F0E7; letter-spacing:.02em; transition:color .25s; }
 .icc-row:hover .icc-row__brewery { color:#fff; }
 .icc-row__brand { font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.85rem; color:#A99C8C; margin-top:.25rem; line-height:1.5; }
 .icc-row__match { color:#8a7d6e; margin-right:.35rem; }
-/* 受賞の行に添える蔵のイメージ（賞は蔵に贈られるため。蔵ページ上部と同じ風景イメージ） */
-.icc-row__thumb { display:block; width:112px; aspect-ratio:16/10; background:#221c19; overflow:hidden; }
-@media (max-width:520px) { .icc-row { grid-template-columns:5.2em 1fr 76px; gap:.9rem; } .icc-row__thumb { width:76px; } }
-.icc-row__thumb--none { background:#221c19 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 90' fill='none' stroke='%23463c36' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M16 4h8v5h-8z'/%3E%3Cpath d='M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9'/%3E%3C/svg%3E") center/20px auto no-repeat; }
+@media (max-width:520px) { .icc-row { grid-template-columns:5.2em 1fr; gap:.9rem; } }
 .icc__note { color:#8a7d6e; font-size:.8rem; line-height:1.8; max-width:660px; margin:-1.6rem 0 2rem; }
 .icc-row__year { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; color:#8a7d6e; }
 .rank-chip { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.8rem;
@@ -1387,14 +1396,11 @@ AWARDS_CSS = """
 .dest-item__note { font-size:.83rem; color:var(--ink-mute); line-height:1.75; margin-top:.3rem; }
 
 /* その他受賞・メディア 行 */
-.acc-row { display:grid; grid-template-columns:96px 1fr auto; gap:1.1rem; align-items:start;
+.acc-row { display:grid; grid-template-columns:1fr auto; gap:1.1rem; align-items:start;
   padding:1.15rem 0; border-bottom:1px solid var(--line); text-decoration:none; color:inherit; transition:padding-left .25s; }
 .acc-row:hover { padding-left:.5rem; }
 .acc-row:last-child { border-bottom:none; }
-.acc-row__thumb { display:block; width:96px; aspect-ratio:16/10; background:var(--bg-alt); overflow:hidden; }
-.acc-row__thumb img, .icc-row__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
-.acc-row__thumb--none { background:var(--bg-alt); }
-@media (max-width:520px) { .acc-row { grid-template-columns:72px 1fr auto; gap:.8rem; } .acc-row__thumb { width:72px; } }
+@media (max-width:520px) { .acc-row { gap:.8rem; } }
 .acc-row__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.02rem; color:var(--ink); line-height:1.55; }
 .acc-row__brewery { font-size:.85rem; color:var(--ink-soft); margin-top:.3rem; }
 .acc-row__right { text-align:right; white-space:nowrap; }
@@ -1417,13 +1423,6 @@ AWARD_BRAND_INDEX = {
 }
 
 
-def kura_thumb(slug, cls):
-    """受賞の行に置く「蔵のイメージ」（蔵ページ上部と同じ風景イメージ。建物ではない）。無ければ線画の枠。"""
-    f = REPO_ROOT / "assets" / "images" / "brewery" / f"{slug}.webp"
-    if f.exists():
-        return (f'<span class="{cls}"><img src="../assets/images/brewery/{slug}.webp" alt="" '
-                f'width="1376" height="768" loading="lazy" decoding="async"></span>')
-    return f'<span class="{cls} {cls}--none" aria-hidden="true"></span>'
 
 
 def award_brand_href(slug, brand_name):
@@ -1506,14 +1505,13 @@ def gen_awards():
             _match = "3位決定戦で出した酒" if variant == "3rd" else "決勝で出した酒"
             brand_html = (f'<div class="icc-row__brand"><span class="icc-row__match">{_match}</span>'
                           f'「{it["brand"]}」</div>') if it.get("brand") else ''
-            # 行は蔵のページへ（賞は蔵のもの）。出品酒の写真は、DBの銘柄と同じ商品のときだけ
+            # 行は蔵のページへ（賞は蔵のもの）。画像は置かない：蔵の風景イメージは受賞した酒の写真と
+            # 紛らわしい（社長 2026-10-26「蔵なら画像いらんだろ」）
             _href = f"../brewery/{slug}.html"
-            _thumb = kura_thumb(slug, "icc-row__thumb")  # 賞は蔵に贈られるので、蔵のイメージを添える
             icc_rows += f"""
         <a class="icc-row" href="{_href}">
           <span class="rank-chip rank-chip--{variant}">{label}</span>
           <div><div class="icc-row__brewery">{b['name']}</div>{brand_html}</div>
-          {_thumb}
         </a>"""
     html += f"""
   </div>
@@ -1530,7 +1528,7 @@ def gen_awards():
       <div class="icc__eyebrow">— No.01 ／ ICC SAKE AWARD</div>
       <h2 class="icc__title">クラフトサケ、<br>歴代の頂点。</h2>
       <p class="icc__desc">ICCサミットが主催するSAKEの品評会「ICC SAKE AWARD」。米×副原料の新ジャンルが、年に一度ここで頂点を競う。saketto収録の蔵が刻んだ戦績を、序列で並べた。</p>
-      <p class="icc__note">順位は蔵（酒造）に贈られる賞です。勝ち抜き戦では試合ごとに酒を替えて出すため、各蔵には順位を決めた試合で出した酒を添えています（ICC公式の結果発表より）。画像は蔵のイメージで、実際の醸造所の建物ではありません。</p>
+      <p class="icc__note">順位は蔵（酒造）に贈られる賞です。勝ち抜き戦では試合ごとに酒を替えて出すため、各蔵には順位を決めた試合で出した酒を添えています（ICC公式の結果発表より）。</p>
       <div class="icc-list">{icc_rows}
       </div>
     </div>
@@ -1596,7 +1594,6 @@ def gen_awards():
         pref = f'<span class="acc-row__pref">{b["prefecture"]}</span>' if show_pref else ''
         return f"""
       <a class="acc-row" href="../brewery/{slug}.html">
-        {kura_thumb(slug, "acc-row__thumb")}
         <div><div class="acc-row__title">{it['title']}</div>{brand_html}</div>
         <div class="acc-row__right">{yr}{pref}</div>
       </a>"""
@@ -1607,7 +1604,7 @@ def gen_awards():
     <div class="section-meta"><span class="section-meta__num">No. 03</span><span class="section-meta__label">OTHER ACCOLADES</span><span class="section-meta__count">/ {len(other_awards)} 件</span><span class="section-meta__rule"></span></div>
     <h2 class="cat-title">その他の受賞。</h2>
     <p class="awards-sec__desc">日本パッケージデザイン大賞、東北アントレプレナー大賞、Tokyo酒チャレンジ金賞 — 味だけでなく、デザイン・起業・品質でも評価される。</p>
-    <p class="thumb-note">画像は蔵のイメージで、実際の醸造所の建物ではありません。</p>
+
     <div>{other_rows}
     </div>
   </section>"""
@@ -1650,6 +1647,7 @@ def gen_breweries_hub():
       <span class="section-meta__count">/ {total} 蔵</span>
       <span class="section-meta__rule"></span>
     </div>
+    <p class="thumb-note">ボトルの画像は、商品写真をもとに作り直したイメージです（線画は画像の無い銘柄）。</p>
     <div class="brewery-grid">"""
     for i, b in enumerate(BREWERIES, 1):
         html += render_brewery_card(b, i, picks=brand_picks(b))

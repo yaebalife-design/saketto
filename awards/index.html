@@ -24,7 +24,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" media="print" onload="this.media=&#39;all&#39;">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap"></noscript>
-<link rel="stylesheet" href="/assets/css/50694b93e8a0.css">
+<link rel="stylesheet" href="/assets/css/847202cb75ba.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -61,17 +61,14 @@
 .icc__title { font-family:'Shippori Mincho',serif; font-weight:700; color:#F5F0E7; font-size:clamp(1.9rem,4.2vw,2.9rem); line-height:1.2; margin-bottom:.8rem; }
 .icc__desc { color:#C9BFAE; font-size:.95rem; line-height:1.9; max-width:660px; margin-bottom:2.4rem; }
 .icc-list { display:flex; flex-direction:column; border-top:1px solid #463c36; }
-.icc-row { display:grid; grid-template-columns:6.5em 1fr 112px; gap:1.4rem; align-items:center;
+.icc-row { display:grid; grid-template-columns:6.5em 1fr; gap:1.4rem; align-items:center;
   padding:1.3rem .25rem; border-bottom:1px solid #463c36; text-decoration:none; transition:padding-left .25s; }
 .icc-row:hover { padding-left:.6rem; }
 .icc-row__brewery { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.2rem; color:#F5F0E7; letter-spacing:.02em; transition:color .25s; }
 .icc-row:hover .icc-row__brewery { color:#fff; }
 .icc-row__brand { font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:.85rem; color:#A99C8C; margin-top:.25rem; line-height:1.5; }
 .icc-row__match { color:#8a7d6e; margin-right:.35rem; }
-/* 受賞の行に添える蔵のイメージ（賞は蔵に贈られるため。蔵ページ上部と同じ風景イメージ） */
-.icc-row__thumb { display:block; width:112px; aspect-ratio:16/10; background:#221c19; overflow:hidden; }
-@media (max-width:520px) { .icc-row { grid-template-columns:5.2em 1fr 76px; gap:.9rem; } .icc-row__thumb { width:76px; } }
-.icc-row__thumb--none { background:#221c19 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 90' fill='none' stroke='%23463c36' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M16 4h8v5h-8z'/%3E%3Cpath d='M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9'/%3E%3C/svg%3E") center/20px auto no-repeat; }
+@media (max-width:520px) { .icc-row { grid-template-columns:5.2em 1fr; gap:.9rem; } }
 .icc__note { color:#8a7d6e; font-size:.8rem; line-height:1.8; max-width:660px; margin:-1.6rem 0 2rem; }
 .icc-row__year { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; color:#8a7d6e; }
 .rank-chip { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.8rem;
@@ -99,14 +96,11 @@
 .dest-item__note { font-size:.83rem; color:var(--ink-mute); line-height:1.75; margin-top:.3rem; }
 
 /* その他受賞・メディア 行 */
-.acc-row { display:grid; grid-template-columns:96px 1fr auto; gap:1.1rem; align-items:start;
+.acc-row { display:grid; grid-template-columns:1fr auto; gap:1.1rem; align-items:start;
   padding:1.15rem 0; border-bottom:1px solid var(--line); text-decoration:none; color:inherit; transition:padding-left .25s; }
 .acc-row:hover { padding-left:.5rem; }
 .acc-row:last-child { border-bottom:none; }
-.acc-row__thumb { display:block; width:96px; aspect-ratio:16/10; background:var(--bg-alt); overflow:hidden; }
-.acc-row__thumb img, .icc-row__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
-.acc-row__thumb--none { background:var(--bg-alt); }
-@media (max-width:520px) { .acc-row { grid-template-columns:72px 1fr auto; gap:.8rem; } .acc-row__thumb { width:72px; } }
+@media (max-width:520px) { .acc-row { gap:.8rem; } }
 .acc-row__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.02rem; color:var(--ink); line-height:1.55; }
 .acc-row__brewery { font-size:.85rem; color:var(--ink-soft); margin-top:.3rem; }
 .acc-row__right { text-align:right; white-space:nowrap; }
@@ -162,40 +156,34 @@
       <div class="icc__eyebrow">— No.01 ／ ICC SAKE AWARD</div>
       <h2 class="icc__title">クラフトサケ、<br>歴代の頂点。</h2>
       <p class="icc__desc">ICCサミットが主催するSAKEの品評会「ICC SAKE AWARD」。米×副原料の新ジャンルが、年に一度ここで頂点を競う。saketto収録の蔵が刻んだ戦績を、序列で並べた。</p>
-      <p class="icc__note">順位は蔵（酒造）に贈られる賞です。勝ち抜き戦では試合ごとに酒を替えて出すため、各蔵には順位を決めた試合で出した酒を添えています（ICC公式の結果発表より）。画像は蔵のイメージで、実際の醸造所の建物ではありません。</p>
+      <p class="icc__note">順位は蔵（酒造）に贈られる賞です。勝ち抜き戦では試合ごとに酒を替えて出すため、各蔵には順位を決めた試合で出した酒を添えています（ICC公式の結果発表より）。</p>
       <div class="icc-list">
         <div class="icc-year">2025</div>
         <a class="icc-row" href="../brewery/pukupuku">
           <span class="rank-chip rank-chip--win">優勝</span>
           <div><div class="icc-row__brewery">ぷくぷく醸造</div><div class="icc-row__brand"><span class="icc-row__match">決勝で出した酒</span>「#ODAKA – 蔵付酵母 木桶どぶろく –」</div></div>
-          <span class="icc-row__thumb"><img src="../assets/images/brewery/pukupuku.webp" alt="" width="1376" height="768" loading="lazy" decoding="async"></span>
         </a>
         <a class="icc-row" href="../brewery/linne">
           <span class="rank-chip rank-chip--2nd">準優勝</span>
           <div><div class="icc-row__brewery">LINNÉ</div><div class="icc-row__brand"><span class="icc-row__match">決勝で出した酒</span>「800 大麦 樽熟成」</div></div>
-          <span class="icc-row__thumb"><img src="../assets/images/brewery/linne.webp" alt="" width="1376" height="768" loading="lazy" decoding="async"></span>
         </a>
         <div class="icc-year">2024</div>
         <a class="icc-row" href="../brewery/ine-to-agave">
           <span class="rank-chip rank-chip--3rd">第3位</span>
           <div><div class="icc-row__brewery">稲とアガベ醸造所</div><div class="icc-row__brand"><span class="icc-row__match">3位決定戦で出した酒</span>「花風」</div></div>
-          <span class="icc-row__thumb"><img src="../assets/images/brewery/ine-to-agave.webp" alt="" width="1376" height="768" loading="lazy" decoding="async"></span>
         </a>
         <a class="icc-row" href="../brewery/pukupuku">
           <span class="rank-chip rank-chip--fin">決勝T進出</span>
           <div><div class="icc-row__brewery">ぷくぷく醸造</div></div>
-          <span class="icc-row__thumb"><img src="../assets/images/brewery/pukupuku.webp" alt="" width="1376" height="768" loading="lazy" decoding="async"></span>
         </a>
         <div class="icc-year">2023</div>
         <a class="icc-row" href="../brewery/ine-to-agave">
           <span class="rank-chip rank-chip--win">初代優勝</span>
           <div><div class="icc-row__brewery">稲とアガベ醸造所</div><div class="icc-row__brand"><span class="icc-row__match">決勝で出した酒</span>「稲とアガベ OGAラベル」</div></div>
-          <span class="icc-row__thumb"><img src="../assets/images/brewery/ine-to-agave.webp" alt="" width="1376" height="768" loading="lazy" decoding="async"></span>
         </a>
         <a class="icc-row" href="../brewery/haccoba">
           <span class="rank-chip rank-chip--fin">準決勝進出</span>
           <div><div class="icc-row__brewery">haccoba</div></div>
-          <span class="icc-row__thumb"><img src="../assets/images/brewery/haccoba.webp" alt="" width="1376" height="768" loading="lazy" decoding="async"></span>
         </a>
       </div>
     </div>
@@ -243,20 +231,17 @@
     <div class="section-meta"><span class="section-meta__num">No. 03</span><span class="section-meta__label">OTHER ACCOLADES</span><span class="section-meta__count">/ 3 件</span><span class="section-meta__rule"></span></div>
     <h2 class="cat-title">その他の受賞。</h2>
     <p class="awards-sec__desc">日本パッケージデザイン大賞、東北アントレプレナー大賞、Tokyo酒チャレンジ金賞 — 味だけでなく、デザイン・起業・品質でも評価される。</p>
-    <p class="thumb-note">画像は蔵のイメージで、実際の醸造所の建物ではありません。</p>
+
     <div>
       <a class="acc-row" href="../brewery/haccoba">
-        <span class="acc-row__thumb"><img src="../assets/images/brewery/haccoba.webp" alt="" width="1376" height="768" loading="lazy" decoding="async"></span>
         <div><div class="acc-row__title">日本パッケージデザイン大賞 銀賞（酒類カテゴリ）</div><div class="acc-row__brewery">haccoba／水を編む シリーズ</div></div>
         <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">福島県</span></div>
       </a>
       <a class="acc-row" href="../brewery/haccoba">
-        <span class="acc-row__thumb"><img src="../assets/images/brewery/haccoba.webp" alt="" width="1376" height="768" loading="lazy" decoding="async"></span>
         <div><div class="acc-row__title">東北アントレプレナー大賞（第32回東北ニュービジネス大賞）</div><div class="acc-row__brewery">haccoba</div></div>
         <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">福島県</span></div>
       </a>
       <a class="acc-row" href="../brewery/dejima-hosendo">
-        <span class="acc-row__thumb"><img src="../assets/images/brewery/dejima-hosendo.webp" alt="" width="1376" height="768" loading="lazy" decoding="async"></span>
         <div><div class="acc-row__title">Tokyo酒チャレンジ 金賞</div><div class="acc-row__brewery">でじま芳扇堂／芳扇 吟雲（九州初作付・初収穫の美山錦100%どぶろく）</div></div>
         <div class="acc-row__right"><span class="acc-row__year">2025</span><span class="acc-row__pref">長崎県</span></div>
       </a>

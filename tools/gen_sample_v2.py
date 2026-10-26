@@ -808,9 +808,14 @@ footer { margin-top:4rem; border-top:1px solid var(--ink); }
 .next-card {
   background:var(--paper); border:1px solid var(--line); padding:1.25rem 1.4rem;
   text-decoration:none; color:var(--ink);
-  display:flex; flex-direction:column; gap:.45rem;
+  display:flex; align-items:center; gap:1rem;
   transition:border-color .3s, transform .3s, box-shadow .3s;
 }
+.next-card__body { display:flex; flex-direction:column; gap:.45rem; min-width:0; }
+/* 次の一本のボトル（画像の無い銘柄は同じ大きさの線画） */
+.next-card__thumb { flex:0 0 auto; display:block; width:44px; height:94px; background:var(--bg-alt); }
+.next-card__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+.next-card__thumb--none { background:var(--bg-alt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 90' fill='none' stroke='%23D9CDB8' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M16 4h8v5h-8z'/%3E%3Cpath d='M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9'/%3E%3C/svg%3E") center/20px auto no-repeat; }
 .next-card:hover { border-color:var(--warm); transform:translateY(-2px); box-shadow:0 10px 28px rgba(26,23,23,.07); }
 .next-card__kicker {
   font-family:'Cormorant Garamond', serif; font-style:italic;
