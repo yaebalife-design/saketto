@@ -316,6 +316,10 @@ BOTTLE_IMAGES = {
                "checked": "2026-10-24 私＋別Agentの照合で合格（天郷醸造所公式ショップ 陽香 500ml の写真）。2回目で合格（1回目は私の指示ミスで『在る』が足された）。左の英字細字をぼかし"},
     "nomu:2": {"file": "nomu-2.webp", "ref": "https://nomu.okinawa/products/nomu_okinawan-citrus",
                "checked": "2026-10-24 私＋別Agentの照合で合格（NOMU醸造所公式ECのシークヮーサー商品写真）。ぼかしなし"},
+    "lagoon:1": {"file": "lagoon-1.webp", "ref": "https://lagoonbrew.official.ec/items/95950333",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（公式ECのニゴリ版の写真＝ラベルと液色。首から上が切れているため、瓶の形・首・キャップは同じ720ml瓶の通常版ほっぺの写真で補った）。ラベル右端の痕跡をぼかし"},
+    "lagoon:2": {"file": "lagoon-2.webp", "ref": "https://lagoonbrew.official.ec/items/83613557",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（公式EC 洋梨2025-2026 槽搾り生500mlの写真＝ラベル。首から上が切れているため、瓶の形・首・キャップは同シリーズ500mlの酔いどれイチゴ槽絞り生の写真で補った）。ラベル右端の痕跡をぼかし"},
 }
 
 
