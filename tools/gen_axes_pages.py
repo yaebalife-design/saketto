@@ -27,7 +27,7 @@ from a8_link import (
     is_available as a8_available, render_pixel as a8_pixel,
 )
 from site_common import head_extra, seo_head, breadcrumb, website_node, SITE_URL, pr_notice
-from bottle_images import thumb_tag, BOTTLE_IMAGES, FURUSATO_ALIASES
+from bottle_images import thumb_tag, furusato_thumb_tag, BOTTLE_IMAGES, FURUSATO_ALIASES
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # saketto_repo/
@@ -168,6 +168,10 @@ main { position:relative; z-index:1; }
 .entry__head { display:flex; align-items:center; gap:.9rem; min-width:0; }
 .entry__thumb { flex:0 0 auto; display:block; width:40px; height:86px; background:var(--bg-alt); }
 .entry__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+/* 詰め合わせの返礼品：中身の瓶を並べる（1本の枠と同じ高さ） */
+.entry__thumb--set { width:auto; display:flex; gap:2px; background:transparent; }
+.entry__thumb--set img { width:40px; height:86px; }
+@media (max-width:520px){ .entry__thumb--set img { width:26px; height:56px; } }
 .entry__thumb--none { background:var(--bg-alt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 90' fill='none' stroke='%23D9CDB8' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M16 4h8v5h-8z'/%3E%3Cpath d='M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9'/%3E%3C/svg%3E") center/18px auto no-repeat; }
 .thumb-note { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.78rem; color:var(--ink-mute); margin:-.4rem 0 .9rem; }
 .spec-pill {
@@ -1013,6 +1017,10 @@ def _furusato_thumb(slug, rep):
     """ふるさと納税の行のボトル。代表の返礼品が、ボトル画像のある1銘柄に特定できるときだけ出す。
     別の酒の瓶を見せると嘘になるので、名前で一致しないもの・詰め合わせは線画の枠にする。"""
     import re as _re
+    # 代表返礼品そのものの写真から作った画像があれば、それを出す（セット品・DBに無い返礼品も）
+    own = furusato_thumb_tag(slug, rep)
+    if own:
+        return own
     # 詰め合わせ（飲み比べ・セット・A＋B・A・B）は1本の瓶に特定できないので出さない
     if not rep or any(w in rep for w in ("飲み比べ", "セット", "＋", "+", "・")):
         return thumb_tag(slug, -1)

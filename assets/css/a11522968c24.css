@@ -130,6 +130,10 @@ main { position:relative; z-index:1; }
 .entry__head { display:flex; align-items:center; gap:.9rem; min-width:0; }
 .entry__thumb { flex:0 0 auto; display:block; width:40px; height:86px; background:var(--bg-alt); }
 .entry__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+/* 詰め合わせの返礼品：中身の瓶を並べる（1本の枠と同じ高さ） */
+.entry__thumb--set { width:auto; display:flex; gap:2px; background:transparent; }
+.entry__thumb--set img { width:40px; height:86px; }
+@media (max-width:520px){ .entry__thumb--set img { width:26px; height:56px; } }
 .entry__thumb--none { background:var(--bg-alt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 90' fill='none' stroke='%23D9CDB8' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M16 4h8v5h-8z'/%3E%3Cpath d='M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9'/%3E%3C/svg%3E") center/18px auto no-repeat; }
 .thumb-note { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.78rem; color:var(--ink-mute); margin:-.4rem 0 .9rem; }
 .spec-pill {
@@ -280,21 +284,133 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
   padding: .15rem .5rem;
 }
 
-.jump-nav { max-width:1100px; margin:0 auto 2.5rem; padding:0 2rem; }
-.jump-nav__label { font-family:'Cormorant Garamond',serif; font-style:italic;
-  font-size:.8rem; color:var(--ink-mute); letter-spacing:.12em; margin-bottom:.7rem; }
-.jump-nav__items { display:flex; flex-wrap:wrap; gap:.55rem; }
-.jump-nav__item { display:inline-flex; align-items:baseline; gap:.45rem;
-  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.88rem;
-  letter-spacing:.04em; color:var(--ink); text-decoration:none;
-  border:1px solid var(--line); padding:.5rem .9rem;
-  transition:border-color .25s, color .25s, background .25s; }
-.jump-nav__item:hover { border-color:var(--accent); color:var(--accent); background:var(--paper); }
-.jump-nav__num { font-family:'Cormorant Garamond',serif; font-size:.8rem; color:var(--ink-mute); }
-.jump-nav__item:hover .jump-nav__num { color:var(--accent); }
-/* アンカー移動時に見出しがマストヘッドへ潜らないよう余白を確保 */
-.section[id] { scroll-margin-top: 1.5rem; }
-@media (max-width:640px) {
-  .jump-nav { padding:0 1.25rem; margin-bottom:2rem; }
-  .jump-nav__item { font-size:.82rem; padding:.45rem .75rem; }
+.article { max-width:1100px; margin:0 auto; padding:0 2rem 2rem; }
+.prose { max-width:760px; }
+.prose p { font-size:1.02rem; color:var(--ink-soft); line-height:1.95; margin-bottom:1.4rem; }
+.prose strong { color:var(--ink); font-weight:600; }
+.prose a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); transition:border-color .25s; }
+.prose a:hover { border-bottom-color:var(--accent); }
+.lead {
+  font-family:'Shippori Mincho', serif; font-size:1.22rem; line-height:1.95;
+  color:var(--ink); margin-bottom:1.8rem; font-weight:500;
 }
+.lead .accent { color:var(--accent); }
+
+/* 用語・区分グリッド */
+.term-grid { display:grid; grid-template-columns:1fr; border:1px solid var(--line); margin:1rem 0 2.5rem; max-width:860px; }
+@media (min-width:680px){ .term-grid { grid-template-columns:1fr 1fr; } }
+.term { padding:1.2rem 1.4rem; border-bottom:1px solid var(--line); background:var(--bg); }
+@media (min-width:680px){ .term { border-right:1px solid var(--line); } .term:nth-child(2n){ border-right:none; } }
+.term:last-child{ border-bottom:none; }
+.term__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.12rem; color:var(--ink); margin-bottom:.4rem; }
+.term__name .en { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.82rem; color:var(--accent); margin-left:.5rem; letter-spacing:.05em; }
+.term__desc { font-size:.92rem; color:var(--ink-soft); line-height:1.8; }
+
+/* 温度テーブル */
+.temp-table { width:100%; max-width:760px; border-collapse:collapse; margin:1rem 0 1rem; font-size:.92rem; }
+.temp-table th, .temp-table td { text-align:left; padding:.7rem 1rem; border-bottom:1px solid var(--line-soft); }
+.temp-table thead th {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; letter-spacing:.1em;
+  font-size:.75rem; text-transform:uppercase; color:var(--ink); border-bottom:1px solid var(--line);
+}
+.temp-table td.t { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-style:normal; color:var(--accent); white-space:nowrap; font-size:1rem; letter-spacing:.01em; }
+.temp-table tr.grp td { background:var(--bg-alt); font-family:'Shippori Mincho',serif; font-weight: 700; color:var(--ink); letter-spacing:.04em; }
+.temp-note { font-size:.82rem; color:var(--ink-mute); margin:0 0 2.2rem; max-width:760px; line-height:1.7; }
+
+/* 注意ボックス */
+.callout { background:var(--bg-alt); border-left:3px solid var(--accent); padding:1.3rem 1.5rem; margin:1.6rem 0 2.2rem; max-width:760px; }
+.callout__label {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; letter-spacing:.12em;
+  font-size:.74rem; color:var(--accent); text-transform:uppercase; margin-bottom:.5rem;
+}
+.callout p { font-size:.9rem; color:var(--ink-soft); line-height:1.85; margin:0; }
+.callout a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
+
+/* ハブへのリンク行 */
+.pill-links { display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0 2.5rem; }
+.pill-links a {
+  font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.9rem;
+  letter-spacing:.03em; color:var(--ink); text-decoration:none;
+  border:1px solid var(--line); padding:.55rem 1.1rem; transition:border-color .25s,color .25s;
+}
+.pill-links a:hover { border-color:var(--accent); color:var(--accent); }
+.pill-links a .arr { color:var(--accent); margin-left:.45rem; }
+
+/* 蔵リンクのインライン群 */
+.kura-links { display:flex; flex-wrap:wrap; gap:.55rem 1rem; margin:.2rem 0 2rem; max-width:760px; }
+.kura-links a { font-family:'Shippori Mincho',serif; font-size:.98rem; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:1px; transition:color .25s,border-color .25s; }
+.kura-links a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+
+/* 次に読む */
+.readmore { display:grid; grid-template-columns:1fr; gap:1rem; margin:1.5rem 0 0; max-width:860px; }
+@media (min-width:680px){ .readmore { grid-template-columns:1fr 1fr; } }
+.readmore a { display:block; border:1px solid var(--line); padding:1.4rem 1.5rem; text-decoration:none; background:var(--bg); transition:background .3s,padding-left .3s; }
+.readmore a:hover { background:var(--paper); padding-left:1.75rem; }
+.readmore__k { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.8rem; color:var(--accent); letter-spacing:.08em; }
+.readmore__t { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.18rem; color:var(--ink); margin-top:.3rem; line-height:1.4; }
+
+.sub-h { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.3rem; color:var(--ink); margin:.4rem 0 .9rem; letter-spacing:.02em; line-height:1.5; }
+.sub-h.tight { margin-top:1.8rem; }
+.sub-h .accent { color:var(--accent); }
+
+/* 読みもの一覧（ガイドのハブ） */
+.guide-list { border-top:1px solid var(--line); max-width:980px; margin:0 auto; }
+.guide-card {
+  display:grid; grid-template-columns:auto 1fr auto; gap:1.5rem; align-items:center;
+  padding:1.9rem 1rem; border-bottom:1px solid var(--line);
+  text-decoration:none; color:var(--ink); transition:background .3s,padding-left .3s;
+}
+.guide-card:hover { background:var(--paper); padding-left:1.5rem; }
+.guide-card__mark { width:10px; height:10px; background:var(--line); transform:rotate(45deg); transition:background .3s; }
+.guide-card:hover .guide-card__mark { background:var(--accent); }
+.guide-card__eyebrow { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; }
+.guide-card__title { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.5rem; color:var(--ink); margin-bottom:.5rem; line-height:1.4; }
+.guide-card__sum { font-size:.92rem; color:var(--ink-soft); line-height:1.8; }
+.guide-card__arr { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent); font-size:1rem; white-space:nowrap; letter-spacing:.08em; }
+@media (max-width:680px){ .guide-card { grid-template-columns:auto 1fr; } .guide-card__arr{ display:none; } }
+.cat-lead { max-width:760px; font-size:.95rem; color:var(--ink-soft); line-height:1.85; margin:-.4rem 0 1.2rem; }
+.guide-foot { max-width:760px; margin:2.6rem auto 0; font-size:.95rem; color:var(--ink-soft); line-height:1.9; }
+.guide-foot a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
+
+/* おすすめ（ランキング）カード */
+.pick-group { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.18rem; color:var(--ink); max-width:820px; margin:2.6rem 0 1.1rem; padding-bottom:.5rem; border-bottom:1px solid var(--line); letter-spacing:.03em; }
+.pick-group:first-of-type { margin-top:.6rem; }
+.pick-group .en { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.8rem; color:var(--accent); margin-left:.6rem; letter-spacing:.06em; }
+.pick { display:grid; grid-template-columns:auto 1fr 96px; gap:1.1rem 1.3rem; max-width:820px; padding:1.5rem 0; border-bottom:1px solid var(--line-soft); }
+.pick__no { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2rem; line-height:1; color:var(--line); padding-top:.1rem; }
+.pick__head { display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem .9rem; margin-bottom:.5rem; }
+.pick__kura { font-size:.82rem; color:var(--ink-mute); letter-spacing:.04em; }
+.pick__kura a { color:var(--warm); text-decoration:none; border-bottom:1px solid var(--line-soft); }
+.pick__kura a:hover { color:var(--accent); }
+.pick__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.24rem; color:var(--ink); line-height:1.4; width:100%; }
+.pick__tags { display:flex; flex-wrap:wrap; gap:.4rem; margin:.1rem 0 .55rem; }
+.pick__tag { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem; letter-spacing:.04em; color:var(--ink-soft); border:1px solid var(--line); padding:.16rem .6rem; }
+.pick__spec { font-size:.84rem; color:var(--ink-mute); letter-spacing:.02em; margin-bottom:.6rem; }
+.pick__spec b { color:var(--ink-soft); font-weight:600; }
+.pick__note { font-size:.95rem; color:var(--ink-soft); line-height:1.85; margin-bottom:.9rem; }
+.pick__links { display:flex; flex-wrap:wrap; gap:.6rem .9rem; align-items:center; }
+.pick__detail { font-family:'Shippori Mincho',serif; font-size:.92rem; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:1px; }
+.pick__detail:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.pick__btn { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:500; font-size:.9rem; letter-spacing:.03em; color:var(--paper); background:var(--accent); border:1px solid var(--accent); padding:.5rem 1.1rem; text-decoration:none; }
+.pick__btn:hover { background:var(--accent-deep); border-color:var(--accent-deep); }
+.pick__btn--amazon { color:var(--accent); background:transparent; border:1px solid var(--accent); margin-left:.5rem; }
+.pick__btn--amazon:hover { color:var(--paper); background:var(--accent); }
+.pick__pr { font-size:.72rem; color:var(--ink-mute); letter-spacing:.04em; }
+/* 銘柄のボトル（画像の無い銘柄は同じ大きさの線画） */
+.pick__fig { display:block; align-self:start; }
+.pick__thumb { display:block; width:96px; height:206px; background:var(--bg-alt); }
+.pick__thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+.pick__thumb--none { background:var(--bg-alt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 90' fill='none' stroke='%23D9CDB8' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M16 4h8v5h-8z'/%3E%3Cpath d='M16.5 9v13c0 4-8.5 8-8.5 16v44a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V38c0-8-8.5-12-8.5-16V9'/%3E%3C/svg%3E") center/34px auto no-repeat; }
+.pick-imgnote { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.78rem; color:var(--ink-mute); max-width:820px; margin:.2rem 0 0; }
+@media (max-width:600px){ .pick { grid-template-columns:1fr 64px; gap:.2rem .9rem; } .pick__no { font-size:1.4rem; grid-column:1/-1; }
+  .pick__thumb { width:64px; height:137px; } .pick__thumb--none { background-size:24px auto; } }
+
+/* スペック比較表 */
+.cmp-wrap { max-width:820px; overflow-x:auto; margin:1rem 0 1rem; }
+.cmp { width:100%; border-collapse:collapse; font-size:.84rem; white-space:nowrap; }
+.cmp th, .cmp td { text-align:left; padding:.6rem .8rem; border-bottom:1px solid var(--line-soft); }
+.cmp thead th { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; letter-spacing:.06em; font-size:.72rem; color:var(--ink); border-bottom:1px solid var(--line); }
+.cmp td.nm { font-family:'Shippori Mincho',serif; color:var(--ink); white-space:normal; min-width:11rem; }
+.cmp td.p { font-family:'Zen Kaku Gothic Antique',sans-serif; color:var(--accent); font-weight:700; }
+.cmp a { color:inherit; text-decoration:none; border-bottom:1px solid var(--line-soft); }
+.cmp a:hover { color:var(--accent); }

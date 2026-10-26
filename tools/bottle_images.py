@@ -323,6 +323,48 @@ BOTTLE_IMAGES = {
 #   nomu:0 シシカム … 見本写真の出典が ANA のふるさと納税「SHISHIKAMU 720ml×6本」のページそのもの
 FURUSATO_ALIASES = {"nomu:0": ["SHISHIKAMU"]}
 
+# ふるさと納税の代表返礼品そのものの画像（DBの銘柄に1本で特定できない／DBに無い返礼品）。
+# 見本は返礼品ページの商品写真。キーは蔵、"rep" が代表返礼品の名前と一致したときだけ出す
+# （返礼品が入れ替わったら自動で線画に戻る）。ファイルは bottles/furusato-<蔵>.webp ＋ t/
+FURUSATO_IMAGES = {
+    "happy-taro": {"rep": "ハッピーどぶろく 480ml×2本", "ref": "https://item.rakuten.co.jp/f252034-nagahama/11551-30047299/",
+                 "checked": "2026-10-26 私＋別Agentの照合で合格（返礼品ページの商品写真が見本）。首帯の商品名が崩れたのでぼかし"},
+    "lagoon": {"rep": "燕市産こしいぶき＋どぶろく セット", "ref": "https://item.rakuten.co.jp/f152137-tsubame/10003039/",
+                 "checked": "2026-10-26 私＋別Agentの照合で合格（返礼品ページの商品写真が見本）。小さい落款の中の字をぼかし"},
+    "nondo": {"rep": "とおの どぶろく 速醸 生 500ml×2本", "ref": "https://item.rakuten.co.jp/f032085-tono/1579727/",
+                 "checked": "2026-10-26 私＋別Agentの照合で合格（返礼品ページの商品写真が見本）。ラベルの縦書き・印の中の字をぼかし（見本が低解像度で正しい字が確認できないため。銘柄ページには使わない）"},
+    "mingura": {"rep": "どぶろく つぶつぶ／とろとろ 500ml", "ref": "https://item.rakuten.co.jp/f032034-ofunato/cen001/",
+                 "checked": "2026-10-26 私＋別Agentの照合で合格（返礼品ページの商品写真が見本）。ぼかしなし"},
+    "hajimari": {"rep": "はじまりのお酒 720ml", "ref": "https://item.rakuten.co.jp/f033219-shiwa/dk001/",
+                 "checked": "2026-10-26 私＋別Agentの照合で合格（返礼品ページの商品写真が見本）。キャップの小さな文字をぼかし"},
+}
+
+
+# 詰め合わせの返礼品で、中身の1本1本がDBの銘柄（画像あり）に特定できるもの → 瓶を並べて出す。
+#   平和どぶろくの瓶詰3種は 壱ノ濁=プレーン／弐ノ濁=白麹／参ノ濁=ホップ（brand_data/heiwa-*.json の _note）
+_HEIWA_SET = "平和どぶろく 壱ノ濁・弐ノ濁・参ノ濁 720ml×3本"
+FURUSATO_SETS = {
+    "heiwa-kabutocho": {"rep": _HEIWA_SET, "keys": ["heiwa-namba:0", "heiwa-namba:4", "heiwa-namba:3"]},
+    "heiwa-namba": {"rep": _HEIWA_SET, "keys": ["heiwa-namba:0", "heiwa-namba:4", "heiwa-namba:3"]},
+}
+
+
+def furusato_thumb_tag(slug, rep, rel="../", cls="entry__thumb"):
+    """返礼品そのものの画像があれば thumb_tag と同じ形で返す。無ければ None。"""
+    st = FURUSATO_SETS.get(slug)
+    if SHOW_BOTTLE_PHOTOS and st and st["rep"] == rep:
+        files = [bottle_file(*k.split(":")[:1], int(k.split(":")[1])) for k in st["keys"]]
+        if all(f and (_DIR / "t" / f).exists() for f in files):
+            imgs = "".join(f'<img src="{rel}assets/images/bottles/t/{f}" alt="" width="168" height="360" '
+                           f'loading="lazy" decoding="async">' for f in files)
+            return f'<span class="{cls} {cls}--set">{imgs}</span>'
+    e = FURUSATO_IMAGES.get(slug)
+    f = f"furusato-{slug}.webp"
+    if not SHOW_BOTTLE_PHOTOS or not e or e.get("rep") != rep or not (_DIR / "t" / f).exists():
+        return None
+    return (f'<span class="{cls}"><img src="{rel}assets/images/bottles/t/{f}" alt="" '
+            f'width="168" height="360" loading="lazy" decoding="async"></span>')
+
 
 def thumb_tag(slug, idx, rel="../", cls="entry__thumb"):
     """一覧の行に置く縦長サムネイル。画像の無い銘柄は同じ大きさの線画の枠（CSS側で描く）。"""
