@@ -236,8 +236,6 @@ BOTTLE_IMAGES = {
                "checked": "2026-10-24 私＋別Agentの照合で合格（ゆい酒店の商品写真（首ラベル ハナグモリ））。ぼかしなし"},
     "konohanano:4": {"file": "konohanano-4.webp", "ref": "https://www.syusendo-horiichi.co.jp/SHOP/18517.html",
                "checked": "2026-10-24 私＋別Agentの照合で合格（酒泉洞堀一の商品写真（首ラベル HAZY SAKE））。細字をぼかし"},
-    "konohanano:11": {"file": "konohanano-11.webp", "ref": "https://www.yama-roku.com/news/447.html",
-               "checked": "2026-10-24 私＋別Agentの照合で合格（卸ヤマロクの商品紹介画像（ジャスミン 澄酒 500ml）から切り出し）。細字をぼかし"},
     "konohanano:12": {"file": "konohanano-12.webp", "ref": "https://www.yama-roku.com/news/447.html",
                "checked": "2026-10-24 私＋別Agentの照合で合格（卸ヤマロクの商品紹介画像（出汁パンチ 500ml）から切り出し）。ぼかしなし"},
     "happy-taro:8": {"file": "happy-taro-8.webp", "ref": "https://imadeya.co.jp/products/8763437482149",
@@ -320,6 +318,18 @@ BOTTLE_IMAGES = {
                "checked": "2026-10-24 私＋別Agentの照合で合格（公式ECのニゴリ版の写真＝ラベルと液色。首から上が切れているため、瓶の形・首・キャップは同じ720ml瓶の通常版ほっぺの写真で補った）。ラベル右端の痕跡をぼかし"},
     "lagoon:2": {"file": "lagoon-2.webp", "ref": "https://lagoonbrew.official.ec/items/83613557",
                "checked": "2026-10-24 私＋別Agentの照合で合格（公式EC 洋梨2025-2026 槽搾り生500mlの写真＝ラベル。首から上が切れているため、瓶の形・首・キャップは同シリーズ500mlの酔いどれイチゴ槽絞り生の写真で補った）。ラベル右端の痕跡をぼかし"},
+    "tokyo-station:3": {"file": "tokyo-station-3.webp", "ref": "http://okashiyanon.com/2025/10/13/東京駅酒造場　ぶどうどぶろく/",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（ブログ記事『東京駅酒造場 ぶどうどぶろく』の写真）。キャップの細字をぼかし"},
+    "konohanano:6": {"file": "konohanano-6.webp", "ref": "https://www.ris.ac.jp/keiei/news/2024/ba_202503-fujii.html",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（立正大学経営学部の公式ニュースの発売告知画像）。ぼかしなし"},
+    "konohanano:7": {"file": "konohanano-7.webp", "ref": "https://vinsy.net/【新入荷情報】浅草発・木花之醸造所のクラフト/",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（酒屋VINSYの入荷記事の写真・首ラベル SNOW DOME。寝かせた瓶を立てて描いた）。リボンの細字をぼかし"},
+    "happy-taro:13": {"file": "happy-taro-13.webp", "ref": "https://web.archive.org/web/20251212113838/https://happytaro.thebase.in/items/126102013",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（公式ショップ『どぶろく紅白セット』ページ2025年12月・Waybackで本品ページへリンクされた瓶）。首テープの細字をぼかし"},
+    "nondo:7": {"file": "nondo-7.webp", "ref": "https://www.saitousaketen.co.jp/view/item/000000007455",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（さいとう酒店の商品写真＋尾崎商店の写真でラベル確認）。4回目で合格（暗い・小さい写真では字が読めず、3回目は『とあの』と崩れた）。キャップの細字をぼかし"},
+    "konohanano:10": {"file": "konohanano-10.webp", "ref": "https://vinsy.net/【新入荷情報】浅草発・木花之醸造所のクラフト/",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（酒屋VINSYの入荷記事『ジャスミン 濁酒ver.』の見出し直下の写真。寝かせた瓶を立てて描いた）。2回目で合格（首の紋が五弁花になったため、同蔵の紋を補助見本に）。ぼかしなし"},
 }
 
 
