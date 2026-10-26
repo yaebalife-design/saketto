@@ -298,8 +298,6 @@ BOTTLE_IMAGES = {
                "checked": "2026-10-24 私＋別Agentの照合で合格（木花之醸造所公式 LINEUP ページの写真）。ぼかしなし"},
     "konohanano:15": {"file": "konohanano-15.webp", "ref": "https://www.drink-x.com/listing/view/1179616/passionfruit-doburoku-x-waka-tokyo-confidential",
                "checked": "2026-10-24 私＋別Agentの照合で合格（Drink-X の単品ページ・製造 Konohanano Brewery）。ぼかしなし"},
-    "konohanano:2": {"file": "konohanano-2.webp", "ref": "https://konohanano-brewery.com/lineup",
-               "checked": "2026-10-24 THE酸（konohanano:1）と同一商品とDBで判断しているため、その合格画像を使用（公式LINEUPの THE酸 は焼酎用白麹・12度・500ml・1,980円で本銘柄の記載と一致）"},
     "happy-taro:0": {"file": "happy-taro-0.webp", "ref": "https://www.syusendo-horiichi.co.jp/SHOP/21242.html",
                "checked": "2026-10-24 私＋別Agentの照合で合格（酒泉洞堀一の 穂の恵み 商品ページのメイン写真）。細字をぼかし"},
     "happy-taro:5": {"file": "happy-taro-5.webp", "ref": "https://web.archive.org/web/20260512002638/https://happytaro.jp/doburoku/lineup/mandokoro/",
@@ -316,6 +314,8 @@ BOTTLE_IMAGES = {
                "checked": "2026-10-24 私＋別Agentの照合で合格（酒の秋山の商品写真（旨すぎてご燗弁。））。細字をぼかし"},
     "amanosato:3": {"file": "amanosato-3.webp", "ref": "https://shop.amanosato-sake.com/products/hinoka_500",
                "checked": "2026-10-24 私＋別Agentの照合で合格（天郷醸造所公式ショップ 陽香 500ml の写真）。2回目で合格（1回目は私の指示ミスで『在る』が足された）。左の英字細字をぼかし"},
+    "nomu:2": {"file": "nomu-2.webp", "ref": "https://nomu.okinawa/products/nomu_okinawan-citrus",
+               "checked": "2026-10-24 私＋別Agentの照合で合格（NOMU醸造所公式ECのシークヮーサー商品写真）。ぼかしなし"},
 }
 
 

@@ -499,9 +499,10 @@ BRANDS = {
         {"name": "OFFZAKE（ノンアル甘酒）", "abv": 0, "volume_ml": None,
          "sub_ingredients": ["白麹", "沖縄県産米"], "price": 3150,
          "note": "ノンアル甘酒。プレーン/パイン/島ソルト/黒糖の4種"},
-        {"name": "NOMU（クラフトサケ）", "abv": None, "volume_ml": None,
-         "sub_ingredients": ["シークヮーサー果汁"], "price": None,
-         "note": "コアライン。シークヮーサー副原料の予定"},
+        # 2026/10/26 更新：発売済み。公式EC（nomu.okinawa）で 500ml・13度・税込2,420円を確認。旧名「NOMU（クラフトサケ）」
+        {"name": "NOMU シークヮーサー", "abv": 13, "volume_ml": 500,
+         "sub_ingredients": ["シークヮーサー果汁"], "price": 2420,
+         "note": "コアライン。県産シークヮーサー果汁を使う、微発泡の澄んだタイプ"},
         {"name": "TABERU（食べる酒）", "abv": 14, "volume_ml": 500,
          "sub_ingredients": ["米のみ"], "price": 1980,
          "note": "無濾過の濃厚どぶろく"},
@@ -628,3 +629,21 @@ BRANDS = {
 
 def for_brewery(slug):
     return BRANDS.get(slug, [])
+
+
+# 同じ商品がDBに2行ある場合の「別名の行」→ 本体の行。
+# 行を消すと後ろの銘柄の番号（URL・アフィリ・画像のキー）がずれるので、行は残して
+# 一覧・検索・関連・件数から外し、ページは作らず本体へ 301（/_redirects）する。
+ALIASES = {
+    # 「焼酎用白麹仕様」は THE酸 の別称（公式 LINEUP の THE酸 が焼酎用白麹・12度・500ml・1,980円）
+    ("konohanano", 2): ("konohanano", 1),
+}
+
+
+def is_alias(slug, i):
+    return (slug, i) in ALIASES
+
+
+def listed(slug):
+    """一覧に出す銘柄を [(番号, 銘柄), ...] で返す（別名の行を除く。番号は元のまま）"""
+    return [(i, b) for i, b in enumerate(BRANDS.get(slug, [])) if not is_alias(slug, i)]

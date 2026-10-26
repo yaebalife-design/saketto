@@ -16,7 +16,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug
-from breweries_brands import BRANDS
+from breweries_brands import BRANDS, is_alias
 from gen_axes_pages import categorize_ingredient, INGREDIENT_CATEGORIES
 
 CAT_JP = {k: jp for k, jp, _en, _d in INGREDIENT_CATEGORIES}
@@ -36,7 +36,8 @@ def _all_entries():
     out = []
     for slug, brands in BRANDS.items():
         for i, b in enumerate(brands):
-            out.append((slug, i, b, _cats(b)))
+            if not is_alias(slug, i):
+                out.append((slug, i, b, _cats(b)))
     return out
 
 
@@ -60,7 +61,7 @@ def pick_related(slug, idx, limit=3):
 
     brewery = by_slug(slug)
     same_kura = [(slug, i, b, f"同じ蔵 — {brewery['name']}")
-                 for i, b in enumerate(my_brands) if i != idx]
+                 for i, b in enumerate(my_brands) if i != idx and not is_alias(slug, i)]
 
     # 決定的だがページごとに開始位置をずらす（毎回同じ顔ぶれを避ける）
     seed = (sum(ord(c) for c in slug) + idx * 7)

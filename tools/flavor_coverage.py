@@ -17,7 +17,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import gen_brand_pages_v2 as G  # noqa: E402
-from breweries_brands import BRANDS  # noqa: E402
+from breweries_brands import BRANDS, is_alias  # noqa: E402
 from breweries_master import BREWERIES  # noqa: E402
 
 AXES = [("body", "濃淡", 0.5), ("sweet", "甘辛", 0.5),
@@ -30,6 +30,8 @@ def scan():
     for slug, brands in BRANDS.items():
         details = G.DETAILS.get(slug, [])
         for i, brand in enumerate(brands):
+            if is_alias(slug, i):
+                continue
             d = details[i] if i < len(details) else {}
             s4, r6, tags, decided = G.derive_flavor(d, brand)
             # 値ではなく「根拠が取れたか」で数える。中庸と判定した酒を

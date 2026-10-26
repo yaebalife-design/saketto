@@ -1,0 +1,4 @@
+# 同じ商品がDBに2行ある「別名の行」は本体のページへ（tools/breweries_brands.py の ALIASES）
+/brand/konohanano-2 /brand/konohanano-1 301
+/brand/konohanano-2.html /brand/konohanano-1 301
+/brand/konohanano-2/ /brand/konohanano-1 301

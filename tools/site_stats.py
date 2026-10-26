@@ -11,7 +11,7 @@ import collections
 import re
 import sys
 
-from breweries_brands import BRANDS
+from breweries_brands import BRANDS, is_alias
 from breweries_master import BREWERIES
 from gen_axes_pages import categorize_ingredient
 
@@ -24,7 +24,7 @@ def _num(v):
 
 
 def compute():
-    brands = [(s, b) for s, bs in BRANDS.items() for b in bs]
+    brands = [(s, b) for s, bs in BRANDS.items() for i, b in enumerate(bs) if not is_alias(s, i)]
     total = len(brands)
 
     # ── 副原料の表記バリエーション（「米のみ」系は素材ではないので除く） ──

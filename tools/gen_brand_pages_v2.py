@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import by_slug, BREWERIES
-from breweries_brands import BRANDS
+from breweries_brands import BRANDS, is_alias
 from moshimo_link import (
     resolve_rakuten, resolve_amazon, resolve_yahoo, yahoo_impression_tag, amazon_impression_tag,
 )
@@ -953,6 +953,9 @@ def main():
             continue
         details = DETAILS.get(slug, [])
         for i, brand in enumerate(brands):
+            if is_alias(slug, i):   # 別名の行はページを作らない（本体へ 301）
+                (OUT_DIR / f"{slug}-{i}.html").unlink(missing_ok=True)
+                continue
             detail = details[i] if i < len(details) else {}
             html = build_html(brand, detail, brewery, i)
             (OUT_DIR / f"{slug}-{i}.html").write_text(html, encoding="utf-8")

@@ -16,7 +16,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import BREWERIES
-from breweries_brands import BRANDS
+from breweries_brands import BRANDS, listed, is_alias
 from awards import AWARDS
 from furusato_data import FURUSATO
 from furusato_block import (
@@ -69,7 +69,9 @@ def method_tags_for(slug):
         return []
     counts = {}
     order = []
-    for d in details:
+    for i, d in enumerate(details):
+        if is_alias(slug, i):   # 同じ商品の別名の行は数えない
+            continue
         blob = " ".join(
             str(d.get(k)) for k in
             ("shubo", "koji", "vessel", "flavor_basis", "sub_ingredients_detail", "story")
@@ -682,7 +684,7 @@ def render(brewery, index, prev_brewery, next_brewery):
     fact("創業", (f'{brewery["founded"]}年' if str(brewery.get("founded", "")).isdigit() else brewery.get("founded")) if brewery.get("founded") else None)
     fact("代表者", founder_of(slug))
     fact("協会", "クラフトサケ協会 加盟" if brewery.get("association") else "非加盟（独立系）")
-    fact("収録銘柄", f'{len(brands)} 銘柄' if brands else None)
+    fact("収録銘柄", f'{len(listed(brewery["slug"]))} 銘柄' if brands else None)
     if slug in FURUSATO:
         fact("ふるさと納税", '返礼品を確認済み（<a href="../furusato/">ふるさと納税から探す</a>）')
 
@@ -745,7 +747,7 @@ def render(brewery, index, prev_brewery, next_brewery):
 
     # 1銘柄でもボトル画像がある蔵は、全カードにサムネイル枠を付ける（カードの形をそろえる）
     _with_thumb = any(bottle_file(brewery["slug"], i) for i in range(len(brands)))
-    brand_cards_html = ''.join(render_brand_card(b, i, brewery["slug"], _with_thumb) for i, b in enumerate(brands))
+    brand_cards_html = ''.join(render_brand_card(b, i, brewery["slug"], _with_thumb) for i, b in listed(brewery["slug"]))
     _thumb_note = ('ボトルの画像は、商品写真をもとに作り直したイメージです（線画は画像の無い銘柄）。' if _with_thumb else '')
     if not brands:
         brand_cards_html = '<div class="no-brands">銘柄情報は調査中です</div>'
@@ -895,7 +897,7 @@ def render(brewery, index, prev_brewery, next_brewery):
             f'<a class="nearby-card" href="{b["slug"]}.html">'
             f'<span class="nearby-card__pref">{b["prefecture"]}・{b["city"]}</span>'
             f'<span class="nearby-card__name">{b["name"]}</span>'
-            + (f'<span class="nearby-card__n">{len(BRANDS.get(b["slug"], []))} 銘柄</span>'
+            + (f'<span class="nearby-card__n">{len(listed(b["slug"]))} 銘柄</span>'
                if BRANDS.get(b["slug"]) else
                '<span class="nearby-card__n">銘柄情報は準備中</span>')
             + '</a>' for b in same_region)
@@ -1007,7 +1009,7 @@ def render(brewery, index, prev_brewery, next_brewery):
   <section class="section">
     <div class="section-meta">
       <span class="section-meta__num">No. 02</span>
-      <h2 class="section-meta__label">BRANDS / {len(brands)} 銘柄</h2>
+      <h2 class="section-meta__label">BRANDS / {len(listed(brewery["slug"]))} 銘柄</h2>
       <span class="section-meta__rule"></span>
     </div>
     <p class="brands-note">価格は記載時点の参考値です。最新の価格・在庫は各リンク先でご確認ください。少量生産・限定流通のため、店頭・店内提供のみの銘柄もあります。{_thumb_note}</p>

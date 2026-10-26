@@ -23,7 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import BREWERIES, REGIONS
-from breweries_brands import BRANDS
+from breweries_brands import BRANDS, is_alias
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT = REPO_ROOT / "assets" / "search-index.json"
@@ -95,6 +95,8 @@ def main():
         })
         dets = DETAILS.get(slug, [])
         for i, br in enumerate(BRANDS.get(slug, [])):
+            if is_alias(slug, i):
+                continue
             subs = [s for s in (br.get("sub_ingredients") or []) if s]
             det = dets[i] if i < len(dets) else {}
             method = " ".join(str(det.get(k) or "") for k in

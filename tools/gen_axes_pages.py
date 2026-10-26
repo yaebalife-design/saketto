@@ -13,7 +13,7 @@ from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import BREWERIES, REGIONS, by_slug
-from breweries_brands import BRANDS
+from breweries_brands import BRANDS, is_alias
 from awards import AWARDS
 from urllib.parse import quote
 
@@ -390,6 +390,8 @@ def get_brewery_genres(brewery):
     _details = BRAND_DETAILS.get(slug, [])
 
     for _i, b in enumerate(brands):
+        if is_alias(slug, _i):
+            continue
         ings = b.get("sub_ingredients") or []
         name = b.get("name", "")
         note = b.get("note", "")
@@ -664,6 +666,8 @@ def brand_picks(brewery, limit=3):
     slug = brewery["slug"]
     buyable, others = [], []
     for i, b in enumerate(BRANDS.get(slug, [])):
+        if is_alias(slug, i):
+            continue
         item = (b["name"], f"../brand/{slug}-{i}.html")
         (buyable if resolve_rakuten(slug, i, b["name"]) else others).append(item)
     return (buyable + others)[:limit]
@@ -676,6 +680,8 @@ def brands_in_genre(brewery, genre_key):
     dets = BRAND_DETAILS.get(slug, [])
     out = []
     for i, b in enumerate(BRANDS.get(slug, [])):
+        if is_alias(slug, i):
+            continue
         ings = b.get("sub_ingredients") or []
         d = dets[i] if i < len(dets) else {}
         method = " ".join(str(d.get(k) or "") for k in ("vessel", "shubo", "koji"))
@@ -713,6 +719,8 @@ def gen_subingredients():
     by_cat = defaultdict(list)  # cat -> [(brewery_slug, brand, brand_idx)]
     for brewery in BREWERIES:
         for idx, brand in enumerate(BRANDS.get(brewery["slug"], [])):
+            if is_alias(brewery["slug"], idx):
+                continue
             ings = brand.get("sub_ingredients") or []
             cats_for_this = set()
             for ing in ings:
