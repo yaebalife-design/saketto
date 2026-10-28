@@ -17,6 +17,7 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
 from breweries_master import BREWERIES
 from breweries_brands import BRANDS, listed, is_alias
+import visit_info as VI
 from awards import AWARDS
 from furusato_data import FURUSATO
 from furusato_block import (
@@ -241,6 +242,9 @@ main { position:relative; z-index:1; }
 }
 /* 蔵のファクトシート */
 .factsheet { border:1px solid var(--line); margin-top:1.9rem; }
+.visit-note { margin-top:.9rem; }
+.visit-note a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
+.visit-note a:hover { border-bottom-color:var(--accent); }
 .fact-row { display:grid; grid-template-columns:140px 1fr; border-bottom:1px solid var(--line); padding:.9rem 1.5rem; background:var(--bg); }
 .fact-row:last-child { border-bottom:none; }
 .fact-row:nth-child(even) { background:var(--paper); }
@@ -680,7 +684,8 @@ def render(brewery, index, prev_brewery, next_brewery):
         if value:
             fact_rows.append(f'<div class="fact-row"><div class="fact-row__label">{label}</div><div class="fact-row__value">{value}</div></div>')
 
-    fact("所在地", f'{brewery["prefecture"]}・{brewery["city"]}')
+    _addr = (VI.get(brewery["slug"]) or {}).get("address")
+    fact("所在地", _addr or f'{brewery["prefecture"]}・{brewery["city"]}')
     fact("創業", (f'{brewery["founded"]}年' if str(brewery.get("founded", "")).isdigit() else brewery.get("founded")) if brewery.get("founded") else None)
     fact("代表者", founder_of(slug))
     fact("協会", "クラフトサケ協会 加盟" if brewery.get("association") else "非加盟（独立系）")
@@ -815,8 +820,20 @@ def render(brewery, index, prev_brewery, next_brewery):
     tasting_html_block = '<div class="tasting-list">' + ''.join(tasting_cards) + '</div>' if tasting_cards else ''
 
     # セクション番号の動的計算
-    # セクション番号の動的計算（読む順＝銘柄→味→受賞→近隣→出典）
+    # セクション番号の動的計算（読む順＝銘柄→訪ねる→味→受賞→近隣→出典）
     section_n = 3
+    # 訪ねる（その場で飲める・買える・見学）。公式で確かめた事実だけ（tools/visit_info.py）
+    _v = VI.get(brewery["slug"]) or {}
+    _v_rows = [(lab, _v.get(k)) for lab, k in (("飲む", "drink"), ("買う", "buy"), ("見学・体験", "tour"),
+                                               ("アクセス", "access"), ("訪ねる前に", "caution"))
+               if _v.get(k)]
+    # 公式サイトでない（紹介記事など）ときはリンクしない
+    _v_official = _v.get("official", brewery.get("official_url"))
+    visit_section_num = None
+    if any(_v.get(k) for k in ("drink", "buy", "tour", "caution")):
+        visit_section_num = section_n
+        section_n += 1
+        extra_sources.extend(_v.get("sources") or [])
     awards_section_num = None
     tasting_section_num = None
     if tasting_html_block:
@@ -864,6 +881,18 @@ def render(brewery, index, prev_brewery, next_brewery):
             src_links.append(f'<li><a href="{u}" target="_blank" rel="noopener">{u}</a></li>')
             seen.add(u)
     sources_html = ''.join(src_links)
+
+    _vc = VI.CHECKED.split("-")
+    visit_section = f"""
+  <section class="section" id="visit">
+    <div class="section-meta">
+      <span class="section-meta__num">No. {visit_section_num:02d}</span>
+      <h2 class="section-meta__label">VISIT / 訪ねる</h2>
+      <span class="section-meta__rule"></span>
+    </div>
+    <div class="factsheet">{''.join(f'<div class="fact-row"><div class="fact-row__label">{lab}</div><div class="fact-row__value">{val}</div></div>' for lab, val in _v_rows)}</div>
+    <p class="brands-note visit-note">{int(_vc[0])}年{int(_vc[1])}月{int(_vc[2])}日に公式サイトなどで確かめた内容です。営業日・時間・料金は変わることがあるので、訪ねる前に{(f'<a href="{_v_official}" target="_blank" rel="noopener">蔵の公式サイト</a>') if _v_official else "蔵の最新の案内"}で確かめてください。ほかの蔵は<a href="../guide/nomeru-kura.html{VI.anchor(brewery["slug"])}">クラフトサケが飲める醸造所</a>にまとめています。</p>
+  </section>""" if visit_section_num else ''
 
     awards_section = f"""
   <section class="section">
@@ -920,7 +949,7 @@ def render(brewery, index, prev_brewery, next_brewery):
       <h2 class="section-meta__label" style="margin:0">SOURCES ／ 出典</h2>
       <span class="section-meta__rule"></span>
     </div>
-    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（最終確認 2026年8月）。</p>
+    <p class="brands-note">このページの情報は下記の一次ソースで確認しています（銘柄情報の最終確認 2026年8月。「訪ねる」は2026年10月）。</p>
     <div class="sources"><ul>{sources_html}</ul></div>
   </section>"""
 
@@ -930,7 +959,8 @@ def render(brewery, index, prev_brewery, next_brewery):
             "@id": SITE_URL + _path + "#brewery",
             "name": brewery["name"],
             "address": {"@type": "PostalAddress", "addressRegion": brewery["prefecture"],
-                        "addressLocality": brewery["city"], "addressCountry": "JP"},
+                        "addressLocality": brewery["city"], "addressCountry": "JP",
+                        **({"streetAddress": _v["address"].removeprefix(brewery["prefecture"])} if _v.get("address") else {})},
             "url": SITE_URL + _path,
             "description": philosophy_short}
     if brewery.get("official_url"):
@@ -1017,6 +1047,8 @@ def render(brewery, index, prev_brewery, next_brewery):
     </div>
     {brewery_shops_html}
   </section>
+
+  {visit_section}
 
   {tasting_section}
 

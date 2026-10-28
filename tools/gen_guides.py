@@ -97,6 +97,7 @@ ARTICLE_DATES = {
     "/guide/doko-de-kaeru.html": ("2026-08-10", "2026-08-10"),
     "/guide/zenkoji.html": ("2026-08-10", "2026-08-10"),
     "/guide/new-breweries.html": ("2026-08-10", "2026-08-10"),
+    "/guide/nomeru-kura.html": ("2026-10-28", "2026-10-28"),
 }
 
 
@@ -232,6 +233,18 @@ EXTRA_CSS = """
 .cmp td.nm { font-family:'Shippori Mincho',serif; color:var(--ink); white-space:normal; min-width:11rem; }
 .cmp td.p { font-family:'Zen Kaku Gothic Antique',sans-serif; color:var(--accent); font-weight:700; }
 .cmp a { color:inherit; text-decoration:none; border-bottom:1px solid var(--line-soft); }
+/* 飲める醸造所：蔵ごとのカード（全カード同じ枠線） */
+.vcard { max-width:820px; border:1px solid var(--line); background:var(--bg); padding:1.3rem 1.5rem 1.1rem; margin:0 0 1.1rem; }
+.vcard__head { display:flex; flex-wrap:wrap; align-items:baseline; gap:.3rem .9rem; margin-bottom:.8rem; }
+.vcard__name { font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.2rem; color:var(--ink); text-decoration:none; }
+.vcard__name:hover { color:var(--accent); }
+.vcard__pref { font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.8rem; color:var(--ink-mute); letter-spacing:.04em; }
+.vcard dl { display:grid; grid-template-columns:7.5em 1fr; gap:.45rem 1rem; margin:0; }
+.vcard dt { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; font-size:.74rem; letter-spacing:.08em; color:var(--accent); padding-top:.2rem; }
+.vcard dd { margin:0; font-size:.93rem; color:var(--ink-soft); line-height:1.8; }
+.vcard__links { display:flex; flex-wrap:wrap; gap:.4rem 1.2rem; margin-top:.8rem; font-size:.86rem; }
+.vcard__links a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line-soft); }
+@media (max-width:600px){ .cmp--visit .pf { display:none; } .cmp--visit th, .cmp--visit td { padding:.55rem .45rem; } .cmp--visit td.nm { min-width:0; } .cmp--visit th:not(:first-child), .cmp--visit td:not(.nm) { white-space:nowrap; font-size:.78rem; } .vcard { padding:1.1rem 1.1rem 1rem; } .vcard dl { grid-template-columns:1fr; gap:.1rem; } .vcard dd { margin-bottom:.5rem; } }
 .cmp a:hover { color:var(--accent); }
 """
 
@@ -479,6 +492,13 @@ ARTICLES = [
         "eyebrow_en": "FULL KOJI",
         "title": "全麹酒とは",
         "summary": "米をすべて麹にして醸す、全麹（ぜんこうじ）。掛米を使わないという一点で、酒は清酒の枠を外れ、濃密な甘みと酸をまとう。なぜ手間をかけてまで麹だけで造るのか、その設計思想を掘り下げる。",
+    },
+    {
+        "slug": "nomeru-kura",
+        "category": "choose",
+        "eyebrow_en": "VISIT THE BREWERY",
+        "title": "クラフトサケが飲める醸造所",
+        "summary": "醸造所に併設したバーやパブ、直売所、見学ツアー。東京・大阪から東北・九州まで、その場で飲めて買える蔵を地域別に。各蔵の公式サイトで確かめた内容だけをまとめ、予約や入場券などの注意点も添えています。",
     },
     {
         "slug": "new-breweries",
@@ -978,7 +998,7 @@ OSUSUME_PICKS = [
     ("はじめの一本に", "FIRST BOTTLE", "haccoba", 0,
      "「自由を、醸そう。」を体現する先駆者、福島・小高のhaccoba。看板の“はなうたホップス”は、東北に伝わる幻のどぶろく製法「花酛（はなもと）」に、クラフトビールのドライホッピングを掛け合わせた一本だ。ホップ由来の華やかな香りと、米のやさしい甘みが軽やかに溶け合う。アルコールはロットにより11〜13%と程よく、するすると飲めてしまう親しみやすさ。クラフトサケの“はじまりの味”を知るなら、外せない蔵の代表作。"),
     ("はじめの一本に", "FIRST BOTTLE", "konohanano", 0,
-     "浅草・駒形でどぶろくを醸す木花之醸造所の看板が、この“ハナグモリ”。本格純米のにごりに、瓶の中で生まれたシュワッとした微発泡が心地よく弾ける。米だけで仕込むやさしい甘酸っぱさは、にごり酒が初めての人にもすっと入っていく。バーを併設し、若い蔵人の“新しい修行の場”としても知られる蔵の顔。価格も手に取りやすく、微発泡のにごりから始めたい人にうってつけだ。"),
+     "浅草でどぶろくを醸す木花之醸造所の看板が、この“ハナグモリ”。本格純米のにごりに、瓶の中で生まれたシュワッとした微発泡が心地よく弾ける。米だけで仕込むやさしい甘酸っぱさは、にごり酒が初めての人にもすっと入っていく。バーを併設し、若い蔵人の“新しい修行の場”としても知られる蔵の顔。価格も手に取りやすく、微発泡のにごりから始めたい人にうってつけだ。"),
     ("ホップサケ — ビール好きに", "HOP SAKE", "lagoon", 0,
      "新潟・福島潟のほとりで、極小規模と持続可能性にこだわって醸すLAGOON BREWERY。ブランド名は「翔空（しょうくう）」。この“HOP SAKE ほっぺ”は、ホップ品種シトラ由来の柑橘香と、米の旨みが同居する爽快な一本だ。果実からトマト＋バジルまで副原料の幅が驚くほど広い蔵だが、その分かりやすい入り口がこのホップサケ。クラフトビール党が「サケ」に踏み出す、最初の一杯にちょうどいい。"),
     ("ホップサケ — ビール好きに", "HOP SAKE", "librom", 4,
@@ -2117,7 +2137,7 @@ def build_doko_de_kaeru():
       <div class="prose">
         <h2 class="sub-h">運ばない、という<span class="accent">選択</span>。</h2>
         <p>クラフトサケには、<strong>意図的に流通させない酒</strong>がある。搾ったばかりの生、瓶内で発酵が進む活性タイプ——輸送や保管で品質が変わってしまうものは、醸造所併設の店やタップルームでしか出さない蔵がある。</p>
-        <p>たとえば東京駅のエキナカで醸す<a href="../brewery/tokyo-station.html">東京駅酒造場</a>、大阪タカシマヤ地下の<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>と日本橋兜町の<a href="../brewery/heiwa-kabutocho.html">兜町醸造所</a>、仙台駅構内の約3.4坪で、8Lタンクの超小仕込みを毎日重ねる<a href="../brewery/fermenteria.html">Fermenteria</a>。神戸の<a href="../brewery/hakutsuru-sakecraft.html">HAKUTSURU SAKE CRAFT</a>は、ナンバリングされたシリーズの多くが資料館限定で、一部の特別銘柄だけが公式オンラインに出る。<strong>「買えない」のではなく、「その場所へ行って出会う酒」として設計されている</strong>。旅の目的地にする価値がある。</p>
+        <p>たとえば東京駅のエキナカで醸す<a href="../brewery/tokyo-station.html">東京駅酒造場</a>、大阪タカシマヤ地下の<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>と日本橋兜町の<a href="../brewery/heiwa-kabutocho.html">兜町醸造所</a>、仙台駅構内の約3.4坪で、8Lタンクの超小仕込みを毎日重ねる<a href="../brewery/fermenteria.html">Fermenteria</a>。神戸の<a href="../brewery/hakutsuru-sakecraft.html">HAKUTSURU SAKE CRAFT</a>は、ナンバリングされたシリーズの多くが資料館限定で、一部の特別銘柄だけが公式オンラインに出る。<strong>「買えない」のではなく、「その場所へ行って出会う酒」として設計されている</strong>。旅の目的地にする価値がある。訪ねて飲める蔵の一覧は<a href="nomeru-kura.html">クラフトサケが飲める醸造所</a>へ。</p>
       </div>
     </section>
 {divider()}
@@ -2569,7 +2589,7 @@ def build_new_breweries():
       <div class="prose">
         <h2 class="sub-h">酒蔵は、<span class="accent">街の中</span>へ。</h2>
         <p>設備が小さくて済むということは、立地の自由度が上がるということでもある。新しい蔵のリストを見ると、<strong>従来の酒蔵の常識からすると意外な場所</strong>が並ぶ。</p>
-        <p>宮城の<a href="../brewery/fermenteria.html">Fermenteria</a>は仙台駅のエキナカで、東京の<a href="../brewery/tokyo-station.html">東京駅酒造場</a>は東京駅のエキナカで醸す。沖縄の<a href="../brewery/nomu.html">NOMU醸造所</a>はコザ一番街の商店街に、大阪の<a href="../brewery/adachi-noujo.html">足立農醸</a>は高槻の団地内に立つ。<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>が構えるのは、大阪タカシマヤの地下だ。<strong>造る場所と飲む場所が同じ</strong>——搾りたてをその場で出すという、これまでできなかった体験が成立している。</p>
+        <p>宮城の<a href="../brewery/fermenteria.html">Fermenteria</a>は仙台駅のエキナカで、東京の<a href="../brewery/tokyo-station.html">東京駅酒造場</a>は東京駅のエキナカで醸す。沖縄の<a href="../brewery/nomu.html">NOMU醸造所</a>はコザ一番街の商店街に、大阪の<a href="../brewery/adachi-noujo.html">足立農醸</a>は高槻の団地内に立つ。<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>が構えるのは、大阪タカシマヤの地下だ。<strong>造る場所と飲む場所が同じ</strong>——搾りたてをその場で出すという、これまでできなかった体験が成立している。訪ねて飲める蔵は<a href="nomeru-kura.html">クラフトサケが飲める醸造所</a>にまとめた。</p>
         <p>いっぽうで、地域に根ざす動きも強い。福岡県福智町の<a href="../brewery/amanosato.html">天郷醸造所</a>は町のクラフトサケ醸造者募集をきっかけに生まれ、佐渡島の<a href="../brewery/sakenova.html">SAKENOVA BREWERY</a>、新潟県柏崎市の集落に立つ<a href="../brewery/iyasaka.html">弥栄醸造</a>のように、<strong>土地の米と風景を前提にした蔵</strong>も続々と現れている。</p>
       </div>
     </section>
@@ -2696,6 +2716,165 @@ def build_new_breweries():
     return html
 
 
+# ────────────── 記事：クラフトサケが飲める醸造所 ──────────────
+
+def build_nomeru_kura():
+    import visit_info as VI
+    from breweries_master import by_slug as _bs, BREWERIES as _ALL
+    y, m, d = (int(x) for x in VI.CHECKED.split("-"))
+    checked_ja = f"{y}年{m}月{d}日"
+    in_regions = [s for _k, _j, _e, slugs in VI.REGIONS_VISIT for s in slugs]
+    n_drink = sum(1 for s in in_regions if VI.VISIT[s].get("drink"))
+    n_buy = sum(1 for s in in_regions if VI.VISIT[s].get("buy"))
+    n_tour = sum(1 for s in in_regions if VI.VISIT[s].get("tour"))
+    n_event = sum(1 for s in in_regions if VI.VISIT[s].get("tour") and VI.VISIT[s].get("tour_kind") == "event")
+
+    def official(slug):
+        v = VI.VISIT[slug]
+        return v.get("official", _bs(slug).get("official_url"))
+
+    def mark(v, k):
+        if not v.get(k):
+            return "—"
+        if k == "tour" and v.get("tour_kind") == "event":
+            return "イベント時"
+        return "あり"
+
+    # 早見表
+    rows = ""
+    for s in in_regions:
+        v, b = VI.VISIT[s], _bs(s)
+        rows += (f'            <tr><td class="nm"><a href="../brewery/{s}.html">{b["name"]}</a></td>'
+                 f'<td class="pf">{b["prefecture"]}</td><td>{mark(v, "drink")}</td><td>{mark(v, "buy")}</td><td>{mark(v, "tour")}</td></tr>\n')
+
+    def card(s):
+        v, b = VI.VISIT[s], _bs(s)
+        dl = "".join(f"<dt>{lab}</dt><dd>{v[k]}</dd>" for lab, k in
+                     (("飲む", "drink"), ("買う", "buy"), ("見学・体験", "tour"),
+                      ("所在地", "address"), ("アクセス", "access"), ("訪ねる前に", "caution")) if v.get(k))
+        off = official(s)
+        links = f'<a href="../brewery/{s}.html">{b["name"]}の蔵と銘柄を見る&nbsp;→</a>'
+        if off:
+            links += f'<a href="{off}" target="_blank" rel="noopener">公式サイトで最新の営業を見る&nbsp;→</a>'
+        return f"""      <div class="vcard">
+        <div class="vcard__head"><a class="vcard__name" href="../brewery/{s}.html">{b["name"]}</a><span class="vcard__pref">{b["prefecture"]}・{b["city"]}</span></div>
+        <dl>{dl}</dl>
+        <div class="vcard__links">{links}</div>
+      </div>
+"""
+
+    intro = {
+        "tokyo": "東京には、街なかで醸してその場で出す蔵が集まっている。浅草、日本橋兜町、東京駅の改札内、新橋の地下。<strong>旅の途中や仕事帰りに、できたてのどぶろくを飲みに立ち寄れる</strong>のが、都市の醸造所のいいところだ。",
+        "kansai": "大阪では、百貨店の地下と団地の一階という、まるで違う場所に醸造所がある。神戸では老舗酒造の資料館の中で、滋賀・長浜では発酵がテーマの施設「湖のスコーレ」の中で醸している。",
+        "tohoku": "saketto の収録では、東北がいちばん蔵の多い地域だ。福島・小高の2蔵、岩手の古民家の蔵と体験の蔵、仙台駅の中の蔵、そして男鹿。<strong>金・土・日の夜だけ・予約制の店もある</strong>ので、出かける前の確認が欠かせない。",
+        "kanto": "茨城・埼玉・新潟には、見学や体験の案内を出している蔵がある。予約して中まで入れる蔵もあれば、窓越しに発酵を眺められる蔵もある。",
+        "kyushu": "九州には、街なかのパブ、出島の小さなバー、そして蔵開きの日に門を開く蔵がある。",
+    }
+    region_html = ""
+    for i, (k, ja, en, slugs) in enumerate(VI.REGIONS_VISIT):
+        cards = "".join(card(s) for s in slugs)
+        region_html += f"""{divider()}
+    <section class="section" id="v-{k}">
+{section_meta(f"{i + 2:02d}", f"{en} / {ja}で飲む・訪ねる")}
+      <div class="prose">
+        <h2 class="sub-h">{ja}で、<span class="accent">クラフトサケの蔵</span>を訪ねる。</h2>
+        <p>{intro[k]}</p>
+      </div>
+{cards}    </section>
+"""
+    no_info = "、".join(f'<a href="../brewery/{s}.html">{_bs(s)["name"]}</a>' for s in VI.NO_INFO)
+    n_reg = len(VI.REGIONS_VISIT)
+    body = f"""
+  <div class="article">
+
+    <section class="section">
+{section_meta("01", "AT A GLANCE / 早見表")}
+      <div class="prose">
+        <p class="lead"><span class="accent">造っている場所で、その酒を飲む</span>。クラフトサケの醸造所には、バーやパブ、カフェを併設した蔵が少なくない。なぜ駅や商店街に蔵が立つのかは、<a href="new-breweries.html">いま生まれている、新しい蔵</a>に書いた。この記事は、実際に訪ねるための案内だ。</p>
+        <p>saketto に収録している{len(_ALL)}蔵の公式サイトなどを調べると、<strong>蔵に併設した店や直営の店で飲める蔵が{n_drink}</strong>、<strong>直売や物販がある蔵が{n_buy}</strong>、<strong>見学や体験の案内がある蔵が{n_tour}</strong>（うち{n_event}蔵はイベントのときだけ）あった（{checked_ja}時点）。まず一覧で全体を見て、地域ごとの案内へ進んでほしい。</p>
+      </div>
+      <div class="cmp-wrap">
+        <table class="cmp cmp--visit">
+          <thead><tr><th>蔵</th><th class="pf">都道府県</th><th>飲める</th><th>買える</th><th>見学・体験</th></tr></thead>
+          <tbody>
+{rows}          </tbody>
+        </table>
+      </div>
+      <p class="pick-imgnote">「あり」は公式の案内などで確かめられたもの。「—」は案内が見つからなかったもので、できないという意味ではありません。営業日・時間・料金は変わりやすいため、この記事には載せていません。</p>
+    </section>
+{region_html}{divider()}
+    <section class="section" id="v-notyet">
+{section_meta(f"{n_reg + 2:02d}", "NOT YET / 訪ねる拠点がまだ無い蔵")}
+      <div class="prose">
+        <h2 class="sub-h">いまは、<span class="accent">瓶で出会う</span>蔵。</h2>
+        <p>自前の醸造所を持たずに醸す蔵もある。京都の<a href="../brewery/linne.html">LINNÉ</a>はほかの蔵の設備を借りて醸すファントムブリュワリーで、公式ニュース（2026年9月25日）で、2027年春に京都の清水・五条坂エリアへ自社醸造所とレストランを開く予定と発表している。千葉の<a href="../brewery/salmon-brewery.html">鮭酒造</a>も近くの酒蔵の協力で醸していて、訪ねられる施設は今のところ無い。</p>
+        <p>また、{no_info}は、来訪の案内が公式に見つからなかった。こうした蔵の酒は、公式オンラインショップや取扱店で手に入る。買い方の入口は<a href="doko-de-kaeru.html">クラフトサケはどこで買える？</a>にまとめている。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta(f"{n_reg + 3:02d}", "BEFORE YOU GO / 出かける前に")}
+      <div class="prose">
+        <h2 class="sub-h">小さな蔵ほど、<span class="accent">事前の確認</span>を。</h2>
+        <p>小さな醸造所の店は、営業が変わりやすい。LAGOON BREWERY は酒造りの都合で営業が急に変わることがあると、でじま芳扇堂は酒造期に短縮営業や臨時休業があると、土浦醸造は営業時間が予告なく変わる場合があると、それぞれ公式で断っている。金・土・日の夜だけ・予約制の店（haccoba のブリューパブ）や、席数がごく少ない店（新橋の ubu は7席、でじま芳扇堂のバーは6席）もある。<strong>出かける前に、公式サイトかSNSでその日の営業を見ておくのがいちばん確実</strong>だ。</p>
+        <p>見学の前には、<strong>発酵食品などを控えるよう案内している蔵</strong>がある。平六醸造は前日から納豆・漬物・ヨーグルトなどの発酵食品を、LAGOON BREWERY は内部見学の当日に発酵食品や柑橘類を（歯みがき・シャワー・着替えの後ならよい）、やまね酒造は酒造り学校の前日と当日に納豆・柑橘系・キムチなどを控えるよう案内している。でじま芳扇堂のバーは、となりで醸造しているため強い香水を控えるよう求めている。</p>
+        <p>東京駅酒造場は改札の内側にあるので、<strong>駅を利用しないときは入場券が要る</strong>。平和どぶろく兜町醸造所は<strong>現金が使えない</strong>。</p>
+        <div class="callout">
+          <div class="callout__label">飲む前に</div>
+          <p><strong>20歳未満の飲酒は法律で禁じられています。</strong>　試飲を含め、飲んだら運転はしないでください。妊娠中・授乳期の飲酒はお控えください。</p>
+        </div>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta(f"{n_reg + 4:02d}", "FAQ / よくある質問")}
+      <div class="prose">
+        <h2 class="sub-h tight">東京でクラフトサケを<span class="accent">飲める</span>醸造所は？</h2>
+        <p>浅草の<a href="../brewery/konohanano.html">木花之醸造所</a>（併設の店 ALL (W)RIGHT -sake place-）、日本橋兜町の<a href="../brewery/heiwa-kabutocho.html">平和どぶろく兜町醸造所</a>、東京駅改札内の<a href="../brewery/tokyo-station.html">東京駅酒造場</a>（はせがわ酒店 グランスタ東京店）、新橋の<a href="../brewery/ubu.html">ubu</a>があります。くわしくは<a href="#v-tokyo">東京の醸造所</a>へ。</p>
+        <h2 class="sub-h tight">大阪でクラフトサケを<span class="accent">飲める</span>醸造所は？</h2>
+        <p>大阪高島屋の地下にある<a href="../brewery/heiwa-namba.html">平和どぶろく難波醸造所</a>と、高槻・富田団地の<a href="../brewery/adachi-noujo.html">足立農醸</a>があります（足立農醸の店は報道による情報です）。くわしくは<a href="#v-kansai">関西の醸造所</a>へ。</p>
+        <h2 class="sub-h tight">予約は<span class="accent">必要</span>ですか？</h2>
+        <p>蔵によります。予約なしで入れる店もあれば、完全予約制の時間帯がある店（ubu の食事の時間帯）や、予約制の見学（平六醸造・土浦醸造・ハッピー太郎醸造所・やまね酒造、LAGOON BREWERY の内部見学）もあります。各蔵の「訪ねる前に」と、公式の案内を見てください。</p>
+        <h2 class="sub-h tight">醸造の様子を<span class="accent">見学</span>できる蔵は？</h2>
+        <p>予約制の見学があるのは、平六醸造（約60分）、土浦醸造（60〜90分）、ハッピー太郎醸造所（約90分）、LAGOON BREWERY（約1時間）など。予約なしでガラス越しや窓越しに見られるのは、木花之醸造所、東京駅酒造場、Fermenteria、HAKUTSURU SAKE CRAFT（白鶴酒造資料館）、LAGOON BREWERY（Shop & Cafe の窓から）です。</p>
+        <h2 class="sub-h tight">営業時間は<span class="accent">載っていない</span>のですか？</h2>
+        <p>小さな醸造所の営業日・時間は変わりやすく、古い情報を載せると現地で困らせてしまうため、あえて載せていません。各蔵の「公式サイトで最新の営業を見る」から、蔵の案内をご覧ください。</p>
+      </div>
+    </section>
+{divider()}
+    <section class="section">
+{section_meta(f"{n_reg + 5:02d}", "READ ON / もっと知る")}
+      <div class="prose">
+        <p>訪ねる前に、飲み方の基本や、蔵が生まれている背景も読んでおくと、現地での一杯がもっと楽しめる。</p>
+        <div class="readmore">
+          <a href="new-breweries.html">
+            <div class="readmore__k">DEEP</div>
+            <div class="readmore__t">いま生まれている、新しい蔵</div>
+          </a>
+          <a href="nomikata.html">
+            <div class="readmore__k">あわせて読む</div>
+            <div class="readmore__t">クラフトサケの飲み方・楽しみ方</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+"""
+    html = page_head("クラフトサケが飲める醸造所 — 東京・大阪・東北ほか、併設バー・直売・見学の案内",
+                     f"醸造所に併設したバーやパブでクラフトサケ・どぶろくを飲める蔵、直売で買える蔵、見学・体験ができる蔵を、東京・関西・東北・関東と新潟・九州の地域別に紹介。各蔵の公式サイトで確かめた内容（{checked_ja}時点）と、予約・入場券などの注意点をまとめています。",
+                     "/guide/nomeru-kura.html", "article")
+    html += masthead(article_masthead_label("nomeru-kura"), "A Field Guide")
+    html += article_crumbs("nomeru-kura")
+    html += hero(
+        article_eyebrow("nomeru-kura"),
+        '造る場所で、<br><span class="accent">その一杯を</span>。',
+        "醸造所に併設したバー、パブ、直売所、見学。地域ごとに、訪ねて飲めるクラフトサケの蔵をまとめた。")
+    html += body
+    html += footer()
+    return html
+
+
 # ────────────── 実行 ──────────────
 
 def main():
@@ -2712,6 +2891,7 @@ def main():
     (OUT_DIR / "furusato.html").write_text(build_furusato_guide(), encoding="utf-8")
     (OUT_DIR / "zenkoji.html").write_text(build_zenkoji(), encoding="utf-8")
     (OUT_DIR / "new-breweries.html").write_text(build_new_breweries(), encoding="utf-8")
+    (OUT_DIR / "nomeru-kura.html").write_text(build_nomeru_kura(), encoding="utf-8")
     print(f"OK ガイド生成: guide/index.html（一覧）＋ 記事{len(ARTICLES)}本")
 
 

@@ -23,12 +23,13 @@ RELATED = {
     "doburoku":        [("hanamoto", "花酛とは"), ("zenkoji", "全麹酒とは"), ("craftsake-towa", "クラフトサケとは")],
     "nomikata":        [("osusume", "おすすめ12選"), ("doko-de-kaeru", "どこで買える？"), ("craftsake-towa", "クラフトサケとは")],
     "osusume":         [("doko-de-kaeru", "どこで買える？"), ("gift", "ギフトに贈る"), ("nomikata", "飲み方・楽しみ方")],
-    "doko-de-kaeru":   [("osusume", "おすすめ12選"), ("gift", "ギフトに贈る"), ("new-breweries", "新しい蔵")],
+    "doko-de-kaeru":   [("nomeru-kura", "飲める醸造所"), ("osusume", "おすすめ12選"), ("gift", "ギフトに贈る")],
     "gift":            [("osusume", "おすすめ12選"), ("doko-de-kaeru", "どこで買える？"), ("nomikata", "飲み方・楽しみ方")],
     "kioke":           [("zenkoji", "全麹酒とは"), ("hanamoto", "花酛とは"), ("doburoku", "どぶろくとは")],
     "hanamoto":        [("doburoku", "どぶろくとは"), ("kioke", "木桶仕込みとは"), ("craftsake-towa", "クラフトサケとは")],
     "zenkoji":         [("kioke", "木桶仕込みとは"), ("doburoku", "どぶろくとは"), ("craftsake-towa", "クラフトサケとは")],
-    "new-breweries":   [("craftsake-towa", "クラフトサケとは"), ("doko-de-kaeru", "どこで買える？"), ("doburoku", "どぶろくとは")],
+    "new-breweries":   [("nomeru-kura", "飲める醸造所"), ("craftsake-towa", "クラフトサケとは"), ("doko-de-kaeru", "どこで買える？")],
+    "nomeru-kura":     [("new-breweries", "新しい蔵"), ("doko-de-kaeru", "どこで買える？"), ("nomikata", "飲み方・楽しみ方")],
 }
 
 TOC_CSS = """<style>
@@ -60,7 +61,7 @@ TOC_CSS = """<style>
 </style>"""
 
 SEC_RE = re.compile(
-    r'<section class="section">\s*<div class="section-meta">\s*'
+    r'<section class="section"(?: id="([^"]+)")?>\s*<div class="section-meta">\s*'
     r'<span class="section-meta__num">No\. (\d+)</span>\s*'
     r'<span class="section-meta__label">([^<]+)</span>', re.S)
 
@@ -75,13 +76,16 @@ def build(path, slug):
         return 0
 
     # 各節に id を振る
+    # 既に id のある節（記事内リンクの的になっている節）はその id を使う
     def add_id(m):
+        if m.group(1):
+            return m.group(0)
         return m.group(0).replace('<section class="section">',
-                                  f'<section class="section" id="s{m.group(1)}">', 1)
+                                  f'<section class="section" id="s{m.group(2)}">', 1)
     html = SEC_RE.sub(add_id, html)
 
     items = "".join(
-        f'<li><a href="#s{num}">{label.split(" / ")[-1].strip()}</a></li>' for num, label in secs)
+        f'<li><a href="#{sid or "s" + num}">{label.split(" / ")[-1].strip()}</a></li>' for sid, num, label in secs)
     toc = (f'\n  <nav class="toc" aria-label="目次">\n'
            f'    <div class="toc__label">— 目次</div>\n'
            f'    <ol>{items}</ol>\n  </nav>\n')

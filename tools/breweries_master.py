@@ -64,12 +64,12 @@ BREWERIES = [
         "name": "木花之醸造所",
         "name_kana": "コノハナノジョウゾウショ",
         "prefecture": "東京都",
-        "city": "台東区駒形",
+        "city": "台東区浅草",  # 2026-10-28 公式（併設店舗ページ）の所在地 浅草4丁目49-14 に合わせた。旧「駒形」
         "region": "関東",
         "founded": "2020",
         "official_url": "https://konohanano-brewery.com/",
         "philosophy": "浅草の代表的観光地で国内外に誇れる名物の酒造りを。若い蔵人が活躍できる「新しい修行の場」として独立を支援。",
-        "features": "浅草・駒形のどぶろく醸造所。ALL (W)RIGHT sake placeを併設しバーで提供。若手醸造家の修行拠点的役割。",
+        "features": "浅草のどぶろく醸造所。ALL (W)RIGHT sake placeを併設しバーで提供。若手醸造家の修行拠点的役割。",
         "association": True,
     },
     {
