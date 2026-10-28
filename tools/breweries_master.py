@@ -239,7 +239,7 @@ BREWERIES = [
         "founded": "2024",
         "official_url": "https://sakeworld.jp/sakebrewery/kyoto-linne/",
         "philosophy": "元WAKAZE杜氏・今井翔也創業。米以外の麹（大麦麹・蕎麦・芋麹）でつくる「800（ヤオ）」シリーズ。",
-        "features": "haccoba・阿部酒造・LIBROMで委託醸造のファントムブリュワリー。2026年京都自社醸造所開設予定。",
+        "features": "haccoba・阿部酒造・LIBROMで委託醸造のファントムブリュワリー。2027年春に京都・清水五条坂エリアへ自社醸造所とレストランを開く予定（公式ニュース 2026年9月25日）。",
         "association": False,
     },
     {
