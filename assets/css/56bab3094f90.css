@@ -407,6 +407,13 @@ footer { margin-top:5rem; border-top:1px solid var(--ink); position:relative; z-
 
 /* スペック比較表 */
 .cmp-wrap { max-width:820px; overflow-x:auto; margin:1rem 0 1rem; }
+.cmp.cmp--compare td { white-space:normal; min-width:8rem; line-height:1.7; vertical-align:top; }
+.cmp.cmp--compare td.nm { min-width:6.5rem; font-weight:700; }
+.answer-list { list-style:none; padding:0; margin:.8rem 0 0; max-width:720px; }
+.answer-list li { padding:.6rem 0; border-top:1px solid var(--line-soft); line-height:1.85; }
+.answer-list li:last-child { border-bottom:1px solid var(--line-soft); }
+.answer-list strong { color:var(--accent); margin-right:.4rem; }
+@media (max-width:600px){ .cmp.cmp--compare thead { display:none; } .cmp.cmp--compare, .cmp.cmp--compare tbody, .cmp.cmp--compare tr, .cmp.cmp--compare td { display:block; width:100%; } .cmp.cmp--compare tr { border-bottom:1px solid var(--line-soft); padding:.7rem 0; } .cmp.cmp--compare td { border:0; padding:.15rem 0; min-width:0; } .cmp.cmp--compare td.nm { font-size:1rem; padding-bottom:.3rem; } .cmp.cmp--compare td[data-label]::before { content:attr(data-label); display:inline-block; width:6.5em; font-family:'Zen Kaku Gothic Antique',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.04em; color:var(--accent); } }
 .cmp { width:100%; border-collapse:collapse; font-size:.84rem; white-space:nowrap; }
 .cmp th, .cmp td { text-align:left; padding:.6rem .8rem; border-bottom:1px solid var(--line-soft); }
 .cmp thead th { font-family:'Zen Kaku Gothic Antique',sans-serif; font-weight:700; letter-spacing:.06em; font-size:.72rem; color:var(--ink); border-bottom:1px solid var(--line); }
