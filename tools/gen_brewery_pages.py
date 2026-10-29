@@ -26,6 +26,7 @@ from furusato_block import (
 )
 from tasting import TASTING
 from brewery_about import about_of, founder_of
+from seo_meta import BREWERY_SEO
 from gen_axes_pages import categorize_ingredient, region_anchor
 from site_common import head_extra, seo_head, breadcrumb, SITE_URL, pr_notice
 from moshimo_link import resolve_rakuten, resolve_yahoo, resolve_amazon, brewery_shop_links
@@ -576,8 +577,8 @@ HEAD = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{name}｜{prefecture}のクラフトサケ醸造所 — saketto.</title>
-<meta name="description" content="{name}（{prefecture}・{city}）。{philosophy_short}">
+<title>{seo_title} — saketto.</title>
+<meta name="description" content="{seo_desc}">
 {seo}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -954,7 +955,13 @@ def render(brewery, index, prev_brewery, next_brewery):
   </section>"""
 
     _path = f"/brewery/{brewery['slug']}.html"
-    _bdesc = f"{brewery['name']}（{brewery['prefecture']}・{brewery['city']}）のクラフトサケ醸造所情報。{philosophy_short}"
+    # 検索結果での見え方は seo_meta.py（GSCの検索語とページ内の事実から1蔵ずつ書いた）。無い蔵は従来の型
+    _n_brands = len(listed(brewery["slug"]))  # 銘柄セクションの見出しと同じ数え方
+    _seo_t, _seo_d = BREWERY_SEO.get(brewery["slug"], (
+        f"{brewery['name']}｜{brewery['prefecture']}のクラフトサケ醸造所",
+        f"{brewery['name']}（{brewery['prefecture']}・{brewery['city']}）のクラフトサケ醸造所情報。{philosophy_short}"))
+    _seo_t, _seo_d = _seo_t.format(n=_n_brands), _seo_d.format(n=_n_brands)
+    _bdesc = _seo_d
     _org = {"@context": "https://schema.org/", "@type": ["Brewery", "LocalBusiness"],
             "@id": SITE_URL + _path + "#brewery",
             "name": brewery["name"],
@@ -967,13 +974,12 @@ def render(brewery, index, prev_brewery, next_brewery):
         _org["sameAs"] = [brewery["official_url"]]
     _kura_og = REPO_ROOT / "assets" / "images" / "brewery" / f'{brewery["slug"]}.webp'
     _og_img = (SITE_URL + f'/assets/images/brewery/{brewery["slug"]}.webp') if _kura_og.exists() else None
-    seo = seo_head(_path, f"{brewery['name']}｜{brewery['prefecture']}のクラフトサケ醸造所",
+    seo = seo_head(_path, _seo_t,
                    _bdesc, og_type="website", image=_og_img, jsonld=[
         _org,
         breadcrumb([("トップ", "/"), ("蔵から探す", "/brewery/"), (brewery["name"], _path)]),
     ])
-    html = HEAD.format(name=brewery["name"], prefecture=brewery["prefecture"],
-                       city=brewery["city"], philosophy_short=philosophy_short,
+    html = HEAD.format(seo_title=_seo_t, seo_desc=_seo_d,
                        css=CSS, head_extra=head_extra(), seo=seo)
 
     html += f"""

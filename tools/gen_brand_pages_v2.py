@@ -823,10 +823,22 @@ def build_html(brand, detail, brewery, idx):
 
     _path = f"/brand/{slug}-{idx}.html"
     # title：主要KW「クラフトサケ」を全銘柄ページに。銘柄名が蔵名を含む場合は蔵名を省略（二重表記防止）
-    if brewery["name"] in name:
-        _title_core = f"{name}｜クラフトサケ"
-    else:
-        _title_core = f"{name}｜{brewery['name']}のクラフトサケ"
+    # 2026-10-29 SEO：検索結果で「どんな酒か・いくらか」が見えるよう、本文に出している度数・容量・参考価格を添える。
+    #   スマホで切れないよう全角40字ほどに収める（長いときは価格→容量の順に外す）。蔵名で始まる銘柄は蔵名を繰り返さない
+    _base = name if name.startswith(brewery["name"]) or brewery["name"] in name else f"{name}｜{brewery['name']}"
+    _abv_t = f"{abv:g}%" if isinstance(abv, (int, float)) and abv > 0 else ""
+    _vol_t = f"{int(volume)}ml" if isinstance(volume, (int, float)) and volume > 0 else ""
+    _pr_t = f"参考{int(price):,}円" if isinstance(price, (int, float)) and price > 0 else ""
+
+    def _w(t):  # 表示幅（半角は0.5字）
+        return sum(0.5 if ord(c) < 0x2000 else 1 for c in t)
+    _title_core = _base
+    for _parts in ([_abv_t, " ".join(x for x in (_vol_t, _pr_t) if x)], [_abv_t, _vol_t], [_abv_t]):
+        _spec = "・".join(x for x in _parts if x)
+        _cand = f"{_base}（{_spec}）" if _spec else _base
+        if _w(_cand) <= 40 or _parts == [_abv_t]:
+            _title_core = _cand
+            break
     # OG/Product画像：蔵の専用イメージがあれば使う（全銘柄共通og.pngのままにしない）
     _img_file = REPO_ROOT / "assets" / "images" / "brewery" / f"{slug}.webp"
     _img = (SITE_URL + f"/assets/images/brewery/{slug}.webp") if _img_file.exists() \

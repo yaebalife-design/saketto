@@ -1635,7 +1635,7 @@ def gen_breweries_hub():
     indep = total - assoc
 
     html = page_head(
-        "クラフトサケの蔵から探す",
+        f"クラフトサケ醸造所一覧｜全国{total}蔵の所在地・特徴・銘柄",
         f"全国のクラフトサケ醸造所{total}蔵（協会加盟{assoc}＋独立系{indep}）を一覧で横断。所在地・創業・特徴・収録銘柄まで、公式サイトで一次確認した情報だけを収録した蔵の索引。",
         "/brewery/")
     html += masthead("AXIS 02 — BREWERIES", f"{total} breweries")
