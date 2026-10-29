@@ -370,7 +370,7 @@ GENRES = [
     ("hop-sake", "ホップサケ", "HOP SAKE", "ホップを副原料に使う、ビールカルチャー寄りのクラフトサケ。"),
     ("fruit-sake", "果実サケ", "FRUIT SAKE", "果汁・果実を発酵に絡める、ワイン的なクラフトサケ。"),
     ("doburoku", "古典どぶろく", "CLASSIC DOBUROKU", "米と麹のみで醸した、伝統的どぶろくの系譜。"),
-    ("full-koji", "全麹酒・米麹100%", "FULL KOJI", "米麹のみで造る、清酒規格を超えた濃密な酒。"),
+    ("full-koji", "全麹酒・米麹100%", "FULL KOJI", "仕込む米をすべて麹にして造る、濃醇な酒。麹100%は清酒ではなく「その他の醸造酒」になる。"),
     ("kioke", "木桶仕込み", "KIOKE FERMENTATION", "木桶を使った手仕事の発酵。"),
     ("foreign-koji", "異素材麹", "FOREIGN KOJI", "大麦・蕎麦・芋など米以外の麹で造る、新しい酒のかたち。"),
     ("tea-herb-sake", "茶葉・ハーブサケ", "TEA & HERB", "茶やハーブの香りを纏う、繊細な系統。"),
@@ -427,7 +427,7 @@ def get_brewery_genres(brewery):
             _subs = b.get("sub_ingredients") or []
             if not any(x and x != "米のみ" and "米" not in x for x in _subs):
                 genres.add("doburoku")
-        if "全麹" in all_text or "米麹100%" in all_text or "十割麹" in name:
+        if "全麹" in all_text or "全糀" in all_text or "米麹100%" in all_text or "十割麹" in name:
             genres.add("full-koji")
         if "木桶" in all_text:
             genres.add("kioke")
@@ -711,7 +711,7 @@ def brands_in_genre(brewery, genre_key):
         elif genre_key == "doburoku":
             hit = ("どぶろく" in t or "ドブロク" in t) and not [x for x in ings if x and "米" not in x]
         elif genre_key == "full-koji":
-            hit = "全麹" in t or "十割麹" in t or "米麹100%" in t
+            hit = "全麹" in t or "全糀" in t or "十割麹" in t or "米麹100%" in t
         elif genre_key == "kioke":
             hit = "木桶" in t
         elif genre_key == "foreign-koji":

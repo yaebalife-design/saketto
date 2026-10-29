@@ -214,7 +214,7 @@ BREWERIES = [
         "official_url": "https://sakestreet.com/ja/media/pioneers-iyasaka-brewery-niigata",
         "philosophy": "米麹100%の「十割麹酒」で清酒規格にとらわれない新しい酒のかたちを提案。",
         "features": "2026年1月「その他の醸造酒」製造免許取得。副原料なしだが米麹のみで造るため清酒規格外。",
-        "association": False,
+        "association": True,  # 協会公式「会員一覧」に掲載（2026-10-29 確認）
     },
     {
         "slug": "sakenova",
@@ -227,7 +227,7 @@ BREWERIES = [
         "official_url": "https://sakenovabrewery.jp/",
         "philosophy": "佐渡から世界へ。輸出用清酒とクラフトサケのデュアル免許戦略。",
         "features": "佐渡産米とル レクチエ・黒イチジク・リンゴ・ミカン等を副原料に。",
-        "association": False,
+        "association": True,  # 協会公式「会員一覧」に掲載（2026-10-29 確認）
     },
     {
         "slug": "linne",
@@ -240,7 +240,7 @@ BREWERIES = [
         "official_url": "https://sakeworld.jp/sakebrewery/kyoto-linne/",
         "philosophy": "元WAKAZE杜氏・今井翔也創業。米以外の麹（大麦麹・蕎麦・芋麹）でつくる「800（ヤオ）」シリーズ。",
         "features": "haccoba・阿部酒造・LIBROMで委託醸造のファントムブリュワリー。2027年春に京都・清水五条坂エリアへ自社醸造所とレストランを開く予定（公式ニュース 2026年9月25日）。",
-        "association": False,
+        "association": True,  # 協会公式「会員一覧」に掲載（2026-10-29 確認）
     },
     {
         "slug": "amanosato",
